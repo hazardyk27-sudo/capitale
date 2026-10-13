@@ -14,7 +14,7 @@ Measure what is materially different today from each team's normal football base
 3. For every material absence/uncertainty, score separately:
    - ABSENCE_IMPORTANCE
    - ABSENCE_EFFECT
-4. Identify likely replacement(s) and confidence in replacement expectation.
+4. Identify likely replacement(s) and confidence in replacement expectation. For every important absence, this step is mandatory: state who is most likely to replace the player, how certain that expectation is, and what changes in role, quality, shape, buildup, pressing, defensive coverage, set pieces, or chance creation may follow. If a credible replacement cannot be established, explicitly state that the replacement is not yet known.
 5. Check manager change/statements only for match-relevant current information.
 6. Check motivation only when concrete competition circumstances support it.
 7. Check off-field disruption when preparation/selection impact is plausible.
@@ -58,6 +58,7 @@ Internally, preserve the canonical NEWS report structure and evidence trace for 
 For the user-facing report, default to simple natural-language Turkish rather than schema/YAML/code-like output. For a multi-match run, prefer a compact table with columns such as:
 - Maç
 - Önemli güncel haberler
+- Yerine kim oynayabilir?
 - Bunun takıma olası etkisi
 - Bilginin gücü / belirsizlik
 
@@ -67,9 +68,14 @@ Do not show raw labels such as `home`, `away`, `net_news_impact`, `NEUTRAL`, `PO
 
 If reliable current news is missing, write it directly in ordinary language, for example: `Bu takım için güvenilir, maçı değiştirecek güncel bir haber bulamadım.` Missing information is not a neutral signal and must not be presented as one.
 
-For every material item, tell the user both:
-1. what happened;
-2. why it may matter in this match.
+For every material absence, tell the user all of the following:
+1. who is missing or doubtful;
+2. why that player matters;
+3. who is most likely to replace them;
+4. how strong/reliable that replacement is for the role;
+5. how the team's play may change because of the replacement.
+
+If the replacement is uncertain, write `yerine kimin oynayacağı henüz net değil` and explain the plausible options only when supported by credible sources. Never omit the replacement question merely to keep the table short.
 
 Uncertainty should also be explained naturally: `son fitness testi bekleniyor`, `oynama durumu belirsiz`, `kaynaklar birbiriyle çelişiyor`, etc.
 
