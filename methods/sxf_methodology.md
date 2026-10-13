@@ -1,22 +1,32 @@
 # SXF Methodology
 
 Status: DRAFT
-Version: 0.3
+Version: 0.4
 
 ## Objective
 
 Interpret SmartXFlow-only money and odds behavior without contamination from team analysis, current news, Polymarket, or other CAPITALE departments.
 
-The operational target is normally T-6 to T-3 before kickoff, but engines may originate earlier and be re-evaluated at the current decision horizon.
+The operational target is normally within roughly T-6 to T-3 before kickoff, but every match must be evaluated independently at its own exact remaining-time horizon when the analysis is run.
 
-## Core rule: as-of analysis
+## Core rule: dynamic per-match as-of analysis
 
-T-6 / T-5 / T-4 / T-3 are control points, not separate filters.
+For every match independently:
 
-At every report timestamp:
-- only observations available at or before the decision timestamp may be used;
+`hours_to_kickoff = kickoff_utc - as_of_utc`
+
+There is no single batch-level T-6/T-5/T-4/T-3 horizon.
+
+If several matches are analyzed at the same clock time, one may be T-3, another T-4.5, another T-6. SXF must use each match's own kickoff and the same real analysis timestamp to derive its own horizon.
+
+T-6 / T-5 / T-4 / T-3 are reference/control points and research buckets only. They are not separate filters and they do not authorize future data.
+
+At every match-specific report timestamp:
+- only observations available at or before `as_of_utc` may be used;
+- if no snapshot exists exactly at `as_of_utc`, use the latest eligible snapshot at or before it;
 - later money, later odds, final volume, closing odds, and later alarms are forbidden;
-- an earlier signal may be re-checked at the current control point using only data available by then.
+- an earlier signal may be re-checked at the exact current horizon using only data available by then;
+- if the exact remaining time is between reference points, record the exact remaining time rather than pretending the match is at a later control point.
 
 This rule applies equally to live operation and backtests.
 
@@ -42,9 +52,9 @@ Initial trigger conditions:
 
 Retention applies to Early Money signals first formed at T-72, T-60, T-40, or T-24.
 
-At each later available control point, evaluate the selected team's current money share.
+From the origin onward, inspect later observations only up to the exact current match-specific `as_of_utc`.
 
-If current share is `< 55%` at any later control:
+If selected-side money share is `< 55%` at any eligible later observation:
 - set `RETENTION_BREAK = true`;
 - cancel the EARLY MONEY recommendation;
 - do NOT automatically PASS the whole match;
@@ -58,7 +68,7 @@ The 55% threshold is an approved operational candidate for prospective testing, 
 
 Purpose: identify abnormal current concentration of SmartXFlow money on one team.
 
-All conditions must hold at the current decision snapshot:
+All conditions must hold at the current match-specific decision snapshot:
 - selection = HOME or AWAY;
 - selection is top-money in 1X2;
 - money >= £1,000;
@@ -73,7 +83,7 @@ Purpose: stricter quality filter on top of V1.
 
 First satisfy every V1 condition.
 
-Then require over the prior 3-hour window available at the decision timestamp:
+Then require over the prior 3-hour window ending exactly at the current match-specific `as_of_utc`:
 - selected-side share never below 70%;
 - adverse odds rise not greater than 3%.
 
@@ -144,7 +154,7 @@ BTTS YES remains independent from Over 2.5. Simultaneous BTTS and Over triggers 
 
 ## Supporting observations, not core engines
 
-The following may be recorded but must not independently trigger a core recommendation in v0.3:
+The following may be recorded but must not independently trigger a core recommendation in v0.4:
 - gradual odds decline;
 - abnormal money versus league/team baseline;
 - BTTS YES + OVER overlap;
@@ -181,8 +191,10 @@ These figures are descriptive research priors only. They MUST NOT be emitted as 
 For every engine opportunity, store at minimum:
 - match/event identifier;
 - engine name/version;
-- decision horizon;
-- as-of timestamp;
+- exact `as_of_utc`;
+- `kickoff_utc`;
+- exact `hours_to_kickoff`;
+- optional reference horizon bucket for research grouping;
 - selection;
 - money amount;
 - money share;
