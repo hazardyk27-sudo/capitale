@@ -48,7 +48,7 @@ Conflicting availability reports must be surfaced explicitly.
 
 ## Output discipline
 
-Separate:
+Separate internally:
 - VERIFIED FACT;
 - LIKELY / PROBABLE;
 - UNCONFIRMED;
@@ -56,3 +56,20 @@ Separate:
 - UNCERTAINTY.
 
 NEWS should answer: 'What is materially different from this team's normal baseline today?'
+
+### User-facing presentation rule
+
+The structured NEWS schema is an internal research/storage discipline. Unless the user explicitly asks for raw schema/YAML/JSON, do NOT present the report as schema fields or code-like labels.
+
+User-facing output MUST:
+- use plain, natural Turkish;
+- explain the actual news first: who is injured/suspended/doubtful, who may return, what the manager said, whether travel/rest/weather is unusual, and why it matters;
+- prefer a readable table when several matches are covered;
+- use human column names such as `Maç`, `Önemli haberler`, `Takıma olası etkisi`, `Bilginin gücü`;
+- avoid exposing machine labels such as `home`, `away`, `net_news_impact`, `NEUTRAL`, `POSITIVE`, `NEGATIVE`, `QUESTIONABLE`, or schema key names as the main presentation;
+- never turn missing news into a finding. Say clearly: `Güvenilir, maçı değiştirecek güncel bir haber bulamadım` or `Yeterli güncel bilgi yok`;
+- describe uncertainty in normal language, e.g. `oynama ihtimali belirsiz`, `son test bekleniyor`, `kaynaklar çelişiyor`;
+- explain why an absence matters instead of only attaching a severity label;
+- keep the final NEWS conclusion descriptive, not a betting recommendation.
+
+The internal canonical schema may still be produced or stored silently for reproducibility.
