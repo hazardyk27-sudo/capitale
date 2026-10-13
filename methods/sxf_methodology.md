@@ -1,192 +1,210 @@
 # SXF Methodology
 
 Status: DRAFT
-Version: 0.2
+Version: 0.3
 
 ## Objective
 
-Interpret SmartXFlow-only money and odds behavior without contamination from team analysis, current news, or Polymarket. The operational target is normally **3-6 hours before kickoff**.
+Interpret SmartXFlow-only money and odds behavior without contamination from team analysis, current news, Polymarket, or other CAPITALE departments.
 
-## Core methodological rule: as-of analysis
+The operational target is normally T-6 to T-3 before kickoff, but engines may originate earlier and be re-evaluated at the current decision horizon.
 
-SXF is evaluated at the actual prediction horizon, normally `T-6`, `T-5`, `T-4`, or `T-3`.
+## Core rule: as-of analysis
 
-No observation after the decision timestamp may enter the report or backtest row. In particular, a T-4 report MUST NOT use final money, closing odds, or flow that arrived between T-4 and kickoff.
+T-6 / T-5 / T-4 / T-3 are control points, not separate filters.
 
-Trailing windows must therefore be horizon-relative. Examples:
-- at T-4, trailing 6h means T-10 -> T-4;
-- at T-3, trailing 6h means T-9 -> T-3;
-- at T-4, trailing 3h means T-7 -> T-4.
+At every report timestamp:
+- only observations available at or before the decision timestamp may be used;
+- later money, later odds, final volume, closing odds, and later alarms are forbidden;
+- an earlier signal may be re-checked at the current control point using only data available by then.
 
-## Evidence hierarchy currently supported by research
+This rule applies equally to live operation and backtests.
 
-Current research suggests the following ordering:
+## Core engine set
 
-1. Absolute real-money size.
-2. Timing of new money, especially the last 3-6 hours available at decision time.
-3. Price response over the same period as the incoming money.
-4. Persistence/acceleration versus reversal.
-5. Money-share concentration as a confirmation/amplifier rather than a standalone trigger.
-6. Normalized volume versus league/team/market baseline when that calibration becomes available.
+### 1. EARLY MONEY
 
-The preferred question is not simply `Did odds rise or fall from open?` but rather: **What did price do while the new money arrived?**
+Purpose: detect serious team-side money before normal match-day market density develops.
 
-## Current DRAFT engines
+Eligible selection: HOME or AWAY only.
 
-### EARLY LOCK 1X2
-Research rule:
-- market = 1X2;
-- team selection only;
-- same tracked team has approximately £5k+ at T-72/T-60;
-- approximately £10k+ at T-40/T-24;
-- team is top-money selection.
+Initial trigger conditions:
 
-Interpretation: serious early and persistent money. It is a supportive signal, not the primary late decision trigger.
+| Observation | Trigger |
+| --- | --- |
+| T-72 | top-money TEAM + money >= £5,000 + share >= 50% |
+| T-60 | top-money TEAM + money >= £5,000 + share >= 50% |
+| T-40 | top-money TEAM + money >= £10,000 + share >= 50% |
+| T-24 | top-money TEAM + money >= £10,000 + share >= 50% |
+| T-12 | top-money TEAM + money >= £1,000 + share >= 80% |
 
-Observed three-day research result: approximately 81-91% across studied early subsets.
+#### Retention 55
 
-### 1X2 CONCENTRATION
-Research rule at the current decision snapshot:
-- market = 1X2;
-- team selection only;
+Retention applies to Early Money signals first formed at T-72, T-60, T-40, or T-24.
+
+At each later available control point, evaluate the selected team's current money share.
+
+If current share is `< 55%` at any later control:
+- set `RETENTION_BREAK = true`;
+- cancel the EARLY MONEY recommendation;
+- do NOT automatically PASS the whole match;
+- other engines remain independently eligible.
+
+T-12 remains an Early Money trigger point but is not an origin point for the Retention-55 rule.
+
+The 55% threshold is an approved operational candidate for prospective testing, not a calibrated optimum.
+
+### 2. 1X2 CONCENTRATION V1
+
+Purpose: identify abnormal current concentration of SmartXFlow money on one team.
+
+All conditions must hold at the current decision snapshot:
+- selection = HOME or AWAY;
+- selection is top-money in 1X2;
 - money >= £1,000;
 - money share >= 80%;
-- odds 1.40-2.50.
+- decimal odds 1.40-2.50.
 
-Observed T-6/T-5/T-4 research performance: approximately 73-79%.
+V1 is a core production-candidate engine inside the DRAFT methodology.
 
-### SURPRISE TEAM
-Research rule:
-- market = 1X2;
-- team selection only;
-- odds 2.90-4.49;
+### 3. 1X2 CONCENTRATION V2
+
+Purpose: stricter quality filter on top of V1.
+
+First satisfy every V1 condition.
+
+Then require over the prior 3-hour window available at the decision timestamp:
+- selected-side share never below 70%;
+- adverse odds rise not greater than 3%.
+
+V2 does not replace V1. It qualifies the same underlying directional case and must not be counted as a second independent signal.
+
+### 4. HEAVY 1X2
+
+Purpose: premium-strength tag inside the Concentration family.
+
+Conditions:
+- Concentration-family team case;
+- money >= £10,000;
+- money share >= 80%.
+
+HEAVY 1X2 is a premium tag, not an independent vote.
+
+### 5. SURPRISE TEAM
+
+Purpose: detect unusual money on a non-favorite team.
+
+Conditions:
+- selection = HOME or AWAY;
+- decimal odds 2.90-4.49;
 - money share >= 50%.
 
-Interpretation: underdog money support / resistance. In the studied T-6 sample the non-loss rate was approximately 71%. Do not convert this directly into a win-probability claim.
+There is no fixed £10k minimum.
 
-### OVER STABLE
-Research rule:
+Interpretation:
+- upset risk;
+- resistance to the favorite;
+- non-loss support.
+
+Do not automatically translate SURPRISE TEAM into a direct team-win recommendation.
+
+### 6. STABLE OVER 2.5
+
+Conditions:
 - market = O/U 2.5;
-- selection = Over;
+- selection = OVER;
 - money >= £1,500;
 - money share >= 65%;
-- odds 1.40-1.80.
+- decimal odds 1.40-1.80.
 
-Observed three-day research performance: approximately 71-77%.
+### 7. PREMIUM OVER 2.5
 
-### OVER PREMIUM
-Research rule:
+Conditions:
 - market = O/U 2.5;
-- selection = Over;
+- selection = OVER;
 - money >= £2,500;
 - money share >= 75%;
-- odds 1.40-1.80.
+- decimal odds 1.40-1.80.
 
-Observed T-5 to T-3 research performance: approximately 82-86%.
+If both STABLE and PREMIUM trigger on the same match/selection:
+- report PREMIUM as the stronger state;
+- mark STABLE as superseded;
+- do not count them independently.
 
-OVER PREMIUM supersedes OVER STABLE on the same market/selection. Do not count both independently.
+### 8. BTTS YES
 
-### BTTS YES
-Research rule:
+Conditions:
 - market = BTTS;
 - selection = YES;
 - money >= £750;
 - money share >= 60%;
-- odds 1.60-1.90.
+- decimal odds 1.60-1.90.
 
-Observed three-day research performance: approximately 73-80%.
+BTTS YES remains independent from Over 2.5. Simultaneous BTTS and Over triggers do not receive an automatic confidence bonus.
 
-## Common confirmation layer
+## Supporting observations, not core engines
 
-Every triggered engine should be evaluated using, when available:
-- trailing 6h new money;
-- trailing 3h new money;
-- trailing 1h new money;
-- trailing 6h price response;
-- trailing 3h price response;
-- flow acceleration;
-- persistence or reversal;
-- current money share;
-- current absolute money;
-- normalized-volume percentile/abnormality once calibrated.
+The following may be recorded but must not independently trigger a core recommendation in v0.3:
+- gradual odds decline;
+- abnormal money versus league/team baseline;
+- BTTS YES + OVER overlap;
+- EARLY MONEY + 1X2 CONCENTRATION overlap.
 
-Positive confirmation currently means new money and a same-direction shortening of price over the comparable trailing window.
+The first two remain useful research directions. The latter two are confluence tags only until larger samples justify a bonus.
 
-Long open-to-current drift is not an automatic negative. A selection can drift earlier and still receive meaningful late confirmed money.
+## Engine relationship rules
 
-## Late confirmed money research finding
+1. `PREMIUM_OVER_2_5` supersedes `STABLE_OVER_2_5` on the same selection.
+2. `CONCENTRATION_V2` qualifies `CONCENTRATION_V1`; it is not a second vote.
+3. `HEAVY_1X2` is a premium tag on the same Concentration family case.
+4. `EARLY_MONEY` may coexist with later Concentration, but overlap alone adds no automatic confidence bonus.
+5. `RETENTION_BREAK` cancels only the Early Money engine instance.
+6. `SURPRISE_TEAM` is interpreted as upset/non-loss risk, not an automatic 1X2 win call.
+7. BTTS and Over are separate engines; overlap itself adds no bonus.
 
-The strongest current research theme is **new money in the last 3-6 hours plus price shortening in the same direction**.
+## Research evidence currently supporting the rules
 
-Historical research examples include:
-- last 3h £5k+ new money + odds down: 45/66 = 68.2%;
-- last 6h £5k+ new money + odds down: 49/69 = 71.0%;
-- top-money team + last 6h >= £10k new money + odds down: 37/44 = 84.1%;
-- adding money share >= 60%: 33/38 = 86.8%;
-- adding final money >= £20k produced 18/19 in the studied sample, but final-money variants are NOT valid for T-6/T-5/T-4/T-3 reports because they use future information.
+Observed 9-12 October research included:
+- unique first-strong Early Money group around 18/22 = 81.8%;
+- Concentration V1 around 73-80% across T-6 to T-3 controls;
+- Concentration V2 historically stronger than V1 in the small sample;
+- Heavy 1X2 approximately 77-89% depending control point, with small N;
+- Surprise Team non-loss materially stronger than direct win rate;
+- Stable Over approximately 70-78%;
+- Premium Over strongest around T-5/T-4 in a small sample;
+- BTTS YES approximately 76-83% in the studied control points.
 
-Therefore the operational implementation must recreate the logic strictly using information available at the decision timestamp.
+These figures are descriptive research priors only. They MUST NOT be emitted as calibrated probabilities.
 
-## Early money research correction
+## Required backtest fields
 
-Early money is supportive rather than decisive. When the same final-preference selection was tracked backward:
-- T-24 >= £2.5k: 22/36 = 61.1%;
-- T-24 >= £5k: 17/27 = 63.0%;
-- T-24 >= £10k: 14/19 = 73.7%.
-
-This is materially weaker than late flow plus price confirmation, so early money should normally act as persistence/context rather than the primary trigger.
-
-## Money-share rule
-
-High money share alone must not produce a strong signal. Research included multiple failures with 80-90%+ money concentration. Share is therefore an amplifier and must be evaluated with:
-- absolute money;
-- timing;
-- price behavior;
-- market context.
-
-## Market priority from current research
-
-Current evidence priority:
-1. 1X2;
-2. O/U 2.5;
-3. BTTS as a separate secondary engine.
-
-O/U 2.5 outperformed BTTS in the studied broad top-money sample. This remains a research observation, not a permanent calibration claim.
-
-## Research quality / reporting discipline
-
-Three-day hit rates are research priors only. They must not be shown as expected production accuracy.
-
-Future evaluation rows should record at minimum:
-- N;
-- wins;
-- win rate;
-- average odds;
-- median odds;
-- expected wins from market-implied probability;
-- actual minus expected wins;
-- ROI when settlement quality is reliable;
+For every engine opportunity, store at minimum:
+- match/event identifier;
+- engine name/version;
 - decision horizon;
-- league/competition;
-- absolute and normalized volume where available.
+- as-of timestamp;
+- selection;
+- money amount;
+- money share;
+- odds;
+- top-money status where relevant;
+- prior-3h share minimum for V2;
+- prior-3h adverse odds movement for V2;
+- Early Money origin time;
+- retention status and first break timestamp;
+- result;
+- decimal odds at decision snapshot;
+- ROI where settlement is reliable;
+- source snapshot identifiers sufficient for reproducibility.
 
-## No double counting
+## Still open
 
-Overlapping conditions caused by the same underlying money flow are one evidence chain, not independent votes.
-
-Examples:
-- OVER PREMIUM supersedes OVER STABLE.
-- EARLY LOCK and 1X2 CONCENTRATION on the same team combine as one directional case with early persistence confirmation.
-- trailing 3h/6h price confirmation modifies engine strength; it is not a separate independent department signal.
-
-## Still not canonical
-
-The following remain open for owner research and must not be invented:
-- final engine precedence;
-- exact score/weight system;
-- normalized-volume calibration;
+The following are not approved and must not be invented:
+- numeric engine scoring;
+- production confidence mapping;
+- league/team normalized-money formula;
 - league-specific thresholds;
+- cross-engine precedence beyond the explicit relationships above;
 - sharp/public classification thresholds;
-- fake-sharp/reversal veto rules;
-- cross-market override rules;
-- production confidence mapping.
+- generic reversal veto outside the explicit Early Money retention rule;
+- final recommendation ranking logic beyond reporting triggered core engines.
