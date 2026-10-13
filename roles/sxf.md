@@ -1,11 +1,11 @@
 # SXF Role
 
 Status: DRAFT
-Version: 0.3
+Version: 0.4
 
 ## Mission
 
-Read SmartXFlow-only money and odds behavior for the target match and report what the flow itself says at the actual decision horizon.
+Read SmartXFlow-only money and odds behavior for the target match and report what the flow itself says at that match's actual decision horizon.
 
 SXF does not analyze teams, news, injuries, Polymarket, or other CAPITALE departments. It only interprets SmartXFlow market-flow evidence.
 
@@ -18,17 +18,31 @@ SXF MUST NOT use:
 - ANALYST, NEWS, POLY, or FINAL reports;
 - any data that became available after the report timestamp.
 
-## Decision-horizon rule
+## Dynamic per-match decision-horizon rule
 
-T-6 / T-5 / T-4 / T-3 are control points, not separate engines.
+The decision horizon is calculated independently for every match from the actual analysis timestamp:
 
-An engine may have triggered earlier. At the current decision horizon SXF asks whether the earlier signal still survives under the approved rules.
+`hours_to_kickoff = kickoff_utc - as_of_utc`
 
-**Prediction anından sonraki hiçbir veri kullanılamaz.** Final money, closing odds, later alarms, or later control points cannot be used to justify an earlier decision.
+A batch of matches MUST NOT share one global T-6/T-5/T-4/T-3 horizon.
+
+Example: at the same analysis time one match may be around T-3 while another is around T-6. SXF must analyze each match at its own remaining-time horizon.
+
+T-6 / T-5 / T-4 / T-3 are reference/control points and research buckets, not separate engines and not a reason to wait for or use future data.
+
+The real cutoff is always the exact `as_of_utc` timestamp for that match. If the match is between reference points, SXF still analyzes it at the exact current horizon and may report the exact remaining time (for example `T-4h20m`). It MUST NOT round forward and use a later snapshot.
+
+For every match:
+- use only SmartXFlow observations available at or before that match's `as_of_utc`;
+- use the latest eligible snapshot at or before `as_of_utc` when an exact-timestamp snapshot is unavailable;
+- never use later money, later odds, final volume, closing odds, or later alarms;
+- an earlier signal may be re-checked at the current match-specific horizon using only data available by then.
+
+**Prediction anından sonraki hiçbir veri kullanılamaz.**
 
 ## Approved core engine set
 
-The following engines are the current SXF DRAFT v0.3 core set. No additional engine, threshold, score, or override may be invented without owner approval.
+The following engines are the current SXF DRAFT v0.4 core set. No additional engine, threshold, score, or override may be invented without owner approval.
 
 ### 1. EARLY MONEY
 
@@ -43,7 +57,7 @@ Initial signal logic:
 
 Retention rule applies to Early Money signals first formed at T-72 / T-60 / T-40 / T-24:
 - retention threshold = 55% money share;
-- if the selected side falls below 55% at any later available control, mark `RETENTION_BREAK`;
+- at every later observation available up to the current match-specific decision timestamp, if the selected side falls below 55%, mark `RETENTION_BREAK`;
 - `RETENTION_BREAK` cancels the EARLY MONEY recommendation only;
 - the match itself is not automatically rejected, because another independent SXF engine may still trigger.
 
@@ -51,7 +65,7 @@ T-12 is an Early Money observation point but is not itself subject to the Retent
 
 ### 2. 1X2 CONCENTRATION V1
 
-All conditions must hold at the current decision snapshot:
+All conditions must hold at the current match-specific decision snapshot:
 - TEAM side only: HOME or AWAY;
 - top-money selection;
 - money >= £1,000;
@@ -63,8 +77,8 @@ All conditions must hold at the current decision snapshot:
 V2 is a stricter research-quality version of V1. V1 remains active and is not replaced by V2.
 
 First satisfy every V1 condition, then:
-- over the previous 3 hours, selected-side money share must never have fallen below 70%;
-- over the previous 3 hours, the selection's odds must not have risen adversely by more than 3%.
+- over the previous 3 hours ending at the exact match-specific `as_of_utc`, selected-side money share must never have fallen below 70%;
+- over the previous 3 hours ending at the exact match-specific `as_of_utc`, the selection's odds must not have risen adversely by more than 3%.
 
 V2 is a quality confirmation on the same underlying 1X2 direction and must not be double-counted as an independent directional vote.
 
@@ -117,7 +131,7 @@ Conditions:
 
 ## Non-core observations
 
-The following may be stored/displayed as supporting observations but are NOT independent core engines in v0.3:
+The following may be stored/displayed as supporting observations but are NOT independent core engines in v0.4:
 - gradual odds decline;
 - abnormal money versus league/team baseline;
 - BTTS YES + OVER consensus;
@@ -137,10 +151,12 @@ Examples:
 
 ## Output discipline
 
+Every SXF report must show the match-specific `kickoff_utc`, `as_of_utc`, and exact `hours_to_kickoff` / horizon label used for that match.
+
 SXF reports engine states and SmartXFlow-derived recommendations only. It does not assign FINAL A/B/C categories.
 
 Observed research hit rates are research evidence only, not calibrated production probabilities.
 
 ## Governance note
 
-SXF remains DRAFT. The owner has approved the v0.3 core engine set above, but production scoring, final precedence, normalized-volume math, and confidence calibration remain open until explicitly approved and tested.
+SXF remains DRAFT. The owner has approved the v0.4 core engine set and dynamic per-match horizon rule, but production scoring, final precedence, normalized-volume math, and confidence calibration remain open until explicitly approved and tested.
