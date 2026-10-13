@@ -1,14 +1,14 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.0
-Last updated: 2026-10-12
+Version: 1.1
+Last updated: 2026-10-13
 
 ## 1. Purpose
 
-CAPITALE is a multi-agent football match research and decision-support system designed to reduce confirmation bias, source contamination, and hidden double-counting. Independent specialist departments produce isolated reports. Only FINAL may synthesize those reports into a betting decision.
+CAPITALE is a multi-agent football match research and decision-support system designed to reduce confirmation bias, source contamination, future-data leakage, and hidden double-counting. Independent specialist departments produce isolated reports. Only FINAL may synthesize those reports into recommendations.
 
-The system must prefer reproducibility, source discipline, uncertainty disclosure, and a valid NO BET outcome over forced predictions.
+The system must prefer reproducibility, source discipline, uncertainty disclosure, and a valid `NO_RECOMMENDATION` outcome over forced predictions.
 
 ## 2. Roles
 
@@ -16,7 +16,7 @@ CAPITALE has six roles:
 
 1. ANALYST — independent football performance, tactical baseline, and matchup analysis.
 2. NEWS — independent current-context research: availability, manager, motivation, schedule, travel, weather, pitch, and relevant off-field conditions.
-3. SXF — independent SmartXFlow market-flow analysis. DRAFT until its signal methodology is approved.
+3. SXF — independent SmartXFlow market-flow analysis. Its approved v0.4 core engines and dynamic per-match horizon rule are DRAFT pending validation/calibration.
 4. POLY — independent Polymarket wallet-intelligence analysis.
 5. ENGINEER — architecture, data access, schemas, prompts, versions, testing, backtesting, calibration, and maintenance. ENGINEER does not make match predictions.
 6. FINAL — the only role allowed to combine the four independent department reports. FINAL does not perform raw-source research.
@@ -42,7 +42,7 @@ ANALYST may use historical/current-season football performance, match, statistic
 
 NEWS may use current news and contextual sources permitted by its source policy. It may not use betting/odds/market-flow data, SmartXFlow, Polymarket, or other department reports.
 
-SXF may use SmartXFlow data only. It may not use team form, current news, Polymarket, or other department reports. Its detailed signal rules remain DRAFT.
+SXF may use SmartXFlow data only. It may not use team form, current news, Polymarket, or other department reports. Its current DRAFT v0.4 core engines and exact per-match as-of rule are defined in its role/method/schema files.
 
 POLY uses direct/public Polymarket data as the primary source of truth. SmartXFlow's POLY page may be used only as a visualization/cache aid and is not authoritative. POLY may not use team-form analysis, current news, SmartXFlow flow conclusions, or other department reports.
 
@@ -50,7 +50,9 @@ FINAL uses completed department reports only. It must not browse for new match e
 
 ## 5. Decision Discipline
 
-NO BET is a first-class valid result.
+`NO_RECOMMENDATION` is a first-class valid FINAL result.
+
+FINAL recommendation confidence is expressed only as `A`, `B`, or `C`; there is no separate BET/WATCH/NO BET action class in the current FINAL architecture.
 
 A department must distinguish:
 - observed fact;
@@ -58,26 +60,38 @@ A department must distinguish:
 - interpretation;
 - uncertainty or missing data.
 
-Missing or unreliable data must never be silently converted into neutral or positive evidence.
+Missing or unreliable data must never be silently converted into neutral or positive evidence. Missing data is no evidence.
 
-Conflicting evidence must be preserved, not averaged away. FINAL must downgrade confidence when material conflicts remain unresolved.
+Conflicting evidence must be preserved, not averaged away. FINAL must reduce confidence when material conflicts remain unresolved, while avoiding simplistic majority voting.
 
-Thresholds and weights should ultimately be learned or calibrated from backtests. Bootstrap thresholds may be used only when explicitly versioned and marked as unvalidated.
+Evidence arising from the same underlying cause must not be double-counted as independent confirmation.
 
-## 6. Reproducibility
+Thresholds, reliability/freshness multipliers, penalties, and category boundaries should ultimately be learned or calibrated from backtests. Bootstrap rules may be used only when explicitly versioned and marked as unvalidated.
+
+## 6. As-of / Future-Data Rule
+
+Every department and FINAL decision is tied to an exact decision timestamp.
+
+No information that became available after that timestamp may be used to justify the decision.
+
+For SXF specifically, each match computes its own exact remaining time to kickoff. A batch MUST NOT use one shared T-6/T-5/T-4/T-3 horizon. Those labels are research/reference buckets, while the real cutoff is the match-specific `as_of_utc`.
+
+If meaningful new information arrives later, create a new versioned run rather than mutating the historical decision.
+
+## 7. Reproducibility
 
 Every research run should be reproducible from:
 - role and prompt version;
 - model name/version when available;
 - source/evidence references;
 - input snapshot or snapshot hash;
-- timestamps and freshness status;
+- exact decision timestamp and freshness status;
 - derived metrics and methodology version;
 - final output and later settlement.
 
 Methodological changes must be versioned. Historical decisions are never silently deleted. When a rule is replaced, mark the prior rule SUPERSEDED and record the replacement in MILESTONE.md.
 
-## 7. Role Startup Order
+## 8. Role Startup Order
 
 Before performing a role, read in this order:
 
@@ -89,9 +103,9 @@ Before performing a role, read in this order:
 6. schemas/<role>_report.md
 7. methods/<role>_methodology.md
 
-If a role is marked DRAFT, do not invent missing canonical thresholds. Use only the approved scope and explicitly report that methodology is pending.
+If a role is marked DRAFT, do not invent missing canonical thresholds. Use only approved rules and explicitly distinguish uncalibrated parameters.
 
-## 8. Governance
+## 9. Governance
 
 Major methodological rules are jointly decided with the system owner before becoming canonical.
 
@@ -99,17 +113,17 @@ ENGINEER may implement already-approved rules, add tests, improve reproducibilit
 
 Canonical status vocabulary:
 - CANONICAL — approved and active.
-- DRAFT — under design; not authoritative.
+- DRAFT — approved design may exist, but empirical validation/calibration or final lock remains pending.
 - EXPERIMENTAL — testable implementation not yet promoted.
 - SUPERSEDED — retained for history but no longer active.
 
-## 9. Current Canonical State
+## 10. Current State
 
 ANALYST: v1.0 CANONICAL
 NEWS: v1.0 CANONICAL
 POLY: v1.0 CANONICAL
-SXF: DRAFT
-FINAL: DRAFT
+SXF: v0.4 DRAFT — core engines + dynamic per-match horizon approved; validation/calibration pending
+FINAL: v0.2 DRAFT — synthesis architecture approved; numerical calibration pending
 ENGINEER: active governance/implementation role
 
-See MILESTONE.md for current implementation state and technical backlog.
+See MILESTONE.md for current implementation state, superseded rules, and technical backlog.
