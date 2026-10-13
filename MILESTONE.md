@@ -1,7 +1,7 @@
 # CAPITALE — Milestone Log
 
 Status: CANONICAL PROJECT HISTORY
-Last updated: 2026-10-12
+Last updated: 2026-10-13
 
 This file records active state, decisions, superseded rules, technical debt, and next work. Historical decisions are never deleted; replaced rules are marked SUPERSEDED.
 
@@ -20,7 +20,7 @@ Created the standalone `capitale` repository and installed the initial governanc
 
 ### System architecture
 
-The four evidence departments are isolated: ANALYST, NEWS, SXF, POLY. Only FINAL may synthesize them. FINAL performs no raw research. NO BET is a first-class result.
+The four evidence departments are isolated: ANALYST, NEWS, SXF, POLY. Only FINAL may synthesize them. FINAL performs no raw research. NO BET was initially defined as a first-class result.
 
 ### Supabase implementation already present
 
@@ -91,9 +91,9 @@ Behavioral clustering is required so several coordinated wallets are not automat
 
 ### POLY shortlist
 
-Operational shortlist is stored in Supabase as `poly.shortlist.v1`.
+Operational shortlist was initially stored in Supabase as `poly.shortlist.v1`.
 
-Current status:
+Initial status:
 - `0x821dab0565ebf5b327f51db06223fdcfe01acf16` — VALIDATED_INTERNAL
 - `0x2a69660046d7acc4ab204d7cc5ba78b0776cd2f7` — VALIDATED_INTERNAL
 - `0x9319a045cdd0c2180e5eb7ad44374383db9a6410` / sainttroplay — BACKFILL_REQUIRED
@@ -106,7 +106,7 @@ Pending/backfill entries are NOT canonical successful football bettors until ful
 
 Historical PnL fields are incomplete for many won positions. Earlier raw negative ROI impressions from partial `pnl_usdc` sums are invalid for skill assessment. Winning-position settlement must be reconstructed from buy cost, sell proceeds, redeem/settlement proceeds, and resolution state.
 
-### Next technical backlog
+### Next technical backlog at bootstrap
 
 1. Direct Polymarket wallet discovery/history collector.
 2. Football-only historical backfill for candidate wallets.
@@ -116,6 +116,151 @@ Historical PnL fields are incomplete for many won positions. Earlier raw negativ
 6. Complete SXF methodology after owner research.
 7. Complete FINAL synthesis and conflict rules.
 8. Backtest each department independently, then calibrate FINAL weights/thresholds from evidence rather than intuition.
+
+---
+
+## 2026-10-13 — SXF core design and dynamic match horizon approved
+
+The previous statement that SXF filters were still awaiting owner research is now SUPERSEDED by SXF DRAFT v0.4.
+
+### SXF DRAFT v0.4 active core set
+
+Approved core engines:
+- EARLY MONEY with T-72/T-60/T-40/T-24/T-12 trigger logic;
+- Retention 55 for T-72/T-60/T-40/T-24 Early Money origins;
+- 1X2 CONCENTRATION V1;
+- 1X2 CONCENTRATION V2 as a quality layer on V1;
+- HEAVY 1X2 as a premium Concentration tag;
+- SURPRISE TEAM as upset/non-loss risk rather than an automatic win call;
+- STABLE OVER 2.5;
+- PREMIUM OVER 2.5, superseding Stable on the same selection;
+- BTTS YES.
+
+Key relationship rules:
+- V2 is not a second independent vote over V1;
+- HEAVY is not a second independent vote;
+- Premium Over supersedes Stable Over on the same selection;
+- Retention break cancels only Early Money, not the whole match;
+- Early + Concentration overlap and BTTS + Over overlap do not receive automatic confidence bonuses.
+
+### Dynamic per-match horizon
+
+T-6/T-5/T-4/T-3 are reference/control buckets, not one shared batch horizon.
+
+For each match independently:
+
+`hours_to_kickoff = kickoff_utc - as_of_utc`
+
+The exact match-specific `as_of_utc` is the real data cutoff. A batch may contain one match near T-3 and another near T-6. SXF must analyze each at its own exact remaining time and may only use the latest SmartXFlow snapshot at or before that timestamp.
+
+Future data, closing data, later alarms, or later snapshots are forbidden.
+
+Supabase settings:
+- `sxf.core_engines.v0.3`
+- `sxf.dynamic_horizon.v0.4`
+
+SXF remains DRAFT pending prospective validation and calibration; its core methodology design is no longer an open architecture blocker.
+
+---
+
+## 2026-10-13 — POLY operational tracked pool expanded to 24 wallets
+
+The five-wallet operational shortlist description above is SUPERSEDED for current tracking operations.
+
+Current Supabase configuration:
+- `poly.shortlist.v2`
+- `poly.current_shortlist`
+- operational category: `POLY_FOOTBALL_TRACKED`
+
+All 24 selected wallets are in the same operational tracking category. This does NOT mean all 24 are canonically proven sharp bettors.
+
+Wallet quality, bettor style, sample strength, entry edge, ROI/PnL reliability, CLV, market specialty, lifecycle, and current relevance remain individually measured.
+
+Known remaining POLY work:
+- direct 30/60/90-day football-history backfill where current raw coverage is insufficient;
+- settlement/PnL reconstruction and coverage verification;
+- bettor-style classification and specialty evaluation;
+- wallet resolution cleanup for entries whose operational record still contains only a partial address.
+
+---
+
+## 2026-10-13 — FINAL synthesis architecture approved as DRAFT v0.2
+
+The previous FINAL v0.1 BET/WATCH/NO BET architecture is SUPERSEDED.
+
+### Current output model
+
+FINAL now uses only:
+- `A`
+- `B`
+- `C`
+- `NO_RECOMMENDATION`
+
+There is no separate BET/WATCH/NO BET action class in the current FINAL architecture.
+
+Only FINAL assigns A/B/C. Departments provide evidence, strength, uncertainty, and data quality but do not assign FINAL categories.
+
+A/B/C are absolute cross-match quality standards. Numerical thresholds remain intentionally uncalibrated until backtesting.
+
+### FINAL synthesis rules
+
+Approved architecture includes:
+- FINAL uses department reports only and performs no new raw research;
+- strict as-of/future-data rule;
+- match thesis with no category of its own;
+- no fixed maximum number of recommendations per match;
+- derived safer markets and logical combination markets allowed with explicit evidence trace;
+- each combination leg must have separate support;
+- combination category cannot exceed its weakest leg;
+- singles and supported combinations may coexist;
+- mutually opposite recommendations are forbidden;
+- highly correlated recommendations may coexist only with correlation tagging and without independent-evidence double counting;
+- duplicate underlying evidence must be deduplicated;
+- each recommendation gets an evidence trace, category rationale, and failure mode;
+- B/C include explicit limiting factors;
+- same-category outputs may be ranked A1/A2/A3 etc.;
+- confidence and value are separate axes;
+- weak value does not automatically demote A or B;
+- no stake sizing yet.
+
+### FINAL structural weighting
+
+POLY is the only structurally lower-weight department:
+- POLY = 5%-15%;
+- remaining 85%-95% split equally between ANALYST, NEWS, and SXF;
+- POLY cannot structurally outweigh the other three.
+
+Weights are support structure, not majority voting.
+
+Report-level reliability and freshness may modify effective contribution. NEWS/SXF/POLY are more freshness-sensitive than ANALYST.
+
+Missing data is `NO EVIDENCE`; most unused contribution may be redistributed while retaining a small missing-data confidence penalty. Exact redistribution, freshness decay, reliability multipliers, and conflict penalties remain calibration parameters.
+
+Strong conflicting evidence causes a real confidence penalty but is not an automatic veto. A single exceptionally strong department may still support an A recommendation if stronger contrary evidence is absent.
+
+When new important information arrives after a FINAL run, generate a new immutable FINAL run/version rather than mutating history.
+
+FINAL remains DRAFT because numerical category thresholds and penalty/multiplier functions still require backtest calibration.
+
+---
+
+## Current role status — 2026-10-13
+
+- ANALYST v1.0 — CANONICAL
+- NEWS v1.0 — CANONICAL
+- POLY v1.0 — CANONICAL methodology; 24-wallet operational tracked pool; historical backfill still improving
+- SXF v0.4 — DRAFT, approved core engine architecture and per-match dynamic horizon; validation/calibration pending
+- FINAL v0.2 — DRAFT, approved synthesis architecture; numerical calibration pending
+- ENGINEER — active implementation/governance role; no match predictions
+
+## Current next work
+
+1. Persist FINAL v0.2 operational settings and database support.
+2. Run a 3-5 match end-to-end dry run across different kickoff horizons: ANALYST -> NEWS -> SXF -> POLY -> FINAL.
+3. Verify strict future-data leakage protection and report-version reproducibility.
+4. Backtest/calibrate FINAL A/B/C categories, reliability/freshness adjustments, conflict penalties, and missing-data behavior.
+5. Continue POLY 24-wallet historical backfill and settlement/PnL quality work.
+6. Promote SXF/FINAL only after validation evidence supports canonical status.
 
 ## Change policy
 
