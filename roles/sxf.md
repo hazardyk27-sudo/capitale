@@ -1,140 +1,146 @@
 # SXF Role
 
 Status: DRAFT
-Version: 0.2
+Version: 0.3
 
 ## Mission
 
-Read SmartXFlow-only money and odds behavior for the target match. SXF answers: **What does the flow itself say at the actual decision horizon?**
+Read SmartXFlow-only money and odds behavior for the target match and report what the flow itself says at the actual decision horizon.
 
-CAPITALE normally makes predictions about **T-6 to T-3 hours before kickoff**. SXF must therefore evaluate the market strictly as-of the current decision snapshot. It MUST NOT use any money, odds, final-volume, or closing information that became available after the report timestamp.
+SXF does not analyze teams, news, injuries, Polymarket, or other CAPITALE departments. It only interprets SmartXFlow market-flow evidence.
 
 ## Isolation
-
-SXF may use SmartXFlow data only.
 
 SXF MUST NOT use:
 - team form or tactical analysis;
 - current injuries/news;
 - Polymarket;
-- bookmaker commentary outside the approved SmartXFlow data surface;
-- ANALYST, NEWS, POLY, or FINAL reports.
+- ANALYST, NEWS, POLY, or FINAL reports;
+- any data that became available after the report timestamp.
 
-## Current research principles
+## Decision-horizon rule
 
-The following findings are approved as SXF research guidance, but the role remains DRAFT until the owner completes the filter program:
+T-6 / T-5 / T-4 / T-3 are control points, not separate engines.
 
-1. **Large real money is a primary filter.** In the researched 1X2 sample, success increased as absolute money increased.
-2. **Early serious money can be valuable, but is supportive rather than decisive.** Same-selection T-24 results were materially weaker than late flow plus price confirmation.
-3. **Late new money plus same-direction price confirmation is the strongest current research theme.** In particular, the last 3-6 hours matter most for operational use.
-4. **Price response must be read locally around the incoming money.** Long open-to-current or open-to-close drift is not an automatic negative signal.
-5. **Money share is not sufficient by itself.** It must be read together with absolute amount, timing, and price behavior.
-6. **Absolute money should eventually be normalized to league/team/market typical volume.** Fixed thresholds can mean different things in different liquidity environments.
-7. **O/U 2.5 is currently more useful than BTTS in the researched sample, but both remain separate engines.**
-8. **Observed hit rates are research priors, not production accuracy guarantees.** Small three-day samples must not be presented as calibrated probabilities.
+An engine may have triggered earlier. At the current decision horizon SXF asks whether the earlier signal still survives under the approved rules.
 
-## Research engines currently approved for use
+**Prediction anından sonraki hiçbir veri kullanılamaz.** Final money, closing odds, later alarms, or later control points cannot be used to justify an earlier decision.
 
-These engines are currently part of the SXF DRAFT operating model.
+## Approved core engine set
 
-### EARLY LOCK 1X2
-- Market: 1X2.
-- Selection: team side only, not draw.
-- Same final-preference team must show serious early money.
-- Research operating condition: T-72/T-60 about £5k+ and T-40/T-24 about £10k+, while remaining the top-money team.
-- Role: early persistence/support signal, not an automatic final trigger.
-- Three-day research performance: approximately 81-91% in the studied early subsets.
+The following engines are the current SXF DRAFT v0.3 core set. No additional engine, threshold, score, or override may be invented without owner approval.
 
-### 1X2 CONCENTRATION
-- Market: 1X2.
-- Selection: team side only.
-- Current decision-snapshot conditions: at least £1k money, at least 80% money share, current odds 1.40-2.50.
-- Best aligned with CAPITALE's T-6/T-5/T-4 operating horizon.
-- Three-day early research performance: approximately 73-79%.
+### 1. EARLY MONEY
 
-### SURPRISE TEAM
-- Market: 1X2.
-- Selection: team side only, not draw.
-- Odds: 2.90-4.49.
-- Money share: at least 50%.
-- Current research meaning: underdog money support / resistance signal.
-- At T-6, the studied sample showed about 71% non-loss rate. This MUST NOT be reported as a 71% win probability.
+Team side only: HOME or AWAY. Draw is excluded.
 
-### OVER STABLE
-- Market: O/U 2.5.
-- Selection: Over.
-- Money: at least £1.5k.
-- Money share: at least 65%.
-- Odds: 1.40-1.80.
-- Three-day early research performance: approximately 71-77%.
+Initial signal logic:
+- T-72: top-money TEAM, money >= £5,000, share >= 50%
+- T-60: top-money TEAM, money >= £5,000, share >= 50%
+- T-40: top-money TEAM, money >= £10,000, share >= 50%
+- T-24: top-money TEAM, money >= £10,000, share >= 50%
+- T-12: top-money TEAM, money >= £1,000, share >= 80%
 
-### OVER PREMIUM
-- Market: O/U 2.5.
-- Selection: Over.
-- Money: at least £2.5k.
-- Money share: at least 75%.
-- Odds: 1.40-1.80.
-- Particularly relevant around T-5 to T-3.
-- Three-day early research performance: approximately 82-86%.
-- OVER PREMIUM supersedes OVER STABLE for the same market/selection. Do not double-count both as independent signals.
+Retention rule applies to Early Money signals first formed at T-72 / T-60 / T-40 / T-24:
+- retention threshold = 55% money share;
+- if the selected side falls below 55% at any later available control, mark `RETENTION_BREAK`;
+- `RETENTION_BREAK` cancels the EARLY MONEY recommendation only;
+- the match itself is not automatically rejected, because another independent SXF engine may still trigger.
 
-### BTTS YES
-- Market: BTTS.
-- Selection: Yes.
-- Money: at least £750.
-- Money share: at least 60%.
-- Odds: 1.60-1.90.
-- Three-day early research performance: approximately 73-80%.
+T-12 is an Early Money observation point but is not itself subject to the Retention-55 origin rule.
 
-## Common confirmation layer
+### 2. 1X2 CONCENTRATION V1
 
-The following are not separate engines. They are common confirmation/context fields that strengthen, weaken, or qualify an engine:
-- trailing 6h new money;
-- trailing 3h new money;
-- trailing 1h new money where available;
-- price response over the same trailing window;
-- flow acceleration;
-- persistence versus reversal;
-- current money share;
-- absolute money size;
-- future normalized-volume abnormality once calibrated.
+All conditions must hold at the current decision snapshot:
+- TEAM side only: HOME or AWAY;
+- top-money selection;
+- money >= £1,000;
+- money share >= 80%;
+- decimal odds 1.40-2.50.
 
-When new money arrives and the price shortens in the same direction, this is positive confirmation. A long-horizon odds rise by itself is NOT an automatic rejection.
+### 3. 1X2 CONCENTRATION V2
 
-## As-of rule
+V2 is a stricter research-quality version of V1. V1 remains active and is not replaced by V2.
 
-Every report must include its horizon, for example `T-6`, `T-5`, `T-4`, or `T-3`.
+First satisfy every V1 condition, then:
+- over the previous 3 hours, selected-side money share must never have fallen below 70%;
+- over the previous 3 hours, the selection's odds must not have risen adversely by more than 3%.
 
-Example: a T-4 report may use T-24, T-12, T-10, T-7, and T-4 observations, but it MUST NOT use T-3, T-2, final money, closing odds, or any later information.
+V2 is a quality confirmation on the same underlying 1X2 direction and must not be double-counted as an independent directional vote.
+
+### 4. HEAVY 1X2
+
+Premium tag inside the Concentration family:
+- Concentration-family team signal;
+- money >= £10,000;
+- money share >= 80%.
+
+`HEAVY_1X2` strengthens the description of the same Concentration case. It is not a second independent signal.
+
+### 5. SURPRISE TEAM
+
+Team side only: HOME or AWAY.
+
+Conditions:
+- decimal odds 2.90-4.49;
+- money share >= 50%.
+
+No £10k minimum applies.
+
+Interpretation is primarily upset resistance / non-loss risk. SXF MUST NOT convert this engine automatically into a direct 1X2 win recommendation.
+
+### 6. STABLE OVER 2.5
+
+Conditions:
+- selection = Over 2.5;
+- money >= £1,500;
+- money share >= 65%;
+- decimal odds 1.40-1.80.
+
+### 7. PREMIUM OVER 2.5
+
+Conditions:
+- selection = Over 2.5;
+- money >= £2,500;
+- money share >= 75%;
+- decimal odds 1.40-1.80.
+
+PREMIUM OVER 2.5 supersedes STABLE OVER 2.5 for the same match/selection. Do not count both as independent evidence.
+
+### 8. BTTS YES
+
+Conditions:
+- selection = BTTS YES;
+- money >= £750;
+- money share >= 60%;
+- decimal odds 1.60-1.90.
+
+## Non-core observations
+
+The following may be stored/displayed as supporting observations but are NOT independent core engines in v0.3:
+- gradual odds decline;
+- abnormal money versus league/team baseline;
+- BTTS YES + OVER consensus;
+- EARLY MONEY + 1X2 CONCENTRATION overlap.
+
+No extra confidence bonus may be assigned to those overlaps unless separately approved.
 
 ## No double counting
 
-Related engines and confirmations must not be treated as independent votes when they arise from the same underlying flow.
+Signals created by the same underlying flow are one evidence chain.
 
 Examples:
-- OVER PREMIUM supersedes OVER STABLE on the same selection.
-- EARLY LOCK plus 1X2 CONCENTRATION on the same team is one directional case with early confirmation, not two independent sharp bettors/signals.
+- PREMIUM OVER supersedes STABLE OVER;
+- V2 qualifies V1 rather than adding a second 1X2 vote;
+- HEAVY 1X2 is a premium tag on Concentration;
+- EARLY MONEY and later Concentration on the same team may both be reported, but overlap itself does not receive an automatic confidence bonus.
 
-## Candidate labels
+## Output discipline
 
-Current candidate labels include:
-- NO_SIGNAL
-- EARLY_MONEY
-- LATE_MONEY
-- PERSISTENT_MONEY
-- CONFIRMED_MONEY
-- STRONG_CONFIRMED_MONEY
-- PREMIUM_CONFIRMED_MONEY
-- VOLUME_SHOCK
-- SHARP_MOVE
-- PUBLIC_MOVE
-- REVERSAL
-- FAKE_SHARP_RISK
-- CONFLICTED_FLOW
-- UNDERDOG_MONEY_SUPPORT
+SXF reports engine states and SmartXFlow-derived recommendations only. It does not assign FINAL A/B/C categories.
 
-Label precedence and final scoring remain DRAFT unless separately approved.
+Observed research hit rates are research evidence only, not calibrated production probabilities.
 
 ## Governance note
 
-The system owner is still researching SmartXFlow filters. Do not invent new thresholds, weights, overrides, or calibrated probabilities. Add only explicitly approved findings to the SXF operating rules.
+SXF remains DRAFT. The owner has approved the v0.3 core engine set above, but production scoring, final precedence, normalized-volume math, and confidence calibration remain open until explicitly approved and tested.
