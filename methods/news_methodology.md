@@ -53,13 +53,24 @@ Only report conditions likely to affect play materially. Ordinary weather is not
 
 ## Output
 
-Conclude with:
-- VERIFIED CURRENT CHANGES
-- MATERIAL ABSENCES AND EFFECTS
-- MANAGER / MOTIVATION / OFF-FIELD
-- SCHEDULE / TRAVEL
-- WEATHER / PITCH
-- NET NEWS IMPACT: positive / negative / mixed / neutral for each team, with confidence
-- UNRESOLVED ITEMS
+Internally, preserve the canonical NEWS report structure and evidence trace for reproducibility.
 
-Do not convert the net impact into a betting recommendation.
+For the user-facing report, default to simple natural-language Turkish rather than schema/YAML/code-like output. For a multi-match run, prefer a compact table with columns such as:
+- Maç
+- Önemli güncel haberler
+- Bunun takıma olası etkisi
+- Bilginin gücü / belirsizlik
+
+Then, only where necessary, add a short plain-language explanation under the table.
+
+Do not show raw labels such as `home`, `away`, `net_news_impact`, `NEUTRAL`, `POSITIVE`, `NEGATIVE`, `QUESTIONABLE`, or other schema keys unless the user explicitly requests the raw structured report.
+
+If reliable current news is missing, write it directly in ordinary language, for example: `Bu takım için güvenilir, maçı değiştirecek güncel bir haber bulamadım.` Missing information is not a neutral signal and must not be presented as one.
+
+For every material item, tell the user both:
+1. what happened;
+2. why it may matter in this match.
+
+Uncertainty should also be explained naturally: `son fitness testi bekleniyor`, `oynama durumu belirsiz`, `kaynaklar birbiriyle çelişiyor`, etc.
+
+The final NEWS conclusion must remain descriptive and must not be converted into a betting recommendation.
