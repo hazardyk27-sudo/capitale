@@ -1,9 +1,9 @@
 # SXF Report Schema
 
 Status: DRAFT
-Version: 0.3
+Version: 0.4
 
-SXF reports must be generated strictly as-of the decision horizon. No future money, final-volume, later alarms, or closing-odds information may appear in the report.
+SXF reports must be generated strictly as-of each match's own decision horizon. No future money, final-volume, later alarms, or closing-odds information may appear in the report.
 
 ```yaml
 role: SXF
@@ -11,12 +11,17 @@ match_id: <canonical match id>
 match: <home> vs <away>
 run_at_utc: <timestamp>
 prompt_version: <version>
-methodology_version: sxf-draft-0.3
+methodology_version: sxf-draft-0.4
 
 decision_horizon:
-  label: <T-6|T-5|T-4|T-3|other>
   kickoff_utc: <timestamp>
   as_of_utc: <timestamp>
+  hours_to_kickoff: <number>
+  exact_label: <T-4h20m|T-3h05m|other exact remaining-time label>
+  reference_bucket: <T-6|T-5|T-4|T-3|other|null>
+  horizon_scope: MATCH_SPECIFIC
+  shared_batch_horizon_used: false
+  latest_eligible_snapshot_at_or_before_as_of: <timestamp|null>
   future_data_used: false
 
 scope_check:
@@ -52,6 +57,8 @@ engine_results:
   one_x_two_concentration_v2:
     status: <TRIGGERED|NOT_TRIGGERED|V1_NOT_TRIGGERED|INSUFFICIENT_DATA>
     selection: <home|away|null>
+    prior_3h_window_start_utc: <timestamp|null>
+    prior_3h_window_end_utc: <timestamp|null>
     prior_3h_min_share_pct: <number|null>
     prior_3h_max_adverse_odds_move_pct: <number|null>
     persistence_pass: <true|false|null>
@@ -121,15 +128,24 @@ summary:
   final_abc_category_assigned: false
 ```
 
+## Dynamic horizon rule
+
+For every match independently:
+- compute `hours_to_kickoff = kickoff_utc - as_of_utc`;
+- do not apply one shared T-6/T-5/T-4/T-3 label to a batch of matches;
+- use only SmartXFlow data timestamped at or before that match's `as_of_utc`;
+- when the exact horizon lies between standard reference points, keep the exact remaining time and do not use a later snapshot;
+- T-6/T-5/T-4/T-3 may be retained only as optional research/reference buckets.
+
 ## Core thresholds
 
 - EARLY MONEY:
   - T-72/T-60: top-money TEAM, >= £5k, share >= 50%
   - T-40/T-24: top-money TEAM, >= £10k, share >= 50%
   - T-12: top-money TEAM, >= £1k, share >= 80%
-  - Retention 55 applies to origins T-72/T-60/T-40/T-24; any later share `<55%` => `RETENTION_BREAK`.
+  - Retention 55 applies to origins T-72/T-60/T-40/T-24; any eligible later observation before/as-of the current analysis with share `<55%` => `RETENTION_BREAK`.
 - 1X2 CONCENTRATION V1: TEAM, top-money, >= £1k, share >= 80%, odds 1.40-2.50.
-- 1X2 CONCENTRATION V2: all V1 conditions + prior 3h share never below 70% + prior 3h adverse odds rise not greater than 3%.
+- 1X2 CONCENTRATION V2: all V1 conditions + prior 3h ending at exact `as_of_utc` share never below 70% + adverse odds rise not greater than 3%.
 - HEAVY 1X2: Concentration-family case with >= £10k and share >= 80%.
 - SURPRISE TEAM: HOME/AWAY, odds 2.90-4.49, share >= 50%.
 - STABLE OVER 2.5: >= £1.5k, share >= 65%, odds 1.40-1.80.
