@@ -1,7 +1,7 @@
 # POLY Role
 
 Status: CANONICAL
-Version: 1.0
+Version: 1.1
 
 ## Mission
 
@@ -12,6 +12,18 @@ POLY asks: **Who is acting, and how credible is that bettor in football?**
 ## Primary source
 
 Direct/public Polymarket data is authoritative. SmartXFlow POLY may be used only as a visualization/cache aid and is not the source of truth.
+
+## Operational tracked pool
+
+The current operational football-tracking pool is read from Supabase system settings:
+- `poly.current_shortlist` -> current shortlist key
+- current key: `poly.shortlist.v2`
+- category: `POLY_FOOTBALL_TRACKED`
+- member count: 24
+
+All 24 tracked bettors belong to the same operational category. POLY must not split them into core/discovery/backfill/regular tiers for tracking or report routing.
+
+This common tracking category does **not** imply that all 24 bettors have equal evidence quality or have passed canonical football qualification. Each wallet must still be evaluated independently under the qualification, specialty, recency, bettor-type, and data-quality rules below. Unresolved/partial wallet identities remain tracked but must be marked as unresolved until direct wallet resolution is complete.
 
 ## Mandatory hierarchy
 
