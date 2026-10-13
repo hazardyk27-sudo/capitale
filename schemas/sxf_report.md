@@ -1,9 +1,9 @@
 # SXF Report Schema
 
 Status: DRAFT
-Version: 0.2
+Version: 0.3
 
-SXF reports must be generated strictly as-of the decision horizon, normally T-6 to T-3. No future money, final-volume, or closing-odds information may appear in the report.
+SXF reports must be generated strictly as-of the decision horizon. No future money, final-volume, later alarms, or closing-odds information may appear in the report.
 
 ```yaml
 role: SXF
@@ -11,7 +11,7 @@ match_id: <canonical match id>
 match: <home> vs <away>
 run_at_utc: <timestamp>
 prompt_version: <version>
-methodology_version: sxf-draft-0.2
+methodology_version: sxf-draft-0.3
 
 decision_horizon:
   label: <T-6|T-5|T-4|T-3|other>
@@ -27,96 +27,113 @@ scope_check:
   other_department_reports_used: false
 
 engine_results:
-  early_lock_1x2:
+  early_money:
+    status: <TRIGGERED|NOT_TRIGGERED|RETENTION_BREAK|INSUFFICIENT_DATA>
+    selection: <home|away|null>
+    origin_horizon: <T-72|T-60|T-40|T-24|T-12|null>
+    origin_money: <number|null>
+    origin_share_pct: <number|null>
+    origin_top_money_team: <true|false|null>
+    retention_applicable: <true|false|null>
+    retention_threshold_pct: <55|null>
+    retention_current_share_pct: <number|null>
+    retention_min_share_since_origin_pct: <number|null>
+    retention_break_at: <timestamp|null>
+    recommendation_active: <true|false|null>
+
+  one_x_two_concentration_v1:
     status: <TRIGGERED|NOT_TRIGGERED|INSUFFICIENT_DATA>
     selection: <home|away|null>
     top_money_team: <true|false|null>
-    t72_t60_money: <number|null>
-    t40_t24_money: <number|null>
-    notes: <text|null>
+    current_money: <number|null>
+    money_share_pct: <number|null>
+    current_odds: <number|null>
 
-  one_x_two_concentration:
+  one_x_two_concentration_v2:
+    status: <TRIGGERED|NOT_TRIGGERED|V1_NOT_TRIGGERED|INSUFFICIENT_DATA>
+    selection: <home|away|null>
+    prior_3h_min_share_pct: <number|null>
+    prior_3h_max_adverse_odds_move_pct: <number|null>
+    persistence_pass: <true|false|null>
+    adverse_odds_pass: <true|false|null>
+
+  heavy_1x2:
     status: <TRIGGERED|NOT_TRIGGERED|INSUFFICIENT_DATA>
     selection: <home|away|null>
     current_money: <number|null>
     money_share_pct: <number|null>
-    current_odds: <number|null>
+    relation: CONCENTRATION_PREMIUM_TAG
 
   surprise_team:
     status: <TRIGGERED|NOT_TRIGGERED|INSUFFICIENT_DATA>
     selection: <home|away|null>
-    current_money: <number|null>
     money_share_pct: <number|null>
     current_odds: <number|null>
-    interpretation: <UNDERDOG_MONEY_SUPPORT|NONE|null>
+    interpretation: <UPSET_NON_LOSS_RISK|NONE|null>
 
-  over_stable:
-    status: <TRIGGERED|NOT_TRIGGERED|SUPERSEDED_BY_OVER_PREMIUM|INSUFFICIENT_DATA>
-    market: O/U_2.5
-    selection: OVER
+  stable_over_2_5:
+    status: <TRIGGERED|NOT_TRIGGERED|SUPERSEDED_BY_PREMIUM|INSUFFICIENT_DATA>
     current_money: <number|null>
     money_share_pct: <number|null>
     current_odds: <number|null>
 
-  over_premium:
+  premium_over_2_5:
     status: <TRIGGERED|NOT_TRIGGERED|INSUFFICIENT_DATA>
-    market: O/U_2.5
-    selection: OVER
     current_money: <number|null>
     money_share_pct: <number|null>
     current_odds: <number|null>
 
   btts_yes:
     status: <TRIGGERED|NOT_TRIGGERED|INSUFFICIENT_DATA>
-    market: BTTS
-    selection: YES
     current_money: <number|null>
     money_share_pct: <number|null>
     current_odds: <number|null>
 
-confirmation_layer:
-  trailing_6h_new_money: <number|null>
-  trailing_3h_new_money: <number|null>
-  trailing_1h_new_money: <number|null>
-  trailing_6h_odds_before: <number|null>
-  trailing_6h_odds_now: <number|null>
-  trailing_3h_odds_before: <number|null>
-  trailing_3h_odds_now: <number|null>
-  price_confirmation_6h: <YES|NO|MIXED|UNKNOWN>
-  price_confirmation_3h: <YES|NO|MIXED|UNKNOWN>
-  flow_acceleration: <POSITIVE|FLAT|NEGATIVE|UNKNOWN>
-  persistence: <PERSISTENT|REVERSING|MIXED|UNKNOWN>
-  normalized_volume_status: <NOT_CALIBRATED|LOW|NORMAL|HIGH|EXTREME|UNKNOWN>
+supporting_observations:
+  gradual_odds_decline:
+    status: <OBSERVED|NOT_OBSERVED|INSUFFICIENT_DATA>
+    notes: <text|null>
 
-flow_observations:
-  - market: <market>
-    selection: <selection>
-    observed_at: <timestamp>
-    money_size: <number|null>
-    money_share_pct: <number|null>
-    odds: <number|null>
-    raw_alarm_label: <source label|null>
+  abnormal_money:
+    status: <OBSERVED|NOT_OBSERVED|NOT_CALIBRATED|INSUFFICIENT_DATA>
+    notes: <text|null>
+
+confluence_tags:
+  early_money_plus_concentration: <true|false|null>
+  btts_plus_over: <true|false|null>
+  automatic_confidence_bonus_applied: false
+
+recommendations:
+  - market: <1X2|O/U_2.5|BTTS|UPSET_RISK>
+    selection: <home|away|OVER|YES|home_non_loss_risk|away_non_loss_risk>
+    basis_engines: []
+    active: <true|false>
     notes: <text|null>
 
 summary:
-  primary_engine: <EARLY_LOCK_1X2|1X2_CONCENTRATION|SURPRISE_TEAM|OVER_STABLE|OVER_PREMIUM|BTTS_YES|NONE>
-  triggered_engines: []
-  confirmation_state: <CONFIRMED|PARTIAL|UNCONFIRMED|REVERSING|UNKNOWN>
-  descriptive_direction: <selection/market or NO_CLEAR_DIRECTION>
-  candidate_signal_label: <NO_SIGNAL|EARLY_MONEY|LATE_MONEY|PERSISTENT_MONEY|CONFIRMED_MONEY|STRONG_CONFIRMED_MONEY|PREMIUM_CONFIRMED_MONEY|REVERSAL|CONFLICTED_FLOW|UNDERDOG_MONEY_SUPPORT|other-draft>
-  confidence: <LOW|MEDIUM|HIGH>
+  triggered_core_engines: []
+  cancelled_engines: []
+  premium_tags: []
+  primary_flow_direction: <home|away|OVER_2_5|BTTS_YES|MIXED|NO_CLEAR_DIRECTION>
   conflicts: []
   caveats: []
   research_prior_only: true
+  final_abc_category_assigned: false
 ```
 
-## Current engine thresholds
+## Core thresholds
 
-- EARLY LOCK 1X2: approximately £5k+ at T-72/T-60 and £10k+ at T-40/T-24 on the same top-money team.
-- 1X2 CONCENTRATION: £1k+, 80%+ money share, odds 1.40-2.50.
-- SURPRISE TEAM: team odds 2.90-4.49 and money share 50%+.
-- OVER STABLE: Over 2.5 £1.5k+, 65%+, odds 1.40-1.80.
-- OVER PREMIUM: Over 2.5 £2.5k+, 75%+, odds 1.40-1.80; supersedes OVER STABLE.
-- BTTS YES: £750+, 60%+, odds 1.60-1.90.
+- EARLY MONEY:
+  - T-72/T-60: top-money TEAM, >= £5k, share >= 50%
+  - T-40/T-24: top-money TEAM, >= £10k, share >= 50%
+  - T-12: top-money TEAM, >= £1k, share >= 80%
+  - Retention 55 applies to origins T-72/T-60/T-40/T-24; any later share `<55%` => `RETENTION_BREAK`.
+- 1X2 CONCENTRATION V1: TEAM, top-money, >= £1k, share >= 80%, odds 1.40-2.50.
+- 1X2 CONCENTRATION V2: all V1 conditions + prior 3h share never below 70% + prior 3h adverse odds rise not greater than 3%.
+- HEAVY 1X2: Concentration-family case with >= £10k and share >= 80%.
+- SURPRISE TEAM: HOME/AWAY, odds 2.90-4.49, share >= 50%.
+- STABLE OVER 2.5: >= £1.5k, share >= 65%, odds 1.40-1.80.
+- PREMIUM OVER 2.5: >= £2.5k, share >= 75%, odds 1.40-1.80; supersedes Stable on the same match/selection.
+- BTTS YES: >= £750, share >= 60%, odds 1.60-1.90.
 
-These thresholds and the observed three-day hit rates are DRAFT research rules. Do not transform them into calibrated probabilities or production weights without owner approval.
+SXF does not assign FINAL A/B/C categories. Engine hit rates are research priors and must not be converted into calibrated probabilities without explicit approval.
