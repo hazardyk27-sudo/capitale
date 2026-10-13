@@ -25,6 +25,8 @@ For every material absence, distinguish:
 
 A famous name is not automatically a large match impact. A nominal backup may have high effect if the role is structurally irreplaceable.
 
+For every material absence, identify the most likely replacement candidate(s), how confident that replacement expectation is, and how the team may change with that replacement. If no credible replacement can be established, say so explicitly rather than guessing.
+
 ## Prohibited information
 
 NEWS MUST NOT use:
@@ -64,8 +66,10 @@ The structured NEWS schema is an internal research/storage discipline. Unless th
 User-facing output MUST:
 - use plain, natural Turkish;
 - explain the actual news first: who is injured/suspended/doubtful, who may return, what the manager said, whether travel/rest/weather is unusual, and why it matters;
+- for every important absence, explicitly state who is most likely to play instead, how certain that expectation is, and how the replacement changes the team;
+- if no credible replacement can be identified, say `yerine kimin oynayacağı henüz net değil`;
 - prefer a readable table when several matches are covered;
-- use human column names such as `Maç`, `Önemli haberler`, `Takıma olası etkisi`, `Bilginin gücü`;
+- use human column names such as `Maç`, `Önemli haberler`, `Yerine kim oynayabilir?`, `Takıma olası etkisi`, `Bilginin gücü`;
 - avoid exposing machine labels such as `home`, `away`, `net_news_impact`, `NEUTRAL`, `POSITIVE`, `NEGATIVE`, `QUESTIONABLE`, or schema key names as the main presentation;
 - never turn missing news into a finding. Say clearly: `Güvenilir, maçı değiştirecek güncel bir haber bulamadım` or `Yeterli güncel bilgi yok`;
 - describe uncertainty in normal language, e.g. `oynama ihtimali belirsiz`, `son test bekleniyor`, `kaynaklar çelişiyor`;
