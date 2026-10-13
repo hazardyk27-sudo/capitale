@@ -242,6 +242,20 @@ When new important information arrives after a FINAL run, generate a new immutab
 
 FINAL remains DRAFT because numerical category thresholds and penalty/multiplier functions still require backtest calibration.
 
+### FINAL Supabase persistence completed
+
+FINAL v0.2 is now represented in `capitale.system_settings` through:
+- `final.methodology.v0.2`;
+- `final.weights.v0.2`;
+- `final.recommendations.v0.2`;
+- `final.current_methodology`.
+
+The `capitale.final_recommendations` storage model was migrated for the new architecture. The old action constraint `bet/no_bet/watch` is SUPERSEDED for new rows by:
+- `recommendation`;
+- `no_recommendation`.
+
+New storage fields support A/B/C category, within-category rank, derived/combination flags, value assessment, evidence trace, limiting factors, failure mode, and correlation metadata. Stake/confidence legacy numeric columns remain available but are not active decision rules in FINAL v0.2.
+
 ---
 
 ## Current role status — 2026-10-13
@@ -250,17 +264,16 @@ FINAL remains DRAFT because numerical category thresholds and penalty/multiplier
 - NEWS v1.0 — CANONICAL
 - POLY v1.0 — CANONICAL methodology; 24-wallet operational tracked pool; historical backfill still improving
 - SXF v0.4 — DRAFT, approved core engine architecture and per-match dynamic horizon; validation/calibration pending
-- FINAL v0.2 — DRAFT, approved synthesis architecture; numerical calibration pending
+- FINAL v0.2 — DRAFT, approved synthesis architecture and operational persistence; numerical calibration pending
 - ENGINEER — active implementation/governance role; no match predictions
 
 ## Current next work
 
-1. Persist FINAL v0.2 operational settings and database support.
-2. Run a 3-5 match end-to-end dry run across different kickoff horizons: ANALYST -> NEWS -> SXF -> POLY -> FINAL.
-3. Verify strict future-data leakage protection and report-version reproducibility.
-4. Backtest/calibrate FINAL A/B/C categories, reliability/freshness adjustments, conflict penalties, and missing-data behavior.
-5. Continue POLY 24-wallet historical backfill and settlement/PnL quality work.
-6. Promote SXF/FINAL only after validation evidence supports canonical status.
+1. Run a 3-5 match end-to-end dry run across different kickoff horizons: ANALYST -> NEWS -> SXF -> POLY -> FINAL.
+2. Verify strict future-data leakage protection, report-version reproducibility, and match-specific SXF horizon handling.
+3. Backtest/calibrate FINAL A/B/C categories, reliability/freshness adjustments, conflict penalties, and missing-data behavior.
+4. Continue POLY 24-wallet historical backfill and settlement/PnL quality work.
+5. Promote SXF/FINAL only after validation evidence supports canonical status.
 
 ## Change policy
 
