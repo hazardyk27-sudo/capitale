@@ -27,6 +27,8 @@ A famous name is not automatically a large match impact. A nominal backup may ha
 
 For every material absence, identify the most likely replacement candidate(s), how confident that replacement expectation is, and how the team may change with that replacement. If no credible replacement can be established, say so explicitly rather than guessing.
 
+When possible, also establish how much the player has actually been used this season and how recent the absence is. A new absence from a regular starter is materially different from a long-term absence the team has already adapted to.
+
 ## Prohibited information
 
 NEWS MUST NOT use:
@@ -69,11 +71,35 @@ User-facing output MUST:
 - for every important absence, explicitly state who is most likely to play instead, how certain that expectation is, and how the replacement changes the team;
 - if no credible replacement can be identified, say `yerine kimin oynayacağı henüz net değil`;
 - prefer a readable table when several matches are covered;
-- use human column names such as `Maç`, `Önemli haberler`, `Yerine kim oynayabilir?`, `Takıma olası etkisi`, `Bilginin gücü`;
+- use human column names such as `Oyuncu`, `Durum`, `Bu sezon oynadığı süre`, `Kaç maçtır yok?`, `Takım için önemi`, `Yerine kim?`;
 - avoid exposing machine labels such as `home`, `away`, `net_news_impact`, `NEUTRAL`, `POSITIVE`, `NEGATIVE`, `QUESTIONABLE`, or schema key names as the main presentation;
 - never turn missing news into a finding. Say clearly: `Güvenilir, maçı değiştirecek güncel bir haber bulamadım` or `Yeterli güncel bilgi yok`;
 - describe uncertainty in normal language, e.g. `oynama ihtimali belirsiz`, `son test bekleniyor`, `kaynaklar çelişiyor`;
 - explain why an absence matters instead of only attaching a severity label;
+- clearly separate new absences from long-term absences the team has already adapted to;
 - keep the final NEWS conclusion descriptive, not a betting recommendation.
+
+### Default detailed NEWS presentation model
+
+For a single-match detailed NEWS request, use this default order unless the user asks otherwise:
+
+1. `Takım A eksikleri` table.
+2. `Takım B eksikleri` table.
+3. `Teknik direktör açıklamaları` — short, direct bullet points grouped by team; include only statements that materially affect selection, rotation, motivation, freshness, tactical transition, or player availability.
+4. `Maç öncesi en önemli gelişmeler` — concise table/list of the few developments that genuinely change the normal baseline.
+5. `NEWS açısından net tablo` — one short descriptive synthesis, without betting recommendation.
+
+Each important absence row should contain, when reliably available:
+- player name;
+- exact current status: definitely out / doubtful / available again;
+- current-season minutes and/or starts/appearances;
+- how many consecutive matches the player has already missed, or whether this is the first missed match;
+- whether the absence is NEW or LONG-TERM/ALREADY ABSORBED;
+- real team importance in normal usage;
+- most likely replacement(s);
+- why the replacement is weaker, similar, or stylistically different;
+- the match-specific effect of the change.
+
+Do not invent minute totals. If reliable minutes cannot be verified, use appearances/starts or explicitly say that exact minute data could not be confirmed.
 
 The internal canonical schema may still be produced or stored silently for reproducibility.
