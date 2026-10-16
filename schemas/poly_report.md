@@ -1,7 +1,7 @@
 # POLY Report Schema
 
 Status: CANONICAL
-Version: 1.0
+Version: 1.1
 
 ```yaml
 role: POLY
@@ -9,78 +9,76 @@ match_id: <canonical match id>
 match: <home> vs <away>
 run_at_utc: <timestamp>
 prompt_version: <version>
-methodology_version: poly-v1.0
+methodology_version: poly-v1.1
+
+preference_context:
+  supplied: <true|false>
+  preference: <user supplied selection|null>
 
 scope_check:
-  direct_polymarket_primary: true
+  general_market_source: DIRECT_POLYMARKET
+  bettor_source: SXF_POLY_PAGE_ONLY
+  historical_24_wallet_pool_used: false
+  sxf_market_flow_used: false
   team_form_used: false
   current_news_used: false
-  smartxflow_flow_used: false
   other_department_reports_used: false
 
-data_quality:
-  wallet_history_backfill_complete: <true|false>
-  settlement_coverage_note: <description>
-  clv_pipeline_verified: <true|false>
-  behavioral_cluster_check: <COMPLETE|PARTIAL|NOT_AVAILABLE>
+market_overview:
+  market_price_pct: <number|null>
+  opposite_price_pct: <number|null>
+  selection_volume_usdc: <number|null>
+  opposite_volume_usdc: <number|null>
+  total_observed_volume_usdc: <number|null>
+  selection_wallet_count: <int|null>
+  opposite_wallet_count: <int|null>
+  largest_single_wallet_share_pct: <number|null>
+  liquidity_note: <description>
+  source_freshness_note: <description>
 
-qualified_wallets:
-  - wallet: <address>
-    label: <optional>
-    bettor_type: <DIRECTIONAL_BETTOR|MARKET_MAKER_LIKE|HEDGER|TRADING_HEAVY|MIXED|UNKNOWN>
-    qualification_status: <status>
-    resolved_football_positions: <int>
-    distinct_events: <int>
-    wins: <int>
-    losses: <int>
-    win_rate_pct: <number>
-    avg_entry_probability_pct: <number>
-    avg_entry_decimal_odds: <number>
-    expected_wins: <number>
-    wins_above_expectation: <number>
-    edge_vs_entry_pp: <number>
-    active_months: <int>
-    pnl_coverage_pct: <number|null>
-    pnl_usdc: <number|null>
-    roi_pct: <number|null>
-    pnl_is_reliable: <true|false>
-    avg_clv_pp: <number|null>
-    clv_is_reliable: <true|false>
-
-specialties:
-  - wallet: <address>
-    market_family: <canonical family>
-    market_detail: <line/detail>
-    selection_direction: <direction>
-    sample_tier: <INSUFFICIENT_SAMPLE|WATCH_SAMPLE|MEANINGFUL_SAMPLE|STRONG_SAMPLE|ESTABLISHED_SAMPLE>
-    resolved_positions: <int>
-    win_rate_pct: <number>
-    avg_entry_probability_pct: <number>
-    avg_entry_decimal_odds: <number>
-    wins_above_expectation: <number>
-    edge_vs_entry_pp: <number>
-    roi_pct: <number|null>
-
-current_positions:
-  - wallet: <address>
-    market_family: <canonical family>
-    market_detail: <detail>
-    selection_direction: <direction>
-    net_exposure_usdc: <number>
-    avg_entry_probability_pct: <number>
-    avg_entry_decimal_odds: <number>
-    first_entry_hours_to_kickoff: <number|null>
-    sizing_vs_wallet_norm: <SMALL|NORMAL|LARGE|VERY_LARGE|UNKNOWN>
+sxf_poly_bettors:
+  - user: <SXF POLY label/user>
+    selection: <selection>
+    direction: <SUPPORTS_PREFERENCE|OPPOSES_PREFERENCE|NEUTRAL_OR_HEDGED>
+    amount_usdc: <number|null>
+    entry_price_pct: <number|null>
+    timing: <timestamp/relative time|null>
+    bettor_reliability: <HIGH|MEDIUM|LOW|UNKNOWN>
+    sizing_vs_user_norm: <SMALL|NORMAL|LARGE|VERY_LARGE|UNKNOWN>
     action_state: <ADDING|HOLDING|REDUCING|EXITED|HEDGED|UNKNOWN>
-    relevant_specialty_status: <status>
-    cluster_id: <id|null>
+    reliability_basis: <what SXF POLY explicitly shows or NO EVIDENCE>
+    note: <important caveat>
 
-poly_signal:
-  direction: <selection/market or NO_SIGNAL>
-  strength: <LOW|MEDIUM|HIGH|NO_SIGNAL>
-  independent_qualified_wallet_count: <int>
-  rationale: <wallet-quality + specialty + current-position evidence>
+preference_evidence:
+  supporting_factors:
+    - source_layer: <GENERAL_POLYMARKET|SXF_POLY_BETTOR>
+      fact: <observed fact>
+      interpretation: <why it supports>
+      strength: <LOW|MEDIUM|HIGH>
+  opposing_factors:
+    - source_layer: <GENERAL_POLYMARKET|SXF_POLY_BETTOR>
+      fact: <observed fact>
+      interpretation: <why it opposes>
+      strength: <LOW|MEDIUM|HIGH>
+  neutral_or_uncertain_factors:
+    - source_layer: <GENERAL_POLYMARKET|SXF_POLY_BETTOR>
+      fact: <relevant but neutral/uncertain fact>
+      note: <why neutral/uncertain>
+
+poly_balance:
+  direction: <SUPPORTS_PREFERENCE|SLIGHTLY_SUPPORTS|MIXED|SLIGHTLY_OPPOSES|OPPOSES_PREFERENCE|INSUFFICIENT_EVIDENCE>
+  confidence: <LOW|MEDIUM|HIGH>
+  sxf_poly_supporter_count: <int|null>
+  sxf_poly_opposer_count: <int|null>
+  rationale: <general Polymarket + SXF POLY bettor balance>
   caveats: []
 ```
 
-A wallet that fails the general football qualification gate must not appear as a qualified sharp merely because a specialty row is favorable.
+Rules:
+- General market prices/volumes come from direct/public Polymarket.
+- Bettor/user evidence comes only from SXF POLY.
+- Raw Polymarket wallets must not be promoted into bettor evidence unless that user is present on SXF POLY.
+- The historical CAPITALE 24-wallet pool must not be used for active bettor routing.
+- Missing bettor reliability is `UNKNOWN`, not positive evidence.
+- One user with many fills counts as one bettor position, not many independent votes.
+- `poly_balance` must preserve material contrary evidence and may validly return `INSUFFICIENT_EVIDENCE`.
