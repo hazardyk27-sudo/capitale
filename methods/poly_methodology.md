@@ -1,165 +1,179 @@
 # POLY Methodology
 
 Status: CANONICAL
-Version: 1.0
+Version: 1.1
 
 ## Objective
 
-Identify genuinely successful football bettors on Polymarket first, then determine their proven sub-market strengths, then evaluate the relevance of their current positions.
+Evaluate the user's supplied betting preference by combining two independent POLY-domain evidence layers without mixing their meanings:
 
-## Stage 0 — Data preparation
+1. direct/public Polymarket for the **general match market**;
+2. SmartXFlow **SXF POLY** for the **bettor/user layer**.
 
-Use direct/public Polymarket data as primary truth.
-Normalize football events, kickoff times, markets, selections, trades, resolution state, and price history.
-Separate prematch and live activity.
+The methodology must answer separately:
+- what the overall Polymarket market is pricing and how much money/liquidity is present;
+- what SXF POLY users are doing;
+- whether those two layers support, oppose, or remain neutral toward the user's preference.
 
-Aggregate fills into net directional positions. A sequence of buys in the same wallet + market + selection is not multiple bets. Account for sells, opposing-side exposure, and hedging.
+## Stage 0 — Match and as-of normalization
 
-## Stage 1 — General football qualification
+Resolve the exact football event, kickoff time, target market and user preference.
 
-Evaluate ALL resolved prematch football positions for each wallet before looking for a niche specialty.
+Every run has an exact `as_of_utc`.
 
-Required metrics:
-- resolved positions;
-- distinct football events;
-- wins / losses;
-- win rate;
-- average entry probability;
-- average decimal entry odds;
-- expected wins = sum(entry probability);
-- wins above entry expectation = actual wins - expected wins;
-- edge vs entry in percentage points;
-- resolved stake/exposure;
-- active months and recent activity;
-- 30d / 90d / 180d / all-time consistency where data exists;
-- bettor type and trading behavior;
-- PnL/ROI only when settlement coverage is reliable;
-- CLV only when the closing-price pipeline is verified.
+Do not use:
+- market activity after `as_of_utc`;
+- bettor activity after `as_of_utc`;
+- live activity to justify a prematch conclusion.
 
-### Canonical minimum gate
+## Stage 1 — General Polymarket market overview
 
-A wallet may pass `QUALIFIED_GENERAL_FOOTBALL_BETTOR` when all are true:
-- resolved prematch football positions >= 100;
-- distinct football events >= 60;
-- edge vs entry > 0;
-- activity is not trading-heavy/market-maker-like.
+Use direct/public Polymarket only for market-level evidence.
 
-This is a qualification gate, not an automatic ELITE label.
+Collect when available:
+- current/last reliable market price;
+- implied probability;
+- selection and opposite-side volume;
+- overall observed event/market volume;
+- number of participating wallets;
+- buy/sell split;
+- liquidity depth or liquidity note;
+- concentration of the largest wallet(s);
+- timing/freshness of activity.
 
-### Established / proven principle
+### Concentration rule
 
-A stronger long-term grade should require materially more evidence. Current v1.0 target for established status:
-- >= 250 resolved positions;
-- >= 150 distinct events;
-- >= 3 active months;
-- edge vs entry >= +2 pp.
+A large headline volume must be discounted descriptively when one wallet dominates it.
 
-`PROVEN` additionally requires reliable economic evidence when available: settlement-complete positive ROI/PnL and meaningful verified CLV history. Do not award PROVEN merely because PnL fields are missing.
+Example:
+- `$10k total volume` with one wallet responsible for `$8.5k` is not equivalent to broad market consensus.
 
-## Stage 2 — Sub-market specialization
+General market volume is never described as 'sharp bettor confirmation' by itself.
 
-Only Stage-1-qualified wallets may be promoted as market specialists.
+## Stage 2 — SXF POLY bettor universe
 
-Normalize markets into stable canonical families/directions, including:
-- TEAM_WIN YES / NO;
-- DRAW YES / NO;
-- TOTAL_GOALS by line and OVER / UNDER;
-- BTTS YES / NO;
-- HANDICAP by line/direction;
-- other football markets only after explicit normalization.
+The active bettor universe is exactly the set of users shown on the SXF POLY page at the decision timestamp.
 
-For each specialty calculate:
-- sample size;
-- distinct events;
-- wins/losses and WR;
-- average entry probability;
-- average decimal odds;
-- expected wins;
-- wins above expectation;
-- edge vs entry;
-- recent consistency;
-- reliable PnL/ROI when available.
+Do not add bettors from:
+- historical CAPITALE `poly.shortlist.v2`;
+- `POLY_FOOTBALL_TRACKED`;
+- generic Supabase tracked-wallet tables;
+- raw Polymarket wallet discovery;
+- large public trades whose wallet is not an SXF POLY user.
 
-### Sample tiers
+The old 24-wallet pool is retained only as historical/audit data and is SUPERSEDED for active report routing.
 
-- 0–14: INSUFFICIENT_SAMPLE
-- 15–29: WATCH_SAMPLE
-- 30–59: MEANINGFUL_SAMPLE
-- 60–99: STRONG_SAMPLE
-- 100+: ESTABLISHED_SAMPLE
+For each relevant SXF POLY user, collect only bettor-specific information shown or derivable from that page:
+- user/label;
+- selection/direction;
+- amount or exposure;
+- timing;
+- repeated additions/reductions when shown;
+- opposite positions/hedges when shown;
+- reliability/performance fields when shown;
+- normal sizing baseline when shown.
 
-A tiny niche sample cannot override weak general football performance.
+If bettor reliability or sizing history is absent on SXF POLY, mark it `UNKNOWN` rather than importing an unrelated bettor-history source.
 
-## Stage 3 — Current-position relevance
+## Stage 3 — Bettor-position interpretation
 
-For a qualified wallet's current target-match position, evaluate:
-- relevant specialty grade;
-- gross and net exposure;
-- stake versus the wallet's normal sizing distribution;
-- weighted average entry price and decimal odds;
-- first-entry time to kickoff;
-- whether the wallet is adding, reducing, exiting, or hedging;
-- agreement with other qualified wallets;
-- whether agreeing wallets may belong to the same behavioral cluster.
+Repeated activity by the same user in the same market/selection is aggregated into one interpreted bettor position.
 
-Current-position significance should be expressed with evidence, not with invented certainty.
+For each SXF POLY bettor position, consider:
+- whether it supports or opposes the supplied preference;
+- absolute amount;
+- amount relative to that user's normal sizing when available;
+- whether the position is clean or hedged;
+- whether the user is adding, reducing or exiting;
+- reliability of the user as actually evidenced on SXF POLY;
+- whether agreeing users may be behaviorally correlated.
 
-## Bettor classification
+### Size discipline
 
-Classify wallets as:
-- DIRECTIONAL_BETTOR
-- MARKET_MAKER_LIKE
-- HEDGER
-- TRADING_HEAVY
-- MIXED
-- UNKNOWN
+Tiny positions must not be described as conviction merely because they exist.
 
-Sell-fill share, opposing-side positions, turnover patterns, short holding behavior, and repeated two-sided activity may inform classification. Classification rules should be versioned and tested as data improves.
+A large amount is stronger evidence only when:
+- the bettor's reliability is known or reasonably supported;
+- the amount is meaningful relative to the bettor's normal sizing, when that baseline exists;
+- the position is not substantially offset by opposite exposure.
 
-## PnL / settlement standard
+## Stage 4 — Preference evidence balance
 
-Canonical economic reconstruction:
+Classify evidence into three buckets.
 
-`realized PnL = sell proceeds + redeem/settlement proceeds - buy cost`
+### Supporting factors
 
-Cancelled/void/refunded positions must not be counted as wins or losses.
+Facts that materially support the exact user preference, from either:
+- `GENERAL_POLYMARKET`; or
+- `SXF_POLY_BETTOR`.
 
-Missing winning PnL must not be interpreted as zero.
-PnL/ROI becomes decision-grade only when coverage >= 90% for the relevant sample. Otherwise mark `PNL_UNVERIFIED` or equivalent.
+### Opposing factors
 
-## CLV standard
+Facts that materially work against the exact user preference.
 
-Canonical sign:
+### Neutral / uncertain factors
 
-`CLV probability pp = closing probability - entry probability`
+Relevant facts that are directionally ambiguous, hedged, too small, too thin, or too uncertain to count clearly either way.
 
-Positive CLV means price moved in the bettor's direction after entry.
+Missing data is not neutral; it is `NO EVIDENCE`.
 
-Preferred closing snapshot: last reliable prematch price within 60 minutes before kickoff. If unavailable, a fallback may use the last reliable snapshot up to six hours before kickoff and must be flagged as fallback.
+## Stage 5 — POLY balance
 
-Do not use CLV for grading until snapshot provenance and sign are verified end-to-end.
+End with a concise balance:
+- `TERCİHİ DESTEKLİYOR`
+- `HAFİF DESTEKLİYOR`
+- `NÖTR / KARIŞIK`
+- `HAFİF KARŞI`
+- `TERCİHİ DESTEKLEMİYOR`
+- `YETERLİ POLY KANITI YOK`
 
-## Behavioral clustering
+Also state confidence: LOW / MEDIUM / HIGH.
 
-Multiple wallets with highly synchronized market choice, direction, timing, and repeated co-occurrence may be marked `POSSIBLE_BEHAVIORAL_CLUSTER`.
+The balance is evidence-based, not a forced prediction.
 
-Cluster evidence is not identity proof. Its purpose is to avoid counting potentially coordinated wallets as independent confirmation.
+## Important source-separation rules
 
-## Wallet lifecycle
+### Direct Polymarket may answer
+- What is the market price?
+- How much general volume exists?
+- How broad is market participation?
+- Is volume concentrated in one or several wallets?
 
-Operational statuses:
-- CANDIDATE
-- WATCH
-- TRACK
-- REVIEW
-- INACTIVE
-- DOWNGRADED
-- IGNORE
+### SXF POLY may answer
+- Which tracked bettors/users are relevant?
+- What did those users select?
+- How much did those users put on the selection?
+- Are they hedged or one-sided?
+- What bettor-quality information does SXF POLY show?
 
-A historically strong wallet must be re-evaluated when recent behavior materially deteriorates or activity stops.
+### POLY must not answer from the wrong source
 
-## Current implementation caution
+Do not use raw Polymarket wallet trades to create a bettor shortlist.
+Do not use the SXF department's market-flow signals as general market evidence.
+Do not use team/news/tactical data.
 
-Historical settlement data currently has incomplete PnL coverage for many winning positions. Do not use partial historical sums as true ROI until reconstruction/backfill is complete.
+## SmartXFlow isolation
 
-Direct wallet-history discovery/backfill remains a technical backlog item and does not alter the methodology above.
+SXF POLY bettor data is allowed.
+
+The following SmartXFlow/SXF-department conclusions remain prohibited in POLY:
+- EARLY MONEY;
+- CONCENTRATION V1/V2;
+- HEAVY;
+- SURPRISE TEAM;
+- STABLE/PREMIUM OVER;
+- BTTS engine signal;
+- any synthesized SXF market-flow conclusion.
+
+## Data-quality standard
+
+Always surface:
+- missing SXF POLY bettor data;
+- unknown bettor reliability;
+- thin general market volume;
+- one-wallet volume concentration;
+- stale prices;
+- unresolved hedges;
+- incomplete user sizing baselines.
+
+No data-quality gap may silently become positive evidence.
