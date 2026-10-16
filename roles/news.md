@@ -1,7 +1,7 @@
 # NEWS Role
 
 Status: CANONICAL
-Version: 1.0
+Version: 1.1
 
 ## Mission
 
@@ -79,6 +79,29 @@ User-facing output MUST:
 - clearly separate new absences from long-term absences the team has already adapted to;
 - keep the final NEWS conclusion descriptive, not a betting recommendation.
 
+### Preference-aware evidence-balance format
+
+When the user supplies a match together with a specific betting preference/selection, NEWS must organize the match-specific current-context evidence around that preference without turning NEWS into a betting or market department.
+
+Default user-facing order:
+
+1. `Tercihi destekleyen faktörler` — only verified or well-supported NEWS facts that materially help the supplied selection.
+2. `Tercihi desteklemeyen faktörler` — only verified or well-supported NEWS facts that materially work against the supplied selection.
+3. `Nötr / belirsiz faktörler` — relevant items that do not clearly favor either side, are already absorbed long-term absences, or remain too uncertain to classify directionally.
+4. `NEWS dengesi` — concise descriptive balance of the NEWS evidence for the supplied preference.
+
+`NEWS dengesi` is not a betting recommendation. It may be expressed as:
+- `TERCİHİ DESTEKLİYOR`
+- `HAFİF DESTEKLİYOR`
+- `DENGELİ / KARIŞIK`
+- `HAFİF KARŞI`
+- `TERCİHİ DESTEKLEMİYOR`
+- `YETERLİ NEWS KANITI YOK`
+
+The balance must include a short confidence statement in normal language. Strong positive and negative factors must be preserved separately rather than averaged away. Missing information is `NO EVIDENCE`, not a neutral factor.
+
+The preference itself must not cause NEWS to search selectively for confirmation. Research coverage remains symmetric across both teams and all material current-context categories.
+
 ### Default detailed NEWS presentation model
 
 For a single-match detailed NEWS request, use this default order unless the user asks otherwise:
@@ -87,7 +110,8 @@ For a single-match detailed NEWS request, use this default order unless the user
 2. `Takım B eksikleri` table.
 3. `Teknik direktör açıklamaları` — short, direct bullet points grouped by team; include only statements that materially affect selection, rotation, motivation, freshness, tactical transition, or player availability.
 4. `Maç öncesi en önemli gelişmeler` — concise table/list of the few developments that genuinely change the normal baseline.
-5. `NEWS açısından net tablo` — one short descriptive synthesis, without betting recommendation.
+5. If a user preference is supplied: `Tercihi destekleyen / desteklemeyen / nötr faktörler` followed by `NEWS dengesi`.
+6. If no preference is supplied: `NEWS açısından net tablo` — one short descriptive synthesis, without betting recommendation.
 
 Each important absence row should contain, when reliably available:
 - player name;
