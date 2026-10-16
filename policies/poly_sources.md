@@ -1,34 +1,79 @@
 # POLY Source Policy
 
 Status: CANONICAL
-Version: 1.0
+Version: 1.1
 
-## Source-of-truth rule
+## Source-of-truth split
 
-Direct/public Polymarket data is the primary source of truth for wallet discovery, market trades, positions, holders, resolution, and price history.
+POLY now has two separate authoritative source domains.
 
-SmartXFlow POLY may be used only as a visualization/cache aid and must not override direct Polymarket evidence.
+### P1-MARKET — direct/public Polymarket
 
-## Allowed source classes
+Use direct/public Polymarket for **general match-market evidence only**, including:
+- event/market existence;
+- current/observed market prices;
+- total and per-selection volume;
+- liquidity and participation when available;
+- buy/sell and wallet concentration;
+- timing of general market activity.
 
-P1 — direct/public Polymarket market, trade, position, holder, resolution, and price data.
+Polymarket raw wallet discovery MUST NOT define the bettor universe for POLY reports.
 
-P2 — CAPITALE-derived metrics computed reproducibly from P1 data: directional positions, average entry, expected wins, edge vs entry, PnL, ROI, CLV, specialty metrics, and wallet classifications.
+### P1-BETTOR — SmartXFlow SXF POLY page
 
-P3 — external wallet-discovery references or leaderboards. These may identify candidates but do not qualify a bettor until CAPITALE backfills and evaluates that wallet's football history under the canonical method.
+Use the SmartXFlow **SXF POLY** page as the authoritative bettor source for:
+- which bettors/users are in scope;
+- bettor labels/identities as shown there;
+- bettor-specific selections;
+- bettor-specific amounts/exposures;
+- timing and position direction;
+- bettor statistics/quality fields explicitly shown there.
 
-## Qualification rule
+A bettor/user not shown on SXF POLY must not be added to the report merely because a raw Polymarket wallet made a large trade.
 
-External claims of profit, win rate, ranking, or 'sharp' status are discovery signals only. They cannot replace CAPITALE's football-wide qualification gate.
+The former CAPITALE `poly.shortlist.v2` / 24-wallet operational pool is SUPERSEDED for active bettor routing. Historical records may remain available for audit/backtest but are not the active bettor source.
 
-## Data-quality rule
+## Allowed derived evidence
 
-- Missing PnL is missing, not zero.
-- Incomplete settlement coverage must be exposed.
-- Trade fills are not automatically separate bets.
-- Live and prematch activity must be separated.
-- Multiple correlated wallets must not automatically count as independent confirmation.
+P2-MARKET — reproducible calculations derived from P1-MARKET, such as:
+- implied probability;
+- share of total volume;
+- whale concentration;
+- wallet-count concentration;
+- selection-vs-opposite volume comparisons.
+
+P2-BETTOR — reproducible calculations derived only from SXF POLY bettor records, such as:
+- aggregation of repeated fills/entries into one user position;
+- current amount vs the user's normal sizing when SXF POLY provides the necessary baseline;
+- agreement/disagreement counts among SXF POLY users;
+- bettor-side support/opposition summaries.
+
+If SXF POLY does not expose enough historical information to establish a bettor's reliability, reliability must be marked `UNKNOWN`/`NO EVIDENCE`; do not silently import a different bettor pool.
+
+## SmartXFlow isolation boundary
+
+Allowed:
+- SXF POLY bettor/user data.
+
+Prohibited:
+- SXF department market-flow engine conclusions such as Early Money, Concentration, Heavy, Surprise Team, Stable/Premium Over, BTTS signals;
+- using those SXF flow conclusions as POLY evidence.
+
+## Data-quality rules
+
+- Missing bettor data is missing, not neutral.
+- General market volume is not bettor-quality evidence.
+- One whale dominating public volume must be identified.
+- Repeated activity by the same SXF POLY user is not multiple independent bettor votes.
+- Hedged/opposite positions must be preserved when visible.
+- Prematch and live activity must be separated.
+- No bettor activity after `as_of_utc` may be used.
 
 ## Prohibited
 
-POLY must not use team-form analysis, current news, SmartXFlow flow conclusions, bookmaker movement, or other department reports.
+POLY must not use:
+- team-form/tactical analysis;
+- current NEWS;
+- bookmaker movement/odds analysis as evidence;
+- ANALYST, NEWS, SXF-department, or FINAL conclusions;
+- historical CAPITALE 24-wallet routing as the active bettor universe.
