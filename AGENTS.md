@@ -1,8 +1,8 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.1
-Last updated: 2026-10-13
+Version: 1.2
+Last updated: 2026-10-16
 
 ## 1. Purpose
 
@@ -17,7 +17,7 @@ CAPITALE has six roles:
 1. ANALYST — independent football performance, tactical baseline, and matchup analysis.
 2. NEWS — independent current-context research: availability, manager, motivation, schedule, travel, weather, pitch, and relevant off-field conditions.
 3. SXF — independent SmartXFlow market-flow analysis. Its approved v0.4 core engines and dynamic per-match horizon rule are DRAFT pending validation/calibration.
-4. POLY — independent Polymarket wallet-intelligence analysis.
+4. POLY — independent prediction-market / bettor-intelligence analysis using the active split source policy defined below.
 5. ENGINEER — architecture, data access, schemas, prompts, versions, testing, backtesting, calibration, and maintenance. ENGINEER does not make match predictions.
 6. FINAL — the only role allowed to combine the four independent department reports. FINAL does not perform raw-source research.
 
@@ -44,7 +44,13 @@ NEWS may use current news and contextual sources permitted by its source policy.
 
 SXF may use SmartXFlow data only. It may not use team form, current news, Polymarket, or other department reports. Its current DRAFT v0.4 core engines and exact per-match as-of rule are defined in its role/method/schema files.
 
-POLY uses direct/public Polymarket data as the primary source of truth. SmartXFlow's POLY page may be used only as a visualization/cache aid and is not authoritative. POLY may not use team-form analysis, current news, SmartXFlow flow conclusions, or other department reports.
+POLY uses a split source model:
+- direct/public Polymarket is authoritative for **general match-market prices, volume, liquidity, participation and concentration**;
+- the SmartXFlow **SXF POLY page is the exclusive active bettor/user source** for bettor identity, bettor-specific selections, amounts/exposures, timing, and bettor-quality fields shown there.
+
+POLY must not use the historical CAPITALE 24-wallet shortlist, generic tracked-wallet tables, or raw Polymarket wallet discovery as its active bettor universe. A raw Polymarket wallet that is not present on SXF POLY may affect general market volume/concentration analysis but must not be promoted to bettor evidence.
+
+SXF POLY bettor data is allowed inside POLY, but SXF-department market-flow conclusions remain prohibited. POLY may not import EARLY MONEY, CONCENTRATION, HEAVY, SURPRISE TEAM, Stable/Premium Over, BTTS engine signals, team form, current NEWS, or other department reports.
 
 FINAL uses completed department reports only. It must not browse for new match evidence or silently repair a department report with raw research.
 
@@ -120,8 +126,8 @@ Canonical status vocabulary:
 ## 10. Current State
 
 ANALYST: v1.0 CANONICAL
-NEWS: v1.0 CANONICAL
-POLY: v1.0 CANONICAL
+NEWS: v1.1 CANONICAL — preference-aware supporting/opposing/neutral presentation + NEWS balance
+POLY: v1.2 CANONICAL — direct Polymarket for general market; SXF POLY page only for active bettor/user evidence
 SXF: v0.4 DRAFT — core engines + dynamic per-match horizon approved; validation/calibration pending
 FINAL: v0.2 DRAFT — synthesis architecture approved; numerical calibration pending
 ENGINEER: active governance/implementation role
