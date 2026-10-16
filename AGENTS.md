@@ -1,7 +1,7 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.2
+Version: 1.3
 Last updated: 2026-10-16
 
 ## 1. Purpose
@@ -125,7 +125,7 @@ Canonical status vocabulary:
 
 ## 10. Current State
 
-ANALYST: v1.0 CANONICAL
+ANALYST: v1.1 CANONICAL — preference-aware supporting/opposing/neutral presentation; opponent-adjusted form and result-vs-underlying emphasis
 NEWS: v1.1 CANONICAL — preference-aware supporting/opposing/neutral presentation + NEWS balance
 POLY: v1.2 CANONICAL — direct Polymarket for general market; SXF POLY page only for active bettor/user evidence
 SXF: v0.4 DRAFT — core engines + dynamic per-match horizon approved; validation/calibration pending
