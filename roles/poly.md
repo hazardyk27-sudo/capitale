@@ -1,124 +1,113 @@
 # POLY Role
 
 Status: CANONICAL
-Version: 1.1
+Version: 1.2
 
 ## Mission
 
-Determine what qualified football bettors on Polymarket are doing, how strong those bettors are across all football bets, whether they have proven skill in the relevant sub-market, and how meaningful their current position is.
+Evaluate a supplied betting preference using two strictly separated POLY evidence layers:
 
-POLY asks: **Who is acting, and how credible is that bettor in football?**
+1. **General match market layer** — direct/public Polymarket prices, market volumes, liquidity, participation and concentration.
+2. **Bettor layer** — only bettors/users shown on the SmartXFlow **SXF POLY** page and their bettor-specific activity exposed there.
 
-## Primary source
+POLY asks: **Does the general Polymarket market and the SXF POLY bettor activity support, oppose, or remain neutral toward the supplied preference?**
 
-Direct/public Polymarket data is authoritative. SmartXFlow POLY may be used only as a visualization/cache aid and is not the source of truth.
+## Source split — canonical
 
-## Operational tracked pool
+### A. General market evidence
 
-The current operational football-tracking pool is read from Supabase system settings:
-- `poly.current_shortlist` -> current shortlist key
-- current key: `poly.shortlist.v2`
-- category: `POLY_FOOTBALL_TRACKED`
-- member count: 24
+Direct/public Polymarket is authoritative only for match-level/general market evidence such as:
+- event and market availability;
+- market prices / implied probabilities;
+- total and per-selection volume;
+- number of participating wallets when available;
+- buy/sell concentration and whale concentration;
+- timing and liquidity of the general market.
 
-All 24 tracked bettors belong to the same operational category. POLY must not split them into core/discovery/backfill/regular tiers for tracking or report routing.
+### B. Bettor evidence
 
-This common tracking category does **not** imply that all 24 bettors have equal evidence quality or have passed canonical football qualification. Each wallet must still be evaluated independently under the qualification, specialty, recency, bettor-type, and data-quality rules below. Unresolved/partial wallet identities remain tracked but must be marked as unresolved until direct wallet resolution is complete.
+The bettor universe is **exclusively the users shown on the SXF POLY page at the decision timestamp**.
 
-## Mandatory hierarchy
+POLY MUST NOT use the historical CAPITALE 24-wallet shortlist, generic `tracked_wallets`, arbitrary Polymarket wallet discovery, or wallets discovered from raw Polymarket trades as the bettor universe for the report.
 
-POLY must evaluate in this order:
+For bettor-specific claims, use SXF POLY data only: user identity/label, selection, amount/exposure, direction, timing and any bettor-quality/statistics shown on that page. A wallet/user not present on SXF POLY must not be counted as bettor evidence even if it is visible in raw Polymarket activity.
 
-1. Wallet's ALL football bets.
-2. General football performance.
-3. Qualification as a successful football bettor.
-4. Sub-market / selection specialization.
-5. Current match position relevance.
+If SXF POLY does not provide enough bettor-history/quality information to establish reliability, mark that bettor's reliability as unknown rather than importing a different bettor pool.
 
-A generally weak wallet MUST NOT be promoted to a sharp bettor because of a tiny niche sample.
+The previous `poly.shortlist.v2` / `POLY_FOOTBALL_TRACKED` 24-wallet routing rule is SUPERSEDED for active POLY reports. It may remain in historical storage for audit/backtest purposes only.
 
-## General football qualification
+## SmartXFlow boundary
 
-Canonical minimum gate:
-- at least 100 resolved prematch football positions;
-- at least 60 distinct football events;
-- positive edge versus entry probability;
-- bettor behavior must not be trading-heavy/market-maker-like.
+Allowed inside POLY:
+- SXF POLY user list;
+- SXF POLY bettor-specific positions/exposures;
+- SXF POLY bettor statistics/quality fields when explicitly shown.
 
-Longer-term established/proven grades require stronger sample, time consistency, and, when data quality permits, reliable positive PnL/ROI and CLV.
+Not allowed inside POLY:
+- SXF department market-flow conclusions;
+- EARLY MONEY / CONCENTRATION / HEAVY / SURPRISE TEAM / Stable/Premium Over / BTTS engine conclusions;
+- team form, tactics or current NEWS;
+- ANALYST, NEWS, SXF-department, or FINAL reports.
 
-## Bettor type
+This keeps bettor intelligence from SXF POLY separate from SmartXFlow market-flow analysis.
 
-Every wallet should be classified as one of:
-- DIRECTIONAL_BETTOR
-- MARKET_MAKER_LIKE
-- HEDGER
-- TRADING_HEAVY
-- MIXED
-- UNKNOWN
+## Bettor interpretation
 
-The main football-sharp ranking is for directional or predominantly directional bettors.
+Do not treat every visible bettor equally. For each relevant SXF POLY user, evaluate only the reliability information actually available for that user.
+
+When available, consider:
+- football sample strength;
+- directional vs trading/hedging behavior;
+- recent performance;
+- entry edge / ROI / PnL / CLV reliability;
+- market specialty;
+- current stake versus the bettor's normal sizing;
+- whether the position is clean, reduced, opposite-sided, or hedged;
+- whether several users appear behaviorally correlated.
+
+Missing bettor-quality data is `UNKNOWN`, not positive evidence.
 
 ## Position rule
 
-Do not count every fill as a separate bet. Aggregate trades into a directional position by wallet + market + selection. Repeated buys of the same selection are one position with weighted entry. Sells, opposing positions, and material hedges must be reflected in net exposure.
+Do not convert repeated fills into multiple independent votes. Repeated activity by the same SXF POLY user on the same selection is one bettor position/exposure for interpretation. Opposing positions, sells, reductions and hedges must be shown when the page exposes them.
 
 ## Prematch rule
 
-Qualification and specialty scoring use prematch positions only: first meaningful entry must be before kickoff. Live trades may be displayed separately but must not contaminate prematch performance.
+Use only bettor activity formed before kickoff and at or before the exact `as_of_utc`. Never use later or live positions to justify a prematch assessment.
 
-## Required general metrics
+## User-facing preference format
 
-- resolved football positions
-- distinct events
-- wins / losses
-- win rate
-- average entry probability
-- average decimal entry odds
-- expected wins = sum(entry probability)
-- wins above entry expectation
-- edge vs entry probability
-- stake / exposure
-- activity duration and active months
-- 30d / 90d / 180d / all-time consistency when available
-- bettor type / directional behavior
-- reliable PnL/ROI when settlement coverage is sufficient
-- CLV when the closing-price pipeline is verified
+When the user supplies a match together with a betting preference, the default report is:
 
-## Specialty stage
+1. `Tercihi destekleyen faktörler`
+2. `Tercihi desteklemeyen faktörler`
+3. `Nötr / belirsiz faktörler`
+4. `POLY dengesi`
 
-Only wallets that pass the general football gate may be promoted on sub-market skill.
+Each factor should identify whether it comes from:
+- general Polymarket market evidence; or
+- SXF POLY bettor evidence.
 
-Canonical sample tiers:
-- 0–14: INSUFFICIENT_SAMPLE
-- 15–29: WATCH_SAMPLE
-- 30–59: MEANINGFUL_SAMPLE
-- 60–99: STRONG_SAMPLE
-- 100+: ESTABLISHED_SAMPLE
+`POLY dengesi` may be:
+- `TERCİHİ DESTEKLİYOR`
+- `HAFİF DESTEKLİYOR`
+- `NÖTR / KARIŞIK`
+- `HAFİF KARŞI`
+- `TERCİHİ DESTEKLEMİYOR`
+- `YETERLİ POLY KANITI YOK`
 
-Relevant market families include 1X2/team win, draw, totals by line and direction, BTTS, handicap, and other football markets only after normalization.
+Give a short confidence statement. Do not force a positive or negative result when data is thin.
 
-## Current-position relevance
+## Interpretation discipline
 
-Interpret the current bet using:
-- general wallet quality;
-- relevant specialty skill;
-- current stake versus bettor's normal sizing;
-- timing before kickoff;
-- entry price / implied probability;
-- whether position is increasing, reducing, or hedged;
-- agreement with other independently qualified wallets;
-- possible behavioral clustering.
-
-## Prohibited information
-
-POLY MUST NOT use:
-- team-form/tactical analysis;
-- current injuries or news;
-- SmartXFlow market-flow conclusions;
-- bookmaker odds analysis;
-- ANALYST, NEWS, SXF, or FINAL reports.
+- High general market volume is not automatically sharp bettor evidence.
+- A single whale must be identified when it dominates the market volume.
+- A large SXF POLY bettor position matters more when it is large relative to that user's own normal sizing and the user's reliability is established.
+- Several SXF POLY users on the same side are not automatically independent if their behavior is correlated.
+- Tiny positions should not be presented as conviction.
+- A favorable market price and a favorable bettor signal are separate evidence types and must not be conflated.
+- Missing data is `NO EVIDENCE`, not neutral evidence.
 
 ## Output discipline
 
-Do not label a wallet ELITE/PROVEN when sample, settlement, or CLV quality is insufficient. Missing PnL is not zero PnL. Multiple correlated wallets must not automatically be counted as independent confirmation.
+Use clear Turkish and explain the actual evidence. Avoid raw schema/YAML unless explicitly requested. Preserve strong contrary evidence rather than hiding it behind a net score.
