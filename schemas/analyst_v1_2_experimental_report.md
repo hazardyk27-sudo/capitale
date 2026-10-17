@@ -41,7 +41,7 @@ side_engine:
 btts_engine:
   applicable: <true|false>
   home_goal_leg:
-    support: <STRONG_SUPPORT|SUPPORT|BALANCED|WEAK_SUPPORT|NOT_SUPPORTED|null>
+    support_score_0_100: <0-100 or null>
     home_xg_context: <summary or null>
     away_xga_context: <summary or null>
     zero_goal_risk: <summary or null>
@@ -50,7 +50,7 @@ btts_engine:
     variance_note: <summary or null>
     matchup_note: <summary or null>
   away_goal_leg:
-    support: <STRONG_SUPPORT|SUPPORT|BALANCED|WEAK_SUPPORT|NOT_SUPPORTED|null>
+    support_score_0_100: <0-100 or null>
     away_xg_context: <summary or null>
     home_xga_context: <summary or null>
     zero_goal_risk: <summary or null>
@@ -64,15 +64,17 @@ preference_test:
   supporting_factors: []
   opposing_factors: []
   neutral_or_two_sided_factors: []
-  balance: <qualitative explanation>
-  verdict: <STRONG_SUPPORT|SUPPORT|BALANCED|WEAK_SUPPORT|NOT_SUPPORTED>
+  match_commentary: <how the match is likely to play, which game states support/break the preference>
+  balance: <qualitative explanation of which evidence matters most and why>
+  support_score_0_100: <integer 0-100>
+  score_band: <VERY_STRONG|STRONG|POSITIVE|SLIGHT_POSITIVE|BALANCED|WEAK|STRONG_OPPOSITION>
   confidence: <LOW|MEDIUM|HIGH>
   primary_failure_mode: <summary>
 
 shadow_comparison:
   v1_1_verdict: <verdict if available or null>
-  v1_2_verdict: <verdict>
-  changed: <true|false>
+  v1_2_support_score_0_100: <0-100>
+  changed_materially: <true|false>
   reason_for_change: <summary or null>
 
 settlement:
@@ -83,7 +85,11 @@ settlement:
 ```
 
 Rules:
-- BTTS verdict may not exceed the weaker of the two goal-leg assessments.
+- The 0-100 score is an ANALYST football-support score, not a win probability, implied probability, value score, stake score, or FINAL category.
+- Operational bands: 85-100 VERY_STRONG; 75-84 STRONG; 65-74 POSITIVE; 55-64 SLIGHT_POSITIVE; 45-54 BALANCED; 35-44 WEAK; 0-34 STRONG_OPPOSITION.
+- Scores are not produced by simple factor counting; balance evidence by data quality, sample, opponent strength, home/away relevance, structural comparability, exact selection relevance, evidence independence, and failure modes.
+- BTTS score may not exceed the weaker of the two goal-leg scores.
+- Combination score may not exceed the weakest material leg score.
 - Missing data is NO EVIDENCE, never neutral evidence.
 - `last_5_btts`, raw H2H and raw W/D/L streaks must not be treated as independent high-weight evidence.
 - Settlement information must never be used to modify the original pre-match assessment.
