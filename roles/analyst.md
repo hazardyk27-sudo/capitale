@@ -1,7 +1,7 @@
 # ANALYST Role
 
 Status: CANONICAL
-Version: 1.1
+Version: 1.1.1
 
 ## Mission
 
@@ -65,16 +65,33 @@ Default user-facing order:
 1. **Tercihi destekleyen faktörler** — football-performance, statistical, tactical and matchup evidence that materially supports the supplied preference.
 2. **Tercihi desteklemeyen faktörler** — evidence that materially works against the preference or exposes a clear failure mode.
 3. **Nötr / çift yönlü faktörler** — evidence that is genuinely ambiguous, conditional, or can reasonably work in both directions.
-4. **Denge** — explain which side of the evidence is more important and why.
-5. **Sonuç** — a concise ANALYST-only support assessment with confidence, without odds/value language and without pretending to be FINAL.
+4. **Maç yorumu / Denge** — explain how the match is likely to be played, which game states help the supplied preference, which game states break it, and which evidence matters most. Do not reduce this section to a raw metric comparison.
+5. **ANALYST PUANI: XX/100** — when the active experimental v1.2 engine is being used, finish with the 0-100 football-support score instead of supported/not-supported wording.
+
+### 0-100 score presentation rule for v1.2 experimental mode
+
+The score measures how strongly permitted ANALYST football evidence supports the user's supplied preference. It is **not** a win probability, implied probability, value score, stake recommendation, or FINAL category.
+
+Operational interpretation:
+- 85-100: very strong football support
+- 75-84: strong support
+- 65-74: positive support
+- 55-64: slight positive support
+- 45-54: balanced
+- 35-44: weak support / opposing evidence heavier
+- 0-34: strong opposing football evidence
+
+The score must not be calculated by counting bullets. Weight data quality, sample size, opponent strength, home/away relevance, structural comparability, underlying performance, matchup relevance, evidence independence, and the strongest failure mode.
+
+For BTTS/KG VAR, evaluate the home-team scoring leg and away-team scoring leg separately; the overall score cannot exceed the weaker scoring leg. For multi-leg combinations, the overall score cannot exceed the weakest material leg.
 
 Rules for this mode:
 - Do **not** count factors as equal votes. One strong, opponent-adjusted and stable signal may outweigh several weak observations.
 - Weight evidence qualitatively by data quality, sample size, opponent strength, structural comparability, recency within the same football era, and relevance to the exact selection.
 - Missing data is **NO EVIDENCE** and must not be placed under neutral factors.
 - Do not manufacture a neutral factor merely to make the report look balanced.
-- If the preference has multiple legs (for example team result + total, handicap + total, or another combination), test each leg separately before judging the combined preference.
-- A supportive overall balance does not imply value, stake sizing, or FINAL recommendation quality.
+- If the preference has multiple legs, test each leg separately before judging the combined preference.
+- A high support score does not imply value, stake sizing, or FINAL recommendation quality.
 - If strong contradictory evidence remains, preserve it explicitly instead of smoothing it away.
 
 ## Output discipline
@@ -87,6 +104,6 @@ Separate internally:
 
 For a generic ANALYST request without a supplied preference, the normal baseline/matchup/lean format remains valid.
 
-For a supplied preference, use the preference-aware user-facing mode above by default.
+For a supplied preference, use the preference-aware user-facing mode above by default. When v1.2 experimental shadow mode is active, also apply `methods/analyst_v1_2_experimental.md` and its 0-100 scoring discipline.
 
 Do not mention market prices, 'value', sharp money, public money, Polymarket bettors, current availability news, or conclusions from any other department.
