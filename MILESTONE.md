@@ -1,7 +1,7 @@
 # CAPITALE — Milestone Log
 
 Status: CANONICAL PROJECT HISTORY
-Last updated: 2026-10-13
+Last updated: 2026-10-17
 
 This file records active state, decisions, superseded rules, technical debt, and next work. Historical decisions are never deleted; replaced rules are marked SUPERSEDED.
 
@@ -258,22 +258,59 @@ New storage fields support A/B/C category, within-category rank, derived/combina
 
 ---
 
-## Current role status — 2026-10-13
+## 2026-10-17 — ANALYST v1.2 experimental shadow backtest started
 
-- ANALYST v1.0 — CANONICAL
-- NEWS v1.0 — CANONICAL
-- POLY v1.0 — CANONICAL methodology; 24-wallet operational tracked pool; historical backfill still improving
+ANALYST v1.1 remains CANONICAL and frozen as the production baseline.
+
+The owner approved an EXPERIMENTAL v1.2 design to test whether market-specific football logic improves calibration and reduces false high-confidence selections.
+
+### v1.2 experimental changes
+
+- SIDE/1X2 and BTTS/KG VAR use separate analytical engines.
+- SIDE selections emphasize baseline xGD/xPts, opponent-adjusted form, meaningful home/away structure, finishing/goalkeeping variance, matchup mechanisms, and explicit failure modes.
+- BTTS is decomposed into two independent scoring questions: `home team to score` and `away team to score`.
+- BTTS support may not exceed the weaker goal leg.
+- zero-goal frequency and opponent clean-sheet strength become first-class BTTS risk variables.
+- raw `last 5 BTTS`, raw W/D/L streaks and H2H are low-weight descriptive evidence unless corroborated by underlying football data.
+- H2H is material only when structural/tactical continuity makes it comparable.
+- extreme finishing overperformance is not treated as sustainable positive evidence.
+
+### Validation protocol
+
+- v1.1 historical decisions are immutable.
+- v1.2 runs in shadow/experimental mode at the same AS_OF.
+- no post-match data may enter pre-match reconstruction.
+- settlements must be verified before entering the learning ledger.
+- results are measured separately for SIDE, BTTS and COMBINATION selections.
+- key metrics: hit rate by verdict, false-STRONG rate, calibration ordering, coverage, BTTS limiting-leg failure rate, and side-selection upset profile.
+- use walk-forward validation; do not tune and evaluate on the same chronological block.
+- run feature ablations for opponent adjustment, home/away split, zero-goal rate, clean-sheet rate, finishing variance, H2H, raw last-5 results, and tactical matchup layers.
+
+Files added:
+- `methods/analyst_v1_2_experimental.md`
+- `schemas/analyst_v1_2_experimental_report.md`
+- `experiments/analyst_v1_2_backtest.md`
+
+No canonical promotion is authorized yet. v1.2 must demonstrate repeatable out-of-sample improvement before replacing v1.1.
+
+---
+
+## Current role status — 2026-10-17
+
+- ANALYST v1.1 — CANONICAL; v1.2 EXPERIMENTAL shadow/backtest active
+- NEWS v1.1 — CANONICAL
+- POLY v1.2 — CANONICAL active split source model
 - SXF v0.4 — DRAFT, approved core engine architecture and per-match dynamic horizon; validation/calibration pending
 - FINAL v0.2 — DRAFT, approved synthesis architecture and operational persistence; numerical calibration pending
 - ENGINEER — active implementation/governance role; no match predictions
 
 ## Current next work
 
-1. Run a 3-5 match end-to-end dry run across different kickoff horizons: ANALYST -> NEWS -> SXF -> POLY -> FINAL.
-2. Verify strict future-data leakage protection, report-version reproducibility, and match-specific SXF horizon handling.
-3. Backtest/calibrate FINAL A/B/C categories, reliability/freshness adjustments, conflict penalties, and missing-data behavior.
-4. Continue POLY 24-wallet historical backfill and settlement/PnL quality work.
-5. Promote SXF/FINAL only after validation evidence supports canonical status.
+1. Run new user selections through ANALYST v1.1 plus v1.2 shadow output at the same AS_OF.
+2. Build an auditable settlement ledger with verified results and market-type tags.
+3. Accumulate enough SIDE and BTTS samples for walk-forward comparison.
+4. Measure false-STRONG rate and BTTS limiting-leg failures before any promotion decision.
+5. Continue existing FINAL/POLY/SXF validation work.
 
 ## Change policy
 
