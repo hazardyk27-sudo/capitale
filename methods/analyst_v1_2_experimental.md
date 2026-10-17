@@ -24,7 +24,7 @@ ANALYST v1.1 remains CANONICAL until v1.2 passes prospective/backtest validation
 
 ### A. 1X2 / side-selection engine
 
-For HOME or AWAY win preferences, analyze in this order:
+For HOME, AWAY or double-chance side preferences, analyze in this order:
 
 1. **Baseline team strength**
    - same-season xG, xGA, xGD, xPts when reliable;
@@ -48,7 +48,7 @@ For HOME or AWAY win preferences, analyze in this order:
    - chance-quality mismatch;
    - set-piece or width/central-channel mismatch where supported.
 6. **Stability and failure mode**
-   - identify the strongest reason the preferred side can fail;
+   - identify the strongest reason the supplied preference can fail;
    - downgrade support when one major contrary mechanism remains unresolved.
 
 ### 1X2 evidence hierarchy
@@ -74,7 +74,7 @@ Low default weight unless corroborated:
 
 ## B. BTTS / KG VAR engine
 
-BTTS must be decomposed into two goal legs before any overall verdict.
+BTTS must be decomposed into two goal legs before any overall score.
 
 ### Goal Leg H — home team to score
 
@@ -102,12 +102,12 @@ Assess:
 
 ### BTTS limiting-leg rule
 
-The overall BTTS support level may not exceed the weaker goal leg.
+The overall BTTS support score may not exceed the weaker goal-leg score.
 
 Examples:
-- home goal = STRONG, away goal = WEAK -> BTTS cannot be STRONG;
-- home goal = STRONG, away goal = BALANCED -> BTTS maximum BALANCED/SUPPORT depending evidence quality;
-- both goal legs need independent, sustainable support before BTTS can receive STRONG_SUPPORT.
+- home-goal score 86, away-goal score 48 -> BTTS score cannot exceed 48;
+- home-goal score 82, away-goal score 61 -> BTTS score cannot exceed 61;
+- both goal legs need independently strong, sustainable support before BTTS can receive a high overall score.
 
 ### BTTS anti-overfitting rules
 
@@ -120,18 +120,63 @@ Examples:
 
 ## C. Combination preferences
 
-For multi-leg preferences, each leg is analyzed with the relevant engine first. The combined support level cannot exceed the weakest material leg.
+For multi-leg preferences, each leg is analyzed with the relevant engine first. The combined support score cannot exceed the weakest material leg's support score.
 
-## Experimental qualitative labels
+## User-facing support score — 0 to 100
 
-Use the existing user-facing labels:
-- STRONG_SUPPORT
-- SUPPORT
-- BALANCED
-- WEAK_SUPPORT
-- NOT_SUPPORTED
+For user-supplied preferences, v1.2 uses a **0-100 ANALYST SUPPORT SCORE** instead of the old supported/not-supported wording.
 
-These remain qualitative and uncalibrated. v1.2 does not introduce numeric probabilities or betting-value language.
+This score is:
+- an ordinal summary of how strongly permitted football evidence supports the user's supplied preference;
+- produced from weighted evidence quality, not from counting positive and negative bullets;
+- **NOT a win probability**;
+- **NOT an implied probability**;
+- **NOT a betting-value score**;
+- **NOT a stake recommendation**;
+- **NOT a FINAL A/B/C category**.
+
+Operational interpretation bands:
+- **85-100** — very strong football support;
+- **75-84** — strong support;
+- **65-74** — positive support;
+- **55-64** — slight positive support;
+- **45-54** — balanced / close to neutral;
+- **35-44** — weak support; opposing evidence is heavier;
+- **0-34** — strong opposing football evidence.
+
+These bands are presentation anchors, not empirically calibrated probabilities. They must be recalibrated later if backtesting shows poor ordering.
+
+### Score construction discipline
+
+Do not calculate the score by simple bullet arithmetic.
+
+The score must reflect, in descending importance where relevant:
+- source/data reliability;
+- stable baseline strength;
+- opponent-adjusted performance;
+- meaningful home/away evidence;
+- sample size;
+- structural comparability/current era;
+- exact relevance to the supplied preference;
+- tactical matchup plausibility;
+- finishing/goalkeeper variance;
+- independence of evidence;
+- strength of the main failure mode.
+
+A single high-quality contrary signal may outweigh several weak supportive observations.
+
+## Default user-facing presentation
+
+When the user supplies a match + preference, present in this order:
+
+1. **Tercihi destekleyen faktörler**
+2. **Tercihi desteklemeyen faktörler**
+3. **Nötr / çift yönlü faktörler** when genuinely present
+4. **Maç yorumu / v1.2 dengesi** — explain how the match is likely to be played, which game states help the preference, which game states break it, and why the heavier evidence matters more. Do not reduce this section to raw metric comparison.
+5. **ANALYST v1.2 PUANI: XX/100**
+6. One short sentence explaining the primary reason for the score and the main failure mode.
+
+For BTTS, show or explain the two goal legs separately when useful, because the weaker scoring leg caps the overall score.
 
 ## Shadow-run protocol
 
@@ -142,15 +187,15 @@ For each new user preference during validation:
 3. Store both outputs separately.
 4. Do not change v1.1 after the result is known.
 5. Settle the result only after independent result verification.
-6. Compare v1.1 and v1.2 by selection type.
+6. Compare v1.1 and v1.2 by selection type and by score band.
 
 ## Promotion criteria
 
 v1.2 must not become CANONICAL merely because of a small winning sample.
 
 Promotion requires evidence that it improves at least the following:
-- false-STRONG rate;
-- calibration ordering (STRONG should outperform SUPPORT; SUPPORT should outperform WEAK/BALANCED when sample permits);
+- false-high-score rate;
+- calibration ordering (higher support-score bands should outperform lower bands when sample permits);
 - BTTS accuracy and especially weaker-leg error rate;
 - side-selection accuracy or calibration without materially collapsing useful coverage;
 - reproducibility under walk-forward testing.
