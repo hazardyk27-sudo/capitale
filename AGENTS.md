@@ -1,7 +1,7 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.4
+Version: 1.5
 Last updated: 2026-10-17
 
 ## 1. Purpose
@@ -15,7 +15,7 @@ The system must prefer reproducibility, source discipline, uncertainty disclosur
 CAPITALE has six roles:
 
 1. ANALYST — independent football performance, tactical baseline, and matchup analysis.
-2. NEWS — independent current-context research: availability, manager, motivation, schedule, travel, weather, pitch, and relevant off-field conditions.
+2. NEWS — independent current-context research: availability, replacement/absence-chain effects, manager, motivation, schedule, travel, weather, pitch, and relevant off-field conditions. When a user supplies a selection, NEWS may organize its own current-context evidence around that preference using explicit causal chains and a NEWS-only evidence-confidence score; this never authorizes market data or turns NEWS into a betting department.
 3. SXF — independent SmartXFlow market-flow analysis. Its approved v0.4 core engines and dynamic per-match horizon rule are DRAFT pending validation/calibration.
 4. POLY — independent prediction-market / bettor-intelligence analysis using the active split source policy defined below.
 5. ENGINEER — architecture, data access, schemas, prompts, versions, testing, backtesting, calibration, and maintenance. ENGINEER does not make match predictions.
@@ -40,7 +40,7 @@ Only FINAL may see all four completed department reports at the same time.
 
 ANALYST may use historical/current-season football performance, match, statistical, and tactical evidence permitted by its source policy. It may not use current news, betting/odds/market-flow data, SmartXFlow, or Polymarket.
 
-NEWS may use current news and contextual sources permitted by its source policy. It may not use betting/odds/market-flow data, SmartXFlow, Polymarket, or other department reports.
+NEWS may use current news and contextual sources permitted by its source policy. It may not use betting/odds/market-flow data, SmartXFlow, Polymarket, or other department reports. A user-supplied selection may determine which NEWS mechanisms are relevant, but NEWS must research both teams symmetrically and must not search selectively for confirmation.
 
 SXF may use SmartXFlow data only. It may not use team form, current news, Polymarket, or other department reports. Its current DRAFT v0.4 core engines and exact per-match as-of rule are defined in its role/method/schema files.
 
@@ -72,6 +72,8 @@ Conflicting evidence must be preserved, not averaged away. FINAL must reduce con
 
 Evidence arising from the same underlying cause must not be double-counted as independent confirmation.
 
+NEWS v1.2 uses an operational 0-100 NEWS evidence-confidence score when the user supplies a selection. This score measures source quality, freshness, causal clarity, structural impact, and resistance to opposing evidence/uncertainty. It is explicitly NOT a win probability, betting probability, FINAL category, or value score.
+
 Thresholds, reliability/freshness multipliers, penalties, and category boundaries should ultimately be learned or calibrated from backtests. Bootstrap rules may be used only when explicitly versioned and marked as unvalidated.
 
 ## 6. As-of / Future-Data Rule
@@ -83,6 +85,8 @@ No information that became available after that timestamp may be used to justify
 For SXF specifically, each match computes its own exact remaining time to kickoff. A batch MUST NOT use one shared T-6/T-5/T-4/T-3 horizon. Those labels are research/reference buckets, while the real cutoff is the match-specific `as_of_utc`.
 
 If meaningful new information arrives later, create a new versioned run rather than mutating the historical decision.
+
+Post-match review may evaluate whether a NEWS mechanism was realized, but settlement information must never be written back into or used to alter the original pre-match NEWS report.
 
 ## 7. Reproducibility
 
@@ -125,10 +129,12 @@ Canonical status vocabulary:
 
 Experimental shadow methods may run alongside a canonical role only when their output is stored/versioned separately and cannot silently overwrite the canonical historical decision.
 
+Bootstrap scoring rules may be CANONICAL for operational consistency while remaining explicitly uncalibrated as probabilities. Their empirical calibration must be evaluated separately and any later numerical change must be versioned.
+
 ## 10. Current State
 
 ANALYST: v1.1 CANONICAL — preference-aware supporting/opposing/neutral presentation; opponent-adjusted form and result-vs-underlying emphasis. v1.2 EXPERIMENTAL shadow testing active: separate SIDE and BTTS engines, BTTS two-goal-leg decomposition, weaker-leg confidence cap, walk-forward/backtest validation.
-NEWS: v1.1 CANONICAL — preference-aware supporting/opposing/neutral presentation + NEWS balance
+NEWS: v1.2 CANONICAL — SIDE vs GOALS/BTTS current-context interpretation; explicit fact -> change -> football mechanism -> preference-effect chains; replacement-first absence evaluation; interacting absence chains; new/recent/already-absorbed distinction; operational manager-statement filter; 0-100 NEWS evidence-confidence score (not win probability); post-match mechanism/failure-tag review.
 POLY: v1.2 CANONICAL — direct Polymarket for general market; SXF POLY page only for active bettor/user evidence
 SXF: v0.4 DRAFT — core engines + dynamic per-match horizon approved; validation/calibration pending
 FINAL: v0.2 DRAFT — synthesis architecture approved; numerical calibration pending
