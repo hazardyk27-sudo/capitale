@@ -315,3 +315,98 @@ No canonical promotion is authorized yet. v1.2 must demonstrate repeatable out-o
 ## Change policy
 
 When an approved rule changes, append a dated entry. Do not rewrite history. Mark the previous rule SUPERSEDED and identify the new rule/version that replaced it.
+
+---
+
+## 2026-10-17 — NEWS v1.2 promoted to CANONICAL
+
+The owner approved NEWS v1.2 as the active production NEWS model. NEWS v1.1 remains part of project history but is SUPERSEDED for new NEWS runs.
+
+The earlier `Current role status — 2026-10-17` block above is SUPERSEDED by the status block in this entry.
+
+### NEWS v1.2 canonical changes
+
+- Preference-aware NEWS interpretation is now split into `SIDE` and `GOALS_BTTS` families.
+- NEWS remains fully isolated from odds, bookmaker markets, SmartXFlow, Polymarket and all other department reports.
+- A user preference changes only the interpretation target; research coverage must remain symmetric across both teams.
+- Every material directional factor must pass the causal-chain test:
+  `current fact -> lineup/role/preparation change -> football mechanism -> preference effect`.
+- Simple absence counting is replaced by replacement-first evaluation and interacting `absence chain` analysis.
+- Every important absence distinguishes `ABSENCE_IMPORTANCE` from match-specific `ABSENCE_EFFECT`.
+- Important absences are classified as NEW, RECENT, or LONG-TERM / ALREADY ABSORBED.
+- Likely replacement, replacement confidence and role fit are mandatory whenever credible information is available.
+- Related absences from the same functional unit are treated as one interacting structural chain and are not double-counted as independent confirmation.
+- Generic manager motivation language is filtered out; only operationally meaningful availability, rotation, fitness, role, fixture-priority or preparation information is material.
+- Schedule/congestion becomes material only when it has a plausible interaction with recovery, squad depth, availability or rotation.
+- NEWS reports now include explicit pre-match failure modes.
+
+### NEWS 0-100 evidence-confidence score
+
+For user-supplied selections, NEWS v1.2 uses a canonical operational score:
+- source reliability and verification: 0-25;
+- freshness / match-time relevance: 0-20;
+- causal connection to the supplied selection: 0-25;
+- structural impact: 0-20;
+- resistance to opposing evidence and unresolved uncertainty: 0-10.
+
+Total: 0-100.
+
+Operational bands:
+- 90-100: VERY_STRONG_NEWS_EVIDENCE
+- 80-89: STRONG_NEWS_EVIDENCE
+- 70-79: MODERATE_STRONG_NEWS_EVIDENCE
+- 60-69: MODERATE_NEWS_EVIDENCE
+- 50-59: WEAK_MIXED_NEWS_EVIDENCE
+- 0-49: INSUFFICIENT_OR_UNRELIABLE_NEWS_EVIDENCE
+
+The score is explicitly NOT a win probability, bookmaker probability, value score or FINAL A/B/C category. Example: `86/100` means the NEWS case is strong, fresh and causally coherent; it does not mean an 86% chance that the selection wins.
+
+These weights/bands are CANONICAL bootstrap rules for operational consistency but remain uncalibrated as probabilities. Future numerical revisions require versioning and out-of-sample evidence.
+
+### Post-match NEWS learning
+
+Performance review must track both result and process:
+- selection hit/miss;
+- whether the predicted NEWS mechanism actually appeared;
+- whether the expected structural advantage/disadvantage appeared on the field when observable;
+- whether failure was a NEWS interpretation error or outcome variance.
+
+Standard review tags now include:
+- REPLACEMENT_EFFECT_UNDERESTIMATED
+- REPLACEMENT_EFFECT_OVERESTIMATED
+- ABSENCE_ALREADY_ABSORBED
+- ABSENCE_CHAIN_MISREAD
+- ROTATION_MISREAD
+- SOURCE_UNCERTAINTY
+- CAUSAL_LINK_TOO_WEAK
+- OPPOSING_NEWS_UNDERWEIGHTED
+- MATCH_STATE_VARIANCE
+- FINISHING_VARIANCE
+
+Historical pre-match NEWS runs remain immutable; post-match information may evaluate them but cannot alter the original evidence or score.
+
+### Files updated
+
+- `AGENTS.md` -> System Constitution v1.5
+- `roles/news.md` -> NEWS v1.2 CANONICAL
+- `methods/news_methodology.md` -> v1.2 CANONICAL
+- `schemas/news_report.md` -> v1.2 CANONICAL
+- `prompts/news_start.md` -> v1.2 runtime bootstrap
+- `MILESTONE.md` -> this change record
+
+### Current role status — after NEWS v1.2 promotion
+
+- ANALYST v1.1 — CANONICAL; v1.2 EXPERIMENTAL shadow/backtest active
+- NEWS v1.2 — CANONICAL active production model
+- POLY v1.2 — CANONICAL active split source model
+- SXF v0.4 — DRAFT, approved core engine architecture and per-match dynamic horizon; validation/calibration pending
+- FINAL v0.2 — DRAFT, approved synthesis architecture and operational persistence; numerical calibration pending
+- ENGINEER — active implementation/governance role; no match predictions
+
+### NEWS next validation work
+
+1. Accumulate an auditable NEWS v1.2 settlement ledger split by SIDE and GOALS_BTTS.
+2. Track hit rate and mechanism-confirmation rate by NEWS confidence band.
+3. Compare v1.2 confidence ordering and false-high-confidence misses over time.
+4. Review failure tags to identify systematic replacement, absence-chain, rotation or causal-link errors.
+5. Use chronological/walk-forward validation before changing the 25/20/25/20/10 scoring architecture or confidence bands.
