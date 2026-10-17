@@ -1,8 +1,8 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.3
-Last updated: 2026-10-16
+Version: 1.4
+Last updated: 2026-10-17
 
 ## 1. Purpose
 
@@ -123,9 +123,11 @@ Canonical status vocabulary:
 - EXPERIMENTAL — testable implementation not yet promoted.
 - SUPERSEDED — retained for history but no longer active.
 
+Experimental shadow methods may run alongside a canonical role only when their output is stored/versioned separately and cannot silently overwrite the canonical historical decision.
+
 ## 10. Current State
 
-ANALYST: v1.1 CANONICAL — preference-aware supporting/opposing/neutral presentation; opponent-adjusted form and result-vs-underlying emphasis
+ANALYST: v1.1 CANONICAL — preference-aware supporting/opposing/neutral presentation; opponent-adjusted form and result-vs-underlying emphasis. v1.2 EXPERIMENTAL shadow testing active: separate SIDE and BTTS engines, BTTS two-goal-leg decomposition, weaker-leg confidence cap, walk-forward/backtest validation.
 NEWS: v1.1 CANONICAL — preference-aware supporting/opposing/neutral presentation + NEWS balance
 POLY: v1.2 CANONICAL — direct Polymarket for general market; SXF POLY page only for active bettor/user evidence
 SXF: v0.4 DRAFT — core engines + dynamic per-match horizon approved; validation/calibration pending
