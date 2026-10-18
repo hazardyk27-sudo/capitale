@@ -1,7 +1,7 @@
 # CAPITALE — Milestone Log
 
 Status: CANONICAL PROJECT HISTORY
-Last updated: 2026-10-17
+Last updated: 2026-10-19
 
 This file records active state, decisions, superseded rules, technical debt, and next work. Historical decisions are never deleted; replaced rules are marked SUPERSEDED.
 
@@ -295,9 +295,32 @@ No canonical promotion is authorized yet. v1.2 must demonstrate repeatable out-o
 
 ---
 
+## 2026-10-19 — ANALYST v1.3 experimental failure-path update approved
+
+The original ANALYST v1.1 canonical decisions and v1.2 experimental pre-match reports remain unchanged. The owner requested a new update after apparent 18 October score-band failures; reported outcomes and counts from prior conversations are **UNVERIFIED_CONVERSATION_SUMMARY** until independently audited.
+
+v1.3 EXPERIMENTAL is added for NEW shadow analyses:
+- SINGLE WIN explicitly tests win, draw and loss routes, scoring floor and whether 0-0/1-1 can persist; stronger underlying side does not automatically imply a high-confidence win.
+- 1X/X2 treat a draw as success and opponent victory as the sole failure path.
+- OVER 2.5 tests distinct three-plus-goal routes and two-or-fewer match-lock scenarios, rather than relying on aggregate total xG.
+- BTTS retains v1.2 two independent goal legs and weaker-leg cap.
+- Away favorites, cup matches, cross-league comparisons, low-scoring fixtures and small home/away samples receive explicit quality checks, without invented penalties or automatic categorical disapproval.
+- Operational 0–100 scores remain ordinal football-evidence strength, NOT probabilities. Experimental 75+ review requires independent evidence, venue/opponent comparability and examined/countered failure paths. Threshold is uncalibrated.
+- Historical decisions are immutable; post-match settlement and feature calibration must not leak backward.
+- Before entering the backtest ledger, verify scores through two independent sources (official + independent preferred) and settle cup normal time vs extra time correctly; prior conversational records are not yet a verified dataset.
+
+New:
+- `methods/analyst_v1_3_experimental.md`
+- `schemas/analyst_v1_3_experimental_report.md`
+- `experiments/analyst_v1_3_validation.md`
+
+Canonical promotion BLOCKED until audit, chronological out-of-sample testing and meaningful comparison vs frozen v1.2 show improvements in false-high-score rate and score ordering without excessive coverage loss.
+
+---
+
 ## Current role status — 2026-10-17
 
-- ANALYST v1.1 — CANONICAL; v1.2 EXPERIMENTAL shadow/backtest active
+- ANALYST v1.1.2 — CANONICAL role instructions; v1.2 EXPERIMENTAL historical comparison; v1.3 EXPERIMENTAL new-run shadow testing
 - NEWS v1.1 — CANONICAL
 - POLY v1.2 — CANONICAL active split source model
 - SXF v0.4 — DRAFT, approved core engine architecture and per-match dynamic horizon; validation/calibration pending
