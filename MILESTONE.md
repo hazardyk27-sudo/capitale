@@ -410,3 +410,29 @@ Historical pre-match NEWS runs remain immutable; post-match information may eval
 3. Compare v1.2 confidence ordering and false-high-confidence misses over time.
 4. Review failure tags to identify systematic replacement, absence-chain, rotation or causal-link errors.
 5. Use chronological/walk-forward validation before changing the 25/20/25/20/10 scoring architecture or confidence bands.
+
+---
+
+## 2026-10-18 — SXF archive diagnostic quality layer (ENGINEER, non-destructive)
+
+The owner requested recovery of 9–17 October 2026 SXF archive gaps and prevention of misleading historical backtests.
+
+### Implemented in Supabase
+
+- `capitale.sxf_archive_canonical_fixtures_v1`: read-only canonical fixture view; 15 October's 160 physical rows now produce 142 logical matches without deleting or rewriting history.
+- `capitale.sxf_archive_daily_quality_v1(start_date, end_date)`: daily audit of exact results, duplicate fixture rows, T-6 snapshot coverage and two-sided market completeness.
+- `capitale.sxf_archive_daily_quality_log_v1` plus `capitale.sxf_archive_quality_capture_v1(...)`: timestamped audit log and capture procedure.
+- pg_cron job `capitale-sxf-archive-quality-daily-v1` scheduled for 05:30 GMT (08:30 Istanbul), monitoring the previous Istanbul-local calendar day. First scheduled execution needs verification.
+- Migrations: `sxf_archive_canonical_fixture_and_daily_quality_v1`, `sxf_archive_daily_quality_immutable_log_v1`.
+
+### Findings and unresolved data
+
+- **9 October:** 260 fixtures but no matching `live_fixtures` settlement records. 9 October BTTS T-6 history is unavailable. No invented results were inserted.
+- **13 October:** shared absence of 1X2/OU/BTTS data from 12 Oct 23:58:15 TSİ to 13 Oct 15:45:24 TSİ (15h 47m). Only 27/192 T-6 snapshots. This indicates a collector/write gap, but requires worker logs to establish exact cause; historical T-6 observations cannot be manufactured from later data.
+- **15 October:** 18 old duplicate fixture records. The canonical view picks correct populated logical fixture; no destructive deduplication was performed.
+- Several other dates still have missing settlement matches. Treat absence as NO_DATA, not losses.
+- The authorized `smartxflow` Desktop Commander device was offline during server log inspection; Replit agent did not return an explanation. External web sources for 9 October scores exist but 260 fixture-by-fixture authoritative matching has not been completed.
+
+### Governance
+
+No SXF decision engines, thresholds, historic AS_OF snapshots, or other agents' outputs were changed. Refer to `audits/sxf_archive_quality_2026-10-18.md` for audit query usage and measured gaps. Revisit source result backfill and service root-cause when verified data and host logs are available.
