@@ -410,3 +410,40 @@ Historical pre-match NEWS runs remain immutable; post-match information may eval
 3. Compare v1.2 confidence ordering and false-high-confidence misses over time.
 4. Review failure tags to identify systematic replacement, absence-chain, rotation or causal-link errors.
 5. Use chronological/walk-forward validation before changing the 25/20/25/20/10 scoring architecture or confidence bands.
+
+---
+
+## 2026-10-18 — SXF archive diagnostic quality layer (ENGINEER, non-destructive)
+
+The owner requested recovery of 9–17 October 2026 SXF archive gaps and prevention of misleading historical backtests.
+
+### Implemented in Supabase
+
+- `capitale.sxf_archive_canonical_fixtures_v1`: read-only canonical fixture view; 15 October's 160 physical rows now produce 142 logical matches without deleting or rewriting history.
+- `capitale.sxf_archive_daily_quality_v1(start_date, end_date)`: daily audit of exact results, duplicate fixture rows, T-6 snapshot coverage and two-sided market completeness.
+- `capitale.sxf_archive_daily_quality_log_v1` plus `capitale.sxf_archive_quality_capture_v1(...)`: timestamped audit log and capture procedure.
+- pg_cron job `capitale-sxf-archive-quality-daily-v1` scheduled for 05:30 GMT (08:30 Istanbul), monitoring the previous Istanbul-local calendar day. First scheduled execution needs verification.
+- Migrations: `sxf_archive_canonical_fixture_and_daily_quality_v1`, `sxf_archive_daily_quality_immutable_log_v1`.
+
+### Findings and unresolved data
+
+- **9 October:** 260 fixtures but no matching `live_fixtures` settlement records. 9 October BTTS T-6 history is unavailable. No invented results were inserted.
+- **13 October:** shared absence of 1X2/OU/BTTS data from 12 Oct 23:58:15 TSİ to 13 Oct 15:45:24 TSİ (15h 47m). Only 27/192 T-6 snapshots. This indicates a collector/write gap, but requires worker logs to establish exact cause; historical T-6 observations cannot be manufactured from later data.
+- **15 October:** 18 old duplicate fixture records. The canonical view picks correct populated logical fixture; no destructive deduplication was performed.
+- Several other dates still have missing settlement matches. Treat absence as NO_DATA, not losses.
+- The authorized `smartxflow` Desktop Commander device was offline during server log inspection; Replit agent did not return an explanation. External web sources for 9 October scores exist but 260 fixture-by-fixture authoritative matching has not been completed.
+
+### Governance
+
+No SXF decision engines, thresholds, historic AS_OF snapshots, or other agents' outputs were changed. Refer to `audits/sxf_archive_quality_2026-10-18.md` for audit query usage and measured gaps. Revisit source result backfill and service root-cause when verified data and host logs are available.
+
+
+### 2026-10-18 — Recovery follow-up (all six incident classes triaged)
+
+- **9 Oct FT**: 20 externally cross-verified scores available from `capitale.sxf_verified_settlement_overlay_v1` (live_fixtures unchanged); remaining 240 require a trusted source-event backfill. Audit staging `capitale.sxf_result_recovery_staging_v1`.
+- **Two-sided market data**: read-only `capitale.sxf_t6_market_evidence_quality_v1(day)` flags incomplete opposing odds, money, shares and questionable 100% shares. 17 October: 187/425 OU and 123/422 BTTS T-6 snapshots have both odds and amounts available.
+- **Fixture identities**: `capitale.sxf_source_event_identity_v1` flags hash reuse across distinct Betwatch `source_event_id` values. Never join historical FT purely on same team hash.
+- **Other results**: `capitale.sxf_missing_result_queue_v1(date,date)` catalogs 67 missing/mismatched settlement rows for 10–17 Oct: 55 no matching hash, 12 differing kickoffs; waiting on trustworthy source verification.
+- **T-6 gaps**: `capitale.sxf_t6_gap_triage_v1(date,date)`: 13 Oct 165 attributable to known upstream API gap. Other 77 gaps: 31 fixture discovered after T6, 40 other history exists without T6, 6 no pregame 1X2 history.
+- **Monitoring**: `capitale.sxf_ingestion_heartbeat_health_v1`, `capitale.sxf_learning_archive_watch_v1`, and append-only `capitale.sxf_pipeline_health_log_v1`. `capitale-sxf-pipeline-health-daily-v1` pg_cron active for 08:35 TSİ; manual capture verified 7 component records. No notification delivery configured. First scheduled run still to verify.
+- **No destructive writes** to existing market snapshots, existing fixture rows, or raw settlement records; no strategy threshold changes. Main app / reporting integration is still pending.
