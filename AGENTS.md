@@ -1,8 +1,8 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.5
-Last updated: 2026-10-17
+Version: 1.6
+Last updated: 2026-10-19
 
 ## 1. Purpose
 
@@ -133,7 +133,7 @@ Bootstrap scoring rules may be CANONICAL for operational consistency while remai
 
 ## 10. Current State
 
-ANALYST: v1.1 CANONICAL — preference-aware supporting/opposing/neutral presentation; opponent-adjusted form and result-vs-underlying emphasis. v1.2 EXPERIMENTAL shadow testing active: separate SIDE and BTTS engines, BTTS two-goal-leg decomposition, weaker-leg confidence cap, walk-forward/backtest validation.
+ANALYST: v1.1.2 CANONICAL role presentation (historical v1.1 evidence baseline), v1.2 EXPERIMENTAL frozen historical shadow records, v1.3 EXPERIMENTAL active for new shadow runs: separate SINGLE WIN, DOUBLE CHANCE, OVER 2.5 and BTTS engines; explicit win/draw/loss and game-lock failure scenarios, cup/cross-league and away evidence-quality checks, ordinal 0–100 score gates, settlement audit and walk-forward validation. v1.3 is NOT CANONICAL.
 NEWS: v1.2 CANONICAL — SIDE vs GOALS/BTTS current-context interpretation; explicit fact -> change -> football mechanism -> preference-effect chains; replacement-first absence evaluation; interacting absence chains; new/recent/already-absorbed distinction; operational manager-statement filter; 0-100 NEWS evidence-confidence score (not win probability); post-match mechanism/failure-tag review.
 POLY: v1.2 CANONICAL — direct Polymarket for general market; SXF POLY page only for active bettor/user evidence
 SXF: v0.4 DRAFT — core engines + dynamic per-match horizon approved; validation/calibration pending
