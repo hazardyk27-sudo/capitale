@@ -1,7 +1,7 @@
 # ANALYST Role
 
 Status: CANONICAL
-Version: 1.1.1
+Version: 1.1.2
 
 ## Mission
 
@@ -94,6 +94,12 @@ Rules for this mode:
 - A high support score does not imply value, stake sizing, or FINAL recommendation quality.
 - If strong contradictory evidence remains, preserve it explicitly instead of smoothing it away.
 
+## Experimental v1.3 routing notice (new runs only)
+
+Preserve the existing 0–100 user-facing score and support/opposition/match-commentary order. v1.3 requires a selection-specific route: SINGLE WIN checks distinct WIN/DRAW/LOSS mechanisms; DOUBLE CHANCE checks opponent victory as failure (draw is success); OVER 2.5 checks 3+ goal routes and two-or-fewer lock scenarios; BTTS retains the independent home/away goal legs and weaker-leg cap. Explicitly report the strongest credible failure path, available pre-match evidence against it, and data limitations. Mark cup / cross-league / away and small-sample uncertainty. Never assign a high football-support score solely because one side has superior overall xGD or a higher-tier league.
+
+For v1.3, 75+ requires documented independent underlying evidence, venue/opponent comparability and a reasonably countered failure path; this is an UNCALIBRATED experimental review gate, not a proven win probability threshold. When the data cannot support a responsible number, return SCORE_UNAVAILABLE with reasons, not a fabricated score. Keep v1.1 and prior v1.2 snapshots untouched.
+
 ## Output discipline
 
 Separate internally:
@@ -104,6 +110,6 @@ Separate internally:
 
 For a generic ANALYST request without a supplied preference, the normal baseline/matchup/lean format remains valid.
 
-For a supplied preference, use the preference-aware user-facing mode above by default. When v1.2 experimental shadow mode is active, also apply `methods/analyst_v1_2_experimental.md` and its 0-100 scoring discipline.
+For a supplied preference, use the preference-aware user-facing mode above by default. Historical v1.2 experimental outputs remain immutable. For NEW experimental shadow analyses, apply `methods/analyst_v1_3_experimental.md` and `schemas/analyst_v1_3_experimental_report.md` alongside existing canonical source rules. v1.3 replaces v1.2 only for future EXPERIMENTAL runs and is not a canonical model promotion.
 
 Do not mention market prices, 'value', sharp money, public money, Polymarket bettors, current availability news, or conclusions from any other department.
