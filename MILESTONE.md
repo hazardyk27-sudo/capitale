@@ -436,3 +436,14 @@ The owner requested recovery of 9–17 October 2026 SXF archive gaps and prevent
 ### Governance
 
 No SXF decision engines, thresholds, historic AS_OF snapshots, or other agents' outputs were changed. Refer to `audits/sxf_archive_quality_2026-10-18.md` for audit query usage and measured gaps. Revisit source result backfill and service root-cause when verified data and host logs are available.
+
+
+### 2026-10-18 — Recovery follow-up (all six incident classes triaged)
+
+- **9 Oct FT**: 20 externally cross-verified scores available from `capitale.sxf_verified_settlement_overlay_v1` (live_fixtures unchanged); remaining 240 require a trusted source-event backfill. Audit staging `capitale.sxf_result_recovery_staging_v1`.
+- **Two-sided market data**: read-only `capitale.sxf_t6_market_evidence_quality_v1(day)` flags incomplete opposing odds, money, shares and questionable 100% shares. 17 October: 187/425 OU and 123/422 BTTS T-6 snapshots have both odds and amounts available.
+- **Fixture identities**: `capitale.sxf_source_event_identity_v1` flags hash reuse across distinct Betwatch `source_event_id` values. Never join historical FT purely on same team hash.
+- **Other results**: `capitale.sxf_missing_result_queue_v1(date,date)` catalogs 67 missing/mismatched settlement rows for 10–17 Oct: 55 no matching hash, 12 differing kickoffs; waiting on trustworthy source verification.
+- **T-6 gaps**: `capitale.sxf_t6_gap_triage_v1(date,date)`: 13 Oct 165 attributable to known upstream API gap. Other 77 gaps: 31 fixture discovered after T6, 40 other history exists without T6, 6 no pregame 1X2 history.
+- **Monitoring**: `capitale.sxf_ingestion_heartbeat_health_v1`, `capitale.sxf_learning_archive_watch_v1`, and append-only `capitale.sxf_pipeline_health_log_v1`. `capitale-sxf-pipeline-health-daily-v1` pg_cron active for 08:35 TSİ; manual capture verified 7 component records. No notification delivery configured. First scheduled run still to verify.
+- **No destructive writes** to existing market snapshots, existing fixture rows, or raw settlement records; no strategy threshold changes. Main app / reporting integration is still pending.
