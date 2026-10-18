@@ -57,8 +57,8 @@ SELECT jobid, jobname, schedule, active FROM cron.job WHERE jobname='capitale-sx
 ### 1. 9 October settlement recovery
 
 - Created `capitale.sxf_result_recovery_staging_v1` with fixture UID, hash, exact kickoff, Istanbul-local date, team names, proposed FT score, external source URLs and explicit provenance status.
-- Staged **20** fixtures from cross-referenced public 9 October score lists (ScoutingStats, BetExplorer, FootballDatabase); **11** independently corroborated by multiple score lists, **9** remain provisional.
-- `capitale.sxf_verified_settlement_overlay_v1` exposes the 11 verified scores **without altering `public.live_fixtures`**, excluding reused hashes and requiring exact fixture UID/kickoff/day. The other 249 9 October fixtures do NOT have verified recovered scores yet. Backtests must explicitly opt in to the overlay; raw settlement history remains unchanged.
+- Staged **20** fixtures from cross-referenced public 9 October score lists (ScoutingStats, BetExplorer, FootballDatabase); **20** independently corroborated by two or more independently published score lists, **0** remain provisional.
+- `capitale.sxf_verified_settlement_overlay_v1` exposes the 20 verified scores **without altering `public.live_fixtures`**, excluding reused hashes and requiring exact fixture UID/kickoff/day. The other 240 9 October fixtures do NOT have verified recovered scores yet. Backtests must explicitly opt in to the overlay; raw settlement history remains unchanged.
 - Sources: https://scoutingstats.ai/fixtures/2026-10-09 , https://www.betexplorer.com/?day=09&month=10&year=2026 , https://footballdatabase.com/scores/2026-10-09 . Verification scope is score and team match; historical kickoff quality requires continued review on difficult fixtures.
 - Raw `live_fixtures` has **0** exact 9 October FT results, including those represented in the overlay. No bulk automatic score copying was performed.
 
@@ -72,7 +72,7 @@ SELECT jobid, jobname, schedule, active FROM cron.job WHERE jobname='capitale-sx
 ### 3. Hash/kickoff conflict and canonicalization
 
 - `capitale.sxf_result_identity_audit_v1(start,end)` flags exact final settlement, no result, time mismatch, and hash re-use.
-- Found 7 reused `match_id_hash` groups across different fixture kickoffs, involving 14 logical fixture records.
+- Found 7 reused `match_id_hash` groups across different fixture kickoffs **inside 9–17 October**, involving 14 logical fixture records. A further global source-identity audit detects 15 hashes reused across all archived dates, affecting 22 fixtures within 9–17 October.
 - No automatic mapping by hash alone. A matching hash paired with a wrong kickoff is **not** a verified final result.
 - 15 October's 18 duplicate same-match-and-kickoff rows remain non-destructively resolved by the canonical fixture view.
 
@@ -104,8 +104,15 @@ Applied additional migrations: `sxf_20261009_external_results_staging_v1`, `sxf_
 
 ### Remaining blockers and cautions
 
-- Recover and independently verify the other **249** 9 October scores (9 provisional + 240 unstaged). Finish reconciling 10–17 October **67** missing/mismatched settlement records.
+- Recover and independently verify the other **240** 9 October scores (all unstaged). Finish reconciling 10–17 October **67** missing/mismatched settlement records.
 - Never fill missing T-6 snapshot by extrapolating later T-3 or closing odds.
 - Partial-market data flags are available, but the established SXF engines and reports have **not yet been integrated** with this quality view. Maintain NO DATA = NO EVIDENCE for any analysis.
 - A dedicated signed authoritative results feed would make bulk backfill feasible without guessing event identity. The Desktop Commander host remained offline on prior attempt.
 - Confirm future health cron execution using `cron.job_run_details`; changing a schedule is not proof that execution already happened.
+
+### Source-event identity follow-up
+
+- Added `capitale.sxf_source_event_identity_v1` (migration `sxf_source_event_identity_collision_quality_v1`). Distinguishes a source's `source_event_id` from the locally derived `match_id_hash`, reports `canonical_source_key` and `identity_quality`.
+- All seven pairs of same-hash/different-kickoff fixtures in 9–17 October have **different Betwatch source_event_id values**. This is a real hash reuse/collision problem, **not** evidence that these records are the same postponed match.
+- Globally 15 hashes are reused across more than one source event; 22 fixture rows in the 9–17 October slice have the global collision flag.
+- This has **not** altered `public.live_fixtures` uniqueness constraints or scraper UPSERT behavior. A change to event-level uniqueness must be coordinated with the collector and dependent code.
