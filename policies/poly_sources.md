@@ -1,7 +1,7 @@
 # POLY Source Policy
 
 Status: CANONICAL
-Version: 1.1
+Version: 1.2
 
 ## Source-of-truth split
 
@@ -77,3 +77,15 @@ POLY must not use:
 - bookmaker movement/odds analysis as evidence;
 - ANALYST, NEWS, SXF-department, or FINAL conclusions;
 - historical CAPITALE 24-wallet routing as the active bettor universe.
+
+
+## v1.3 evidence-integrity amendment (2026-10-19)
+
+- The direct/public market layer may quantify **market-wide** concentration and whale presence, but cannot import a whale's raw wallet performance into the **bettor layer**.
+- SXF POLY bettor fields require page-observed snapshot timestamps at or before AS_OF, explicit user/market matching and a measured sample. A raw-wallet audit is ENGINEER research, not active POLY evidence.
+- Opposing and supporting bettor assertions require symmetrical qualification: sample quality, financially reconciled historical performance, net clean directional stake, independence and exact preference-market match. Missing information is NO EVIDENCE; a low-quality opposing user cannot alone create a high-strength negative signal.
+- Median relative stake is computed only from 20–30 prior comparable prematch positions *exposed on SXF POLY*. Amounts, transaction volume and token shares are not interchangeable. If incomplete, return BASELINE_UNKNOWN.
+- Main bettor signal eligibility uses decimal odds >=1.40. This is a screening rule, not a win-rate, betting edge or odds-derived stake score.
+- No numerical boost for >=3× / >=5× size, consensus or opposition is empirically validated. Never infer a probability or 'elite' class merely from those labels.
+- Historical settlement must be matched to the same exact market/outcome; realized returns require PnL coverage >=90% and proper buy/sell/redemption accounting. Mark anything else as unreliable.
+- Pre-match classification includes abstention/insufficient evidence; historical audit must preserve this, source coverage and sampling frame instead of retrospective filtering to correct calls.
