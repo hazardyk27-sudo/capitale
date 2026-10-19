@@ -1,7 +1,7 @@
 # POLY Report Schema
 
 Status: CANONICAL
-Version: 1.1
+Version: 1.3
 
 ```yaml
 role: POLY
@@ -9,13 +9,19 @@ match_id: <canonical match id>
 match: <home> vs <away>
 run_at_utc: <timestamp>
 prompt_version: <version>
-methodology_version: poly-v1.1
+methodology_version: poly-v1.3
 
 preference_context:
   supplied: <true|false>
   preference: <user supplied selection|null>
 
 scope_check:
+  source_as_of_utc: <timestamp>
+  kickoff_utc: <timestamp>
+  sxf_poly_snapshot_at_utc: <timestamp|null>
+  direct_market_snapshot_at_utc: <timestamp|null>
+  no_future_data_used: <true|false>
+  poly_bettor_source_verified: <true|false>
   general_market_source: DIRECT_POLYMARKET
   bettor_source: SXF_POLY_PAGE_ONLY
   historical_24_wallet_pool_used: false
@@ -44,6 +50,20 @@ sxf_poly_bettors:
     entry_price_pct: <number|null>
     timing: <timestamp/relative time|null>
     bettor_reliability: <HIGH|MEDIUM|LOW|UNKNOWN>
+    bettor_quality_status: <ESTABLISHED|PROVISIONAL|UNKNOWN|UNRELIABLE>
+    historical_resolved_positions: <int|null>
+    distinct_historical_events: <int|null>
+    pnl_coverage_pct: <number|null>
+    evidence_is_as_of_safe: <true|false|null>
+    bettor_history_source: <SXF_POLY_ONLY|NONE>
+    stake_multiple: <number|null>
+    baseline_status: <VALID_20_TO_30_PRIOR|INSUFFICIENT_PRIOR|INCOMPATIBLE_STAKE_UNIT|UNAVAILABLE>
+    baseline_sample_n: <int|null>
+    baseline_stake_usdc: <number|null>
+    odds_eligible_ge_1_40: <true|false|null>
+    position_cleanliness: <CLEAN_ONE_DIRECTION|MIXED|HEDGED|REDUCED|UNKNOWN>
+    net_directional_exposure_usdc: <number|null>
+    credible_directional_evidence: <true|false>
     sizing_vs_user_norm: <SMALL|NORMAL|LARGE|VERY_LARGE|UNKNOWN>
     action_state: <ADDING|HOLDING|REDUCING|EXITED|HEDGED|UNKNOWN>
     reliability_basis: <what SXF POLY explicitly shows or NO EVIDENCE>
@@ -65,6 +85,17 @@ preference_evidence:
       fact: <relevant but neutral/uncertain fact>
       note: <why neutral/uncertain>
 
+decision_audit:
+  immutable_as_of_decision_id: <id|null>
+  precommitted_before_settlement: <true|false>
+  decision_evidence_class: <CREDIBLE_SUPPORT|CREDIBLE_OPPOSITION|MIXED|NO_QUALIFIED_BETTOR_EVIDENCE>
+  decision_is_probability: false
+  numerical_lift_calibrated: false
+  reason_for_abstention: <text|null>
+  relevant_user_count: <int|null>
+  qualified_user_count: <int|null>
+  caveats: []
+
 poly_balance:
   direction: <SUPPORTS_PREFERENCE|SLIGHTLY_SUPPORTS|MIXED|SLIGHTLY_OPPOSES|OPPOSES_PREFERENCE|INSUFFICIENT_EVIDENCE>
   confidence: <LOW|MEDIUM|HIGH>
@@ -75,6 +106,11 @@ poly_balance:
 ```
 
 Rules:
+- Sizing labels are descriptive and uncalibrated: <0.25× ignore; 0.25–<0.75× small; 0.75–<1.50× normal; 1.50–<3× strong size; 3–<5× very strong size; >=5× exceptional size.
+- Established status requires N>=100 resolved bets, >=60 events, credible directional edge and verified PnL coverage >=90%.
+- Absent SXF POLY bettor snapshot or 20 comparable past positions => UNKNOWN, not an invented score.
+- Credible opposing claims pass the same qualification tests as supporting claims.
+- Audit ALL precommitted decisions, including abstentions.
 - General market prices/volumes come from direct/public Polymarket.
 - Bettor/user evidence comes only from SXF POLY.
 - Raw Polymarket wallets must not be promoted into bettor evidence unless that user is present on SXF POLY.
