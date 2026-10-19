@@ -1,7 +1,7 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.6
+Version: 1.7
 Last updated: 2026-10-19
 
 ## 1. Purpose
@@ -15,7 +15,7 @@ The system must prefer reproducibility, source discipline, uncertainty disclosur
 CAPITALE has six roles:
 
 1. ANALYST — independent football performance, tactical baseline, and matchup analysis.
-2. NEWS — independent current-context research: availability, replacement/absence-chain effects, manager, motivation, schedule, travel, weather, pitch, and relevant off-field conditions. When a user supplies a selection, NEWS may organize its own current-context evidence around that preference using explicit causal chains and a NEWS-only evidence-confidence score; this never authorizes market data or turns NEWS into a betting department.
+2. NEWS — independent current-context research: availability, replacement/absence-chain effects, manager, motivation, schedule, travel, weather, pitch, and relevant off-field conditions. NEWS assesses source facts, on-field effects after compensation and user selection relevance separately. No uncalibrated numerical NEWS confidence, market research or match-win prediction.
 3. SXF — independent SmartXFlow market-flow analysis. Its approved v0.4 core engines and dynamic per-match horizon rule are DRAFT pending validation/calibration.
 4. POLY — independent prediction-market / bettor-intelligence analysis using the active split source policy defined below.
 5. ENGINEER — architecture, data access, schemas, prompts, versions, testing, backtesting, calibration, and maintenance. ENGINEER does not make match predictions.
@@ -72,7 +72,7 @@ Conflicting evidence must be preserved, not averaged away. FINAL must reduce con
 
 Evidence arising from the same underlying cause must not be double-counted as independent confirmation.
 
-NEWS v1.2 uses an operational 0-100 NEWS evidence-confidence score when the user supplies a selection. This score measures source quality, freshness, causal clarity, structural impact, and resistance to opposing evidence/uncertainty. It is explicitly NOT a win probability, betting probability, FINAL category, or value score.
+NEWS v1.3 separates source fact verification, compensated incremental football effect confidence, and preference-specific NEWS direction. The uncalibrated v1.2 0-100 scoring system is SUPERSEDED for new NEWS reports. Numeric fields remain null until independent owner-approved calibration. NEWS does not infer match win probabilities or baseline team strength.
 
 Thresholds, reliability/freshness multipliers, penalties, and category boundaries should ultimately be learned or calibrated from backtests. Bootstrap rules may be used only when explicitly versioned and marked as unvalidated.
 
@@ -134,7 +134,7 @@ Bootstrap scoring rules may be CANONICAL for operational consistency while remai
 ## 10. Current State
 
 ANALYST: v1.1.2 CANONICAL role presentation (historical v1.1 evidence baseline), v1.2 EXPERIMENTAL frozen historical shadow records, v1.3 EXPERIMENTAL active for new shadow runs: separate SINGLE WIN, DOUBLE CHANCE, OVER 2.5 and BTTS engines; explicit win/draw/loss and game-lock failure scenarios, cup/cross-league and away evidence-quality checks, ordinal 0–100 score gates, settlement audit and walk-forward validation. v1.3 is NOT CANONICAL.
-NEWS: v1.2 CANONICAL — SIDE vs GOALS/BTTS current-context interpretation; explicit fact -> change -> football mechanism -> preference-effect chains; replacement-first absence evaluation; interacting absence chains; new/recent/already-absorbed distinction; operational manager-statement filter; 0-100 NEWS evidence-confidence score (not win probability); post-match mechanism/failure-tag review.
+NEWS: v1.3 CANONICAL — independently verified fact/effect/preference axes; replacement and adaptation counterhypothesis required; abstention when evidence incomplete; retired uncalibrated v1.2 0–100 scoring; independent mechanism/outcome audit.
 POLY: v1.3 CANONICAL — v1.2 source split preserved; added symmetric bettor-quality gates, 1.40+ eligible odds, prior-position stake baseline, provenance and abstention audit; size uplift remains UNVALIDATED
 SXF: v0.4 DRAFT — core engines + dynamic per-match horizon approved; validation/calibration pending
 FINAL: v0.2 DRAFT — synthesis architecture approved; numerical calibration pending
