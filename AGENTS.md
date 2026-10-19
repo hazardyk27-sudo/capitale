@@ -135,9 +135,11 @@ Bootstrap scoring rules may be CANONICAL for operational consistency while remai
 
 ANALYST: v1.1.2 CANONICAL role presentation (historical v1.1 evidence baseline), v1.2 EXPERIMENTAL frozen historical shadow records, v1.3 EXPERIMENTAL active for new shadow runs: separate SINGLE WIN, DOUBLE CHANCE, OVER 2.5 and BTTS engines; explicit win/draw/loss and game-lock failure scenarios, cup/cross-league and away evidence-quality checks, ordinal 0–100 score gates, settlement audit and walk-forward validation. v1.3 is NOT CANONICAL.
 NEWS: v1.2 CANONICAL — SIDE vs GOALS/BTTS current-context interpretation; explicit fact -> change -> football mechanism -> preference-effect chains; replacement-first absence evaluation; interacting absence chains; new/recent/already-absorbed distinction; operational manager-statement filter; 0-100 NEWS evidence-confidence score (not win probability); post-match mechanism/failure-tag review.
-POLY: v1.2 CANONICAL — direct Polymarket for general market; SXF POLY page only for active bettor/user evidence
+POLY: v1.3 CANONICAL — v1.2 source split preserved; added symmetric bettor-quality gates, 1.40+ eligible odds, prior-position stake baseline, provenance and abstention audit; size uplift remains UNVALIDATED
 SXF: v0.4 DRAFT — core engines + dynamic per-match horizon approved; validation/calibration pending
 FINAL: v0.2 DRAFT — synthesis architecture approved; numerical calibration pending
 ENGINEER: active governance/implementation role
+
+POLY v1.3 only changes its **evidence-handling and reporting safeguards**. It does not authorize importing raw wallet histories as active SXF POLY bettor evidence, inventing empirical size thresholds, or replacing FINAL grades. See the experimental validation protocol for historical data caveats.
 
 See MILESTONE.md for current implementation state, superseded rules, and technical backlog.
