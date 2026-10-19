@@ -50,7 +50,7 @@ sxf_poly_bettors:
     entry_price_pct: <number|null>
     timing: <timestamp/relative time|null>
     bettor_reliability: <HIGH|MEDIUM|LOW|UNKNOWN>
-    bettor_quality_status: <ESTABLISHED|PROVISIONAL|UNKNOWN|UNRELIABLE>
+    bettor_quality_status: <PROVEN|ESTABLISHED|QUALIFIED|PROVISIONAL|UNKNOWN|UNRELIABLE>
     historical_resolved_positions: <int|null>
     distinct_historical_events: <int|null>
     pnl_coverage_pct: <number|null>
@@ -107,7 +107,7 @@ poly_balance:
 
 Rules:
 - Sizing labels are descriptive and uncalibrated: <0.25× ignore; 0.25–<0.75× small; 0.75–<1.50× normal; 1.50–<3× strong size; 3–<5× very strong size; >=5× exceptional size.
-- Established status requires N>=100 resolved bets, >=60 events, credible directional edge and verified PnL coverage >=90%.
+- QUALIFIED requires N>=100 resolved bets, >=60 events, positive entry edge and directional behavior. ESTABLISHED requires >=250 positions, >=150 events, >=3 active months and >=2pp entry edge; PROVEN also needs reliable positive ROI and reliable nonnegative CLV. PnL coverage must be >=90% for ROI to be decision-grade.
 - Absent SXF POLY bettor snapshot or 20 comparable past positions => UNKNOWN, not an invented score.
 - Credible opposing claims pass the same qualification tests as supporting claims.
 - Audit ALL precommitted decisions, including abstentions.
