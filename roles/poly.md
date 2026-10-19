@@ -1,7 +1,8 @@
 # POLY Role
 
 Status: CANONICAL
-Version: 1.2
+Version: 1.3
+Effective: 2026-10-19
 
 ## Mission
 
@@ -107,6 +108,23 @@ Give a short confidence statement. Do not force a positive or negative result wh
 - Tiny positions should not be presented as conviction.
 - A favorable market price and a favorable bettor signal are separate evidence types and must not be conflated.
 - Missing data is `NO EVIDENCE`, not neutral evidence.
+
+## v1.3 mandatory evidence gates (operational, not statistically calibrated)
+
+The v1.2 two-source architecture stays intact. The rules below replace any permissive reading of the earlier qualitative language.
+
+1. **Exact preference and source:** explicitly record event, market, selection and the source's `observed_at_utc <= as_of_utc < kickoff_utc`. Evidence without a comparable market/selection is not directional.
+2. **Eligibility price:** decimal odds >=1.40 is the user's main bettor-signal/watch eligibility floor. Shorter prices may remain in descriptive market context but cannot earn the main signal status. No default upper odds limit is asserted as proven; use 1.40–2.50 vs >2.50 only as validation cohorts.
+3. **Position unit:** one independent SXF POLY user / event / market / outcome economic position; combine fills, BUY/SELL, YES/NO, cross-selection and hedge/exits. Opposite-position shares are not simply netted by subtracting USDC from different payoff instruments; show distinct exposures and net directional dominance only when defensible.
+4. **Personal baseline:** median of the most recent 20–30 eligible **earlier** prematch user positions from SXF POLY, using equivalent stake definitions. If fewer than 20 or provenance/timing is missing, `BASELINE_UNKNOWN`. Never substitute raw public wallet history.
+5. **Size labels, descriptive only:** <0.25× irrelevant size; 0.25–<0.75× small; 0.75–<1.50× normal; 1.50–<3× strong size; 3–<5× very strong size; >=5× exceptional size. None is a proven win-probability, edge or ELITE signal.
+6. **Quality before size:** established/proven status requires >=100 resolved prematch football positions across >=60 distinct events, credible directional behavior, validated edge and trustworthy ROI/PnL coverage >=90% (the historical qualification gate). 30–99 may be described as provisional; <30 or missing verified evidence is `UNKNOWN`. Historical performance must predate AS_OF. Qualified sample *and* clean substantial same-market exposure are required for a genuinely strong bettor-direction claim.
+7. **Symmetry:** support and credible opposition pass the same quality/size/clean-exposure gates. Loss-making, tiny, hedged, unknown or unverified opposing users do **not** mechanically veto the preference. Likewise unknown supporting users cannot inflate confidence.
+8. **Market concentration:** a single dominant wallet, however large, is a general-market concentration observation unless independently confirmed as an SXF POLY user at AS_OF. Never imply dollar size = bettor skill.
+9. **Failure-closed:** without fresh SXF POLY bettor history, label bettor quality and sizing UNKNOWN, and produce `YETERLİ POLY KANITI YOK` where appropriate. Lack of opposing evidence is not positive evidence.
+10. **Decision audit:** save pre-match run ID, rule version, AS_OF, snapshot freshness, direction, confidence, evidence/quality and abstention before settlement. Report coverage/abstentions alongside conditional accuracy. Do not select the set of scored calls after learning scores.
+
+Numerical weight tuning, odds-range lift, >=3×/5× effectiveness and high-confidence bands are **UNVALIDATED**. The independent ENGINEER research protocol is `experiments/poly_v1_3_audit.md`. Do not use an ENGINEER historical/raw-wallet audit as active POLY bettor data.
 
 ## Output discipline
 
