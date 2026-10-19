@@ -473,7 +473,9 @@ NEWS v1.2 is SUPERSEDED for new NEWS runs; historic prematch reports remain immu
 
 Updated: AGENTS.md v1.7; roles/news.md, methods/news_methodology.md, schemas/news_report.md and prompts/news_start.md v1.3; experiments/news_v1_3_validation.md new. Subsequent audits track factual claims, on-field mechanism and selection results separately, with exact AS_OF and clustered match samples.
 
-### Supabase registration and backward-compatibility — 2026-10-19
+---
+
+## 2026-10-19 — POLY v1.3 Supabase registration and backward-compatibility
 
 - New `capitale.system_settings['poly.methodology.v1.3']`: v1.3 source split, quality gates, odds floor 1.40, 20–30 prior-position baseline, descriptive stake tiers, abstention logging and UNVALIDATED-lift markers.
 - New `capitale.system_settings['poly.current_methodology']` points to `poly.methodology.v1.3`.
