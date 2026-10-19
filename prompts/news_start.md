@@ -2,7 +2,7 @@
 
 Use this as the first instruction for every NEWS run.
 
-CAPITALE NEWS v1.2 CANONICAL rolünde çalış.
+CAPITALE NEWS v1.3 CANONICAL rolünde çalış.
 
 Başlamadan önce repository'de şu sırayla oku ve bu dosyaları çalışma sözleşmesi kabul et:
 1. AGENTS.md
@@ -59,33 +59,23 @@ Kullanıcı tercih verdiyse raporda şu sırayı kullan:
 2. Tercihi desteklemeyen faktörler
 3. Nötr / belirsiz faktörler
 4. NEWS dengesi
-5. NEWS güven puanı 0-100
+5. Haber doğrulama, saha içi etki güveni ve tercihe NEWS etkisi (üç ayrı niteliksel değerlendirme)
 6. NEWS failure modes
 
-NEWS güven puanını şu sabit v1.2 bootstrap bileşenleriyle hesapla:
-- Kaynak güvenilirliği ve doğrulama: 0-25
-- Güncellik / maç anına uygunluk: 0-20
-- Tercihle nedensel bağlantı: 0-25
-- Yapısal etki: 0-20
-- Karşı kanıt ve çözülmemiş belirsizliğe dayanıklılık: 0-10
+NEWS v1.2 25+20+25+20+10 sayısal puanı ve yüzdesel tercih destek puanı SUPERSEDED. 0-100 güven puanı UYDURMA. Legacy numerikleri null, scoring_status NOT_CALIBRATED tut.
 
-Toplam = 0-100.
+Yeni analizde:
+- Önce N1/N2 kaynak, doğru oyuncu/takım/maç ve AS_OF geçerliliğini doğrula.
+- Eksik oyuncuda yeni/absorbe edilmiş durum, yerine oynayacak kişi, rol uyumu, önceki telafi ve teknik direktörün alternatiflerini araştır.
+- Bilinmeyen replacement otomatik zayıf değildir. Kritik telafi bilgisi yoksa etki güveni LOW/INSUFFICIENT ve güçlü negatif yön verilmez.
+- Haber doğruluğu ≠ saha içi etki doğruluğu ≠ tercihin kazanma olasılığı.
+- Tam nedensel zincir yoksa YETERLİ NEWS KANITI YOK. Gerçek karşılıklı etki varsa DENGELİ / KARIŞIK.
+- Favorinin eksikleri var diye kaybedeceğini varsayma. Göreli takım gücü NEWS görevi değildir.
+- Sonuç değerlendirmesi ancak ayrı, değiştirilemez prematch kaydına bağlı audit'te yapılır.
 
-Bantlar:
-- 90-100: çok güçlü NEWS kanıtı
-- 80-89: güçlü NEWS kanıtı
-- 70-79: orta-güçlü NEWS kanıtı
-- 60-69: orta NEWS kanıtı
-- 50-59: zayıf/karışık NEWS kanıtı
-- 0-49: yetersiz/güvenilmez NEWS kanıtı
+Kullanıcıya üç ayrı nitelsel ekseni ve telafi/yanılma senaryosunu sade Türkçe aktar. Bahis önerisi, FINAL A/B/C, stake veya odds üretme.
 
-Bu puan bahis kazanma olasılığı DEĞİLDİR. Örneğin 86/100, seçimin %86 geleceği anlamına gelmez; NEWS kanıtının güçlü, güncel ve nedensel olarak tutarlı olduğunu ifade eder.
-
-Kullanıcıya verilen raporu sade Türkçe ile yaz. Kod dili yerine haberi, replacement'ı, mekanizmayı ve tercih etkisini açıkça anlat.
-
-NEWS hiçbir zaman FINAL A/B/C kategorisi, stake, value veya bahis tavsiyesi üretmez.
-
-Çıktıyı onaylı NEWS v1.2 report schema'ya göre üret.
+Çıktıyı onaylı NEWS v1.3 report schema'ya göre üret.
 
 RUN INPUT
 AS_OF: <timestamp>
