@@ -433,3 +433,35 @@ Historical pre-match NEWS runs remain immutable; post-match information may eval
 3. Compare v1.2 confidence ordering and false-high-confidence misses over time.
 4. Review failure tags to identify systematic replacement, absence-chain, rotation or causal-link errors.
 5. Use chronological/walk-forward validation before changing the 25/20/25/20/10 scoring architecture or confidence bands.
+
+---
+
+## 2026-10-19 — POLY v1.3 quality-first operational update (CANONICAL safeguards; predictive uplift UNVALIDATED)
+
+**This entry supersedes POLY v1.2 as the latest POLY operational methodology/report/bootstrap; its approved two-source boundary remains unchanged.** The previous 24-wallet / direct raw wallet routing rule remains SUPERSEDED for active POLY. Previous historical research remains audit-only.
+
+Owner requested a correction after 18 October POLY confidence/contrary-evidence failures. v1.3 changes **evidence gating, missing-data abstention, interpretation symmetry and reproducibility**; it does NOT claim a newly calibrated winner model or modify FINAL weights.
+
+Operational rules:
+- Direct/public Polymarket = general market price/volume/liquidity/concentration only. **SXF POLY page = only active bettor/user source**. A raw public wallet may inform concentration but not bettor-specific confidence.
+- One bettor/event/market/economic position, not independent votes per trade fill; identify opposite YES/NO positions, sells/hedges and distinct contract payout semantics.
+- Eligibility screen for main bettor signal: decimal odds >=1.40. Reference to odds 1.40–2.50 versus >2.50 is a testing cohort, NOT proven performance.
+- A bettor's normal stake is the median of previous 20–30 comparably defined SXF POLY prematch positions, strictly preceding the target position's entry. If missing, `BASELINE_UNKNOWN`, not a numeric estimate.
+- Descriptive sizing labels: <0.25× disregard, 0.25–<0.75× small, 0.75–<1.50× normal, 1.50–<3× strong size, 3–<5× very strong size, >=5× special size. **No numeric conviction score or 5× edge is validated**.
+- Inherit existing established quality gate: >=100 verified resolved prematch positions, >=60 distinct events, valid directional edge, low hedging/trading, decision-grade PnL coverage >=90%. A smaller sample (30–99) is provisional, <30 or unknown data is UNKNOWN.
+- Both opposing and supporting bettor claims pass the same skill/sample/clean-position/size/independence tests; loss-making or unknown bettor opposition never automatically vetoes independent support.
+- No SXF POLY or no verifiable bettor history -> `YETERLİ POLY KANITI YOK` where appropriate. Abstentions, confidence and sources are recorded before settlement, never cherry-picked after.
+
+Initial ENGINEER-only historical data audit (2026-10-09 to 2026-10-18 kickoff UTC):
+- `capitale.poly_recent_football_bets` returned 3,253 rows across only seven wallets, 3,101 resolved, with 2,040 showing `first_traded_at >= kickoff_utc` — broad contamination/aggregation review needed.
+- After resolved + stake >=100 + odds >=1.40: 1,561 records; only 142 have `last_traded_at < kickoff_utc` (strict whole-position prematch proxy), covering five wallets; 65 of these 142 have missing `pnl_usdc`.
+- Chronological provisional baseline sample: 92 eligible positions with >=20 earlier comparable rows, only two >=5× and only one >=5× at odds 1.40–2.50.
+- The -13.3% naive flat-stake return on the 142 strict rows is NOT financial settlement-verified ROI. Do not treat this sample as a validated calibrated bettor-ranking test.
+- Full reproducible audit and next walk-forward protocol: `experiments/poly_v1_3_audit.md`.
+
+Important correction: earlier conversational analysis that promoted raw public/tracked-wallet identities into active POLY bettor confidence **violated the existing canonical SXF POLY-only source rule**; do not reuse those decisions as compliant v1.3 evidence.
+
+Files updated: `AGENTS.md`, `MILESTONE.md`, `roles/poly.md`, `methods/poly_methodology.md`, `policies/poly_sources.md`, `schemas/poly_report.md`, `prompts/poly_start.md`, new `experiments/poly_v1_3_audit.md`.
+
+Current status: **POLY v1.3 CANONICAL process/guardrails; bettor predictive thresholds not calibrated; backtest validation BLOCKED by source coverage, timing and settlement**. Do not promote a 5× signal to statistically proven ELITE and do not feed raw audit wallets into active POLY reports.
+
