@@ -448,7 +448,7 @@ Operational rules:
 - Eligibility screen for main bettor signal: decimal odds >=1.40. Reference to odds 1.40–2.50 versus >2.50 is a testing cohort, NOT proven performance.
 - A bettor's normal stake is the median of previous 20–30 comparably defined SXF POLY prematch positions, strictly preceding the target position's entry. If missing, `BASELINE_UNKNOWN`, not a numeric estimate.
 - Descriptive sizing labels: <0.25× disregard, 0.25–<0.75× small, 0.75–<1.50× normal, 1.50–<3× strong size, 3–<5× very strong size, >=5× special size. **No numeric conviction score or 5× edge is validated**.
-- Inherit existing established quality gate: >=100 verified resolved prematch positions, >=60 distinct events, valid directional edge, low hedging/trading, decision-grade PnL coverage >=90%. A smaller sample (30–99) is provisional, <30 or unknown data is UNKNOWN.
+- Inherit existing QUALIFIED quality gate: >=100 verified resolved prematch positions, >=60 distinct events, positive entry edge and directional behavior. ESTABLISHED needs >=250 positions, >=150 events, >=3 active months and >=2pp edge; PROVEN needs reliable positive ROI and adequate CLV. PnL is decision-grade only at >=90% coverage. A sample of 30–99 is provisional, <30 or unknown data is UNKNOWN.
 - Both opposing and supporting bettor claims pass the same skill/sample/clean-position/size/independence tests; loss-making or unknown bettor opposition never automatically vetoes independent support.
 - No SXF POLY or no verifiable bettor history -> `YETERLİ POLY KANITI YOK` where appropriate. Abstentions, confidence and sources are recorded before settlement, never cherry-picked after.
 
