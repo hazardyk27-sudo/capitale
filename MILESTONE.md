@@ -465,3 +465,10 @@ Files updated: `AGENTS.md`, `MILESTONE.md`, `roles/poly.md`, `methods/poly_metho
 
 Current status: **POLY v1.3 CANONICAL process/guardrails; bettor predictive thresholds not calibrated; backtest validation BLOCKED by source coverage, timing and settlement**. Do not promote a 5× signal to statistically proven ELITE and do not feed raw audit wallets into active POLY reports.
 
+---
+
+## 2026-10-19 — NEWS v1.3 CANONICAL correction
+
+NEWS v1.2 is SUPERSEDED for new NEWS runs; historic prematch reports remain immutable. The owner approved v1.3 to separate source/fact verification, replacement- and adaptation-adjusted effect confidence, and selection-specific NEWS direction. Missing compensation or causal evidence requires abstention. The uncalibrated 25/20/25/20/10 confidence score and invented 0-100 preference-support figures are retired for new runs; numeric fields are null until separate owner-approved out-of-sample calibration. NEWS cannot infer overall team strength or match outcome from injuries. The three-axis changes are operational, NOT validated predictive improvements.
+
+Updated: AGENTS.md v1.7; roles/news.md, methods/news_methodology.md, schemas/news_report.md and prompts/news_start.md v1.3; experiments/news_v1_3_validation.md new. Subsequent audits track factual claims, on-field mechanism and selection results separately, with exact AS_OF and clustered match samples.
