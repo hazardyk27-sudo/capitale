@@ -1,7 +1,7 @@
 # NEWS Methodology
 
 Status: CANONICAL
-Version: 1.2
+Version: 1.3
 
 ## Objective
 
@@ -31,7 +31,7 @@ NEWS remains isolated from ANALYST, SXF, POLY and FINAL. It must never use odds,
 11. For each directional preference factor, require a causal chain:
    `current fact -> lineup/role/preparation change -> football mechanism -> preference effect`.
 12. Preserve supporting, opposing and neutral/uncertain factors separately.
-13. Compute NEWS confidence score 0-100 using the canonical v1.2 bootstrap rubric.
+13. Perform three separate qualitative assessments: fact verification, effect confidence after replacement/adaptation, and selection-specific NEWS relevance. No uncalibrated numeric total.
 14. Produce a NEWS-only descriptive conclusion. Do not issue FINAL categories or a betting recommendation.
 
 ## Selection-family interpretation
@@ -211,153 +211,31 @@ Material claims should prefer N1/N2. When credible sources conflict:
 - reduce the relevant score component;
 - never silently choose the version that better fits the user's preference.
 
-## NEWS confidence score 0-100
+## v1.3 evidence workflow
 
-The score measures NEWS evidence quality, not win probability.
+### 1. Fact confidence
+VERIFIED / PROBABLE / CONFLICTED / INSUFFICIENT. For every material claim: direct source, published/fetched times, availability at AS_OF, correct player/team/fixture, and N1/N2 corroboration when possible. Credible sources prove stated facts, not implied match consequences.
 
-### 1. Source reliability and verification — 0 to 25
+### 2. Incremental effect confidence
+HIGH / MEDIUM / LOW / INSUFFICIENT. For each important absence/return assess NEW/RECENT/ALREADY_ABSORBED; evidence-backed replacement(s), role fit, prior usage of the replacement, manager's adjustment, bench depth and plausible tactical mitigation. If replacement is unknown, its quality and effect are UNKNOWN. Do not assume weakness and do not issue a strong negative on that basis. Genuine interacting absence chains need a demonstrated interaction, not just a list of unavailable players.
 
-Guide:
-- 22-25: core claims primarily N1, or multiple strong N1/N2 confirmations;
-- 17-21: mostly N1/N2 with limited unresolved items;
-- 10-16: meaningful reliance on N3 or source conflict;
-- 0-9: weak/unverified evidence dominates.
+### 3. Preference-specific impact
+Only when a complete chain exists: FACT -> incremental lineup/preparation change -> COMPENSATED football mechanism -> impact on user's SIDE/GOALS_BTTS selection. Preserve both directions and a credible counter-case. A favorite weakened by an injury can remain favored and win; NEWS does not infer overall match strength or absolute selection likelihood. Missing evidence -> YETERLİ NEWS KANITI YOK; real offsetting evidence -> DENGELİ / KARIŞIK. For BTTS split both scoring legs; for totals evaluate both attack/defense sides.
 
-### 2. Freshness / match-time relevance — 0 to 20
+## Deprecated scores
 
-Guide:
-- 18-20: current match-week / latest direct status with clear as-of relevance;
-- 14-17: recent and still applicable;
-- 8-13: partly stale or adaptation status uncertain;
-- 0-7: stale/current applicability unclear.
+The v1.2 25/20/25/20/10 0–100 score and bands, plus noncalibrated 0–100 preference support figures, are SUPERSEDED for new v1.3 output. Numeric fields must be null, scoring_status NOT_CALIBRATED. Qualitative assessments are not probabilities. Future quantitative revival requires untouched chronological out-of-sample calibration and owner approval.
 
-Freshness must be judged relative to kickoff and the decision timestamp.
+## User-facing reporting
 
-### 3. Causal connection to supplied selection — 0 to 25
+Use plain Turkish. Provide credible match-specific facts for both clubs, missing/returning players, when available reliable usage, age of absence, expected replacement and adaptation evidence. Present preference-supporting/opposing/uncertain factors, NEWS balance, fact verification, effect confidence, preference relevance and strongest compensation counter-case. If credible replacement cannot be established: `yerine kimin oynayacağı henüz net değil`. If information insufficient: `Yeterli güncel bilgi yok`.
 
-Guide:
-- 22-25: several clear fact->change->mechanism->selection chains;
-- 17-21: one or more strong direct mechanisms with minor uncertainty;
-- 10-16: plausible but partially indirect mechanisms;
-- 0-9: mostly narrative association rather than causal connection.
+Before claiming negative impact, ask: "Even if this team loses a regular starter, why would the actual replacement fail to compensate? Could it still meet the user selection?" If there is no credible answer, do not oppose strongly.
 
-### 4. Structural impact — 0 to 20
+## Validation
 
-Guide:
-- 18-20: major interacting absence/context chain affecting a core functional unit;
-- 14-17: material current lineup/role/preparation effect;
-- 8-13: moderate isolated effect;
-- 0-7: low marginal effect or already absorbed condition.
+Pre-match reports frozen by AS_OF. Settle match outcomes separately and audit source claim accuracy, predicted lineup/replacement, and presence of the predicted game mechanism YES/PARTIAL/NO/UNKNOWN. NEWS accuracy is NOT the same as a selection's hit rate. Cluster multiple selection outcomes from one match, report coverage/abstention and unknown process evidence, and validate v1.3 against v1.2 on the same time-cutoff with walk-forward held-out data. The 17–18 October 2026 reviews are diagnostics only, not a held-out test.
 
-### 5. Resistance to opposing evidence and unresolved uncertainty — 0 to 10
+## Role limits
 
-This component is higher when the directional NEWS case remains strong after accounting for credible opposing facts.
-
-Guide:
-- 9-10: little material opposing evidence and low unresolved uncertainty;
-- 7-8: manageable counter-evidence;
-- 4-6: meaningful counter-evidence or uncertainty;
-- 0-3: strong contradiction or major unresolved items.
-
-### Total and bands
-
-`NEWS confidence score = component 1 + 2 + 3 + 4 + 5`
-
-Bands:
-- 90-100: VERY_STRONG_NEWS_EVIDENCE
-- 80-89: STRONG_NEWS_EVIDENCE
-- 70-79: MODERATE_STRONG_NEWS_EVIDENCE
-- 60-69: MODERATE_NEWS_EVIDENCE
-- 50-59: WEAK_MIXED_NEWS_EVIDENCE
-- 0-49: INSUFFICIENT_OR_UNRELIABLE_NEWS_EVIDENCE
-
-These are v1.2 bootstrap operational bands. They are not calibrated probabilities and must later be validated against out-of-sample results.
-
-Do not say `86/100 means 86% chance`. Correct interpretation: `NEWS evidence for this preference is strong, fresh and causally coherent.`
-
-## NEWS balance
-
-When a preference is supplied, classify the descriptive NEWS direction as:
-- TERCİHİ DESTEKLİYOR
-- HAFİF DESTEKLİYOR
-- DENGELİ / KARIŞIK
-- HAFİF KARŞI
-- TERCİHİ DESTEKLEMİYOR
-- YETERLİ NEWS KANITI YOK
-
-Direction and confidence score are separate fields. A direction can be positive but have a mediocre score because sources are weak or causal links are uncertain.
-
-Missing information is no evidence, not neutral evidence.
-
-## User-facing detailed output
-
-Default single-match order:
-1. Important availability/context for Team A.
-2. Important availability/context for Team B.
-3. Material manager statements.
-4. `Maç öncesi en önemli gelişmeler` including absence chains and congestion interactions.
-5. If preference supplied: `Tercihi destekleyen faktörler`.
-6. `Tercihi desteklemeyen faktörler`.
-7. `Nötr / belirsiz faktörler`.
-8. `NEWS dengesi`.
-9. `NEWS güven puanı: X/100` with the five component scores.
-10. `NEWS failure modes` — the main reasons the current news interpretation could overstate the actual match effect.
-
-Use natural Turkish. Do not expose raw schema labels unless requested.
-
-For each important absence include, when reliably available:
-- player;
-- exact status;
-- current-season minutes or starts/appearances;
-- consecutive missed matches / recency;
-- new/recent/already absorbed status;
-- team importance;
-- likely replacement;
-- replacement confidence and fit;
-- match-specific effect.
-
-Never invent minute totals.
-
-## Failure-mode discipline
-
-Before kickoff, state the most relevant ways the NEWS thesis could fail, for example:
-- replacement performs at starter level;
-- reported absence effect is already absorbed;
-- expected rotation does not occur;
-- opposing team has its own offsetting absence chain;
-- a source conflict resolves against the initial interpretation;
-- the causal link is weaker in practice than expected.
-
-These are not reasons to force a lower score automatically; they are explicit counter-cases that improve auditability.
-
-## Post-match learning protocol
-
-Historical pre-match NEWS reports are immutable.
-
-After settlement, evaluate separately:
-1. result hit/miss;
-2. whether the predicted NEWS mechanism occurred;
-3. whether the expected structural advantage/disadvantage appeared on the field when observable;
-4. whether failure was NEWS interpretation error or match/outcome variance.
-
-Recommended review tags:
-- REPLACEMENT_EFFECT_UNDERESTIMATED
-- REPLACEMENT_EFFECT_OVERESTIMATED
-- ABSENCE_ALREADY_ABSORBED
-- ABSENCE_CHAIN_MISREAD
-- ROTATION_MISREAD
-- SOURCE_UNCERTAINTY
-- CAUSAL_LINK_TOO_WEAK
-- OPPOSING_NEWS_UNDERWEIGHTED
-- MATCH_STATE_VARIANCE
-- FINISHING_VARIANCE
-
-Track score-band calibration over time. At minimum, compare hit rate and mechanism-confirmation rate for 90-100, 80-89, 70-79, 60-69, 50-59 and below-50 groups.
-
-Do not tune thresholds on the same chronological sample used to claim improvement. Use walk-forward or other out-of-sample validation before changing canonical weights/bands.
-
-## Final boundary
-
-NEWS outputs current-context evidence, NEWS direction, uncertainty, evidence-confidence score and failure modes.
-
-NEWS does not output FINAL A/B/C, stake size, value assessment or a betting recommendation.
+Use only NEWS sources; no odds, SmartXFlow, Polymarket or other departmental evidence. NEWS does not issue a betting recommendation, stake, confidence probability or FINAL A/B/C category.
