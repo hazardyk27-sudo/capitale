@@ -70,3 +70,15 @@ This entry supersedes only the earlier **pending-state descriptions** of the spe
 - **18, 20 and 21 October remain source `PARTIAL`; full GitHub migration remains `PARTIAL` for all days.** 01 original scan and 02 settled-performance products have not been certified.
 
 **Verified next checkpoint:** Obtain a secure and usable **read-only** PostgreSQL extraction path and **GitHub Release upload+download integrity** path; pilot 9 October's full three histories with source-count, SHA-256 and restore validation, then scale to remaining dates/tables. Do not mark `migration_complete:true` until those checks pass.
+
+
+### Final verification addendum — 39/39 small raw JSONL exports
+
+The date-by-date read-only source-to-GitHub comparison has now been performed for **all 13 dates** and for **all three small raw categories**: `fixtures`, `results`, and the eight-alarm-table `alarms` bundle. **39/39 existing GitHub JSONL files have source-equivalent JSON objects**, including field values and duplicate-row multiplicities; no files were unnecessarily recreated.
+
+- Source fixture memberships: **3,220** rows across 13 local dates.
+- Source result rows: **3,089** across 13 local dates (versioning and partial live results preserved).
+- Source alarm rows: **2,670** across 13 local dates; the 19/20 October missing bundles were restored during this run.
+- The 18, 20 and 21 October **source `PARTIAL` statuses are unchanged**. Equal transfer of currently available source rows is not a guarantee of historically complete source collection.
+- This is a certification **only of those 39 small-category exports**. Full 1X2/OU2.5/BTTS histories and supplemental Dropping/moneyway/live histories still await GitHub Release upload and verification.
+
