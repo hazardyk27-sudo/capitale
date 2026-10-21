@@ -1,0 +1,66 @@
+{
+  "schema_version": "SXF_ARCHIVE_V1_0",
+  "date_tr": "2026-10-18",
+  "timezone": "Europe/Istanbul",
+  "source": {
+    "system": "Supabase",
+    "project_id": "pswdvnmqjjnjodwzkmkp",
+    "schema": "research_archive",
+    "table": "archive_runs",
+    "status": "PARTIAL",
+    "source_archive_started_at": "2026-10-19 06:32:22.742996+00",
+    "source_archive_completed_at": null,
+    "expected_fixtures": 400,
+    "archived_fixtures": 400,
+    "source_recorded_counts": {
+      "rows_1x2": 338582,
+      "rows_ou25": 313092,
+      "rows_btts": 201353,
+      "rows_dropping_1x2_history": 324926,
+      "rows_dropping_ou25_history": 269636,
+      "rows_dropping_btts_history": 192362,
+      "rows_moneyway_snapshots": 707877,
+      "rows_live_snapshots": 920675,
+      "rows_sharp": 21,
+      "rows_insider": null,
+      "rows_bigmoney": null,
+      "rows_volumeshock": null,
+      "rows_dropping": null,
+      "rows_publicmove": null,
+      "rows_volume_leader": null,
+      "rows_mim": null
+    },
+    "source_notes": {
+      "scope": "all physical fixtures",
+      "timezone": "Europe/Istanbul",
+      "validation": "RAW_MARKET_COVERAGE_REPAIRED_BACKUP_PENDING",
+      "cold_backup": "COLD_BACKUP_PENDING",
+      "missing_ft_results": 2,
+      "full_archive_complete": false,
+      "sharp_alarm_recovered": 21,
+      "live_snapshot_coverage": "398/400 observed",
+      "raw_repair_verified_at": "2026-10-21 12:38:32.515594+00",
+      "moneyway_snapshot_coverage": "396/400; four source-missing",
+      "source_retention_cleanup_allowed": false,
+      "dropping_history_fixture_coverage": "400/400 for 1x2,ou25,btts",
+      "main_market_history_fixture_coverage": "400/400 for 1x2,ou25,btts"
+    }
+  },
+  "github_migration": {
+    "inventory": "VERIFIED_SOURCE_METADATA",
+    "01_scan_results": "NOT_YET_TRANSFERRED",
+    "02_outcome_performance": "NOT_YET_TRANSFERRED",
+    "03_full_snapshots": "NOT_YET_TRANSFERRED",
+    "04_concentrated": "NOT_YET_TRANSFERRED",
+    "all_raw_files_verified": false,
+    "migration_complete": false,
+    "note": "This manifest is an inventory of the existing Supabase source, NOT confirmation that full raw data has been copied to GitHub. Legacy research files when copied are separate and not full historical archive."
+  },
+  "source_repo": {
+    "repository": "hazardyk27-sudo/smartxflow",
+    "branch": "learning-archive",
+    "folder": "learning_archive_data/signal_engine_samples"
+  },
+  "created_for": "CAPITALE SXF Archive",
+  "archive_storage": "GitHub ONLY"
+}
