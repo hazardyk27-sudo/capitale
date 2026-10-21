@@ -1,0 +1,61 @@
+{
+  "schema_version": "SXF_ARCHIVE_V1_0",
+  "date_tr": "2026-10-14",
+  "timezone": "Europe/Istanbul",
+  "source": {
+    "system": "Supabase",
+    "project_id": "pswdvnmqjjnjodwzkmkp",
+    "schema": "research_archive",
+    "table": "archive_runs",
+    "status": "COMPLETE",
+    "source_archive_started_at": "2026-10-15 06:11:02.30733+00",
+    "source_archive_completed_at": "2026-10-15 06:25:41.398683+00",
+    "expected_fixtures": 152,
+    "archived_fixtures": 152,
+    "source_recorded_counts": {
+      "rows_1x2": 78479,
+      "rows_ou25": 77505,
+      "rows_btts": 67569,
+      "rows_dropping_1x2_history": 78133,
+      "rows_dropping_ou25_history": 76583,
+      "rows_dropping_btts_history": 67465,
+      "rows_moneyway_snapshots": 228097,
+      "rows_live_snapshots": 366255,
+      "rows_sharp": 4,
+      "rows_insider": 0,
+      "rows_bigmoney": 18,
+      "rows_volumeshock": 25,
+      "rows_dropping": 5,
+      "rows_publicmove": 0,
+      "rows_volume_leader": 34,
+      "rows_mim": 52
+    },
+    "source_notes": {
+      "scope": "all physical fixtures",
+      "timezone": "Europe/Istanbul",
+      "validation": "SOURCE_COUNTS_MATCH",
+      "cold_backup": "COLD_BACKUP_PENDING",
+      "fixture_alias_rows": 0,
+      "live_result_versions": 152,
+      "full_archive_complete": true,
+      "source_retention_cleanup_allowed": false
+    }
+  },
+  "github_migration": {
+    "inventory": "VERIFIED_SOURCE_METADATA",
+    "01_scan_results": "NOT_YET_TRANSFERRED",
+    "02_outcome_performance": "NOT_YET_TRANSFERRED",
+    "03_full_snapshots": "NOT_YET_TRANSFERRED",
+    "04_concentrated": "NOT_YET_TRANSFERRED",
+    "all_raw_files_verified": false,
+    "migration_complete": false,
+    "note": "This manifest is an inventory of the existing Supabase source, NOT confirmation that full raw data has been copied to GitHub. Legacy research files when copied are separate and not full historical archive."
+  },
+  "source_repo": {
+    "repository": "hazardyk27-sudo/smartxflow",
+    "branch": "learning-archive",
+    "folder": "learning_archive_data/signal_engine_samples"
+  },
+  "created_for": "CAPITALE SXF Archive",
+  "archive_storage": "GitHub ONLY"
+}
