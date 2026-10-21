@@ -94,4 +94,11 @@ The date-by-date read-only source-to-GitHub comparison has now been performed fo
 - Source alarm rows: **2,670** across 13 local dates; the 19/20 October missing bundles were restored during this run.
 - The 18, 20 and 21 October **source `PARTIAL` statuses are unchanged**. Equal transfer of currently available source rows is not a guarantee of historically complete source collection.
 - This is a certification **only of those 39 small-category exports**. Full 1X2/OU2.5/BTTS histories and supplemental Dropping/moneyway/live histories still await GitHub Release upload and verification.
+## 2026-10-22 — Raw 1X2 micro-batch continuation (read-only)
 
+- Read-only Supabase SELECT reconfirmed **2026-10-09 moneyway_1x2_history = 148,444 rows**, **148,444 unique source fingerprints** and zero missing fingerprints. No source writes were made.
+- Added `archive/2026/10/09/03_full_snapshots/part1b_1x2_raw_fingerprints_1026_1050.jsonl` with the next **25** strictly ascending fingerprint rows; exact source JSONL equals GitHub `fetch_file` readback, all **21** original fields preserved, Git blob `da519e698c009f5e8bec2fbae3593fa7f95a1544`.
+- New batch SHA-256 of original UTF-8 JSONL (source read-only SQL digest): `c4d019890fa199f35ece999c4dd7ddd768ddb9962da3b65d1403170b50ac5f38`; **12,555 bytes**, 25 rows; last fingerprint `01c10075633a7136247e934c5f4a16f7`.
+- Daily full-snapshot manifest was updated and read back; checkpoint **1,050/148,444** repo small-shard rows verified, **147,394** still pending. Manifest update commit: `a7d11427f729c27c6297f3cca1ada74bd0f813a9`. No GitHub Release upload was performed; `full_raw_history_status=NOT_UPLOADED`, `release_assets=[]`, source archive untouched.
+- GitHub connector currently exposes no workflow dispatch or Release asset upload action; `SXF_ARCHIVE_DATABASE_URL` Actions secret remains unverified. Remote Desktop `smartxflow` most recently OFFLINE. Manual `pilot` Action and full gzip export remain blocked; avoid treating offline unit tests as real migration.
+- 24 source tables still report disabled RLS. Do not change RLS or expose the `research_archive` schema during SXF migration; separate security review required.
