@@ -48,11 +48,25 @@
     "inventory": "VERIFIED_SOURCE_METADATA",
     "01_scan_results": "NOT_YET_TRANSFERRED",
     "02_outcome_performance": "NOT_YET_TRANSFERRED",
-    "03_full_snapshots": "NOT_YET_TRANSFERRED",
+    "03_full_snapshots": "PARTIAL",
     "04_concentrated": "NOT_YET_TRANSFERRED",
     "all_raw_files_verified": false,
     "migration_complete": false,
-    "note": "This manifest is an inventory of the existing Supabase source, NOT confirmation that full raw data has been copied to GitHub. Legacy research files when copied are separate and not full historical archive."
+    "note": "This manifest is an inventory of the existing Supabase source, NOT confirmation that full raw data has been copied to GitHub. Legacy research files when copied are separate and not full historical archive.",
+    "copied_raw_tables": {
+      "fixtures": {
+        "path": "archive/2026/10/13/03_full_snapshots/fixtures_2026-10-13.jsonl",
+        "rows": 192,
+        "verified": true
+      },
+      "results": {
+        "path": "archive/2026/10/13/03_full_snapshots/results_2026-10-13.jsonl",
+        "rows": 197,
+        "verified": true
+      }
+    },
+    "legacy_research_location": "archive/legacy_research/smartxflow_learning_archive/",
+    "current_stage": "FIXTURES_AND_RESULTS_VERIFIED__BULK_MARKET_HISTORY_PENDING"
   },
   "source_repo": {
     "repository": "hazardyk27-sudo/smartxflow",
