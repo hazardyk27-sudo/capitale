@@ -13,7 +13,7 @@ Primary identity: fixture_uid + kickoff_utc, plus run_id and selection_id for re
   "match_date_tr": "2026-10-20",
   "timezone": "Europe/Istanbul",
   "generated_at_utc": "<ISO timestamp>",
-  "source": "DIRECT_SMARTXFLOW",
+  "source": "SUPABASE_SMARTXFLOW_READ_ONLY|DIRECT_SMARTXFLOW",
   "source_access": "VERIFIED|BLOCKED|PARTIAL",
   "fixture_count": null,
   "all_fixtures_included": false,
@@ -26,7 +26,7 @@ Primary identity: fixture_uid + kickoff_utc, plus run_id and selection_id for re
 }
 ```
 
-Never emit `COMPLETE` without checking captured source rows, fixture inventory and file SHA-256.
+`source` records where the SmartXFlow observations were read from; Supabase is permissible only in READ-ONLY mode. Archive destinations and persistence are GitHub-only. Never emit `COMPLETE` without checking captured source rows, fixture inventory and file SHA-256.
 
 ## 01. Scan results — frozen before kickoff
 
