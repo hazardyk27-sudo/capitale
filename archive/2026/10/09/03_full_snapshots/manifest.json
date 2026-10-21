@@ -135,5 +135,24 @@
     "manual_workflow": ".github/workflows/sxf-1x2-release.yml",
     "workflow_execution_status": "NOT_RUN__READ_ONLY_DATABASE_SECRET_NOT_CONFIRMED",
     "notes": "The 1,025 small repository shards have been read-back verified. The workflow only prepares draft Release assets; full 148,444-record migration remains pending."
+  },
+  "bulk_1x2_pipeline_validation": {
+    "offline_ci_status": "PASSED",
+    "verified_github_actions_run_url": "https://github.com/hazardyk27-sudo/capitale/actions/runs/39653095829",
+    "completed_checks": [
+      "Python exporter syntax",
+      "250-row synthetic gzip roundtrip",
+      "tampered gzip SHA-256 rejection",
+      "duplicate fingerprint rejection",
+      "incomplete pilot rejection"
+    ],
+    "source_connection_in_ci": "NOT_VERIFIED",
+    "live_export_workflow_run": "NOT_RUN",
+    "live_release_upload": "NOT_PERFORMED",
+    "live_release_readback": "NOT_PERFORMED",
+    "release_workflow": ".github/workflows/sxf-1x2-release.yml",
+    "release_script": "scripts/export_sxf_1x2_release.py",
+    "source_db_secret_name": "SXF_ARCHIVE_DATABASE_URL",
+    "note": "Passing offline tests does not imply that private Supabase read-only credentials or real 148444-row Release export work."
   }
 }
