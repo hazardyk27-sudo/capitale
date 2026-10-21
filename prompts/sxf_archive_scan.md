@@ -7,7 +7,7 @@ CAPİTALE SXF rolünde çalış. GitHub'dan sırayla `AGENTS.md`, `MILESTONE.md`
 **AS_OF:** [ŞİMDİ veya kesin tarih+saat TSİ]
 **Mod:** [DYNAMIC_AS_OF_V04 / benim özellikle istediğimde CHECKPOINT_RESEARCH_T6_FALLBACK_T8]
 
-Sadece **doğrudan erişilebilir SmartXFlow kaynak verilerini** kullan. **Supabase kullanma; başka bir depolama platformu ekleme.** SmartXFlow'a erişimin veya tüm maçların fixture listesinin yoksa bunu açıkça belirt; kaynak ve ölçüm uydurma, tarama tamamlandı deme.
+Sadece **SmartXFlow kaynak verilerini** kullan. **Veri OKUMAK için mevcut Supabase SmartXFlow tablolarını kullanabilirsin (salt okunur SELECT); Supabase'e hiçbir şey yazma.** Arşivleme ve kalıcı rapor kaydı YALNIZCA GitHub'da yapılır; başka bir depolama platformu ekleme. Supabase'de mevcut veri yoksa veya tüm maçların fixture listesine erişilemiyorsa bunu açıkça belirt; kaynak ve ölçüm uydurma, tarama tamamlandı deme.
 
 Belirtilen aralıktaki **tüm maçları** fixture kapsamına al. Her maç için kickoff_utc, exact AS_OF, gerçek T-minus süre, piyasa bazında kaynak snapshot zamanı ve kapsama durumunu kontrol et. Canlı SXF v0.4 varsayılanında hiçbir maça ortak T-6 uygulama; her maçın kesin kalan süresini esas al. Eğer özel T-6/T-8 araştırma modu seçtiysem bunu LIVE v0.4 diye etiketleme.
 
