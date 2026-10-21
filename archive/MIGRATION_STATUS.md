@@ -47,3 +47,26 @@ These come from existing `archive_runs` records. Archive identities may overlap 
 - Keep data pipeline costs in view: reading the complete archive and uploading assets can consume source egress and compute even if standard public GitHub Actions have no runner-minute fee.
 
 **Migration state: PARTIAL — manifests + published research copies + fixture/results subsets verified, bulk source history and concentrated all-fixture archive pending.**
+
+---
+
+## 2026-10-21 — Verified continuation after handoff
+
+This entry supersedes only the earlier **pending-state descriptions** of the specific files listed here. It does **not** certify the full SXF raw-data migration.
+
+### Additional GitHub transfers and integrity audits
+
+- Legacy SmartXFlow learning archive: source/target 72 of 72 blob SHAs and byte sizes rechecked equal; no redundant copy.
+- All 13 daily `fixtures_YYYY-MM-DD.jsonl` and `results_YYYY-MM-DD.jsonl` remain present. For **16–21 October**, source and GitHub content was independently compared field by field as JSON multisets (12 of 12 files equal): 16 Oct 201/195, 17 Oct 436/444, 18 Oct 400/398, 19 Oct 173/173, 20 Oct 139/135, 21 Oct 141/58 (fixtures/results).
+- Both previously absent alarm bundles have now been created and source/readback-verified: **19 October 132 rows**, `archive/2026/10/19/03_full_snapshots/alarms_2026-10-19.jsonl`; **20 October 166 rows**, `archive/2026/10/20/03_full_snapshots/alarms_2026-10-20.jsonl`. Their date manifests were updated while preserving `migration_complete:false` and the source 20 October `PARTIAL` status. Alarm bundles now exist on all 13 dates; other dates' alarm contents still require comprehensive source-identity re-audit.
+- **9 October 04_concentrated nine-checkpoint GRID VERIFIED:** all **260 fixtures × 3 markets × 9 checkpoints = 7,020 unique slots**, of which **5,354 PRESENT and 1,666 MISSING**. 1X2: 1,847/493; OU2.5: 1,826/514; BTTS: 1,681/659 (PRESENT/MISSING). All canonical source payload hashes, actual-at-or-before-target constraints, required T hours, and per-fixture slot coverage passed independent readback audit. The complete per-file SHA-256/row manifest is `archive/2026/10/09/04_concentrated/manifest.json`. Preserve actual missing observations; never interpolate from the future. Overlapping additional 1X2 part files are excluded from the canonical slot count, with no deletion.
+- The **9 October three full raw market histories** still contain **387,781 source rows** (1X2 148,444; OU25 136,026; BTTS 103,311) and are **not yet exported as GitHub Release assets**. The 7,020 checkpoint slots are only a concentrated subset, not a substitute for the full raw archive.
+
+### Blocking requirements for full raw-history migration
+
+- Direct read-only Supabase SQL connector works. A remote GET against the `research_archive` REST schema returned **PGRST106 (HTTP 406: schema not exposed)**. This was observed without making any Supabase schema/config changes.
+- The existing draft `scripts/export_sxf_research_archive.py` requires a suitable read-only PostgreSQL DSN and psycopg on the execution host; those were **not proven operational**. Available GitHub connector tools can read releases but no authorized GitHub Release asset upload operation has been proven; release inventory was **0** at the last check.
+- No Supabase writes, schema/RLS modification, raw-data deletion, engine threshold change, or alternate storage service was performed. Supabase continues to flag RLS disabled on 24 `research_archive` tables; access exposure must be reviewed separately.
+- **18, 20 and 21 October remain source `PARTIAL`; full GitHub migration remains `PARTIAL` for all days.** 01 original scan and 02 settled-performance products have not been certified.
+
+**Verified next checkpoint:** Obtain a secure and usable **read-only** PostgreSQL extraction path and **GitHub Release upload+download integrity** path; pilot 9 October's full three histories with source-count, SHA-256 and restore validation, then scale to remaining dates/tables. Do not mark `migration_complete:true` until those checks pass.
