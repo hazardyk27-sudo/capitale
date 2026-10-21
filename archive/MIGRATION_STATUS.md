@@ -1,5 +1,18 @@
 # SXF migration status — 2026-10-21 (GitHub-only destination)
 
+## Current verified continuation — 2026-10-21
+
+This section supersedes the older checkpoint and missing-alarm statements below, which are retained as the original migration snapshot.
+
+- 2026-10-09: **04_concentrated nine-checkpoint GRID COMPLETE** for all 260 fixture IDs and all three markets (1X2/OU2.5/BTTS): 7,020 checkpoint slots, of which 5,354 have source snapshots and 1,666 explicitly report MISSING. All 20 canonical JSONL files were read back from GitHub and validated; SHA-256 hashes, counts and canonical paths are in `archive/2026/10/09/04_concentrated/manifest.json`. One redundant overlapping 1X2 file is retained but excluded from canonical counts. **This is not complete raw history migration.**
+- 2026-10-10: **04_concentrated PARTIAL**: first 110 of 455 fixtures have 1X2 checkpoint rows (990/990 slots), verified in four files. Remaining fixtures and OU2.5/BTTS are pending. See daily manifest.
+- 2026-10-19 and 2026-10-20: missing alarm JSONL files added and exact readbacks verified (132 and 166 alarm rows, respectively). Both daily manifests updated. Alarm file **presence** is now 13/13 days, not blanket source-equivalence certification.
+- 2026-10-16 through 2026-10-21: all twelve fixture/result JSONL files were checked against read-only source records, comparing normalized full JSON fields and record multiplicity; counts match.
+- All daily historical full-market raw histories (including 2026-10-09's 387,781 records in three base history tables) **remain NOT TRANSFERRED**. GitHub Releases remained empty at the last check. Existing Supabase research_archive SQL SELECT works; the remote PostgREST call using schema research_archive returned `PGRST106` because the schema is not exposed. Do not change Supabase schema/exposure just for the migration.
+- Source status PARTIAL on 2026-10-18, 2026-10-20 and 2026-10-21 is preserved. No Supabase writes or deletions occurred. No engine rules changed.
+
+---
+
 ## Scope and immutable-source policy
 
 - Source: Supabase `pswdvnmqjjnjodwzkmkp`, schema `research_archive`, strictly read-only.
