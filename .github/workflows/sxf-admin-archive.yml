@@ -1,0 +1,133 @@
+name: SXF daily admin archive
+run-name: SXF ${{ inputs.day }} / ${{ inputs.archive_kind }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      day:
+        description: "Fixture date in Europe/Istanbul (YYYY-MM-DD)"
+        required: true
+        type: string
+      archive_kind:
+        description: "Archive output type"
+        required: true
+        type: choice
+        options:
+          - full_snapshots
+          - concentrated
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sxf-archive-${{ inputs.day }}-${{ inputs.archive_kind }}
+  cancel-in-progress: false
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      DAY: ${{ inputs.day }}
+      KIND: ${{ inputs.archive_kind }}
+      SXF_ARCHIVE_DATABASE_URL: ${{ secrets.SXF_ARCHIVE_DATABASE_URL }}
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Checkout archival script
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Require safe inputs and private read-only source secret
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$KIND" != full_snapshots && "$KIND" != concentrated ]]; then
+            echo 'Invalid archive type' >&2
+            exit 1
+          fi
+          if ! [[ "$DAY" =~ ^20[0-9]{2}-[0-9]{2}-[0-9]{2}$ ]]; then
+            echo 'Invalid day format' >&2
+            exit 1
+          fi
+          if [[ -z "$SXF_ARCHIVE_DATABASE_URL" ]]; then
+            echo 'Missing private SXF_ARCHIVE_DATABASE_URL read-only secret' >&2
+            exit 1
+          fi
+      - name: Install pinned PostgreSQL client
+        run: python -m pip install 'psycopg[binary]==3.2.9'
+      - name: Export bounded daily gzip assets and local verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/export_sxf_daily_archive.py \
+            --day "$DAY" --kind "$KIND" --chunk-rows 25000 --fixture-batch 25 \
+            --output-dir "$RUNNER_TEMP/sxf-export"
+      - name: Upload into a new draft Release without overwrites
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$KIND" == full_snapshots ]]; then
+            tag="sxf-raw-$DAY-v1"
+          else
+            tag="sxf-concentrated-$DAY-v1"
+          fi
+          echo "ARCHIVE_RELEASE_TAG=$tag" >> "$GITHUB_ENV"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo 'Existing Release found. Refusing overwrite or duplicate.' >&2
+            exit 1
+          fi
+          if ! ls "$RUNNER_TEMP"/sxf-export/*.jsonl.gz >/dev/null 2>&1; then
+            echo 'No export assets created' >&2
+            exit 1
+          fi
+          gh release create "$tag" --draft --latest=false \
+            --title "SXF $DAY $KIND (pending verification)" \
+            --notes 'Source research_archive SELECT-only; never certify until GitHub download and gzip restore.'
+          gh release upload "$tag" "$RUNNER_TEMP"/sxf-export/*.jsonl.gz "$RUNNER_TEMP"/sxf-export/export_manifest.json
+      - name: Download all assets; check byte identity, SHA and JSONL restore
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/sxf-readback"
+          gh release download "$ARCHIVE_RELEASE_TAG" --dir "$RUNNER_TEMP/sxf-readback"
+          for original in "$RUNNER_TEMP"/sxf-export/*; do
+            cmp -s "$original" "$RUNNER_TEMP/sxf-readback/$(basename "$original")" || {
+              echo "Release asset byte mismatch: $(basename "$original")" >&2
+              exit 1
+            }
+          done
+          python scripts/export_sxf_daily_archive.py --verify-dir "$RUNNER_TEMP/sxf-readback"
+      - name: Publish verification receipt to draft and read it back
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import datetime, hashlib, json, os, pathlib
+          folder = pathlib.Path(os.environ["RUNNER_TEMP"]) / "sxf-readback"
+          info = json.loads((folder / "export_manifest.json").read_text("utf-8"))
+          receipt = {
+            "status": "GITHUB_RELEASE_DRAFT_DOWNLOADED_AND_VERIFIED",
+            "github_run_id": os.environ["GITHUB_RUN_ID"],
+            "github_run_url": "https://github.com/" + os.environ["GITHUB_REPOSITORY"] + "/actions/runs/" + os.environ["GITHUB_RUN_ID"],
+            "release_tag": os.environ["ARCHIVE_RELEASE_TAG"],
+            "day": info["day"], "kind": info["kind"],
+            "source_run_status": info["source_archive_run_status"],
+            "source_count_consistency": info.get("source_run_counts_match"),
+            "source_day_complete_claim": bool(info["source_collection_complete"] and info.get("source_run_counts_match", True)),
+            "total_verified_rows": info.get("total_exported_rows", info.get("checkpoint_slots")),
+            "export_manifest_sha256": hashlib.sha256((folder / "export_manifest.json").read_bytes()).hexdigest(),
+            "verified_at_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            "release_is_draft": True,
+          }
+          (folder / "verification_receipt.json").write_text(json.dumps(receipt, indent=2) + "\n", "utf-8")
+          PY
+          gh release upload "$ARCHIVE_RELEASE_TAG" "$RUNNER_TEMP/sxf-readback/verification_receipt.json"
+          mkdir -p "$RUNNER_TEMP/sxf-receipt"
+          gh release download "$ARCHIVE_RELEASE_TAG" --pattern verification_receipt.json --dir "$RUNNER_TEMP/sxf-receipt"
+          cmp -s "$RUNNER_TEMP/sxf-readback/verification_receipt.json" "$RUNNER_TEMP/sxf-receipt/verification_receipt.json"
+          echo 'SXF draft Release readback, SHA256, JSONL restore and receipt PASS'
