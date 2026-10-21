@@ -85,5 +85,15 @@
     "Currently no verified GitHub Release containing these full raw rows. No release asset SHA-256 can be claimed.",
     "The source may include rows after kickoff; raw future-data rows must be preserved in archival exports but excluded from historical prematch decision calculations.",
     "No raw data deleted or modified in Supabase; no new storage platform."
-  ]
+  ],
+  "part01_1x2_audit": {
+    "status": "SOURCE_AUDIT_VERIFIED__RAW_EXPORT_NOT_YET_UPLOADED",
+    "path": "archive/2026/10/09/03_full_snapshots/part01_moneyway_1x2_source_audit.json",
+    "github_blob_sha": "8b3702efabe73d4998141d2ff45c2578dcead500",
+    "source_rows": 148444,
+    "matched_prematch_rows": 148046,
+    "matched_at_or_after_kickoff_rows": 45,
+    "unresolved_fixture_mapping_rows": 353,
+    "release_asset_uploaded": false
+  }
 }
