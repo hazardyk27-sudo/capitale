@@ -116,5 +116,24 @@
       "full_raw_export_completed": false,
       "note": "Repository pilot only (250 source rows), not a GitHub Release or complete 1X2 raw stream; source 148444 rows remain to be bulk exported to Releases."
     }
-  ]
+  ],
+  "verified_raw_1x2_progress": {
+    "source_rows": 148444,
+    "verified_repo_rows": 1025,
+    "untransferred_rows": 147419,
+    "ordered_by": "source_fingerprint ASC",
+    "resume_after_fingerprint": "01b43a095d502f0df95ba39681f10f65",
+    "files": [
+      "pilot_1x2_raw_first_0250_by_fingerprint.jsonl",
+      "part1b_1x2_raw_fingerprints_0251_0500.jsonl",
+      "part1b_1x2_raw_fingerprints_0501_0750.jsonl",
+      "part1b_1x2_raw_fingerprints_0751_1000.jsonl",
+      "part1b_1x2_raw_fingerprints_1001_1025.jsonl"
+    ],
+    "release_status": "NOT_UPLOADED",
+    "bulk_export_script": "scripts/export_sxf_1x2_release.py",
+    "manual_workflow": ".github/workflows/sxf-1x2-release.yml",
+    "workflow_execution_status": "NOT_RUN__READ_ONLY_DATABASE_SECRET_NOT_CONFIRMED",
+    "notes": "The 1,025 small repository shards have been read-back verified. The workflow only prepares draft Release assets; full 148,444-record migration remains pending."
+  }
 }
