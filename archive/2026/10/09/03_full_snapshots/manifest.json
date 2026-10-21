@@ -1,0 +1,89 @@
+{
+  "schema_version": "SXF_ARCHIVE_V1_0",
+  "match_date_tr": "2026-10-09",
+  "timezone": "Europe/Istanbul",
+  "source": {
+    "project_id": "pswdvnmqjjnjodwzkmkp",
+    "schema": "research_archive",
+    "access": "READ_ONLY",
+    "source_archive_run_status": "COMPLETE"
+  },
+  "github_migration_status": "PARTIAL",
+  "full_raw_history_status": "NOT_UPLOADED",
+  "release_tag": "sxf-full-2026-10-09",
+  "release_assets": [],
+  "release_upload_verified": false,
+  "confirmed_existing_small_exports": [
+    {
+      "table": "fixtures",
+      "path": "archive/2026/10/09/03_full_snapshots/fixtures_2026-10-09.jsonl",
+      "rows": 260,
+      "github_blob_sha": "9bb6e05d92a6f44e5a58bafeeae3cd89f70eb699",
+      "source_target_record_content_verified": true
+    },
+    {
+      "table": "results",
+      "path": "archive/2026/10/09/03_full_snapshots/results_2026-10-09.jsonl",
+      "rows": 259,
+      "github_blob_sha": "cc4911b1cb15f055fb7ad8034f6b8fd2d2b6eb29",
+      "source_target_record_content_verified": true
+    },
+    {
+      "table": "8_combined_alarm_tables",
+      "path": "archive/2026/10/09/03_full_snapshots/alarms_2026-10-09.jsonl",
+      "rows": 162,
+      "github_blob_sha": "e30d8c8da6cb798ffc5fa35a5f4b3406fea0ef78",
+      "source_target_record_content_verified": true
+    }
+  ],
+  "pending_bulk_history_tables": [
+    {
+      "table": "moneyway_1x2_history",
+      "source_run_recorded_rows": 148444,
+      "full_export_rows_verified": 0
+    },
+    {
+      "table": "moneyway_ou25_history",
+      "source_run_recorded_rows": 136026,
+      "full_export_rows_verified": 0
+    },
+    {
+      "table": "moneyway_btts_history",
+      "source_run_recorded_rows": 103311,
+      "full_export_rows_verified": 0
+    },
+    {
+      "table": "dropping_1x2_history",
+      "source_run_recorded_rows": 139474,
+      "full_export_rows_verified": 0
+    },
+    {
+      "table": "dropping_ou25_history",
+      "source_run_recorded_rows": 135217,
+      "full_export_rows_verified": 0
+    },
+    {
+      "table": "dropping_btts_history",
+      "source_run_recorded_rows": 102760,
+      "full_export_rows_verified": 0
+    },
+    {
+      "table": "moneyway_snapshots",
+      "source_run_recorded_rows": 331308,
+      "full_export_rows_verified": 0
+    },
+    {
+      "table": "live_snapshots",
+      "source_run_recorded_rows": 1007770,
+      "full_export_rows_verified": 0
+    }
+  ],
+  "separate_concentrated_grid": "archive/2026/10/09/04_concentrated/manifest.json",
+  "warnings": [
+    "The source archive_runs COMPLETE flag does not indicate that source raw market rows were copied to GitHub.",
+    "The 7,020-row concentrated checkpoint grid is a derived subset and is not a substitute for the entire 387,781-row three-market raw history.",
+    "Currently no verified GitHub Release containing these full raw rows. No release asset SHA-256 can be claimed.",
+    "The source may include rows after kickoff; raw future-data rows must be preserved in archival exports but excluded from historical prematch decision calculations.",
+    "No raw data deleted or modified in Supabase; no new storage platform."
+  ]
+}
