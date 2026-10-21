@@ -46,9 +46,9 @@
   },
   "github_migration": {
     "inventory": "VERIFIED_SOURCE_METADATA",
-    "01_scan_results": "NOT_YET_TRANSFERRED",
-    "02_outcome_performance": "NOT_YET_TRANSFERRED",
-    "03_full_snapshots": "PARTIAL",
+    "01_scan_results": "NOT_YET_RECONSTRUCTED",
+    "02_outcome_performance": "NOT_YET_RECONSTRUCTED",
+    "03_full_snapshots": "PARTIAL_TRANSFERRED",
     "04_concentrated": "NOT_YET_TRANSFERRED",
     "all_raw_files_verified": false,
     "migration_complete": false,
@@ -66,7 +66,44 @@
       }
     },
     "legacy_research_location": "archive/legacy_research/smartxflow_learning_archive/",
-    "current_stage": "FIXTURES_AND_RESULTS_VERIFIED__BULK_MARKET_HISTORY_PENDING"
+    "current_stage": "FIXTURES_AND_RESULTS_VERIFIED__BULK_MARKET_HISTORY_PENDING",
+    "copied_sets": [
+      {
+        "path": "archive/2026/10/12/03_full_snapshots/alarms_2026-10-12.jsonl",
+        "source_table": "8_alarm_tables",
+        "source_rows": 113,
+        "github_blob_sha": "d6aba33b0e1d4c0d37103bab2b3749a95943adc5",
+        "github_size_bytes": 69766,
+        "readback_verified": true
+      },
+      {
+        "path": "archive/2026/10/12/03_full_snapshots/fixtures_2026-10-12.jsonl",
+        "source_table": "fixtures",
+        "source_rows": 177,
+        "github_blob_sha": "6dd2273f42426184dafaa466a78d9cbfba10083c",
+        "github_size_bytes": 72751,
+        "readback_verified": true
+      },
+      {
+        "path": "archive/2026/10/12/03_full_snapshots/results_2026-10-12.jsonl",
+        "source_table": "results",
+        "source_rows": 177,
+        "github_blob_sha": "23a10abe93e8669d710ae91ee30c4e3ccfbaf0ce",
+        "github_size_bytes": 79846,
+        "readback_verified": true
+      }
+    ],
+    "pending_sets": [
+      "moneyway_1x2_history",
+      "moneyway_ou25_history",
+      "moneyway_btts_history",
+      "dropping_1x2_history",
+      "dropping_ou25_history",
+      "dropping_btts_history",
+      "moneyway_snapshots",
+      "live_snapshots"
+    ],
+    "legacy_research_path": "archive/legacy_research/smartxflow_learning_archive/"
   },
   "source_repo": {
     "repository": "hazardyk27-sudo/smartxflow",
