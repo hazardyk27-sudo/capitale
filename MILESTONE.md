@@ -499,3 +499,17 @@ GitHub text/manifest storage and optional GitHub Releases compressed assets are 
 Documents created: `methods/sxf_archive_methodology.md`, `schemas/sxf_archive_schema.md`, `archive/README.md`, and `prompts/sxf_archive_scan.md`, `prompts/sxf_archive_save.md`, `prompts/sxf_archive_settle.md`.
 
 **Deployment status: PARTIAL / DOCUMENTATION-ONLY.** No GitHub Actions collector or Releases uploader has been deployed; direct SmartXFlow source acquisition without Supabase remains a blocker. No historical full snapshot or checkpoint archive is represented as already imported. Current public GitHub repository means any uploaded report or raw data is publicly accessible; verify authorization to redistribute raw source data before uploading. GitHub service limits and source collection continuity require a pilot test. This approval concerns archival architecture only, not SXF predictive rule changes.
+
+
+---
+
+## 2026-10-21 — Owner clarification: Supabase READ-ONLY inputs permitted, GitHub-only archive storage
+
+This entry clarifies (and supersedes the broader "no Supabase" language in the earlier 2026-10-21 archive architecture entry): **The owner forbids Supabase for archiving/storage, NOT for reading already collected SmartXFlow market history.**
+
+- **Scan source:** Supabase `SELECT` read-only access to already existing SmartXFlow fixtures, money/odds snapshots, and result observations is explicitly allowed for live SXF scans and retrospective research. No extra database writes just to execute a scan.
+- **Archive destination:** GitHub repository files and GitHub Releases ONLY. Do not create or persist `Tarama Sonuçları`, `Performans`, `Tam Snapshot Arşivi`, or `Konsantre Arşivi` on Supabase.
+- **Automation:** GitHub upload/export remains NOT DEPLOYED; the previous claim that direct SmartXFlow access without Supabase must exist before scans can run is SUPERSEDED. Reading Supabase does not itself establish automatic archive publication or eliminate ongoing operational Supabase costs.
+- **Unchanged:** SXF v0.4 role/data-source isolation, exact per-match AS_OF, approved motors, global publication odds floor 1.30, no future-data leakage, and the nine research checkpoints.
+
+Updated `methods/sxf_archive_methodology.md`, `schemas/sxf_archive_schema.md`, `prompts/sxf_archive_scan.md`, `prompts/sxf_archive_save.md`, `prompts/sxf_archive_settle.md`, `prompts/README.md`, `archive/README.md`.
