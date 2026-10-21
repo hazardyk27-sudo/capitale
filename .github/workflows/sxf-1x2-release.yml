@@ -1,6 +1,12 @@
 name: SXF read-only 9 October 1X2 archival release
 
 on:
+  # A single explicit, versioned GitHub commit authorizes the safe 250-row pilot.
+  # Never start a full archival release from a push event.
+  push:
+    branches: [main]
+    paths:
+      - 'archive/transfer_requests/sxf-1x2-2026-10-09-pilot.request'
   workflow_dispatch:
     inputs:
       mode:
@@ -24,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     env:
-      MODE: ${{ inputs.mode }}
+      MODE: ${{ github.event_name == 'push' && 'pilot' || inputs.mode }}
       SXF_ARCHIVE_DATABASE_URL: ${{ secrets.SXF_ARCHIVE_DATABASE_URL }}
       GH_TOKEN: ${{ github.token }}
       GH_REPO: ${{ github.repository }}
