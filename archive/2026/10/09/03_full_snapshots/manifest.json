@@ -134,8 +134,8 @@
     "release_status": "NOT_UPLOADED",
     "bulk_export_script": "scripts/export_sxf_1x2_release.py",
     "manual_workflow": ".github/workflows/sxf-1x2-release.yml",
-    "workflow_execution_status": "NOT_RUN__READ_ONLY_DATABASE_SECRET_NOT_CONFIRMED",
-    "notes": "The 1,050 small repository shards' rows have been verified by readback against the read-only source. Bulk 1X2 Release workflow remains NOT RUN; full raw migration remains pending.",
+    "workflow_execution_status": "PILOT_FAILED_MISSING_SECRET__NO_UPLOAD",
+    "notes": "Small repo transfer remains 1050/148444; GitHub Actions push pilot run 39694184884 failed at secret precheck. No live DB export, no release assets. Do not mark complete.",
     "latest_small_shard": {
       "path": "archive/2026/10/09/03_full_snapshots/part1b_1x2_raw_fingerprints_1026_1050.jsonl",
       "source_rows": 25,
@@ -166,6 +166,20 @@
     "release_workflow": ".github/workflows/sxf-1x2-release.yml",
     "release_script": "scripts/export_sxf_1x2_release.py",
     "source_db_secret_name": "SXF_ARCHIVE_DATABASE_URL",
-    "note": "Passing offline tests does not imply that private Supabase read-only credentials or real 148444-row Release export work."
+    "note": "Passing offline tests does not imply that private Supabase read-only credentials or real 148444-row Release export work.",
+    "real_pilot_attempt": {
+      "run_id": 39694184884,
+      "run_url": "https://github.com/hazardyk27-sudo/capitale/actions/runs/39694184884",
+      "event": "push",
+      "mode": "pilot",
+      "requested_source_rows": 250,
+      "status": "FAILED_BEFORE_SOURCE_ACCESS",
+      "failed_step": "Validate private read-only database connection configuration",
+      "error_code": "MISSING_SXF_ARCHIVE_DATABASE_URL_SECRET",
+      "source_rows_uploaded": 0,
+      "release_assets_uploaded": 0,
+      "source_data_changed": false,
+      "full_export_started": false
+    }
   }
 }
