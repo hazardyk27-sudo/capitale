@@ -1,0 +1,65 @@
+{
+  "schema_version": "SXF_ARCHIVE_V1_0",
+  "date_tr": "2026-10-16",
+  "timezone": "Europe/Istanbul",
+  "source": {
+    "system": "Supabase",
+    "project_id": "pswdvnmqjjnjodwzkmkp",
+    "schema": "research_archive",
+    "table": "archive_runs",
+    "status": "COMPLETE",
+    "source_archive_started_at": "2026-10-17 01:35:22.530072+00",
+    "source_archive_completed_at": "2026-10-17 01:45:18.72276+00",
+    "expected_fixtures": 201,
+    "archived_fixtures": 201,
+    "source_recorded_counts": {
+      "rows_1x2": 109297,
+      "rows_ou25": 99970,
+      "rows_btts": 77865,
+      "rows_dropping_1x2_history": 109058,
+      "rows_dropping_ou25_history": 99740,
+      "rows_dropping_btts_history": 77826,
+      "rows_moneyway_snapshots": 238791,
+      "rows_live_snapshots": 455793,
+      "rows_sharp": 4,
+      "rows_insider": 0,
+      "rows_bigmoney": 6,
+      "rows_volumeshock": 25,
+      "rows_dropping": 2,
+      "rows_publicmove": 0,
+      "rows_volume_leader": 32,
+      "rows_mim": 70
+    },
+    "source_notes": {
+      "scope": "all physical fixtures plus live-only result hashes",
+      "timezone": "Europe/Istanbul",
+      "validation": "SOURCE_COUNTS_MATCH_WITH_CROSSDATE_DEDUP",
+      "cold_backup": "COLD_BACKUP_PENDING",
+      "crossdate_dedup": "1 volumeshock row (Kashiwa-Port FC) already archived on 2026-10-14 by identical source_fingerprint",
+      "append_only_guard": true,
+      "fixture_alias_rows": 5,
+      "live_result_versions": 195,
+      "full_archive_complete": true,
+      "full_archive_completed_at": "2026-10-17T01:45:18.72276+00:00",
+      "supplemental_raw_archived": true,
+      "source_retention_cleanup_allowed": false
+    }
+  },
+  "github_migration": {
+    "inventory": "VERIFIED_SOURCE_METADATA",
+    "01_scan_results": "NOT_YET_TRANSFERRED",
+    "02_outcome_performance": "NOT_YET_TRANSFERRED",
+    "03_full_snapshots": "NOT_YET_TRANSFERRED",
+    "04_concentrated": "NOT_YET_TRANSFERRED",
+    "all_raw_files_verified": false,
+    "migration_complete": false,
+    "note": "This manifest is an inventory of the existing Supabase source, NOT confirmation that full raw data has been copied to GitHub. Legacy research files when copied are separate and not full historical archive."
+  },
+  "source_repo": {
+    "repository": "hazardyk27-sudo/smartxflow",
+    "branch": "learning-archive",
+    "folder": "learning_archive_data/signal_engine_samples"
+  },
+  "created_for": "CAPITALE SXF Archive",
+  "archive_storage": "GitHub ONLY"
+}
