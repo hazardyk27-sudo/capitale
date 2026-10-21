@@ -1,0 +1,91 @@
+name: SXF read-only 9 October 1X2 archival release
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Start with pilot (250 rows); full transfers all 148444 rows"
+        required: true
+        default: pilot
+        type: choice
+        options:
+          - pilot
+          - full
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sxf-1x2-release-2026-10-09
+  cancel-in-progress: false
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      MODE: ${{ inputs.mode }}
+      SXF_ARCHIVE_DATABASE_URL: ${{ secrets.SXF_ARCHIVE_DATABASE_URL }}
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Checkout archival code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate private read-only database connection configuration
+        shell: bash
+        run: |
+          if [[ -z "$SXF_ARCHIVE_DATABASE_URL" ]]; then
+            echo 'Missing SXF_ARCHIVE_DATABASE_URL GitHub Actions secret.' >&2
+            exit 1
+          fi
+          if [[ "$MODE" != pilot && "$MODE" != full ]]; then
+            echo 'Invalid export mode.' >&2
+            exit 1
+          fi
+
+      - name: Install pinned PostgreSQL client dependency
+        run: python -m pip install 'psycopg[binary]==3.2.9'
+
+      - name: Stream read-only 1X2 rows into bounded gzip assets
+        run: |
+          python scripts/export_sxf_1x2_release.py \
+            --mode "$MODE" \
+            --chunk-rows 10000 \
+            --output-dir "$RUNNER_TEMP/sxf-assets"
+
+      - name: Create or reuse a DRAFT release, never overwrite assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="sxf-raw-2026-10-09-1x2-$MODE"
+          echo "SXF_RELEASE_TAG=$tag" >> "$GITHUB_ENV"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            state=$(gh release view "$tag" --json isDraft --jq '.isDraft')
+            if [[ "$state" != true ]]; then
+              echo 'Existing release is not a draft; refusing modifications.' >&2
+              exit 1
+            fi
+          else
+            gh release create "$tag" --draft --latest=false \
+              --title "SXF 2026-10-09 1X2 raw $MODE (pending final verification)" \
+              --notes 'Read-only SXF archive; do not publish or certify until all assets pass download integrity and restore checks.'
+          fi
+          gh release upload "$tag" "$RUNNER_TEMP"/sxf-assets/*.jsonl.gz "$RUNNER_TEMP"/sxf-assets/export_manifest.json
+
+      - name: Independently download release assets and verify gzip restore
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/sxf-retrieved"
+          gh release download "$SXF_RELEASE_TAG" --dir "$RUNNER_TEMP/sxf-retrieved"
+          python scripts/export_sxf_1x2_release.py \
+            --verify-dir "$RUNNER_TEMP/sxf-retrieved"
+          echo 'Draft release files passed readback integrity checks; no source database writes occurred.'
