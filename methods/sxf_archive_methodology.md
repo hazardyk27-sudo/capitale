@@ -6,7 +6,7 @@ Approved by owner: 2026-10-21
 
 ## Mission
 
-Build a daily, retrospective-research-ready SXF archive with **no Supabase and no new storage platform**. GitHub is the only managed destination: repository text/manifests and small research datasets; GitHub Releases for compressed full snapshot packages; optional GitHub Actions once a direct SmartXFlow acquisition path has been verified.
+Build a daily, retrospective-research-ready SXF archive with **no Supabase archive writes and no new storage platform**. **Supabase is allowed as a READ-ONLY source for existing SmartXFlow fixtures, market snapshots and historical observations; all permanent daily archive output is stored in GitHub only.** GitHub is the only managed destination: repository text/manifests and small research datasets; GitHub Releases for compressed full snapshot packages; optional GitHub Actions once a direct SmartXFlow acquisition path has been verified.
 
 This document establishes archiving rules, NOT new predictive engines. SXF itself remains v0.4 DRAFT. Direct SmartXFlow access and automated collection have NOT yet been proven. Never say a historical full archive was captured until coverage and release asset checks pass.
 
@@ -38,11 +38,11 @@ All artifacts are keyed to **fixture kickoff local calendar date in Europe/Istan
 - Never overwrite an original scan with post-match data. Settlement can append corrections with provenance and versioning.
 - Public repository = all committed small files and public release assets are **public**. Do not archive API keys, cookies, login details, private bettor identifiers or proprietary raw payloads without owner approval and source redistribution rights.
 - Avoid committing unbounded daily raw snapshot streams into normal Git history; use compressed GitHub Release assets for full packages. GitHub is not a guaranteed low-latency always-on data collector. Actions schedule delays and service limitations are operational risks.
-- GitHub-only archiving is not functional until direct SmartXFlow acquisition (without Supabase) is configured and validated. Do not invent missing source API endpoints. R2, S3 or another host must not be added without explicit owner approval.
+- GitHub-only archive **storage** may read existing SmartXFlow observations from Supabase (SELECT/read only). Do not write scan reports, snapshot packages, concentrated data or settlements into Supabase. A fully automatic GitHub archival pipeline remains unimplemented until source extraction and GitHub upload are tested. Do not invent missing source API endpoints. R2, S3 or another host must not be added without explicit owner approval.
 
 ## Daily order
 
-1. Collect source snapshots directly, continuously where feasible; inventory all fixtures and markets.
+1. Read existing SmartXFlow snapshots and fixture inventory from Supabase in read-only mode, or from an authenticated direct SmartXFlow source when available; inventory all fixtures and markets. No archive writes to Supabase.
 2. At approved AS_OF, compute SXF scan, present to owner, then save frozen run.
 3. Store/refresh full raw pre-match snapshot capture and the nine-point concentrated archive for the match-date cohort; include coverage metrics (not just signals).
 4. After FT and score verification, append settlement report and engine-level performance; preserve original frozen scan.
@@ -62,4 +62,4 @@ For large concentrated datasets, use compressed GitHub Release assets too, linki
 
 ## Activation status
 
-Documentation + reusable prompts may be saved now. GitHub-only data pipeline, release uploads, and historical migration require separate tested implementations. If direct SXF source is not accessible, report BLOCKED_SOURCE_ACCESS and do not claim completion.
+Documentation + reusable prompts are saved. Supabase READ-ONLY is permitted for live and historical SXF input; its use is not a violation of the GitHub-only archive-storage policy. GitHub archive publishing, Releases uploads and automated schedule require separate tested implementations. If neither existing Supabase data nor a verified direct SXF source is accessible, report BLOCKED_SOURCE_ACCESS and do not claim completion.
