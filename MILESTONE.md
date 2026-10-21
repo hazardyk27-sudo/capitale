@@ -482,3 +482,20 @@ Updated: AGENTS.md v1.7; roles/news.md, methods/news_methodology.md, schemas/new
 - Registered `capitale.prompt_registry` (`role=POLY`, `version=v1.3`, `status=active`, `repository_path=prompts/poly_start.md`, commit `ec18a555764ae0517d4ed9f5692fd1c79ce1e4b4`).
 - Historical `poly.current_shortlist`, `poly.shortlist.v2` and `poly.methodology.v1.0` records were **retained unchanged** for historical compatibility. They are not authorized as active bettor data; readers must resolve `poly.current_methodology` and load the repo's active prompt.
 - **Deployment limitation:** this verifies repository and configuration registration. It does **not** prove every external agent runner automatically loads the new prompt or enforces these policies. Verify a runtime POLY run's reported `methodology_version`, `source_as_of_utc`, `bettor_history_source` and `decision_audit` before treating full system activation as proven.
+
+---
+
+## 2026-10-21 — SXF GitHub-only archive architecture v1.0 approved; documentation initialized
+
+The owner approved a four-part daily SXF research archive **without Supabase and without adding a separate hosting/storage platform**:
+
+1. Frozen pre-match **Tarama Sonuclari**, including match/side/engine/odds/money-share/GBP selection-money and brief important notes.
+2. Separately appended **Tarama ve Mac Sonuclariyla Performans Olcumu** with verified match settlements and engine-level results.
+3. **Tam Snapshot Arsivi** for all fixtures and all captured pre-match SmartXFlow market snapshots, not only triggered matches.
+4. **Konsantre Arsivi** for all fixtures at the nine checkpoints **T-72, T-60, T-40, T-24, T-12, T-8, T-6, T-3, T-1**, preserving original observation time/lag and MISSING status.
+
+GitHub text/manifest storage and optional GitHub Releases compressed assets are the approved destinations. Runtime scan and snapshot methods must respect canonical SXF v0.4 dynamic per-match AS_OF; an explicitly requested T-6/T-8 checkpoint comparison must be labelled research mode, not a live canonical scan. Owner global min publication odds 1.30 must be applied without overwriting engine-specific odds ranges.
+
+Documents created: `methods/sxf_archive_methodology.md`, `schemas/sxf_archive_schema.md`, `archive/README.md`, and `prompts/sxf_archive_scan.md`, `prompts/sxf_archive_save.md`, `prompts/sxf_archive_settle.md`.
+
+**Deployment status: PARTIAL / DOCUMENTATION-ONLY.** No GitHub Actions collector or Releases uploader has been deployed; direct SmartXFlow source acquisition without Supabase remains a blocker. No historical full snapshot or checkpoint archive is represented as already imported. Current public GitHub repository means any uploaded report or raw data is publicly accessible; verify authorization to redistribute raw source data before uploading. GitHub service limits and source collection continuity require a pilot test. This approval concerns archival architecture only, not SXF predictive rule changes.
