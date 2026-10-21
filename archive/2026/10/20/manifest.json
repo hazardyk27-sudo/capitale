@@ -76,10 +76,17 @@
         "path": "archive/2026/10/20/03_full_snapshots/results_2026-10-20.jsonl",
         "rows": 135,
         "verified": true
+      },
+      "alarms": {
+        "path": "archive/2026/10/20/03_full_snapshots/alarms_2026-10-20.jsonl",
+        "rows": 166,
+        "source_tables": 8,
+        "readback_verified": true,
+        "github_blob_sha": "ac13daac23068020b5d210b5549c21d48d2290a7"
       }
     },
     "legacy_research_location": "archive/legacy_research/smartxflow_learning_archive/",
-    "current_stage": "FIXTURES_AND_RESULTS_VERIFIED__BULK_MARKET_HISTORY_PENDING"
+    "current_stage": "FIXTURES_RESULTS_AND_ALARMS_COPIED__BULK_MARKET_HISTORY_PENDING"
   },
   "source_repo": {
     "repository": "hazardyk27-sudo/smartxflow",
