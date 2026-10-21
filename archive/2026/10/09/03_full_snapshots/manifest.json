@@ -95,5 +95,26 @@
     "matched_at_or_after_kickoff_rows": 45,
     "unresolved_fixture_mapping_rows": 353,
     "release_asset_uploaded": false
-  }
+  },
+  "pilot_raw_exports": [
+    {
+      "source_table": "moneyway_1x2_history",
+      "status": "PILOT_TRANSFERRED_AND_GITHUB_READBACK_VERIFIED__NOT_FULL_RAW_HISTORY",
+      "path": "archive/2026/10/09/03_full_snapshots/pilot_1x2_raw_first_0250_by_fingerprint.jsonl",
+      "source_date_tr": "2026-10-09",
+      "source_order": "source_fingerprint ASC",
+      "source_rows_total": 148444,
+      "pilot_rows": 250,
+      "retained_columns": 21,
+      "github_blob_sha": "a3380d4a2221e3f8ebb926427db4224b33ae9557",
+      "sha256": "c6386b4b816b79c0bcd237258d4fa71e1cae8c5d280c1180da5941a12288a31c",
+      "bytes_utf8": 125604,
+      "first_source_fingerprint": "0000d37a5a045f3da50fdea054d834d8",
+      "last_source_fingerprint": "006a494407fef64cc3cd29561e875d5e",
+      "readback_verified": true,
+      "release_asset_uploaded": false,
+      "full_raw_export_completed": false,
+      "note": "Repository pilot only (250 source rows), not a GitHub Release or complete 1X2 raw stream; source 148444 rows remain to be bulk exported to Releases."
+    }
+  ]
 }
