@@ -1,6 +1,6 @@
 # CAPITALE SXF Daily Archive
 
-**GitHub-only** organization. No Supabase and no new storage provider.
+**GitHub-only archive storage.** Existing Supabase SmartXFlow tables MAY be read (SELECT only) for scans, historical snapshots and results. No new Supabase archive/report/snapshot writes; no new storage provider.
 
 See:
 - [Archive methodology](../methods/sxf_archive_methodology.md)
@@ -22,6 +22,6 @@ Daily path convention: `archive/YYYY/MM/DD/{01_scan_results,02_outcome_performan
 
 ## Current implementation state
 
-This directory defines archive organization only. No automatic direct SmartXFlow collector or GitHub Releases uploader has been deployed, and historical daily snapshot archive coverage has not been verified. Direct data acquisition without Supabase is an outstanding blocker. Run the prompts only against authentic accessible SXF observations and record missing data honestly.
+This directory defines archive organization only. No automated GitHub archive publisher or GitHub Releases uploader has been deployed, and historical daily snapshot archive coverage has not been verified. Existing Supabase SmartXFlow data can be used READ-ONLY; automated extraction and GitHub publishing remain to be implemented. Run the prompts only against authentic accessible SXF observations and record missing data honestly.
 
 Repository and public release contents are PUBLIC; do not store credentials or non-redistributable source material.
