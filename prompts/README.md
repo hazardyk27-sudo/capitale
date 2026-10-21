@@ -17,3 +17,12 @@ Runtime order:
 5. Preserve timestamps and versions; later information requires a new run/version rather than rewriting the old decision.
 
 A role must not silently improvise if it cannot access a required source or repository file. Missing access/data must be reported explicitly.
+
+## SXF daily archive prompts (GitHub-only)
+
+The owner-approved SXF archive v1.0 uses these separate prompts:
+- `prompts/sxf_archive_scan.md`: screen matches, report pre-match evidence only; do NOT store post-match results.
+- `prompts/sxf_archive_save.md`: freeze the published scan, and store independently collected full and concentrated data when actually available.
+- `prompts/sxf_archive_settle.md`: independently verify full-time scores, compute engine evaluation, and append outcome files without changing frozen scans.
+
+Rules and formats: `methods/sxf_archive_methodology.md`, `schemas/sxf_archive_schema.md`, `archive/README.md`. Nine checkpoints: T-72, T-60, T-40, T-24, T-12, T-8, T-6, T-3, T-1. Source access for a no-Supabase automated collector is not yet verified; prompts cannot guarantee actual collection on their own.
