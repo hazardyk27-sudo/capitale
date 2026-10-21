@@ -1,0 +1,64 @@
+{
+  "schema_version": "SXF_ARCHIVE_V1_0",
+  "date_tr": "2026-10-11",
+  "timezone": "Europe/Istanbul",
+  "source": {
+    "system": "Supabase",
+    "project_id": "pswdvnmqjjnjodwzkmkp",
+    "schema": "research_archive",
+    "table": "archive_runs",
+    "status": "COMPLETE",
+    "source_archive_started_at": "2026-10-14 01:37:20.484132+00",
+    "source_archive_completed_at": "2026-10-14 01:40:44.075833+00",
+    "expected_fixtures": 334,
+    "archived_fixtures": 334,
+    "source_recorded_counts": {
+      "rows_1x2": 340783,
+      "rows_ou25": 268144,
+      "rows_btts": 182145,
+      "rows_dropping_1x2_history": 631798,
+      "rows_dropping_ou25_history": 534272,
+      "rows_dropping_btts_history": 362940,
+      "rows_moneyway_snapshots": 661555,
+      "rows_live_snapshots": 1038350,
+      "rows_sharp": 23,
+      "rows_insider": 0,
+      "rows_bigmoney": 21,
+      "rows_volumeshock": 52,
+      "rows_dropping": 4,
+      "rows_publicmove": 0,
+      "rows_volume_leader": 68,
+      "rows_mim": 168
+    },
+    "source_notes": {
+      "scope": "all fixtures on local day",
+      "timezone": "Europe/Istanbul",
+      "raw_history": "all stored rows linked by match_id_hash or fixture_uid",
+      "identity_policy": "fixture/live hashes preserved with alias table; same raw row may intentionally map to multiple local dates when source identity conflicts exist",
+      "append_only_guard": true,
+      "fixture_alias_rows": 1,
+      "supplemental_scope": "dropping histories + moneyway snapshots + live snapshots",
+      "live_result_versions": 332,
+      "full_archive_complete": true,
+      "full_archive_completed_at": "2026-10-14T02:42:43.053427+00:00",
+      "supplemental_raw_archived": true
+    }
+  },
+  "github_migration": {
+    "inventory": "VERIFIED_SOURCE_METADATA",
+    "01_scan_results": "NOT_YET_TRANSFERRED",
+    "02_outcome_performance": "NOT_YET_TRANSFERRED",
+    "03_full_snapshots": "NOT_YET_TRANSFERRED",
+    "04_concentrated": "NOT_YET_TRANSFERRED",
+    "all_raw_files_verified": false,
+    "migration_complete": false,
+    "note": "This manifest is an inventory of the existing Supabase source, NOT confirmation that full raw data has been copied to GitHub. Legacy research files when copied are separate and not full historical archive."
+  },
+  "source_repo": {
+    "repository": "hazardyk27-sudo/smartxflow",
+    "branch": "learning-archive",
+    "folder": "learning_archive_data/signal_engine_samples"
+  },
+  "created_for": "CAPITALE SXF Archive",
+  "archive_storage": "GitHub ONLY"
+}
