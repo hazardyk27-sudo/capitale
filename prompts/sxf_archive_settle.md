@@ -6,6 +6,7 @@ CAPİTALE SXF'nin **önceden kaydedilmiş** günlük taramasını sonuçlandır.
 **Run ID:** [varsa gir; yoksa o tarihteki yayımlanmış scan'leri listeleyip doğru taramayı belirle]
 **Getiri hesabı:** [1 unit / seçim; ayrıca %7 düşük oran senaryosu]
 **Minimum bahis oranı:** 1.30
+**Veri kaynağı:** Gerekli canlı/ham SmartXFlow verilerini veya mevcut maç sonucu kayıtlarını Supabase'den salt okunur sorgularla okuyabilirsin. **Arşiv ve performans raporlarının tek yazma hedefi GitHub'dır; Supabase'e hiçbir arşiv/performance kaydı yazma.**
 
 1. GitHub'daki orijinal `01_scan_results` raporunu **değiştirmeden** oku. Bu rapordaki seçimleri esas al; sonradan çıkan yeni sinyalleri, kapanış oranlarını ya da maç sonucunu kullanarak seçimleri geriye dönük düzeltme.
 2. Günün tüm maçlarının normal süre skorlarını güvenilir sonuç kaynaklarından doğrula. Fixture UID + kickoff ile doğru maçı eşleştir. FT olmayan, ertelenen veya doğrulanmayanları `PENDING/UNVERIFIED` tut; kesin sonuç yazma.
