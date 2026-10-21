@@ -132,7 +132,9 @@
       "manifest_github_blob_sha": "72083bf36a14a0785e0c6ffa7792fffefde0abc5",
       "source_type": "research_archive READ-ONLY",
       "notes": "Checkpoint grid complete; full raw snapshot histories are NOT migrated to GitHub. Extra overlapping 1X2 file excluded via submanifest."
-    }
+    },
+    "full_snapshot_manifest_path": "archive/2026/10/09/03_full_snapshots/manifest.json",
+    "full_snapshot_release_assets_uploaded": 0
   },
   "source_repo": {
     "repository": "hazardyk27-sudo/smartxflow",
