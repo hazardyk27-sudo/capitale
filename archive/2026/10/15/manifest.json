@@ -1,0 +1,64 @@
+{
+  "schema_version": "SXF_ARCHIVE_V1_0",
+  "date_tr": "2026-10-15",
+  "timezone": "Europe/Istanbul",
+  "source": {
+    "system": "Supabase",
+    "project_id": "pswdvnmqjjnjodwzkmkp",
+    "schema": "research_archive",
+    "table": "archive_runs",
+    "status": "COMPLETE",
+    "source_archive_started_at": "2026-10-15 23:23:08.871574+00",
+    "source_archive_completed_at": "2026-10-15 23:30:38.065051+00",
+    "expected_fixtures": 160,
+    "archived_fixtures": 160,
+    "source_recorded_counts": {
+      "rows_1x2": 137974,
+      "rows_ou25": 125772,
+      "rows_btts": 114436,
+      "rows_dropping_1x2_history": 137422,
+      "rows_dropping_ou25_history": 123536,
+      "rows_dropping_btts_history": 114215,
+      "rows_moneyway_snapshots": 495154,
+      "rows_live_snapshots": 315993,
+      "rows_sharp": 12,
+      "rows_insider": 0,
+      "rows_bigmoney": 23,
+      "rows_volumeshock": 43,
+      "rows_dropping": 16,
+      "rows_publicmove": 0,
+      "rows_volume_leader": 47,
+      "rows_mim": 66
+    },
+    "source_notes": {
+      "scope": "all physical fixtures",
+      "timezone": "Europe/Istanbul",
+      "validation": "SOURCE_COUNTS_MATCH",
+      "cold_backup": "COLD_BACKUP_PENDING",
+      "append_only_guard": true,
+      "fixture_alias_rows": 0,
+      "live_result_versions": 138,
+      "full_archive_complete": true,
+      "full_archive_completed_at": "2026-10-15T23:30:38.065051+00:00",
+      "supplemental_raw_archived": true,
+      "source_retention_cleanup_allowed": false
+    }
+  },
+  "github_migration": {
+    "inventory": "VERIFIED_SOURCE_METADATA",
+    "01_scan_results": "NOT_YET_TRANSFERRED",
+    "02_outcome_performance": "NOT_YET_TRANSFERRED",
+    "03_full_snapshots": "NOT_YET_TRANSFERRED",
+    "04_concentrated": "NOT_YET_TRANSFERRED",
+    "all_raw_files_verified": false,
+    "migration_complete": false,
+    "note": "This manifest is an inventory of the existing Supabase source, NOT confirmation that full raw data has been copied to GitHub. Legacy research files when copied are separate and not full historical archive."
+  },
+  "source_repo": {
+    "repository": "hazardyk27-sudo/smartxflow",
+    "branch": "learning-archive",
+    "folder": "learning_archive_data/signal_engine_samples"
+  },
+  "created_for": "CAPITALE SXF Archive",
+  "archive_storage": "GitHub ONLY"
+}
