@@ -49,7 +49,7 @@
     "01_scan_results": "NOT_YET_RECONSTRUCTED",
     "02_outcome_performance": "NOT_YET_RECONSTRUCTED",
     "03_full_snapshots": "PARTIAL_TRANSFERRED",
-    "04_concentrated": "NOT_YET_TRANSFERRED",
+    "04_concentrated": "PARTIAL_TRANSFERRED",
     "all_raw_files_verified": false,
     "migration_complete": false,
     "note": "This manifest is an inventory of the existing Supabase source, NOT confirmation that full raw data has been copied to GitHub. Legacy research files when copied are separate and not full historical archive.",
@@ -103,7 +103,14 @@
       "moneyway_snapshots",
       "live_snapshots"
     ],
-    "legacy_research_path": "archive/legacy_research/smartxflow_learning_archive/"
+    "legacy_research_path": "archive/legacy_research/smartxflow_learning_archive/",
+    "concentrated_grid_progress": {
+      "market": "1X2",
+      "fixtures_verified": 110,
+      "fixtures_expected": 455,
+      "slots_written_and_readback_verified": 990,
+      "other_markets": "NOT_YET_TRANSFERRED"
+    }
   },
   "source_repo": {
     "repository": "hazardyk27-sudo/smartxflow",
