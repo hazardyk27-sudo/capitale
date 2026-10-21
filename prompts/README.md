@@ -25,4 +25,4 @@ The owner-approved SXF archive v1.0 uses these separate prompts:
 - `prompts/sxf_archive_save.md`: freeze the published scan, and store independently collected full and concentrated data when actually available.
 - `prompts/sxf_archive_settle.md`: independently verify full-time scores, compute engine evaluation, and append outcome files without changing frozen scans.
 
-Rules and formats: `methods/sxf_archive_methodology.md`, `schemas/sxf_archive_schema.md`, `archive/README.md`. Nine checkpoints: T-72, T-60, T-40, T-24, T-12, T-8, T-6, T-3, T-1. Source access for a no-Supabase automated collector is not yet verified; prompts cannot guarantee actual collection on their own.
+Rules and formats: `methods/sxf_archive_methodology.md`, `schemas/sxf_archive_schema.md`, `archive/README.md`. Nine checkpoints: T-72, T-60, T-40, T-24, T-12, T-8, T-6, T-3, T-1. Supabase is permitted solely as a READ-ONLY data source for SmartXFlow fixtures/snapshots/results; archive storage and reporting are GitHub-only. Automated extraction and publishing remain unimplemented; prompts cannot guarantee actual collection on their own.
