@@ -1,0 +1,11 @@
+SXF READ-ONLY GITHUB ACTIONS PILOT REQUEST
+source_project=pswdvnmqjjnjodwzkmkp
+source_table=research_archive.moneyway_1x2_history
+match_date_tr=2026-10-09
+mode=pilot
+source_expected_rows=148444
+pilot_rows=250
+full_export_requires_explicit_manual_dispatch=true
+supabase_writes_allowed=false
+release_initial_state=draft
+purpose=pilot_only_with_sha256_gzip_restore_and_download_readback
