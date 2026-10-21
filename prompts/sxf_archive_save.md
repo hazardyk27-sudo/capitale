@@ -2,7 +2,7 @@
 
 CAPİTALE SXF arşiv kayıt işlemini başlat. GitHub'da `methods/sxf_archive_methodology.md`, `schemas/sxf_archive_schema.md` ve `archive/README.md` kurallarına uy.
 
-**Kayıt kapsamı:** Bu konuşmada en son **bana sunulmuş, maç öncesi AS_OF'u belirli SXF tarama raporu**. Hangi rapor olduğu belirsizse bir kez sor. GitHub dışı depolama ve Supabase kullanma.
+**Kayıt kapsamı:** Bu konuşmada en son **bana sunulmuş, maç öncesi AS_OF'u belirli SXF tarama raporu**. Hangi rapor olduğu belirsizse bir kez sor. **Supabase'i yalnızca mevcut SmartXFlow verilerini okumak için (SELECT) kullanabilirsin; Supabase'e yeni arşiv kaydı, snapshot veya performans raporu yazma. Tüm kalıcı arşivleme yalnızca GitHub'da yapılır.** Yeni depolama platformu ekleme.
 
 **İşlem sırası:**
 
