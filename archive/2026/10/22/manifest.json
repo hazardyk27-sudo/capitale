@@ -15,7 +15,7 @@
   "original_scan_as_of_utc": "2026-10-22T12:16:30Z",
   "report_mode": "CHECKPOINT_RESEARCH_T6_FALLBACK_T8",
   "01_scan_results": "RECONSTRUCTED_ARCHIVED",
-  "02_outcome_performance": "NOT_COLLECTED",
+  "02_outcome_performance": "PARTIAL",
   "03_full_snapshots": "NOT_COLLECTED",
   "04_concentrated": "NOT_COLLECTED",
   "full_snapshot_status": "NOT_COLLECTED",
@@ -51,7 +51,9 @@
   "archive_parts": {
     "full_snapshots_manifest": "archive/2026/10/22/03_full_snapshots/manifest.json",
     "concentrated_manifest": "archive/2026/10/22/04_concentrated/manifest.json",
-    "settlement_path": null
+    "settlement_path": "archive/2026/10/22/02_outcome_performance/sxf-2026-10-22-checkpoint-t6-fallback-t8-asof-151630-tr-v1_settlement_partial_v1.json",
+    "settlement_markdown_path": "archive/2026/10/22/02_outcome_performance/sxf-2026-10-22-checkpoint-t6-fallback-t8-asof-151630-tr-v1_settlement_partial_v1.md",
+    "settlement_status": "PARTIAL_29_FT_1_PENDING"
   },
   "full_day_archive_complete": false,
   "migration_complete": false,
@@ -63,6 +65,18 @@
     "Full raw 1X2/OU25/BTTS snapshots and 9-point all-fixture grid are not collected to Github; only selected checkpoint snapshot metadata in scan JSON.",
     "No scores or outcomes attached and no performance computation performed.",
     "Original snapshot SHA-256 hashes and complete rejected-signal audit not present; do not misreport full audit as complete.",
-    "EARLY origins are retained in a separate append-only provenance sidecar because the initial published scan JSON omitted populated origin_events. Source ledger event insertion times may occur after the original T-6/T-8 research cutoff."
-  ]
+    "EARLY origins are retained in a separate append-only provenance sidecar because the initial published scan JSON omitted populated origin_events. Source ledger event insertion times may occur after the original T-6/T-8 research cutoff.",
+    "22 October 02_outcome_performance is PARTIAL: 29 finished selections based on internal FT rows (external confirmation incomplete), 1 unfinished SURPRISE held pending. The original pre-match scan remains untouched."
+  ],
+  "settlement_summary": {
+    "ft_selection_count": 29,
+    "pending_count": 1,
+    "valid_direct_market_bet_count": 26,
+    "successes": 15,
+    "profit_units_sxf": -1.48,
+    "roi_pct_sxf": -5.69,
+    "surprise_nonloss_resolved": 3,
+    "surprise_nonloss_success": 3,
+    "source_score_verification": "PARTIAL"
+  }
 }
