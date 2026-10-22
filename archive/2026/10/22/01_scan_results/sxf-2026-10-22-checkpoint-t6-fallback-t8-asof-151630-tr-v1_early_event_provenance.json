@@ -1,0 +1,448 @@
+{
+  "schema_version": "SXF_ARCHIVE_V1_0",
+  "artifact_type": "EARLY_MONEY_ORIGIN_EVENT_PROVENANCE_SIDECAR",
+  "match_date_tr": "2026-10-22",
+  "timezone": "Europe/Istanbul",
+  "run_id": "sxf-2026-10-22-checkpoint-t6-fallback-t8-asof-151630-tr-v1",
+  "scan_id": "scan-20261022-151630-tr-t6t8-v1",
+  "as_of_utc": "2026-10-22T12:16:30Z",
+  "parent_report_path": "archive/2026/10/22/01_scan_results/sxf-2026-10-22-checkpoint-t6-fallback-t8-asof-151630-tr-v1.json",
+  "scope": "Read-only SmartXFlow EARLY source event provenance for previously archived checkpoint scan; not a new selection scan or outcome assessment.",
+  "source": "SUPABASE_SMARTXFLOW_READ_ONLY",
+  "source_table": "public.sxf_base_signal_events",
+  "selection_rows": [
+    {
+      "selection_id": "scan-20261022-151630-tr-t6t8-v1-s01",
+      "fixture_uid": "4e71788e-56bd-4d7b-8607-38b20c76eff2",
+      "match": "Ararat Armenia – Az Alkmaar",
+      "checkpoint": "T-6",
+      "source_event_count": 1,
+      "expected_engine_count": 1,
+      "origin_events": [
+        {
+          "event_id": 1111,
+          "engine": "EARLY_MONEY_T12",
+          "checkpoint": "T-12",
+          "origin_observed_at_utc": "2026-10-22T04:42:52.000Z",
+          "source_event_recorded_at_utc": "2026-10-22T11:58:21.042Z",
+          "source_event_recorded_after_selected_checkpoint": true,
+          "source_early_odds": 1.48,
+          "source_early_money_share_pct": 87.4,
+          "source_early_money_gbp": 6538.05,
+          "source_status": "ELIGIBLE"
+        }
+      ]
+    },
+    {
+      "selection_id": "scan-20261022-151630-tr-t6t8-v1-s02",
+      "fixture_uid": "66bc0f79-d292-43db-b990-b5efdf1e33c1",
+      "match": "Dinamo Zagreb – NEC Nijmegen",
+      "checkpoint": "T-6",
+      "source_event_count": 1,
+      "expected_engine_count": 1,
+      "origin_events": [
+        {
+          "event_id": 1118,
+          "engine": "EARLY_MONEY_T12",
+          "checkpoint": "T-12",
+          "origin_observed_at_utc": "2026-10-22T04:42:52.000Z",
+          "source_event_recorded_at_utc": "2026-10-22T11:58:43.281Z",
+          "source_event_recorded_after_selected_checkpoint": true,
+          "source_early_odds": 1.65,
+          "source_early_money_share_pct": 88.9,
+          "source_early_money_gbp": 19732.52,
+          "source_status": "ELIGIBLE"
+        }
+      ]
+    },
+    {
+      "selection_id": "scan-20261022-151630-tr-t6t8-v1-s03",
+      "fixture_uid": "67bf8064-109e-49bb-8508-bd2438f22b96",
+      "match": "FK Kauno Zalgiris – Brann",
+      "checkpoint": "T-6",
+      "source_event_count": 1,
+      "expected_engine_count": 1,
+      "origin_events": [
+        {
+          "event_id": 1114,
+          "engine": "EARLY_MONEY_T12",
+          "checkpoint": "T-12",
+          "origin_observed_at_utc": "2026-10-22T04:42:52.000Z",
+          "source_event_recorded_at_utc": "2026-10-22T11:58:41.879Z",
+          "source_event_recorded_after_selected_checkpoint": true,
+          "source_early_odds": 1.74,
+          "source_early_money_share_pct": 87.7,
+          "source_early_money_gbp": 4318.95,
+          "source_status": "ELIGIBLE"
+        }
+      ]
+    },
+    {
+      "selection_id": "scan-20261022-151630-tr-t6t8-v1-s04",
+      "fixture_uid": "45cf0ac6-e90f-4143-be23-9d363879b094",
+      "match": "Getafe – Lugano",
+      "checkpoint": "T-6",
+      "source_event_count": 1,
+      "expected_engine_count": 1,
+      "origin_events": [
+        {
+          "event_id": 1119,
+          "engine": "EARLY_MONEY_T12",
+          "checkpoint": "T-12",
+          "origin_observed_at_utc": "2026-10-22T04:42:52.000Z",
+          "source_event_recorded_at_utc": "2026-10-22T11:58:43.471Z",
+          "source_event_recorded_after_selected_checkpoint": true,
+          "source_early_odds": 2.02,
+          "source_early_money_share_pct": 89.1,
+          "source_early_money_gbp": 5564.24,
+          "source_status": "ELIGIBLE"
+        }
+      ]
+    },
+    {
+      "selection_id": "scan-20261022-151630-tr-t6t8-v1-s05",
+      "fixture_uid": "f73be6e7-9cb3-4480-ac66-cf550ac291dc",
+      "match": "Inter Club Escaldes – Universitatea Craiova",
+      "checkpoint": "T-6",
+      "source_event_count": 1,
+      "expected_engine_count": 1,
+      "origin_events": [
+        {
+          "event_id": 1120,
+          "engine": "EARLY_MONEY_T12",
+          "checkpoint": "T-12",
+          "origin_observed_at_utc": "2026-10-22T04:42:52.000Z",
+          "source_event_recorded_at_utc": "2026-10-22T11:58:43.683Z",
+          "source_event_recorded_after_selected_checkpoint": true,
+          "source_early_odds": 1.63,
+          "source_early_money_share_pct": 93.3,
+          "source_early_money_gbp": 5357.37,
+          "source_status": "ELIGIBLE"
+        }
+      ]
+    },
+    {
+      "selection_id": "scan-20261022-151630-tr-t6t8-v1-s06",
+      "fixture_uid": "7b53affd-b18e-4ac8-a880-4ed7bf96086f",
+      "match": "Juventus – Rennes",
+      "checkpoint": "T-6",
+      "source_event_count": 2,
+      "expected_engine_count": 2,
+      "origin_events": [
+        {
+          "event_id": 549,
+          "engine": "EARLY_MONEY_CORE",
+          "checkpoint": "T-60",
+          "origin_observed_at_utc": "2026-10-20T04:41:46.000Z",
+          "source_event_recorded_at_utc": "2026-10-21T13:50:46.538Z",
+          "source_event_recorded_after_selected_checkpoint": false,
+          "source_early_odds": 1.62,
+          "source_early_money_share_pct": 98.5,
+          "source_early_money_gbp": 5014.24,
+          "source_status": "ELIGIBLE"
+        },
+        {
+          "event_id": 1116,
+          "engine": "EARLY_MONEY_T12",
+          "checkpoint": "T-12",
+          "origin_observed_at_utc": "2026-10-22T04:42:52.000Z",
+          "source_event_recorded_at_utc": "2026-10-22T11:58:42.464Z",
+          "source_event_recorded_after_selected_checkpoint": true,
+          "source_early_odds": 1.54,
+          "source_early_money_share_pct": 87,
+          "source_early_money_gbp": 34289.88,
+          "source_status": "ELIGIBLE"
+        }
+      ]
+    },
+    {
+      "selection_id": "scan-20261022-151630-tr-t6t8-v1-s07",
+      "fixture_uid": "756a8a79-0890-4273-ae7b-9b111985ea52",
+      "match": "Lech Poznan – Sunderland",
+      "checkpoint": "T-6",
+      "source_event_count": 2,
+      "expected_engine_count": 2,
+      "origin_events": [
+        {
+          "event_id": 542,
+          "engine": "EARLY_MONEY_CORE",
+          "checkpoint": "T-72",
+          "origin_observed_at_utc": "2026-10-19T16:43:33.000Z",
+          "source_event_recorded_at_utc": "2026-10-21T13:17:13.877Z",
+          "source_event_recorded_after_selected_checkpoint": false,
+          "source_early_odds": 1.7,
+          "source_early_money_share_pct": 96.7,
+          "source_early_money_gbp": 12656.26,
+          "source_status": "ELIGIBLE"
+        },
+        {
+          "event_id": 1112,
+          "engine": "EARLY_MONEY_T12",
+          "checkpoint": "T-12",
+          "origin_observed_at_utc": "2026-10-22T04:42:52.000Z",
+          "source_event_recorded_at_utc": "2026-10-22T11:58:21.262Z",
+          "source_event_recorded_after_selected_checkpoint": true,
+          "source_early_odds": 1.78,
+          "source_early_money_share_pct": 82.2,
+          "source_early_money_gbp": 39107.02,
+          "source_status": "ELIGIBLE"
+        }
+      ]
+    },
+    {
+      "selection_id": "scan-20261022-151630-tr-t6t8-v1-s09",
+      "fixture_uid": "aa1caafb-a340-426b-bcae-93b426af9005",
+      "match": "Trabzonspor – Hearts",
+      "checkpoint": "T-6",
+      "source_event_count": 1,
+      "expected_engine_count": 1,
+      "origin_events": [
+        {
+          "event_id": 1113,
+          "engine": "EARLY_MONEY_T12",
+          "checkpoint": "T-12",
+          "origin_observed_at_utc": "2026-10-22T04:42:52.000Z",
+          "source_event_recorded_at_utc": "2026-10-22T11:58:22.072Z",
+          "source_event_recorded_after_selected_checkpoint": true,
+          "source_early_odds": 1.32,
+          "source_early_money_share_pct": 91,
+          "source_early_money_gbp": 9439.74,
+          "source_status": "ELIGIBLE"
+        }
+      ]
+    },
+    {
+      "selection_id": "scan-20261022-151630-tr-t6t8-v1-s10",
+      "fixture_uid": "c4b18834-2ed9-41eb-be83-41816478e78e",
+      "match": "Union St Gilloise – Hapoel Be'er Sheva",
+      "checkpoint": "T-6",
+      "source_event_count": 1,
+      "expected_engine_count": 1,
+      "origin_events": [
+        {
+          "event_id": 1110,
+          "engine": "EARLY_MONEY_T12",
+          "checkpoint": "T-12",
+          "origin_observed_at_utc": "2026-10-22T04:42:52.000Z",
+          "source_event_recorded_at_utc": "2026-10-22T11:58:20.424Z",
+          "source_event_recorded_after_selected_checkpoint": true,
+          "source_early_odds": 1.42,
+          "source_early_money_share_pct": 90.4,
+          "source_early_money_gbp": 44637.2,
+          "source_status": "ELIGIBLE"
+        }
+      ]
+    },
+    {
+      "selection_id": "scan-20261022-151630-tr-t6t8-v1-s12",
+      "fixture_uid": "b65d3e49-b17d-4036-9889-7f8bb4cd6b7e",
+      "match": "Ajax – Atalanta",
+      "checkpoint": "T-8",
+      "source_event_count": 2,
+      "expected_engine_count": 2,
+      "origin_events": [
+        {
+          "event_id": 543,
+          "engine": "EARLY_MONEY_CORE",
+          "checkpoint": "T-72",
+          "origin_observed_at_utc": "2026-10-19T18:59:56.000Z",
+          "source_event_recorded_at_utc": "2026-10-21T13:30:07.283Z",
+          "source_event_recorded_after_selected_checkpoint": false,
+          "source_early_odds": 2.3,
+          "source_early_money_share_pct": 97.4,
+          "source_early_money_gbp": 14093.29,
+          "source_status": "ELIGIBLE"
+        },
+        {
+          "event_id": 1257,
+          "engine": "EARLY_MONEY_T12",
+          "checkpoint": "T-12",
+          "origin_observed_at_utc": "2026-10-22T06:59:54.000Z",
+          "source_event_recorded_at_utc": "2026-10-22T12:02:51.262Z",
+          "source_event_recorded_after_selected_checkpoint": true,
+          "source_early_odds": 2.28,
+          "source_early_money_share_pct": 85.6,
+          "source_early_money_gbp": 29652.37,
+          "source_status": "ELIGIBLE"
+        }
+      ]
+    },
+    {
+      "selection_id": "scan-20261022-151630-tr-t6t8-v1-s13",
+      "fixture_uid": "89f5993c-d244-4218-8866-da0d9ea90cd0",
+      "match": "Borac Banja Luka – KuPS",
+      "checkpoint": "T-8",
+      "source_event_count": 1,
+      "expected_engine_count": 1,
+      "origin_events": [
+        {
+          "event_id": 1253,
+          "engine": "EARLY_MONEY_T12",
+          "checkpoint": "T-12",
+          "origin_observed_at_utc": "2026-10-22T06:59:54.000Z",
+          "source_event_recorded_at_utc": "2026-10-22T12:02:49.344Z",
+          "source_event_recorded_after_selected_checkpoint": true,
+          "source_early_odds": 1.89,
+          "source_early_money_share_pct": 92.6,
+          "source_early_money_gbp": 2404.32,
+          "source_status": "ELIGIBLE"
+        }
+      ]
+    },
+    {
+      "selection_id": "scan-20261022-151630-tr-t6t8-v1-s14",
+      "fixture_uid": "499dbd53-66d0-4394-bf4a-ff3997b2198d",
+      "match": "Hoffenheim – Lyon",
+      "checkpoint": "T-8",
+      "source_event_count": 2,
+      "expected_engine_count": 2,
+      "origin_events": [
+        {
+          "event_id": 546,
+          "engine": "EARLY_MONEY_CORE",
+          "checkpoint": "T-72",
+          "origin_observed_at_utc": "2026-10-19T18:59:56.000Z",
+          "source_event_recorded_at_utc": "2026-10-21T13:36:39.470Z",
+          "source_event_recorded_after_selected_checkpoint": false,
+          "source_early_odds": 2.12,
+          "source_early_money_share_pct": 92.4,
+          "source_early_money_gbp": 17660.51,
+          "source_status": "ELIGIBLE"
+        },
+        {
+          "event_id": 1255,
+          "engine": "EARLY_MONEY_T12",
+          "checkpoint": "T-12",
+          "origin_observed_at_utc": "2026-10-22T06:59:54.000Z",
+          "source_event_recorded_at_utc": "2026-10-22T12:02:50.101Z",
+          "source_event_recorded_after_selected_checkpoint": true,
+          "source_early_odds": 2.06,
+          "source_early_money_share_pct": 82.8,
+          "source_early_money_gbp": 77397.57,
+          "source_status": "ELIGIBLE"
+        }
+      ]
+    },
+    {
+      "selection_id": "scan-20261022-151630-tr-t6t8-v1-s15",
+      "fixture_uid": "489cf219-1a02-4bcb-abad-4077c0cbc5ac",
+      "match": "Lillestrom – Real Sociedad",
+      "checkpoint": "T-8",
+      "source_event_count": 1,
+      "expected_engine_count": 1,
+      "origin_events": [
+        {
+          "event_id": 1254,
+          "engine": "EARLY_MONEY_T12",
+          "checkpoint": "T-12",
+          "origin_observed_at_utc": "2026-10-22T06:59:54.000Z",
+          "source_event_recorded_at_utc": "2026-10-22T12:02:49.652Z",
+          "source_event_recorded_after_selected_checkpoint": true,
+          "source_early_odds": 1.5,
+          "source_early_money_share_pct": 94.3,
+          "source_early_money_gbp": 16611.42,
+          "source_status": "ELIGIBLE"
+        }
+      ]
+    },
+    {
+      "selection_id": "scan-20261022-151630-tr-t6t8-v1-s17",
+      "fixture_uid": "448f3799-649c-4f94-bd52-29ad1a0d0b12",
+      "match": "NK Celje – Red Bull Salzburg",
+      "checkpoint": "T-8",
+      "source_event_count": 2,
+      "expected_engine_count": 2,
+      "origin_events": [
+        {
+          "event_id": 544,
+          "engine": "EARLY_MONEY_CORE",
+          "checkpoint": "T-72",
+          "origin_observed_at_utc": "2026-10-19T18:59:56.000Z",
+          "source_event_recorded_at_utc": "2026-10-21T13:30:16.853Z",
+          "source_event_recorded_after_selected_checkpoint": false,
+          "source_early_odds": 1.7,
+          "source_early_money_share_pct": 98.5,
+          "source_early_money_gbp": 6159.35,
+          "source_status": "ELIGIBLE"
+        },
+        {
+          "event_id": 1252,
+          "engine": "EARLY_MONEY_T12",
+          "checkpoint": "T-12",
+          "origin_observed_at_utc": "2026-10-22T06:59:54.000Z",
+          "source_event_recorded_at_utc": "2026-10-22T12:02:17.401Z",
+          "source_event_recorded_after_selected_checkpoint": true,
+          "source_early_odds": 1.58,
+          "source_early_money_share_pct": 87.9,
+          "source_early_money_gbp": 33339.36,
+          "source_status": "ELIGIBLE"
+        }
+      ]
+    },
+    {
+      "selection_id": "scan-20261022-151630-tr-t6t8-v1-s18",
+      "fixture_uid": "3c4226f2-d073-4ec9-940d-b3464d815661",
+      "match": "Olympiakos – Sparta Prague",
+      "checkpoint": "T-8",
+      "source_event_count": 2,
+      "expected_engine_count": 2,
+      "origin_events": [
+        {
+          "event_id": 564,
+          "engine": "EARLY_MONEY_CORE",
+          "checkpoint": "T-60",
+          "origin_observed_at_utc": "2026-10-20T06:56:49.000Z",
+          "source_event_recorded_at_utc": "2026-10-21T14:00:29.805Z",
+          "source_event_recorded_after_selected_checkpoint": false,
+          "source_early_odds": 1.54,
+          "source_early_money_share_pct": 93.8,
+          "source_early_money_gbp": 6087.2,
+          "source_status": "ELIGIBLE"
+        },
+        {
+          "event_id": 1250,
+          "engine": "EARLY_MONEY_T12",
+          "checkpoint": "T-12",
+          "origin_observed_at_utc": "2026-10-22T06:59:54.000Z",
+          "source_event_recorded_at_utc": "2026-10-22T12:02:15.833Z",
+          "source_event_recorded_after_selected_checkpoint": true,
+          "source_early_odds": 1.55,
+          "source_early_money_share_pct": 90.9,
+          "source_early_money_gbp": 23922.31,
+          "source_status": "ELIGIBLE"
+        }
+      ]
+    },
+    {
+      "selection_id": "scan-20261022-151630-tr-t6t8-v1-s19",
+      "fixture_uid": "2a3cb97d-b76f-42a7-b226-754b6b96e4da",
+      "match": "Omonia – Benfica",
+      "checkpoint": "T-8",
+      "source_event_count": 1,
+      "expected_engine_count": 1,
+      "origin_events": [
+        {
+          "event_id": 1251,
+          "engine": "EARLY_MONEY_T12",
+          "checkpoint": "T-12",
+          "origin_observed_at_utc": "2026-10-22T06:59:54.000Z",
+          "source_event_recorded_at_utc": "2026-10-22T12:02:16.421Z",
+          "source_event_recorded_after_selected_checkpoint": true,
+          "source_early_odds": 1.39,
+          "source_early_money_share_pct": 94.8,
+          "source_early_money_gbp": 27208.1,
+          "source_status": "ELIGIBLE"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "early_eligible_published_selections": 16,
+    "provenance_engine_event_count": 22,
+    "matching_rows": 16,
+    "recorded_after_checkpoint": 16
+  },
+  "temporal_integrity_note": "Several EARLY event rows were inserted after the selected research T-6/T-8 cutoff though their source observed_at points predate cutoff. This is retrospective provenance; do not assert the events themselves were published at the checkpoint or treat as forward-live confirmations.",
+  "historical_assessment_note": "Original scan values and tags are unchanged. This addendum repairs omitted EARLY origin_event metadata in first JSON archive, without overwriting the first file.",
+  "generated_at_utc": "2026-10-22T13:15:00.544Z"
+}
