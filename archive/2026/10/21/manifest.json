@@ -46,7 +46,7 @@
   "github_migration": {
     "inventory": "VERIFIED_SOURCE_METADATA",
     "01_scan_results": "NOT_YET_TRANSFERRED",
-    "02_outcome_performance": "NOT_YET_TRANSFERRED",
+    "02_outcome_performance": "PARTIAL",
     "03_full_snapshots": "PARTIAL",
     "04_concentrated": "NOT_YET_TRANSFERRED",
     "all_raw_files_verified": false,
@@ -65,7 +65,27 @@
       }
     },
     "legacy_research_location": "archive/legacy_research/smartxflow_learning_archive/",
-    "current_stage": "FIXTURES_AND_RESULTS_VERIFIED__BULK_MARKET_HISTORY_PENDING"
+    "current_stage": "FIXTURES_AND_RESULTS_VERIFIED__BULK_MARKET_HISTORY_PENDING",
+    "02_outcome_performance_reconstruction": {
+      "status": "RECONSTRUCTED_RESEARCH_ONLY_NOT_OFFICIAL_SETTLEMENT",
+      "validation": "SOURCE_INTERNAL_FT_ONLY",
+      "original_scan_id": null,
+      "original_run_id": null,
+      "orig_publication_freeze_found": false,
+      "research_audit_date": "2026-10-22",
+      "unique_selections": 11,
+      "hits": 8,
+      "misses": 3,
+      "source_engine_event_count": 19,
+      "invalid_source_event_rows_saved": 0,
+      "json_path": "archive/2026/10/21/02_outcome_performance/reconstructed_sxf_engine_audit_2026-10-21_v1.json",
+      "markdown_path": "archive/2026/10/21/02_outcome_performance/reconstructed_sxf_engine_audit_2026-10-21_v1.md",
+      "file_create_commits": [
+        "20a8b7cfa07a34c3936c41ffbc6488c158a68efa",
+        "dcd4da1a386c7279163a9793788f7016f6d9f6f5"
+      ],
+      "note": "Research reconstruction only. Do not count as originally frozen published scan settlement; requires source as-of verification and independent FT verification."
+    }
   },
   "source_repo": {
     "repository": "hazardyk27-sudo/smartxflow",
