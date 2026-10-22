@@ -1,0 +1,23 @@
+{
+  "schema_version": "SXF_ARCHIVE_V1_0",
+  "match_date_tr": "2026-10-22",
+  "status": "NOT_COLLECTED",
+  "full_snapshot_status": "NOT_COLLECTED",
+  "raw_source_tables_targeted": [
+    "moneyway_1x2_history",
+    "moneyway_ou25_history",
+    "moneyway_btts_history"
+  ],
+  "release_asset_refs": [],
+  "github_release_tag": null,
+  "assets_verified": 0,
+  "all_fixtures_required": 47,
+  "verified_full_source_records_archived": 0,
+  "scan_reference_run_id": "sxf-2026-10-22-checkpoint-t6-fallback-t8-asof-151630-tr-v1",
+  "note": "The 01 scan contains individual selection/checkpoint references only. Full pre-match per-fixture all-snapshot three-market raw streams were NOT exported to GitHub Release and are NOT represented as complete.",
+  "blockers": [
+    "FULL_CAPTURE_NOT_EXECUTED",
+    "GITHUB_RELEASE_ASSETS_NOT_UPLOADED"
+  ],
+  "generated_at_utc": "2026-10-22T13:12:50.517Z"
+}
