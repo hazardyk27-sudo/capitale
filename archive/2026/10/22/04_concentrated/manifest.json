@@ -1,0 +1,30 @@
+{
+  "schema_version": "SXF_ARCHIVE_V1_0",
+  "match_date_tr": "2026-10-22",
+  "status": "NOT_COLLECTED",
+  "concentrated_status": "NOT_COLLECTED",
+  "required_checkpoints_hours": [
+    72,
+    60,
+    40,
+    24,
+    12,
+    8,
+    6,
+    3,
+    1
+  ],
+  "required_markets": [
+    "1X2",
+    "OU25",
+    "BTTS"
+  ],
+  "required_fixtures": 47,
+  "required_slots": 1269,
+  "verified_checkpoint_slots_archived": 0,
+  "release_asset_refs": [],
+  "archive_file_paths": [],
+  "scan_reference_run_id": "sxf-2026-10-22-checkpoint-t6-fallback-t8-asof-151630-tr-v1",
+  "note": "01_scan_results retains a single selected T-6 or T-8 decision snapshot for each fixture (plus reported EARLY origins). It is NOT the full 47-fixture x 3-market x 9-checkpoint concentrated archive. Do not infer missing nine-point values or claim grid completion.",
+  "generated_at_utc": "2026-10-22T13:12:53.625Z"
+}
