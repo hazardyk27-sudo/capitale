@@ -1,0 +1,63 @@
+{
+  "schema_version": "SXF_ARCHIVE_V1_0",
+  "match_date_tr": "2026-10-22",
+  "timezone": "Europe/Istanbul",
+  "generated_at_utc": "2026-10-22T13:12:56.421Z",
+  "source": "SUPABASE_SMARTXFLOW_READ_ONLY",
+  "source_access": "VERIFIED",
+  "fixture_count": 47,
+  "all_fixtures_included": true,
+  "missing_fixture_ids": [],
+  "report_run_ids": [
+    "sxf-2026-10-22-checkpoint-t6-fallback-t8-asof-151630-tr-v1"
+  ],
+  "scan_id": "scan-20261022-151630-tr-t6t8-v1",
+  "original_scan_as_of_utc": "2026-10-22T12:16:30Z",
+  "report_mode": "CHECKPOINT_RESEARCH_T6_FALLBACK_T8",
+  "01_scan_results": "RECONSTRUCTED_ARCHIVED",
+  "02_outcome_performance": "NOT_COLLECTED",
+  "03_full_snapshots": "NOT_COLLECTED",
+  "04_concentrated": "NOT_COLLECTED",
+  "full_snapshot_status": "NOT_COLLECTED",
+  "concentrated_status": "NOT_COLLECTED",
+  "release_asset_refs": [],
+  "coverage": {
+    "T6_fixtures": 21,
+    "T8_fixtures": 26,
+    "fixtures_with_market_snapshots_all_three": 47,
+    "signal_fixtures": 28,
+    "no_signal_fixtures": 19,
+    "unique_selections": 30,
+    "motor_labels_total": 72
+  },
+  "scan_files": {
+    "json_path": "archive/2026/10/22/01_scan_results/sxf-2026-10-22-checkpoint-t6-fallback-t8-asof-151630-tr-v1.json",
+    "markdown_path": "archive/2026/10/22/01_scan_results/sxf-2026-10-22-checkpoint-t6-fallback-t8-asof-151630-tr-v1.md",
+    "write_commits": [
+      {
+        "path": "archive/2026/10/22/01_scan_results/sxf-2026-10-22-checkpoint-t6-fallback-t8-asof-151630-tr-v1.json",
+        "commit_sha": "7659110939f4b37c674451b78a30651c44f746ca"
+      },
+      {
+        "path": "archive/2026/10/22/01_scan_results/sxf-2026-10-22-checkpoint-t6-fallback-t8-asof-151630-tr-v1.md",
+        "commit_sha": "157104df1d3231c5035496eb5b2e8f201f9c107d"
+      }
+    ]
+  },
+  "archive_parts": {
+    "full_snapshots_manifest": "archive/2026/10/22/03_full_snapshots/manifest.json",
+    "concentrated_manifest": "archive/2026/10/22/04_concentrated/manifest.json",
+    "settlement_path": null
+  },
+  "full_day_archive_complete": false,
+  "migration_complete": false,
+  "source_archive_writes": false,
+  "github_only_persistence": true,
+  "warnings": [
+    "User-published prior checkpoint report copied and versioned now. Historic AS_OF is not original GitHub commit creation time.",
+    "EARLY event log entry may be later than underlying origin snapshot and checkpoint; do not claim independent publication verification.",
+    "Full raw 1X2/OU25/BTTS snapshots and 9-point all-fixture grid are not collected to Github; only selected checkpoint snapshot metadata in scan JSON.",
+    "No scores or outcomes attached and no performance computation performed.",
+    "Original snapshot SHA-256 hashes and complete rejected-signal audit not present; do not misreport full audit as complete."
+  ]
+}
