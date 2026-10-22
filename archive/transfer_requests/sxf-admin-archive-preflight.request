@@ -1,0 +1,7 @@
+{
+  "kind": "PRECHECK_ONLY_NO_EXPORT",
+  "requested_day": "2026-10-09",
+  "request_date": "2026-10-22",
+  "purpose": "verify Github secret presence, real SELECT-only PostgreSQL source access; no archive data generated",
+  "no_data_modification": true
+}
