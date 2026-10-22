@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.export_sxf_daily_archive import ChunkWriter, canonical_hash, verify_directory
+from scripts.export_sxf_daily_archive import ChunkWriter, canonical_hash, verify_directory, require_genuine_readonly_role
 
 DAY = "2026-10-09"
 
@@ -85,6 +85,33 @@ class ArchiveIntegrityTests(unittest.TestCase):
             self.make_concentrated(Path(temp), duplicate=True)
             with self.assertRaises(ValueError):
                 verify_directory(Path(temp))
+
+
+
+class FakeConnection:
+    def __init__(self, result):
+        self.result = result
+    def cursor(self):
+        return self
+    def __enter__(self):
+        return self
+    def __exit__(self, *_):
+        return False
+    def execute(self, query):
+        assert "pg_roles" in query and "has_table_privilege" in query
+    def fetchone(self):
+        return self.result
+
+
+class ReadOnlyRoleTests(unittest.TestCase):
+    def test_genuine_select_only_user_passes(self):
+        require_genuine_readonly_role(FakeConnection((False, True, False, False)))
+
+    def test_privileged_credentials_rejected_without_writes(self):
+        for flags in ((True, True, False, False), (False, True, True, False),
+                      (False, True, False, True), (False, False, False, False)):
+            with self.assertRaises(PermissionError):
+                require_genuine_readonly_role(FakeConnection(flags))
 
 
 if __name__ == "__main__":
