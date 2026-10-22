@@ -131,3 +131,33 @@ jobs:
           gh release download "$ARCHIVE_RELEASE_TAG" --pattern verification_receipt.json --dir "$RUNNER_TEMP/sxf-receipt"
           cmp -s "$RUNNER_TEMP/sxf-readback/verification_receipt.json" "$RUNNER_TEMP/sxf-receipt/verification_receipt.json"
           echo 'SXF draft Release readback, SHA256, JSONL restore and receipt PASS'
+      - name: Write append-only archive receipt index to GitHub and read back
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import base64, json, os, pathlib, subprocess
+          folder = pathlib.Path(os.environ["RUNNER_TEMP"]) / "sxf-readback"
+          manifest = json.loads((folder / "export_manifest.json").read_text("utf-8"))
+          receipt = json.loads((folder / "verification_receipt.json").read_text("utf-8"))
+          day = manifest["day"]
+          sub = "03_full_snapshots" if manifest["kind"] == "full_snapshots" else "04_concentrated"
+          target = "archive/" + day.replace("-", "/") + "/" + sub + "/admin_release_receipt_v1.json"
+          entries = manifest["tables"] if manifest["kind"] == "full_snapshots" else manifest["markets"]
+          index = {
+            **receipt,
+            "asset_inventory": [
+              {"name": a["name"], "rows": a["rows"], "bytes": a["bytes"], "sha256_gzip": a["sha256_gzip"]}
+              for entry in entries for a in entry["assets"]
+            ],
+            "source_notice": "This Release is verified, but existing daily scan/settlement and source PARTIAL flags remain unchanged.",
+          }
+          encoded = base64.b64encode((json.dumps(index, indent=2) + "\n").encode("utf-8")).decode("ascii")
+          repo = os.environ["GITHUB_REPOSITORY"]
+          subprocess.run(["gh", "api", "--method", "PUT", "repos/" + repo + "/contents/" + target,
+                          "-f", "branch=main",
+                          "-f", "message=SXF: record GitHub-verified draft archive " + day + " " + manifest["kind"],
+                          "-f", "content=" + encoded], check=True, stdout=subprocess.DEVNULL)
+          subprocess.run(["gh", "api", "repos/" + repo + "/contents/" + target, "--jq", ".sha"], check=True)
+          print("Append-only GitHub receipt verified: " + target)
+          PY
