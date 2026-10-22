@@ -1,0 +1,27 @@
+name: SXF daily archive offline integrity checks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/export_sxf_daily_archive.py
+      - tests/test_sxf_daily_archive.py
+      - .github/workflows/sxf-daily-archive-tests.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check exporter syntax and independent gzip/grid integrity tests
+        run: |
+          python -m py_compile scripts/export_sxf_daily_archive.py
+          python -m unittest discover -s tests -p 'test_sxf_daily_archive.py' -v
