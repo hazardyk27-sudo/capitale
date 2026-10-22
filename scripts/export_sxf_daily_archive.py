@@ -301,6 +301,44 @@ def verify_directory(folder: Path) -> dict:
     return {"day": day, "kind": kind, "verified_rows": total, "asset_count": sum(len(x["assets"]) for x in entries)}
 
 
+
+def require_genuine_readonly_role(conn) -> None:
+    """Refuse admin/superuser/owner DSNs even under read-only transactions.
+
+    A read-only transaction is not proof that underlying credentials are
+    restricted; enforce source role permissions using SELECT-only metadata.
+    """
+    with conn.cursor() as cur:
+        cur.execute("""
+            SELECT
+                COALESCE(
+                    (SELECT rolsuper OR rolcreatedb OR rolcreaterole OR rolreplication OR rolbypassrls
+                     FROM pg_roles WHERE rolname = current_user),
+                    TRUE
+                ) AS elevated_role,
+                has_schema_privilege(current_user, 'research_archive', 'USAGE') AS can_read_schema,
+                has_schema_privilege(current_user, 'research_archive', 'CREATE') AS can_create_schema,
+                EXISTS (
+                  SELECT 1
+                  FROM pg_class t JOIN pg_namespace ns ON ns.oid = t.relnamespace
+                  WHERE ns.nspname = 'research_archive' AND t.relkind IN ('r', 'p')
+                    AND (
+                      has_table_privilege(current_user, t.oid, 'INSERT')
+                      OR has_table_privilege(current_user, t.oid, 'UPDATE')
+                      OR has_table_privilege(current_user, t.oid, 'DELETE')
+                      OR has_table_privilege(current_user, t.oid, 'TRUNCATE')
+                      OR has_table_privilege(current_user, t.oid, 'TRIGGER')
+                    )
+                ) AS can_mutate_archive_tables
+        """)
+        elevated, usage, create, mutate = cur.fetchone()
+    if elevated or not usage or create or mutate:
+        raise PermissionError(
+            "SXF_ARCHIVE_DATABASE_URL must be a dedicated SELECT-only role "
+            "with no administrator, DDL, or DML rights on research_archive"
+        )
+
+
 def export(day: dt.date, kind: str, folder: Path, chunk_rows: int, batch_fixtures: int) -> dict:
     import psycopg
     dsn = os.environ.get("SXF_ARCHIVE_DATABASE_URL")
@@ -315,6 +353,7 @@ def export(day: dt.date, kind: str, folder: Path, chunk_rows: int, batch_fixture
             cur.execute("SHOW transaction_read_only")
             if cur.fetchone()[0] != "on":
                 raise ValueError("Source DB transaction is not read-only")
+        require_genuine_readonly_role(conn)
         source = source_manifest(conn, day)
         result = (export_full(conn, day, folder, chunk_rows, source) if kind == "full_snapshots"
                   else export_concentrated(conn, day, folder, chunk_rows, batch_fixtures))
