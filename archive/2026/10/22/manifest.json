@@ -42,7 +42,11 @@
         "path": "archive/2026/10/22/01_scan_results/sxf-2026-10-22-checkpoint-t6-fallback-t8-asof-151630-tr-v1.md",
         "commit_sha": "157104df1d3231c5035496eb5b2e8f201f9c107d"
       }
-    ]
+    ],
+    "early_origin_event_provenance_path": "archive/2026/10/22/01_scan_results/sxf-2026-10-22-checkpoint-t6-fallback-t8-asof-151630-tr-v1_early_event_provenance.json",
+    "early_origin_event_provenance_commit": "e3c61618d56dfb812573043f29fc2f46b30cf290",
+    "early_origin_source_event_count": 22,
+    "source_event_recorded_after_checkpoint_count": 16
   },
   "archive_parts": {
     "full_snapshots_manifest": "archive/2026/10/22/03_full_snapshots/manifest.json",
@@ -58,6 +62,7 @@
     "EARLY event log entry may be later than underlying origin snapshot and checkpoint; do not claim independent publication verification.",
     "Full raw 1X2/OU25/BTTS snapshots and 9-point all-fixture grid are not collected to Github; only selected checkpoint snapshot metadata in scan JSON.",
     "No scores or outcomes attached and no performance computation performed.",
-    "Original snapshot SHA-256 hashes and complete rejected-signal audit not present; do not misreport full audit as complete."
+    "Original snapshot SHA-256 hashes and complete rejected-signal audit not present; do not misreport full audit as complete.",
+    "EARLY origins are retained in a separate append-only provenance sidecar because the initial published scan JSON omitted populated origin_events. Source ledger event insertion times may occur after the original T-6/T-8 research cutoff."
   ]
 }
