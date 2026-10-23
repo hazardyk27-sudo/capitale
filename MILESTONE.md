@@ -609,3 +609,24 @@ The owner amended the active EXPERIMENTAL v1.4 methodology (no backdated alterat
 5. Quantitative opponent-adjusted xGD residual = observed xGD minus an actually available and defensible *pre-match expected xGD* conditioned on opponent strength and venue. If no validated historical baseline exists, do NOT fabricate a number; explain difficulty qualitatively. Recent results and performance graphs remain independent observations.
 
 Updated: `methods/analyst_v1_4_possession_form_experimental.md` (1.4.1), `schemas/analyst_v1_4_possession_form_report.md` (1.4.1), `roles/analyst.md` (1.1.4) and `AGENTS.md` (1.11). No predictive improvement or half-time data availability has been claimed or measured. Prior snapshots preserved.
+
+
+---
+
+## 2026-10-23 — ANALYST v1.4.2 — owner confirms 3 factors, third is opponent logic (EXPERIMENTAL)
+
+The owner finalized the **visible three-factor ANALYST research structure** for all new match analyses:
+
+1. **TOPA SAHIP OLMA OYUNU:** Compare full current league season against opponent normal pre-match possession HIGH >=55%, BALANCED >45% and <55%, LOW <=45%, including first/second half where verified.
+2. **FORM IVMESI:** Full league-season baseline, then last 3 league matches, then last 1 league match; separate score/points and statistical underlying-performance xG/xGA/xGD/shots/sot curves, with opponent-strength and venue context.
+3. **RAKIP MANTIGI:** A distinctly labelled **qualitative football-reasoning** section analyzing current opponent strength and tactical matchup against recent opponents, why and whether prior results transfer, structural strength versus present form, and plausible win/draw/loss scenarios. Do not mechanically favor a seemingly in-form but weaker opponent; a Sociedad result against Levante is not equivalent to Sociedad performing against Real Madrid. No arbitrary number or unvalidated equation substitutes for contextual football reasoning.
+
+The report must visibly contain all three in that order, then a brief evidence-based synthesis; preserve uncertainty and counterarguments, permitted ANALYST sources, and source cutoffs. v1.3 experimental selection-specific gating remains supplementary, not a replacement.
+
+Updated:
+- `methods/analyst_v1_4_possession_form_experimental.md` (v1.4.2);
+- `schemas/analyst_v1_4_possession_form_report.md` (v1.4.2);
+- `roles/analyst.md` (v1.1.5);
+- `AGENTS.md` (v1.12).
+
+No backtest, prospective improvement, real team match study, or change to historical picks is claimed. This is an owner-directed EXPERIMENTAL workflow refinement; existing canonical governance continues.
