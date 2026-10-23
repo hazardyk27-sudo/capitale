@@ -2,6 +2,8 @@
 
 Repository methodology files are source-of-truth documentation; they do not automatically become an agent's runtime instruction.
 
+**ANALYST v2.0 CANONICAL active routing (owner-approved 2026-10-23):** `prompts/analyst_start.md` routes new analyses ONLY to `methods/analyst_methodology.md` and `schemas/analyst_report.md` v2.0. Older analyst v1.1, v1.2, v1.3 and v1.4.x methods and report templates are SUPERSEDED/INACTIVE for new runs, retained for auditing old match reports. Every new run uses exactly three factors (possession, form momentum, opponent logic with mandatory home/away analysis for BOTH clubs). The prompt source-of-truth is now live in this repository, not an unimplemented external agent deployment.
+
 For every new role run, use the matching bootstrap prompt first:
 - `prompts/analyst_start.md`
 - `prompts/news_start.md`
