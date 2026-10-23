@@ -1,7 +1,7 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.9
+Version: 1.10
 Last updated: 2026-10-23
 
 ## 1. Purpose
@@ -133,7 +133,7 @@ Bootstrap scoring rules may be CANONICAL for operational consistency while remai
 
 ## 10. Current State
 
-ANALYST: v1.1.2 CANONICAL role presentation (historical v1.1 evidence baseline), v1.2 EXPERIMENTAL frozen historical shadow records, v1.3 EXPERIMENTAL active for new shadow runs: separate SINGLE WIN, DOUBLE CHANCE, OVER 2.5 and BTTS engines; explicit win/draw/loss and game-lock failure scenarios, cup/cross-league and away evidence-quality checks, ordinal 0–100 score gates, settlement audit and walk-forward validation. v1.3 is NOT CANONICAL.
+ANALYST: v1.1.3 CANONICAL base role/presentation. v1.2 historical EXPERIMENTAL snapshots frozen; v1.3 EXPERIMENTAL remains the selection-type failure-path/score-gating layer. **v1.4 EXPERIMENTAL is the owner-requested active research focus for NEW runs**: classify both teams' past opponents by habitual pre-fixture possession rate, compare WDL and sourced xG/xGA/xGD by opponent type, and display sourced last-3 + latest-match results and statistics graphs for both teams, distinguishing score versus underlying form. Validate trend/possession effects prospectively; NO promotion to CANONICAL yet.
 NEWS: v1.4 CANONICAL — whole-match news and atmosphere, numbered source-verified H# stories, seven -3..+3 market-impact columns and arithmetic totals. v1.3 research instructions SUPERSEDED.
 POLY: v1.4 CANONICAL — independent public Polymarket v2 + Gamma/CLOB + Polygon bettor discovery/verification; all CAPITALE Supabase and SXF POLY sources prohibited; candidate skill thresholds uncalibrated
 SXF: v0.4 DRAFT — core engines + dynamic per-match horizon approved; validation/calibration pending
