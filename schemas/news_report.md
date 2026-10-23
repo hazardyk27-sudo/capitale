@@ -1,12 +1,12 @@
 # NEWS MATCH IMPACT — Report Schema
 
 Status: CANONICAL
-Version: 1.4
+Version: 1.4.1
 Supersedes: NEWS report schema v1.3 for new runs
 
 ```yaml
 role: NEWS
-methodology_version: news-match-impact-v1.4
+methodology_version: news-match-impact-v1.4.1
 match_id: <match ID or explicitly unknown>
 match: <home> vs <away>
 competition: <verified competition>
@@ -76,6 +76,9 @@ post_match_review: <absent in original pre-match report; separate record after k
 ```
 
 ## Enforced rules
+
+0. The **match-impact relevance gate** runs BEFORE making any H# event row. Routine supporter bus logistics, normal fan gatherings, fan-zone promotion, generic social optimism and ordinary ticket/sellout notices are NON-MATERIAL and MUST NOT enter `stories` or produce 1X2/goal/BTTS points. A concrete exceptional stadium/preparation effect must be verified before a fan item can become H#. Search the fan category regardless, and mention `NO_MATERIAL_FAN_NEWS` in evidence gaps when applicable.
+
 
 1. Each H# row refers to exactly one independent news story/underlying cause. Repeat stories across publications are clustered, not double counted.
 2. Output all **seven** columns for every story and seven totals for every match, even when user supplies only one market selection or none.
