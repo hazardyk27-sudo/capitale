@@ -17,9 +17,9 @@
   "01_scan_results": "RECONSTRUCTED_ARCHIVED",
   "02_outcome_performance": "PARTIAL",
   "03_full_snapshots": "NOT_COLLECTED",
-  "04_concentrated": "NOT_COLLECTED",
+  "04_concentrated": "COMPLETE_GRID_WITH_EXPLICIT_MISSING_SOURCE_SNAPSHOTS",
   "full_snapshot_status": "NOT_COLLECTED",
-  "concentrated_status": "NOT_COLLECTED",
+  "concentrated_status": "COMPLETE_GRID_WITH_EXPLICIT_MISSING_SOURCE_SNAPSHOTS",
   "release_asset_refs": [],
   "coverage": {
     "T6_fixtures": 21,
@@ -28,7 +28,11 @@
     "signal_fixtures": 28,
     "no_signal_fixtures": 19,
     "unique_selections": 30,
-    "motor_labels_total": 72
+    "motor_labels_total": 72,
+    "day_wide_fixtures_all_kickoff_times": 129,
+    "concentrated_checkpoint_slots": 3483,
+    "concentrated_present_slots": 2614,
+    "concentrated_missing_slots": 869
   },
   "scan_files": {
     "json_path": "archive/2026/10/22/01_scan_results/sxf-2026-10-22-checkpoint-t6-fallback-t8-asof-151630-tr-v1.json",
@@ -53,7 +57,8 @@
     "concentrated_manifest": "archive/2026/10/22/04_concentrated/manifest.json",
     "settlement_path": "archive/2026/10/22/02_outcome_performance/sxf-2026-10-22-checkpoint-t6-fallback-t8-asof-151630-tr-v1_settlement_partial_v1.json",
     "settlement_markdown_path": "archive/2026/10/22/02_outcome_performance/sxf-2026-10-22-checkpoint-t6-fallback-t8-asof-151630-tr-v1_settlement_partial_v1.md",
-    "settlement_status": "PARTIAL_29_FT_1_PENDING"
+    "settlement_status": "PARTIAL_29_FT_1_PENDING",
+    "concentrated_manifest_sha": "538584245e2ce871f3de39af68d3315cac8ea20a"
   },
   "full_day_archive_complete": false,
   "migration_complete": false,
@@ -66,7 +71,9 @@
     "No scores or outcomes attached and no performance computation performed.",
     "Original snapshot SHA-256 hashes and complete rejected-signal audit not present; do not misreport full audit as complete.",
     "EARLY origins are retained in a separate append-only provenance sidecar because the initial published scan JSON omitted populated origin_events. Source ledger event insertion times may occur after the original T-6/T-8 research cutoff.",
-    "22 October 02_outcome_performance is PARTIAL: 29 finished selections based on internal FT rows (external confirmation incomplete), 1 unfinished SURPRISE held pending. The original pre-match scan remains untouched."
+    "22 October 02_outcome_performance is PARTIAL: 29 finished selections based on internal FT rows (external confirmation incomplete), 1 unfinished SURPRISE held pending. The original pre-match scan remains untouched.",
+    "Full-day 22 Oct concentrated grid covers 129 fixtures. The pre-match 01_scan_results cohort of 47 19:30–23:00 fixtures is unchanged; do not conflate scan coverage and full-day archive coverage.",
+    "An early invalid 22 Oct checkpoint export missing source_payload was superseded by v2 and is EXCLUDED. See 04_concentrated/manifest.json for exact path."
   ],
   "settlement_summary": {
     "ft_selection_count": 29,
