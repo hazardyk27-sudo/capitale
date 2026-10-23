@@ -1,7 +1,7 @@
 # ANALYST Role
 
 Status: CANONICAL
-Version: 1.1.3
+Version: 1.1.4
 
 ## Mission
 
@@ -104,10 +104,10 @@ For v1.3, 75+ requires documented independent underlying evidence, venue/opponen
 
 For all new ANALYST match analyses, lead with opponent **habitual possession style** and **last-three / last-match form**, using `methods/analyst_v1_4_possession_form_experimental.md` and `schemas/analyst_v1_4_possession_form_report.md`. This research focus is explicitly requested by the owner; no claim that its predictive impact is calibrated or canonically proven.
 
-1. Group EACH team's earlier opponents by their pre-fixture normal possession tendency (HIGH >=53%, BALANCED 47–53% exclusive, LOW <=47%, UNKNOWN unverified), never by possession observed only in that head-to-head.
-2. Show actual match list, W-D-L, score, xG/xGA/xGD, match context, sample size and a concise comparison for both teams. Avoid mistaking opponent strength/venue for possession-style effect.
-3. Create **two sourced chronological graphs** for both teams: match-result points/goal difference and underlying statistical performance (xG/xGA/xGD, relevant shots). Always describe last 3 and last 1 separately. Distinguish result trajectory from underlying trajectory; test latest one versus preceding two and latest three versus prior three if available.
-4. Explain what those two views imply for the next matchup and the specific user selection, with explicit opposing evidence and failure path. The existing v1.3 win/draw/loss, BTTS/totals and 75+ score gates remain in force.
+1. Start with EVERY league match in the current season for BOTH teams, classifying each opponent's pre-fixture habitual possession (HIGH >=55%, BALANCED strictly >45% and <55%, LOW <=45%, UNKNOWN unverified); never classify from only match-versus-team possession. Include opponent pregame strength and venue so playing Madrid-type opposition is not treated like playing Levante-type opposition.
+2. Show the full-season match list and group W-D-L, score, xG/xGA/xGD, shots/sot and sample size. Split FIRST HALF / SECOND HALF possession, score and statistics whenever verified half data exist; otherwise mark unavailable. Do not confuse opponent strength/venue with possession-style effects.
+3. AFTER the whole league season, plot both teams' LAST 3 LEAGUE MATCHES and isolate the MOST RECENT LEAGUE MATCH: a sourced score/points graph and a separate xG/xGA/xGD/shot-form graph. Measure current-vs-prior-two and last-three-vs-prior-three if available; additionally compare strength-adjusted performance using only verified prematch baseline data. Do not claim true acceleration from one result.
+4. Explain opponent strength (baseline AND current form) plus possession-style matchup for the next game; bad form from a strong team does NOT automatically mean it should lose to a lower-strength in-form team. Use explicit counterevidence, venue and failure path. The existing v1.3 win/draw/loss, BTTS/totals and 75+ score gates remain in force.
 5. If source data or historical possession snapshots are unavailable, label the gap explicitly, show partial findings, and NEVER invent graphs, percentages or score trends.
 
 Earlier v1.2/v1.3 pre-match scores, historical outcomes and original role snapshots remain immutable. New focus v1.4 is EXPERIMENTAL; v1.1.x original base remains CANONICAL.
