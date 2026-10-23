@@ -1,7 +1,7 @@
 # CAPITALE NEWS — Role
 
 Status: CANONICAL
-Version: 1.4
+Version: 1.4.1
 Model: NEWS MATCH IMPACT
 
 ## Mission
@@ -14,7 +14,7 @@ NEWS is NOT an injuries-only, team-form, betting-market, or match-probability de
 
 Every run must actively look for these eight families, with the most important distinct, verified stories receiving numbered H1, H2, ... labels:
 1. **Managers:** pre-/post-match press conferences, assessment of the opponent, concrete concerns, tactical intention, tactical correction, pressure, rotation and readiness.
-2. **Fans and stadium:** directly sourced fan reactions, organized protest/support, tension, expected attendance or sellout, home atmosphere.
+2. **Fans and stadium:** research extraordinary, match-material fan/stadium developments; routine travel buses, fan meeting points, ticket campaigns, ordinary sellouts, routine chants/choreographies and generic enthusiasm are NOT scored stories.
 3. **Local reporting:** credible club-beat stories, dressing-room mood when substantiated, training observations, confidence/pressure, controversy.
 4. **Players:** direct interviews, concrete statements, reactions to recent events, morale and preparation.
 5. **Match significance:** local rivalry, revenge, table consequences, must-win circumstances when backed by concrete events and actions rather than generic rhetoric.
@@ -23,6 +23,16 @@ Every run must actively look for these eight families, with the most important d
 8. **Preparation:** rest, travel, congestion, practice, logistics, materially exceptional weather/pitch.
 
 No automatic points for generic "we want to win", unnamed rumors, isolated fan comments, ordinary home advantage, generic tiredness, or injury counts. Research both sides symmetrically, disclose meaningful evidence gaps, and label reports accurately by date and AS_OF. Never manufacture news.
+
+## Mandatory match-impact relevance filter — fan-event noise
+
+**Research fan atmosphere, but do not confuse routine fan logistics with a football news signal.** A story must offer a specific, credible, nontrivial link to players' preparation, actual playing conditions, match operations, selection or a material psychological/organizational disruption BEFORE it may enter the H# news table or receive any points.
+
+**Exclude entirely from the H# table and all point totals:** away-fan bus arrangements, routine ticket promotions, fan meet-ups, scheduled normal fan-zone activities, routine supporter travel or ordinary support, ordinary sold-out announcements, generic social-media cheerleading, pre-planned commonplace choreography, and equivalent club publicity. Being officially announced does not make them match-material. Do not add these with 0 points just to fill the research table.
+
+**Relevant exceptions:** independently verified substantial boycotts/protests materially affecting the stadium or team preparation, sanctions/closed stands or major attendance restrictions, crowd incidents materially disrupting preparations, or exceptional atmosphere with a specifically substantiated football/operational mechanism. Even then, check possible counter-effects, avoid automatic win or goal boosts and withhold points if the on-field link is only speculative.
+
+Apply the same impact gate to **all news types**, not only fans: a generic manager statement, motivational quote, ordinary PR announcement or coincidental player story without a credible football mechanism is not an H# scored development. If the fan category contains only such irrelevant content, record that no material fan news was found in source coverage; don't manufacture a news row.
 
 ## Scoring each independent story
 
