@@ -1,0 +1,158 @@
+{
+  "schema_version": "SXF_ARCHIVE_V1_0",
+  "artifact": "04_concentrated",
+  "date_tr": "2026-10-18",
+  "timezone": "Europe/Istanbul",
+  "source": "research_archive READ_ONLY",
+  "source_archive_run_status": "PARTIAL",
+  "destination": "GitHub ONLY",
+  "grid_status": "COMPLETE",
+  "snapshot_availability": "PARTIAL__MISSING_SLOTS_EXPLICIT",
+  "all_fixtures_included": true,
+  "fixture_count": 400,
+  "markets": [
+    "1X2",
+    "OU2.5",
+    "BTTS"
+  ],
+  "checkpoints_hours": [
+    72,
+    60,
+    40,
+    24,
+    12,
+    8,
+    6,
+    3,
+    1
+  ],
+  "total_slots": 10800,
+  "source_snapshot_present_slots": 8666,
+  "missing_snapshot_slots": 2134,
+  "full_raw_history_status": "NOT_MIGRATED",
+  "canonical_files": [
+    {
+      "path": "archive/2026/10/18/04_concentrated/v3_checkpoints_allmarkets_fixtures_0001_0040.jsonl",
+      "github_blob_sha": "b847e7b79eff8028f54e54d4c8cbb787685a86aa",
+      "source_sql_sha256": "6d17cfa143f60ddcb8f5857bb13c35b101898dad8d82279517764f047bb589b6",
+      "bytes_readback_verified": 1109541,
+      "rows": 1080,
+      "present": 1020,
+      "missing": 60,
+      "github_blob_readback_verified": true,
+      "source_to_github_exact_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/18/04_concentrated/v3_checkpoints_allmarkets_fixtures_0041_0080.jsonl",
+      "github_blob_sha": "f04c3bb45a22210ef1e80b5d16874624c7f0b0cd",
+      "source_sql_sha256": "cebc4d807ac7f917825fa6c5d3f9d935219e119e4e56b4b627c634df20ba945c",
+      "bytes_readback_verified": 1082168,
+      "rows": 1080,
+      "present": 991,
+      "missing": 89,
+      "github_blob_readback_verified": true,
+      "source_to_github_exact_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/18/04_concentrated/v3_checkpoints_allmarkets_fixtures_0081_0120.jsonl",
+      "github_blob_sha": "9c23665f2ea5b47bf494c766a1ded1210832a828",
+      "source_sql_sha256": "89b64b70b4345d3faae79e479ce8cdb58db8d3ed7b49eb03880f8f3418036246",
+      "bytes_readback_verified": 1079282,
+      "rows": 1080,
+      "present": 992,
+      "missing": 88,
+      "github_blob_readback_verified": true,
+      "source_to_github_exact_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/18/04_concentrated/v3_checkpoints_allmarkets_fixtures_0121_0160.jsonl",
+      "github_blob_sha": "5727140deb50689de6836c8ce8fb3315dc6320f4",
+      "source_sql_sha256": "78abb27b5d53cfa5da9e96ef78b50810de8de8954caf316f3c46dfa3df9b9834",
+      "bytes_readback_verified": 1040791,
+      "rows": 1080,
+      "present": 932,
+      "missing": 148,
+      "github_blob_readback_verified": true,
+      "source_to_github_exact_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/18/04_concentrated/v3_checkpoints_allmarkets_fixtures_0161_0200.jsonl",
+      "github_blob_sha": "15c4dc6fb1c2b31d652f2ebc1ccdd8c50d73f6dc",
+      "source_sql_sha256": "e28cd00b600830416ba70c84a48e5b596928e13eba8c44f16827854f9ef7e222",
+      "bytes_readback_verified": 999829,
+      "rows": 1080,
+      "present": 880,
+      "missing": 200,
+      "github_blob_readback_verified": true,
+      "source_to_github_exact_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/18/04_concentrated/v3_checkpoints_allmarkets_fixtures_0201_0240.jsonl",
+      "github_blob_sha": "c79f5dd5af1a6f16f255566f0f531ea331c57283",
+      "source_sql_sha256": "898db8a4e07b0513828f8215bf82d9f5ef31c38a8fe54ae74673f77eefad56a6",
+      "bytes_readback_verified": 1031751,
+      "rows": 1080,
+      "present": 920,
+      "missing": 160,
+      "github_blob_readback_verified": true,
+      "source_to_github_exact_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/18/04_concentrated/v3_checkpoints_allmarkets_fixtures_0241_0280.jsonl",
+      "github_blob_sha": "34867c25b8067fe17b5835e945d76ddd65d15ab8",
+      "source_sql_sha256": "59e981bd75b4965e7fa352f980f658e4a2287e04bfbf3fa78156d95ad3fbcdbe",
+      "bytes_readback_verified": 998208,
+      "rows": 1080,
+      "present": 870,
+      "missing": 210,
+      "github_blob_readback_verified": true,
+      "source_to_github_exact_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/18/04_concentrated/v3_checkpoints_allmarkets_fixtures_0281_0320.jsonl",
+      "github_blob_sha": "503ae43fb333c3c8b6616117e6aa7c631111f0d4",
+      "source_sql_sha256": "72d2065c19ac3cb7969a0e22170c2143d545faf83f3aceb27627284aace1f767",
+      "bytes_readback_verified": 935349,
+      "rows": 1080,
+      "present": 774,
+      "missing": 306,
+      "github_blob_readback_verified": true,
+      "source_to_github_exact_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/18/04_concentrated/v3_checkpoints_allmarkets_fixtures_0321_0360.jsonl",
+      "github_blob_sha": "8136695871c53ff71bad62bec3775bb2a0a80b78",
+      "source_sql_sha256": "afae70524eec1a023701041c0f1d1d1dc5bd752c47109b4ca5613b0755309acf",
+      "bytes_readback_verified": 881082,
+      "rows": 1080,
+      "present": 693,
+      "missing": 387,
+      "github_blob_readback_verified": true,
+      "source_to_github_exact_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/18/04_concentrated/v3_checkpoints_allmarkets_fixtures_0361_0400.jsonl",
+      "github_blob_sha": "4bd50516d222d3d91ef2d70fd46bec18abd690b7",
+      "source_sql_sha256": "65a35568e4dfdcaae25612cfdbc5a9ceddcff0b5a3f9881702922156195f153c",
+      "bytes_readback_verified": 819980,
+      "rows": 1080,
+      "present": 594,
+      "missing": 486,
+      "github_blob_readback_verified": true,
+      "source_to_github_exact_readback_verified": true
+    }
+  ],
+  "verification": {
+    "unique_slot_keys": true,
+    "all_source_fixture_memberships_present": true,
+    "no_source_snapshots_after_checkpoint": true,
+    "all_present_rows_contain_full_source_payload_and_source_sha256": true,
+    "all_canonical_files_git_blob_readback": true,
+    "source_jsonl_exact_content_match_each_upload": true
+  },
+  "notes": [
+    "Source archive_runs status PARTIAL is preserved: complete generated checkpoint GRID must not be confused with complete original data collection.",
+    "Missing checkpoint snapshots remain MISSING, never interpolated after target.",
+    "The full raw tick history for this date is not yet migrated."
+  ]
+}
