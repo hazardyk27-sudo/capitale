@@ -1,171 +1,87 @@
-# NEWS Report Schema
+# NEWS MATCH IMPACT — Report Schema
 
 Status: CANONICAL
-Version: 1.3
+Version: 1.4
+Supersedes: NEWS report schema v1.3 for new runs
 
 ```yaml
 role: NEWS
-match_id: <canonical match id>
+methodology_version: news-match-impact-v1.4
+match_id: <match ID or explicitly unknown>
 match: <home> vs <away>
+competition: <verified competition>
+kickoff_utc: <timestamp>
+as_of_utc: <timestamp>
 run_at_utc: <timestamp>
-as_of_utc: <decision timestamp>
-prompt_version: <version>
-methodology_version: news-v1.3
+user_preferences: [<zero or more user supplied selections>]
 
-scope_check:
-  betting_market_data_used: false
+independence:
+  odds_or_betting_markets_used: false
   smartxflow_used: false
   polymarket_used: false
   other_department_reports_used: false
+  data_after_as_of_used: false
 
-preference_context:
-  supplied: <true|false>
-  preference: <user supplied selection|null>
-  family: <SIDE|GOALS_BTTS|null>
+news_scan:
+  manager: <COVERED|NO_EVIDENCE|LIMITED>
+  fans_and_stadium: <COVERED|NO_EVIDENCE|LIMITED>
+  local_press: <COVERED|NO_EVIDENCE|LIMITED>
+  players: <COVERED|NO_EVIDENCE|LIMITED>
+  match_stakes: <COVERED|NO_EVIDENCE|LIMITED>
+  club_off_field: <COVERED|NO_EVIDENCE|LIMITED>
+  squad: <COVERED|NO_EVIDENCE|LIMITED>
+  preparation: <COVERED|NO_EVIDENCE|LIMITED>
 
-availability:
-  home:
-    - player: <name>
-      status: <OUT|DOUBTFUL|QUESTIONABLE|AVAILABLE|UNKNOWN>
-      source_tier: <N1|N2|N3|N4>
-      fact_verification: <VERIFIED|PROBABLE|CONFLICTED|INSUFFICIENT>
-      source_ids: []
-      usage: <minutes/starts/appearances or unknown>
-      absence_recency: <NEW|RECENT|LONG_TERM_ALREADY_ABSORBED|NOT_APPLICABLE|UNKNOWN>
-      absence_importance: <LOW|MODERATE|HIGH|VERY_HIGH>
-      absence_effect: <LOW|MODERATE|HIGH|VERY_HIGH>
-      replacement: <name or unknown>
-      replacement_confidence: <LOW|MEDIUM|HIGH>
-      replacement_fit: <WEAKER|SIMILAR|DIFFERENT_ROLE|MAKE_SHIFT|UNKNOWN>
-      replacement_source_ids: []
-      prior_adaptation: <DOCUMENTED|NOT_DOCUMENTED|UNKNOWN>
-      compensation_assessment: <mitigation or UNKNOWN>
-      effect_confidence: <HIGH|MEDIUM|LOW|INSUFFICIENT>
-      structural_effect: <description>
-      note: <why effect differs from importance if relevant>
-  away: []
+match_atmosphere: <short source-based Turkish explanation for both clubs>
 
-absence_chains:
-  - team: <home|away>
-    affected_unit: <e.g. central midfield / defence / attack>
-    members: [<player/event>, <player/event>]
-    mechanism: <how the items interact>
-    amplification: <LOW|MODERATE|HIGH|VERY_HIGH|UNPROVEN>
-    interaction_evidence: <traceable evidence or UNPROVEN>
-    compensation_review: <mitigation or UNKNOWN>
-    double_counting_risk: <description or none>
+stories:
+  - id: H1
+    topic: <one or more of eight news families>
+    club: <HOME|AWAY|BOTH>
+    verified_news: <sourced fact; no invented detail>
+    plausible_match_mechanism: <brief, conditional explanation>
+    evidence_status: <VERIFIED|WELL_SUPPORTED|DISPUTED|NO_EVIDENCE>
+    source_refs:
+      - url: <traceable source URL>
+        tier: <N1|N2|N3|N4>
+        published_at: <timestamp or unknown>
+        observed_at: <timestamp>
+        available_by_as_of: <true|false|unknown>
+    # Exact integers -3..+3; disputed/no-evidence stories must not receive positive/negative points.
+    impact:
+      home_win_1: <integer -3..3>
+      draw_x: <integer -3..3>
+      away_win_2: <integer -3..3>
+      over_2_5: <integer -3..3>
+      under_2_5: <integer -3..3>
+      btts_yes: <integer -3..3>
+      btts_no: <integer -3..3>
+    brief_reason_per_market: <brief explanation, zero where no supported effect>
 
-manager_context:
-  home:
-    material_statements: []
-    ignored_generic_statements: []
-  away:
-    material_statements: []
-    ignored_generic_statements: []
+totals:
+  home_win_1: <sum of stories[*].impact.home_win_1>
+  draw_x: <sum of stories[*].impact.draw_x>
+  away_win_2: <sum of stories[*].impact.away_win_2>
+  over_2_5: <sum of stories[*].impact.over_2_5>
+  under_2_5: <sum of stories[*].impact.under_2_5>
+  btts_yes: <sum of stories[*].impact.btts_yes>
+  btts_no: <sum of stories[*].impact.btts_no>
 
-motivation:
-  home: <concrete evidence or none>
-  away: <concrete evidence or none>
+evidence_gaps: [<relevant uncovered or limited topics>]
+user_preference_news_assessment: <short comparison to totals; no win probability>
+scoring_status: UNCALIBRATED_ORDINAL_NEWS_IMPACT
+no_betting_recommendation: true
 
-off_field:
-  home: []
-  away: []
-
-schedule_travel:
-  home:
-    burden: <material burden or none>
-    interaction_with_depth: <description or none>
-  away:
-    burden: <material burden or none>
-    interaction_with_depth: <description or none>
-
-weather_pitch:
-  material: <true|false>
-  impact: <description or none>
-
-preference_evidence:
-  supporting_factors:
-    - fact: <verified/well-supported NEWS fact>
-      lineup_or_preparation_change: <what changes>
-      football_mechanism: <why it matters on field>
-      why_it_supports: <selection-specific explanation>
-      source_tier: <N1|N2|N3|N4>
-      effect_confidence: <HIGH|MEDIUM|LOW|INSUFFICIENT>
-      compensation_checked: <true|false>
-  opposing_factors:
-    - fact: <verified/well-supported NEWS fact>
-      lineup_or_preparation_change: <what changes>
-      football_mechanism: <why it matters on field>
-      why_it_opposes: <selection-specific explanation>
-      source_tier: <N1|N2|N3|N4>
-      effect_confidence: <HIGH|MEDIUM|LOW|INSUFFICIENT>
-      compensation_checked: <true|false>
-  neutral_or_uncertain_factors:
-    - fact: <relevant but directionally neutral/uncertain item>
-      note: <why neutral/uncertain or why causal chain is incomplete>
-
-news_balance:
-  direction: <SUPPORTS_PREFERENCE|SLIGHTLY_SUPPORTS|MIXED|SLIGHTLY_OPPOSES|OPPOSES_PREFERENCE|INSUFFICIENT_EVIDENCE>
-  rationale: <short descriptive NEWS-only synthesis>
-
-three_axis_assessment:
-  fact_verification: <VERIFIED|PROBABLE|CONFLICTED|INSUFFICIENT>
-  fact_rationale: <source identity and AS_OF freshness>
-  effect_confidence: <HIGH|MEDIUM|LOW|INSUFFICIENT>
-  effect_rationale: <incremental mechanism after compensation>
-  preference_relevance: <DIRECT|CONDITIONAL|UNSUPPORTED|NOT_APPLICABLE>
-  preference_direction: <SUPPORTS_PREFERENCE|SLIGHTLY_SUPPORTS|MIXED|SLIGHTLY_OPPOSES|OPPOSES_PREFERENCE|INSUFFICIENT_EVIDENCE>
-  counterhypothesis: <plausible mitigation or UNKNOWN>
-  scoring_status: NOT_CALIBRATED
-  preference_support_score: null
-
-news_confidence_score: # DEPRECATED v1.2, compatibility only
-  applicable: false
-  total: null
-  band: null
-  components: null
-  rationale: "uncalibrated v1.2 0-100 rubric superseded"
-
-net_news_impact:
-  home: <POSITIVE|NEGATIVE|MIXED|NEUTRAL>
-  away: <POSITIVE|NEGATIVE|MIXED|NEUTRAL>
-  confidence: <LOW|MEDIUM|HIGH>
-  rationale: <summary>
-
-failure_modes:
-  - <main pre-match counter-case that could make NEWS effect weaker than expected>
-
-unresolved_items: []
-
-sources:
-  - source: <source>
-    tier: <N1|N2|N3|N4>
-    observed_at: <timestamp>
-    published_at: <timestamp or UNKNOWN>
-    fetched_at: <timestamp>
-    available_by_as_of: <true|false|unknown>
-    source_url: <link or ID>
-    claim: <supported claim>
-    status: <VERIFIED|LIKELY|UNCONFIRMED>
-
-post_match_review: # separate immutable audit record; do not modify prematch
-  settled: <true|false>
-  selection_result: <HIT|MISS|VOID|UNKNOWN>
-  predicted_news_mechanism_observed: <YES|PARTIAL|NO|UNKNOWN>
-  prematch_fact_correct: <YES|NO|UNKNOWN>
-  outcome_not_news_accuracy: true
-  process_note: <whether expected structural effect appeared on field>
-  failure_tags:
-    - <REPLACEMENT_EFFECT_UNDERESTIMATED|REPLACEMENT_EFFECT_OVERESTIMATED|ABSENCE_ALREADY_ABSORBED|ABSENCE_CHAIN_MISREAD|ROTATION_MISREAD|SOURCE_UNCERTAINTY|CAUSAL_LINK_TOO_WEAK|OPPOSING_NEWS_UNDERWEIGHTED|MATCH_STATE_VARIANCE|FINISHING_VARIANCE>
+post_match_review: <absent in original pre-match report; separate record after kickoff>
 ```
 
-## Rules
+## Enforced rules
 
-- NEWS v1.3 requires distinct fact verification, compensation-adjusted effect confidence, and preference relevance. Source and AS_OF trace per material claim.
-- Every directional news factor needs a complete verified fact -> incremental change -> replacement/compensation review -> football mechanism -> preference-effect chain. Otherwise abstain.
-- Unknown replacement is UNKNOWN rather than poor replacement. Do not infer outcome or team baseline from NEWS.
-- For genuine two-way evidence use MIXED; for missing causal/source evidence use INSUFFICIENT_EVIDENCE. Missing data is not neutral.
-- No independent double-counting of common root causes or chains.
-- v1.2 numeric 0-100 confidence/support values are SUPERSEDED for new runs. Legacy numeric fields null; historic reports unchanged.
-- Post-match audits append separately; no decision leakage or modification of prematch snapshots.
-- Odds, SmartXFlow, Polymarket and other department reports prohibited.
+1. Each H# row refers to exactly one independent news story/underlying cause. Repeat stories across publications are clustered, not double counted.
+2. Output all **seven** columns for every story and seven totals for every match, even when user supplies only one market selection or none.
+3. Individual integers strictly range from -3 to +3. Summary and table TOTAL fields must equal signed arithmetic sum with no normalizing multiplier or hidden weights.
+4. `over_2_5 + under_2_5 = 0` and `btts_yes + btts_no = 0` for each story as complementary impact directions; when no credible goal-market link, each pair is 0/0. The three 1X2 columns have no forced zero-sum restriction.
+5. `NO_EVIDENCE` is not a verified neutral fact. Keep gaps explicit. If no credible scored news exists, seven totals are 0 with declared `INSUFFICIENT NEWS EVIDENCE`, not balanced prediction or 50% probability.
+6. Retain AS_OF, source policy, both-team research, verification and independent NEWS isolation. Do not use market/odds/team statistical department inputs, or later results to modify the pre-match report.
+7. Present the exact five-part human-readable output specified in `roles/news.md` and `prompts/news_start.md`; do not display raw YAML unless explicitly requested.
+8. Legacy v1.2/v1.3 numeric-confidence and three-axis-only output models are SUPERSEDED for new v1.4 runs; do not add them to the new output.
