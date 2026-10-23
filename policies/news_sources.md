@@ -1,32 +1,26 @@
 # NEWS Source Policy
 
 Status: CANONICAL
-Version: 1.0
+Version: 1.1
+Applicable methodology: NEWS MATCH IMPACT v1.4
 
-## Source tiers
+## Source grades — preserve CAPITALE baseline
 
-N1 — official/direct primary information: club/federation/competition announcements, official squad/medical/suspension information, direct manager/player statements, authoritative weather or venue information.
+- **N1** official/direct primary information: clubs, manager/player primary statements, verified supporter association's own announcement of its actions, competition/federation, documented venue/weather source. A fan group's announcement verifies *its announcement/action*, not every supporter’s opinion or an on-field effect.
+- **N2** credible direct local beat/established journalist reporting: sourced manager/player coverage, training, supporter demonstrations, internal club changes and match atmosphere.
+- **N3** contextual and observed fan sentiment: traceable direct fan discussion/forum threads/quotes and local commentary, used with time, sampling and selection-bias caveats. A few commenters do not represent an entire fan base. This is generally insufficient alone for a large directional effect.
+- **N4** speculation, rumor, isolated anonymous posts, low-quality aggregators. Research leads only; must not independently earn points.
 
-N2 — reliable direct reporting: established journalists/outlets with direct access, credible local beat reporting, verified reporting on availability or logistics.
+## Mandatory breadth
 
-N3 — contextual/role information: useful background on expected replacements, role importance, training participation, schedule/travel context, or tactical role when sourced credibly.
+For BOTH teams, research manager statements; organized fan/stadium atmosphere and direct sentiment; local press/team climate; player interviews/reactions; unusual stakes/derby; club management/off-field; squad absences/returns/mitigation; travel/rest/practice and material weather/pitch. Record verified news rather than unrelated background. If a topic has no credible material results, do not fabricate a development.
 
-N4 — clues only: social chatter, aggregators, rumors, indirect reposts, or unverified lineup speculation. N4 may trigger further research but cannot alone support a material conclusion.
+## Evidence and attribution
 
-## Verification rule
+Every scored H# story needs at least one direct traceable source and an AS_OF-valid publication time if determinable. Mark uncertain timing or contested reports; do not knowingly use information first available after AS_OF. Cluster reposts or multiple publications of the same underlying story to avoid double counting. Distinguish what a source actually says from the assistant's plausible but unverified football interpretation.
 
-Material availability claims should prefer N1/N2. If credible sources conflict, preserve the conflict and lower confidence.
+Do not score generic media hype, routine home advantage or broad fan optimism as though they guarantee goals/wins. Credible supporter reactions may be reported without directional points. If evidence is inadequate, status is NO_EVIDENCE, not observed neutrality.
 
-## Absence evidence
+## Prohibited sources
 
-For a missing/uncertain player, collect separately:
-- status certainty;
-- normal role/importance;
-- replacement candidate(s);
-- replacement quality/fit;
-- confidence in replacement expectation;
-- likely structural effect.
-
-## Prohibited
-
-Do not use bookmaker prices, betting-market movement, SmartXFlow, Polymarket, or other department reports.
+No bookmaker odds, betting-market flow, SmartXFlow, Polymarket, ANALYST or other CAPITALE department reports. User-supplied odds, money percentages and engine labels must not be used as NEWS evidence.
