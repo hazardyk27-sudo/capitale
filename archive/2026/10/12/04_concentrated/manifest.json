@@ -1,0 +1,62 @@
+{
+  "schema_version": "SXF_ARCHIVE_V1_0",
+  "artifact": "04_concentrated",
+  "date_tr": "2026-10-12",
+  "timezone": "Europe/Istanbul",
+  "source": "Supabase research_archive READ-ONLY",
+  "destination": "GitHub ONLY",
+  "grid_status": "COMPLETE",
+  "snapshot_availability": "PARTIAL__MISSING_SLOTS_EXPLICIT",
+  "all_fixtures_included": true,
+  "fixture_count": 177,
+  "checkpoints_hours": [
+    72,
+    60,
+    40,
+    24,
+    12,
+    8,
+    6,
+    3,
+    1
+  ],
+  "market_count": 3,
+  "total_slots": 4779,
+  "source_snapshot_present_slots": 3498,
+  "missing_snapshot_slots": 1281,
+  "full_raw_history_status": "NOT_MIGRATED",
+  "release_assets": [],
+  "canonical_files": [
+    {
+      "path": "archive/2026/10/12/04_concentrated/checkpoints_allmarkets_fixtures_0001_0100.jsonl",
+      "github_blob_sha": "4798749517c617056bd6df0478e6e98650255f50",
+      "rows": 2700,
+      "present": 1882,
+      "missing": 818,
+      "bytes_readback_verified": 2136551,
+      "github_blob_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/12/04_concentrated/checkpoints_allmarkets_fixtures_0101_0177.jsonl",
+      "github_blob_sha": "ad55c80d2bbd8f4be56c9ac63dcb0a334cc9ff51",
+      "rows": 2079,
+      "present": 1616,
+      "missing": 463,
+      "bytes_readback_verified": 1749842,
+      "github_blob_readback_verified": true
+    }
+  ],
+  "verification": {
+    "fixture_set_matches_source": true,
+    "unique_checkpoint_keys": true,
+    "source_payload_matches_fixture_uid": true,
+    "no_snapshots_after_checkpoint": true,
+    "github_blob_readback_verified": true,
+    "all_present_source_rows_have_sha256": true
+  },
+  "generated_at_utc": "2026-10-23T03:28:43.228Z",
+  "remarks": [
+    "Complete 177 fixture x three market x nine checkpoint grid only; raw tick history still untransferred.",
+    "Missing source observations represented as MISSING, not imputed."
+  ]
+}
