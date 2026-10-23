@@ -1,7 +1,7 @@
 # NEWS Source Policy
 
 Status: CANONICAL
-Version: 1.1
+Version: 1.1.1
 Applicable methodology: NEWS MATCH IMPACT v1.4
 
 ## Source grades — preserve CAPITALE baseline
@@ -10,6 +10,14 @@ Applicable methodology: NEWS MATCH IMPACT v1.4
 - **N2** credible direct local beat/established journalist reporting: sourced manager/player coverage, training, supporter demonstrations, internal club changes and match atmosphere.
 - **N3** contextual and observed fan sentiment: traceable direct fan discussion/forum threads/quotes and local commentary, used with time, sampling and selection-bias caveats. A few commenters do not represent an entire fan base. This is generally insufficient alone for a large directional effect.
 - **N4** speculation, rumor, isolated anonymous posts, low-quality aggregators. Research leads only; must not independently earn points.
+
+## Relevance filter for fan/stadium content
+
+**Source authenticity does not equal football relevance.** Filter out routine supporter-transport buses, match-day meeting points, promotions, normal ticket sales/sellouts, generic cheering, fan-zone planning and common supporter displays. These must not be H# scored news or be used to infer a team-performance or goal-market advantage; do not even include them as filler with 0 points.
+
+Material exceptions require independent, current verification AND an explicit match-specific causal mechanism: substantial boycott/protest, major stadium/attendance restriction, incidents affecting the match or preparations, or similarly exceptional crowd developments. Separate the directly verified event from conjectured impact and allow unscored reporting if effect remains unsubstantiated.
+
+Still **search** supporter/stadium news for both teams; `NO_MATERIAL_FAN_NEWS` is an acceptable result even when routine fan activity exists.
 
 ## Mandatory breadth
 
