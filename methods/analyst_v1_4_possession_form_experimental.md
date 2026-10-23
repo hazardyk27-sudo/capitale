@@ -1,6 +1,8 @@
 # ANALYST v1.4 — Three Pillars: Possession, Form Momentum, Opponent Logic
 
-Status: EXPERIMENTAL
+> **HISTORICAL / SUPERSEDED as of 2026-10-23.** The owner has deactivated this methodology for ALL NEW ANALYST runs. The ONLY active CANONICAL workflow and output is `methods/analyst_methodology.md` v2.0 + `schemas/analyst_report.md` v2.0. This file is retained solely for historical audit and reproduction of originally frozen decisions; do not apply its scoring rules, routing, simulation, optional modules or report template in new analyses.
+
+Status: SUPERSEDED (historical EXPERIMENTAL only)
 Version: 1.4.2
 Owner-approved research focus: 2026-10-23
 Scope: New ANALYST analyses, without modifying old v1.1/v1.2/v1.3 pre-match reports.
