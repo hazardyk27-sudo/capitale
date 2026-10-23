@@ -543,3 +543,34 @@ Updated:
 - `prompts/poly_start.md` v1.4.
 
 Status: **POLY v1.4 CANONICAL source/method change, implemented in GitHub documentation**. No new direct API-wallet scan, verified bettor shortlist, continuous collector, or prospective performance improvement is claimed to have been completed by this documentation change. A future independently run report must prove the source boundary with official API evidence before any success claims.
+
+---
+
+## 2026-10-23 — NEWS MATCH IMPACT v1.4 CANONICAL
+
+The owner explicitly replaced NEWS's older injury-led research and three-axis qualitative presentation with the Stuttgart–Gladbach-style comprehensive **NEWS MATCH IMPACT** report. NEWS v1.0–v1.3 research/presentation instructions are SUPERSEDED for new runs only. Their Git history and completed pre-match research snapshots must not be deleted.
+
+### New mandatory research
+
+Both clubs' coach/manager statements, player interviews, organized supporter actions and credible fan sentiment, stadium environment, local club journalism, match stakes, management/off-field developments, squad absences/returns, and rest/travel/training/material weather must ALL be investigated. Absences are one news family, not the default main lens. Research is symmetric and time-cutoff verified, with every material H# story sourced and deduplicated.
+
+### New scoring and user-visible format
+
+For each distinct sourced H# news event, show seven **-3 to +3 integer NEWS effect points**: home win 1, draw X, away win 2, Over 2.5, Under 2.5, KG Var, KG Yok. Do this even if the user supplied only one of the seven selections. Group multiple reports of the same underlying event, zero unsupported directional claims, and keep goal and KG complements reciprocal. Summarize with exact column totals; points are transparent uncalibrated subjective news effects, NOT win probabilities or calibrated confidence.
+
+Exactly match the four numbered sections demonstrated in the Stuttgart–Gladbach v1 user-facing example: (1) sourced H# news/events; (2) 1X2 scored matrix/totals; (3) 2.5 Over/Under and KG Yes/No scored matrix/totals; (4) seven-outcome summary and brief submitted-pick NEWS effect. Include a short header and match-atmosphere opening. No extra numerical layers, confidence scores, arbitrary default injury emphasis or irrelevant appendices.
+
+### Preserved base contract
+
+CAPITALE agent separation; N1–N4 sources and explicit fan-source limitations; accurate factual provenance; no bettor/betting odds/SmartXFlow/Polymarket/ANALYST reports in NEWS; no future-data leakage after AS_OF; missing data is not positive or neutral evidence; historical run immutability and independent post-match reviews; FINAL alone makes A/B/C and betting recommendations.
+
+### Updated files and status
+
+- `roles/news.md` v1.4 CANONICAL — replaced previous active instructions.
+- `methods/news_methodology.md` v1.4 CANONICAL — replaced previous research workflow.
+- `policies/news_sources.md` v1.1 CANONICAL — extended fan/atmosphere evidentiary guidance without relaxing N1–N4 base rules.
+- `schemas/news_report.md` v1.4 CANONICAL — seven-outcome H# impact matrix and arithmetic totals.
+- `prompts/news_start.md` v1.4 CANONICAL — exact new runtime presentation.
+- `AGENTS.md` NEWS current-state alignment pending separately if not yet verified.
+
+NEWS v1.4 is the active **methodology**; the point weights are explicitly UNVALIDATED as predictive effectiveness. Historical v1.3 data stay preserved.
