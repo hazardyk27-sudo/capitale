@@ -1,7 +1,7 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.13
+Version: 1.14
 Last updated: 2026-10-23
 
 ## 1. Purpose
@@ -15,7 +15,7 @@ The system must prefer reproducibility, source discipline, uncertainty disclosur
 CAPITALE has six roles:
 
 1. ANALYST — independent football performance, tactical baseline, and matchup analysis.
-2. NEWS — NEWS MATCH IMPACT v1.4 researches the entire verified pre-match atmosphere for both clubs, including manager/player/fan/local-press/club/squad/preparation context; scores each distinct H# story -3..+3 for 1/X/2, Over/Under 2.5 and KG Yes/No, and reports signed totals. These ordinal points are uncalibrated and not result probabilities.
+2. NEWS — NEWS MATCH IMPACT v1.4.1 researches the entire verified pre-match atmosphere for both clubs, including manager/player/fan/local-press/club/squad/preparation context; scores each distinct H# story -3..+3 for 1/X/2, Over/Under 2.5 and KG Yes/No, and reports signed totals. These ordinal points are uncalibrated and not result probabilities. Routine fan transport/ticket promotions, normal supporter gatherings or generic atmosphere lacking a demonstrated match-specific effect are excluded from H# news and points; material exceptional protests/stadium disruptions remain eligible when verified.
 3. SXF — independent SmartXFlow market-flow analysis. Its approved v0.4 core engines and dynamic per-match horizon rule are DRAFT pending validation/calibration.
 4. POLY — independent prediction-market / bettor-intelligence analysis using the active split source policy defined below.
 5. ENGINEER — architecture, data access, schemas, prompts, versions, testing, backtesting, calibration, and maintenance. ENGINEER does not make match predictions.
@@ -72,7 +72,7 @@ Conflicting evidence must be preserved, not averaged away. FINAL must reduce con
 
 Evidence arising from the same underlying cause must not be double-counted as independent confirmation.
 
-NEWS MATCH IMPACT v1.4 is the active NEWS methodology. It supersedes v1.3's research/output and v1.2's 0–100 confidence rubric for new runs. Source reliability, factual/interpretation separation, AS_OF, independent roles, no double-counting and immutable historical reports still apply. NEWS -3..+3 points are uncalibrated, not win probabilities.
+NEWS MATCH IMPACT v1.4.1 is the active NEWS methodology. It supersedes v1.3's research/output and v1.2's 0–100 confidence rubric for new runs. Source reliability, factual/interpretation separation, AS_OF, independent roles, no double-counting and immutable historical reports still apply. NEWS -3..+3 points are uncalibrated, not win probabilities. Routine supporter-bus/ordinary fan-event items with no demonstrated on-field/operational link are NOT scored, even when an official club announcement confirms they exist.
 
 Thresholds, reliability/freshness multipliers, penalties, and category boundaries should ultimately be learned or calibrated from backtests. Bootstrap rules may be used only when explicitly versioned and marked as unvalidated.
 
@@ -134,7 +134,7 @@ Bootstrap scoring rules may be CANONICAL for operational consistency while remai
 ## 10. Current State
 
 ANALYST: **v2.0 CANONICAL — the ONE AND ONLY active new-run methodology and schema**, effective 2026-10-23 by explicit owner decision. References: `roles/analyst.md`, `methods/analyst_methodology.md`, `schemas/analyst_report.md`, `prompts/analyst_start.md`. Follow exactly the preceding Torino–Monza report with compulsory home/away detail: (1) entire same-season league opponent habitual-possession profiles HIGH >=55%, BALANCED >45% to <55%, LOW <=45%, including verified first/second half data; (2) season baseline then last THREE and ONE league matches with distinct actual score/points and underlying xG/xGA/shots graph, opponent-difficulty interpretation; (3) football-logic opponent-level/tactical matchup, with BOTH teams' all HOME and all AWAY league fixtures listed by opponent, score and stats, especially comparing home side at home vs visitor away. End with only three-factor summary/qualified football lean, not 0–100 rating or odds/probability. Earlier v1.1, v1.2, v1.3, v1.4.x analyst methodologies and score engines are SUPERSEDED/INACTIVE for all new runs; historical files and as-of decisions retained intact. Source/isolation and AS_OF principles unchanged. This is an approved operational research procedure, NOT proof of predictive accuracy or calibrated win probabilities.
-NEWS: v1.4 CANONICAL — whole-match news and atmosphere, numbered source-verified H# stories, seven -3..+3 market-impact columns and arithmetic totals. v1.3 research instructions SUPERSEDED.
+NEWS: v1.4.1 CANONICAL — whole-match news and atmosphere, numbered source-verified H# stories, seven -3..+3 market-impact columns and arithmetic totals. v1.3 research instructions SUPERSEDED. Explicit match-impact relevance filter excludes routine, non-material fan logistics/PR from H# news and scoring.
 POLY: v1.4 CANONICAL — independent public Polymarket v2 + Gamma/CLOB + Polygon bettor discovery/verification; all CAPITALE Supabase and SXF POLY sources prohibited; candidate skill thresholds uncalibrated
 SXF: v0.4 DRAFT — core engines + dynamic per-match horizon approved; validation/calibration pending
 FINAL: v0.2 DRAFT — synthesis architecture approved; numerical calibration pending
