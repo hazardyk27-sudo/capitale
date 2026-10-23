@@ -574,3 +574,23 @@ CAPITALE agent separation; N1–N4 sources and explicit fan-source limitations; 
 - `AGENTS.md` version 1.9 — NEWS current-state and base governance alignment verified.
 
 NEWS v1.4 is the active **methodology**; the point weights are explicitly UNVALIDATED as predictive effectiveness. Historical v1.3 data stay preserved.
+
+
+---
+
+## 2026-10-23 — ANALYST v1.4 — possession-opponent profiles and recent-match trend (EXPERIMENTAL)
+
+The owner explicitly requested that **opponent habitual possession style** and **last 3 / last 1 match performance curves (score AND match statistics)** become the default primary research steps for future ANALYST analyses. The user rejected replacing them with speculative Monte Carlo calculations or subjective weight explanations.
+
+New active EXPERIMENTAL workflow:
+- Classify each analyzed team's **past opponents** using opponents' own pre-fixture habitual possession percentages, not the possession recorded solely against the analyzed team. Preliminary descriptive cohorts: HIGH >=53%, BALANCED strictly 47–53%, LOW <=47%, UNKNOWN where source unavailable. Report historic-profile verification status and prevent future-data leakage.
+- Show real matches and split W-D-L, points, goals, xG/xGA/xGD and shots against possession groups, alongside venue and opponent-strength confounding. In small cohorts show limits rather than causal claims.
+- For each team plot sourced **(i) match score/results** and **(ii) underlying statistical performance** chronologically. Discuss latest-three trajectory, whether last match improved vs preceding two, and previous-three benchmark when sample permits. Distinguish RESULT_UP from STATS_UP; do not infer reliable acceleration from only one fixture.
+- Explain implications for the upcoming match with win/draw/loss or exact market preference routes; maintain v1.3 selection-specific failure modes, BTTS weaker-leg checks, source isolation, 0-100 ordinal score cautions, immutable as-of, and settlement audit.
+- Missing stats/possession snapshots => explicit partial report. No invented values, charts or confident style classifications.
+
+Created:
+- `methods/analyst_v1_4_possession_form_experimental.md`
+- `schemas/analyst_v1_4_possession_form_report.md`
+
+Updated `roles/analyst.md` and `AGENTS.md` state/pointers. Original v1.1 canonical analytical baseline and historical v1.2/v1.3 reports remain preserved. **No empirical uplift or algorithm calibration claimed**; prospective evaluation remains open.
