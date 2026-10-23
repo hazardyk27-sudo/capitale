@@ -1,7 +1,7 @@
 # ANALYST v1.4 — Opponent Possession Type and Three-Match Form
 
 Status: EXPERIMENTAL
-Version: 1.4
+Version: 1.4.1
 Owner-approved research focus: 2026-10-23
 Scope: New ANALYST analyses, without modifying old v1.1/v1.2/v1.3 pre-match reports.
 Related: `methods/analyst_v1_3_experimental.md` remains the selection-specific interpretation and risk layer; v1.1 canonical source/isolation remains active.
@@ -26,11 +26,11 @@ These two components are the headline analysis, NOT optional side notes. Do not 
 ## Possession-type grouping (transparent provisional bins)
 
 Based on each opponent's habitual prior-fixture average possession:
-- HIGH_POSSESSION: >=53%.
-- BALANCED_POSSESSION: >47% and <53%.
-- LOW_POSSESSION: <=47%.
+- HIGH_POSSESSION: >=55%.
+- BALANCED_POSSESSION: >45% and <55%.
+- LOW_POSSESSION: <=45%.
 - UNKNOWN: no defensible comparable prior-fixture possession.
-- 47/53 are DESCRIPTIVE exploratory boundaries, not optimized thresholds. Show exact opponent possession percentages; if near boundaries, state sensitivity and compare also a continuous possession-versus-xGD relationship when sample permits.
+- 45/55 are OWNER-SELECTED DESCRIPTIVE exploratory boundaries, not optimized thresholds. Show exact opponent possession percentages; if near boundaries, state sensitivity and compare also a continuous possession-versus-xGD relationship when sample permits.
 - Optional opponent-strength stratification or matching using public allowed historical strength metrics (e.g., a well-grounded historic strength rating), but not betting odds or market estimates. Do not let strength confounding masquerade as style.
 - Record each opponent identity, match date, location, possession reference window and numeric rate, score and performance stats, group, opponent strength where independently available.
 
@@ -44,9 +44,33 @@ For EACH analyzed team group, compute:
 
 For the UPCOMING opponent, obtain its pre-match habitual possession from available matches; classify its group, with the limitation shown. Describe how the team performed against this type AND the reverse check for the other team's usual opponent type.
 
+## Mandatory analysis order and opponent-strength normalization (v1.4.1)
+
+The owner specified the following order for **both teams, not one team only**:
+
+A. **FULL CURRENT LEAGUE SEASON:** enumerate every league match through AS_OF; show opposition's *prior-game habitual possession group*, opponent strength at that historical cutoff (if available), home/away venue, score/result, xG/xGA, shots and shots on target where available. Aggregate HIGH/BALANCED/LOW/UNKNOWN. Only then form a season baseline. Never use only last-3 results as the season baseline. Cup/European fixtures are a separate labelled appendix and never silently merge into league sample.
+B. **LATEST 3 LEAGUE MATCHES:** chronological results and statistics for exactly the latest three league fixtures; calculate both raw and opponent-strength-adjusted changes. If fewer than three, report insufficiency.
+C. **LATEST 1 LEAGUE MATCH:** compare latest game with the two preceding league games using result metrics and xG/xGA/shots/sot; explain why any apparent surge/dip may be explained by a stronger/weaker opponent, home/away or match-state. Do not label a one-game jump as a confirmed accelerating trend.
+
+**Opponent difficulty is essential, not optional.** Obtain a verifiable PRE-FIXTURE opponent-strength rating if possible (Opta Power Rankings if its as-of historic value actually exists and may be used; an independently derived historical football-only performance strength is also permitted). A *current* rating is not the historical match-day rating. Tag STRENGTH_RATING_HISTORICAL_UNVERIFIED if only current values are available. For cross-league fixtures, no ungrounded tier equivalence.
+
+To measure form fairly, estimate a pre-match expected xG difference conditioned on opponent strength, own pre-match strength, venue and same-era evidence, from an actually trained/validated historical reference model **when one exists**. Then:
+`opponent_adjusted_xGD = observed_xGD - prematch_expected_xGD`.
+A positive residual means better performance than that reference model expected; negative means worse. **Do not fabricate** expected xGD values or use hindsight ratings. If no defensible model exists, leave adjusted_xGD null and compare difficulty qualitatively with explicit provenance. Example of the logic (hypothetical only): xGD +0.30 versus a weak opponent with expected +1.20 is -0.90 residual; xGD +0.10 against a strong opponent with expected -0.70 is +0.80 residual. Strength-normalized scores, stats and style comparisons must not be conflated with empirical win-probabilities or proof of causality.
+
+**Possession style vs strength:** show both opponent strength and habitual possession together; verify whether apparent performance versus HIGH-possession opponents is merely because they are stronger. Compare teams of approximately similar strength and venue first when sample supports it; otherwise explicitly qualify. Do not infer "the strong opponent would now lose" solely because the strong club lost several games and the underdog won several; long-run strength and dynamically adjusted form are separate pieces of evidence.
+
+### First-half / second-half extension where actual data exist
+
+- For EACH historical fixture, if sourced: 1H and 2H scores, 1H/2H observed ball possession, xG/xGA, shots and shots on target, each half separately. The same applies to current league-season aggregates and last-three form trend.
+- When source offers *habitual opponent possession specifically by half from matches prior to that fixture*, optionally classify opponent's 1H and 2H tendency independently using the same >=55 / <=45 bins. Do not substitute opponent's possession against this team for its usual 1H/2H style.
+- Opponent overall habitual possession remains the primary match classification; half-specific classification is supplemental, NEVER inferred from full-time possession or half-time score.
+- If half-level xG or possession missing, explicitly mark HALF_DATA_UNAVAILABLE; show actual verified half-time score if present, never invent 45-minute splits or assume an even division.
+- Do not mix halves with different available source samples without disclosing denominators. A team's second-half possession falling after taking a lead may be driven by score state, not a natural tactical identity.
+
 ## Dynamic form: results AND stats, latest 3 / latest 1
 
-Build a per-team chronological match ledger at least latest three comparable official matches; optionally latest six when available to separate 3-vs-prior-3:
+Build a per-team chronological match ledger of the latest three **league** matches (last six league fixtures when available for a prior-three comparison). Label nonleague competitions separately rather than mixing them:
 - fixture/date/opponent/venue/result, goals for and against, W/D/L, points (3/1/0);
 - xG/xGA/xGD, shots, shots on target, and actual possession where available;
 - opponents' strength and unusual game-state flag to avoid falsely interpreting harder schedule as deterioration.
@@ -60,10 +84,10 @@ Build a per-team chronological match ledger at least latest three comparable off
 
 ## User-facing report — REQUIRED order for all new analyses
 
-1. **Rakibin topa sahip olma profili** — exact habitual possession for both teams with AS_OF, data coverage.
-2. **Rakip tipine göre geçmiş maçlar** — list opponents with possessions, scores, xG and xGA; separate HIGH/BALANCED/LOW; aggregate and explain venue/opponent strength confounding.
-3. **Son 3 + son maç form grafikleri** — both sides, two distinct graphs for (A) results and (B) underlying stats. For each, state last 3 trend and last match versus the previous two; do not mix them.
-4. **Eşleşme yorumu ve sıradaki maç** — explain what the possession-style evidence AND two teams' form trajectories imply; clear win/draw/loss or user selection support/oppose pathways with stronger evidence and credible failure path.
+1. **Sezonun bütün lig maçları ve rakibin topa sahip olma profili** — exact habitual possession for both teams with AS_OF, data coverage.
+2. **Rakip tipine, güç seviyesine ve sahaya göre geçmiş lig maçları (ilk/ikinci yarı mümkünse)** — list opponents with possessions, scores, xG and xGA; separate HIGH/BALANCED/LOW; aggregate and explain venue/opponent strength confounding.
+3. **Son 3 lig maçı ve son lig maçı form grafikleri (skor + istatistik + rakip zorluğu)** — both sides, two distinct graphs for (A) results and (B) underlying stats. For each, state last 3 trend and last match versus the previous two; do not mix them.
+4. **Rakip zorluğuna göre düzeltilmiş form ve eşleşme yorumu / sıradaki maç** — explain what the possession-style evidence AND two teams' form trajectories imply; clear win/draw/loss or user selection support/oppose pathways with stronger evidence and credible failure path.
 5. **Sayısal özet** — at minimum group WDL, xGD means, last-three xGD trend and most recent match change; any optional 0–100 ordinal support score explicitly uncalibrated and subject to existing v1.3 high-score gates. Do not invent simulation percentages or exact probabilities without a separately validated model.
 
 When data insufficient, show the known portion and explicitly say "BU KARŞILAŞTIRMA ÖLÇÜLEMEDİ", listing missing match/stat columns. Do NOT quietly substitute a different prediction method.
