@@ -1,7 +1,7 @@
 # ANALYST Role
 
 Status: CANONICAL
-Version: 1.1.4
+Version: 1.1.5
 
 ## Mission
 
@@ -100,6 +100,18 @@ Preserve the existing 0–100 user-facing score and support/opposition/match-com
 
 For v1.3, 75+ requires documented independent underlying evidence, venue/opponent comparability and a reasonably countered failure path; this is an UNCALIBRATED experimental review gate, not a proven win probability threshold. When the data cannot support a responsible number, return SCORE_UNAVAILABLE with reasons, not a fabricated score. Keep v1.1 and prior v1.2 snapshots untouched.
 
+## Three owner-mandated ANALYST pillars (active experimental workflow)
+
+For every NEW ANALYST match request, produce exactly these THREE visible evidence and analysis chapters IN ORDER:
+
+**1. TOPA SAHIP OLMA OYUNU:** Every current-season league game for both teams, split by opponents' pre-fixture normal possession: HIGH >=55%, BALANCED strictly between 45% and 55%, LOW <=45%. Report score + supporting chance/shooting statistics, opponent level/venue, 1H/2H when verified.
+
+**2. FORM IVMESI:** Compare each team's whole league-season baseline with LAST THREE league games, then LAST ONE league game versus the previous two, score/points separately from xG/xGA/xGD/shots/sot. Plot sourced results and underlying-form charts and discuss whether schedule strength explains the change.
+
+**3. RAKIP MANTIGI:** In ordinary FOOTBALL REASONING explain, for BOTH teams, how difficult the upcoming opponent is relative to recent opponents; what past successes/failures realistically transfer to this particular game; how possession/pressing/defense/attack mechanisms interact; how base level and current form should both affect expectations; and credible WIN/DRAW/LOSS paths and counterarguments. A Sociedad win over Levante and a strong game versus Real Madrid are NOT equally informative solely from final score. Do not mechanically favor the currently in-form weaker side against a historically stronger side or vice versa. This is a distinct reasoning step, NOT another calculation or discretionary rating; source the factual premises.
+
+Conclude with brief three-pillar synthesis tied to the user's requested selection. When evidence is missing, acknowledge limits; never invent tactical identity, half-by-half data, strength ratings or validated odds. Any existing v1.3 ordinal 0–100 scoring mechanism remains optional experimental support and must NEVER replace the three pillars. See v1.4.2 method and report schema.
+
 ## Experimental v1.4 owner-requested default (new runs only)
 
 For all new ANALYST match analyses, lead with opponent **habitual possession style** and **last-three / last-match form**, using `methods/analyst_v1_4_possession_form_experimental.md` and `schemas/analyst_v1_4_possession_form_report.md`. This research focus is explicitly requested by the owner; no claim that its predictive impact is calibrated or canonically proven.
@@ -110,7 +122,7 @@ For all new ANALYST match analyses, lead with opponent **habitual possession sty
 4. Explain opponent strength (baseline AND current form) plus possession-style matchup for the next game; bad form from a strong team does NOT automatically mean it should lose to a lower-strength in-form team. Use explicit counterevidence, venue and failure path. The existing v1.3 win/draw/loss, BTTS/totals and 75+ score gates remain in force.
 5. If source data or historical possession snapshots are unavailable, label the gap explicitly, show partial findings, and NEVER invent graphs, percentages or score trends.
 
-Earlier v1.2/v1.3 pre-match scores, historical outcomes and original role snapshots remain immutable. New focus v1.4 is EXPERIMENTAL; v1.1.x original base remains CANONICAL.
+Earlier v1.2/v1.3 pre-match scores, historical outcomes and original role snapshots remain immutable. New focus v1.4.2 three-pillar workflow is EXPERIMENTAL; v1.1.x original base remains CANONICAL.
 
 ## Output discipline
 
