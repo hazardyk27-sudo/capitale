@@ -49,7 +49,7 @@
     "01_scan_results": "NOT_YET_RECONSTRUCTED",
     "02_outcome_performance": "NOT_YET_RECONSTRUCTED",
     "03_full_snapshots": "PARTIAL_TRANSFERRED",
-    "04_concentrated": "NOT_YET_TRANSFERRED",
+    "04_concentrated": "COMPLETE_GRID_WITH_EXPLICIT_MISSING_SOURCE_SNAPSHOTS",
     "all_raw_files_verified": false,
     "migration_complete": false,
     "note": "This manifest is an inventory of the existing Supabase source, NOT confirmation that full raw data has been copied to GitHub. Legacy research files when copied are separate and not full historical archive.",
@@ -66,7 +66,7 @@
       }
     },
     "legacy_research_location": "archive/legacy_research/smartxflow_learning_archive/",
-    "current_stage": "FIXTURES_AND_RESULTS_VERIFIED__BULK_MARKET_HISTORY_PENDING",
+    "current_stage": "13_OCT_CONCENTRATED_GRID_VERIFIED__FULL_RAW_HISTORY_PENDING",
     "copied_sets": [
       {
         "path": "archive/2026/10/13/03_full_snapshots/alarms_2026-10-13.jsonl",
@@ -103,7 +103,35 @@
       "moneyway_snapshots",
       "live_snapshots"
     ],
-    "legacy_research_path": "archive/legacy_research/smartxflow_learning_archive/"
+    "legacy_research_path": "archive/legacy_research/smartxflow_learning_archive/",
+    "concentrated_grid": {
+      "status": "COMPLETE",
+      "all_fixtures_included": true,
+      "fixture_count": 192,
+      "markets": [
+        "1X2",
+        "OU2.5",
+        "BTTS"
+      ],
+      "checkpoints": [
+        "T-72",
+        "T-60",
+        "T-40",
+        "T-24",
+        "T-12",
+        "T-8",
+        "T-6",
+        "T-3",
+        "T-1"
+      ],
+      "checkpoint_slots": 5184,
+      "present": 3518,
+      "missing": 1666,
+      "canonical_asset_count": 2,
+      "path": "archive/2026/10/13/04_concentrated/manifest.json",
+      "manifest_github_blob_sha": "b6d67185d70710b6c1d548764f98ddbb2d09873c",
+      "source_type": "research_archive READ-ONLY"
+    }
   },
   "source_repo": {
     "repository": "hazardyk27-sudo/smartxflow",
