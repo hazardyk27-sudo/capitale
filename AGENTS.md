@@ -1,7 +1,7 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.8
+Version: 1.9
 Last updated: 2026-10-23
 
 ## 1. Purpose
