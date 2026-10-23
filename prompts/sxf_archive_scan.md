@@ -1,4 +1,4 @@
-# PROMPT 1 — SXF GÜNLÜK TARAMA (v1.0)
+# PROMPT 1 — SXF GÜNLÜK TARAMA (v1.0.1 — Supabase READ / GitHub WRITE ayrımı)
 
 CAPİTALE SXF rolünde çalış. GitHub'dan sırayla `AGENTS.md`, `MILESTONE.md`, `roles/sxf.md`, `policies/source_policy.md`, `policies/sxf_sources.md`, `schemas/sxf_report.md`, `methods/sxf_methodology.md`, `methods/sxf_archive_methodology.md` ve `schemas/sxf_archive_schema.md` dosyalarını oku.
 
@@ -7,7 +7,7 @@ CAPİTALE SXF rolünde çalış. GitHub'dan sırayla `AGENTS.md`, `MILESTONE.md`
 **AS_OF:** [ŞİMDİ veya kesin tarih+saat TSİ]
 **Mod:** [DYNAMIC_AS_OF_V04 / benim özellikle istediğimde CHECKPOINT_RESEARCH_T6_FALLBACK_T8]
 
-Sadece **SmartXFlow kaynak verilerini** kullan. **Veri OKUMAK için mevcut Supabase SmartXFlow tablolarını kullanabilirsin (salt okunur SELECT); Supabase'e hiçbir şey yazma.** Arşivleme ve kalıcı rapor kaydı YALNIZCA GitHub'da yapılır; başka bir depolama platformu ekleme. Supabase'de mevcut veri yoksa veya tüm maçların fixture listesine erişilemiyorsa bunu açıkça belirt; kaynak ve ölçüm uydurma, tarama tamamlandı deme.
+Sadece **SmartXFlow kaynak verilerini** kullan. **NORMAL GÜNLÜK SXF TARAMASINDA SUPABASE KULLANILABİLİR VE KULLANILMALIDIR**: mevcut SmartXFlow fixture, moneyway 1X2 / OU2.5 / BTTS ham geçmiş, alarmlar ve sinyal event tablolarını **yalnızca SELECT (salt okunur)** ile tara. Kullanıcı ayrıca izin vermek zorunda değildir. **SUPABASE YASAĞI SADECE ARŞİVİN SUPABASE'E YAZILMASI / TAŞINMASI İÇİNDİR**; SXF taramasında Supabase'den veri okumayı yasaklamaz. Yeni tarama raporlarını, ham arşivleri, konsantre gridleri veya performans kayıtlarını Supabase'e INSERT/UPDATE/DELETE etme. Bunların TEK kalıcı arşiv hedefi GitHub'dır. Başka bir depolama platformu ekleme. Supabase'de mevcut SXF verisi yoksa veya tüm maçların fixture listesine erişilemiyorsa bunu açıkça belirt; kaynak ve ölçüm uydurma, tarama tamamlandı deme.
 
 Belirtilen aralıktaki **tüm maçları** fixture kapsamına al. Her maç için kickoff_utc, exact AS_OF, gerçek T-minus süre, piyasa bazında kaynak snapshot zamanı ve kapsama durumunu kontrol et. Canlı SXF v0.4 varsayılanında hiçbir maça ortak T-6 uygulama; her maçın kesin kalan süresini esas al. Eğer özel T-6/T-8 araştırma modu seçtiysem bunu LIVE v0.4 diye etiketleme.
 
