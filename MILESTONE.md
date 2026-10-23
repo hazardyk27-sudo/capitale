@@ -594,3 +594,18 @@ Created:
 - `schemas/analyst_v1_4_possession_form_report.md`
 
 Updated `roles/analyst.md` and `AGENTS.md` state/pointers. Original v1.1 canonical analytical baseline and historical v1.2/v1.3 reports remain preserved. **No empirical uplift or algorithm calibration claimed**; prospective evaluation remains open.
+
+
+---
+
+## 2026-10-23 — ANALYST v1.4.1 owner refinement: 55/45, first/second halves, opponent difficulty
+
+The owner amended the active EXPERIMENTAL v1.4 methodology (no backdated alteration to historical v1.4/v1.3 match records):
+
+1. Possession categories now HIGH **>=55%**, BALANCED **>45% and <55%**, LOW **<=45%**, based on each opponent's **historical pre-fixture habitual possession**, never in-game possession against the analysed team alone. Earlier v1.4 descriptive 53/47 bands are SUPERSEDED for NEW analyses, retained as historical method documentation in Git history.
+2. Mandatory reporting order: **ALL current-season league games** and their opponent strength/style cohorts; THEN **latest 3 league games** results and underlying stats trend; THEN **latest 1 league game** versus the preceding two in both result and xG/xGA/shots/sot terms. Cups/European competitions separate; no selective omission.
+3. If sourced, add **first-half vs second-half** possession, results, xG and shot splits and optional opponents' habitual pregame possession per half; if not available do not fabricate. A half-time score is not proof of half-by-half xG or possession.
+4. Opponent **difficulty** is mandatory in every cohort and recent-form evaluation. A Real Madrid-level opponent and a Levante-level opponent cannot be treated as equally hard solely based on score/xGD. Baseline opponent strength, home/away, current form and tactical style are distinct; a strong team's recent poor form does not automatically make a lesser baseline team favored.
+5. Quantitative opponent-adjusted xGD residual = observed xGD minus an actually available and defensible *pre-match expected xGD* conditioned on opponent strength and venue. If no validated historical baseline exists, do NOT fabricate a number; explain difficulty qualitatively. Recent results and performance graphs remain independent observations.
+
+Updated: `methods/analyst_v1_4_possession_form_experimental.md` (1.4.1), `schemas/analyst_v1_4_possession_form_report.md` (1.4.1), `roles/analyst.md` (1.1.4) and `AGENTS.md` (1.11). No predictive improvement or half-time data availability has been claimed or measured. Prior snapshots preserved.
