@@ -513,3 +513,33 @@ This entry clarifies (and supersedes the broader "no Supabase" language in the e
 - **Unchanged:** SXF v0.4 role/data-source isolation, exact per-match AS_OF, approved motors, global publication odds floor 1.30, no future-data leakage, and the nine research checkpoints.
 
 Updated `methods/sxf_archive_methodology.md`, `schemas/sxf_archive_schema.md`, `prompts/sxf_archive_scan.md`, `prompts/sxf_archive_save.md`, `prompts/sxf_archive_settle.md`, `prompts/README.md`, `archive/README.md`.
+
+
+---
+
+## 2026-10-23 — Owner mandate: independent POLY bettor discovery; CAPITALE Supabase completely prohibited (POLY v1.4 CANONICAL)
+
+The owner rejected use of previously collected CAPITALE/SXF Supabase data for POLY and instructed the agent to **find football bettors and their records independently**, not by accessing or seeding from earlier dataset content. **This owner source change supersedes the entire v1.2/v1.3 SXF POLY-only active bettor source routing** and the obsolete earlier `poly.current_shortlist` / Supabase-driven methodology for POLY.
+
+New approved POLY-only source contract:
+- Official public **Polymarket Data API v2**: direct discovery via leaderboard, football-market participants, wallet history/activity/positions and supported PnL. Verify current version and pagination; Data API v1 scheduled to retire 2026-10-24.
+- Official **Gamma** event/sports metadata to classify real football fixtures, condition/token IDs and settlement.
+- Official public **CLOB** for entry/current feasible quote and depth; **Polygon** chain trade/settlement/redemption logs as needed for independent cashflow verification.
+- **NEVER read, query, import, compare, or use for seeding active bettor candidates** any historical or current CAPITALE/SXF Supabase table/view/cache/export, including `public.polymarket_trades`, `public.polymarket_matches`, `tracked_wallets`, `tracked_wallet_bets`, `capitale.poly_wallet_*` and related objects.
+- **Never use SXF POLY page** for POLY bettor discovery, selection, performance or current trade evidence.
+- Previous ChatGPT/GitHub bettor identities/results may be read only as part of historical methodology/governance, never treated as a candidate list or fresh wallet data.
+- POLY's new task is to **find / verify profitable football bettors / follow next clean bets**. Do not use aggregate market enthusiasm as bettor skill or substitute personal team predictions.
+
+v1.3 position safety remains: 1.40+ odds screen for highlighted new bets; one economic position per wallet/event/market/side; hedge/SELL scrutiny; personal stake median previous 20–30 comparable positions; no empirically established stake-multiple uplift; quality tiers QUALIFIED / ESTABLISHED / PROVEN require verifiable history and adequate PnL completeness. Independent direct-source discovery must be demonstrated by exact origin URL, timestamp, sampling coverage and market/cashflow reconciliation.
+
+**Do not modify any Supabase object as part of this POLY transition.** Old Supabase records remain historical and may still be read by separately governed SXF when permitted, but POLY must not access them for any purpose. GitHub serves the updated POLY rules; a runtime integration must load this new GitHub prompt rather than earlier Supabase current-methodology pointers.
+
+Updated:
+- `AGENTS.md` v1.8;
+- `roles/poly.md` v1.4;
+- `policies/poly_sources.md` v1.4;
+- `methods/poly_methodology.md` v1.4;
+- `schemas/poly_report.md` v1.4;
+- `prompts/poly_start.md` v1.4.
+
+Status: **POLY v1.4 CANONICAL source/method change, implemented in GitHub documentation**. No new direct API-wallet scan, verified bettor shortlist, continuous collector, or prospective performance improvement is claimed to have been completed by this documentation change. A future independently run report must prove the source boundary with official API evidence before any success claims.
