@@ -1,5 +1,21 @@
 # SXF migration status — 2026-10-21 (GitHub-only destination)
 
+## 2026-10-23 — concentrated 16–18 October source-to-GitHub transfer COMPLETE
+
+This addendum supersedes the older concentrated pending-state claims for **16, 17 and 18 October** below. Full raw history migration remains outstanding; no source Supabase rows were changed.
+
+- **2026-10-16**: 201 fixture memberships × 3 markets × 9 time checkpoints = **5,427 unique slots**. **3,975 PRESENT**, **1,452 MISSING**, six canonical source-export JSONL files, GitHub blob readback and content equality confirmed. `archive/2026/10/16/04_concentrated/manifest.json` and daily root manifest updated/verified; source `archive_runs.status=COMPLETE`.
+- **2026-10-17**: 436 × 3 × 9 = **11,772 unique slots**. **9,504 PRESENT**, **2,268 MISSING**, eleven canonical source-export JSONL files, GitHub blob readback and content equality confirmed. `archive/2026/10/17/04_concentrated/manifest.json` and daily root manifest updated/verified; source `COMPLETE`.
+- **2026-10-18**: 400 × 3 × 9 = **10,800 unique slots**. **8,666 PRESENT**, **2,134 MISSING**, ten canonical source-export JSONL files, GitHub blob readback and content equality confirmed. `archive/2026/10/18/04_concentrated/manifest.json` and daily root manifest updated/verified; source **PARTIAL is unchanged**.
+- **Batch total:** 1,037 fixture memberships, **27,999** canonical checkpoint slots; **22,145 PRESENT** and **5,854 MISSING**, **27 GitHub JSONL files**. All source payloads carry their PostgreSQL-computed source-row SHA-256; SQL-produced JSONL SHA-256 and GitHub blob SHA checks are listed in daily manifests. No T checkpoint uses a later snapshot.
+- **Concentrated GRID status across 2026-10-09 through 2026-10-22**: **11 of 14** available day folders complete (09–18 and 22 October). **19–21 October** are next; source archive-run statuses for 20–21 remain PARTIAL.
+- **Full raw status**: **0 of 14 days** independently certified as complete in GitHub. The concentrated grid is not a replacement for eight full history/snapshot tables. 2026-10-09 small 1X2 repo shards remain 1,050/148,444; do not mark any full raw date `migration_complete:true`.
+- Supabase `research_archive` accessed through **SELECT-only** SQL, GitHub permanent files only. No new hosting provider, no Supabase schema/data modifications, no missing-data interpolation.
+
+Next concentrated batch under agreed **three-day** cadence: 2026-10-19, 2026-10-20 and 2026-10-21. After concentrated backlog, full raw migration proceeds in **two-day** batches, subject to private read-only source transfer path / bulk GitHub Release asset verification.
+
+---
+
 ## Current verified continuation — 2026-10-21
 
 This section supersedes the older checkpoint and missing-alarm statements below, which are retained as the original migration snapshot.
