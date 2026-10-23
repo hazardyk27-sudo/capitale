@@ -1,7 +1,7 @@
 # CAPITALE — Milestone Log
 
 Status: CANONICAL PROJECT HISTORY
-Last updated: 2026-10-19
+Last updated: 2026-10-23
 
 This file records active state, decisions, superseded rules, technical debt, and next work. Historical decisions are never deleted; replaced rules are marked SUPERSEDED.
 
@@ -630,3 +630,30 @@ Updated:
 - `AGENTS.md` (v1.12).
 
 No backtest, prospective improvement, real team match study, or change to historical picks is claimed. This is an owner-directed EXPERIMENTAL workflow refinement; existing canonical governance continues.
+
+
+---
+
+## 2026-10-23 — ANALYST v2.0 CANONICAL — owner locks exact Torino–Monza report plus full home/away opponent analysis
+
+**Explicit owner instruction:** The TORINO–MONZA three-factor output is to be the EXACT format of every future ANALYST fixture/prediction-list evaluation, with ONLY one additional integrated requirement: both sides' complete current-season home-vs-away form against named opponents. No further or missing analytical factor. Old versions must be forgotten/deactivated for new analyses while historic outputs remain preserved.
+
+### Active output and football reasoning (ONLY version for future runs)
+
+1. TOPA SAHIP OLMA OYUNU: ALL completed current-season league matches for BOTH teams, opponent's historically habitual possession HIGH >=55%, BALANCED >45% and <55%, LOW <=45%, opponent-by-opponent score + xG/xGA/shot stats where sourced, group WDL/xGD. First/second-half comparison only when available.
+2. FORM IVMESI: FULL league season summary first, then last THREE league matches, then LATEST ONE versus previous two, independently for score/points and underlying xG/xGA/xGD/shots/sot with two real source-backed graphs and consideration of rival difficulty.
+3. RAKIP MANTIGI: football reasoning that compares opponent's actual quality and playing style to earlier opponents, transferability of results, base ability against recent form, home and away matchup mechanics and realistic win/draw/loss scenarios. **Mandatory HOME/AWAY subsection within #3, never fourth factor**: list ALL HOME and ALL AWAY league games of EACH of the two clubs, match-by-match with named opponents, score, venue, quality and available xG/shots; emphasize HOME-TEAM-at-HOME vs AWAY-TEAM-away. Neither party's opposite venue games are omitted.
+4. Short THREE-FACTOR SYNTHESIS and evidence-based football interpretation / conditional lean only; no extra factor, old arbitrary 0–100 score, Monte Carlo, unsupported probabilities, current injury/news or odds/market/sxf/poly evidence.
+
+### Governance and execution
+
+- `methods/analyst_methodology.md` now v2.0 CANONICAL, official single source of current analyst method.
+- `schemas/analyst_report.md` now v2.0 CANONICAL, new report shape.
+- `roles/analyst.md` now v2.0 CANONICAL.
+- `prompts/analyst_start.md` now v2.0 CANONICAL, actual runtime bootstrap used for new runs.
+- `AGENTS.md` v1.13 routes to v2.0.
+- `prompts/README.md` documents one active analyst route.
+
+All preexisting ANALYST v1.1, experimental v1.2/v1.3/v1.4.x selection/score/probability or optional-report logic are **SUPERSEDED and INACTIVE** for new analyst reports. Historical reports and old method/code revisions remain in the repository's git history for auditing, never retrospectively mutated or represented as calibrated. Old method files are marked superseded where update succeeded; legacy schemas should be treated as superseded regardless of historic file header. Prior experimental validation notes remain historical, not instructions. Other departments' methods stay untouched.
+
+This action changes GitHub instructions and the analyses produced when those instructions are followed. It does NOT claim an autonomous agent/deployment was changed or that predictive accuracy has been validated.
