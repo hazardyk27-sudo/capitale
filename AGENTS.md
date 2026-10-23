@@ -15,7 +15,7 @@ The system must prefer reproducibility, source discipline, uncertainty disclosur
 CAPITALE has six roles:
 
 1. ANALYST — independent football performance, tactical baseline, and matchup analysis.
-2. NEWS — independent current-context research: availability, replacement/absence-chain effects, manager, motivation, schedule, travel, weather, pitch, and relevant off-field conditions. NEWS assesses source facts, on-field effects after compensation and user selection relevance separately. No uncalibrated numerical NEWS confidence, market research or match-win prediction.
+2. NEWS — NEWS MATCH IMPACT v1.4 researches the entire verified pre-match atmosphere for both clubs, including manager/player/fan/local-press/club/squad/preparation context; scores each distinct H# story -3..+3 for 1/X/2, Over/Under 2.5 and KG Yes/No, and reports signed totals. These ordinal points are uncalibrated and not result probabilities.
 3. SXF — independent SmartXFlow market-flow analysis. Its approved v0.4 core engines and dynamic per-match horizon rule are DRAFT pending validation/calibration.
 4. POLY — independent prediction-market / bettor-intelligence analysis using the active split source policy defined below.
 5. ENGINEER — architecture, data access, schemas, prompts, versions, testing, backtesting, calibration, and maintenance. ENGINEER does not make match predictions.
@@ -72,7 +72,7 @@ Conflicting evidence must be preserved, not averaged away. FINAL must reduce con
 
 Evidence arising from the same underlying cause must not be double-counted as independent confirmation.
 
-NEWS v1.3 separates source fact verification, compensated incremental football effect confidence, and preference-specific NEWS direction. The uncalibrated v1.2 0-100 scoring system is SUPERSEDED for new NEWS reports. Numeric fields remain null until independent owner-approved calibration. NEWS does not infer match win probabilities or baseline team strength.
+NEWS MATCH IMPACT v1.4 is the active NEWS methodology. It supersedes v1.3's research/output and v1.2's 0–100 confidence rubric for new runs. Source reliability, factual/interpretation separation, AS_OF, independent roles, no double-counting and immutable historical reports still apply. NEWS -3..+3 points are uncalibrated, not win probabilities.
 
 Thresholds, reliability/freshness multipliers, penalties, and category boundaries should ultimately be learned or calibrated from backtests. Bootstrap rules may be used only when explicitly versioned and marked as unvalidated.
 
@@ -134,7 +134,7 @@ Bootstrap scoring rules may be CANONICAL for operational consistency while remai
 ## 10. Current State
 
 ANALYST: v1.1.2 CANONICAL role presentation (historical v1.1 evidence baseline), v1.2 EXPERIMENTAL frozen historical shadow records, v1.3 EXPERIMENTAL active for new shadow runs: separate SINGLE WIN, DOUBLE CHANCE, OVER 2.5 and BTTS engines; explicit win/draw/loss and game-lock failure scenarios, cup/cross-league and away evidence-quality checks, ordinal 0–100 score gates, settlement audit and walk-forward validation. v1.3 is NOT CANONICAL.
-NEWS: v1.3 CANONICAL — independently verified fact/effect/preference axes; replacement and adaptation counterhypothesis required; abstention when evidence incomplete; retired uncalibrated v1.2 0–100 scoring; independent mechanism/outcome audit.
+NEWS: v1.4 CANONICAL — whole-match news and atmosphere, numbered source-verified H# stories, seven -3..+3 market-impact columns and arithmetic totals. v1.3 research instructions SUPERSEDED.
 POLY: v1.4 CANONICAL — independent public Polymarket v2 + Gamma/CLOB + Polygon bettor discovery/verification; all CAPITALE Supabase and SXF POLY sources prohibited; candidate skill thresholds uncalibrated
 SXF: v0.4 DRAFT — core engines + dynamic per-match horizon approved; validation/calibration pending
 FINAL: v0.2 DRAFT — synthesis architecture approved; numerical calibration pending
