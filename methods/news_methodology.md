@@ -1,241 +1,40 @@
-# NEWS Methodology
+# NEWS MATCH IMPACT — Methodology
 
 Status: CANONICAL
-Version: 1.3
+Version: 1.4
+Supersedes: NEWS v1.3 three-axis qualitative-only user-facing research workflow and NEWS v1.2 five-part numerical confidence. Preserves CAPITALE source isolation, uncertainty, deduplication and AS_OF governance.
 
-## Objective
+## Research workflow (in this order)
 
-Measure what is materially different today from each team's normal/current football baseline using current-context evidence only, then translate that change into a preference-specific NEWS effect through an explicit causal chain.
+1. Establish exact match, both teams, competition, kickoff and pre-match AS_OF timestamp; reject sources published later.
+2. Look at BOTH clubs symmetrically. Search official club, federation and competition communications; pre-match manager and player statements; credible local press; substantiated supporter organizations and fan discussion; club/off-field reporting; squad reports; rest/travel/weather when material.
+3. Search ALL eight mandatory topic families: manager, fans/stadium, local press, players, match stakes, club/off-field, squad, preparation. The user selection never narrows the topics. Do not default to an injury list.
+4. Identify distinct news **stories**, not snippets or headlines. Cluster common causes (e.g. a protest described by five outlets, an absence mentioned in multiple articles) under a single H#.
+5. For each H#: record original claim, publication/as-of eligibility, N1/N2/N3/N4 source reliability, home/away/both, specific football/atmosphere mechanism and the best plausible counter-explanation. Source facts and speculative on-field interpretation are separate. N4 alone may not yield scored fact.
+6. Apply integer −3..+3 effects on every market column: `1, X, 2, O25, U25, BTTS_YES, BTTS_NO`. There is NO requirement for the scores of 1/X/2 to sum to zero. Per H# each binary pair should be reciprocal or 0/0.
+7. Make arithmetic exact: total of each column = sum of that column's H# values. Verify TOTAL rows equal summary scores.
+8. Surface the seven totals regardless of whether the user gave a 1X2, Over or KG preference, and explain the submitted selection in one short conclusion. If no verified material stories exist, say that evidence is insufficient instead of claiming neutrality.
+9. Snapshot the original sources, timestamps, scores and version. Post-match outcomes belong only in an independent evaluation ledger; never rescore the pre-match run.
 
-NEWS remains isolated from ANALYST, SXF, POLY and FINAL. It must never use odds, market flow or another department's conclusions.
+## Point guidance, applied PER story PER outcome
 
-## Core workflow
+- **+3 / −3**: a very concrete, verified, unusually material news development with a clear mechanism; rare.
+- **+2 / −2**: credible relevant change with moderate expected match/market implication.
+- **+1 / −1**: small, plausible current-news tailwind/headwind.
+- **0**: no supportable relationship or genuinely indeterminate direction. If the underlying topic was not sourced, state `NO_EVIDENCE` separately; do not falsely count 0 as observed neutrality.
 
-1. Confirm match date, kickoff time and venue context.
-2. If the user supplied a selection, classify it as SIDE or GOALS/BTTS for NEWS interpretation.
-3. Research both teams symmetrically across availability, manager context, motivation, off-field issues, schedule/rest/travel and material weather/pitch.
-4. Build the player-availability list.
-5. For every material absence/uncertainty/return, establish:
-   - status certainty;
-   - normal usage/importance;
-   - NEW / RECENT / LONG-TERM-ALREADY-ABSORBED status;
-   - likely replacement(s);
-   - replacement confidence;
-   - replacement role/quality fit;
-   - specific football mechanism created by the change.
-6. Detect interacting absence chains rather than counting absences independently.
-7. Filter manager statements for operational information only.
-8. Check whether schedule, congestion, travel or logistics amplify squad/role problems.
-9. Check material weather/pitch only when it can plausibly change play.
-10. Reconcile source conflicts and preserve uncertainty.
-11. For each directional preference factor, require a causal chain:
-   `current fact -> lineup/role/preparation change -> football mechanism -> preference effect`.
-12. Preserve supporting, opposing and neutral/uncertain factors separately.
-13. Perform three separate qualitative assessments: fact verification, effect confidence after replacement/adaptation, and selection-specific NEWS relevance. No uncalibrated numeric total.
-14. Produce a NEWS-only descriptive conclusion. Do not issue FINAL categories or a betting recommendation.
+Score strength depends on the CURRENT NEWS mechanism, not how often the story was mentioned, how famous a player is, how confident a fan sounds or how strong a team is historically. Context such as coach admission of defensive disorganization can support opponent scoring/Over if a credible link exists; a generic pre-match "we will attack" does not automatically justify +3 Over or KG Yes. Disagreements between quality sources remain labeled as uncertainty; cap or withhold points as appropriate. New absences are evaluated with replacement and existing adaptation; multiple unavailable players do not automatically stack.
 
-## Selection-family interpretation
+Fan mood is a real news research category, not an automatic numerical advantage: cite actual fan actions, organization announcements, direct public sentiments with sample/bias limits, and credible local reporting. Distinguish isolated views from large organized protest/support. Crowd hostility/manager crisis can plausibly pressure a side, but reaction or bounce-back may point the other way; avoid strong automatic scores.
 
-### SIDE
+Goal-market assessment: consider credible effects on each club's offense and defense, potential ability of **each** side to score, match tempo, concrete tactical plans and environment. KG YES and KG NO must be assessed even when a user only gives a winner; same for Over/Under. Do not infer Over solely from support for one team or KG from generic confidence.
 
-Use current-context information to judge whether a team is more or less capable than its normal/current baseline of controlling, resisting or solving the match over 90 minutes.
+## Audit and immutability
 
-Prioritize:
-- central spine availability;
-- goalkeeper/centre-back/holding-midfielder interaction;
-- buildup and pressing role losses;
-- creator/ball-progression losses;
-- replacement quality and positional fit;
-- bench depth and in-game correction options;
-- fatigue/congestion interacting with squad depth;
-- manager-confirmed rotation or role changes.
+Only source evidence available by AS_OF may justify points. Mark claimed but unverified stories as unscored or disputed, not as verified developments. Historical NEWS v1.0–v1.3 reports remain preserved in Git history and any existing archives, but their research and output format are SUPERSEDED for all new v1.4 runs.
 
-Do not import team-form or historical tactical statistics from ANALYST.
+No scoring formula beyond per-event seven integers and arithmetic column totals. Scores are uncalibrated NEWS opinion weights, never bookmaker probabilities or betting advice. Review later selection settlement and on-field news mechanism separately. Repeated markets within a match are dependent observations, not independent success samples.
 
-### GOALS / BTTS
+## Output contract
 
-Interpret the two scoring/defending legs separately where useful.
-
-Prioritize:
-- striker/creator availability;
-- goalkeeper and defensive-line availability;
-- multiple current absences in one attacking or defensive unit;
-- replacement scoring/creation profile;
-- replacement defensive fit;
-- manager-confirmed attacking/defensive rotation;
-- fatigue that plausibly changes pressing, transition defence or attacking freshness;
-- unusual weather/pitch only when materially relevant.
-
-A general team absence must not automatically be treated as a goal-market signal. State the mechanism.
-
-## Absence framework
-
-### ABSENCE_IMPORTANCE
-
-How important the player normally is to the team.
-
-### ABSENCE_EFFECT
-
-How much the absence is expected to change this specific match after considering:
-- replacement quality;
-- replacement role fit;
-- alternative tactical solution;
-- depth at the position;
-- interaction with other absences;
-- certainty of status/replacement information;
-- recency;
-- prior adaptation.
-
-Use qualitative bands:
-- LOW
-- MODERATE
-- HIGH
-- VERY_HIGH
-
-Do not equate fame with effect.
-
-## Recency and adaptation
-
-Classify important absences as:
-- NEW ABSENCE — fresh change to the current lineup/structure;
-- RECENT ABSENCE — limited evidence of adaptation;
-- LONG-TERM / ALREADY ABSORBED — the player may be important in absolute terms, but today's marginal NEWS impact may be smaller because the team has already been playing without them.
-
-If a long-term absence has a stable replacement solution, do not repeatedly score it like a new injury.
-
-## Replacement-first evaluation
-
-For every important absence, identify the most likely replacement when credible evidence allows it.
-
-Evaluate:
-- whether the replacement is natural or makeshift;
-- whether the role changes;
-- whether shape, buildup, pressing, defensive coverage, set pieces or chance creation change;
-- how certain the expected replacement is;
-- whether the team has already used this solution.
-
-If no credible replacement can be established, write:
-`yerine kimin oynayacağı henüz net değil`.
-
-Never omit the replacement question merely to keep the report short.
-
-## Absence-chain framework
-
-Related absences should be evaluated as a functional chain rather than simple arithmetic.
-
-Examples:
-- two central midfield starters missing;
-- goalkeeper plus weakened centre-back line;
-- creator plus striker missing;
-- multiple players from the same flank/position group missing;
-- several absences combined with congestion and thin bench depth.
-
-For each chain, identify:
-1. the affected functional unit;
-2. whether there is a credible replacement structure;
-3. whether the chain amplifies one another;
-4. whether the same root cause is being double-counted.
-
-## Manager-statement filter
-
-Material statements include:
-- confirmed/likely absences or returns;
-- rotation intentions;
-- minutes/fitness restrictions;
-- freshness/rest plans;
-- shape/role changes caused by availability;
-- concrete fixture priority;
-- confidence in a specific replacement/young player;
-- a specific preparation or logistical issue.
-
-Ignore generic motivation language such as:
-- `we want to win`;
-- `we are ready`;
-- `it is an important match`;
-- `the derby means a lot`.
-
-Generic press-conference language is not evidence.
-
-## Motivation rule
-
-Motivation is material only when tied to concrete circumstances such as:
-- qualification/relegation scenarios;
-- fixture priority;
-- rotation incentives;
-- cup/league tradeoffs;
-- credible direct statements revealing a real selection or effort decision.
-
-`Must win` alone is insufficient.
-
-## Schedule, congestion and travel
-
-Schedule burden is not automatically negative.
-
-It becomes material when it plausibly interacts with:
-- limited squad depth;
-- new injuries/suspensions;
-- manager-confirmed rotation;
-- short recovery;
-- unusual travel/logistical burden;
-- specific fitness restrictions.
-
-The report should state the interaction mechanism, not just the number of days between matches.
-
-## Weather/pitch rule
-
-Only report weather or pitch conditions likely to affect play materially. Ordinary conditions are not a signal.
-
-Use authoritative/direct weather or venue information when possible.
-
-## Causal-chain test
-
-A preference factor is directional only when the following can be stated credibly:
-
-`FACT -> CHANGE -> MECHANISM -> PREFERENCE EFFECT`
-
-If one link is unsupported, downgrade the factor to neutral/uncertain or omit it from directional evidence.
-
-Do not transform a true but irrelevant news item into preference support.
-
-## Source reconciliation
-
-Use the NEWS source policy:
-- N1 primary/direct evidence;
-- N2 reliable direct reporting;
-- N3 contextual role evidence;
-- N4 clue only.
-
-Material claims should prefer N1/N2. When credible sources conflict:
-- preserve the conflict;
-- explain what is disputed;
-- reduce the relevant score component;
-- never silently choose the version that better fits the user's preference.
-
-## v1.3 evidence workflow
-
-### 1. Fact confidence
-VERIFIED / PROBABLE / CONFLICTED / INSUFFICIENT. For every material claim: direct source, published/fetched times, availability at AS_OF, correct player/team/fixture, and N1/N2 corroboration when possible. Credible sources prove stated facts, not implied match consequences.
-
-### 2. Incremental effect confidence
-HIGH / MEDIUM / LOW / INSUFFICIENT. For each important absence/return assess NEW/RECENT/ALREADY_ABSORBED; evidence-backed replacement(s), role fit, prior usage of the replacement, manager's adjustment, bench depth and plausible tactical mitigation. If replacement is unknown, its quality and effect are UNKNOWN. Do not assume weakness and do not issue a strong negative on that basis. Genuine interacting absence chains need a demonstrated interaction, not just a list of unavailable players.
-
-### 3. Preference-specific impact
-Only when a complete chain exists: FACT -> incremental lineup/preparation change -> COMPENSATED football mechanism -> impact on user's SIDE/GOALS_BTTS selection. Preserve both directions and a credible counter-case. A favorite weakened by an injury can remain favored and win; NEWS does not infer overall match strength or absolute selection likelihood. Missing evidence -> YETERLİ NEWS KANITI YOK; real offsetting evidence -> DENGELİ / KARIŞIK. For BTTS split both scoring legs; for totals evaluate both attack/defense sides.
-
-## Deprecated scores
-
-The v1.2 25/20/25/20/10 0–100 score and bands, plus noncalibrated 0–100 preference support figures, are SUPERSEDED for new v1.3 output. Numeric fields must be null, scoring_status NOT_CALIBRATED. Qualitative assessments are not probabilities. Future quantitative revival requires untouched chronological out-of-sample calibration and owner approval.
-
-## User-facing reporting
-
-Use plain Turkish. Provide credible match-specific facts for both clubs, missing/returning players, when available reliable usage, age of absence, expected replacement and adaptation evidence. Present preference-supporting/opposing/uncertain factors, NEWS balance, fact verification, effect confidence, preference relevance and strongest compensation counter-case. If credible replacement cannot be established: `yerine kimin oynayacağı henüz net değil`. If information insufficient: `Yeterli güncel bilgi yok`.
-
-Before claiming negative impact, ask: "Even if this team loses a regular starter, why would the actual replacement fail to compensate? Could it still meet the user selection?" If there is no credible answer, do not oppose strongly.
-
-## Validation
-
-Pre-match reports frozen by AS_OF. Settle match outcomes separately and audit source claim accuracy, predicted lineup/replacement, and presence of the predicted game mechanism YES/PARTIAL/NO/UNKNOWN. NEWS accuracy is NOT the same as a selection's hit rate. Cluster multiple selection outcomes from one match, report coverage/abstention and unknown process evidence, and validate v1.3 against v1.2 on the same time-cutoff with walk-forward held-out data. The 17–18 October 2026 reviews are diagnostics only, not a held-out test.
-
-## Role limits
-
-Use only NEWS sources; no odds, SmartXFlow, Polymarket or other departmental evidence. NEWS does not issue a betting recommendation, stake, confidence probability or FINAL A/B/C category.
+Use ONLY the five parts defined in `roles/news.md`: short match-atmosphere opening; numbered H# news table; 1X2 event-score table with TOTAL; O/U and KG event-score table with TOTAL; final seven-outcome NEWS scoreboard with user preference highlighted. No extra "confidence score", no secondary scoring model, no forced favorites, no invented evidence.
