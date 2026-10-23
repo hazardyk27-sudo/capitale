@@ -1,7 +1,7 @@
 # NEWS MATCH IMPACT — Methodology
 
 Status: CANONICAL
-Version: 1.4
+Version: 1.4.1
 Supersedes: NEWS v1.3 three-axis qualitative-only user-facing research workflow and NEWS v1.2 five-part numerical confidence. Preserves CAPITALE source isolation, uncertainty, deduplication and AS_OF governance.
 
 ## Research workflow (in this order)
@@ -9,12 +9,22 @@ Supersedes: NEWS v1.3 three-axis qualitative-only user-facing research workflow 
 1. Establish exact match, both teams, competition, kickoff and pre-match AS_OF timestamp; reject sources published later.
 2. Look at BOTH clubs symmetrically. Search official club, federation and competition communications; pre-match manager and player statements; credible local press; substantiated supporter organizations and fan discussion; club/off-field reporting; squad reports; rest/travel/weather when material.
 3. Search ALL eight mandatory topic families: manager, fans/stadium, local press, players, match stakes, club/off-field, squad, preparation. The user selection never narrows the topics. Do not default to an injury list.
-4. Identify distinct news **stories**, not snippets or headlines. Cluster common causes (e.g. a protest described by five outlets, an absence mentioned in multiple articles) under a single H#.
+4. FIRST screen candidate reports for concrete match materiality (see relevance gate below). Then identify distinct news **stories**, not snippets or headlines. Cluster common causes (e.g. a protest described by five outlets, an absence mentioned in multiple articles) under a single H#.
 5. For each H#: record original claim, publication/as-of eligibility, N1/N2/N3/N4 source reliability, home/away/both, specific football/atmosphere mechanism and the best plausible counter-explanation. Source facts and speculative on-field interpretation are separate. N4 alone may not yield scored fact.
 6. Apply integer −3..+3 effects on every market column: `1, X, 2, O25, U25, BTTS_YES, BTTS_NO`. There is NO requirement for the scores of 1/X/2 to sum to zero. Per H# each binary pair should be reciprocal or 0/0.
 7. Make arithmetic exact: total of each column = sum of that column's H# values. Verify TOTAL rows equal summary scores.
 8. Surface the seven totals regardless of whether the user gave a 1X2, Over or KG preference, and explain the submitted selection in one short conclusion. If no verified material stories exist, say that evidence is insufficient instead of claiming neutrality.
 9. Snapshot the original sources, timestamps, scores and version. Post-match outcomes belong only in an independent evaluation ledger; never rescore the pre-match run.
+
+## Mandatory direct-match-impact relevance gate
+
+Before assigning H# to a report, answer: **What is the credible, meaningful, match-specific causal pathway from this event to the teams' football, preparation, playing conditions, or an exceptional material atmosphere?** If there is no answer, remove it from the H# list; it should not receive even a decorative 0 row. Researching a category and admitting that no material news emerged is sufficient.
+
+In particular: **an away-supporter bus, ordinary fan travel, meeting area, routine fan event/promo, commonplace choreography, usual home support, ticket campaign or standard sellout is NOT a meaningful NEWS event**. Do not infer +1 for the away side or -1 for home merely from an organized supporter bus. Normal fan activities belong neither in the event-score matrix nor the user-visible news table.
+
+Keep researching fan issues and stadium context. Exceptional **sourced, demonstrably material** boycotts, protests, stand closures, attendance restrictions, crowd disruption or unusual pressure that changes match operations/preparation can enter as H# only when a concrete relevant mechanism is explained. A verified fan-organized event is not automatically verified to affect match outcome, total goals or BTTS.
+
+Apply the same test to team/manager/club stories: PR text, generic motivation, routine logistics or ordinary postmatch narratives are not scored unless a specific consequential change is supported. Preserve all standard provenance, both-team research, AS_OF, no future-data, no duplicate evidence and seven-column output for included H#.
 
 ## Point guidance, applied PER story PER outcome
 
