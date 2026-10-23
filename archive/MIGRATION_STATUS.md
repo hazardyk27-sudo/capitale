@@ -134,3 +134,26 @@ The date-by-date read-only source-to-GitHub comparison has now been performed fo
 - Offline exporter tests **5/5 PASS** (Actions [39696995575](https://github.com/hazardyk27-sudo/capitale/actions/runs/39696995575)); isolated admin route/security tests PASS and preview CI [39697711830](https://github.com/hazardyk27-sudo/smartxflow/actions/runs/39697711830) succeeded. One real Supabase **SELECT-only** nine-point lookup was verified for a 9 Oct fixture. **No real new GitHub Release export/upload has run**.
 - REQUIRED TO ACTIVATE (owner-managed, no credentials in chat): SmartXFlow server env `SXF_ARCHIVE_ADMIN_PIN` (strong secret) and `CAPITALE_GITHUB_ACTIONS_TOKEN` (fine-grained Actions authorization for CAPİTALE), plus CAPİTALE GitHub Actions private secret `SXF_ARCHIVE_DATABASE_URL` with a genuinely SELECT-only PostgreSQL role. Previous 250-row pilot failed due to missing DB secret; nothing indicates it has been fixed. Admin deployment requires reviewed SmartXFlow `preview` release process.
 - **Migration counts unchanged**: 9 Oct raw 1X2 small repository shards **1,050/148,444** source-verified, no full raw Release, total verified fully migrated raw days **0/13**. Never mark migrated merely because CI tests or admin queue succeed. Existing 9 Oct canonical 7,020-slot concentrated repo grid remains intact, unchanged.
+
+## 2026-10-24 — Concentrated 14/14 grid migration verified; full raw still pending
+
+This addendum supersedes prior open/concentrated status notes while retaining older history for audit. COMPLETE means all day-fixture/market/checkpoint slots exist, NOT every market snapshot or raw tick exists.
+
+| Day (Europe/Istanbul) | Fixtures | Grid slots | PRESENT | MISSING | Source |
+|---|---:|---:|---:|---:|---|
+| 2026-10-16 | 201 | 5,427 | 3,975 | 1,452 | COMPLETE |
+| 2026-10-17 | 436 | 11,772 | 9,504 | 2,268 | COMPLETE |
+| 2026-10-18 | 400 | 10,800 | 8,666 | 2,134 | PARTIAL |
+| 2026-10-19 | 173 | 4,671 | 3,310 | 1,361 | COMPLETE |
+| 2026-10-20 | 139 | 3,753 | 2,686 | 1,067 | PARTIAL |
+| 2026-10-21 | 142 | 3,834 | 2,679 | 1,155 | PARTIAL |
+
+- The daily GitHub 04_concentrated manifest for EVERY DAY from 2026-10-09 through 2026-10-22 (14/14) now reports a complete 3-market x 9-checkpoint grid. Sum of fixture-day memberships: **3,350**. Expected slot count **90,450**, including **69,359 PRESENT** and **21,091 MISSING**. Counts were rechecked across all 14 GitHub manifests: fixture_count * 27 = total_slots and PRESENT + MISSING = total_slots.
+- 16–18 October: canonical v3 GitHub-part files, readback and complete daily manifest verified. 19 Oct: five v3 JSONL files, exact source/GitHub readback and daily manifest verified. 20 Oct: four v3 files, same checks. 21 Oct: four v4 files, same checks.
+- New 19–21 Oct files retain original selected source row payload, per-source-row SHA256, unique fixture/market/T checkpoint keys, and observation at-or-before checkpoint. Missing historical observations remain MISSING. Supabase was accessed exclusively by SELECT and no source rows were changed.
+- Read-only SQL templates: scripts/sql/sxf_concentrated_day_chunk_v3.sql and scripts/sql/sxf_concentrated_day_chunk_v4.sql. V4 splits fixture_uid and null-fixture_uid/hash fallback into mutually exclusive branches to eliminate expensive OR joins.
+- Source collection PARTIAL states for 18, 20, 21 and 22 October remain unchanged; grid completion is NOT source collection completeness. 22 Oct manifest records public SmartXFlow day-wide source rather than the research_archive SELECT pipeline used for 9–21 Oct.
+- Full original raw history remains **0/14 days fully migrated**. None of the eight large history/snapshot tables is certified as uploaded and restored in full. The 9 Oct 1X2 partial GitHub microshard export remains 1,050/148,444 rows. No full eight-table per-day GitHub Release verified. Small fixtures/results/alarms are separate certified subsets; do not claim full raw migration.
+- Next phase per owner: full raw history in TWO-DAY groups, starting 9–10 Oct, only after the PostgreSQL source read-only connection, repository secret SXF_ARCHIVE_DATABASE_URL, GitHub Release upload, independent download/hash/restore are verifiably operational. Do not write to Supabase or claim completion after a queued workflow.
+
+**Current rollup: concentrated 14/14 days COMPLETE (with explicit source MISSING and source PARTIAL flags); full raw 0/14 days COMPLETE.**
