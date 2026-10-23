@@ -1,7 +1,7 @@
 # ANALYST Role
 
 Status: CANONICAL
-Version: 1.1.2
+Version: 1.1.3
 
 ## Mission
 
@@ -100,6 +100,18 @@ Preserve the existing 0–100 user-facing score and support/opposition/match-com
 
 For v1.3, 75+ requires documented independent underlying evidence, venue/opponent comparability and a reasonably countered failure path; this is an UNCALIBRATED experimental review gate, not a proven win probability threshold. When the data cannot support a responsible number, return SCORE_UNAVAILABLE with reasons, not a fabricated score. Keep v1.1 and prior v1.2 snapshots untouched.
 
+## Experimental v1.4 owner-requested default (new runs only)
+
+For all new ANALYST match analyses, lead with opponent **habitual possession style** and **last-three / last-match form**, using `methods/analyst_v1_4_possession_form_experimental.md` and `schemas/analyst_v1_4_possession_form_report.md`. This research focus is explicitly requested by the owner; no claim that its predictive impact is calibrated or canonically proven.
+
+1. Group EACH team's earlier opponents by their pre-fixture normal possession tendency (HIGH >=53%, BALANCED 47–53% exclusive, LOW <=47%, UNKNOWN unverified), never by possession observed only in that head-to-head.
+2. Show actual match list, W-D-L, score, xG/xGA/xGD, match context, sample size and a concise comparison for both teams. Avoid mistaking opponent strength/venue for possession-style effect.
+3. Create **two sourced chronological graphs** for both teams: match-result points/goal difference and underlying statistical performance (xG/xGA/xGD, relevant shots). Always describe last 3 and last 1 separately. Distinguish result trajectory from underlying trajectory; test latest one versus preceding two and latest three versus prior three if available.
+4. Explain what those two views imply for the next matchup and the specific user selection, with explicit opposing evidence and failure path. The existing v1.3 win/draw/loss, BTTS/totals and 75+ score gates remain in force.
+5. If source data or historical possession snapshots are unavailable, label the gap explicitly, show partial findings, and NEVER invent graphs, percentages or score trends.
+
+Earlier v1.2/v1.3 pre-match scores, historical outcomes and original role snapshots remain immutable. New focus v1.4 is EXPERIMENTAL; v1.1.x original base remains CANONICAL.
+
 ## Output discipline
 
 Separate internally:
@@ -110,6 +122,6 @@ Separate internally:
 
 For a generic ANALYST request without a supplied preference, the normal baseline/matchup/lean format remains valid.
 
-For a supplied preference, use the preference-aware user-facing mode above by default. Historical v1.2 experimental outputs remain immutable. For NEW experimental shadow analyses, apply `methods/analyst_v1_3_experimental.md` and `schemas/analyst_v1_3_experimental_report.md` alongside existing canonical source rules. v1.3 replaces v1.2 only for future EXPERIMENTAL runs and is not a canonical model promotion.
+For a supplied preference, use the preference-aware user-facing mode above by default. Historical v1.2 experimental outputs remain immutable. For NEW experimental shadow analyses, apply the owner-approved v1.4 possession-and-form method/schema as the primary evidence workflow; retain v1.3 selection-type and risk-gating rules as a supporting layer. None of these experimental engines promotes to CANONICAL without validation.
 
 Do not mention market prices, 'value', sharp money, public money, Polymarket bettors, current availability news, or conclusions from any other department.
