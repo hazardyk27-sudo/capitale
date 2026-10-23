@@ -1,18 +1,19 @@
-# ANALYST v1.4 — Opponent Possession Type and Three-Match Form
+# ANALYST v1.4 — Three Pillars: Possession, Form Momentum, Opponent Logic
 
 Status: EXPERIMENTAL
-Version: 1.4.1
+Version: 1.4.2
 Owner-approved research focus: 2026-10-23
 Scope: New ANALYST analyses, without modifying old v1.1/v1.2/v1.3 pre-match reports.
 Related: `methods/analyst_v1_3_experimental.md` remains the selection-specific interpretation and risk layer; v1.1 canonical source/isolation remains active.
 
 ## Primary goal
 
-Answer two measurable questions about BOTH teams:
-1. "Against opponents who normally possess the ball frequently versus rarely, how does the team perform this season?"
-2. "In the last three matches, and especially the last match, is the team improving or deteriorating both in results and underlying match statistics?"
+Answer THREE owner-mandated questions about BOTH teams, in this exact order:
+1. **POSSESSION GAME (TOPA SAHIP OLMA OYUNU):** Against opponents habitually controlling a lot, moderate or little possession, how did the team perform across ALL current-season league fixtures? If available contrast first and second halves separately. Use the owner-approved HIGH >=55%, BALANCED >45% and <55%, LOW <=45% classification with pre-fixture opponent tendencies.
+2. **FORM MOMENTUM (FORM IVMESI):** Across current-season league fixtures, how did results AND actual play trend over last three league matches, especially latest one versus previous two? Report both score/points and xG/xGA/shots/sot; adjust interpretation for opponent difficulty, location and available 1H/2H evidence.
+3. **OPPONENT LOGIC (RAKIP MANTIGI):** In plain football reasoning, how strong and difficult is the UPCOMING opponent relative to teams this side has already played; which opponent strengths and vulnerabilities actually matter against this side's own strengths and weaknesses? Could a good result versus an easy opponent be less impressive than a draw against a strong opponent? Would this side plausibly replicate its recent tactics and chance creation against the upcoming opponent? Explicitly examine BOTH teams' game plans and how each might succeed or fail. This is a DISTINCT interpretive section after statistical observations, not a third number or fabricated coefficient.
 
-These two components are the headline analysis, NOT optional side notes. Do not replace them with unrelated simulation, discretionary 0–100 ratings, generic team reputation or just a recent-results streak.
+All three components are mandatory headline pillars. Do NOT collapse opponent logic into a mathematical score or let recent form mechanically overrule underlying team level. These components are the headline analysis, NOT optional side notes. Do not replace them with unrelated simulation, discretionary 0–100 ratings, generic team reputation or just a recent-results streak.
 
 ## Evidence and AS_OF
 
@@ -82,13 +83,26 @@ Build a per-team chronological match ledger of the latest three **league** match
 - Labels: `RESULTS_UP / RESULTS_DOWN / RESULTS_FLAT / MIXED` and separate `STATS_UP / STATS_DOWN / STATS_FLAT / MIXED`. Unless a validated noise band exists, label based on observed sign with cautious wording rather than invented significance threshold. Highlight divergence: wins with falling xGD = scoreboard improving / play deteriorating; losses with rising xGD = scoreboard worsening / play improving.
 - Compare both teams symmetrically. No extrapolating linear slopes blindly into a next-match goal prediction.
 
+## Third pillar: opponent logic — qualitative football judgement
+
+This section is mandatory for EVERY new ANALYST match request and must appear visibly as **3. Rakip mantığı** after the possession-game and form-momentum pillars.
+
+For BOTH clubs, reason in explicit ordinary-language football terms:
+- **How difficult is this match compared with their recent actual fixtures?** Identify which recent opponents were clearly stronger/weaker/comparable to the upcoming opponent based on real pre-match team-strength context; never give a Levante-level and Real-Madrid-level fixture the same credit merely for the scoreboard.
+- **How would the football be played?** Contrast possession profiles, pressing, build-up, pace, transitions, shot production and defensive weaknesses ONLY when genuinely supported by match statistics. Explain the interaction rather than reciting independent team descriptors.
+- **What evidence transfers?** Identify whether success against earlier opponents should transfer to this particular matchup, and why or why not. A team that attacks well against low blocks may still struggle to exit a top side's press; the reverse may also hold. Avoid declaring specific pressing/high-block characteristics without source support.
+- **Base strength vs present form:** Treat structural/team quality and form acceleration separately. If Sociedad wins three matches vs weak teams and Madrid loses three vs elite teams, don't automatically predict Sociedad to beat Madrid. Conversely, if Madrid struggles even against weaker opponents and Sociedad has shown repeatable chances against high-level opponents, articulate why the gap may actually have narrowed. These are illustrative, not claims about real fixtures.
+- **Football-specific paths and counterarguments:** Say the credible paths to home win, draw, away win, including when the user's preference fails. Give a conditional, well-reasoned likely match dynamic or say NO_CLEAR_LEAN when evidence is inconclusive.
+- **Evidence versus interpretation:** Ground each key assertion in a match, source or observable pattern. Label unsupported tactical inferences UNKNOWN and do not invent current squad/news, odds, goal probabilities, arbitrary numeric weighting or untrained expected-performance coefficients.
+
+The third pillar is QUALITATIVE: no formula, no required 0-100 score, no math-based result extrapolation. Descriptive statistics and sourced opponent strength may support the explanation, but **reasoning should be clear enough that a reader understands WHY a strong/weak opponent and particular matchup changes how past form is interpreted**. Do not double count the same match evidence as three independent proofs just because it appears in all three pillars.
+
 ## User-facing report — REQUIRED order for all new analyses
 
-1. **Sezonun bütün lig maçları ve rakibin topa sahip olma profili** — exact habitual possession for both teams with AS_OF, data coverage.
-2. **Rakip tipine, güç seviyesine ve sahaya göre geçmiş lig maçları (ilk/ikinci yarı mümkünse)** — list opponents with possessions, scores, xG and xGA; separate HIGH/BALANCED/LOW; aggregate and explain venue/opponent strength confounding.
-3. **Son 3 lig maçı ve son lig maçı form grafikleri (skor + istatistik + rakip zorluğu)** — both sides, two distinct graphs for (A) results and (B) underlying stats. For each, state last 3 trend and last match versus the previous two; do not mix them.
-4. **Rakip zorluğuna göre düzeltilmiş form ve eşleşme yorumu / sıradaki maç** — explain what the possession-style evidence AND two teams' form trajectories imply; clear win/draw/loss or user selection support/oppose pathways with stronger evidence and credible failure path.
-5. **Sayısal özet** — at minimum group WDL, xGD means, last-three xGD trend and most recent match change; any optional 0–100 ordinal support score explicitly uncalibrated and subject to existing v1.3 high-score gates. Do not invent simulation percentages or exact probabilities without a separately validated model.
+1. **TOPA SAHIP OLMA OYUNU** — both teams' ALL current-season league fixtures grouped by the historical habitual possession of their respective opponents (HIGH >=55%, BALANCED >45% and <55%, LOW <=45%). Show opponent strength, venue, real score/xG/shots, group summaries and verified 1H/2H observations if available.
+2. **FORM IVMESI** — each team's latest three league games and latest one, with two distinct sourced chronological graphics: (A) scoreboard/points and (B) underlying xG/xGA/xGD/shots/sot. Explain whether apparent improvement is supported by real play and opponent difficulty.
+3. **RAKIP MANTIGI** — separate, clearly labelled FOOTBALL-LOGIC section evaluating the upcoming opponent's actual level versus the teams already faced, whether earlier success/failure transfers, the interaction of play styles and the plausible win/draw/loss pathways. This is human-readable reasoning, not a mathematical adjustment or automatic form-based pick.
+4. **MAC YORUMU / DENGE** — synthesize all three pillars, preserve evidence for and against the exact user preference and the main plausible failure mechanism; where evidence is insufficient, state it rather than forcing a direction. The existing v1.3 selection gates still apply for any optional experimental ordinal score.
 
 When data insufficient, show the known portion and explicitly say "BU KARŞILAŞTIRMA ÖLÇÜLEMEDİ", listing missing match/stat columns. Do NOT quietly substitute a different prediction method.
 
