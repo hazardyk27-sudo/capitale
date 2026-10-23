@@ -50,10 +50,10 @@
     "01_scan_results": "NOT_YET_TRANSFERRED",
     "02_outcome_performance": "NOT_YET_TRANSFERRED",
     "03_full_snapshots": "PARTIAL",
-    "04_concentrated": "NOT_YET_TRANSFERRED",
+    "04_concentrated": "COMPLETE_GRID_WITH_EXPLICIT_MISSING_SOURCE_SNAPSHOTS",
     "all_raw_files_verified": false,
     "migration_complete": false,
-    "note": "This manifest is an inventory of the existing Supabase source, NOT confirmation that full raw data has been copied to GitHub. Legacy research files when copied are separate and not full historical archive.",
+    "note": "The complete concentrated GRID is copied to GitHub with explicit missing source observations; the eight full raw history tables are NOT migrated. Source status and daily migration_complete:false are retained.",
     "copied_raw_tables": {
       "fixtures": {
         "path": "archive/2026/10/16/03_full_snapshots/fixtures_2026-10-16.jsonl",
@@ -67,7 +67,16 @@
       }
     },
     "legacy_research_location": "archive/legacy_research/smartxflow_learning_archive/",
-    "current_stage": "FIXTURES_AND_RESULTS_VERIFIED__BULK_MARKET_HISTORY_PENDING"
+    "current_stage": "CONCENTRATED_GRID_VERIFIED__FULL_RAW_HISTORY_PENDING",
+    "concentrated_manifest_path": "archive/2026/10/16/04_concentrated/manifest.json",
+    "concentrated_grid": {
+      "fixture_count": 201,
+      "expected_slots": 5427,
+      "present": 3975,
+      "missing": 1452,
+      "source_archive_run_status": "COMPLETE",
+      "source_to_github_file_readbacks_verified": true
+    }
   },
   "source_repo": {
     "repository": "hazardyk27-sudo/smartxflow",
