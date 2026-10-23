@@ -1,8 +1,8 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.7
-Last updated: 2026-10-19
+Version: 1.8
+Last updated: 2026-10-23
 
 ## 1. Purpose
 
@@ -44,13 +44,13 @@ NEWS may use current news and contextual sources permitted by its source policy.
 
 SXF may use SmartXFlow data only. It may not use team form, current news, Polymarket, or other department reports. Its current DRAFT v0.4 core engines and exact per-match as-of rule are defined in its role/method/schema files.
 
-POLY uses a split source model:
-- direct/public Polymarket is authoritative for **general match-market prices, volume, liquidity, participation and concentration**;
-- the SmartXFlow **SXF POLY page is the exclusive active bettor/user source** for bettor identity, bettor-specific selections, amounts/exposures, timing, and bettor-quality fields shown there.
-
-POLY must not use the historical CAPITALE 24-wallet shortlist, generic tracked-wallet tables, or raw Polymarket wallet discovery as its active bettor universe. A raw Polymarket wallet that is not present on SXF POLY may affect general market volume/concentration analysis but must not be promoted to bettor evidence.
-
-SXF POLY bettor data is allowed inside POLY, but SXF-department market-flow conclusions remain prohibited. POLY may not import EARLY MONEY, CONCENTRATION, HEAVY, SURPRISE TEAM, Stable/Premium Over, BTTS engine signals, team form, current NEWS, or other department reports.
+POLY v1.4 uses **independent direct-source discovery and verification**:
+- Discover football bettors independently from public Polymarket official Data API v2 leaderboard / wallet trade / activity / position endpoints, Gamma sports fixtures and markets, supported CLOB prices/market endpoints, and Polygon on-chain receipts/settlement events when needed.
+- **Never read, query, ingest, cross-check, seed from, or otherwise use any CAPITALE/SXF Supabase dataset, past bettor list, earlier wallet history, cached metric, or a dataset derived from those sources.** The banned family explicitly includes `public.polymarket_trades`, `public.polymarket_matches`, `tracked_wallets`, `poly_wallet_*`, and other CAPITALE Supabase objects. This ban is role-specific to POLY and does not change SXF's separately approved data permissions.
+- SXF POLY page is **not** a bettor source, whitelist, shortcut or verification step. A bettor must be independently discovered and audited from permitted primary Polymarket/on-chain sources. The prior SXF POLY-only model is SUPERSEDED for new POLY runs.
+- Historical GitHub methods/outputs may be read for *governance*, but **must not be used as bettor evidence, candidate seed lists or factual wallet-performance inputs**. Permitted newly collected source evidence must be referenced by direct source URL/identifier and acquisition/as-of timestamp.
+- POLY is a **bettor-identification, verification and follow-the-bettor** specialist, not an independent football prediction/market-flow voting department. If no independently verified profitable directional football bettor has a relevant clean prematch position, return `NO_QUALIFIED_BETTOR_EVIDENCE`, not market-volume-based support.
+- Other departments' conclusions, team form, NEWS, or SXF EARLY / V1 / V2 / HEAVY / SURPRISE engine outputs remain prohibited as POLY evidence.
 
 FINAL uses completed department reports only. It must not browse for new match evidence or silently repair a department report with raw research.
 
@@ -135,11 +135,11 @@ Bootstrap scoring rules may be CANONICAL for operational consistency while remai
 
 ANALYST: v1.1.2 CANONICAL role presentation (historical v1.1 evidence baseline), v1.2 EXPERIMENTAL frozen historical shadow records, v1.3 EXPERIMENTAL active for new shadow runs: separate SINGLE WIN, DOUBLE CHANCE, OVER 2.5 and BTTS engines; explicit win/draw/loss and game-lock failure scenarios, cup/cross-league and away evidence-quality checks, ordinal 0–100 score gates, settlement audit and walk-forward validation. v1.3 is NOT CANONICAL.
 NEWS: v1.3 CANONICAL — independently verified fact/effect/preference axes; replacement and adaptation counterhypothesis required; abstention when evidence incomplete; retired uncalibrated v1.2 0–100 scoring; independent mechanism/outcome audit.
-POLY: v1.3 CANONICAL — v1.2 source split preserved; added symmetric bettor-quality gates, 1.40+ eligible odds, prior-position stake baseline, provenance and abstention audit; size uplift remains UNVALIDATED
+POLY: v1.4 CANONICAL — independent public Polymarket v2 + Gamma/CLOB + Polygon bettor discovery/verification; all CAPITALE Supabase and SXF POLY sources prohibited; candidate skill thresholds uncalibrated
 SXF: v0.4 DRAFT — core engines + dynamic per-match horizon approved; validation/calibration pending
 FINAL: v0.2 DRAFT — synthesis architecture approved; numerical calibration pending
 ENGINEER: active governance/implementation role
 
-POLY v1.3 only changes its **evidence-handling and reporting safeguards**. It does not authorize importing raw wallet histories as active SXF POLY bettor evidence, inventing empirical size thresholds, or replacing FINAL grades. See the experimental validation protocol for historical data caveats.
+POLY v1.4 replaces the SXF POLY-only bettor source rule with direct primary-source independent discovery. Its purpose is verified profitable football bettor identification and follow-up; no betting-edge claim or source substitution is permitted without independently collected evidence. See MILESTONE.md.
 
 See MILESTONE.md for current implementation state, superseded rules, and technical backlog.
