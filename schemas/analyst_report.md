@@ -52,10 +52,10 @@ pillar_3_opponent_logic:
   home_team_perspective: <current opponent level versus past opponents, transferable form, realistic tactical routes>
   away_team_perspective: <same>
   mandatory_home_away_subsection:
-    home_team_ALL_home_league_matches: [] # {date, opponent, opponent_quality, opponent_possession_group_if_known, score, result, xg, xga, shots, sot}
-    away_team_ALL_away_league_matches: [] # same
-    home_team_other_away_aggregate: <w-d-l, goals, xgd or null>
-    away_team_other_home_aggregate: <w-d-l, goals, xgd or null>
+    home_team_ALL_home_league_matches: [] # each {date, opponent, opponent_quality, possession_style_if_known, score, result, xg, xga, shots, sot}
+    home_team_ALL_away_league_matches: [] # all away opponents/scores/stats, not only aggregates
+    away_team_ALL_home_league_matches: [] # all home opponents/scores/stats, not only aggregates
+    away_team_ALL_away_league_matches: [] # same detailed records
     home_at_home_vs_away_away: <direct strength-, style-, venue-aware qualitative comparison>
     venue_small_sample_and_missing_data: []
   likely_match_dynamics: <football reading with grounded caveats>
