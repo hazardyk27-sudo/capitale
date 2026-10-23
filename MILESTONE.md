@@ -571,6 +571,6 @@ CAPITALE agent separation; N1–N4 sources and explicit fan-source limitations; 
 - `policies/news_sources.md` v1.1 CANONICAL — extended fan/atmosphere evidentiary guidance without relaxing N1–N4 base rules.
 - `schemas/news_report.md` v1.4 CANONICAL — seven-outcome H# impact matrix and arithmetic totals.
 - `prompts/news_start.md` v1.4 CANONICAL — exact new runtime presentation.
-- `AGENTS.md` NEWS current-state alignment pending separately if not yet verified.
+- `AGENTS.md` version 1.9 — NEWS current-state and base governance alignment verified.
 
 NEWS v1.4 is the active **methodology**; the point weights are explicitly UNVALIDATED as predictive effectiveness. Historical v1.3 data stay preserved.
