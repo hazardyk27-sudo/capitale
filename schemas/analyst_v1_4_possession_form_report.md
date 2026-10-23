@@ -1,12 +1,12 @@
 # ANALYST v1.4 Possession-Type and Dynamic Form Schema
 
 Status: EXPERIMENTAL
-Version: 1.4.1
+Version: 1.4.2
 Extends v1.3 experimental report, preserving separate legacy immutable snapshots.
 
 ```yaml
 role: ANALYST
-methodology_version: analyst-v1.4.1-possession-form-experimental
+methodology_version: analyst-v1.4.2-three-pillar-experimental
 fixture: <home vs away>
 competition: <league or cup>
 kickoff_utc: <timestamp>
@@ -84,6 +84,31 @@ graphics:
   first_half_performance: <sourced 1H series or null>
   second_half_performance: <sourced 2H series or null>
   missing_graph_data: []
+three_pillar_report:
+  pillar_1_possession_game:
+    full_current_league_season_review: <sourced HIGH/BALANCED/LOW match and group comparison for BOTH teams>
+    halftime_vs_secondhalf_when_sourced: <observations or HALF_DATA_UNAVAILABLE>
+  pillar_2_form_momentum:
+    last_three_league_results_graph: <sourced graph or missing data>
+    last_three_league_underlying_stats_graph: <sourced graph or missing data>
+    last_match_vs_previous_two: <results AND stats comparison per team>
+    strength_and_venue_caveats: <observed differences and limitations>
+  pillar_3_opponent_logic:
+    home_perspective:
+      upcoming_opponent_baseline_strength_vs_recent_opponents: <football assessment supported by cited match/team evidence>
+      which_past_match_evidence_transfers_or_does_not: <reason and exact opponent examples>
+      tactical_matchup_strengths_and_vulnerabilities: <football interpretation or UNKNOWN>
+      credible_success_path: <what must go right>
+      credible_failure_path: <what can break home-side logic>
+    away_perspective:
+      upcoming_opponent_baseline_strength_vs_recent_opponents: <football assessment supported by cited match/team evidence>
+      which_past_match_evidence_transfers_or_does_not: <reason and exact opponent examples>
+      tactical_matchup_strengths_and_vulnerabilities: <football interpretation or UNKNOWN>
+      credible_success_path: <what must go right>
+      credible_failure_path: <what can break away-side logic>
+    balance_of_baseline_strength_and_recent_form: <interpretive comparison without automatic form favoritism>
+    expected_football_dynamics: <conditional human-readable match reading, no fabricated numeric probability>
+    unresolved_questions: []
 next_match_interpretation:
   supporting_evidence: []
   opposing_evidence: []
@@ -98,6 +123,8 @@ next_match_interpretation:
 ```
 
 Rules:
+- Visible output MUST present the THREE owner-mandated main factors in order: 1. TOPA SAHIP OLMA OYUNU, 2. FORM IVMESI, 3. RAKIP MANTIGI, then a brief synthesis. The third factor is a distinct plain-language football judgement, NOT an arbitrary numeric score or formula.
+- In third pillar, distinguish base opponent quality from recent form, compare recent opponents with the upcoming opponent and explain tactical transferability and both teams' plausible win/draw/loss routes with evidence, without double-counting.
 - Opponent style uses opponent's prior-fixture habitual possession, NOT its possession in the target encounter.
 - HIGH>=55, LOW<=45, BALANCED strictly between, UNKNOWN unverified; owner-selected exploratory bins.
 - Required analysis order: ALL current-season LEAGUE fixtures first, last 3 LEAGUE games second, latest 1 LEAGUE game third; half-by-half only when sourced.
