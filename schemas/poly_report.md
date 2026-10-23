@@ -1,120 +1,98 @@
-# POLY Report Schema
+# CAPITALE POLY v1.4 — Bettor-First Report Schema
 
 Status: CANONICAL
-Version: 1.3
+Version: 1.4
+Effective: 2026-10-23
 
 ```yaml
 role: POLY
-match_id: <canonical match id>
-match: <home> vs <away>
-run_at_utc: <timestamp>
-prompt_version: <version>
-methodology_version: poly-v1.3
-
-preference_context:
-  supplied: <true|false>
-  preference: <user supplied selection|null>
-
-scope_check:
-  source_as_of_utc: <timestamp>
-  kickoff_utc: <timestamp>
-  sxf_poly_snapshot_at_utc: <timestamp|null>
-  direct_market_snapshot_at_utc: <timestamp|null>
-  no_future_data_used: <true|false>
-  poly_bettor_source_verified: <true|false>
-  general_market_source: DIRECT_POLYMARKET
-  bettor_source: SXF_POLY_PAGE_ONLY
-  historical_24_wallet_pool_used: false
-  sxf_market_flow_used: false
-  team_form_used: false
-  current_news_used: false
-  other_department_reports_used: false
-
-market_overview:
-  market_price_pct: <number|null>
-  opposite_price_pct: <number|null>
-  selection_volume_usdc: <number|null>
-  opposite_volume_usdc: <number|null>
-  total_observed_volume_usdc: <number|null>
-  selection_wallet_count: <int|null>
-  opposite_wallet_count: <int|null>
-  largest_single_wallet_share_pct: <number|null>
-  liquidity_note: <description>
-  source_freshness_note: <description>
-
-sxf_poly_bettors:
-  - user: <SXF POLY label/user>
-    selection: <selection>
-    direction: <SUPPORTS_PREFERENCE|OPPOSES_PREFERENCE|NEUTRAL_OR_HEDGED>
-    amount_usdc: <number|null>
-    entry_price_pct: <number|null>
-    timing: <timestamp/relative time|null>
-    bettor_reliability: <HIGH|MEDIUM|LOW|UNKNOWN>
-    bettor_quality_status: <PROVEN|ESTABLISHED|QUALIFIED|PROVISIONAL|UNKNOWN|UNRELIABLE>
-    historical_resolved_positions: <int|null>
-    distinct_historical_events: <int|null>
+methodology_version: poly-v1.4
+source_contract: DIRECT_INDEPENDENT_POLYMARKET_ONLY
+discovery_run_id: <new id>
+as_of_utc: <timestamp>
+report_created_at_utc: <timestamp>
+scope:
+  user_selected_matches: [<fixture ids/names>]
+  independently_discovered_wallets_total: <number>
+  wallets_with_complete_independent_history: <number>
+  candidate_discovery_channels: [<official public leaderboard>, <official football event participation>]
+  direct_api_v2_used: <true|false>
+  gamma_used: <true|false>
+  clob_used: <true|false>
+  polygon_verification_used: <true|false>
+  supabase_or_derived_source_used: false
+  sxf_poly_page_used: false
+  old_capitale_wallet_seed_used: false
+  other_departments_used: false
+  source_access_limitation: <string|null>
+primary_sources:
+  - url: <official public endpoint or Polygon transaction url>
+    fetched_at_utc: <timestamp>
+    observed_at_utc: <timestamp|null>
+    pagination_or_coverage: <text>
+wallet_dossiers:
+  - wallet_address: <freshly discovered public proxy wallet>
+    public_profile: <url|null>
+    discovery_source_ref: <primary source>
+    source_as_of_utc: <timestamp>
+    history_window_utc: <start/end>
+    position_data_coverage: <complete|partial|unknown>
+    resolved_prematch_football_positions: <number|null>
+    independent_football_fixtures: <number|null>
+    win_rate_pct: <number|null>
+    avg_entry_decimal_odds: <number|null>
+    directional_style: <DIRECTIONAL|TRADING|HEDGED|UNKNOWN>
+    entry_edge_pp: <number|null>
     pnl_coverage_pct: <number|null>
-    evidence_is_as_of_safe: <true|false|null>
-    bettor_history_source: <SXF_POLY_ONLY|NONE>
+    realized_net_pnl: <number|null>
+    realized_net_roi_pct: <number|null>
+    pnl_verification: <RECONCILED|PARTIAL|UNVERIFIED>
+    clv_status: <VERIFIED|MISSING|UNVERIFIED>
+    market_specialty: <text|null>
+    skill_tier: <PROVEN|ESTABLISHED|QUALIFIED|PROVISIONAL|UNKNOWN>
+    tier_rationale: <facts from independent records>
+tracked_new_positions:
+  - wallet_address: <previously independently discovered address>
+    fixture: <home vs away>
+    event_id: <official event id>
+    condition_id: <official market id>
+    outcome_token_id: <official token id>
+    market_family: <1X2|DRAW|O-U|BTTS|HANDICAP|OTHER>
+    exact_side_and_line: <YES|NO|OVER|UNDER plus line/selection>
+    kickoff_utc: <timestamp>
+    first_entry_at_utc: <timestamp|null>
+    last_action_at_utc: <timestamp|null>
+    first_entry_decimal_odds: <number|null>
+    current_actionable_decimal_odds: <number|null>
+    liquidity_verified: <true|false|null>
+    buy_cost_usd: <number|null>
+    sold_proceeds_usd: <number|null>
+    net_exposure_usd: <number|null>
+    hedge_state: <CLEAN|MIXED|HEDGED|REDUCED|CLOSED|UNKNOWN>
+    historical_stake_baseline_n: <number|null>
+    stake_median_of_prior_20_to_30: <number|null>
     stake_multiple: <number|null>
-    baseline_status: <VALID_20_TO_30_PRIOR|INSUFFICIENT_PRIOR|INCOMPATIBLE_STAKE_UNIT|UNAVAILABLE>
-    baseline_sample_n: <int|null>
-    baseline_stake_usdc: <number|null>
-    odds_eligible_ge_1_40: <true|false|null>
-    position_cleanliness: <CLEAN_ONE_DIRECTION|MIXED|HEDGED|REDUCED|UNKNOWN>
-    net_directional_exposure_usdc: <number|null>
-    credible_directional_evidence: <true|false>
-    sizing_vs_user_norm: <SMALL|NORMAL|LARGE|VERY_LARGE|UNKNOWN>
-    action_state: <ADDING|HOLDING|REDUCING|EXITED|HEDGED|UNKNOWN>
-    reliability_basis: <what SXF POLY explicitly shows or NO EVIDENCE>
-    note: <important caveat>
-
-preference_evidence:
-  supporting_factors:
-    - source_layer: <GENERAL_POLYMARKET|SXF_POLY_BETTOR>
-      fact: <observed fact>
-      interpretation: <why it supports>
-      strength: <LOW|MEDIUM|HIGH>
-  opposing_factors:
-    - source_layer: <GENERAL_POLYMARKET|SXF_POLY_BETTOR>
-      fact: <observed fact>
-      interpretation: <why it opposes>
-      strength: <LOW|MEDIUM|HIGH>
-  neutral_or_uncertain_factors:
-    - source_layer: <GENERAL_POLYMARKET|SXF_POLY_BETTOR>
-      fact: <relevant but neutral/uncertain fact>
-      note: <why neutral/uncertain>
-
+    odds_at_least_1_40: <true|false|null>
+    recommendation_eligibility: <QUALIFIED_BETTOR_FOLLOW|WATCH_UNVERIFIED|NO_QUALIFIED_BETTOR_EVIDENCE>
+    independence_caveat: <text|null>
+    source_refs: [<primary refs>]
 decision_audit:
-  immutable_as_of_decision_id: <id|null>
-  precommitted_before_settlement: <true|false>
-  decision_evidence_class: <CREDIBLE_SUPPORT|CREDIBLE_OPPOSITION|MIXED|NO_QUALIFIED_BETTOR_EVIDENCE>
-  decision_is_probability: false
-  numerical_lift_calibrated: false
-  reason_for_abstention: <text|null>
-  relevant_user_count: <int|null>
-  qualified_user_count: <int|null>
-  caveats: []
-
-poly_balance:
-  direction: <SUPPORTS_PREFERENCE|SLIGHTLY_SUPPORTS|MIXED|SLIGHTLY_OPPOSES|OPPOSES_PREFERENCE|INSUFFICIENT_EVIDENCE>
-  confidence: <LOW|MEDIUM|HIGH>
-  sxf_poly_supporter_count: <int|null>
-  sxf_poly_opposer_count: <int|null>
-  rationale: <general Polymarket + SXF POLY bettor balance>
-  caveats: []
+  precommitted_before_kickoff: <true|false>
+  independent_qualified_follows: <number>
+  watches_unverified: <number>
+  no_qualified_evidence_count: <number>
+  no_sxf_flow_or_team_news_used: true
+  prediction_win_probability: null
+  bettor_skill_uplift_calibrated: false
+  non_predicted_matches_count: <number>
+  data_gaps: [<text>]
 ```
 
 Rules:
-- Sizing labels are descriptive and uncalibrated: <0.25× ignore; 0.25–<0.75× small; 0.75–<1.50× normal; 1.50–<3× strong size; 3–<5× very strong size; >=5× exceptional size.
-- QUALIFIED requires N>=100 resolved bets, >=60 events, positive entry edge and directional behavior. ESTABLISHED requires >=250 positions, >=150 events, >=3 active months and >=2pp entry edge; PROVEN also needs reliable positive ROI and reliable nonnegative CLV. PnL coverage must be >=90% for ROI to be decision-grade.
-- Absent SXF POLY bettor snapshot or 20 comparable past positions => UNKNOWN, not an invented score.
-- Credible opposing claims pass the same qualification tests as supporting claims.
-- Audit ALL precommitted decisions, including abstentions.
-- General market prices/volumes come from direct/public Polymarket.
-- Bettor/user evidence comes only from SXF POLY.
-- Raw Polymarket wallets must not be promoted into bettor evidence unless that user is present on SXF POLY.
-- The historical CAPITALE 24-wallet pool must not be used for active bettor routing.
-- Missing bettor reliability is `UNKNOWN`, not positive evidence.
-- One user with many fills counts as one bettor position, not many independent votes.
-- `poly_balance` must preserve material contrary evidence and may validly return `INSUFFICIENT_EVIDENCE`.
+- Every wallet is discovered independently from current official Polymarket sources, never from prior CAPITALE wallet lists.
+- NEVER query, read, compare or import CAPITALE/SXF Supabase objects; never use SXF POLY page.
+- Confirm exact football outcome contract semantics and resolution; one wallet/event/market/outcome economic position, not per fill.
+- No `PROVEN` or positive realized ROI without reconciled transactions and >=90% PnL coverage.
+- No fabricated bettor stakes, multipliers, odds, profitability, win probabilities, or live quote feasibility.
+- Unknown is an allowed answer; complete source provenance is mandatory.
+- Primary report must center on bettor historical verified profitability and current bets, not POLY mass volume or SXF team predictions.
