@@ -657,3 +657,17 @@ No backtest, prospective improvement, real team match study, or change to histor
 All preexisting ANALYST v1.1, experimental v1.2/v1.3/v1.4.x selection/score/probability or optional-report logic are **SUPERSEDED and INACTIVE** for new analyst reports. Historical reports and old method/code revisions remain in the repository's git history for auditing, never retrospectively mutated or represented as calibrated. Old method files are marked superseded where update succeeded; legacy schemas should be treated as superseded regardless of historic file header. Prior experimental validation notes remain historical, not instructions. Other departments' methods stay untouched.
 
 This action changes GitHub instructions and the analyses produced when those instructions are followed. It does NOT claim an autonomous agent/deployment was changed or that predictive accuracy has been validated.
+
+---
+
+## 2026-10-23 — NEWS MATCH IMPACT v1.4.1 — fan-event materiality filter
+
+Owner correction to NEWS: arranging an ordinary away-fan coach/bus for HB Køge at Hvidovre is not reliable evidence of a material on-field effect, even if officially confirmed. Previously assigning -1 to home and +1 to away merely because a bus was organized was unjustified. **Original pre-match reports remain immutable**; this rule corrects all NEW runs instead of silently changing historical picks.
+
+Active v1.4.1 CANONICAL NEWS filter:
+- Continue researching both teams' fan/stadium atmosphere as one of eight mandatory categories, but **exclude ordinary fan travel buses, supporter meet-ups, ticket campaigns, scheduled commonplace choreography, routine sellouts, normal generic support, and equivalent PR as non-material H# stories**. They are neither news-table filler nor 1X2/Over/Under/BTTS points.
+- Only report extraordinary, independently verified events with a credible specific match-operation, preparation or playing-condition mechanism, such as material boycotts/protests, crowd incidents, stand closures or substantial attendance restrictions. Even verified exceptional crowd events do NOT automatically imply positive/negative score; interpret uncertainty separately.
+- Apply the match-specific football-impact gate to all stories; ordinary coach platitudes and generic promotional narratives also get excluded. If researched fan/stadium category has no material event, state `NO_MATERIAL_FAN_NEWS` in evidence gaps.
+- Preserve seven outcome scoring, -3..+3 points for material events, exact sums, N1–N4 credibility, exact AS_OF, role isolation and independent immutable pre-match archive.
+
+Files modified: `roles/news.md` v1.4.1; `methods/news_methodology.md` v1.4.1; `policies/news_sources.md` v1.1.1; `schemas/news_report.md` v1.4.1; `prompts/news_start.md` v1.4.1; `AGENTS.md` v1.14; `MILESTONE.md` new section. No model calibration or outcome improvement is claimed.
