@@ -1,7 +1,7 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.11
+Version: 1.12
 Last updated: 2026-10-23
 
 ## 1. Purpose
@@ -133,7 +133,7 @@ Bootstrap scoring rules may be CANONICAL for operational consistency while remai
 
 ## 10. Current State
 
-ANALYST: v1.1.4 CANONICAL base role/presentation. Historical v1.2 experimental snapshots frozen; v1.3 EXPERIMENTAL remains selection-specific failure-path/score gating. **v1.4.1 EXPERIMENTAL owner-directed research priority for NEW runs:** (1) ALL current-season league matches for both teams stratified by each opponent's pre-fixture habitual possession HIGH >=55%, BALANCED strictly 45–55%, LOW <=45%, and opponent strength/venue; (2) LAST THREE league matches score vs performance graphs; (3) LATEST ONE league match versus prior two, including score AND xG/xGA/shots/sot and opponent-difficulty correction only where properly modeled; (4) first-half/second-half possession/score/stats splits only where actual sourced half data exist. Strong opponent versus weak opponent must not be equated; form alone cannot erase baseline strength. v1.4.1 is NOT a validated calibrated predictive model or CANONICAL promotion.
+ANALYST: v1.1.5 CANONICAL base role/presentation. Frozen historical v1.2 experiments preserved; v1.3 EXPERIMENTAL selection/failure-path layer retained. **v1.4.2 EXPERIMENTAL is owner-directed THREE-PILLAR default for NEW ANALYST runs, in strict order:** (1) TOPA SAHIP OLMA OYUNU: ALL current-season league opponents by their historical habitual possession HIGH >=55%, BALANCED >45% to <55%, LOW <=45%, half-specific observations when actually sourced; (2) FORM IVMESI: full-season baseline then latest THREE then latest ONE league match results AND sourced xG/xGA/shots/sot curves, interpreting opponent difficulty; (3) RAKIP MANTIGI: distinct qualitative football reasoning about the upcoming opponent's baseline strength versus earlier opposition, style interactions, how past evidence transfers and both sides' credible win/draw/loss paths. Recent form must not automatically outrank structural team level. Third pillar must not be replaced with untrained arithmetic or discretionary numeric rating. No canonical predictive upgrade or calibration is implied.
 NEWS: v1.4 CANONICAL — whole-match news and atmosphere, numbered source-verified H# stories, seven -3..+3 market-impact columns and arithmetic totals. v1.3 research instructions SUPERSEDED.
 POLY: v1.4 CANONICAL — independent public Polymarket v2 + Gamma/CLOB + Polygon bettor discovery/verification; all CAPITALE Supabase and SXF POLY sources prohibited; candidate skill thresholds uncalibrated
 SXF: v0.4 DRAFT — core engines + dynamic per-match horizon approved; validation/calibration pending
