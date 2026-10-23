@@ -1,7 +1,7 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.10
+Version: 1.11
 Last updated: 2026-10-23
 
 ## 1. Purpose
@@ -133,7 +133,7 @@ Bootstrap scoring rules may be CANONICAL for operational consistency while remai
 
 ## 10. Current State
 
-ANALYST: v1.1.3 CANONICAL base role/presentation. v1.2 historical EXPERIMENTAL snapshots frozen; v1.3 EXPERIMENTAL remains the selection-type failure-path/score-gating layer. **v1.4 EXPERIMENTAL is the owner-requested active research focus for NEW runs**: classify both teams' past opponents by habitual pre-fixture possession rate, compare WDL and sourced xG/xGA/xGD by opponent type, and display sourced last-3 + latest-match results and statistics graphs for both teams, distinguishing score versus underlying form. Validate trend/possession effects prospectively; NO promotion to CANONICAL yet.
+ANALYST: v1.1.4 CANONICAL base role/presentation. Historical v1.2 experimental snapshots frozen; v1.3 EXPERIMENTAL remains selection-specific failure-path/score gating. **v1.4.1 EXPERIMENTAL owner-directed research priority for NEW runs:** (1) ALL current-season league matches for both teams stratified by each opponent's pre-fixture habitual possession HIGH >=55%, BALANCED strictly 45–55%, LOW <=45%, and opponent strength/venue; (2) LAST THREE league matches score vs performance graphs; (3) LATEST ONE league match versus prior two, including score AND xG/xGA/shots/sot and opponent-difficulty correction only where properly modeled; (4) first-half/second-half possession/score/stats splits only where actual sourced half data exist. Strong opponent versus weak opponent must not be equated; form alone cannot erase baseline strength. v1.4.1 is NOT a validated calibrated predictive model or CANONICAL promotion.
 NEWS: v1.4 CANONICAL — whole-match news and atmosphere, numbered source-verified H# stories, seven -3..+3 market-impact columns and arithmetic totals. v1.3 research instructions SUPERSEDED.
 POLY: v1.4 CANONICAL — independent public Polymarket v2 + Gamma/CLOB + Polygon bettor discovery/verification; all CAPITALE Supabase and SXF POLY sources prohibited; candidate skill thresholds uncalibrated
 SXF: v0.4 DRAFT — core engines + dynamic per-match horizon approved; validation/calibration pending
