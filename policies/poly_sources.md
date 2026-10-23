@@ -1,91 +1,50 @@
 # POLY Source Policy
 
 Status: CANONICAL
-Version: 1.2
+Version: 1.4
+Effective: 2026-10-23
 
-## Source-of-truth split
+## Mandatory source contract
 
-POLY now has two separate authoritative source domains.
+**DIRECT_INDEPENDENT_POLYMARKET_ONLY.** New independent bettor discovery, football wager history, realized PnL, current positions and market prices must all be drawn from primary Polymarket/Polygon data collected in the current independent research workflow.
 
-### P1-MARKET — direct/public Polymarket
+Authoritative sources:
+- Official Polymarket **Data API v2**: leaderboard/candidate discovery, wallet activity, trades, positions, supported PnL, profile.
+- Official **Gamma** events/markets and sports metadata: football event mapping, condition/token IDs, kickoff, event type, resolution.
+- Official **CLOB** public market/prices/orderbooks: entry/current feasibility and liquidity.
+- **Polygon on-chain** transaction/settlement/redemption evidence: independently reconcile incomplete or contradictory economic flows.
 
-Use direct/public Polymarket for **general match-market evidence only**, including:
-- event/market existence;
-- current/observed market prices;
-- total and per-selection volume;
-- liquidity and participation when available;
-- buy/sell and wallet concentration;
-- timing of general market activity.
+Validate official endpoint versions before each implementation; Data API v1 retirement scheduled for 2026-10-24. A source returning no data is not authorization to substitute legacy records.
 
-Polymarket raw wallet discovery MUST NOT define the bettor universe for POLY reports.
+## NEVER-USE sources for POLY
 
-### P1-BETTOR — SmartXFlow SXF POLY page
+**Absolute prohibition, including read-only access, comparison and research candidate seeding:**
+- Any historical or live CAPITALE/SXF **Supabase** object, view, raw table, snapshot or export. Examples (non-exhaustive): `public.polymarket_trades`, `public.polymarket_matches`, `public.tracked_wallet_bets`, `public.tracked_wallets`, `capitale.poly_wallet_*`, all `research_archive` tables and old `poly.shortlist.*` configurations.
+- SXF POLY web page, its user lists, bettor stats or copied page exports.
+- Old CAPITALE / ChatGPT / GitHub bettor addresses as research seeds; previously cited wallet-performance summaries as factual evidence.
+- Other departments' SXF engine signals, team/news research, merged/FINAL judgements.
 
-Use the SmartXFlow **SXF POLY** page as the authoritative bettor source for:
-- which bettors/users are in scope;
-- bettor labels/identities as shown there;
-- bettor-specific selections;
-- bettor-specific amounts/exposures;
-- timing and position direction;
-- bettor statistics/quality fields explicitly shown there.
+Allowed exception: reading GitHub **governance and method documentation**, exclusively to comply with methodology/version control. Do not extract wallet identities or numbers from this history and do not relabel them as fresh evidence.
 
-A bettor/user not shown on SXF POLY must not be added to the report merely because a raw Polymarket wallet made a large trade.
+These restrictions apply to **POLY**, not to SXF's separately governed source permissions.
 
-The former CAPITALE `poly.shortlist.v2` / 24-wallet operational pool is SUPERSEDED for active bettor routing. Historical records may remain available for audit/backtest but are not the active bettor source.
+## Derivation and verification
 
-## Allowed derived evidence
+- Record exact primary source URL/endpoint, UTC observation/fetch time, event/condition/token ID and wallet address for each accepted fact.
+- No positive bettor-skill conclusion without football-only verified sample, economically reconciled outcomes, position cleanliness and coverage. `realized_PnL = sales + redemption - buys - fees` as supported by source.
+- Aggregate repeated fills into economic positions; do not treat buying YES/NO or multiple markets as independent votes or infer NO on team equals opposite team win.
+- Preserve missing trades/fees/position states as unknown; never invent wallet ROIs or force win probabilities.
+- Historical verification uses **only** primary records gathered independently. The previous 24-wallet and SXF-POLY-only policies are SUPERSEDED for POLY v1.4.
+- Match-time cutoff strict: `observed_at_utc <= as_of_utc < kickoff_utc`. Historical bettor quality at `as_of_utc` may only use past *resolved* positions known at that time.
+- If API coverage is incomplete, report `NOT_VERIFIED`; do not consult banned CAPITALE datasets as fallback.
+- No external service or new data platform is required for source discovery. If archiving raw fetched data, follow project GitHub archival and privacy/legal rules without creating Supabase persistence.
 
-P2-MARKET — reproducible calculations derived from P1-MARKET, such as:
-- implied probability;
-- share of total volume;
-- whale concentration;
-- wallet-count concentration;
-- selection-vs-opposite volume comparisons.
+## Current provider references
 
-P2-BETTOR — reproducible calculations derived only from SXF POLY bettor records, such as:
-- aggregation of repeated fills/entries into one user position;
-- current amount vs the user's normal sizing when SXF POLY provides the necessary baseline;
-- agreement/disagreement counts among SXF POLY users;
-- bettor-side support/opposition summaries.
-
-If SXF POLY does not expose enough historical information to establish a bettor's reliability, reliability must be marked `UNKNOWN`/`NO EVIDENCE`; do not silently import a different bettor pool.
-
-## SmartXFlow isolation boundary
-
-Allowed:
-- SXF POLY bettor/user data.
-
-Prohibited:
-- SXF department market-flow engine conclusions such as Early Money, Concentration, Heavy, Surprise Team, Stable/Premium Over, BTTS signals;
-- using those SXF flow conclusions as POLY evidence.
-
-## Data-quality rules
-
-- Missing bettor data is missing, not neutral.
-- General market volume is not bettor-quality evidence.
-- One whale dominating public volume must be identified.
-- Repeated activity by the same SXF POLY user is not multiple independent bettor votes.
-- Hedged/opposite positions must be preserved when visible.
-- Prematch and live activity must be separated.
-- No bettor activity after `as_of_utc` may be used.
-
-## Prohibited
-
-POLY must not use:
-- team-form/tactical analysis;
-- current NEWS;
-- bookmaker movement/odds analysis as evidence;
-- ANALYST, NEWS, SXF-department, or FINAL conclusions;
-- historical CAPITALE 24-wallet routing as the active bettor universe.
-
-
-## v1.3 evidence-integrity amendment (2026-10-19)
-
-- The direct/public market layer may quantify **market-wide** concentration and whale presence, but cannot import a whale's raw wallet performance into the **bettor layer**.
-- SXF POLY bettor fields require page-observed snapshot timestamps at or before AS_OF, explicit user/market matching and a measured sample. A raw-wallet audit is ENGINEER research, not active POLY evidence.
-- Opposing and supporting bettor assertions require symmetrical qualification: sample quality, financially reconciled historical performance, net clean directional stake, independence and exact preference-market match. Missing information is NO EVIDENCE; a low-quality opposing user cannot alone create a high-strength negative signal.
-- Median relative stake is computed only from 20–30 prior comparable prematch positions *exposed on SXF POLY*. Amounts, transaction volume and token shares are not interchangeable. If incomplete, return BASELINE_UNKNOWN.
-- Main bettor signal eligibility uses decimal odds >=1.40. This is a screening rule, not a win-rate, betting edge or odds-derived stake score.
-- No numerical boost for >=3× / >=5× size, consensus or opposition is empirically validated. Never infer a probability or 'elite' class merely from those labels.
-- Historical settlement must be matched to the same exact market/outcome; realized returns require PnL coverage >=90% and proper buy/sell/redemption accounting. Mark anything else as unreliable.
-- Pre-match classification includes abstention/insufficient evidence; historical audit must preserve this, source coverage and sampling frame instead of retrospective filtering to correct calls.
+- https://docs.polymarket.com/market-data/overview
+- https://docs.polymarket.com/market-data/discover-markets
+- https://docs.polymarket.com/market-data/public-analytics
+- https://docs.polymarket.com/trading/wallet-activity
+- https://docs.polymarket.com/concepts/order-lifecycle
+- https://docs.polymarket.com/concepts/resolution
+- https://docs.polymarket.com/llms.txt
