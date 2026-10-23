@@ -1,6 +1,8 @@
 # ANALYST Methodology v1.2
 
-Status: EXPERIMENTAL
+> **HISTORICAL / SUPERSEDED as of 2026-10-23.** The owner has deactivated this methodology for ALL NEW ANALYST runs. The ONLY active CANONICAL workflow and output is `methods/analyst_methodology.md` v2.0 + `schemas/analyst_report.md` v2.0. This file is retained solely for historical audit and reproduction of originally frozen decisions; do not apply its scoring rules, routing, simulation, optional modules or report template in new analyses.
+
+Status: SUPERSEDED (historical EXPERIMENTAL only)
 Version: 1.2
 
 ## Purpose
