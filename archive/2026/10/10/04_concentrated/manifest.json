@@ -1,0 +1,116 @@
+{
+  "schema_version": "SXF_ARCHIVE_V1_0",
+  "artifact": "04_concentrated",
+  "date_tr": "2026-10-10",
+  "timezone": "Europe/Istanbul",
+  "source": "Supabase research_archive READ-ONLY",
+  "destination": "GitHub ONLY",
+  "methodology": "methods/sxf_archive_methodology.md",
+  "grid_status": "COMPLETE",
+  "snapshot_availability": "PARTIAL__MISSING_SLOTS_EXPLICIT",
+  "all_fixtures_included": true,
+  "fixture_count": 455,
+  "checkpoints_hours": [
+    72,
+    60,
+    40,
+    24,
+    12,
+    8,
+    6,
+    3,
+    1
+  ],
+  "market_count": 3,
+  "total_slots": 12285,
+  "source_snapshot_present_slots": 10114,
+  "missing_snapshot_slots": 2171,
+  "unique_slot_keys_verified": true,
+  "full_raw_history_status": "NOT_MIGRATED",
+  "release_assets": [],
+  "markets": {
+    "1X2": {
+      "total_slots": 4095
+    },
+    "OU2.5": {
+      "total_slots": 4095
+    },
+    "BTTS": {
+      "total_slots": 4095
+    }
+  },
+  "canonical_files": [
+    {
+      "path": "archive/2026/10/10/04_concentrated/v2_allmarkets_fixtures_0001_0050.jsonl",
+      "github_blob_sha": "3582ba3dc4ed0293504c74d9780ee17ffb620065",
+      "rows": 1350,
+      "present": 1068,
+      "missing": 282,
+      "bytes_readback_verified": 1081369,
+      "github_blob_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/10/04_concentrated/v2_allmarkets_fixtures_0051_0100.jsonl",
+      "github_blob_sha": "58606c72021c85c65ccf7880c39244b9cf1cf7ef",
+      "rows": 1350,
+      "present": 1005,
+      "missing": 345,
+      "bytes_readback_verified": 1103280,
+      "github_blob_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/10/04_concentrated/v2_allmarkets_fixtures_0101_0200.jsonl",
+      "github_blob_sha": "04588888bd22afb063a22f1d8b2d0980a1fb6eb0",
+      "rows": 2700,
+      "present": 2200,
+      "missing": 500,
+      "bytes_readback_verified": 2325213,
+      "github_blob_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/10/04_concentrated/v2_allmarkets_fixtures_0201_0300.jsonl",
+      "github_blob_sha": "62e46a18ac03f342d5677ce5267393ba5b9ee220",
+      "rows": 2700,
+      "present": 2306,
+      "missing": 394,
+      "bytes_readback_verified": 2405071,
+      "github_blob_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/10/04_concentrated/v2_allmarkets_fixtures_0301_0400.jsonl",
+      "github_blob_sha": "6d65b1f21fdac18706adf3c6b7ef9706163b79a4",
+      "rows": 2700,
+      "present": 2272,
+      "missing": 428,
+      "bytes_readback_verified": 2370607,
+      "github_blob_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/10/04_concentrated/v2_allmarkets_fixtures_0401_0455.jsonl",
+      "github_blob_sha": "4da4ef6e8dadd9a0cb68b080b162c9d714a75c5b",
+      "rows": 1485,
+      "present": 1263,
+      "missing": 222,
+      "bytes_readback_verified": 1321325,
+      "github_blob_readback_verified": true
+    }
+  ],
+  "excluded_from_canonical_aggregation": [
+    "Legacy 2026-10-10 partial 110-fixture 1X2 checkpoint files remain preserved. Their rows are not counted again in this complete v2 grid."
+  ],
+  "verification": {
+    "fixture_set_matches_source": true,
+    "unique_checkpoint_keys": true,
+    "slot_count": true,
+    "source_payload_matches_fixture_uid": true,
+    "no_snapshots_after_checkpoint": true,
+    "all_six_files_git_blob_readback": true,
+    "file_content_byte_counts_confirmed": true,
+    "sha256_per_source_row_full": false,
+    "unhashed_present_source_rows": 1068,
+    "source_row_fingerprint_present_for_every_present_snapshot": true,
+    "source_payload_hash_method": "For segments 0051..0455 SHA256 from PostgreSQL digest(to_jsonb(source_row)::text); first 50 segment retains source_fingerprint and Git blob SHA without per-row SHA256."
+  },
+  "generated_at_utc": "2026-10-23T03:19:46.584Z",
+  "note": "COMPLETE means all 455 fixture x 3 market x 9 checkpoint slots represented, not every snapshot present and not full raw tick history. Missing 2171 slots not imputed. Do not confuse with existing 03_full_snapshots migration."
+}
