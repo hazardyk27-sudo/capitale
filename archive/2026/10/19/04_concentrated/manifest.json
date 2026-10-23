@@ -1,0 +1,120 @@
+{
+  "schema_version": "SXF_ARCHIVE_V1_0",
+  "artifact": "04_concentrated",
+  "date_tr": "2026-10-19",
+  "timezone": "Europe/Istanbul",
+  "source": "Supabase research_archive SELECT ONLY",
+  "source_archive_run_status": "COMPLETE",
+  "archive_destination": "GitHub ONLY",
+  "grid_status": "COMPLETE",
+  "fixture_count": 173,
+  "markets": [
+    "1X2",
+    "OU2.5",
+    "BTTS"
+  ],
+  "checkpoints_hours": [
+    72,
+    60,
+    40,
+    24,
+    12,
+    8,
+    6,
+    3,
+    1
+  ],
+  "total_slots": 4671,
+  "source_snapshot_present_slots": 3310,
+  "missing_snapshot_slots": 1361,
+  "snapshot_availability": "PARTIAL__MISSING_SLOTS_EXPLICIT",
+  "full_raw_history_status": "NOT_MIGRATED",
+  "canonical_files": [
+    {
+      "path": "archive/2026/10/19/04_concentrated/v3_checkpoints_allmarkets_fixtures_0001_0040.jsonl",
+      "range": [
+        1,
+        40
+      ],
+      "rows": 1080,
+      "present": 989,
+      "missing": 91,
+      "sha256_jsonl": "ef3d2404390f7b42a211b8d5a97decb80e1f7ecce4ee042ee95d8382e208f4c0",
+      "github_blob_sha": "cc965f33912de9960f9b69405120e69b85d5cbb1",
+      "bytes_readback_verified": 1085978,
+      "github_blob_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/19/04_concentrated/v3_checkpoints_allmarkets_fixtures_0041_0080.jsonl",
+      "range": [
+        41,
+        80
+      ],
+      "rows": 1080,
+      "present": 914,
+      "missing": 166,
+      "sha256_jsonl": "37075b925eae4427aa503bd43c0babc1b0dd60f60eca00abd16d293867743aea",
+      "github_blob_sha": "0acc9ef8e5953da642d7e193d540d29bee55c245",
+      "bytes_readback_verified": 1029429,
+      "github_blob_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/19/04_concentrated/v3_checkpoints_allmarkets_fixtures_0081_0120.jsonl",
+      "range": [
+        81,
+        120
+      ],
+      "rows": 1080,
+      "present": 708,
+      "missing": 372,
+      "sha256_jsonl": "368d9f4071efe3d917dae2362d348266b38f81216687859b7a17a678c9759f1b",
+      "github_blob_sha": "098609e6b1e503ffd18bb57f443d39ef228eb7a9",
+      "bytes_readback_verified": 893066,
+      "github_blob_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/19/04_concentrated/v3_checkpoints_allmarkets_fixtures_0121_0160.jsonl",
+      "range": [
+        121,
+        160
+      ],
+      "rows": 1080,
+      "present": 582,
+      "missing": 498,
+      "sha256_jsonl": "3fc6c44ed07711480b6f9deb02745900403c5ac2c32d3d1aaab2786940698f6e",
+      "github_blob_sha": "eec903a8d29a1680bd530c05ad541dc28ae39358",
+      "bytes_readback_verified": 813727,
+      "github_blob_readback_verified": true
+    },
+    {
+      "path": "archive/2026/10/19/04_concentrated/v3_checkpoints_allmarkets_fixtures_0161_0173.jsonl",
+      "range": [
+        161,
+        173
+      ],
+      "rows": 351,
+      "present": 117,
+      "missing": 234,
+      "sha256_jsonl": "547eb707737ed5891edf8badb539a28476ee296a1dfe8ff698e6c702cf252887",
+      "github_blob_sha": "7829ca3cfa0445fd59c15914c26156731779b310",
+      "bytes_readback_verified": 218066,
+      "github_blob_readback_verified": true
+    }
+  ],
+  "verification": {
+    "fixture_set_matches_source": true,
+    "unique_checkpoint_keys": true,
+    "no_snapshots_after_checkpoint": true,
+    "all_present_rows_contain_full_source_payload_and_source_sha256": true,
+    "all_canonical_files_git_blob_readback": true,
+    "source_jsonl_exact_content_match_each_upload": true
+  },
+  "source_row_sha_method": "encode(digest(convert_to(to_jsonb(source_row)::text,'UTF8'),'sha256'),'hex')",
+  "SQL_template": "scripts/sql/sxf_concentrated_day_chunk_v3.sql",
+  "notes": [
+    "All 173 source fixtures represented across 3 markets and 9 time checkpoints",
+    "MISSING is an explicit historical lack of data, never imputed",
+    "Full raw archive (8 large tables) NOT migrated; no GitHub Release verified",
+    "No source database writes or deletes"
+  ]
+}
