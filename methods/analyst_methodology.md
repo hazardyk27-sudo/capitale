@@ -58,9 +58,8 @@ A distinct, mandatory, plain-Turkish FOOTBALL REASONING section, with TWO team p
 ### Mandatory third-pillar subsection: Ev sahibi / deplasman formu
 
 For BOTH teams, list actual current-season LEAGUE fixtures:
-- HOME TEAM: all matches played HOME (opponent by name, opponent quality and playing style/possession if sourced, date, score W/D/L, xG–xGA, shots/sot when sourced).
-- AWAY TEAM: all matches played AWAY (same individual fields).
-- Complementary overview: HOME TEAM's AWAY form and AWAY TEAM's HOME form across the season (at minimum W-D-L, goals, xGD where available) to distinguish a true venue effect from general team level.
+- BOTH TEAMS: list ALL their own HOME league fixtures match by match (opponent name, opponent strength/style/possession when sourced, date, W-D-L and score, xG–xGA and shots/sot where sourced), AND list ALL their own AWAY league fixtures with the SAME individual match fields. Thus four full opponent-by-opponent venue lists, not just aggregate for the non-matching venue.
+- Emphasize HOME TEAM's HOME record versus AWAY TEAM's AWAY record as the direct next-match comparison. Also show each club's opposite-venue league results to check whether performance is venue-specific. No omission of opponents or scores.
 - Compare the HOST's HOME results and underlying stats DIRECTLY to the VISITOR's AWAY results and underlying stats. Identify whom they played: beating a weak side at home isn't equivalent to performing versus elite opposition away. Identify opponent types (HIGH/BALANCED/LOW) in the venue analysis when genuinely documented and examine same-strength comparables when sample allows.
 - Explain whether away team maintains attacking chance production away and whether home team really protects against chances at home, not only who won. Home advantage is a contextual factor, not an invented fixed numeric bonus.
 - If sample small or missing, label limitation; no invented away/home results, rating or percentages.
