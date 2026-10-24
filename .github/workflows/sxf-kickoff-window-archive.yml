@@ -162,7 +162,7 @@ jobs:
           receipt = json.loads((folder / "verification_receipt.json").read_text("utf-8"))
           day = manifest["day"]
           sub = "03_full_snapshots" if manifest["kind"] == "full_snapshots" else "04_concentrated"
-          target = "archive/" + day.replace("-", "/") + "/" + sub + "/admin_release_receipt_kickoff16_24_v1.json""
+          target = "archive/" + day.replace("-", "/") + "/" + sub + "/admin_release_receipt_kickoff16_24_v1.json"
           entries = manifest["tables"] if manifest["kind"] == "full_snapshots" else manifest["markets"]
           index = {
             **receipt,
