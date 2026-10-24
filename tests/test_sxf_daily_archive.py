@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.export_sxf_daily_archive import ChunkWriter, canonical_hash, verify_directory, require_genuine_readonly_role
+from scripts.export_sxf_daily_archive import ChunkWriter, canonical_hash, verify_directory, require_genuine_readonly_role, FULL_TABLES
 
 DAY = "2026-10-09"
 
@@ -16,10 +16,20 @@ class ArchiveIntegrityTests(unittest.TestCase):
         for i in range(3):
             writer.add(json.dumps({"local_date": DAY, "source_fingerprint": f"fp{i}", "odds1": str(i)}))
         writer.close()
+        tables = []
+        for name in FULL_TABLES:
+            populated = name == "moneyway_1x2_history"
+            count = 3 if populated else 0
+            tables.append({
+                "table": name, "source_sql_rows": count,
+                "source_run_recorded_rows": count, "exported_rows": count,
+                "archive_run_count_matches": True,
+                "assets": writer.assets if populated else [],
+            })
         manifest = {
             "source_schema": "research_archive", "kind": "full_snapshots", "day": DAY,
-            "total_exported_rows": 3,
-            "tables": [{"table": "moneyway_1x2_history", "exported_rows": 3, "assets": writer.assets}],
+            "total_exported_rows": 3, "source_run_counts_match": True,
+            "tables": tables,
         }
         (directory / "export_manifest.json").write_text(json.dumps(manifest), "utf-8")
         return writer
@@ -67,6 +77,26 @@ class ArchiveIntegrityTests(unittest.TestCase):
             file = Path(temp) / writer.assets[0]["name"]
             file.write_bytes(file.read_bytes()[:-5])
             with self.assertRaises(ValueError):
+                verify_directory(Path(temp))
+
+    def test_full_missing_eighth_table_is_rejected(self):
+        with tempfile.TemporaryDirectory() as temp:
+            self.make_full(Path(temp))
+            path = Path(temp) / "export_manifest.json"
+            manifest = json.loads(path.read_text("utf-8"))
+            manifest["tables"].pop()
+            path.write_text(json.dumps(manifest), "utf-8")
+            with self.assertRaisesRegex(ValueError, "exactly eight"):
+                verify_directory(Path(temp))
+
+    def test_full_archive_run_count_mismatch_is_rejected(self):
+        with tempfile.TemporaryDirectory() as temp:
+            self.make_full(Path(temp))
+            path = Path(temp) / "export_manifest.json"
+            manifest = json.loads(path.read_text("utf-8"))
+            manifest["tables"][0]["source_run_recorded_rows"] = 4
+            path.write_text(json.dumps(manifest), "utf-8")
+            with self.assertRaisesRegex(ValueError, "source-count mismatch"):
                 verify_directory(Path(temp))
 
     def test_concentrated_missing_slots_are_preserved(self):
