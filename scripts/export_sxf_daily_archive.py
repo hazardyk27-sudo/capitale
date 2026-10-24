@@ -31,6 +31,56 @@ FULL_TABLES = {
 MARKETS = {"1X2": "moneyway_1x2_history", "OU2.5": "moneyway_ou25_history", "BTTS": "moneyway_btts_history"}
 T_HOURS = (72, 60, 40, 24, 12, 8, 6, 3, 1)
 FIRST_DAY = dt.date(2026, 10, 9)
+SCOPES = ("all", "kickoff16_24")
+WINDOW_SQL = ("AND (kickoff_utc AT TIME ZONE 'Europe/Istanbul')::time >= TIME '16:00' "
+              "AND (kickoff_utc AT TIME ZONE 'Europe/Istanbul')::date = local_date")
+
+
+def selected_window_fixtures(conn, day: dt.date):
+    """Local kickoff 16:00 inclusive, following 00:00 exclusive.
+
+    The scope selects fixtures, NEVER the scrape time of associated records.
+    """
+    with conn.cursor() as cur:
+        cur.execute(
+            "SELECT fixture_uid, match_id_hash, source_internal_id, kickoff_utc "
+            "FROM research_archive.fixtures WHERE local_date=%s " + WINDOW_SQL +
+            " ORDER BY source_internal_id", (day,))
+        rows = cur.fetchall()
+        cur.execute(
+            "SELECT COUNT(*), COUNT(DISTINCT match_id_hash) "
+            "FROM research_archive.fixtures WHERE local_date=%s", (day,))
+        total, unique_hashes = cur.fetchone()
+    if not rows or unique_hashes != total:
+        raise ValueError("Empty window or ambiguous fixture hash; refusing incomplete scope")
+    if any(uid is None and h is None for uid,h,_,_ in rows):
+        raise ValueError("Selected fixture has no source identity")
+    return rows
+
+
+def window_sql_filter():
+    # Pairs direct fixture UUID matching with the established hash fallback
+    # used by concentrated exports. No timestamp condition is applied to raw.
+    return (" WHERE r.local_date=%s AND "
+            "(r.fixture_uid = ANY(%s::uuid[]) OR "
+            "(r.fixture_uid IS NULL AND r.match_id_hash = ANY(%s::text[])))")
+
+
+def source_window_counts(conn, day, fixtures):
+    from psycopg import sql
+    uuids = [r[0] for r in fixtures if r[0] is not None]
+    hashes = [r[1] for r in fixtures if r[1] is not None]
+    values = {}
+    with conn.cursor() as cur:
+        for table in FULL_TABLES:
+            cur.execute(
+                sql.SQL("SELECT COUNT(*) FROM {} r").format(
+                    sql.Identifier("research_archive", table)
+                ) + sql.SQL(window_sql_filter()),
+                (day, uuids, hashes))
+            values[table] = cur.fetchone()[0]
+    return values
+
 
 
 def sha_file(path: Path) -> str:
@@ -119,27 +169,42 @@ def source_manifest(conn, day: dt.date) -> dict:
     return json.loads(result[0])
 
 
-def export_full(conn, day: dt.date, folder: Path, chunk_rows: int, source: dict, on_asset=None) -> dict:
+def export_full(conn, day: dt.date, folder: Path, chunk_rows: int, source: dict,
+                on_asset=None, scope: str = "all", fixtures=None, window_counts=None) -> dict:
     from psycopg import sql
     tables = []
     total = 0
+    selected_uuids = [x[0] for x in fixtures if x[0] is not None] if fixtures else []
+    selected_hashes = [x[1] for x in fixtures if x[1] is not None] if fixtures else []
     for table, expected_key in FULL_TABLES.items():
-        with conn.cursor() as cur:
-            cur.execute(
-                sql.SQL("SELECT COUNT(*) FROM {} WHERE local_date=%s").format(
-                    sql.Identifier("research_archive", table)
-                ), (day,),
-            )
-            actual = cur.fetchone()[0]
+        if scope == "kickoff16_24":
+            actual = window_counts[table]
+        else:
+            with conn.cursor() as cur:
+                cur.execute(
+                    sql.SQL("SELECT COUNT(*) FROM {} WHERE local_date=%s").format(
+                        sql.Identifier("research_archive", table)
+                    ), (day,),
+                )
+                actual = cur.fetchone()[0]
         writer = ChunkWriter(folder, f"raw_{day}_{table}", chunk_rows, on_asset=on_asset)
         with conn.cursor(name=f"sxf_archive_{table}") as cur:
             cur.itersize = 1000
-            cur.execute(
-                sql.SQL("SELECT row_to_json(r)::text FROM {} r "
-                        "WHERE r.local_date=%s ORDER BY r.source_fingerprint NULLS LAST").format(
-                            sql.Identifier("research_archive", table)
-                        ), (day,),
-            )
+            if scope == "kickoff16_24":
+                # No expensive fingerprint sort: SHA256 verifies exact contents
+                # and the manifest preserves IDs independently of SQL ordering.
+                cur.execute(
+                    sql.SQL("SELECT row_to_json(r)::text FROM {} r").format(
+                        sql.Identifier("research_archive", table)
+                    ) + sql.SQL(window_sql_filter()),
+                    (day, selected_uuids, selected_hashes))
+            else:
+                cur.execute(
+                    sql.SQL("SELECT row_to_json(r)::text FROM {} r "
+                            "WHERE r.local_date=%s ORDER BY r.source_fingerprint NULLS LAST").format(
+                                sql.Identifier("research_archive", table)
+                            ), (day,),
+                )
             while True:
                 batch = cur.fetchmany(1000)
                 if not batch:
@@ -152,9 +217,11 @@ def export_full(conn, day: dt.date, folder: Path, chunk_rows: int, source: dict,
         writer.close()
         if writer.total != actual:
             raise ValueError(f"Source row count mismatch during streaming: {table}")
-        expected = source.get(expected_key)
+        expected = actual if scope == "kickoff16_24" else source.get(expected_key)
         tables.append({
             "table": table, "source_sql_rows": actual, "source_run_recorded_rows": expected,
+            "full_day_source_run_rows": source.get(expected_key),
+            "count_basis": "INDEPENDENT_SCOPED_SQL" if scope == "kickoff16_24" else "DAILY_ARCHIVE_RUN",
             "archive_run_count_matches": (actual == expected if expected is not None else None),
             "exported_rows": writer.total, "assets": writer.assets,
         })
@@ -195,12 +262,14 @@ def require_complete_full_export_inventory(result: dict) -> None:
         raise ValueError("Full raw manifest totals mismatch; refuse Release upload")
 
 
-def select_checkpoint_batch(conn, day: dt.date, table: str, limit: int, offset: int):
+def select_checkpoint_batch(conn, day: dt.date, table: str, limit: int, offset: int,
+                            scope: str = "all"):
     from psycopg import sql
     query = sql.SQL("""
         WITH f AS MATERIALIZED (
           SELECT source_internal_id, fixture_uid, match_id_hash, kickoff_utc
           FROM research_archive.fixtures WHERE local_date=%s
+          {window_condition}
           ORDER BY source_internal_id LIMIT %s OFFSET %s
         ), h AS MATERIALIZED (
           SELECT f.source_internal_id AS fixture_row, z.id AS sid,
@@ -227,16 +296,21 @@ def select_checkpoint_batch(conn, day: dt.date, table: str, limit: int, offset: 
           ORDER BY h.observed_at DESC, h.sid DESC LIMIT 1
         ) h1 ON TRUE
         ORDER BY f.source_internal_id, t.hours DESC
-    """).format(sql.Identifier("research_archive", table))
+    """.replace("{window_condition}", WINDOW_SQL if scope == "kickoff16_24" else "")).format(
+        sql.Identifier("research_archive", table))
     with conn.cursor() as cur:
         cur.execute(query, (day, limit, offset, day))
         return cur.fetchall()
 
 
-def export_concentrated(conn, day: dt.date, folder: Path, chunk_rows: int, batch_fixtures: int, on_asset=None) -> dict:
-    with conn.cursor() as cur:
-        cur.execute("SELECT COUNT(*) FROM research_archive.fixtures WHERE local_date=%s", (day,))
-        fixtures = cur.fetchone()[0]
+def export_concentrated(conn, day: dt.date, folder: Path, chunk_rows: int, batch_fixtures: int,
+                        on_asset=None, scope: str = "all", selected_fixtures=None) -> dict:
+    if scope == "kickoff16_24":
+        fixtures = len(selected_fixtures)
+    else:
+        with conn.cursor() as cur:
+            cur.execute("SELECT COUNT(*) FROM research_archive.fixtures WHERE local_date=%s", (day,))
+            fixtures = cur.fetchone()[0]
     if fixtures == 0:
         raise ValueError("No fixtures for concentrated archive date")
     markets = []
@@ -244,7 +318,7 @@ def export_concentrated(conn, day: dt.date, folder: Path, chunk_rows: int, batch
         writer = ChunkWriter(folder, f"concentrated_{day}_{market.replace('.', '')}", chunk_rows, on_asset=on_asset)
         present, missing = 0, 0
         for offset in range(0, fixtures, batch_fixtures):
-            records = select_checkpoint_batch(conn, day, table, batch_fixtures, offset)
+            records = select_checkpoint_batch(conn, day, table, batch_fixtures, offset, scope=scope)
             if len(records) != min(batch_fixtures, fixtures - offset) * len(T_HOURS):
                 raise ValueError(f"Incomplete checkpoint batch: {market} offset {offset}")
             for source_id, fixture_uid, match_hash, kickoff, hours, target, observed, fp, raw in records:
@@ -290,6 +364,13 @@ def verify_directory(folder: Path) -> dict:
         raise ValueError("Unknown mode in export manifest")
     if manifest.get("source_schema") != "research_archive":
         raise ValueError("Unexpected source schema")
+    scope = manifest.get("scope", "all")
+    if scope not in SCOPES:
+        raise ValueError("Unknown archive fixture selection scope")
+    if scope == "kickoff16_24" and not manifest.get("selected_fixture_count"):
+        raise ValueError("Scoped archive missing selected fixture inventory")
+    selected_ids = set(manifest.get("selected_fixture_uids", []))
+    selected_hashes = set(manifest.get("selected_match_id_hashes", []))
     if kind == "full_snapshots":
         require_complete_full_export_inventory(manifest)
     entries = manifest["tables"] if kind == "full_snapshots" else manifest["markets"]
@@ -311,6 +392,12 @@ def verify_directory(folder: Path) -> dict:
                     if kind == "full_snapshots":
                         if obj.get("local_date") != day:
                             raise ValueError("Wrong full-raw day")
+                        if scope == "kickoff16_24" and not (
+                            obj.get("fixture_uid") in selected_ids or
+                            (obj.get("fixture_uid") is None
+                             and obj.get("match_id_hash") in selected_hashes)
+                        ):
+                            raise ValueError("Raw row outside selected kickoff window")
                     else:
                         if obj.get("match_date_tr") != day or obj.get("market") != entry["market"]:
                             raise ValueError("Wrong concentrated slot date/market")
@@ -388,7 +475,9 @@ def require_genuine_readonly_role(conn) -> None:
         )
 
 
-def begin_verified_progress_release(conn, day: dt.date, kind: str, folder: Path, source: dict):
+def begin_verified_progress_release(conn, day: dt.date, kind: str, folder: Path,
+                                    source: dict, scope: str = "all",
+                                    selected_fixtures=None, window_counts=None):
     """Create a non-public draft, then count only successfully uploaded full chunks.
 
     The marker contains the exact source row total. Individual asset filenames
@@ -396,30 +485,37 @@ def begin_verified_progress_release(conn, day: dt.date, kind: str, folder: Path,
     unless a Release verification_receipt.json exists and the workflow succeeds.
     """
     tag = os.environ.get("SXF_ARCHIVE_RELEASE_TAG", "")
-    if not re.fullmatch(r"sxf-(?:raw|concentrated)-20\d{2}-\d{2}-\d{2}-v1", tag):
+    if not re.fullmatch(r"sxf-(?:raw|concentrated)-20\d{2}-\d{2}-\d{2}(?:-kickoff16-24)?-v1", tag):
         raise ValueError("Invalid progress Release tag")
-    expected_tag = f"sxf-{'raw' if kind == 'full_snapshots' else 'concentrated'}-{day}-v1"
+    suffix = "-kickoff16-24" if scope == "kickoff16_24" else ""
+    expected_tag = f"sxf-{'raw' if kind == 'full_snapshots' else 'concentrated'}-{day}{suffix}-v1"
     if tag != expected_tag:
         raise ValueError("Release tag/date/type mismatch")
-    with conn.cursor() as cur:
-        if kind == "full_snapshots":
-            from psycopg import sql
-            expected_total = 0
-            for table, key in FULL_TABLES.items():
-                recorded = source.get(key)
-                if type(recorded) is not int or recorded < 0:
-                    raise ValueError(f"Invalid source inventory for {table}")
-                cur.execute(
-                    sql.SQL("SELECT COUNT(*) FROM {} WHERE local_date=%s").format(
-                        sql.Identifier("research_archive", table)
-                    ), (day,),
-                )
-                if cur.fetchone()[0] != recorded:
-                    raise ValueError(f"Source inventory mismatch before upload: {table}")
-                expected_total += recorded
-        else:
-            cur.execute("SELECT COUNT(*) FROM research_archive.fixtures WHERE local_date=%s", (day,))
-            expected_total = cur.fetchone()[0] * 27
+    if scope == "kickoff16_24":
+        expected_total = (
+            sum(window_counts.values()) if kind == "full_snapshots" else
+            len(selected_fixtures) * 27
+        )
+    else:
+        with conn.cursor() as cur:
+            if kind == "full_snapshots":
+                from psycopg import sql
+                expected_total = 0
+                for table, key in FULL_TABLES.items():
+                    recorded = source.get(key)
+                    if type(recorded) is not int or recorded < 0:
+                        raise ValueError(f"Invalid source inventory for {table}")
+                    cur.execute(
+                        sql.SQL("SELECT COUNT(*) FROM {} WHERE local_date=%s").format(
+                            sql.Identifier("research_archive", table)
+                        ), (day,),
+                    )
+                    if cur.fetchone()[0] != recorded:
+                        raise ValueError(f"Source inventory mismatch before upload: {table}")
+                    expected_total += recorded
+            else:
+                cur.execute("SELECT COUNT(*) FROM research_archive.fixtures WHERE local_date=%s", (day,))
+                expected_total = cur.fetchone()[0] * 27
     if expected_total < 1:
         raise ValueError("Empty source day; refusing zero-length progress claim")
 
@@ -433,7 +529,7 @@ def begin_verified_progress_release(conn, day: dt.date, kind: str, folder: Path,
     marker = folder / f"progress_total_rows_{expected_total}.json"
     marker.write_text(json.dumps({
         "schema": "SXF_RELEASE_PROGRESS_V1", "day": str(day),
-        "kind": kind, "expected_rows": expected_total,
+        "kind": kind, "scope": scope, "expected_rows": expected_total,
         "count_type": "source_rows" if kind == "full_snapshots" else "checkpoint_slots",
         "status": "UPLOADING_NOT_VERIFIED",
     }, indent=2) + "\n", encoding="utf-8")
@@ -452,7 +548,8 @@ def begin_verified_progress_release(conn, day: dt.date, kind: str, folder: Path,
     return upload_one
 
 
-def export(day: dt.date, kind: str, folder: Path, chunk_rows: int, batch_fixtures: int) -> dict:
+def export(day: dt.date, kind: str, folder: Path, chunk_rows: int, batch_fixtures: int,
+           scope: str = "all") -> dict:
     import psycopg
     dsn = os.environ.get("SXF_ARCHIVE_DATABASE_URL")
     if not dsn:
@@ -468,23 +565,39 @@ def export(day: dt.date, kind: str, folder: Path, chunk_rows: int, batch_fixture
                 raise ValueError("Source DB transaction is not read-only")
         require_genuine_readonly_role(conn)
         source = source_manifest(conn, day)
-        on_asset = (begin_verified_progress_release(conn, day, kind, folder, source)
+        fixtures = selected_window_fixtures(conn, day) if scope == "kickoff16_24" else None
+        window_counts = (source_window_counts(conn, day, fixtures)
+                         if scope == "kickoff16_24" and kind == "full_snapshots" else None)
+        on_asset = (begin_verified_progress_release(
+                        conn, day, kind, folder, source, scope=scope,
+                        selected_fixtures=fixtures, window_counts=window_counts)
                     if os.environ.get("SXF_STREAM_RELEASE_UPLOAD") == "1" else None)
-        result = (export_full(conn, day, folder, chunk_rows, source, on_asset=on_asset)
+        result = (export_full(conn, day, folder, chunk_rows, source, on_asset=on_asset,
+                              scope=scope, fixtures=fixtures, window_counts=window_counts)
                   if kind == "full_snapshots" else
-                  export_concentrated(conn, day, folder, chunk_rows, batch_fixtures, on_asset=on_asset))
+                  export_concentrated(conn, day, folder, chunk_rows, batch_fixtures,
+                                      on_asset=on_asset, scope=scope, selected_fixtures=fixtures))
     if kind == "full_snapshots":
         require_complete_full_export_inventory(result)
     manifest = {
         "schema_version": "SXF_CAPITALE_DAY_ARCHIVE_V1", "source_schema": "research_archive",
         "source_access": "SELECT_ONLY", "day": str(day), "timezone": "Europe/Istanbul",
-        "kind": kind, "source_archive_run_status": source.get("status"),
+        "kind": kind, "scope": scope,
+        "selected_fixture_count": len(fixtures) if fixtures is not None else None,
+        "selected_fixture_uids": [str(x[0]) for x in fixtures if x[0] is not None] if fixtures else [],
+        "selected_match_id_hashes": [x[1] for x in fixtures if x[1] is not None] if fixtures else [],
+        "window_local_start": "16:00" if scope == "kickoff16_24" else None,
+        "window_local_end_exclusive": "24:00" if scope == "kickoff16_24" else None,
+        "source_archive_run_status": source.get("status"),
         "source_expected_fixtures": source.get("expected_fixtures"),
         "source_archived_fixtures": source.get("archived_fixtures"),
         "release_upload_verified": False, "github_migration_complete": False,
         "source_collection_complete": source.get("status") == "COMPLETE",
         "notes": [
-            "Original raw records including unmatched/post-kickoff rows preserved in full mode.",
+            ("Selected kickoff-window matches preserve all associated stored raw rows, "
+             "including observations outside 16:00-24:00; other matches intentionally excluded."
+             if scope == "kickoff16_24" else
+             "Original raw records including unmatched/post-kickoff rows preserved in full mode."),
             "GitHub upload/download/hash and restore are verified separately by the Actions workflow.",
             "A source PARTIAL day must never be represented as a historically complete collection.",
         ],
@@ -504,6 +617,7 @@ def main():
     parser.add_argument("--verify-dir", type=Path)
     parser.add_argument("--chunk-rows", type=int, default=25000)
     parser.add_argument("--fixture-batch", type=int, default=25)
+    parser.add_argument("--scope", choices=SCOPES, default="all")
     args = parser.parse_args()
     if args.verify_dir:
         print(json.dumps(verify_directory(args.verify_dir)))
@@ -519,7 +633,8 @@ def main():
         parser.error("Requested fixture day outside safe historical range")
     if args.chunk_rows < 1 or args.chunk_rows > 25000 or args.fixture_batch < 1 or args.fixture_batch > 50:
         parser.error("Unsafe export chunk size")
-    result = export(day, args.kind, args.output_dir, args.chunk_rows, args.fixture_batch)
+    result = export(day, args.kind, args.output_dir, args.chunk_rows, args.fixture_batch,
+                    scope=args.scope)
     print(json.dumps({"kind": args.kind, "day": str(day), "exported_rows":
           result.get("total_exported_rows", result.get("checkpoint_slots")),
           "locally_verified": True, "github_upload_verified": False}))
