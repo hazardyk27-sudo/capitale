@@ -1,0 +1,75 @@
+{
+  "schema_version": "CAPITALE_SXF_RAW_TRANSFER_PREFLIGHT_V1",
+  "preflight_local_date": "2026-10-24",
+  "batch": [
+    "2026-10-09",
+    "2026-10-10"
+  ],
+  "timezone": "Europe/Istanbul",
+  "source": "Supabase project pswdvnmqjjnjodwzkmkp, research_archive, SELECT only",
+  "destination": "hazardyk27-sudo/capitale GitHub Release (not yet created)",
+  "status": "SOURCE_COUNTS_REVERIFIED__TRANSFER_BLOCKED_BEFORE_EXPORT",
+  "source_verification_method": "SELECT archive_runs inventory and independent SELECT COUNT(*) grouped by local_date against each of the 8 source raw tables; 16 of 16 day/table counts matched",
+  "days": {
+    "2026-10-09": {
+      "source_archive_run_status": "COMPLETE",
+      "source_fixture_count": 260,
+      "source_actual_select_counts": {
+        "moneyway_1x2_history": 148444,
+        "moneyway_ou25_history": 136026,
+        "moneyway_btts_history": 103311,
+        "dropping_1x2_history": 139474,
+        "dropping_ou25_history": 135217,
+        "dropping_btts_history": 102760,
+        "moneyway_snapshots": 331308,
+        "live_snapshots": 1007770
+      },
+      "source_inventory_count_matches_select": true,
+      "raw_rows_source_daily_memberships": 2104310,
+      "github_full_raw_complete": false
+    },
+    "2026-10-10": {
+      "source_archive_run_status": "COMPLETE",
+      "source_fixture_count": 455,
+      "source_actual_select_counts": {
+        "moneyway_1x2_history": 389509,
+        "moneyway_ou25_history": 329789,
+        "moneyway_btts_history": 221451,
+        "dropping_1x2_history": 355377,
+        "dropping_ou25_history": 327614,
+        "dropping_btts_history": 219922,
+        "moneyway_snapshots": 974997,
+        "live_snapshots": 1488883
+      },
+      "source_inventory_count_matches_select": true,
+      "raw_rows_source_daily_memberships": 4307542,
+      "github_full_raw_complete": false
+    }
+  },
+  "total_source_daily_memberships": 6411852,
+  "global_unique_raw_rows_claimed": false,
+  "existing_previous_verified_small_repo_pilot": {
+    "2026-10-09/moneyway_1x2_history": 1050
+  },
+  "github_release_api_result": "[]",
+  "new_raw_rows_exported_in_this_preflight": 0,
+  "new_raw_rows_uploaded_in_this_preflight": 0,
+  "new_release_assets_verified": 0,
+  "blocking_prerequisites": [
+    "GitHub Actions repository secret SXF_ARCHIVE_DATABASE_URL is absent per preflight run 40027125153",
+    "No existing PostgreSQL LOGIN role was found in a read-only catalog inspection that passed SELECT on all eight target tables and had no elevated/DDL/DML rights on research_archive",
+    "SmartXFlow server env has no SXF_ARCHIVE_DATABASE_URL and no equivalent PostgreSQL archive connection configured"
+  ],
+  "source_record_mutation": "NONE; SELECT queries only",
+  "verification_standard": "No day is COMPLETE until all 8 daily raw tables have Release gzip parts downloaded, byte size, SHA256, JSONL restore, and source count verified",
+  "source_inventory_github_blob_sha": {
+    "2026-10-09": "d3e58dfa4caa800ba5c8d974cc9419004456b31a",
+    "2026-10-10": "e3e6de82e20da8a604767f107003eaa729c8a824"
+  },
+  "workflow_evidence_urls": [
+    "https://github.com/hazardyk27-sudo/capitale/actions/runs/40027125153",
+    "https://github.com/hazardyk27-sudo/capitale/actions/runs/39975563492"
+  ],
+  "private_credentials_in_receipt": false,
+  "note": "Audit/preflight only. This JSON is not a full raw data export and cannot be counted as migrated rows. Do not start unsafe source access or change the admin login."
+}
