@@ -1,0 +1,25 @@
+name: BetCapitale Whop deployment guard tests
+
+on:
+  push:
+    paths:
+      - "deployments/betcapitale/**"
+      - ".github/workflows/betcapitale-whop-guard.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Python files
+        run: |
+          python3 -m py_compile deployments/betcapitale/ensure_one_time.py
+          python3 -m py_compile deployments/betcapitale/tests/test_ensure_one_time.py
+          python3 -m json.tool deployments/betcapitale/whop_one_time_plans.json > /dev/null
+      - name: Run unit tests
+        run: python3 -m unittest discover -v -s deployments/betcapitale/tests -p 'test_*.py'
