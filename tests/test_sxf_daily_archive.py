@@ -71,6 +71,33 @@ class ArchiveIntegrityTests(unittest.TestCase):
             self.assertEqual(result["verified_rows"], 3)
             self.assertEqual(result["asset_count"], 2)
 
+    def test_streamed_progress_rows_match_successfully_uploaded_chunks(self):
+        # Only a successful callback counts as GitHub-uploaded rows.
+        with tempfile.TemporaryDirectory() as temp:
+            captured = []
+            folder = Path(temp)
+            def upload(asset, path):
+                self.assertTrue(path.is_file())
+                captured.append((asset["name"], asset["rows"]))
+            writer = ChunkWriter(folder, "raw_stream_test", 2, on_asset=upload)
+            for index in range(3):
+                writer.add(json.dumps({"local_date": DAY, "source_fingerprint": str(index)}))
+            writer.close()
+            self.assertEqual([x[1] for x in captured], [2, 1])
+            self.assertTrue(captured[0][0].endswith("_rows_2.jsonl.gz"))
+            self.assertTrue(captured[1][0].endswith("_rows_1.jsonl.gz"))
+            self.assertEqual(sum(a["rows"] for a in writer.assets), 3)
+            self.assertEqual(writer.assets[0]["name"], captured[0][0])
+
+    def test_failed_stream_upload_never_records_more_chunks(self):
+        with tempfile.TemporaryDirectory() as temp:
+            def fail(asset, path):
+                raise RuntimeError("GitHub refused asset")
+            writer = ChunkWriter(Path(temp), "raw_upload_fail", 1, on_asset=fail)
+            with self.assertRaisesRegex(RuntimeError, "GitHub refused asset"):
+                writer.add(json.dumps({"local_date": DAY}))
+            self.assertEqual(len(writer.assets), 1)
+
     def test_gzip_tamper_is_rejected(self):
         with tempfile.TemporaryDirectory() as temp:
             writer = self.make_full(Path(temp))
