@@ -79,31 +79,30 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python scripts/export_sxf_daily_archive.py \
-            --day "$DAY" --kind "$KIND" --chunk-rows 25000 --fixture-batch 25 \
-            --output-dir "$RUNNER_TEMP/sxf-export"
-      - name: Upload into a new draft Release without overwrites
-        shell: bash
-        run: |
-          set -euo pipefail
           if [[ "$KIND" == full_snapshots ]]; then
             tag="sxf-raw-$DAY-v1"
           else
             tag="sxf-concentrated-$DAY-v1"
           fi
           echo "ARCHIVE_RELEASE_TAG=$tag" >> "$GITHUB_ENV"
-          if gh release view "$tag" >/dev/null 2>&1; then
-            echo 'Existing Release found. Refusing overwrite or duplicate.' >&2
+          export SXF_ARCHIVE_RELEASE_TAG="$tag"
+          export SXF_STREAM_RELEASE_UPLOAD=1
+          python scripts/export_sxf_daily_archive.py \
+            --day "$DAY" --kind "$KIND" --chunk-rows 25000 --fixture-batch 25 \
+            --output-dir "$RUNNER_TEMP/sxf-export"
+      - name: Upload final manifest after streaming all checked source chunks
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$(gh release view "$ARCHIVE_RELEASE_TAG" --json isDraft --jq .isDraft)" != "true" ]]; then
+            echo 'Refusing verification for non-draft or missing Release' >&2
             exit 1
           fi
           if ! ls "$RUNNER_TEMP"/sxf-export/*.jsonl.gz >/dev/null 2>&1; then
-            echo 'No export assets created' >&2
+            echo 'No chunk assets exported' >&2
             exit 1
           fi
-          gh release create "$tag" --draft --latest=false \
-            --title "SXF $DAY $KIND (pending verification)" \
-            --notes 'Source research_archive SELECT-only; never certify until GitHub download and gzip restore.'
-          gh release upload "$tag" "$RUNNER_TEMP"/sxf-export/*.jsonl.gz "$RUNNER_TEMP"/sxf-export/export_manifest.json
+          gh release upload "$ARCHIVE_RELEASE_TAG" "$RUNNER_TEMP/sxf-export/export_manifest.json"
       - name: Download all assets; check byte identity, SHA and JSONL restore
         shell: bash
         run: |
