@@ -2,7 +2,7 @@
   "kind": "PRECHECK_ONLY_NO_EXPORT",
   "requested_day": "2026-10-09",
   "request_date": "2026-10-24",
-  "purpose": "Re-test GitHub Actions DSN authentication using reader role; no archive export or source modifications.",
+  "purpose": "Check read-only source PostgreSQL login to confirm newly-set archive reader password; no export and no source writes",
   "no_data_modification": true,
   "checkpoint": "POST_CONCENTRATED_14_OF_14",
   "next_raw_days": [
@@ -17,5 +17,5 @@
   ],
   "archive_transfer_authorized": false,
   "database_writes_authorized": false,
-  "verification_request": "2026-10-24-owner-updated-reader-password-recheck"
+  "verification_request": "2026-10-24-followup-after-owner-ran-reader-password-sql"
 }
