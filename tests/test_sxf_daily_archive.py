@@ -98,6 +98,56 @@ class ArchiveIntegrityTests(unittest.TestCase):
                 writer.add(json.dumps({"local_date": DAY}))
             self.assertEqual(len(writer.assets), 1)
 
+    def test_scoped_archive_rejects_raw_rows_outside_selected_fixture(self):
+        with tempfile.TemporaryDirectory() as temp:
+            folder = Path(temp)
+            self.make_full(folder)
+            mpath = folder / "export_manifest.json"
+            manifest = json.loads(mpath.read_text("utf-8"))
+            manifest.update({
+                "scope": "kickoff16_24",
+                "selected_fixture_count": 1,
+                "selected_fixture_uids": ["00000000-0000-0000-0000-000000000001"],
+                "selected_match_id_hashes": ["selected-match"],
+            })
+            mpath.write_text(json.dumps(manifest), "utf-8")
+            with self.assertRaisesRegex(ValueError, "outside selected kickoff window"):
+                verify_directory(folder)
+
+    def test_scoped_archive_accepts_selected_match_entire_history(self):
+        with tempfile.TemporaryDirectory() as temp:
+            folder = Path(temp)
+            writer = ChunkWriter(folder, "raw_window", 25)
+            # Both before and after kickoff observations remain in scope:
+            # the filter is on fixture kickoff, NOT the scrape timestamp.
+            for scrape_time in ("2026-10-10T09:00:00Z", "2026-10-11T23:59:00Z"):
+                writer.add(json.dumps({
+                    "local_date": DAY, "fixture_uid": None,
+                    "match_id_hash": "selected-match",
+                    "scraped_at": scrape_time,
+                }))
+            writer.close()
+            tables = []
+            for table in FULL_TABLES:
+                populated = table == "moneyway_1x2_history"
+                count = 2 if populated else 0
+                tables.append({
+                    "table": table, "source_sql_rows": count,
+                    "source_run_recorded_rows": count, "exported_rows": count,
+                    "archive_run_count_matches": True,
+                    "assets": writer.assets if populated else [],
+                })
+            manifest = {
+                "source_schema": "research_archive", "kind": "full_snapshots",
+                "day": DAY, "scope": "kickoff16_24",
+                "selected_fixture_count": 1, "selected_fixture_uids": [],
+                "selected_match_id_hashes": ["selected-match"],
+                "source_run_counts_match": True, "total_exported_rows": 2,
+                "tables": tables,
+            }
+            (folder / "export_manifest.json").write_text(json.dumps(manifest), "utf-8")
+            self.assertEqual(verify_directory(folder)["verified_rows"], 2)
+
     def test_gzip_tamper_is_rejected(self):
         with tempfile.TemporaryDirectory() as temp:
             writer = self.make_full(Path(temp))
