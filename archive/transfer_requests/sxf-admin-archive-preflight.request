@@ -17,5 +17,5 @@
   ],
   "archive_transfer_authorized": false,
   "database_writes_authorized": false,
-  "verification_request": "2026-10-24-after-owner-added-SXF_ARCHIVE_DATABASE_URL"
+  "verification_request": "2026-10-24-recheck-after-user-confirmed-secret-was-added"
 }
