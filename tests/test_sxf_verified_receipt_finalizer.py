@@ -107,7 +107,7 @@ class FinalizerTests(unittest.TestCase):
 
     def test_missing_remote_file_refused(self):
         def remote_missing(*args):
-            if "assets?" in args[2]:
+            if len(args) > 2 and "assets?" in args[2]:
                 return "verification_receipt.json"
             return self._mockgh(*args)
         with self.assertRaisesRegex(ValueError, "assets differ"):
