@@ -67,10 +67,9 @@ class FinalizerTests(unittest.TestCase):
         (self.dir / name).write_text(json.dumps(obj), encoding="utf-8")
 
     def _mockgh(self, *args):
-        if "/releases/tags/" in args[1]:
-            return json.dumps({"draft": True, "id": 12345})
-        if "assets?" in args[2]:
-            return "\n".join(p.name for p in self.dir.iterdir() if p.is_file())
+        if args[:2] == ("release", "view"):
+            return json.dumps({"isDraft": True,
+                               "assets": [{"name": p.name} for p in self.dir.iterdir() if p.is_file()]})
         raise AssertionError("Unrecognized gh invocation: " + repr(args))
 
     def test_full_verified_assets_produce_append_only_index(self):
@@ -107,8 +106,9 @@ class FinalizerTests(unittest.TestCase):
 
     def test_missing_remote_file_refused(self):
         def remote_missing(*args):
-            if len(args) > 2 and "assets?" in args[2]:
-                return "verification_receipt.json"
+            if args[:2] == ("release", "view"):
+                return json.dumps({"isDraft": True,
+                                   "assets": [{"name": "verification_receipt.json"}]})
             return self._mockgh(*args)
         with self.assertRaisesRegex(ValueError, "assets differ"):
             prepare_index(self.dir, TAG, DAY, "full_snapshots", REPO,
