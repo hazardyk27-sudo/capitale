@@ -305,13 +305,22 @@ def source_manifest(conn, day: dt.date) -> dict:
 
 
 def export_full(conn, day: dt.date, folder: Path, chunk_rows: int, source: dict,
-                on_asset=None, scope: str = "all", fixtures=None, window_counts=None) -> dict:
+                on_asset=None, scope: str = "all", fixtures=None,
+                window_counts=None, resume=None) -> dict:
     from psycopg import sql
     tables = []
     total = 0
     selected_uuids = [x[0] for x in fixtures if x[0] is not None] if fixtures else []
     selected_hashes = [x[1] for x in fixtures if x[1] is not None] if fixtures else []
     for table, expected_key in FULL_TABLES.items():
+        if resume is not None:
+            cached = resume.load(table)
+            if cached is not None:
+                if cached.get("source_sql_rows") != window_counts[table]:
+                    raise ValueError("Completed source table counts changed; refusing resume")
+                tables.append(cached)
+                total += cached["exported_rows"]
+                continue
         if scope == "kickoff16_24":
             actual = window_counts[table]
         else:
@@ -353,13 +362,16 @@ def export_full(conn, day: dt.date, folder: Path, chunk_rows: int, source: dict,
         if writer.total != actual:
             raise ValueError(f"Source row count mismatch during streaming: {table}")
         expected = actual if scope == "kickoff16_24" else source.get(expected_key)
-        tables.append({
+        entry = {
             "table": table, "source_sql_rows": actual, "source_run_recorded_rows": expected,
             "full_day_source_run_rows": source.get(expected_key),
             "count_basis": "INDEPENDENT_SCOPED_SQL" if scope == "kickoff16_24" else "DAILY_ARCHIVE_RUN",
             "archive_run_count_matches": (actual == expected if expected is not None else None),
             "exported_rows": writer.total, "assets": writer.assets,
-        })
+        }
+        if resume is not None:
+            resume.finish(table, entry)
+        tables.append(entry)
         total += writer.total
         print(json.dumps({"table": table, "rows": writer.total, "chunks": len(writer.assets)}), flush=True)
     return {"tables": tables, "total_exported_rows": total,
@@ -439,7 +451,8 @@ def select_checkpoint_batch(conn, day: dt.date, table: str, limit: int, offset: 
 
 
 def export_concentrated(conn, day: dt.date, folder: Path, chunk_rows: int, batch_fixtures: int,
-                        on_asset=None, scope: str = "all", selected_fixtures=None) -> dict:
+                        on_asset=None, scope: str = "all",
+                        selected_fixtures=None, resume=None) -> dict:
     if scope == "kickoff16_24":
         fixtures = len(selected_fixtures)
     else:
@@ -450,6 +463,13 @@ def export_concentrated(conn, day: dt.date, folder: Path, chunk_rows: int, batch
         raise ValueError("No fixtures for concentrated archive date")
     markets = []
     for market, table in MARKETS.items():
+        if resume is not None:
+            cached = resume.load(market)
+            if cached is not None:
+                if cached.get("fixture_count") != fixtures or cached.get("slots") != fixtures * len(T_HOURS):
+                    raise ValueError("Cached market checkpoint count changed")
+                markets.append(cached)
+                continue
         writer = ChunkWriter(folder, f"concentrated_{day}_{market.replace('.', '')}", chunk_rows, on_asset=on_asset)
         present, missing = 0, 0
         for offset in range(0, fixtures, batch_fixtures):
@@ -483,10 +503,13 @@ def export_concentrated(conn, day: dt.date, folder: Path, chunk_rows: int, batch
         expected = fixtures * len(T_HOURS)
         if writer.total != expected or present + missing != expected:
             raise ValueError(f"Missing fixture/market slots for {market}")
-        markets.append({
+        entry = {
             "market": market, "fixture_count": fixtures, "slots": expected,
             "present": present, "missing": missing, "assets": writer.assets
-        })
+        }
+        if resume is not None:
+            resume.finish(market, entry)
+        markets.append(entry)
         print(json.dumps({"market": market, "slots": expected, "present": present,
                           "missing": missing}), flush=True)
     return {"fixture_count": fixtures, "markets": markets, "checkpoint_slots": fixtures * 3 * 9}
@@ -703,15 +726,32 @@ def export(day: dt.date, kind: str, folder: Path, chunk_rows: int, batch_fixture
         fixtures = selected_window_fixtures(conn, day) if scope == "kickoff16_24" else None
         window_counts = (source_window_counts(conn, day, fixtures)
                          if scope == "kickoff16_24" and kind == "full_snapshots" else None)
-        on_asset = (begin_verified_progress_release(
-                        conn, day, kind, folder, source, scope=scope,
-                        selected_fixtures=fixtures, window_counts=window_counts)
-                    if os.environ.get("SXF_STREAM_RELEASE_UPLOAD") == "1" else None)
+        if (scope == "kickoff16_24" and os.environ.get("SXF_STREAM_RELEASE_UPLOAD") == "1"):
+            release_tag = os.environ.get("SXF_ARCHIVE_RELEASE_TAG", "")
+            expect_tag = (
+                f"sxf-{'raw' if kind == 'full_snapshots' else 'concentrated'}-"
+                f"{day}-kickoff16-24-v1"
+            )
+            if release_tag != expect_tag:
+                raise ValueError("Unsafe scoped Release tag")
+            expected_rows = (sum(window_counts.values()) if kind == "full_snapshots"
+                             else len(fixtures) * 27)
+            resume = VerifiedReleaseResume(release_tag, folder, day, scope,
+                                           source, fixtures, expected_rows)
+            on_asset = resume
+        else:
+            resume = None
+            on_asset = (begin_verified_progress_release(
+                            conn, day, kind, folder, source, scope=scope,
+                            selected_fixtures=fixtures, window_counts=window_counts)
+                        if os.environ.get("SXF_STREAM_RELEASE_UPLOAD") == "1" else None)
         result = (export_full(conn, day, folder, chunk_rows, source, on_asset=on_asset,
-                              scope=scope, fixtures=fixtures, window_counts=window_counts)
+                              scope=scope, fixtures=fixtures, window_counts=window_counts,
+                              resume=resume)
                   if kind == "full_snapshots" else
                   export_concentrated(conn, day, folder, chunk_rows, batch_fixtures,
-                                      on_asset=on_asset, scope=scope, selected_fixtures=fixtures))
+                                      on_asset=on_asset, scope=scope,
+                                      selected_fixtures=fixtures, resume=resume))
     if kind == "full_snapshots":
         require_complete_full_export_inventory(result)
     manifest = {
