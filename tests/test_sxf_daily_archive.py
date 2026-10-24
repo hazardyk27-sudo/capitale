@@ -124,7 +124,10 @@ class ArchiveIntegrityTests(unittest.TestCase):
             # the filter is on fixture kickoff, NOT the scrape timestamp.
             for scrape_time in ("2026-10-10T09:00:00Z", "2026-10-11T23:59:00Z"):
                 writer.add(json.dumps({
-                    "local_date": DAY, "fixture_uid": None,
+                    "local_date": DAY,
+                    # A stale UUID still belongs to the selected fixture
+                    # because its unique match hash is correct.
+                    "fixture_uid": "00000000-0000-0000-0000-000000000099",
                     "match_id_hash": "selected-match",
                     "scraped_at": scrape_time,
                 }))
