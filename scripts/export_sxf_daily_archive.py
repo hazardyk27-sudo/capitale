@@ -163,6 +163,138 @@ class ChunkWriter:
             self.on_asset(asset, self.path)
 
 
+
+class VerifiedReleaseResume:
+    """Resume only complete, SHA256-verified table/market checkpoints.
+
+    A checkpoint is uploaded only after every data chunk in that entry.
+    Partial entries are discarded and re-exported, never silently reused.
+    Source material stays SELECT-only. Verified Releases cannot be modified.
+    """
+    def __init__(self, tag, folder, day, scope, source, fixtures, total):
+        self.tag, self.folder, self.day, self.scope, self.total = tag, folder, day, scope, total
+        self.source_hash = canonical_hash(source)
+        ids = [(str(x[0]), x[1], x[2]) for x in fixtures]
+        self.selection_hash = hashlib.sha256(
+            json.dumps(ids, separators=(",", ":")).encode("utf-8")
+        ).hexdigest()
+        self.assets = set()
+        view = subprocess.run(["gh", "release", "view", tag, "--json", "isDraft,assets"],
+                              capture_output=True, text=True)
+        if view.returncode == 0:
+            info = json.loads(view.stdout)
+            if info.get("isDraft") is not True:
+                raise ValueError("Refusing to resume non-draft Release")
+            if any(a.get("name") in ("verification_receipt.json", "export_manifest.json")
+                   for a in info.get("assets", [])):
+                raise ValueError("Release already at verification stage; do not modify")
+            self.assets = {a["name"] for a in info.get("assets", [])}
+            subprocess.run(["gh", "release", "download", tag,
+                            "--dir", str(folder)], check=True, stdout=subprocess.DEVNULL)
+            self.preexisting = True
+        else:
+            subprocess.run(["gh", "release", "create", tag, "--draft", "--latest=false",
+                            "--title", f"SXF {day} {scope} - not yet verified",
+                            "--notes", "Resume-safe draft; SHA256/JSONL readback required."],
+                           check=True, stdout=subprocess.DEVNULL)
+            self.preexisting = False
+        marker_name = f"progress_total_rows_{total}.json"
+        marker = folder / marker_name
+        identity = {
+            "schema": "SXF_RELEASE_RESUME_V2",
+            "day": str(day), "scope": scope,
+            "expected_rows": total,
+            "source_manifest_sha256": self.source_hash,
+            "selected_fixtures_sha256": self.selection_hash,
+            "status": "UPLOADING_NOT_VERIFIED",
+        }
+        if self.preexisting:
+            if marker_name not in self.assets or not marker.is_file():
+                raise ValueError("Existing draft progress marker missing")
+            if json.loads(marker.read_text("utf-8")) != identity:
+                raise ValueError("Previous export source/selection changed; refusing unsafe resume")
+        else:
+            marker.write_text(json.dumps(identity, indent=2) + "\n", encoding="utf-8")
+            self.upload(marker)
+        print(json.dumps({
+            "stage": "checkpoint_open", "day": str(day), "previous_draft": self.preexisting,
+        }), flush=True)
+
+    def upload(self, path):
+        if path.name in self.assets:
+            raise ValueError("Refusing to overwrite existing Release asset")
+        subprocess.run(["gh", "release", "upload", self.tag, str(path)],
+                       check=True, stdout=subprocess.DEVNULL)
+        self.assets.add(path.name)
+
+    def __call__(self, asset, path):
+        self.upload(path)
+        print(json.dumps({
+            "stage": "github_chunk_uploaded", "chunk": asset["name"],
+            "uploaded_rows_in_chunk": asset["rows"],
+            "total_expected_rows": self.total,
+        }), flush=True)
+
+    def checkpoint_name(self, entry_key):
+        if not re.fullmatch(r"[a-zA-Z0-9_.-]+", entry_key):
+            raise ValueError("Invalid checkpoint entry key")
+        return f"checkpoint_{entry_key}.json"
+
+    def load(self, entry_key):
+        name = self.checkpoint_name(entry_key)
+        if name not in self.assets:
+            # Orphan chunks of this incomplete entry cannot be trusted;
+            # remove only its exact prefix and re-read this entry.
+            prefix = (f"raw_{self.day}_{entry_key}_part" if entry_key in FULL_TABLES
+                      else f"concentrated_{self.day}_{entry_key.replace('.', '')}_part")
+            for asset in sorted(self.assets):
+                if asset.startswith(prefix) and asset.endswith(".jsonl.gz"):
+                    subprocess.run(["gh", "release", "delete-asset", self.tag,
+                                    asset, "--yes"], check=True, stdout=subprocess.DEVNULL)
+                    self.assets.remove(asset)
+                    (self.folder / asset).unlink(missing_ok=True)
+            return None
+        saved = self.folder / name
+        if not saved.is_file():
+            raise ValueError("Cached table checkpoint not downloaded")
+        checkpoint = json.loads(saved.read_text("utf-8"))
+        if (checkpoint.get("entry") != entry_key or
+            checkpoint.get("source_manifest_sha256") != self.source_hash):
+            raise ValueError("Saved table checkpoint identity mismatch")
+        record = checkpoint.get("record")
+        if not isinstance(record, dict) or not isinstance(record.get("assets"), list):
+            raise ValueError("Saved table checkpoint invalid")
+        for item in record["assets"]:
+            basename = item["name"]
+            if basename != Path(basename).name or basename not in self.assets:
+                raise ValueError("Checkpoint asset missing in GitHub draft")
+            file = self.folder / basename
+            if (not file.is_file() or file.stat().st_size != item["bytes"]
+                or sha_file(file) != item["sha256_gzip"]):
+                raise ValueError("Saved chunk gzip SHA256 mismatch")
+            digest, lines = hashlib.sha256(), 0
+            with gzip.open(file, "rb") as gz:
+                for row in gz:
+                    digest.update(row); lines += 1
+            if lines != item["rows"] or digest.hexdigest() != item["sha256_jsonl"]:
+                raise ValueError("Saved chunk JSONL SHA256 mismatch")
+        print(json.dumps({"stage": "checkpoint_reused",
+                          "entry": entry_key, "verified_chunks": len(record["assets"])}),
+              flush=True)
+        return record
+
+    def finish(self, entry_key, record):
+        name = self.checkpoint_name(entry_key)
+        if name in self.assets:
+            raise ValueError("Refusing completed checkpoint overwrite")
+        path = self.folder / name
+        path.write_text(json.dumps({
+            "schema": "SXF_TABLE_CHECKPOINT_V1", "entry": entry_key,
+            "source_manifest_sha256": self.source_hash, "record": record,
+        }, ensure_ascii=False, indent=2, default=str) + "\n", encoding="utf-8")
+        self.upload(path)
+
+
 def source_manifest(conn, day: dt.date) -> dict:
     with conn.cursor() as cur:
         cur.execute("SELECT to_jsonb(r)::text FROM research_archive.archive_runs r WHERE r.local_date=%s", (day,))
