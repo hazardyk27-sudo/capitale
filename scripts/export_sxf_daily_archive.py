@@ -119,7 +119,10 @@ class ChunkWriter:
         self.path = self.folder / f"{self.prefix}_part{number:04d}.jsonl.gz"
         if self.path.exists():
             raise ValueError("Refusing to overwrite an existing export asset")
-        self.handle = gzip.open(self.path, "wb", compresslevel=6)
+        level = int(os.environ.get("SXF_GZIP_LEVEL", "3"))
+        if level not in (1, 3, 6):
+            raise ValueError("Unsafe gzip compression level")
+        self.handle = gzip.open(self.path, "wb", compresslevel=level)
         self.digest, self.rows = hashlib.sha256(), 0
 
     def add(self, raw: str):
@@ -582,7 +585,7 @@ def export(day: dt.date, kind: str, folder: Path, chunk_rows: int, batch_fixture
     manifest = {
         "schema_version": "SXF_CAPITALE_DAY_ARCHIVE_V1", "source_schema": "research_archive",
         "source_access": "SELECT_ONLY", "day": str(day), "timezone": "Europe/Istanbul",
-        "kind": kind, "scope": scope,
+        "kind": kind, "scope": scope, "gzip_level": int(os.environ.get("SXF_GZIP_LEVEL", "3")),
         "selected_fixture_count": len(fixtures) if fixtures is not None else None,
         "selected_fixture_uids": [str(x[0]) for x in fixtures if x[0] is not None] if fixtures else [],
         "selected_match_id_hashes": [x[1] for x in fixtures if x[1] is not None] if fixtures else [],
