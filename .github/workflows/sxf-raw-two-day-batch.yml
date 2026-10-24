@@ -1,0 +1,70 @@
+name: SXF raw two-day batch
+run-name: SXF full raw ${{ inputs.first_day }} + next day
+
+on:
+  workflow_dispatch:
+    inputs:
+      first_day:
+        description: "First of an approved two-day Istanbul fixture batch"
+        type: choice
+        required: true
+        default: "2026-10-09"
+        options:
+          - "2026-10-09"
+          - "2026-10-11"
+          - "2026-10-13"
+          - "2026-10-15"
+          - "2026-10-17"
+          - "2026-10-19"
+          - "2026-10-21"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sxf-raw-two-day-${{ inputs.first_day }}
+  cancel-in-progress: false
+
+jobs:
+  resolve-days:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      day_one: ${{ steps.day.outputs.day_one }}
+      day_two: ${{ steps.day.outputs.day_two }}
+    steps:
+      - name: Validate ordered two-day date range
+        id: day
+        shell: bash
+        env:
+          FIRST_DAY: ${{ inputs.first_day }}
+          SXF_ARCHIVE_DATABASE_URL: ${{ secrets.SXF_ARCHIVE_DATABASE_URL }}
+        run: |
+          set -euo pipefail
+          case "$FIRST_DAY" in
+            2026-10-09|2026-10-11|2026-10-13|2026-10-15|2026-10-17|2026-10-19|2026-10-21) ;;
+            *) echo 'Unapproved two-day batch date' >&2; exit 1 ;;
+          esac
+          if [[ -z "$SXF_ARCHIVE_DATABASE_URL" ]]; then
+            echo "::error title=SXF raw batch blocked::Missing SXF_ARCHIVE_DATABASE_URL read-only secret. No export attempted."
+            exit 1
+          fi
+          second_day="$(date -u -d "$FIRST_DAY + 1 day" +%F)"
+          echo "day_one=$FIRST_DAY" >> "$GITHUB_OUTPUT"
+          echo "day_two=$second_day" >> "$GITHUB_OUTPUT"
+  first-day:
+    needs: resolve-days
+    uses: ./.github/workflows/sxf-admin-archive.yml
+    with:
+      day: ${{ needs.resolve-days.outputs.day_one }}
+      archive_kind: full_snapshots
+    secrets:
+      SXF_ARCHIVE_DATABASE_URL: ${{ secrets.SXF_ARCHIVE_DATABASE_URL }}
+  second-day:
+    needs: [resolve-days, first-day]
+    uses: ./.github/workflows/sxf-admin-archive.yml
+    with:
+      day: ${{ needs.resolve-days.outputs.day_two }}
+      archive_kind: full_snapshots
+    secrets:
+      SXF_ARCHIVE_DATABASE_URL: ${{ secrets.SXF_ARCHIVE_DATABASE_URL }}
