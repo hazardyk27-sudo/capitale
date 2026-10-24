@@ -52,13 +52,12 @@ def prepare_index(folder: Path, tag: str, day: str, kind: str, repo: str,
     expected_tag = f"sxf-{suffix}-{day}-kickoff16-24-v1"
     if tag != expected_tag:
         raise ValueError("Wrong scoped release tag")
-    state = json.loads(gh("api", f"repos/{repo}/releases/tags/{tag}"))
-    if state.get("draft") is not True or not isinstance(state.get("id"), int):
-        raise ValueError("Refusing non-draft or unknown Release")
-    # Assets are paginated; large exports commonly exceed 100 items.
-    names = gh("api", "--paginate",
-               f"repos/{repo}/releases/{state['id']}/assets?per_page=100",
-               "--jq", ".[].name").splitlines()
+    # GitHub's REST "releases/tags" endpoint does not expose draft Releases.
+    # gh release view resolves drafts through the authenticated release API.
+    state = json.loads(gh("release", "view", tag, "--json", "isDraft,assets"))
+    if state.get("isDraft") is not True:
+        raise ValueError("Refusing non-draft Release")
+    names = [a["name"] for a in state["assets"]]
     if len(names) != len(set(names)):
         raise ValueError("Duplicate GitHub Release assets")
     if set(names) != {x.name for x in folder.iterdir() if x.is_file()}:
