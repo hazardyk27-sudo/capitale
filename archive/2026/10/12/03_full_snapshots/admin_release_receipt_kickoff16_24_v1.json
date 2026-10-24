@@ -1,0 +1,253 @@
+{
+  "status": "GITHUB_RELEASE_DRAFT_DOWNLOADED_AND_VERIFIED",
+  "github_run_id": "40112602568",
+  "github_run_url": "https://github.com/hazardyk27-sudo/capitale/actions/runs/40112602568",
+  "release_tag": "sxf-raw-2026-10-12-kickoff16-24-v1",
+  "day": "2026-10-12",
+  "kind": "full_snapshots",
+  "source_run_status": "COMPLETE",
+  "source_count_consistency": true,
+  "source_day_complete_claim": false,
+  "scope": "kickoff16_24",
+  "scope_complete_claim": true,
+  "selected_fixture_count": 109,
+  "window_timezone": "Europe/Istanbul",
+  "window_start_inclusive": "16:00",
+  "window_end_exclusive": "24:00",
+  "total_verified_rows": 831677,
+  "export_manifest_sha256": "32764fbea8b3110956ff31f45b5fb8a0ad7c652205e2897a2d0a4c73c0d33e81",
+  "verified_at_utc": "2026-10-24T16:44:20.776255+00:00",
+  "release_is_draft": true,
+  "asset_inventory": [
+    {
+      "name": "raw_2026-10-12_moneyway_1x2_history_part0001_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2545077,
+      "sha256_gzip": "dc632d7e94828047c5e1461301f5ef6196fad955485a9c025d3a247f12d53a5e"
+    },
+    {
+      "name": "raw_2026-10-12_moneyway_1x2_history_part0002_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1922653,
+      "sha256_gzip": "0799a917f2106eac33ec3c973e7b6473f03451efddfdc27857a1763fc0737979"
+    },
+    {
+      "name": "raw_2026-10-12_moneyway_1x2_history_part0003_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1257221,
+      "sha256_gzip": "43f5d48dc5ab26905b9cfde19c9dc60838871bc9933110c8a8e2848096949f1c"
+    },
+    {
+      "name": "raw_2026-10-12_moneyway_1x2_history_part0004_rows_8465.jsonl.gz",
+      "rows": 8465,
+      "bytes": 580507,
+      "sha256_gzip": "210ab1f1c1853fbdbedb28101d1c9a4189bf69586c2955e77d6a907453e5c595"
+    },
+    {
+      "name": "raw_2026-10-12_moneyway_ou25_history_part0001_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 884014,
+      "sha256_gzip": "24be35d184de538782b6f5e49c9a6d9d16e633b6d847799e181944178c9d9c87"
+    },
+    {
+      "name": "raw_2026-10-12_moneyway_ou25_history_part0002_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 867557,
+      "sha256_gzip": "f6e1ece7c0ff85b010c12cb442e3d08c813594cdb9e5ec686ab82a239b1df352"
+    },
+    {
+      "name": "raw_2026-10-12_moneyway_ou25_history_part0003_rows_21237.jsonl.gz",
+      "rows": 21237,
+      "bytes": 761111,
+      "sha256_gzip": "26b1f4d41e465fe2536af07c86869edecac18c2187cf65651bc6c122e3b62de8"
+    },
+    {
+      "name": "raw_2026-10-12_moneyway_btts_history_part0001_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1880919,
+      "sha256_gzip": "b9f5e89b4186b77364e41be7fb275442ff48c93c36bbe338eeb3f2b0ff364bdc"
+    },
+    {
+      "name": "raw_2026-10-12_moneyway_btts_history_part0002_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2050041,
+      "sha256_gzip": "fafd4a9bd23f1078666c139a511593a8ad4c0decd78b9f9899d1ff70c60beb0e"
+    },
+    {
+      "name": "raw_2026-10-12_moneyway_btts_history_part0003_rows_1140.jsonl.gz",
+      "rows": 1140,
+      "bytes": 63393,
+      "sha256_gzip": "cded8589fe7d80cea21c1c5c02e833ea21d4765d461a5fa8a6c883b839bcbd62"
+    },
+    {
+      "name": "raw_2026-10-12_dropping_1x2_history_part0001_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 898965,
+      "sha256_gzip": "43b89212fccd2cbf9e7e832049f9a72fc2745bb75d762242124dd998a9c5822f"
+    },
+    {
+      "name": "raw_2026-10-12_dropping_1x2_history_part0002_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 903778,
+      "sha256_gzip": "a864beed6010febdfe34b138a7951a67f7e66f548f4108108efdaa33c2926100"
+    },
+    {
+      "name": "raw_2026-10-12_dropping_1x2_history_part0003_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 888392,
+      "sha256_gzip": "928d710e0a549d075610ef46486582d27e6b5f9e4f8b0f9eadd88f1565678b15"
+    },
+    {
+      "name": "raw_2026-10-12_dropping_1x2_history_part0004_rows_5348.jsonl.gz",
+      "rows": 5348,
+      "bytes": 198155,
+      "sha256_gzip": "8e0b10663e054de5735686d97f4af43bbaab4e7e17aafe7f65fe4a1c9612f600"
+    },
+    {
+      "name": "raw_2026-10-12_dropping_ou25_history_part0001_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 903531,
+      "sha256_gzip": "7895beb83ac5ba7d10485b144992de55e867ee6cb1592a4f891bf09e84668d4f"
+    },
+    {
+      "name": "raw_2026-10-12_dropping_ou25_history_part0002_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 912530,
+      "sha256_gzip": "12d5c0826cdbb9291049dfdd3970825fa86fe28b55eaed4ec42c826f7d72d7dc"
+    },
+    {
+      "name": "raw_2026-10-12_dropping_ou25_history_part0003_rows_21086.jsonl.gz",
+      "rows": 21086,
+      "bytes": 762746,
+      "sha256_gzip": "be1d55dbcc93ece03f6a6b27ebdf36645613eada712383b17bd6163cdb643c8a"
+    },
+    {
+      "name": "raw_2026-10-12_dropping_btts_history_part0001_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 892367,
+      "sha256_gzip": "0bda2d637a68d3a542692b704dfce47921438c435916454bba8aa9d62ca7ce01"
+    },
+    {
+      "name": "raw_2026-10-12_dropping_btts_history_part0002_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 876747,
+      "sha256_gzip": "1d5b0b207bc09290706726115d77d3847673438795c3582d240f9433d1b02432"
+    },
+    {
+      "name": "raw_2026-10-12_dropping_btts_history_part0003_rows_1094.jsonl.gz",
+      "rows": 1094,
+      "bytes": 40651,
+      "sha256_gzip": "724b81ad9b6c658c1f60fb681ea35a37b778db9896848c47807f9b1bbdcb9afe"
+    },
+    {
+      "name": "raw_2026-10-12_moneyway_snapshots_part0001_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 911501,
+      "sha256_gzip": "9594da667a04dc029824cfd0ee9805ec7fe9ef99da4c711dc9bc4575ce604d81"
+    },
+    {
+      "name": "raw_2026-10-12_moneyway_snapshots_part0002_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 924898,
+      "sha256_gzip": "0ec9d2749a07f753b6b9fbc2df67f5417d0c69d130b6e2616143ddb50a36bffa"
+    },
+    {
+      "name": "raw_2026-10-12_moneyway_snapshots_part0003_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 931071,
+      "sha256_gzip": "bd41c1f41f12ca211333e4b58854602af2d163b6e015a1c86460fdc13dd302c2"
+    },
+    {
+      "name": "raw_2026-10-12_moneyway_snapshots_part0004_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 911596,
+      "sha256_gzip": "027c6747211886be70e142eb8051a9342e2697fb1d985861131401f0fbcb17c2"
+    },
+    {
+      "name": "raw_2026-10-12_moneyway_snapshots_part0005_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 932939,
+      "sha256_gzip": "09e59456c3d09efecc75bec287d735cff447e7d5b83d66994297ab4494e07707"
+    },
+    {
+      "name": "raw_2026-10-12_moneyway_snapshots_part0006_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 915875,
+      "sha256_gzip": "d6dda536713fbd1cf9cccd2d72a4231afca52a60690cd2eb87815b49c634d944"
+    },
+    {
+      "name": "raw_2026-10-12_moneyway_snapshots_part0007_rows_20615.jsonl.gz",
+      "rows": 20615,
+      "bytes": 752844,
+      "sha256_gzip": "99b92a52cf9ff805d3fe1769b8317b5326f795f48cce8921ffdf09c22b384c16"
+    },
+    {
+      "name": "raw_2026-10-12_live_snapshots_part0001_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1182920,
+      "sha256_gzip": "b3b127367ee10bbad8eb1222bcd5aeb44a4d58a07107133374d3a7290254c729"
+    },
+    {
+      "name": "raw_2026-10-12_live_snapshots_part0002_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1195960,
+      "sha256_gzip": "73190211d013c7bf2ee19747743fda167c371c8d7fb4afea4dc004dcdba3609e"
+    },
+    {
+      "name": "raw_2026-10-12_live_snapshots_part0003_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1192070,
+      "sha256_gzip": "08069a1a6a536d18f12e576e2ce21ccd7d3400131183d8368e2e87b232ddc3e3"
+    },
+    {
+      "name": "raw_2026-10-12_live_snapshots_part0004_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1193959,
+      "sha256_gzip": "d23ba16b655a623ba0dfcd81544868626cc9650c907b6d5252b74a0363a1d4b2"
+    },
+    {
+      "name": "raw_2026-10-12_live_snapshots_part0005_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1201044,
+      "sha256_gzip": "6209428464d16123a2949b56dbdca148b8759715f306f2a4f50063ea3af299c1"
+    },
+    {
+      "name": "raw_2026-10-12_live_snapshots_part0006_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1183319,
+      "sha256_gzip": "a506f38e59ecb409ad429f84c275bf6c647d1c32c26ca50fd27109746ad6f368"
+    },
+    {
+      "name": "raw_2026-10-12_live_snapshots_part0007_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1186646,
+      "sha256_gzip": "2b6f93b0d2f4b1be93decd7332c5c3c70fe404b6dff653b5c173c7ccabc7c194"
+    },
+    {
+      "name": "raw_2026-10-12_live_snapshots_part0008_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1200285,
+      "sha256_gzip": "8d07c04670819bf2d806a24e5d81f1da5a8b7469a7a2e5450452e50167a7c486"
+    },
+    {
+      "name": "raw_2026-10-12_live_snapshots_part0009_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1206024,
+      "sha256_gzip": "1f859f6261f065a24dd9cac4e53668076a11f4a212c64797ddf983bf1092b9b8"
+    },
+    {
+      "name": "raw_2026-10-12_live_snapshots_part0010_rows_25000.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1226164,
+      "sha256_gzip": "ec363952b0a2870c01c430d542981ede2457789630c286c0d21785c4714f6c87"
+    },
+    {
+      "name": "raw_2026-10-12_live_snapshots_part0011_rows_2692.jsonl.gz",
+      "rows": 2692,
+      "bytes": 132234,
+      "sha256_gzip": "bae63207fabfb27901bb41d4409f0d6192f692dd8eb86740e9b9bcb63a64612d"
+    }
+  ],
+  "source_notice": "Verified only for matches with TSİ kickoff 16:00-24:00. Other kickoffs intentionally excluded; no full-day archive claim.",
+  "receipt_index_schema": "SXF_VERIFIED_RELEASE_INDEX_V2"
+}
