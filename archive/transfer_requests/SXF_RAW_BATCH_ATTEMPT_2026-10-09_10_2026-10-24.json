@@ -1,0 +1,33 @@
+{
+  "schema_version": "CAPITALE_SXF_RAW_BATCH_ATTEMPT_V1",
+  "requested_at_utc": "2026-10-24T00:34:34Z",
+  "batch": [
+    "2026-10-09",
+    "2026-10-10"
+  ],
+  "source": "pswdvnmqjjnjodwzkmkp.research_archive",
+  "source_mode": "SELECT_ONLY",
+  "target": "GitHub Releases",
+  "workflow": ".github/workflows/sxf-raw-two-day-batch.yml",
+  "workflow_run_id": 40045654985,
+  "workflow_run_url": "https://github.com/hazardyk27-sudo/capitale/actions/runs/40045654985",
+  "outcome": "BLOCKED_BEFORE_SOURCE_ACCESS",
+  "workflow_status": "completed",
+  "workflow_conclusion": "failure",
+  "blocker": "MISSING_SXF_ARCHIVE_DATABASE_URL",
+  "first_day_job": "SKIPPED",
+  "second_day_job": "SKIPPED",
+  "newly_exported_raw_rows": 0,
+  "newly_uploaded_raw_rows": 0,
+  "verified_release_assets": 0,
+  "full_raw_days_complete_in_batch": 0,
+  "source_daily_row_memberships_preflight_verified": 6411852,
+  "source_counts_match_previous_archive_runs": true,
+  "source_rows_modified": false,
+  "re_run_precondition": "Repository Actions secret SXF_ARCHIVE_DATABASE_URL must contain PostgreSQL DSN for a real select-only login (no INSERT/UPDATE/DELETE/DDL privileges). Never store secret in repo or chat.",
+  "notes": [
+    "Failure is a deliberate fail-closed source safety guard.",
+    "No real archive data was exported or uploaded.",
+    "Concentrated 14/14 remains untouched."
+  ]
+}
