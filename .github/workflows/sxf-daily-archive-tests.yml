@@ -6,6 +6,9 @@ on:
     paths:
       - scripts/export_sxf_daily_archive.py
       - tests/test_sxf_daily_archive.py
+      - scripts/finalize_sxf_verified_release.py
+      - tests/test_sxf_verified_receipt_finalizer.py
+      - .github/workflows/sxf-kickoff-window-archive.yml
       - .github/workflows/sxf-daily-archive-tests.yml
   workflow_dispatch:
 
@@ -23,5 +26,6 @@ jobs:
           python-version: '3.11'
       - name: Check exporter syntax and independent gzip/grid integrity tests
         run: |
-          python -m py_compile scripts/export_sxf_daily_archive.py
+          python -m py_compile scripts/export_sxf_daily_archive.py scripts/finalize_sxf_verified_release.py
           python -m unittest discover -s tests -p 'test_sxf_daily_archive.py' -v
+          python -m unittest discover -s tests -p 'test_sxf_verified_receipt_finalizer.py' -v
