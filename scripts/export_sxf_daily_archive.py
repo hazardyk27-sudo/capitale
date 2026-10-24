@@ -396,7 +396,7 @@ def begin_verified_progress_release(conn, day: dt.date, kind: str, folder: Path,
     unless a Release verification_receipt.json exists and the workflow succeeds.
     """
     tag = os.environ.get("SXF_ARCHIVE_RELEASE_TAG", "")
-    if not re.fullmatch(r"sxf-(?:raw|concentrated)-20\\d{2}-\\d{2}-\\d{2}-v1", tag):
+    if not re.fullmatch(r"sxf-(?:raw|concentrated)-20\d{2}-\d{2}-\d{2}-v1", tag):
         raise ValueError("Invalid progress Release tag")
     expected_tag = f"sxf-{'raw' if kind == 'full_snapshots' else 'concentrated'}-{day}-v1"
     if tag != expected_tag:
@@ -436,7 +436,7 @@ def begin_verified_progress_release(conn, day: dt.date, kind: str, folder: Path,
         "kind": kind, "expected_rows": expected_total,
         "count_type": "source_rows" if kind == "full_snapshots" else "checkpoint_slots",
         "status": "UPLOADING_NOT_VERIFIED",
-    }, indent=2) + "\\n", encoding="utf-8")
+    }, indent=2) + "\n", encoding="utf-8")
     gh("upload", tag, str(marker))
 
     def upload_one(asset: dict, path: Path) -> None:
