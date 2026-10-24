@@ -157,3 +157,17 @@ This addendum supersedes prior open/concentrated status notes while retaining ol
 - Next phase per owner: full raw history in TWO-DAY groups, starting 9–10 Oct, only after the PostgreSQL source read-only connection, repository secret SXF_ARCHIVE_DATABASE_URL, GitHub Release upload, independent download/hash/restore are verifiably operational. Do not write to Supabase or claim completion after a queued workflow.
 
 **Current rollup: concentrated 14/14 days COMPLETE (with explicit source MISSING and source PARTIAL flags); full raw 0/14 days COMPLETE.**
+
+---
+
+## 2026-10-24 — 9–10 October full-raw two-day batch attempted; source access blocked, exporter guard tested
+
+- The first two-day serial raw workflow (`.github/workflows/sxf-raw-two-day-batch.yml`) was actually triggered on GitHub: [run 40045654985](https://github.com/hazardyk27-sudo/capitale/actions/runs/40045654985), **FAILURE BEFORE SOURCE ACCESS**, because `SXF_ARCHIVE_DATABASE_URL` was empty. Day-one and day-two export jobs were **SKIPPED**. New raw rows uploaded: **0**. Releases remain **0**.
+- An independent no-export preflight was also triggered: [run 40045412020](https://github.com/hazardyk27-sudo/capitale/actions/runs/40045412020), same missing secret. No raw source rows were changed.
+- Both 9 and 10 October each have all 8 raw source table inventory counts matched by independent Supabase `SELECT COUNT(*)` checks (16/16), recorded in `archive/transfer_requests/SXF_RAW_PREFLIGHT_2026-10-09_2026-10-10_2026-10-24.json`. Combined source date/table row memberships: **6,411,852** (not a global distinct-row claim).
+- Export script `scripts/export_sxf_daily_archive.py` now **fails closed on any missing/duplicated raw table, row count mismatch versus actual SQL and `archive_runs`, or global total mismatch**, before Release publication; final gzip readback runs this validation too. This protects against certifying an incomplete eight-table raw archive. It does not alter source data or the concentrated grid.
+- New offline test cases confirm missing eighth table and archive-count drift are rejected; [GitHub CI run 40046016057](https://github.com/hazardyk27-sudo/capitale/actions/runs/40046016057) passed **9/9**. Offline tests do **NOT** imply a real source-to-GitHub transfer.
+- Next operational prerequisite remains a privately configured, genuinely **SELECT-only PostgreSQL LOGIN/DSN** in Actions repository secret `SXF_ARCHIVE_DATABASE_URL` (not in Git files or chat). The last role inspection found no suitable preexisting login; **no Supabase DDL/DML/grants or admin-login changes** were made.
+- Owner-approved order: 9–10, then 11–12, 13–14, 15–16, 17–18, 19–20, 21–22 October. Each day requires GitHub Release asset download, byte/SHA-256/JSONL restore and all eight source-count checks. Source `PARTIAL` flags for later dates stay explicit.
+
+**Actual migration rollup: concentrated 14/14 COMPLETE; full raw 0/14 COMPLETE. First two-day raw batch is BLOCKED, not queued and not complete.**
