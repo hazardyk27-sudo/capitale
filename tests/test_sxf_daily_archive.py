@@ -1,11 +1,13 @@
 """Offline integrity tests for the CAPITALE day-selectable archive worker."""
 import datetime as dt
 import json
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
-from scripts.export_sxf_daily_archive import ChunkWriter, canonical_hash, verify_directory, require_genuine_readonly_role, FULL_TABLES
+from scripts.export_sxf_daily_archive import ChunkWriter, canonical_hash, verify_directory, require_genuine_readonly_role, FULL_TABLES, VerifiedReleaseResume
 
 DAY = "2026-10-09"
 
@@ -147,6 +149,81 @@ class ArchiveIntegrityTests(unittest.TestCase):
             }
             (folder / "export_manifest.json").write_text(json.dumps(manifest), "utf-8")
             self.assertEqual(verify_directory(folder)["verified_rows"], 2)
+
+
+    def test_scoped_checkpoint_resume_skips_complete_table_and_rejects_tamper(self):
+        # Simulate gh release create/upload/download without live GitHub or secrets.
+        remote = {}
+        fixture = [("00000000-0000-0000-0000-000000000001", "fixture-hash", 1, None)]
+        source = {"status": "COMPLETE", "rows_1x2": 2}
+        tag = "sxf-raw-2026-10-11-kickoff16-24-v1"
+
+        def fake_run(argv, **kwargs):
+            operation = argv[2]
+            if operation == "view":
+                if not remote:
+                    return subprocess.CompletedProcess(argv, 1, stdout="")
+                return subprocess.CompletedProcess(argv, 0, stdout=json.dumps({
+                    "isDraft": True,
+                    "assets": [{"name": n} for n in remote],
+                }))
+            if operation == "create":
+                return subprocess.CompletedProcess(argv, 0)
+            if operation == "download":
+                folder = Path(argv[argv.index("--dir") + 1])
+                for filename, content in remote.items():
+                    (folder / filename).write_bytes(content)
+                return subprocess.CompletedProcess(argv, 0)
+            if operation == "upload":
+                file = Path(argv[-1])
+                if file.name in remote:
+                    raise ValueError("Mock remote overwrite rejected")
+                remote[file.name] = file.read_bytes()
+                return subprocess.CompletedProcess(argv, 0)
+            if operation == "delete-asset":
+                remote.pop(argv[4])
+                return subprocess.CompletedProcess(argv, 0)
+            raise AssertionError(f"Unknown fake gh command: {argv}")
+
+        with patch("scripts.export_sxf_daily_archive.subprocess.run", side_effect=fake_run):
+            with tempfile.TemporaryDirectory() as one, tempfile.TemporaryDirectory() as two:
+                folder = Path(one)
+                resume = VerifiedReleaseResume(tag, folder, "2026-10-11",
+                                              "kickoff16_24", source, fixture, 2)
+                writer = ChunkWriter(folder, "raw_2026-10-11_moneyway_1x2_history",
+                                     2, on_asset=resume)
+                for i in range(2):
+                    writer.add(json.dumps({"local_date": "2026-10-11",
+                                           "fixture_uid": fixture[0][0],
+                                           "source_fingerprint": str(i)}))
+                writer.close()
+                record = {
+                    "table": "moneyway_1x2_history", "source_sql_rows": 2,
+                    "source_run_recorded_rows": 2, "exported_rows": 2,
+                    "archive_run_count_matches": True, "assets": writer.assets,
+                }
+                resume.finish("moneyway_1x2_history", record)
+                fresh = VerifiedReleaseResume(tag, Path(two), "2026-10-11",
+                                             "kickoff16_24", source, fixture, 2)
+                self.assertEqual(
+                    fresh.load("moneyway_1x2_history")["exported_rows"], 2
+                )
+                # A corrupt cached GitHub asset cannot count as completed.
+                bad = next(n for n in remote if n.endswith(".jsonl.gz"))
+                (Path(two) / bad).write_bytes(b"broken")
+                with self.assertRaisesRegex(ValueError, "SHA256"):
+                    fresh.load("moneyway_1x2_history")
+                # The source manifest changed: refuse mixed-run data.
+                with self.assertRaisesRegex(ValueError, "changed"):
+                    VerifiedReleaseResume(tag, Path(two), "2026-10-11",
+                                          "kickoff16_24", {"status": "PARTIAL"},
+                                          fixture, 2)
+
+    def test_gzip_level_three_is_valid_roundtrip(self):
+        with patch.dict("os.environ", {"SXF_GZIP_LEVEL": "3"}):
+            with tempfile.TemporaryDirectory() as temp:
+                self.make_full(Path(temp))
+                self.assertEqual(verify_directory(Path(temp))["verified_rows"], 3)
 
     def test_gzip_tamper_is_rejected(self):
         with tempfile.TemporaryDirectory() as temp:
