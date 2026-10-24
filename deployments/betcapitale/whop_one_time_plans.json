@@ -1,0 +1,112 @@
+{
+  "version": "2026-10-24-one-time-v1",
+  "purpose": "Canonical whitelist of NEW Whop one-time packages offered on betcapitale.com; legacy recurring IDs must remain accepted for prior membership sync only",
+  "trial": {
+    "id": "plan_kkubDpOL8w15B",
+    "tier": "standard",
+    "label": "Deneme",
+    "days": 3,
+    "price": 1,
+    "currency": "eur"
+  },
+  "plans": [
+    {
+      "old_id": "plan_lBt72kE1sk3Jf",
+      "new_id": "plan_4JIVO6FmgFA79",
+      "tier": "standard",
+      "label": "Haftalık",
+      "days": 7,
+      "price": 49.9
+    },
+    {
+      "old_id": "plan_1Ty9Fqp2UAFLz",
+      "new_id": "plan_nKitqATxJmnWA",
+      "tier": "standard",
+      "label": "2 Haftalık",
+      "days": 14,
+      "price": 79.9
+    },
+    {
+      "old_id": "plan_zw42pDTHWJ4zu",
+      "new_id": "plan_CnxJOkAOfVniJ",
+      "tier": "standard",
+      "label": "Aylık",
+      "days": 30,
+      "price": 99.9
+    },
+    {
+      "old_id": "plan_a9dQJJ06lNI5m",
+      "new_id": "plan_rgusm9qeT4cHF",
+      "tier": "standard",
+      "label": "3 Aylık",
+      "days": 90,
+      "price": 179.9
+    },
+    {
+      "old_id": "plan_UbJysF7UeVvBE",
+      "new_id": "plan_m6JAG7Q7qkdvA",
+      "tier": "elite",
+      "label": "Haftalık",
+      "days": 7,
+      "price": 129.9
+    },
+    {
+      "old_id": "plan_IyW3QRXibb3jL",
+      "new_id": "plan_vYX23un8TEEYx",
+      "tier": "elite",
+      "label": "2 Haftalık",
+      "days": 14,
+      "price": 199.9
+    },
+    {
+      "old_id": "plan_TWqTvjQAa9TS9",
+      "new_id": "plan_rVX9JidE8gmfN",
+      "tier": "elite",
+      "label": "Aylık",
+      "days": 30,
+      "price": 249.9
+    },
+    {
+      "old_id": "plan_MpIeqiuyzO4KP",
+      "new_id": "plan_xmvI49ZIL0wjH",
+      "tier": "elite",
+      "label": "3 Aylık",
+      "days": 90,
+      "price": 399.9
+    }
+  ],
+  "legacy": [
+    {
+      "id": "plan_5TJSkdk8Xhx9o",
+      "tier": "elite",
+      "label": "Haftalık",
+      "days": 7,
+      "price": 99.9,
+      "currency": "eur"
+    },
+    {
+      "id": "plan_Ikppjr71XVqxh",
+      "tier": "elite",
+      "label": "2 Haftalık",
+      "days": 14,
+      "price": 159.9,
+      "currency": "eur"
+    },
+    {
+      "id": "plan_sBQtSPgR7sdVL",
+      "tier": "elite",
+      "label": "Aylık",
+      "days": 30,
+      "price": 199.9,
+      "currency": "eur"
+    },
+    {
+      "id": "plan_mII3DkdkWfXTW",
+      "tier": "elite",
+      "label": "3 Aylık",
+      "days": 90,
+      "price": 359.9,
+      "currency": "eur"
+    }
+  ]
+}
