@@ -59,11 +59,13 @@ def selected_window_fixtures(conn, day: dt.date):
 
 
 def window_sql_filter():
-    # Pairs direct fixture UUID matching with the established hash fallback
-    # used by concentrated exports. No timestamp condition is applied to raw.
+    # UNION of both reliable fixture identities. A non-null but stale UUID
+    # must not suppress an otherwise correctly matching unique match hash.
+    # This is deliberately broader than concentrated's legacy NULL-only
+    # fallback, because raw exports must preserve all archived alias rows.
     return (" WHERE r.local_date=%s AND "
             "(r.fixture_uid = ANY(%s::uuid[]) OR "
-            "(r.fixture_uid IS NULL AND r.match_id_hash = ANY(%s::text[])))")
+            "r.match_id_hash = ANY(%s::text[]))")
 
 
 def source_window_counts(conn, day, fixtures):
@@ -552,8 +554,7 @@ def verify_directory(folder: Path) -> dict:
                             raise ValueError("Wrong full-raw day")
                         if scope == "kickoff16_24" and not (
                             obj.get("fixture_uid") in selected_ids or
-                            (obj.get("fixture_uid") is None
-                             and obj.get("match_id_hash") in selected_hashes)
+                            obj.get("match_id_hash") in selected_hashes
                         ):
                             raise ValueError("Raw row outside selected kickoff window")
                     else:
