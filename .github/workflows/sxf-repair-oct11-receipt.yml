@@ -1,0 +1,62 @@
+name: SXF verified receipt recovery
+run-name: SXF receipt repair 2026-10-11 / full_snapshots / 16-24
+
+# Automatic one-time repair of an already verified Oct 11 Release.
+# Reruns are safe: target receipt is strictly append-only.
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/sxf-repair-oct11-receipt.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sxf-verified-receipt-recovery-2026-10-11-raw-16-24
+  cancel-in-progress: false
+
+jobs:
+  verify-and-finish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_REPOSITORY: ${{ github.repository }}
+      ARCHIVE_RELEASE_TAG: sxf-raw-2026-10-11-kickoff16-24-v1
+    steps:
+      - name: Checkout verified archival and finalizer scripts
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify existing draft and download original GitHub assets; no Supabase access
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(gh release view "$ARCHIVE_RELEASE_TAG" --json isDraft --jq .isDraft)" = true
+          mkdir -p "$RUNNER_TEMP/sxf-recovery"
+          gh release download "$ARCHIVE_RELEASE_TAG" --dir "$RUNNER_TEMP/sxf-recovery"
+          test -f "$RUNNER_TEMP/sxf-recovery/verification_receipt.json"
+          test -f "$RUNNER_TEMP/sxf-recovery/export_manifest.json"
+          echo "Original verified Release downloaded; no database query or re-export"
+      - name: Recheck every SHA-256 and JSONL; repair append-only GitHub receipt index
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m scripts.finalize_sxf_verified_release \
+            --day "2026-10-11" --kind full_snapshots \
+            --tag "$ARCHIVE_RELEASE_TAG" \
+            --release-dir "$RUNNER_TEMP/sxf-recovery" \
+            --expected-source-run "40110067276"
+      - name: Require durable receipt visible on GitHub main
+        shell: bash
+        run: |
+          set -euo pipefail
+          target=archive/2026/10/11/03_full_snapshots/admin_release_receipt_kickoff16_24_v1.json
+          gh api "repos/$GITHUB_REPOSITORY/contents/$target?ref=main" --jq '.sha'
+          echo "Recovered verified archive receipt persisted to GitHub main"
