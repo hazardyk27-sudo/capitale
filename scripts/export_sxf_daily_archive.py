@@ -721,6 +721,17 @@ def export(day: dt.date, kind: str, folder: Path, chunk_rows: int, batch_fixture
             cur.execute("SHOW transaction_read_only")
             if cur.fetchone()[0] != "on":
                 raise ValueError("Source DB transaction is not read-only")
+            # Allow bounded, large historical SELECTs without persisting role
+            # settings. This transaction is still strictly READ ONLY.
+            timeout_ms = int(os.environ.get("SXF_READ_STATEMENT_TIMEOUT_MS", "900000"))
+            if not 60000 <= timeout_ms <= 1800000:
+                raise ValueError("Read statement timeout must be 1-30 minutes")
+            cur.execute("SELECT set_config('statement_timeout', %s, true)",
+                        (str(timeout_ms),))
+            cur.execute("SHOW statement_timeout")
+            effective_timeout = cur.fetchone()[0]
+            print(json.dumps({"stage": "source_query_timeout",
+                              "effective": effective_timeout}), flush=True)
         require_genuine_readonly_role(conn)
         source = source_manifest(conn, day)
         fixtures = selected_window_fixtures(conn, day) if scope == "kickoff16_24" else None
