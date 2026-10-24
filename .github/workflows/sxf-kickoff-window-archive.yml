@@ -134,7 +134,7 @@ jobs:
             "source_count_consistency": info.get("source_run_counts_match"),
             "source_day_complete_claim": False,
             "scope": "kickoff16_24",
-            "scope_complete_claim": bool(info.get("source_run_counts_match", True)),
+            "scope_complete_claim": bool(info["source_collection_complete"] and info.get("source_run_counts_match", False)),
             "selected_fixture_count": info.get("selected_fixture_count"),
             "window_timezone": "Europe/Istanbul",
             "window_start_inclusive": "16:00",
