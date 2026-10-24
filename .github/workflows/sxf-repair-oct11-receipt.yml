@@ -41,6 +41,8 @@ jobs:
           test "$(gh release view "$ARCHIVE_RELEASE_TAG" --json isDraft --jq .isDraft)" = true
           mkdir -p "$RUNNER_TEMP/sxf-recovery"
           gh release download "$ARCHIVE_RELEASE_TAG" --dir "$RUNNER_TEMP/sxf-recovery"
+          echo "GitHub draft assets reported: $(gh release view "$ARCHIVE_RELEASE_TAG" --json assets --jq '.assets | length')"
+          echo "Downloaded assets: $(find "$RUNNER_TEMP/sxf-recovery" -maxdepth 1 -type f | wc -l)"
           test -f "$RUNNER_TEMP/sxf-recovery/verification_receipt.json"
           test -f "$RUNNER_TEMP/sxf-recovery/export_manifest.json"
           echo "Original verified Release downloaded; no database query or re-export"
