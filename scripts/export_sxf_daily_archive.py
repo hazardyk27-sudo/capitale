@@ -13,6 +13,8 @@ import gzip
 import hashlib
 import json
 import os
+import re
+import subprocess
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -52,8 +54,9 @@ def utc_iso(value: dt.datetime) -> str:
 
 
 class ChunkWriter:
-    def __init__(self, folder: Path, prefix: str, chunk_rows: int):
+    def __init__(self, folder: Path, prefix: str, chunk_rows: int, on_asset=None):
         self.folder, self.prefix, self.chunk_rows = folder, prefix, chunk_rows
+        self.on_asset = on_asset
         self.assets = []
         self.handle = None
         self.path = None
@@ -84,14 +87,27 @@ class ChunkWriter:
         if self.handle is None:
             return
         self.handle.close()
-        self.assets.append({
+        if self.on_asset is not None:
+            # The row count in a Release filename makes live progress independently
+            # auditable from uploaded GitHub assets, without estimated percentages.
+            if not re.fullmatch(r"[a-zA-Z0-9_.-]+\.jsonl\.gz", self.path.name):
+                raise ValueError("Invalid generated chunk name")
+            final_path = self.path.with_name(
+                self.path.name.removesuffix(".jsonl.gz") + f"_rows_{self.rows}.jsonl.gz"
+            )
+            self.path.rename(final_path)
+            self.path = final_path
+        asset = {
             "name": self.path.name,
             "rows": self.rows,
             "bytes": self.path.stat().st_size,
             "sha256_gzip": sha_file(self.path),
             "sha256_jsonl": self.digest.hexdigest(),
-        })
+        }
+        self.assets.append(asset)
         self.handle = None
+        if self.on_asset is not None:
+            self.on_asset(asset, self.path)
 
 
 def source_manifest(conn, day: dt.date) -> dict:
@@ -103,7 +119,7 @@ def source_manifest(conn, day: dt.date) -> dict:
     return json.loads(result[0])
 
 
-def export_full(conn, day: dt.date, folder: Path, chunk_rows: int, source: dict) -> dict:
+def export_full(conn, day: dt.date, folder: Path, chunk_rows: int, source: dict, on_asset=None) -> dict:
     from psycopg import sql
     tables = []
     total = 0
@@ -115,7 +131,7 @@ def export_full(conn, day: dt.date, folder: Path, chunk_rows: int, source: dict)
                 ), (day,),
             )
             actual = cur.fetchone()[0]
-        writer = ChunkWriter(folder, f"raw_{day}_{table}", chunk_rows)
+        writer = ChunkWriter(folder, f"raw_{day}_{table}", chunk_rows, on_asset=on_asset)
         with conn.cursor(name=f"sxf_archive_{table}") as cur:
             cur.itersize = 1000
             cur.execute(
@@ -217,7 +233,7 @@ def select_checkpoint_batch(conn, day: dt.date, table: str, limit: int, offset: 
         return cur.fetchall()
 
 
-def export_concentrated(conn, day: dt.date, folder: Path, chunk_rows: int, batch_fixtures: int) -> dict:
+def export_concentrated(conn, day: dt.date, folder: Path, chunk_rows: int, batch_fixtures: int, on_asset=None) -> dict:
     with conn.cursor() as cur:
         cur.execute("SELECT COUNT(*) FROM research_archive.fixtures WHERE local_date=%s", (day,))
         fixtures = cur.fetchone()[0]
@@ -225,7 +241,7 @@ def export_concentrated(conn, day: dt.date, folder: Path, chunk_rows: int, batch
         raise ValueError("No fixtures for concentrated archive date")
     markets = []
     for market, table in MARKETS.items():
-        writer = ChunkWriter(folder, f"concentrated_{day}_{market.replace('.', '')}", chunk_rows)
+        writer = ChunkWriter(folder, f"concentrated_{day}_{market.replace('.', '')}", chunk_rows, on_asset=on_asset)
         present, missing = 0, 0
         for offset in range(0, fixtures, batch_fixtures):
             records = select_checkpoint_batch(conn, day, table, batch_fixtures, offset)
@@ -372,6 +388,70 @@ def require_genuine_readonly_role(conn) -> None:
         )
 
 
+def begin_verified_progress_release(conn, day: dt.date, kind: str, folder: Path, source: dict):
+    """Create a non-public draft, then count only successfully uploaded full chunks.
+
+    The marker contains the exact source row total. Individual asset filenames
+    contain their actual row counts. The admin UI must NEVER display 100%
+    unless a Release verification_receipt.json exists and the workflow succeeds.
+    """
+    tag = os.environ.get("SXF_ARCHIVE_RELEASE_TAG", "")
+    if not re.fullmatch(r"sxf-(?:raw|concentrated)-20\\d{2}-\\d{2}-\\d{2}-v1", tag):
+        raise ValueError("Invalid progress Release tag")
+    expected_tag = f"sxf-{'raw' if kind == 'full_snapshots' else 'concentrated'}-{day}-v1"
+    if tag != expected_tag:
+        raise ValueError("Release tag/date/type mismatch")
+    with conn.cursor() as cur:
+        if kind == "full_snapshots":
+            from psycopg import sql
+            expected_total = 0
+            for table, key in FULL_TABLES.items():
+                recorded = source.get(key)
+                if type(recorded) is not int or recorded < 0:
+                    raise ValueError(f"Invalid source inventory for {table}")
+                cur.execute(
+                    sql.SQL("SELECT COUNT(*) FROM {} WHERE local_date=%s").format(
+                        sql.Identifier("research_archive", table)
+                    ), (day,),
+                )
+                if cur.fetchone()[0] != recorded:
+                    raise ValueError(f"Source inventory mismatch before upload: {table}")
+                expected_total += recorded
+        else:
+            cur.execute("SELECT COUNT(*) FROM research_archive.fixtures WHERE local_date=%s", (day,))
+            expected_total = cur.fetchone()[0] * 27
+    if expected_total < 1:
+        raise ValueError("Empty source day; refusing zero-length progress claim")
+
+    def gh(*args):
+        subprocess.run(["gh", "release", *args], check=True, stdout=subprocess.DEVNULL)
+
+    # github-cli refuses an already existing tag. Never overwrite prior archives.
+    gh("create", tag, "--draft", "--latest=false",
+       "--title", f"SXF {day} {kind} (streaming; unverified)",
+       "--notes", "Draft source export. Only the final SHA256/JSONL readback receipt certifies completion.")
+    marker = folder / f"progress_total_rows_{expected_total}.json"
+    marker.write_text(json.dumps({
+        "schema": "SXF_RELEASE_PROGRESS_V1", "day": str(day),
+        "kind": kind, "expected_rows": expected_total,
+        "count_type": "source_rows" if kind == "full_snapshots" else "checkpoint_slots",
+        "status": "UPLOADING_NOT_VERIFIED",
+    }, indent=2) + "\\n", encoding="utf-8")
+    gh("upload", tag, str(marker))
+
+    def upload_one(asset: dict, path: Path) -> None:
+        # gh exits unsuccessfully if GitHub rejects the asset; do not count
+        # failed uploads. The draft stays available for diagnosis/recovery.
+        gh("upload", tag, str(path))
+        print(json.dumps({
+            "stage": "github_chunk_uploaded", "kind": kind, "day": str(day),
+            "chunk": asset["name"], "uploaded_rows_in_chunk": asset["rows"],
+            "total_expected_rows": expected_total,
+        }), flush=True)
+
+    return upload_one
+
+
 def export(day: dt.date, kind: str, folder: Path, chunk_rows: int, batch_fixtures: int) -> dict:
     import psycopg
     dsn = os.environ.get("SXF_ARCHIVE_DATABASE_URL")
@@ -388,8 +468,11 @@ def export(day: dt.date, kind: str, folder: Path, chunk_rows: int, batch_fixture
                 raise ValueError("Source DB transaction is not read-only")
         require_genuine_readonly_role(conn)
         source = source_manifest(conn, day)
-        result = (export_full(conn, day, folder, chunk_rows, source) if kind == "full_snapshots"
-                  else export_concentrated(conn, day, folder, chunk_rows, batch_fixtures))
+        on_asset = (begin_verified_progress_release(conn, day, kind, folder, source)
+                    if os.environ.get("SXF_STREAM_RELEASE_UPLOAD") == "1" else None)
+        result = (export_full(conn, day, folder, chunk_rows, source, on_asset=on_asset)
+                  if kind == "full_snapshots" else
+                  export_concentrated(conn, day, folder, chunk_rows, batch_fixtures, on_asset=on_asset))
     if kind == "full_snapshots":
         require_complete_full_export_inventory(result)
     manifest = {
