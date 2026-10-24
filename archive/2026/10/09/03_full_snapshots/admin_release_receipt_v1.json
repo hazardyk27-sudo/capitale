@@ -1,0 +1,552 @@
+{
+  "status": "GITHUB_RELEASE_DRAFT_DOWNLOADED_AND_VERIFIED",
+  "github_run_id": "40050990059",
+  "github_run_url": "https://github.com/hazardyk27-sudo/capitale/actions/runs/40050990059",
+  "release_tag": "sxf-raw-2026-10-09-v1",
+  "day": "2026-10-09",
+  "kind": "full_snapshots",
+  "source_run_status": "COMPLETE",
+  "source_count_consistency": true,
+  "source_day_complete_claim": true,
+  "total_verified_rows": 2104310,
+  "export_manifest_sha256": "f8eee878f398a39ef581d5e618c32afe7e4fdb0e7ecd595a5d6f4abfefff59c1",
+  "verified_at_utc": "2026-10-24T02:44:57.939039+00:00",
+  "release_is_draft": true,
+  "asset_inventory": [
+    {
+      "name": "raw_2026-10-09_moneyway_1x2_history_part0001.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2384115,
+      "sha256_gzip": "2fa50107bf7c06ecb1fe927e071b359e8b001b7783cd6fc18d1611b05c32235e"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_1x2_history_part0002.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2379777,
+      "sha256_gzip": "c68557f62cbe494e60cfeb3a80f3e11defcc0dfc43a7f8c619c7e7a9a906a3e7"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_1x2_history_part0003.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2383919,
+      "sha256_gzip": "8c5ab31132864fc3de8f013ce9548aa65b18cc764c379f03b003ac9c93c4d85d"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_1x2_history_part0004.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2387196,
+      "sha256_gzip": "b6be6e5c4edec5cc15aed73c3482144d5b0a9c3c4679db48538fd4a8dec62927"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_1x2_history_part0005.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2381563,
+      "sha256_gzip": "9f161547b60bcb28c74cb43849c7a911f6d0250da1f7657d1f347a85487c18db"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_1x2_history_part0006.jsonl.gz",
+      "rows": 23444,
+      "bytes": 2236306,
+      "sha256_gzip": "973a092868df855fccaa20b649413888e3d2c698e000b5ab1bbcf619686fda09"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_ou25_history_part0001.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2161617,
+      "sha256_gzip": "7e4bebd27cf5821da6d2957f936d765c0e02f449991da3faaff9e02f33ca06da"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_ou25_history_part0002.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2160871,
+      "sha256_gzip": "4df64365cd674c2fdfa7727eadcc4296d8692f62bf2bf712f3d3685fa98663bf"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_ou25_history_part0003.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2160510,
+      "sha256_gzip": "53dc833291f2409ec112d90c74739185ac1a89f932c7a559bd50238024e473c9"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_ou25_history_part0004.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2173392,
+      "sha256_gzip": "ca75dc365b5980c29a3b03a6f46cbdcefa45c53ba6dd6daaba137f3cd995472e"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_ou25_history_part0005.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2164322,
+      "sha256_gzip": "d63f7dc0e51b2fd64c926d4fe6b49364fd638089cd95d84d83057c0c2ee3d541"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_ou25_history_part0006.jsonl.gz",
+      "rows": 11026,
+      "bytes": 958426,
+      "sha256_gzip": "55f439b4a68e75ba10f9fdcd999d006c65eb0fcfc22bf8a7f0028c8ffc90a333"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_btts_history_part0001.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2142608,
+      "sha256_gzip": "d8f16c46c690f49d8a1611773ffd5d4c4c23c7ed9eb6a6f30653d886bd46b449"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_btts_history_part0002.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2140574,
+      "sha256_gzip": "d64d67a355fa797f9569963a4014bfc3b9cb2c21dff1c68b2282bdb6cf16ccc4"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_btts_history_part0003.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2149583,
+      "sha256_gzip": "c5f5c0127eebce1d5bc59680ab50a0914239feced57a6cdf68738ba173356f49"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_btts_history_part0004.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2154063,
+      "sha256_gzip": "5fe99928ce3c6245ff18e90c08e1841e5d2a697f34c85e1d7db113d6e74fcd2a"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_btts_history_part0005.jsonl.gz",
+      "rows": 3311,
+      "bytes": 284622,
+      "sha256_gzip": "a91b4f8e35ffa2b4591edeb1ecc3a629ef320b153212767e5b82b63209cbef0d"
+    },
+    {
+      "name": "raw_2026-10-09_dropping_1x2_history_part0001.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2252473,
+      "sha256_gzip": "fca5e4ddcbfc6f9090d16b1e91e78fa9b05e16c7053b667ef9a21f437e8778df"
+    },
+    {
+      "name": "raw_2026-10-09_dropping_1x2_history_part0002.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2249131,
+      "sha256_gzip": "19686ff04e7872639a3cddc6040dccd10c18288e2f99591ae70b23c7dc399103"
+    },
+    {
+      "name": "raw_2026-10-09_dropping_1x2_history_part0003.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2261528,
+      "sha256_gzip": "bf8aab89e6d7f5381ef60b8241891ef59738f22f833a81591e189d15b0feb874"
+    },
+    {
+      "name": "raw_2026-10-09_dropping_1x2_history_part0004.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2251690,
+      "sha256_gzip": "c1b92ad3ab266e271564d725486eaebfb5cd0e8cf9cda8962d2bbf644d75abf5"
+    },
+    {
+      "name": "raw_2026-10-09_dropping_1x2_history_part0005.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2260972,
+      "sha256_gzip": "c4ab6c955737264447fe455660173900dc724917063d6855ed60d89d63c69aab"
+    },
+    {
+      "name": "raw_2026-10-09_dropping_1x2_history_part0006.jsonl.gz",
+      "rows": 14474,
+      "bytes": 1307023,
+      "sha256_gzip": "3f06f1bd86de6f66e90aa4e9185cbb5ca20321a4370de32a969c77a0e5c7e50c"
+    },
+    {
+      "name": "raw_2026-10-09_dropping_ou25_history_part0001.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2283456,
+      "sha256_gzip": "6e6ba253577f109d4bcc39d31ab31844ac0245166453ce31f63b890f292d13b6"
+    },
+    {
+      "name": "raw_2026-10-09_dropping_ou25_history_part0002.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2283851,
+      "sha256_gzip": "dd3cb5a73e8d60a795e2c7387ecf014cabc5a95152f2466de1788434ea53e4fe"
+    },
+    {
+      "name": "raw_2026-10-09_dropping_ou25_history_part0003.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2279785,
+      "sha256_gzip": "451619340dd4fdbe3a033611d8916a928670abf7be4844ef1f51b35f1b4feb82"
+    },
+    {
+      "name": "raw_2026-10-09_dropping_ou25_history_part0004.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2279656,
+      "sha256_gzip": "64c6cd7193c9153b891ccfc4ee0c88408fc0b6d94ea8a46143d4a17c43c923bc"
+    },
+    {
+      "name": "raw_2026-10-09_dropping_ou25_history_part0005.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2278290,
+      "sha256_gzip": "32f1a7be6971afe3587d35fc8ca337a6fd40b9b0a25ceed87093c4345a8ae5fd"
+    },
+    {
+      "name": "raw_2026-10-09_dropping_ou25_history_part0006.jsonl.gz",
+      "rows": 10217,
+      "bytes": 935800,
+      "sha256_gzip": "96353ae2259dd5b8ae5e83543f0cdeec17c24cae3924c0a18422805bbababf2d"
+    },
+    {
+      "name": "raw_2026-10-09_dropping_btts_history_part0001.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2267350,
+      "sha256_gzip": "0c8a22e45645c37a530e5ee2028d49b4d9d3c51416ead9c86fe8d61dc9b924e9"
+    },
+    {
+      "name": "raw_2026-10-09_dropping_btts_history_part0002.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2276974,
+      "sha256_gzip": "e17ff3ce13377a5d7633fdeb4d4ce723f796b735f2094eb2bf2ddad2763dbb4e"
+    },
+    {
+      "name": "raw_2026-10-09_dropping_btts_history_part0003.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2276471,
+      "sha256_gzip": "e7209609e69b25801eb6a4e252d2a6945834133d619d4b55d887839fd73fe86d"
+    },
+    {
+      "name": "raw_2026-10-09_dropping_btts_history_part0004.jsonl.gz",
+      "rows": 25000,
+      "bytes": 2275702,
+      "sha256_gzip": "1d8911139dc09797a76b90b3761d6face7d70bdeed0431ba7dc8ffc2578d234f"
+    },
+    {
+      "name": "raw_2026-10-09_dropping_btts_history_part0005.jsonl.gz",
+      "rows": 2760,
+      "bytes": 251668,
+      "sha256_gzip": "716a21b0e44e946f8fb95986a8aa1859ef7d50f5876e44892aa19bc783956e66"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_snapshots_part0001.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1594179,
+      "sha256_gzip": "fa7212afa0147fd2ffcc9366bc731ca1abeb82780ecaef200ab9d827c9496f1a"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_snapshots_part0002.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1599727,
+      "sha256_gzip": "86a73b56854d263668c3d3e08dbb7bf7a69ccef9bd6dbae2c199f299033853de"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_snapshots_part0003.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1595382,
+      "sha256_gzip": "778c6f1d84c4892a216633e42758cff21d7fd8813da4ce45c9fd8b0b140f11cb"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_snapshots_part0004.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1596717,
+      "sha256_gzip": "b3d317ca031b8efadaa712def200afd7724078a17fe4a309afceccce0a7c2d62"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_snapshots_part0005.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1597932,
+      "sha256_gzip": "ad357b64193ccb7d50356ee6724d12c7e8e51bdd36703c38f24ddf8898c868f1"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_snapshots_part0006.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1593778,
+      "sha256_gzip": "d0a7bd2a5290fbf2cd973753181e088d046f720475df381ddc381008c300d459"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_snapshots_part0007.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1595698,
+      "sha256_gzip": "580032d2aeb580ef1d210c327a671b2b908b0b349c3ccbbf44a5d99c32c25fd6"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_snapshots_part0008.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1594279,
+      "sha256_gzip": "8355d919ec45b1109988150b432c21c8163cb51b958e195106c1ab3955029916"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_snapshots_part0009.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1597288,
+      "sha256_gzip": "e631ffe4b3ce7b217864d3304697ea04a3a3c6e8a670aceb03393963b22b8777"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_snapshots_part0010.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1596910,
+      "sha256_gzip": "4318ce830e3fdd558cd36999b0c2b4816a59d2dff90fce426f2555a6493a6555"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_snapshots_part0011.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1595017,
+      "sha256_gzip": "72c98741f5873d6fbafbc89c4e405a27c1b32b5bf90e88d8eecba7d3aa77f477"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_snapshots_part0012.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1597884,
+      "sha256_gzip": "b52ff5e2b516da984134c0dfc6d000d7439084a39eb963ddd1dee1d743fe536d"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_snapshots_part0013.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1595302,
+      "sha256_gzip": "6aec6535c29cdd6fb25bfc5175947aa6b385b4b8435bb2da0257ac66d954c4ea"
+    },
+    {
+      "name": "raw_2026-10-09_moneyway_snapshots_part0014.jsonl.gz",
+      "rows": 6308,
+      "bytes": 403651,
+      "sha256_gzip": "ef1b9f60578840f8a582b586478207b40b245bf0bbe27eb523d8bcc95d0fdb0b"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0001.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1581181,
+      "sha256_gzip": "b623c1843ca6523474751d3d7e89edc699cd5cc9d2af7ca1ab3759a8776a4928"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0002.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1579891,
+      "sha256_gzip": "2440299743548d88323bbd2419fcf129ed3bd09aabc9c760ebb986220db49e1d"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0003.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1581542,
+      "sha256_gzip": "976051980c140938c5a3110bfec2cdf81448c2b90f441f19bc6a7682de61399c"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0004.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1580593,
+      "sha256_gzip": "ab1f736e337411234259a75c5c946a8cfa55f1fe7d6eaf6eff8c668514152ed7"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0005.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1581813,
+      "sha256_gzip": "b4399942630d0f79d123cf53271057f6e7c046b74980ac5c40f7132ace80fda2"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0006.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1580964,
+      "sha256_gzip": "57575e2142dc93bfcfc2fbc7b853d75189c6001cbac5d80d18409f5b5e2a8b22"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0007.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1581476,
+      "sha256_gzip": "5a30af952e1304cbd10b2a6b166578576e5e73c4b5f247b2a9281cbb17f1d6d0"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0008.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1576544,
+      "sha256_gzip": "ed70a1b25872f878452c6a93d9cdc348188917ee09396f32458bdf5a22c99a50"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0009.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1582091,
+      "sha256_gzip": "c048e969fb77e7ef22223313acf19f9d6ef6e3aa760b309859b0a5bc4bd95862"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0010.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1581026,
+      "sha256_gzip": "27535e99ac5abd8691b721f3739efc86e9a432b5354715f343cc72f90c4a1bfa"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0011.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1581229,
+      "sha256_gzip": "1c46b078c5352aeda1e75ba2a5394314b9586c42fffdeeb7990c3e8012e6a9b9"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0012.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1581245,
+      "sha256_gzip": "adc2f932f7d55fcc43a9e94cdfffa6f5cb7cb563255c1c10fc67d5c012d1e2d4"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0013.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1578989,
+      "sha256_gzip": "7d84fe19bc09dc47bbc078339264ecf5a1b1d0d13353351e07d5534998ffdac9"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0014.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1579663,
+      "sha256_gzip": "6fd6b20bbdca16e11d805a8c7f3d8d5ded2c5ae646852f2c0d43bf43b0fba66d"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0015.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1580891,
+      "sha256_gzip": "4791f58eb7c1e7b2868e63f25922ba026949d46d43bdda38ed02fc573d834aa9"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0016.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1580419,
+      "sha256_gzip": "778e705761e62d56f3257bc54c87cc8a0b0dab7b0c9d4daeee39095e66834ea1"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0017.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1581223,
+      "sha256_gzip": "7084aac842ab00368898769abf3873815473d551f8eaffd65b3bc593094cf793"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0018.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1582477,
+      "sha256_gzip": "fef9dc1c1727310d21d6af8f3601747484f9ef864b48c12d5f15b8ebd70a94bc"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0019.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1581754,
+      "sha256_gzip": "40b459f175a24c958d033a1cfb47c72ca88a53466ca39151422670e52b1c5e5e"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0020.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1581655,
+      "sha256_gzip": "24087c5676bfe5e6fdee629759822b134863c30252745aad9b8010e8e74f77cd"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0021.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1579179,
+      "sha256_gzip": "be31cfcb0ecb8a304579faad2f09646eb4dbaa5ea590291c4f0bc0676b776443"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0022.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1580069,
+      "sha256_gzip": "b0434d35a67987253f8a4f3d0aca068f76cc0f06b9a736e1a4b9f11b554ab5a1"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0023.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1579750,
+      "sha256_gzip": "c5db1e37de5c431ffbff121c2afe895186c97bcf65434c39b72d931b5ac1bf0e"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0024.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1579529,
+      "sha256_gzip": "1f499c54c96003b8cc90c25436c802a5e3cf44a51f3523ca04775ccee2b303eb"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0025.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1580781,
+      "sha256_gzip": "9c5491ca44dad63123ee78c592c054018f1cfacd6a57bfc25e01c30b22ad3a33"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0026.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1580864,
+      "sha256_gzip": "9488ed92212ae22a20e10a4c2f78d07933f9652ab0b756ede00921c26e961a96"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0027.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1579585,
+      "sha256_gzip": "a56e49b9a5e8a46df1032c3824814dcc85e0af32dd866fdd8e3c8b47a2547f94"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0028.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1581249,
+      "sha256_gzip": "c50c0ad673783c7232826f42b31591815857fc9e09b9c258eb537e70cac9042b"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0029.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1581043,
+      "sha256_gzip": "6045a1f59e5862d7993415c575540316564714c5a93e365150a8ccb83b7c2b3f"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0030.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1580845,
+      "sha256_gzip": "c11597441a946446f157446cdd43b1fe6788122ce42a5a0866be7910e6288a4b"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0031.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1580479,
+      "sha256_gzip": "b6636570a90888e4230d7b2c5cdadb73bb027bf848ab6eecdce59186ce7033fc"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0032.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1580103,
+      "sha256_gzip": "3a20aa41402368a754aebe24be76c4568a07f58e8c46c3b3c1bfa1031b235660"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0033.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1580308,
+      "sha256_gzip": "6033256cd2c89c9f8fa999d85984b1a7d7fb03825f83d6e67cf1ea1d79600865"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0034.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1579803,
+      "sha256_gzip": "ebd7b3764c2ef2e55188af707b570455d19c14756933d7de37ae8ecfd25009dc"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0035.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1580588,
+      "sha256_gzip": "6aa64e073ae33d22cfa33f7d5dcbcc044adbab653e1f41c46ad847e65fe10f8e"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0036.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1578915,
+      "sha256_gzip": "a3953102abc6157c43ae8c087f7af0c5a8fd2342d01b0baf3aa707c6f10f3ba0"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0037.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1580588,
+      "sha256_gzip": "794d8be3914e4bc0722a51c0604d21f5ec5eab590120d44b46b2af2ded332f38"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0038.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1581348,
+      "sha256_gzip": "960dbc3c89b6a89e44b83416c6d184f84edb069a404943c25b2e37f2a635e588"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0039.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1578232,
+      "sha256_gzip": "4ad6d6038a5ab1aae56219a9698d859430fb2be5a2108345b55c68010cfb4bb8"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0040.jsonl.gz",
+      "rows": 25000,
+      "bytes": 1580049,
+      "sha256_gzip": "09699a335842ae13c3723e8337699fa1d2d5884d352393ffd2aebf3454e739da"
+    },
+    {
+      "name": "raw_2026-10-09_live_snapshots_part0041.jsonl.gz",
+      "rows": 7770,
+      "bytes": 490844,
+      "sha256_gzip": "c876277788c70b2582e7ca09d1eb65af692dcf0425a9a17f4b655d1e451c33f5"
+    }
+  ],
+  "source_notice": "This Release is verified, but existing daily scan/settlement and source PARTIAL flags remain unchanged."
+}
