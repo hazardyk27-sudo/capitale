@@ -1,0 +1,79 @@
+{
+  "schema_version": "SXF_ARCHIVE_V1_0",
+  "match_date_tr": "2026-10-24",
+  "timezone": "Europe/Istanbul",
+  "generated_at_utc": "2026-10-24T15:38:32.954Z",
+  "source": "SUPABASE_SMARTXFLOW_READ_ONLY",
+  "source_access": "VERIFIED_FOR_SELECTED_AS_OF_COHORT",
+  "fixture_count": 238,
+  "all_fixtures_included": true,
+  "missing_fixture_ids": [],
+  "report_run_ids": [
+    "sxf-2026-10-24-dynamic-asof-150003-tr-original-scan-v1"
+  ],
+  "scan_id": "scan-20261024-150003-tr-dynamic-v04-original-v1",
+  "original_scan_as_of_utc": "2026-10-24T12:00:03Z",
+  "report_mode": "DYNAMIC_AS_OF_V04",
+  "publication_state": "RECONSTRUCTED_FROM_PREMATCH_CHAT_REPORT",
+  "01_scan_results": "RECONSTRUCTED_ARCHIVED",
+  "02_outcome_performance": "NOT_COLLECTED",
+  "03_full_snapshots": "NOT_COLLECTED",
+  "04_concentrated": "NOT_COLLECTED",
+  "full_snapshot_status": "NOT_COLLECTED",
+  "concentrated_status": "NOT_COLLECTED",
+  "release_asset_refs": [],
+  "coverage": {
+    "total": 238,
+    "with_snapshots": 233,
+    "without_snapshots": 5,
+    "without_signals": 179,
+    "signal_fixtures": 59,
+    "unique_selections": 62,
+    "engine_tag_counts": {
+      "V1": 23,
+      "V2": 20,
+      "SURPRISE_TEAM": 22,
+      "EARLY_CORE": 5,
+      "EARLY_T12": 13,
+      "HEAVY": 7,
+      "BTTS_YES": 7,
+      "PREMIUM_OVER_2_5": 5,
+      "STABLE_OVER_2_5": 2
+    },
+    "motor_labels_total": 104,
+    "market_complete_fixtures": {
+      "1X2": 202,
+      "OU25": 151,
+      "BTTS": 108
+    }
+  },
+  "scan_files": {
+    "json_path": "archive/2026/10/24/01_scan_results/sxf-2026-10-24-dynamic-asof-150003-tr-original-scan-v1.json",
+    "markdown_path": "archive/2026/10/24/01_scan_results/sxf-2026-10-24-dynamic-asof-150003-tr-original-scan-v1.md",
+    "write_commits": [
+      {
+        "path": "archive/2026/10/24/01_scan_results/sxf-2026-10-24-dynamic-asof-150003-tr-original-scan-v1.json",
+        "commit_sha": "7dec781a8c50b601426053458c5e9db4da992b18"
+      },
+      {
+        "path": "archive/2026/10/24/01_scan_results/sxf-2026-10-24-dynamic-asof-150003-tr-original-scan-v1.md",
+        "commit_sha": "bbfa03d22ce23980da5e429336d5af16d25773f5"
+      }
+    ]
+  },
+  "full_day_archive_complete": false,
+  "migration_complete": false,
+  "source_archive_writes": false,
+  "github_only_persistence": true,
+  "warnings": [
+    "Preserves the original 62-selection dynamic-AS_OF list; no retroactive checkpoint-based revision, outcome, or ranking.",
+    "An external review alleges >=38 erroneous engine labels under T-6/T-8 interpretation. This remains a recorded methodology/mode dispute, not silently resolved in this published scan.",
+    "The user-visible original report predates this GitHub commit; do not represent this commit as being created at AS_OF.",
+    "Source captures were queried retrospectively by timestamp; ingestion availability at AS_OF not independently attested.",
+    "The full-day raw archive and nine-point concentrated archive are not created by this scan.",
+    "No bookmaker odds or real executable prices were captured.",
+    "No raw source row SHA-256 records were exported.",
+    "Original scan preserved; checkpoint audit difference requires separately versioned validation.",
+    "No scores or settlement computed."
+  ]
+}
