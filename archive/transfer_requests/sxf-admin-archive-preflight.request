@@ -8,5 +8,13 @@
   "next_raw_days": [
     "2026-10-09",
     "2026-10-10"
-  ]
+  ],
+  "request_version": 2,
+  "reason": "SXF1 continuation: fresh no-export preflight to verify source connection readiness before 9-10 October full raw batch",
+  "first_batch": [
+    "2026-10-09",
+    "2026-10-10"
+  ],
+  "archive_transfer_authorized": false,
+  "database_writes_authorized": false
 }
