@@ -148,6 +148,37 @@ def export_full(conn, day: dt.date, folder: Path, chunk_rows: int, source: dict)
             "source_run_counts_match": all(t["archive_run_count_matches"] is True for t in tables)}
 
 
+
+def require_complete_full_export_inventory(result: dict) -> None:
+    """Fail closed unless all eight raw tables match SQL counts and archive_runs.
+
+    This certifies the exported captured source inventory, not historical source
+    collection completeness (the latter may remain PARTIAL).
+    """
+    tables = result.get("tables")
+    if not isinstance(tables, list) or len(tables) != len(FULL_TABLES):
+        raise ValueError("Full raw export requires exactly eight source tables")
+    names = [t.get("table") for t in tables]
+    if len(set(names)) != len(FULL_TABLES) or set(names) != set(FULL_TABLES):
+        raise ValueError("Full raw export table inventory is missing or duplicated")
+    counted = 0
+    for item in tables:
+        sql_rows = item.get("source_sql_rows")
+        expected_rows = item.get("source_run_recorded_rows")
+        exported_rows = item.get("exported_rows")
+        if (
+            type(sql_rows) is not int or sql_rows < 0
+            or type(expected_rows) is not int or expected_rows < 0
+            or type(exported_rows) is not int or exported_rows < 0
+            or sql_rows != expected_rows or sql_rows != exported_rows
+            or item.get("archive_run_count_matches") is not True
+        ):
+            raise ValueError(f"Full raw source-count mismatch: {item.get('table')}")
+        counted += exported_rows
+    if result.get("source_run_counts_match") is not True or counted != result.get("total_exported_rows"):
+        raise ValueError("Full raw manifest totals mismatch; refuse Release upload")
+
+
 def select_checkpoint_batch(conn, day: dt.date, table: str, limit: int, offset: int):
     from psycopg import sql
     query = sql.SQL("""
@@ -243,6 +274,8 @@ def verify_directory(folder: Path) -> dict:
         raise ValueError("Unknown mode in export manifest")
     if manifest.get("source_schema") != "research_archive":
         raise ValueError("Unexpected source schema")
+    if kind == "full_snapshots":
+        require_complete_full_export_inventory(manifest)
     entries = manifest["tables"] if kind == "full_snapshots" else manifest["markets"]
     total, unique_slots = 0, set()
     for entry in entries:
@@ -357,6 +390,8 @@ def export(day: dt.date, kind: str, folder: Path, chunk_rows: int, batch_fixture
         source = source_manifest(conn, day)
         result = (export_full(conn, day, folder, chunk_rows, source) if kind == "full_snapshots"
                   else export_concentrated(conn, day, folder, chunk_rows, batch_fixtures))
+    if kind == "full_snapshots":
+        require_complete_full_export_inventory(result)
     manifest = {
         "schema_version": "SXF_CAPITALE_DAY_ARCHIVE_V1", "source_schema": "research_archive",
         "source_access": "SELECT_ONLY", "day": str(day), "timezone": "Europe/Istanbul",
