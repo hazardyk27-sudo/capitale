@@ -1,7 +1,11 @@
 name: SXF raw two-day batch
-run-name: SXF full raw ${{ inputs.first_day }} + next day
+run-name: SXF full raw ${{ inputs.first_day || '2026-10-09' }} + next day
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - archive/transfer_requests/sxf-raw-2026-10-09-10.request
   workflow_dispatch:
     inputs:
       first_day:
@@ -22,7 +26,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: sxf-raw-two-day-${{ inputs.first_day }}
+  group: sxf-raw-two-day-${{ inputs.first_day || '2026-10-09' }}
   cancel-in-progress: false
 
 jobs:
@@ -37,7 +41,7 @@ jobs:
         id: day
         shell: bash
         env:
-          FIRST_DAY: ${{ inputs.first_day }}
+          FIRST_DAY: ${{ inputs.first_day || '2026-10-09' }}
           SXF_ARCHIVE_DATABASE_URL: ${{ secrets.SXF_ARCHIVE_DATABASE_URL }}
         run: |
           set -euo pipefail
