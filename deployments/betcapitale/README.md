@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-24  
 **Status:** Canonical plan configuration and protection script committed to GitHub.  
-**Hetzner installation:** Not yet confirmed (Desktop Commander connection offline while preparing this change).
+**Hetzner installation:** VERIFIED 2026-10-24 14:21:29 UTC. Guard files installed to `/opt/betcapitale-whop/`, systemd drop-in installed at `/etc/systemd/system/betcapitale-web.service.d/30-one-time-whop-guard.conf`. The production service was restarted and systemd verified `ExecStartPre` exit status `0`, service state `active`, `Result=success`, and `NRestarts=0`. Local and public `/api/whop/plans` returned HTTP 200 with all 9 expected plan IDs and 8 exact price/duration/tier matches.
 
 The live website had already been migrated on Hetzner and its `/api/whop/plans` endpoint verified to show 9 plans: an unchanged 3-day trial and 8 new one-time purchases. This directory captures the approved plan mapping independently from Replit and prevents later builds from silently returning to recurring checkout plans.
 
@@ -15,7 +15,7 @@ The live website had already been migrated on Hetzner and its `/api/whop/plans` 
 
 ## Install on the authorized Hetzner server
 
-Installation needs root access and is intentionally **not automatic merely by committing to GitHub**.
+Installation needs root access and is intentionally **not automatic merely by committing to GitHub**. **This installation was completed directly on Hetzner on 2026-10-24; the following commands are for disaster recovery/re-installation only.**
 
 ```sh
 curl --proto '=https' --tlsv1.2 -fsSL \
@@ -32,4 +32,4 @@ The guard is tailored to the verified September 2026 esbuild Node bundle format.
 
 **Never cancel, refund, or otherwise mutate existing customer subscriptions.** No Whop write API calls are made. Existing historic plan IDs remain in the application's membership reconciliation table, but are not served to new purchasers.
 
-This is a protection layer on Hetzner's deployed bundle, **not** a copy of the full original website's TypeScript/React source. Deploy-time enforcement remains incomplete until the installer is run on Hetzner and the service is verified.
+This is a protection layer on Hetzner's deployed bundle, **not** a copy of the full original website's TypeScript/React source. Deploy-time enforcement is installed and verified on Hetzner. Future deployments must retain the systemd service drop-in and the same bundle location. Unknown or incompatible future bundle formats intentionally block startup rather than reverting to recurring checkout IDs. This does not substitute for updating the original website source if it becomes available.
