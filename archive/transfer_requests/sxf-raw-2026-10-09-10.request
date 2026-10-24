@@ -1,0 +1,20 @@
+{
+  "request": "SXF_RAW_TWO_DAY_BATCH",
+  "batch": [
+    "2026-10-09",
+    "2026-10-10"
+  ],
+  "archive_kind": "full_snapshots",
+  "source": "research_archive SELECT_ONLY",
+  "github_destination": "GitHub Releases",
+  "checkpoint": "STOP_ON_MISSING_PRIVATE_READ_ONLY_SOURCE_SECRET",
+  "expected_source_daily_memberships": 6411852,
+  "status": "REQUESTED_NOT_ARCHIVED",
+  "approved_tables": 8,
+  "rules": [
+    "No Supabase DML/DDL or RLS modifications",
+    "No success claim until release SHA256 and restore readback",
+    "Run first day then second day only after first day succeeds",
+    "No concentrated reruns"
+  ]
+}
