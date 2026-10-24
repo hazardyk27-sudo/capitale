@@ -1,0 +1,73 @@
+{
+  "schema_version": "SXF_ARCHIVE_V1_0",
+  "match_date_tr": "2026-10-23",
+  "timezone": "Europe/Istanbul",
+  "generated_at_utc": "2026-10-24T00:42:39.393Z",
+  "source": "SUPABASE_SMARTXFLOW_READ_ONLY",
+  "source_access": "VERIFIED_FOR_SELECTED_AS_OF_COHORT",
+  "fixture_count": 91,
+  "all_fixtures_included": true,
+  "missing_fixture_ids": [],
+  "report_run_ids": [
+    "sxf-2026-10-23-dynamic-asof-151630-tr-retrospective-v1"
+  ],
+  "scan_id": "scan-20261023-151630-tr-dynamic-v04-reconstructed-v1",
+  "original_scan_as_of_utc": "2026-10-23T12:16:30Z",
+  "report_mode": "DYNAMIC_AS_OF_V04",
+  "publication_state": "RECONSTRUCTED",
+  "01_scan_results": "RECONSTRUCTED_ARCHIVED",
+  "02_outcome_performance": "NOT_COLLECTED",
+  "03_full_snapshots": "NOT_COLLECTED",
+  "04_concentrated": "NOT_COLLECTED",
+  "full_snapshot_status": "NOT_COLLECTED",
+  "concentrated_status": "NOT_COLLECTED",
+  "release_asset_refs": [],
+  "coverage": {
+    "total": 91,
+    "with_snapshots": 84,
+    "without_snapshots": 7,
+    "without_signals": 76,
+    "signal_fixtures": 15,
+    "unique_selections": 15,
+    "engine_tag_counts": {
+      "EARLY_T12": 4,
+      "V1": 8,
+      "V2": 6,
+      "HEAVY": 2,
+      "EARLY_CORE": 2,
+      "PREMIUM_OVER_2_5": 1,
+      "BTTS_YES": 2,
+      "SURPRISE_TEAM": 1
+    },
+    "motor_labels_total": 26,
+    "market_complete_fixtures": {
+      "1X2": 72,
+      "OU25": 63,
+      "BTTS": 47
+    }
+  },
+  "scan_files": {
+    "json_path": "archive/2026/10/23/01_scan_results/sxf-2026-10-23-dynamic-asof-151630-tr-retrospective-v1.json",
+    "markdown_path": "archive/2026/10/23/01_scan_results/sxf-2026-10-23-dynamic-asof-151630-tr-retrospective-v1.md",
+    "write_commits": [
+      {
+        "path": "archive/2026/10/23/01_scan_results/sxf-2026-10-23-dynamic-asof-151630-tr-retrospective-v1.json",
+        "commit_sha": "49923997cbe70cee231516d928f35780f6b08457"
+      },
+      {
+        "path": "archive/2026/10/23/01_scan_results/sxf-2026-10-23-dynamic-asof-151630-tr-retrospective-v1.md",
+        "commit_sha": "190e673a7a99150f1af7d69cbe3c6c88d4e2d6fd"
+      }
+    ]
+  },
+  "full_day_archive_complete": false,
+  "migration_complete": false,
+  "github_only_persistence": true,
+  "source_archive_writes": false,
+  "warnings": [
+    "Retrospective AS_OF reconstruction was produced after 23 October, not originally frozen/published on AS_OF.",
+    "91 fixture scan window 19:30–23:00 TSİ, not all fixtures throughout 23 October.",
+    "No settlement, full raw multi-table archive, or 9-checkpoint all-fixture grid has been uploaded for this date.",
+    "Raw SHA-256 row equivalence not verified; readback of generated scan files separately required."
+  ]
+}
