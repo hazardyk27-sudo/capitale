@@ -6,9 +6,9 @@
   "github_destination": "GitHub Releases",
   "checkpoint": "STOP_ON_MISSING_PRIVATE_READ_ONLY_SOURCE_SECRET",
   "expected_source_daily_memberships": 6411852,
-  "status": "RETRY_REQUESTED_NOT_ARCHIVED",
+  "status": "DISPATCHED_AFTER_PREFLIGHT_PASS_NOT_YET_VERIFIED",
   "approved_tables": 8,
-  "retry_local": "2026-10-24 04:06 Europe/Istanbul",
+  "preflight_workflow_run": 40050948779,
   "rules": [
     "No Supabase DML/DDL or RLS modifications",
     "No success claim until release SHA256 and restore readback",
