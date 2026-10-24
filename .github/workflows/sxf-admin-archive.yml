@@ -16,6 +16,21 @@ on:
           - full_snapshots
           - concentrated
 
+
+  workflow_call:
+    inputs:
+      day:
+        description: "Fixture date in Europe/Istanbul (YYYY-MM-DD)"
+        required: true
+        type: string
+      archive_kind:
+        description: "Archive output type (full_snapshots or concentrated)"
+        required: true
+        type: string
+    secrets:
+      SXF_ARCHIVE_DATABASE_URL:
+        required: true
+
 permissions:
   contents: write
 
