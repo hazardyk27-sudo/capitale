@@ -1,0 +1,36 @@
+{
+  "status": "GITHUB_RELEASE_DRAFT_DOWNLOADED_AND_VERIFIED",
+  "github_run_id": "40240809850",
+  "github_run_url": "https://github.com/hazardyk27-sudo/capitale/actions/runs/40240809850",
+  "release_tag": "sxf-concentrated-2026-10-24-v1",
+  "day": "2026-10-24",
+  "kind": "concentrated",
+  "source_run_status": "PARTIAL",
+  "source_count_consistency": null,
+  "source_day_complete_claim": false,
+  "total_verified_rows": 12879,
+  "export_manifest_sha256": "f6673b5d5ce3f2b3e97bac96dc37d91c1c317bccc5158c511e38ee634ff1047f",
+  "verified_at_utc": "2026-10-25T22:41:26.047734+00:00",
+  "release_is_draft": true,
+  "asset_inventory": [
+    {
+      "name": "concentrated_2026-10-24_1X2_part0001_rows_4293.jsonl.gz",
+      "rows": 4293,
+      "bytes": 550857,
+      "sha256_gzip": "0c91a9cb17cff749dcb2b7346e787f7ca5bb6908a3f7bfeb6665e4561b3737cc"
+    },
+    {
+      "name": "concentrated_2026-10-24_OU25_part0001_rows_4293.jsonl.gz",
+      "rows": 4293,
+      "bytes": 481036,
+      "sha256_gzip": "417ec0592b59ffe858fb2ce4312f334490c4609872635080ab4b729d918cda14"
+    },
+    {
+      "name": "concentrated_2026-10-24_BTTS_part0001_rows_4293.jsonl.gz",
+      "rows": 4293,
+      "bytes": 417895,
+      "sha256_gzip": "99c474bd836322a54dc545acf3c371f6de44b21970cafa4dbaaa50b637738a37"
+    }
+  ],
+  "source_notice": "This Release is verified, but existing daily scan/settlement and source PARTIAL flags remain unchanged."
+}
