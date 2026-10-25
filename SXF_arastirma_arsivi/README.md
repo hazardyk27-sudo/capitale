@@ -38,3 +38,19 @@
 | **TOPLAM** | **476** | **288** | **72** | **85** | **153** | — | — |
 
 **Önemli:** 13 Ekim ham arşiv tam 1X2 T-6 kapsamı 36, canlı kaynaktaki sayı 20 olduğundan araştırma ham kaynağı kullanıldı. Bu raporlar orijinal dönemde dondurulmuş tahmin değil, sonradan oluşturulmuş T-6/T-8 araştırmalarıdır.
+
+---
+
+## 3. Parti: 17–20 Ekim 2026
+
+[Detaylı dört günlük indeks](2026/10/README_17_20.md)
+
+| Tarih | Taranan maç | Veri bulunan | Sinyalli maç | Seçim | Motor etiketi | Rapor | JSON |
+|---|---:|---:|---:|---:|---:|---|---|
+| 17.10.2026 | 259 | 171 | 36 | 38 | 78 | [Rapor](/SXF_arastirma_arsivi/2026/10/17/sxf-research-2026-10-17-t6-fallback-t8-16to24-v1.md) | [JSON](/SXF_arastirma_arsivi/2026/10/17/sxf-research-2026-10-17-t6-fallback-t8-16to24-v1.json) |
+| 18.10.2026 | 210 | 156 | 32 | 36 | 69 | [Rapor](/SXF_arastirma_arsivi/2026/10/18/sxf-research-2026-10-18-t6-fallback-t8-16to24-v1.md) | [JSON](/SXF_arastirma_arsivi/2026/10/18/sxf-research-2026-10-18-t6-fallback-t8-16to24-v1.json) |
+| 19.10.2026 | 118 | 75 | 10 | 12 | 18 | [Rapor](/SXF_arastirma_arsivi/2026/10/19/sxf-research-2026-10-19-t6-fallback-t8-16to24-v1.md) | [JSON](/SXF_arastirma_arsivi/2026/10/19/sxf-research-2026-10-19-t6-fallback-t8-16to24-v1.json) |
+| 20.10.2026 | 94 | 68 | 22 | 26 | 57 | [Rapor](/SXF_arastirma_arsivi/2026/10/20/sxf-research-2026-10-20-t6-fallback-t8-16to24-v1.md) | [JSON](/SXF_arastirma_arsivi/2026/10/20/sxf-research-2026-10-20-t6-fallback-t8-16to24-v1.json) |
+| **TOPLAM** | **681** | **470** | **100** | **112** | **222** | — | — |
+
+**Bu raporlar T-6/T-8 tarihsel araştırma sürümleridir; canlı v0.4 taraması değildir.** Kaynak günlük sınırları ve ham geçmiş gözlem eksikleri ilgili JSON'larda ayrıca saklanmıştır.
