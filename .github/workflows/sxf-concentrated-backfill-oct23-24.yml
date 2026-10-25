@@ -1,0 +1,26 @@
+name: SXF missing full-day concentrated 23-24 Oct
+run-name: SXF complete full-day concentrated 23-24 October
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/sxf-concentrated-backfill-oct23-24.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  day23:
+    uses: ./.github/workflows/sxf-admin-archive.yml
+    with:
+      day: '2026-10-23'
+      archive_kind: concentrated
+    secrets: inherit
+  day24:
+    uses: ./.github/workflows/sxf-admin-archive.yml
+    with:
+      day: '2026-10-24'
+      archive_kind: concentrated
+    secrets: inherit
