@@ -30,8 +30,8 @@
     1
   ],
   "total_slots": 12879,
-  "source_snapshot_present_slots": null,
-  "missing_snapshot_slots": null,
+  "source_snapshot_present_slots": 10592,
+  "missing_snapshot_slots": 2287,
   "counts_in_release_export_manifest": true,
   "release_tag": "sxf-concentrated-2026-10-24-v1",
   "release_is_draft": true,
@@ -69,5 +69,23 @@
     "All fixtures times 3 markets times 9 T points represented; MISSING observations are not fabricated.",
     "Source PARTIAL is preserved separately from COMPLETE checkpoint grid.",
     "Do not confuse this concentrated grid with full raw history or the daily original AS_OF scan."
-  ]
+  ],
+  "markets_breakdown": {
+    "1X2": {
+      "checkpoint_slots": 4293,
+      "present": 3754,
+      "missing": 539
+    },
+    "OU2.5": {
+      "checkpoint_slots": 4293,
+      "present": 3660,
+      "missing": 633
+    },
+    "BTTS": {
+      "checkpoint_slots": 4293,
+      "present": 3178,
+      "missing": 1115
+    }
+  },
+  "source_observation_count_provenance": "GitHub Actions run 40240809850 job 121311981575 verified archive exporter stdout"
 }
