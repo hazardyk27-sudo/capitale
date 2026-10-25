@@ -18,7 +18,9 @@
     "checkpoint_slots": 9936,
     "source_snapshot_present_slots": 8231,
     "missing_snapshot_slots": 1705,
-    "canonical_files": 25
+    "canonical_files": 25,
+    "verification_receipt_path": "archive/2026/10/25/04_concentrated/verification_receipt_v5.json",
+    "grid_audited": "GITHUB_REPOSITORY_JSONL_READBACK_VERIFIED"
   },
   "full_day_archive_complete": false,
   "migration_complete": false,
