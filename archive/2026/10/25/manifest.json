@@ -1,0 +1,33 @@
+{
+  "schema_version": "SXF_ARCHIVE_V1_0",
+  "match_date_tr": "2026-10-25",
+  "timezone": "Europe/Istanbul",
+  "archive_destination": "GitHub ONLY",
+  "source": "Supabase public historical SmartXFlow SELECT-ONLY",
+  "source_schema": "public",
+  "source_fixture_count": 368,
+  "source_research_archive_status": "NOT_IMPORTED_FOR_2026-10-25",
+  "01_scan_results": "NOT_VERIFIED_HERE",
+  "02_outcome_performance": "NOT_COLLECTED",
+  "03_full_snapshots": "NOT_COLLECTED",
+  "04_concentrated": "COMPLETE_GRID_WITH_EXPLICIT_MISSING_SOURCE_SNAPSHOTS",
+  "concentrated_status": "COMPLETE_GRID_WITH_EXPLICIT_MISSING_SOURCE_SNAPSHOTS",
+  "concentrated_archive": {
+    "path": "archive/2026/10/25/04_concentrated/manifest.json",
+    "fixture_count": 368,
+    "checkpoint_slots": 9936,
+    "source_snapshot_present_slots": 8231,
+    "missing_snapshot_slots": 1705,
+    "canonical_files": 25
+  },
+  "full_day_archive_complete": false,
+  "migration_complete": false,
+  "source_archive_writes": false,
+  "original_scan_untouched": true,
+  "generated_at_utc": "2026-10-25T22:51:06.478Z",
+  "notes": [
+    "Full-day T-72 to T-1 checkpoint grid COMPLETE, but historical source collection may have missing observations.",
+    "Research archive has no 2026-10-25 source run; full-day grid sourced directly from public history via read-only SQL.",
+    "No claim of complete raw, settlement, or original scan migration."
+  ]
+}
