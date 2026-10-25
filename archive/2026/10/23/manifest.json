@@ -18,9 +18,9 @@
   "01_scan_results": "RECONSTRUCTED_ARCHIVED",
   "02_outcome_performance": "NOT_COLLECTED",
   "03_full_snapshots": "NOT_COLLECTED",
-  "04_concentrated": "NOT_COLLECTED",
+  "04_concentrated": "COMPLETE_GRID_WITH_EXPLICIT_MISSING_SOURCE_SNAPSHOTS",
   "full_snapshot_status": "NOT_COLLECTED",
-  "concentrated_status": "NOT_COLLECTED",
+  "concentrated_status": "COMPLETE_GRID_WITH_EXPLICIT_MISSING_SOURCE_SNAPSHOTS",
   "release_asset_refs": [],
   "coverage": {
     "total": 91,
@@ -69,5 +69,14 @@
     "91 fixture scan window 19:30–23:00 TSİ, not all fixtures throughout 23 October.",
     "No settlement, full raw multi-table archive, or 9-checkpoint all-fixture grid has been uploaded for this date.",
     "Raw SHA-256 row equivalence not verified; readback of generated scan files separately required."
-  ]
+  ],
+  "concentrated_archive": {
+    "path": "archive/2026/10/23/04_concentrated/manifest.json",
+    "source_schema": "research_archive",
+    "fixture_count": 230,
+    "checkpoint_slots": 6210,
+    "verification": "GITHUB_RELEASE_DRAFT_DOWNLOADED_AND_VERIFIED",
+    "source_collection_status": "PARTIAL"
+  },
+  "concentrated_backfill_provenance": "Retrospective, separately timestamped after original scan; original frozen AS_OF scan unchanged."
 }
