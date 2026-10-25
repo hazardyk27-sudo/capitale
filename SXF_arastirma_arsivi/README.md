@@ -22,3 +22,19 @@
 - Bu klasör, mevcut `archive/YYYY/MM/DD/` ham/konsantre arşivlerini değiştirmez veya onların tam aktarıldığını iddia etmez.
 
 **Sıradaki dört günlük parti:** 13–16 Ekim 2026. Önce araştırma arşivi kaynak kapsamı kontrol edilir; düşük kapsama sahip canlı tablolar yerine kaynak ham arşiv kullanılır.
+
+---
+
+## 2. Parti: 13–16 Ekim 2026
+
+[Detaylı dört günlük indeks](2026/10/README_13_16.md)
+
+| Tarih | Maç | Veri bulunan | Sinyalli maç | Seçim | Motor etiketi | Rapor | JSON |
+|---|---:|---:|---:|---:|---:|---|---|
+| 13.10.2026 | 147 | 44 | 16 | 19 | 33 | [Rapor](/SXF_arastirma_arsivi/2026/10/13/sxf-research-2026-10-13-t6-fallback-t8-16to24-v1.md) | [JSON](/SXF_arastirma_arsivi/2026/10/13/sxf-research-2026-10-13-t6-fallback-t8-16to24-v1.json) |
+| 14.10.2026 | 90 | 70 | 16 | 22 | 36 | [Rapor](/SXF_arastirma_arsivi/2026/10/14/sxf-research-2026-10-14-t6-fallback-t8-16to24-v1.md) | [JSON](/SXF_arastirma_arsivi/2026/10/14/sxf-research-2026-10-14-t6-fallback-t8-16to24-v1.json) |
+| 15.10.2026 | 99 | 60 | 21 | 25 | 54 | [Rapor](/SXF_arastirma_arsivi/2026/10/15/sxf-research-2026-10-15-t6-fallback-t8-16to24-v1.md) | [JSON](/SXF_arastirma_arsivi/2026/10/15/sxf-research-2026-10-15-t6-fallback-t8-16to24-v1.json) |
+| 16.10.2026 | 140 | 114 | 19 | 19 | 30 | [Rapor](/SXF_arastirma_arsivi/2026/10/16/sxf-research-2026-10-16-t6-fallback-t8-16to24-v1.md) | [JSON](/SXF_arastirma_arsivi/2026/10/16/sxf-research-2026-10-16-t6-fallback-t8-16to24-v1.json) |
+| **TOPLAM** | **476** | **288** | **72** | **85** | **153** | — | — |
+
+**Önemli:** 13 Ekim ham arşiv tam 1X2 T-6 kapsamı 36, canlı kaynaktaki sayı 20 olduğundan araştırma ham kaynağı kullanıldı. Bu raporlar orijinal dönemde dondurulmuş tahmin değil, sonradan oluşturulmuş T-6/T-8 araştırmalarıdır.
