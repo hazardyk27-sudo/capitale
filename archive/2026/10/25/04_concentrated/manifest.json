@@ -393,7 +393,9 @@
     "no_source_snapshots_after_checkpoint": true,
     "source_sha256_per_present_snapshot": true,
     "all_25_files_github_content_readback_equal": true,
-    "source_to_github_content_sha256_recorded_per_file": true
+    "source_to_github_content_sha256_recorded_per_file": true,
+    "all_25_canonical_files_refetched_after_daily_manifest": true,
+    "all_9936_jsonl_rows_timestamps_and_fixture_market_checkpoint_keys_reaudited": true
   },
   "full_raw_history_status": "NOT_MIGRATED",
   "source_collection_complete_claim": false,
@@ -402,5 +404,6 @@
     "COMPLETE GRID means all kickoff-local day fixtures x 3 markets x 9 T reference slots archived, not that all original Moneyway observations exist.",
     "The research_archive schema has no 2026-10-25 fixtures/run; public live historical source was read instead without modifying Supabase.",
     "Every missing source observation remains MISSING; no after-target substitution."
-  ]
+  ],
+  "verification_receipt_path": "archive/2026/10/25/04_concentrated/verification_receipt_v5.json"
 }
