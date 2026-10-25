@@ -18,9 +18,9 @@
   "01_scan_results": "RECONSTRUCTED_ARCHIVED",
   "02_outcome_performance": "NOT_COLLECTED",
   "03_full_snapshots": "NOT_COLLECTED",
-  "04_concentrated": "NOT_COLLECTED",
+  "04_concentrated": "COMPLETE_GRID_WITH_EXPLICIT_MISSING_SOURCE_SNAPSHOTS",
   "full_snapshot_status": "NOT_COLLECTED",
-  "concentrated_status": "NOT_COLLECTED",
+  "concentrated_status": "COMPLETE_GRID_WITH_EXPLICIT_MISSING_SOURCE_SNAPSHOTS",
   "release_asset_refs": [],
   "coverage": {
     "total": 238,
@@ -70,10 +70,21 @@
     "An external review alleges >=38 erroneous engine labels under T-6/T-8 interpretation. This remains a recorded methodology/mode dispute, not silently resolved in this published scan.",
     "The user-visible original report predates this GitHub commit; do not represent this commit as being created at AS_OF.",
     "Source captures were queried retrospectively by timestamp; ingestion availability at AS_OF not independently attested.",
-    "The full-day raw archive and nine-point concentrated archive are not created by this scan.",
     "No bookmaker odds or real executable prices were captured.",
     "No raw source row SHA-256 records were exported.",
     "Original scan preserved; checkpoint audit difference requires separately versioned validation.",
     "No scores or settlement computed."
-  ]
+  ],
+  "concentrated_archive": {
+    "path": "archive/2026/10/24/04_concentrated/manifest.json",
+    "source_schema": "research_archive",
+    "fixture_count": 477,
+    "checkpoint_slots": 12879,
+    "verification": "GITHUB_RELEASE_DRAFT_DOWNLOADED_AND_VERIFIED",
+    "source_collection_status": "PARTIAL"
+  },
+  "superseded_concentrated_warnings_from_original_scan_manifest": [
+    "The full-day raw archive and nine-point concentrated archive are not created by this scan."
+  ],
+  "concentrated_backfill_provenance": "Retrospective, separately timestamped after original scan; original frozen AS_OF scan unchanged."
 }
