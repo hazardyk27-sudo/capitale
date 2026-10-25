@@ -54,3 +54,19 @@
 | **TOPLAM** | **681** | **470** | **100** | **112** | **222** | — | — |
 
 **Bu raporlar T-6/T-8 tarihsel araştırma sürümleridir; canlı v0.4 taraması değildir.** Kaynak günlük sınırları ve ham geçmiş gözlem eksikleri ilgili JSON'larda ayrıca saklanmıştır.
+
+---
+
+## 4. Parti: 21–24 Ekim 2026
+
+[Detaylı dört günlük indeks](2026/10/README_21_24.md)
+
+| Tarih | Taranan maç | Veri bulunan | Sinyalli maç | Seçim | Motor etiketi | Rapor | JSON |
+|---|---:|---:|---:|---:|---:|---|---|
+| 21.10.2026 | 60 | 46 | 9 | 10 | 15 | [Rapor](/SXF_arastirma_arsivi/2026/10/21/sxf-research-2026-10-21-t6-fallback-t8-16to24-v1.md) | [JSON](/SXF_arastirma_arsivi/2026/10/21/sxf-research-2026-10-21-t6-fallback-t8-16to24-v1.json) |
+| 22.10.2026 | 76 | 61 | 32 | 35 | 81 | [Rapor](/SXF_arastirma_arsivi/2026/10/22/sxf-research-2026-10-22-t6-fallback-t8-16to24-v1.md) | [JSON](/SXF_arastirma_arsivi/2026/10/22/sxf-research-2026-10-22-t6-fallback-t8-16to24-v1.json) |
+| 23.10.2026 | 170 | 123 | 16 | 16 | 28 | [Rapor](/SXF_arastirma_arsivi/2026/10/23/sxf-research-2026-10-23-t6-fallback-t8-16to24-v1.md) | [JSON](/SXF_arastirma_arsivi/2026/10/23/sxf-research-2026-10-23-t6-fallback-t8-16to24-v1.json) |
+| 24.10.2026 | 290 | 226 | 51 | 54 | 92 | [Rapor](/SXF_arastirma_arsivi/2026/10/24/sxf-research-2026-10-24-t6-fallback-t8-16to24-v1.md) | [JSON](/SXF_arastirma_arsivi/2026/10/24/sxf-research-2026-10-24-t6-fallback-t8-16to24-v1.json) |
+| **TOPLAM** | **596** | **456** | **108** | **115** | **216** | — | — |
+
+**23–24 Ekim kaynak açıklaması:** 23 Ekim ham arşiv sorgusu zaman aşımına takıldığı, 24 Ekim araştırma arşivi yalnız 5 fikstürü kapsadığı için daha geniş `public.moneyway_snapshots` salt-okunur kaynağı kullanıldı. Canlı DYNAMIC_AS_OF_V04 ile aynı araştırma değildir.
