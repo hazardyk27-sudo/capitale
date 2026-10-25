@@ -1,0 +1,5793 @@
+{
+  "schema_version": "SXF_RESEARCH_ARCHIVE_V1",
+  "run_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1",
+  "scan_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1",
+  "mode": "CHECKPOINT_RESEARCH_T6_FALLBACK_T8",
+  "archive_type": "RETROSPECTIVE_RECONSTRUCTION_NOT_ORIGINAL_PREMATCH_SCAN",
+  "version": "sxf-draft-0.4",
+  "date_tr": "2026-10-11",
+  "kickoff_window_tr": "16:00–24:00",
+  "timezone": "Europe/Istanbul",
+  "generated_at_utc": "2026-10-25T23:07:08.899Z",
+  "source": {
+    "repository": "hazardyk27-sudo/capitale",
+    "dataset": "public.fixtures and public.moneyway_snapshots",
+    "role": "READ_ONLY",
+    "raw_history_audits": [
+      "CORE Retention-55 earliest raw break across available snapshots from origin to AS_OF",
+      "V2 available 3-hour raw history at or before T-6/T-8 AS_OF"
+    ]
+  },
+  "coverage": {
+    "fixture_total": 176,
+    "with_eligible_market": 137,
+    "without_eligible_market": 39,
+    "market_complete": {
+      "1X2": 126,
+      "OU25": 102,
+      "BTTS": 73
+    },
+    "t6_complete": {
+      "1X2": 126,
+      "OU25": 102,
+      "BTTS": 73
+    },
+    "t8_complete": {
+      "1X2": 115,
+      "OU25": 94,
+      "BTTS": 61
+    },
+    "fallback_market_count": 0,
+    "signal_fixtures": 24,
+    "unique_selections": 26,
+    "motor_labels": 46,
+    "engine_counts": {
+      "EARLY_CORE": 6,
+      "EARLY_T12": 7,
+      "V1": 10,
+      "V2": 8,
+      "HEAVY": 3,
+      "SURPRISE_TEAM": 6,
+      "STABLE_OVER_2_5": 2,
+      "BTTS_YES": 3,
+      "PREMIUM_OVER_2_5": 1
+    },
+    "by_market": {
+      "1X2": 14,
+      "OVER_2_5": 3,
+      "BTTS": 3,
+      "SURPRISE_NONLOSS_RISK": 6
+    }
+  },
+  "selections": [
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s001",
+      "uid": "47751fd2-5e9b-4939-9684-0e53d12f4433",
+      "home": "Lazio",
+      "away": "AC Monza",
+      "league": "Italian Serie A",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Lazio",
+      "odds": 1.75,
+      "money": 62933.36,
+      "share": 82.3,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T07:00:00.000Z",
+      "source_at_utc": "2026-10-11T06:58:01Z",
+      "t8": {
+        "o": 1.74,
+        "p": 84.6,
+        "s": "1",
+        "v": 59791.56
+      },
+      "early_origin": {
+        "side": "1",
+        "h": 72,
+        "at": "2026-10-08T12:59:50Z",
+        "amount": 5907.43,
+        "share": 92.8
+      },
+      "t12_origin": {
+        "side": "1",
+        "h": 12,
+        "at": "2026-10-11T00:57:59Z",
+        "amount": 54553.94,
+        "share": 86
+      },
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "audit": {
+        "retention_min_money_share_pct": 76.9,
+        "retention_break_at_utc": null,
+        "v2_anchor_at_utc": "2026-10-11 03:59:57+00",
+        "v2_observations": 31,
+        "v2_min_share_pct": 82.1,
+        "v2_max_adverse_odds_pct": 1.7341040462427746
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s002",
+      "uid": "f027ee4e-8285-4e43-a4ca-443ece83b784",
+      "home": "Varnamo",
+      "away": "Falkenbergs",
+      "league": "Swedish Superettan",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "2",
+      "selection": "Falkenbergs",
+      "odds": 2.96,
+      "money": 18.89,
+      "share": 57.1,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T07:00:00.000Z",
+      "source_at_utc": "2026-10-11T06:58:01Z",
+      "t8": {
+        "o": 3.15,
+        "p": 0.1,
+        "s": "2",
+        "v": 0.01
+      },
+      "early_origin": null,
+      "t12_origin": null,
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "important_note": "Yenilmeme riski; fiyat 1X2 takım galibiyeti SXF oranıdır."
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s003",
+      "uid": "2ce78091-7dbd-4fe1-9e15-71322fe5d355",
+      "home": "Real Sociedad",
+      "away": "Deportivo",
+      "league": "Spanish La Liga",
+      "kickoff_tr": "17:15",
+      "kickoff_utc": "2026-10-11T14:15:00Z",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Real Sociedad",
+      "odds": 1.67,
+      "money": 65112.27,
+      "share": 84.3,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T08:15:00.000Z",
+      "source_at_utc": "2026-10-11T08:12:35Z",
+      "t8": {
+        "o": 1.68,
+        "p": 85.2,
+        "s": "1",
+        "v": 60472.47
+      },
+      "early_origin": {
+        "side": "1",
+        "h": 72,
+        "at": "2026-10-08T14:13:32Z",
+        "amount": 8925.84,
+        "share": 83.7
+      },
+      "t12_origin": {
+        "side": "1",
+        "h": 12,
+        "at": "2026-10-11T02:10:37Z",
+        "amount": 48871.49,
+        "share": 85.2
+      },
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "audit": {
+        "retention_min_money_share_pct": 81.2,
+        "retention_break_at_utc": null,
+        "v2_anchor_at_utc": "2026-10-11 05:14:50+00",
+        "v2_observations": 31,
+        "v2_min_share_pct": 84.3,
+        "v2_max_adverse_odds_pct": 1.1976047904191616
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s004",
+      "uid": "8ff236a8-4952-4324-99f2-ebe076fce516",
+      "home": "Alemannia Aachen",
+      "away": "Viktoria Koln",
+      "league": "German 3 Liga",
+      "kickoff_tr": "17:30",
+      "kickoff_utc": "2026-10-11T14:30:00Z",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "2",
+      "selection": "Viktoria Koln",
+      "odds": 3,
+      "money": 67.01,
+      "share": 55.7,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T08:30:00.000Z",
+      "source_at_utc": "2026-10-11T08:29:45Z",
+      "t8": {
+        "o": 2.9,
+        "p": 55.7,
+        "s": "2",
+        "v": 48.72
+      },
+      "early_origin": null,
+      "t12_origin": null,
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "important_note": "Yenilmeme riski; fiyat 1X2 takım galibiyeti SXF oranıdır."
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s005",
+      "uid": "daf8570e-18a9-4b52-bc02-edc6b57ade60",
+      "home": "Cherno More",
+      "away": "PFC Levski Sofia",
+      "league": "Bulgarian A League",
+      "kickoff_tr": "17:30",
+      "kickoff_utc": "2026-10-11T14:30:00Z",
+      "market": "1X2",
+      "side": "2",
+      "selection": "PFC Levski Sofia",
+      "odds": 1.75,
+      "money": 2638.16,
+      "share": 86.6,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T08:30:00.000Z",
+      "source_at_utc": "2026-10-11T08:29:45Z",
+      "t8": null,
+      "early_origin": null,
+      "t12_origin": null,
+      "engine_tags": [
+        "V1"
+      ],
+      "audit": {
+        "retention_min_money_share_pct": null,
+        "retention_break_at_utc": null,
+        "v2_anchor_at_utc": "2026-10-11 05:26:20+00",
+        "v2_observations": 32,
+        "v2_min_share_pct": 86.1,
+        "v2_max_adverse_odds_pct": 9.375
+      },
+      "v2_rejection": {
+        "reason": "ADVERSE_ODDS_OVER_3_PCT",
+        "min_share_pct": 86.1,
+        "max_adverse_odds_pct": 9.375
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s006",
+      "uid": "c763317a-1866-48b9-b154-f1d7c6bd4f8c",
+      "home": "Excelsior",
+      "away": "FC Groningen",
+      "league": "Dutch Eredivisie",
+      "kickoff_tr": "17:45",
+      "kickoff_utc": "2026-10-11T14:45:00Z",
+      "market": "OVER_2_5",
+      "selection": "Üst 2.5",
+      "side": "O",
+      "odds": 1.6,
+      "money": 2045.34,
+      "share": 94.5,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T08:45:00.000Z",
+      "source_at_utc": "2026-10-11T08:41:12Z",
+      "engine_tags": [
+        "STABLE_OVER_2_5"
+      ]
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s007",
+      "uid": "89d3e87f-b956-4540-9c31-e248a674d271",
+      "home": "Freiburg",
+      "away": "Schalke 04",
+      "league": "German Bundesliga",
+      "kickoff_tr": "18:30",
+      "kickoff_utc": "2026-10-11T15:30:00Z",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Freiburg",
+      "odds": 1.73,
+      "money": 49978.62,
+      "share": 72.9,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T09:30:00.000Z",
+      "source_at_utc": "2026-10-11T09:26:57Z",
+      "t8": {
+        "o": 1.71,
+        "p": 73.4,
+        "s": "1",
+        "v": 40024.49
+      },
+      "early_origin": {
+        "side": "1",
+        "h": 24,
+        "at": "2026-10-10T15:27:23Z",
+        "amount": 11695.97,
+        "share": 78.7
+      },
+      "t12_origin": null,
+      "engine_tags": [
+        "EARLY_CORE"
+      ],
+      "audit": {
+        "retention_min_money_share_pct": 72.7,
+        "retention_break_at_utc": null,
+        "v2_anchor_at_utc": "2026-10-11 06:29:23+00",
+        "v2_observations": 31,
+        "v2_min_share_pct": 72.7,
+        "v2_max_adverse_odds_pct": 1.7543859649122806
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s008",
+      "uid": "6eed1e69-62e8-41e1-81a3-f35b7198926a",
+      "home": "Liverpool",
+      "away": "Man City",
+      "league": "English Premier League",
+      "kickoff_tr": "18:30",
+      "kickoff_utc": "2026-10-11T15:30:00Z",
+      "market": "1X2",
+      "side": "2",
+      "selection": "Man City",
+      "odds": 2.28,
+      "money": 237379.71,
+      "share": 62.2,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T09:30:00.000Z",
+      "source_at_utc": "2026-10-11T09:26:57Z",
+      "t8": {
+        "o": 2.32,
+        "p": 60.4,
+        "s": "2",
+        "v": 199760.49
+      },
+      "early_origin": {
+        "side": "2",
+        "h": 40,
+        "at": "2026-10-09T23:28:24Z",
+        "amount": 113525.03,
+        "share": 58.5
+      },
+      "t12_origin": null,
+      "engine_tags": [
+        "EARLY_CORE"
+      ],
+      "audit": {
+        "retention_min_money_share_pct": 58.2,
+        "retention_break_at_utc": null,
+        "v2_anchor_at_utc": "2026-10-11 06:29:23+00",
+        "v2_observations": 31,
+        "v2_min_share_pct": 59,
+        "v2_max_adverse_odds_pct": 1.7391304347826086
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s009",
+      "uid": "6eed1e69-62e8-41e1-81a3-f35b7198926a",
+      "home": "Liverpool",
+      "away": "Man City",
+      "league": "English Premier League",
+      "kickoff_tr": "18:30",
+      "kickoff_utc": "2026-10-11T15:30:00Z",
+      "market": "OVER_2_5",
+      "selection": "Üst 2.5",
+      "side": "O",
+      "odds": 1.66,
+      "money": 4305.73,
+      "share": 72.4,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T09:30:00.000Z",
+      "source_at_utc": "2026-10-11T09:26:57Z",
+      "engine_tags": [
+        "STABLE_OVER_2_5"
+      ]
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s010",
+      "uid": "69455d5f-1985-432d-a026-862c26e97f75",
+      "home": "Aris",
+      "away": "NFC Volos",
+      "league": "Greek Super League",
+      "kickoff_tr": "19:00",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Aris",
+      "odds": 1.57,
+      "money": 2196.2,
+      "share": 89.6,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T10:00:00.000Z",
+      "source_at_utc": "2026-10-11T09:55:36Z",
+      "t8": {
+        "o": 1.55,
+        "p": 87.4,
+        "s": "1",
+        "v": 1731.12
+      },
+      "early_origin": null,
+      "t12_origin": null,
+      "engine_tags": [
+        "V1",
+        "V2"
+      ],
+      "audit": {
+        "retention_min_money_share_pct": null,
+        "retention_break_at_utc": null,
+        "v2_anchor_at_utc": "2026-10-11 06:58:01+00",
+        "v2_observations": 31,
+        "v2_min_share_pct": 70.7,
+        "v2_max_adverse_odds_pct": 1.9230769230769231
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s011",
+      "uid": "648bad32-c4f8-479c-9c54-e83ccd6419dc",
+      "home": "Sassuolo",
+      "away": "AC Milan",
+      "league": "Italian Serie A",
+      "kickoff_tr": "19:00",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "market": "BTTS",
+      "selection": "KG VAR",
+      "side": "Y",
+      "odds": 1.69,
+      "money": 2369.11,
+      "share": 67.8,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T10:00:00.000Z",
+      "source_at_utc": "2026-10-11T09:55:36Z",
+      "engine_tags": [
+        "BTTS_YES"
+      ]
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s012",
+      "uid": "1f20e753-240f-496f-8514-9d55971bb98c",
+      "home": "Sparta Prague",
+      "away": "Pardubice",
+      "league": "Czech 1 Liga",
+      "kickoff_tr": "19:00",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Sparta Prague",
+      "odds": 1.4,
+      "money": 8398.43,
+      "share": 96.1,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T10:00:00.000Z",
+      "source_at_utc": "2026-10-11T09:55:36Z",
+      "t8": {
+        "o": 1.39,
+        "p": 96.5,
+        "s": "1",
+        "v": 8228.66
+      },
+      "early_origin": null,
+      "t12_origin": {
+        "side": "1",
+        "h": 12,
+        "at": "2026-10-11T03:59:57Z",
+        "amount": 1058.6,
+        "share": 84.8
+      },
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "audit": {
+        "retention_min_money_share_pct": null,
+        "retention_break_at_utc": null,
+        "v2_anchor_at_utc": "2026-10-11 06:58:01+00",
+        "v2_observations": 31,
+        "v2_min_share_pct": 83.2,
+        "v2_max_adverse_odds_pct": 2.158273381294964
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s013",
+      "uid": "1fb9fa8c-8dc0-4e41-8309-e9b3d57ea7a0",
+      "home": "Betis",
+      "away": "Osasuna",
+      "league": "Spanish La Liga",
+      "kickoff_tr": "19:30",
+      "kickoff_utc": "2026-10-11T16:30:00Z",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Betis",
+      "odds": 1.55,
+      "money": 126546.04,
+      "share": 87.3,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T10:30:00.000Z",
+      "source_at_utc": "2026-10-11T10:29:54Z",
+      "t8": {
+        "o": 1.55,
+        "p": 86.2,
+        "s": "1",
+        "v": 100031.34
+      },
+      "early_origin": {
+        "side": "1",
+        "h": 72,
+        "at": "2026-10-08T16:24:05Z",
+        "amount": 42060.06,
+        "share": 98.6
+      },
+      "t12_origin": {
+        "side": "1",
+        "h": 12,
+        "at": "2026-10-11T04:28:46Z",
+        "amount": 87719.77,
+        "share": 86.7
+      },
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "audit": {
+        "retention_min_money_share_pct": 86.2,
+        "retention_break_at_utc": null,
+        "v2_anchor_at_utc": "2026-10-11 07:26:44+00",
+        "v2_observations": 32,
+        "v2_min_share_pct": 86.2,
+        "v2_max_adverse_odds_pct": 1.3071895424836601
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s014",
+      "uid": "1fb9fa8c-8dc0-4e41-8309-e9b3d57ea7a0",
+      "home": "Betis",
+      "away": "Osasuna",
+      "league": "Spanish La Liga",
+      "kickoff_tr": "19:30",
+      "kickoff_utc": "2026-10-11T16:30:00Z",
+      "market": "BTTS",
+      "selection": "KG VAR",
+      "side": "Y",
+      "odds": 1.86,
+      "money": 1368.62,
+      "share": 69.1,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T10:30:00.000Z",
+      "source_at_utc": "2026-10-11T10:29:54Z",
+      "engine_tags": [
+        "BTTS_YES"
+      ]
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s015",
+      "uid": "6903a842-07b8-42ae-95b2-c5372a6d8bdd",
+      "home": "Mallorca",
+      "away": "Las Palmas",
+      "league": "Spanish Segunda Division",
+      "kickoff_tr": "19:30",
+      "kickoff_utc": "2026-10-11T16:30:00Z",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Mallorca",
+      "odds": 1.6,
+      "money": 1353.92,
+      "share": 87,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T10:30:00.000Z",
+      "source_at_utc": "2026-10-11T10:29:54Z",
+      "t8": {
+        "o": 1.6,
+        "p": 78.9,
+        "s": "1",
+        "v": 666.64
+      },
+      "early_origin": null,
+      "t12_origin": null,
+      "engine_tags": [
+        "V1",
+        "V2"
+      ],
+      "audit": {
+        "retention_min_money_share_pct": null,
+        "retention_break_at_utc": null,
+        "v2_anchor_at_utc": "2026-10-11 07:26:44+00",
+        "v2_observations": 32,
+        "v2_min_share_pct": 77.7,
+        "v2_max_adverse_odds_pct": 1.2658227848101267
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s016",
+      "uid": "e218aa31-4192-4519-9d8c-8e780822645a",
+      "home": "Westerlo",
+      "away": "Antwerp",
+      "league": "Belgian Pro League",
+      "kickoff_tr": "19:30",
+      "kickoff_utc": "2026-10-11T16:30:00Z",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Westerlo",
+      "odds": 2.14,
+      "money": 2116.4,
+      "share": 80.5,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T10:30:00.000Z",
+      "source_at_utc": "2026-10-11T10:29:54Z",
+      "t8": {
+        "o": 2.14,
+        "p": 79.5,
+        "s": "1",
+        "v": 1785.83
+      },
+      "early_origin": null,
+      "t12_origin": {
+        "side": "1",
+        "h": 12,
+        "at": "2026-10-11T04:28:46Z",
+        "amount": 1250.56,
+        "share": 83.5
+      },
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "audit": {
+        "retention_min_money_share_pct": null,
+        "retention_break_at_utc": null,
+        "v2_anchor_at_utc": "2026-10-11 07:26:44+00",
+        "v2_observations": 32,
+        "v2_min_share_pct": 78.6,
+        "v2_max_adverse_odds_pct": 1.8867924528301887
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s017",
+      "uid": "d384ef8c-b6fc-45c7-84ff-9c06db0aeb67",
+      "home": "Yellow-Red Mechelen",
+      "away": "Sint Truiden",
+      "league": "Belgian Pro League",
+      "kickoff_tr": "20:15",
+      "kickoff_utc": "2026-10-11T17:15:00Z",
+      "market": "BTTS",
+      "selection": "KG VAR",
+      "side": "Y",
+      "odds": 1.62,
+      "money": 767.95,
+      "share": 83.5,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T11:15:00.000Z",
+      "source_at_utc": "2026-10-11T11:09:59Z",
+      "engine_tags": [
+        "BTTS_YES"
+      ]
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s018",
+      "uid": "0a22067a-6fc0-4766-825b-16882345f15b",
+      "home": "ESTAC Troyes",
+      "away": "Marseille",
+      "league": "French Ligue 1",
+      "kickoff_tr": "21:45",
+      "kickoff_utc": "2026-10-11T18:45:00Z",
+      "market": "1X2",
+      "side": "2",
+      "selection": "Marseille",
+      "odds": 2.14,
+      "money": 49113.28,
+      "share": 76.7,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T12:45:00.000Z",
+      "source_at_utc": "2026-10-11T12:42:17Z",
+      "t8": {
+        "o": 2.14,
+        "p": 77.7,
+        "s": "2",
+        "v": 46358.04
+      },
+      "early_origin": {
+        "side": "2",
+        "h": 24,
+        "at": "2026-10-10T18:40:30Z",
+        "amount": 16095.93,
+        "share": 87.9
+      },
+      "t12_origin": {
+        "side": "2",
+        "h": 12,
+        "at": "2026-10-11T06:40:50Z",
+        "amount": 37236.45,
+        "share": 85.7
+      },
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "audit": {
+        "retention_min_money_share_pct": 76.3,
+        "retention_break_at_utc": null,
+        "v2_anchor_at_utc": "2026-10-11 09:44:09+00",
+        "v2_observations": 31,
+        "v2_min_share_pct": 76.3,
+        "v2_max_adverse_odds_pct": 1.8867924528301887
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s019",
+      "uid": "28a9c7e1-c311-4f2e-a4bd-dbb8fbdcca36",
+      "home": "Atletico MG",
+      "away": "Santos",
+      "league": "Brazilian Serie A",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-11T19:00:00Z",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Atletico MG",
+      "odds": 2.28,
+      "money": 6227.32,
+      "share": 77.2,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T13:00:00.000Z",
+      "source_at_utc": "2026-10-11T12:58:32Z",
+      "t8": {
+        "o": 2.28,
+        "p": 76.9,
+        "s": "1",
+        "v": 5997.41
+      },
+      "early_origin": null,
+      "t12_origin": {
+        "side": "1",
+        "h": 12,
+        "at": "2026-10-11T06:58:01Z",
+        "amount": 5679.52,
+        "share": 90.7
+      },
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "audit": {
+        "retention_min_money_share_pct": null,
+        "retention_break_at_utc": null,
+        "v2_anchor_at_utc": "2026-10-11 09:55:36+00",
+        "v2_observations": 32,
+        "v2_min_share_pct": 76.7,
+        "v2_max_adverse_odds_pct": 0.8849557522123894
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s020",
+      "uid": "bcbbddd2-1d63-49a7-bf61-45e422092720",
+      "home": "Racing Santander",
+      "away": "Valencia",
+      "league": "Spanish La Liga",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-11T19:00:00Z",
+      "market": "OVER_2_5",
+      "selection": "Üst 2.5",
+      "side": "O",
+      "odds": 1.72,
+      "money": 2613.24,
+      "share": 83,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T13:00:00.000Z",
+      "source_at_utc": "2026-10-11T12:58:32Z",
+      "engine_tags": [
+        "PREMIUM_OVER_2_5"
+      ]
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s021",
+      "uid": "66847919-3725-4f91-a751-3821fa37bb14",
+      "home": "CA Central Norte",
+      "away": "Ferro Carril Oeste",
+      "league": "Argentinian Primera Nacional",
+      "kickoff_tr": "23:00",
+      "kickoff_utc": "2026-10-11T20:00:00Z",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "1",
+      "selection": "CA Central Norte",
+      "odds": 3.35,
+      "money": 103.12,
+      "share": 85,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T14:00:00.000Z",
+      "source_at_utc": "2026-10-11T13:57:53Z",
+      "t8": {
+        "o": 3.35,
+        "p": 85.3,
+        "s": "1",
+        "v": 78.12
+      },
+      "early_origin": null,
+      "t12_origin": null,
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "important_note": "Yenilmeme riski; fiyat 1X2 takım galibiyeti SXF oranıdır."
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s022",
+      "uid": "ae94f0c9-a42e-4aef-82e0-74b07638172f",
+      "home": "CD Maipu",
+      "away": "San Martin De San Juan",
+      "league": "Argentinian Primera Nacional",
+      "kickoff_tr": "23:00",
+      "kickoff_utc": "2026-10-11T20:00:00Z",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "2",
+      "selection": "San Martin De San Juan",
+      "odds": 4.1,
+      "money": 170.93,
+      "share": 69.1,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T14:00:00.000Z",
+      "source_at_utc": "2026-10-11T13:57:53Z",
+      "t8": {
+        "o": 4.1,
+        "p": 69.1,
+        "s": "2",
+        "v": 170.93
+      },
+      "early_origin": null,
+      "t12_origin": null,
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "important_note": "Yenilmeme riski; fiyat 1X2 takım galibiyeti SXF oranıdır."
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s023",
+      "uid": "657e6ed4-794d-4562-9716-5aacaf7d1adb",
+      "home": "Dunbeholden FC",
+      "away": "Molynes United FC",
+      "league": "Jamaican Premier League",
+      "kickoff_tr": "23:00",
+      "kickoff_utc": "2026-10-11T20:00:00Z",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "1",
+      "selection": "Dunbeholden FC",
+      "odds": 2.94,
+      "money": 12.74,
+      "share": 50.5,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T14:00:00.000Z",
+      "source_at_utc": "2026-10-11T13:57:53Z",
+      "t8": null,
+      "early_origin": null,
+      "t12_origin": null,
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "important_note": "Yenilmeme riski; fiyat 1X2 takım galibiyeti SXF oranıdır."
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s024",
+      "uid": "8eb4397c-862d-4c50-b1bf-b1b86c4d0454",
+      "home": "Rosario Central",
+      "away": "Independiente Rivadavia",
+      "league": "Argentinian Primera Division",
+      "kickoff_tr": "23:00",
+      "kickoff_utc": "2026-10-11T20:00:00Z",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "2",
+      "selection": "Independiente Rivadavia",
+      "odds": 4.4,
+      "money": 172.9,
+      "share": 57.1,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T14:00:00.000Z",
+      "source_at_utc": "2026-10-11T13:57:53Z",
+      "t8": {
+        "o": 4.4,
+        "p": 63.2,
+        "s": "2",
+        "v": 169.21
+      },
+      "early_origin": null,
+      "t12_origin": null,
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "important_note": "Yenilmeme riski; fiyat 1X2 takım galibiyeti SXF oranıdır."
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s025",
+      "uid": "52421b05-f89a-44df-a7fd-6842800e46fc",
+      "home": "Flamengo",
+      "away": "Fluminense",
+      "league": "Brazilian Serie A",
+      "kickoff_tr": "23:30",
+      "kickoff_utc": "2026-10-11T20:30:00Z",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Flamengo",
+      "odds": 1.55,
+      "money": 1889.7,
+      "share": 87.9,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T14:30:00.000Z",
+      "source_at_utc": "2026-10-11T14:24:51Z",
+      "t8": {
+        "o": 1.5,
+        "p": 86,
+        "s": "1",
+        "v": 1198.53
+      },
+      "early_origin": null,
+      "t12_origin": null,
+      "engine_tags": [
+        "V1"
+      ],
+      "audit": {
+        "retention_min_money_share_pct": null,
+        "retention_break_at_utc": null,
+        "v2_anchor_at_utc": "2026-10-11 11:27:10+00",
+        "v2_observations": 32,
+        "v2_min_share_pct": 85.8,
+        "v2_max_adverse_odds_pct": 4.026845637583893
+      },
+      "v2_rejection": {
+        "reason": "ADVERSE_ODDS_OVER_3_PCT",
+        "min_share_pct": 85.8,
+        "max_adverse_odds_pct": 4.026845637583893
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-s026",
+      "uid": "c86f541a-9052-44b0-9678-efabd509a4e6",
+      "home": "SE Palmeiras",
+      "away": "Corinthians",
+      "league": "Brazilian Serie A",
+      "kickoff_tr": "23:30",
+      "kickoff_utc": "2026-10-11T20:30:00Z",
+      "market": "1X2",
+      "side": "1",
+      "selection": "SE Palmeiras",
+      "odds": 1.69,
+      "money": 2992.39,
+      "share": 88.7,
+      "checkpoint": 6,
+      "as_of_utc": "2026-10-11T14:30:00.000Z",
+      "source_at_utc": "2026-10-11T14:24:51Z",
+      "t8": {
+        "o": 1.69,
+        "p": 93.8,
+        "s": "1",
+        "v": 2623.53
+      },
+      "early_origin": null,
+      "t12_origin": null,
+      "engine_tags": [
+        "V1",
+        "V2"
+      ],
+      "audit": {
+        "retention_min_money_share_pct": null,
+        "retention_break_at_utc": null,
+        "v2_anchor_at_utc": "2026-10-11 11:27:10+00",
+        "v2_observations": 32,
+        "v2_min_share_pct": 88.7,
+        "v2_max_adverse_odds_pct": 1.1976047904191616
+      }
+    }
+  ],
+  "all_fixtures": [
+    {
+      "fixture_uid": "0695e44f-3047-480f-ba6e-9872ae00c43c",
+      "home": "Aberdeen",
+      "away": "St Johnstone",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "178fcc3e-a83f-4df1-8aef-921af10de61d",
+      "home": "Catanzaro",
+      "away": "Mantova",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "3331d300-9b67-4ccc-b30d-26d11055214e",
+      "home": "Crystal Palace",
+      "away": "Nottm Forest",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "6288c420-03a9-4b7c-a009-680e04c8e10a",
+      "home": "Farense",
+      "away": "Feirense",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "133705a7-4606-4948-8614-8e0e31085eaa",
+      "home": "Fatih Karagumruk Istanbul",
+      "away": "Muglaspor",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "081075cd-4f80-4bb6-af94-fd66ab24c6f8",
+      "home": "FK Skopje",
+      "away": "Vardar Skopje",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "e94bc3fb-7711-4f2b-94c2-c6d2996c98b5",
+      "home": "Gaziantep FK",
+      "away": "Corum Belediyespor",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "0baecd1f-4ee7-4838-8fc6-bcfe48bec7ee",
+      "home": "Hull",
+      "away": "Everton",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "47751fd2-5e9b-4939-9684-0e53d12f4433",
+      "home": "Lazio",
+      "away": "AC Monza",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "02e8d0f7-1a49-4d17-8bae-dc5b50fd122e",
+      "home": "Lecce",
+      "away": "Bologna",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "3dc87ce9-c245-49fd-a0c0-d0fa4315591f",
+      "home": "Lokomotiva",
+      "away": "Varazdin",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "5bbe968f-7327-4019-bcb5-fe5e1d56ae5c",
+      "home": "Nafta Lendava",
+      "away": "NK Bravo",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "11cd68a3-8263-449f-86d6-22441521e7f5",
+      "home": "Nairobi United",
+      "away": "KCB",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "c0321f57-96ea-4ecd-9851-ccb2f6ae55a2",
+      "home": "Nice",
+      "away": "Strasbourg",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "f9f5b1fc-c79d-494a-b2c1-d4d318e6451a",
+      "home": "Radnicki Nis",
+      "away": "Vojvodina",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "2f698675-0a78-476e-9329-34b5f31d028f",
+      "home": "Radnik Bijeljina",
+      "away": "Zeljeznicar",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "0295a3f9-3f1a-4e3d-9092-cfe396e6a729",
+      "home": "Rigas Futbola Skola",
+      "away": "FK Jelgava",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "c1c6c939-d6fd-470d-a470-c2a16ad07489",
+      "home": "S.S.D. Casarano Calcio",
+      "away": "Salernitana",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "b434931d-9fb2-4cd4-a043-d527aa0014be",
+      "home": "Samorin",
+      "away": "FC Petrzalka",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "b708f68c-921c-4fc7-82d3-3229931aa839",
+      "home": "SJK 2",
+      "away": "KTP",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "99b25b1e-a743-4d2c-a52c-700c862de514",
+      "home": "Teplice",
+      "away": "Sigma Olomouc",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "f027ee4e-8285-4e43-a4ca-443ece83b784",
+      "home": "Varnamo",
+      "away": "Falkenbergs",
+      "kickoff_tr": "16:00",
+      "kickoff_utc": "2026-10-11T13:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T06:58:01Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "cefde2e9-79b3-4445-9c02-30e17a4d3915",
+      "home": "Esperance Sportive Zarzis",
+      "away": "ES Hammam Sousse",
+      "kickoff_tr": "16:30",
+      "kickoff_utc": "2026-10-11T13:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "10e43f04-32e0-401b-be75-e75bc9925227",
+      "home": "FC Koln",
+      "away": "Mgladbach",
+      "kickoff_tr": "16:30",
+      "kickoff_utc": "2026-10-11T13:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:26:44Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:26:44Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:26:44Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "e031f6d0-b900-4015-b9e8-898c671ec32f",
+      "home": "JS Omrane",
+      "away": "Avenir S Marsa",
+      "kickoff_tr": "16:30",
+      "kickoff_utc": "2026-10-11T13:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "8f96a325-cb84-42ff-bdbe-e52add3c34d3",
+      "home": "Kuressaare",
+      "away": "Tallinna FC Flora",
+      "kickoff_tr": "16:30",
+      "kickoff_utc": "2026-10-11T13:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "1651d767-1561-433c-9ce2-3bdf8cc32288",
+      "home": "Ruzomberok",
+      "away": "Zilina",
+      "kickoff_tr": "16:30",
+      "kickoff_utc": "2026-10-11T13:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "01558be5-67a2-48a1-9655-6cb5a4cba738",
+      "home": "Segesta",
+      "away": "GNK Dinamo Zagreb II",
+      "kickoff_tr": "16:30",
+      "kickoff_utc": "2026-10-11T13:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "5756f384-06ab-4d2c-a8c8-55f3fe4d6aa8",
+      "home": "Al-Feiha",
+      "away": "Al Riyadh SC",
+      "kickoff_tr": "16:40",
+      "kickoff_utc": "2026-10-11T13:40:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:38:14Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:38:14Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "51571403-f9de-488b-babf-5374a10ca355",
+      "home": "Brondby",
+      "away": "Lyngby",
+      "kickoff_tr": "17:00",
+      "kickoff_utc": "2026-10-11T14:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:55:24Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:55:24Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "769762ef-3f85-4f8e-9467-38ad658a4e2a",
+      "home": "Churchill Brothers",
+      "away": "Mumbai City FC",
+      "kickoff_tr": "17:00",
+      "kickoff_utc": "2026-10-11T14:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "db2a386a-b2b6-4ff5-b50d-71ce9b15e084",
+      "home": "FK Kaisar",
+      "away": "FC Ordabasy",
+      "kickoff_tr": "17:00",
+      "kickoff_utc": "2026-10-11T14:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:55:24Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "5cdcaaf1-8d29-4696-b4c4-82a5e4e44725",
+      "home": "HB Torshavn",
+      "away": "Klaksvikar Itrottarfelag",
+      "kickoff_tr": "17:00",
+      "kickoff_utc": "2026-10-11T14:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "08ca4261-f673-4693-b136-c6fa44c7af07",
+      "home": "Iraklis",
+      "away": "Levadiakos",
+      "kickoff_tr": "17:00",
+      "kickoff_utc": "2026-10-11T14:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:55:24Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:55:24Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:55:24Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "fd8ff6ab-dfe2-41fd-936d-9c8ee5a2c99d",
+      "home": "Juventud De Las Piedras",
+      "away": "Racing Club (Uru)",
+      "kickoff_tr": "17:00",
+      "kickoff_utc": "2026-10-11T14:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:55:24Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "b138f127-a468-4416-b02b-2d631cf8757e",
+      "home": "Kifisia",
+      "away": "Panaitolikos",
+      "kickoff_tr": "17:00",
+      "kickoff_utc": "2026-10-11T14:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:55:24Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:55:24Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "c1b9b62c-9743-4b89-bfd4-22e3696c66f4",
+      "home": "Olympic El Qanal",
+      "away": "Al-Masry",
+      "kickoff_tr": "17:00",
+      "kickoff_utc": "2026-10-11T14:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:55:24Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:55:24Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "786dc299-0031-4f06-878b-75c8af72bd5c",
+      "home": "Patro Eisden Maasmechelen",
+      "away": "Racing Genk B",
+      "kickoff_tr": "17:00",
+      "kickoff_utc": "2026-10-11T14:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "dbb8a780-4c16-44cd-b261-ddadd39a1c6a",
+      "home": "Sloga Doboj",
+      "away": "Zrinjski",
+      "kickoff_tr": "17:00",
+      "kickoff_utc": "2026-10-11T14:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "4572c49a-76fc-4a6f-9fd5-3cae55193919",
+      "home": "TJ Sokol Zapy",
+      "away": "FK Caslav",
+      "kickoff_tr": "17:00",
+      "kickoff_utc": "2026-10-11T14:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "b516cc63-bfe0-4766-ac94-0f967d0dfdbe",
+      "home": "Union St Gilloise",
+      "away": "Oud-Heverlee Leuven",
+      "kickoff_tr": "17:00",
+      "kickoff_utc": "2026-10-11T14:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:55:24Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:55:24Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T07:55:24Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "3190cc27-0f6b-4b6b-8d70-55a8a5f2dd1e",
+      "home": "Varnsdorf",
+      "away": "Hradec Kralove B",
+      "kickoff_tr": "17:00",
+      "kickoff_utc": "2026-10-11T14:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "13cc94ff-8d66-4a06-bc32-b94882b691b4",
+      "home": "Almeria",
+      "away": "Leganes",
+      "kickoff_tr": "17:15",
+      "kickoff_utc": "2026-10-11T14:15:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:12:35Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:12:35Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:12:35Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "2ce78091-7dbd-4fe1-9e15-71322fe5d355",
+      "home": "Real Sociedad",
+      "away": "Deportivo",
+      "kickoff_tr": "17:15",
+      "kickoff_utc": "2026-10-11T14:15:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:12:35Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:12:35Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:12:35Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "8ff236a8-4952-4324-99f2-ebe076fce516",
+      "home": "Alemannia Aachen",
+      "away": "Viktoria Koln",
+      "kickoff_tr": "17:30",
+      "kickoff_utc": "2026-10-11T14:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "MISSING",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "daf8570e-18a9-4b52-bc02-edc6b57ade60",
+      "home": "Cherno More",
+      "away": "PFC Levski Sofia",
+      "kickoff_tr": "17:30",
+      "kickoff_utc": "2026-10-11T14:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "42697082-de7d-44ef-bef2-74b20a106ce3",
+      "home": "FC Vaduz",
+      "away": "FC Basel",
+      "kickoff_tr": "17:30",
+      "kickoff_utc": "2026-10-11T14:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "4a54eb81-6821-4d15-85ae-fdfcf30f19e3",
+      "home": "Hacken",
+      "away": "Orgryte",
+      "kickoff_tr": "17:30",
+      "kickoff_utc": "2026-10-11T14:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "52b90375-d335-480b-bc93-ecd472e4762c",
+      "home": "Ponferradina",
+      "away": "Real Aviles",
+      "kickoff_tr": "17:30",
+      "kickoff_utc": "2026-10-11T14:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "e082603d-c535-42fc-9b24-81a90b08dbf9",
+      "home": "Pontevedra CF",
+      "away": "Merida AD",
+      "kickoff_tr": "17:30",
+      "kickoff_utc": "2026-10-11T14:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "12bb217c-698d-499a-9569-4e036c71488f",
+      "home": "Rio Ave",
+      "away": "CD Nacional Funchal",
+      "kickoff_tr": "17:30",
+      "kickoff_utc": "2026-10-11T14:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "1f4dcd56-01d1-4858-9c39-8c2151baa886",
+      "home": "Shafa Baku FC",
+      "away": "PFK Turan Tovuz",
+      "kickoff_tr": "17:30",
+      "kickoff_utc": "2026-10-11T14:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "3909d1f0-a5df-43bc-a770-70c6276d485a",
+      "home": "St Gallen",
+      "away": "Lausanne",
+      "kickoff_tr": "17:30",
+      "kickoff_utc": "2026-10-11T14:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:29:45Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "37260aad-a849-416e-b1fb-6411f9789261",
+      "home": "Al Sahel",
+      "away": "Al Fahaheel FC",
+      "kickoff_tr": "17:45",
+      "kickoff_utc": "2026-10-11T14:45:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:41:12Z"
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "c763317a-1866-48b9-b154-f1d7c6bd4f8c",
+      "home": "Excelsior",
+      "away": "FC Groningen",
+      "kickoff_tr": "17:45",
+      "kickoff_utc": "2026-10-11T14:45:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:41:12Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:41:12Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:41:12Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "99526e72-c4d5-403c-9ded-86d3f0fcc963",
+      "home": "Honved",
+      "away": "Ujpest",
+      "kickoff_tr": "17:45",
+      "kickoff_utc": "2026-10-11T14:45:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:41:12Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:41:12Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "977ffcb8-71cd-477d-8ee3-0598d87ae2d7",
+      "home": "Aalesunds",
+      "away": "Sarpsborg",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "b80b7bdd-f15c-4d31-bfed-f78b93474e19",
+      "home": "Anorthosis",
+      "away": "Pafos FC",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "6019ebe0-80a9-4e3a-bbd9-8aab1cccc3cb",
+      "home": "Asane",
+      "away": "Sogndal",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "0b934151-be12-438b-a0aa-f11c16401ae3",
+      "home": "Chabab Atlas Khenifra",
+      "away": "SCCM Chabab Mohamedia",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "6817d6e0-ec10-4355-9ddf-180d0e1eb24d",
+      "home": "Csikszereda",
+      "away": "Universitatea Craiova",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "5b5ba53b-a1e8-4e64-a3b3-38cf67dc8b0d",
+      "home": "Dinamo Batumi",
+      "away": "Dinamo Tbilisi",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "ae436df7-d33f-4466-b9a1-c292c3cbfa4e",
+      "home": "Egersund",
+      "away": "Hodd",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "abc04df6-f290-49d4-9508-e951c369908f",
+      "home": "FC Bukovyna",
+      "away": "Polissya Zhytomyr",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "827af433-2b43-4970-a372-f8ebc085044a",
+      "home": "IK Brage",
+      "away": "Helsingborgs",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "a6ebf0b1-fe46-485d-a167-85ffa198961c",
+      "home": "Kongsvinger",
+      "away": "Ranheim IL",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "f545dede-ca72-4900-a6f0-cd8f792e80c6",
+      "home": "LASK Linz",
+      "away": "Rapid Vienna",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "dd9426e2-1c6a-4712-a1b8-09f422c65bf2",
+      "home": "Lyn",
+      "away": "Stromsgodset",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "b37244fe-105b-4d62-8411-be7c2f2e5a6c",
+      "home": "Odds BK",
+      "away": "Bryne",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "cc467866-f1b2-4f58-9487-07811a02e15c",
+      "home": "Olympiacos B",
+      "away": "Asteras Tripolis II",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "2bf0d5ee-97f5-42e7-914d-a31c57e25859",
+      "home": "Partizan Belgrade",
+      "away": "FK Novi Pazar",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "6f82dee1-5650-4690-9fa1-fab6dd0d9fcc",
+      "home": "Puszcza Niepolomice",
+      "away": "Polonia Bytom",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "01d438fb-900a-48b2-b075-dd39abbb496d",
+      "home": "Raufoss",
+      "away": "Moss",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "MISSING",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "e9b1b19a-4e8f-48f3-b0a9-d60b4f1e1806",
+      "home": "Sandnes Ulf",
+      "away": "Haugesund",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "MISSING",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "2e189755-ea4e-4703-8804-362c9f3ff68d",
+      "home": "Stabaek",
+      "away": "Strommen",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "MISSING",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "d8427760-1a28-4892-8d5b-0234ae668b2b",
+      "home": "Start",
+      "away": "Ham-Kam",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-11T15:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "MISSING",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T08:58:24Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "72ac4943-38cb-4d05-aa09-072d927da734",
+      "home": "Padova",
+      "away": "Carrarese",
+      "kickoff_tr": "18:15",
+      "kickoff_utc": "2026-10-11T15:15:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:09:50Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:09:50Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:09:50Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "999258b9-4e89-419f-b472-2a50ee94a654",
+      "home": "Rennes",
+      "away": "Auxerre",
+      "kickoff_tr": "18:15",
+      "kickoff_utc": "2026-10-11T15:15:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:09:50Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:09:50Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:09:50Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "2cd4269f-8f5f-4509-8166-94af46a512da",
+      "home": "A.C. Trento S.C.S.D.",
+      "away": "Caratese",
+      "kickoff_tr": "18:30",
+      "kickoff_utc": "2026-10-11T15:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:26:57Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "MISSING",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:26:57Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "caf320db-01a5-44cd-9b0c-d3ac39e7a131",
+      "home": "Everton De Vina",
+      "away": "La Serena",
+      "kickoff_tr": "18:30",
+      "kickoff_utc": "2026-10-11T15:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "MISSING",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:26:57Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "137c7ce8-d487-4252-b74b-d81b1f9119a5",
+      "home": "Forli",
+      "away": "Livorno",
+      "kickoff_tr": "18:30",
+      "kickoff_utc": "2026-10-11T15:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:26:57Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "89d3e87f-b956-4540-9c31-e248a674d271",
+      "home": "Freiburg",
+      "away": "Schalke 04",
+      "kickoff_tr": "18:30",
+      "kickoff_utc": "2026-10-11T15:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:26:57Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:26:57Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:26:57Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "02aec281-51e5-472c-95d0-39ee8174f715",
+      "home": "Lecco",
+      "away": "ASD Alcione",
+      "kickoff_tr": "18:30",
+      "kickoff_utc": "2026-10-11T15:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:26:57Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "6eed1e69-62e8-41e1-81a3-f35b7198926a",
+      "home": "Liverpool",
+      "away": "Man City",
+      "kickoff_tr": "18:30",
+      "kickoff_utc": "2026-10-11T15:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:26:57Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:26:57Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:26:57Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "2ea1b9c9-9f8d-490e-93db-acfa66ad6b5e",
+      "home": "NK Brinje Grosuplje",
+      "away": "NK Maribor",
+      "kickoff_tr": "18:30",
+      "kickoff_utc": "2026-10-11T15:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "542571df-2b4f-46b3-ac8c-fc45f0fd173d",
+      "home": "Perugia",
+      "away": "FC Vado",
+      "kickoff_tr": "18:30",
+      "kickoff_utc": "2026-10-11T15:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:26:57Z"
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "6ea4239e-144b-458b-beb7-749cf916ba16",
+      "home": "Pogon Szczecin",
+      "away": "Korona Kielce",
+      "kickoff_tr": "18:30",
+      "kickoff_utc": "2026-10-11T15:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:26:57Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "84cf0558-d664-4a0c-b153-addf24bf466d",
+      "home": "Treviso",
+      "away": "AC Ospitaletto",
+      "kickoff_tr": "18:30",
+      "kickoff_utc": "2026-10-11T15:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "c789b5f9-005a-462a-b9f8-d82831df6217",
+      "home": "A.E.L.",
+      "away": "Omonia 29th May",
+      "kickoff_tr": "19:00",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "69455d5f-1985-432d-a026-862c26e97f75",
+      "home": "Aris",
+      "away": "NFC Volos",
+      "kickoff_tr": "19:00",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "16df7e31-bd70-4ebb-880c-63c1e82e8ba5",
+      "home": "Besiktas",
+      "away": "Kocaelispor",
+      "kickoff_tr": "19:00",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "8e2bbf08-9ba6-4a35-aa11-b5ef3f90e4d1",
+      "home": "Bursaspor",
+      "away": "Mardin 1969 Spor",
+      "kickoff_tr": "19:00",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "d1cc1283-e0c1-4c2e-9b33-cbb94ca3abfa",
+      "home": "East Riffa",
+      "away": "Aali Club",
+      "kickoff_tr": "19:00",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "a3e1aa3d-9cb1-41ee-8089-ad50b0ea18dc",
+      "home": "FC Urartu",
+      "away": "FC Ararat Yerevan",
+      "kickoff_tr": "19:00",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "10ab6d70-8c8e-42d5-8579-4317fe6c43bd",
+      "home": "Midtjylland",
+      "away": "FC Copenhagen",
+      "kickoff_tr": "19:00",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "7ebd1370-b59d-4060-a4aa-8400eac9ad92",
+      "home": "Olympiakos Nicosia FC",
+      "away": "Aris FC Limassol",
+      "kickoff_tr": "19:00",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "4deddcde-0ba5-417f-babe-e8166e6e8109",
+      "home": "Podbrezova",
+      "away": "Spartak Trnava",
+      "kickoff_tr": "19:00",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "be232a04-7cb5-4203-bebd-678595c164a5",
+      "home": "Prishtina",
+      "away": "KF Dukagjini",
+      "kickoff_tr": "19:00",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "648bad32-c4f8-479c-9c54-e83ccd6419dc",
+      "home": "Sassuolo",
+      "away": "AC Milan",
+      "kickoff_tr": "19:00",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "95eb2079-705d-4436-b87f-1b467cd61f91",
+      "home": "Sitra",
+      "away": "Al Najma (BRN)",
+      "kickoff_tr": "19:00",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "1d346530-ed96-4b5e-bf4d-153cce2a220a",
+      "home": "Slaven Belupo",
+      "away": "Rijeka",
+      "kickoff_tr": "19:00",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "1f20e753-240f-496f-8514-9d55971bb98c",
+      "home": "Sparta Prague",
+      "away": "Pardubice",
+      "kickoff_tr": "19:00",
+      "kickoff_utc": "2026-10-11T16:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T09:55:36Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "c4021a3e-27eb-4a50-8b7e-47cf2061d10e",
+      "home": "CE Europa",
+      "away": "Algeciras",
+      "kickoff_tr": "19:15",
+      "kickoff_utc": "2026-10-11T16:15:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "MISSING",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:12:44Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "1fb9fa8c-8dc0-4e41-8309-e9b3d57ea7a0",
+      "home": "Betis",
+      "away": "Osasuna",
+      "kickoff_tr": "19:30",
+      "kickoff_utc": "2026-10-11T16:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:29:54Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:29:54Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:29:54Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "433aa297-156f-4839-a3fd-8c232f33d8d0",
+      "home": "Celik Zenica",
+      "away": "Sarajevo",
+      "kickoff_tr": "19:30",
+      "kickoff_utc": "2026-10-11T16:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "MISSING",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:29:54Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "6903a842-07b8-42ae-95b2-c5372a6d8bdd",
+      "home": "Mallorca",
+      "away": "Las Palmas",
+      "kickoff_tr": "19:30",
+      "kickoff_utc": "2026-10-11T16:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:29:54Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:29:54Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:29:54Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "ca4a5669-a5f4-4ab4-959f-60c91f49f990",
+      "home": "Partizani Tirana",
+      "away": "KF Tirana",
+      "kickoff_tr": "19:30",
+      "kickoff_utc": "2026-10-11T16:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:29:54Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "5c3acade-6ca2-4146-91dd-a8c8ec597c69",
+      "home": "Suchitepequez",
+      "away": "Deportivo Mixco",
+      "kickoff_tr": "19:30",
+      "kickoff_utc": "2026-10-11T16:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:29:54Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:29:54Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:29:54Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "c1e0f00a-f6ca-4fcd-9a2c-8a4cc710562c",
+      "home": "Univ Catolica (Ecu)",
+      "away": "Macara",
+      "kickoff_tr": "19:30",
+      "kickoff_utc": "2026-10-11T16:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:29:54Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "f11fc0f8-1d94-4d5c-9e3d-294a397f7f31",
+      "home": "Vllaznia Shkoder",
+      "away": "Dinamo Tirana",
+      "kickoff_tr": "19:30",
+      "kickoff_utc": "2026-10-11T16:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:29:54Z"
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "e218aa31-4192-4519-9d8c-8e780822645a",
+      "home": "Westerlo",
+      "away": "Antwerp",
+      "kickoff_tr": "19:30",
+      "kickoff_utc": "2026-10-11T16:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:29:54Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:29:54Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:29:54Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "772c8f41-c3cc-4e65-ad70-aad13b9d0ef8",
+      "home": "CF Rayo Majadahonda",
+      "away": "Real Murcia",
+      "kickoff_tr": "19:45",
+      "kickoff_utc": "2026-10-11T16:45:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "12c983e9-1be1-48cc-909c-95966153b645",
+      "home": "Benfica",
+      "away": "Guimaraes",
+      "kickoff_tr": "20:00",
+      "kickoff_utc": "2026-10-11T17:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:58:32Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:58:32Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:58:32Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "9da0b328-bf94-45c9-8122-a9518db43e35",
+      "home": "CSKA 1948 Sofia",
+      "away": "CSKA Sofia",
+      "kickoff_tr": "20:00",
+      "kickoff_utc": "2026-10-11T17:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:58:32Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:58:32Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:58:32Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "94a27b90-2020-4e5b-ab31-6c54f5a3223d",
+      "home": "Gyori",
+      "away": "Puskas Akademia",
+      "kickoff_tr": "20:00",
+      "kickoff_utc": "2026-10-11T17:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:58:32Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:58:32Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "3b625a81-2c93-4c0f-9b82-03c3b2b110c4",
+      "home": "Leiria",
+      "away": "Academica",
+      "kickoff_tr": "20:00",
+      "kickoff_utc": "2026-10-11T17:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:58:32Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "c3344c73-0baf-4b1d-bfe0-215955e73cad",
+      "home": "Zamalek",
+      "away": "Al Ahly Cairo",
+      "kickoff_tr": "20:00",
+      "kickoff_utc": "2026-10-11T17:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:58:32Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:58:32Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "b515739c-42d6-4233-8852-8e6afbe2a7aa",
+      "home": "Zemun",
+      "away": "Zeleznicar Pancevo",
+      "kickoff_tr": "20:00",
+      "kickoff_utc": "2026-10-11T17:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:58:32Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T10:58:32Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "29c22d40-b8b4-4095-be4b-98551b82f263",
+      "home": "AL-Salibikhaet",
+      "away": "Al Jahra",
+      "kickoff_tr": "20:05",
+      "kickoff_utc": "2026-10-11T17:05:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "4d4c1e40-2eb4-4bd1-952a-1e4c7cf216a2",
+      "home": "Hapoel Ramat Gan",
+      "away": "Beitar Jerusalem",
+      "kickoff_tr": "20:15",
+      "kickoff_utc": "2026-10-11T17:15:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:09:59Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:09:59Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "744976d2-9cae-4d9c-b80c-8f05a0c2091a",
+      "home": "KAA Gent II",
+      "away": "Seraing Utd",
+      "kickoff_tr": "20:15",
+      "kickoff_utc": "2026-10-11T17:15:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:09:59Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:09:59Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "87315e8e-4278-4de7-b610-8fad67c79abe",
+      "home": "Lillestrom",
+      "away": "Molde",
+      "kickoff_tr": "20:15",
+      "kickoff_utc": "2026-10-11T17:15:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:09:59Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:09:59Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:09:59Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "d384ef8c-b6fc-45c7-84ff-9c06db0aeb67",
+      "home": "Yellow-Red Mechelen",
+      "away": "Sint Truiden",
+      "kickoff_tr": "20:15",
+      "kickoff_utc": "2026-10-11T17:15:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:09:59Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:09:59Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:09:59Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "575e4dd2-742e-46f4-a76a-ebf8f9a664a3",
+      "home": "Fortuna Dusseldorf",
+      "away": "Verl",
+      "kickoff_tr": "20:30",
+      "kickoff_utc": "2026-10-11T17:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:27:10Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:27:10Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "2372abc9-3bbe-49df-b9b0-80c5d84e3fc4",
+      "home": "Modena",
+      "away": "Verona",
+      "kickoff_tr": "20:30",
+      "kickoff_utc": "2026-10-11T17:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:27:10Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:27:10Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "646961ae-bb63-4a01-be30-cc8df944a7dd",
+      "home": "San Lorenzo",
+      "away": "Deportivo Riestra",
+      "kickoff_tr": "20:45",
+      "kickoff_utc": "2026-10-11T17:45:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:44:16Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:44:16Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "8e003fbf-8c16-4dcc-89f9-c14d2f69a4eb",
+      "home": "Al-Shabab (KSA)",
+      "away": "Al-Taawoun Buraidah",
+      "kickoff_tr": "21:00",
+      "kickoff_utc": "2026-10-11T18:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:55:39Z"
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "c79af5dc-9deb-4e74-9b62-dab37070001a",
+      "home": "Brusque FC",
+      "away": "Paysandu",
+      "kickoff_tr": "21:00",
+      "kickoff_utc": "2026-10-11T18:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-10T19:57:41Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-10T19:57:41Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "ffe312cf-51cf-45ba-9392-9b6fce06ddf0",
+      "home": "CA Atlanta",
+      "away": "San Martin de Tucuman",
+      "kickoff_tr": "21:00",
+      "kickoff_utc": "2026-10-11T18:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:55:39Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:55:39Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "358adeef-57a0-46df-9409-f2adff683af1",
+      "home": "Cerro Largo FC",
+      "away": "Albion FC",
+      "kickoff_tr": "21:00",
+      "kickoff_utc": "2026-10-11T18:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "ac2c4518-7dca-4c27-a41b-c73601bb9a38",
+      "home": "Coquimbo Unido",
+      "away": "Colo Colo",
+      "kickoff_tr": "21:00",
+      "kickoff_utc": "2026-10-11T18:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:55:39Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:55:39Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:55:39Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "d46ad653-2be8-452d-89df-7592dfe49426",
+      "home": "Deportivo Madryn",
+      "away": "Chaco For Ever",
+      "kickoff_tr": "21:00",
+      "kickoff_utc": "2026-10-11T18:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:55:39Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "5da007bb-76f2-4e05-bb46-1c3c1327d1da",
+      "home": "Farul Constanta",
+      "away": "ACS Petrolul 52",
+      "kickoff_tr": "21:00",
+      "kickoff_utc": "2026-10-11T18:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:55:39Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "MISSING",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:55:39Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "1ad7273c-ac30-4948-9b4f-acc28a2fd8fc",
+      "home": "Ferroviaria",
+      "away": "Inter Limeira",
+      "kickoff_tr": "21:00",
+      "kickoff_utc": "2026-10-11T18:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-10T19:57:41Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-10T19:57:41Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-10T19:57:41Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "2ae0c71b-efac-451f-8396-00d536113d91",
+      "home": "Olympiakos",
+      "away": "Panathinaikos",
+      "kickoff_tr": "21:00",
+      "kickoff_utc": "2026-10-11T18:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:55:39Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:55:39Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:55:39Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "c429ef67-5c11-409d-ba4f-773103034123",
+      "home": "UTC Cajamarca",
+      "away": "Sporting Cristal",
+      "kickoff_tr": "21:00",
+      "kickoff_utc": "2026-10-11T18:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:55:39Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T11:55:39Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "c45d321b-3440-4eed-b236-03dc6090d8b9",
+      "home": "Legia Warsaw",
+      "away": "Wisla Krakow",
+      "kickoff_tr": "21:15",
+      "kickoff_utc": "2026-10-11T18:15:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:12:44Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:12:44Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:12:44Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "8e22c1de-642f-49fa-862a-b0c0f52808b8",
+      "home": "Odra Opole",
+      "away": "Miedz Legnica",
+      "kickoff_tr": "21:15",
+      "kickoff_utc": "2026-10-11T18:15:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:12:44Z"
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "e335c876-dbc7-4d31-84d3-0821750a2045",
+      "home": "Almirante Brown",
+      "away": "CA San Miguel",
+      "kickoff_tr": "21:30",
+      "kickoff_utc": "2026-10-11T18:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:26:04Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "a10af6e8-fda5-49d1-83ff-d5906897d46a",
+      "home": "Estudiantes de Caseros",
+      "away": "Deportivo Moron",
+      "kickoff_tr": "21:30",
+      "kickoff_utc": "2026-10-11T18:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:26:04Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:26:04Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:26:04Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "b1f60856-a2fb-48d3-8279-f2fb2da13188",
+      "home": "Cagliari",
+      "away": "Juventus",
+      "kickoff_tr": "21:45",
+      "kickoff_utc": "2026-10-11T18:45:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:42:17Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:42:17Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:42:17Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "0a22067a-6fc0-4766-825b-16882345f15b",
+      "home": "ESTAC Troyes",
+      "away": "Marseille",
+      "kickoff_tr": "21:45",
+      "kickoff_utc": "2026-10-11T18:45:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:42:17Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:42:17Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:42:17Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "f3909e20-21bc-4630-b108-760ab5891a8a",
+      "home": "Orense Sporting Club",
+      "away": "Deportivo Cuenca",
+      "kickoff_tr": "21:45",
+      "kickoff_utc": "2026-10-11T18:45:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:42:17Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:42:17Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "8481db52-9a56-4b66-8641-90993f7bc91e",
+      "home": "Atletico Madrid II",
+      "away": "Zaragoza",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-11T19:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "28a9c7e1-c311-4f2e-a4bd-dbb8fbdcca36",
+      "home": "Atletico MG",
+      "away": "Santos",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-11T19:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "f5df61a3-79e3-47d9-8511-052079555d56",
+      "home": "CA Temperley",
+      "away": "Nueva Chicago",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-11T19:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "6b59c217-e171-4301-9e5c-01e200c8336c",
+      "home": "Cadiz",
+      "away": "Sporting Gijon",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-11T19:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "6ec8d522-677e-48a6-808f-3f9c7a778340",
+      "home": "Club Atletico Mitre",
+      "away": "Colon",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-11T19:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "0a2d3109-2e94-4025-ae92-f310c6eb9f00",
+      "home": "Gimnasia Jujuy",
+      "away": "Club Gimnasia y Tiro",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-11T19:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "6656a2f3-edc2-477b-9add-0c6d56e1f7d7",
+      "home": "Juventude",
+      "away": "Sao Bernardo",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-11T19:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "7084b2e4-c255-4127-bcb4-22b99d86edca",
+      "home": "La Luz FC",
+      "away": "Plaza Colonia",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-11T19:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "5ea1d2b4-f4e0-4f26-9bee-6d2c6b55b6c8",
+      "home": "Patronato",
+      "away": "CA Guemes",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-11T19:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "bcbbddd2-1d63-49a7-bf61-45e422092720",
+      "home": "Racing Santander",
+      "away": "Valencia",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-11T19:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "1ce7437b-c83e-44cb-857f-ccc668ac1434",
+      "home": "Real Potosi",
+      "away": "The Strongest",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-11T19:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T12:58:32Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "cab46218-6156-4c64-965a-1c568003d461",
+      "home": "Santa Fe",
+      "away": "Fortaleza FC",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-11T19:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "b30a70e9-13fa-4ab6-84f4-bf0b373e463b",
+      "home": "Atletico GO",
+      "away": "Sport Recife",
+      "kickoff_tr": "22:10",
+      "kickoff_utc": "2026-10-11T19:10:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:09:20Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:09:20Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "b7c6f8a1-e63e-45dd-a055-ff3941c1d647",
+      "home": "Breidablik",
+      "away": "Keflavik",
+      "kickoff_tr": "22:15",
+      "kickoff_utc": "2026-10-11T19:15:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:14:43Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:14:43Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:14:43Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "b2092643-ab02-4113-a288-a6439ff92216",
+      "home": "Vikingur Reykjavik",
+      "away": "IA Akranes",
+      "kickoff_tr": "22:15",
+      "kickoff_utc": "2026-10-11T19:15:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:14:43Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:14:43Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "29079330-01e8-4cc3-8c90-68a20f0d148f",
+      "home": "Arouca",
+      "away": "Club Football Estrela",
+      "kickoff_tr": "22:30",
+      "kickoff_utc": "2026-10-11T19:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:25:36Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:25:36Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:25:36Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "8cd7dd34-68b8-40a1-b5aa-d2f6f0c8fa02",
+      "home": "Academia Anzoategui FC",
+      "away": "Carabobo FC",
+      "kickoff_tr": "23:00",
+      "kickoff_utc": "2026-10-11T20:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:57:53Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:57:53Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "66847919-3725-4f91-a751-3821fa37bb14",
+      "home": "CA Central Norte",
+      "away": "Ferro Carril Oeste",
+      "kickoff_tr": "23:00",
+      "kickoff_utc": "2026-10-11T20:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:57:53Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "5fb9ce2a-f3cf-4296-90c0-2b53ea19099d",
+      "home": "CA Platense",
+      "away": "Argentinos Juniors",
+      "kickoff_tr": "23:00",
+      "kickoff_utc": "2026-10-11T20:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:57:53Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:57:53Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:57:53Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "ae94f0c9-a42e-4aef-82e0-74b07638172f",
+      "home": "CD Maipu",
+      "away": "San Martin De San Juan",
+      "kickoff_tr": "23:00",
+      "kickoff_utc": "2026-10-11T20:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:57:53Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "657e6ed4-794d-4562-9716-5aacaf7d1adb",
+      "home": "Dunbeholden FC",
+      "away": "Molynes United FC",
+      "kickoff_tr": "23:00",
+      "kickoff_utc": "2026-10-11T20:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:57:53Z"
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "6146169f-922a-4cc9-b7dd-7c12c041d24b",
+      "home": "Envigado",
+      "away": "Internacional de Palmira",
+      "kickoff_tr": "23:00",
+      "kickoff_utc": "2026-10-11T20:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:57:53Z"
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "5f32c631-ff42-4dac-806b-32aa000d3f3d",
+      "home": "Humble Lions",
+      "away": "Chapelton",
+      "kickoff_tr": "23:00",
+      "kickoff_utc": "2026-10-11T20:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:57:53Z"
+        },
+        "OU25": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:57:53Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "8eb4397c-862d-4c50-b1bf-b1b86c4d0454",
+      "home": "Rosario Central",
+      "away": "Independiente Rivadavia",
+      "kickoff_tr": "23:00",
+      "kickoff_utc": "2026-10-11T20:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:57:53Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:57:53Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "b3416161-7558-45d7-a7ae-c533906de99f",
+      "home": "Rubio Nu",
+      "away": "Olimpia",
+      "kickoff_tr": "23:00",
+      "kickoff_utc": "2026-10-11T20:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:57:53Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "8d940253-1f88-4dd5-b4a8-49b56a15ff92",
+      "home": "Trujillanos",
+      "away": "Puerto Cabello",
+      "kickoff_tr": "23:00",
+      "kickoff_utc": "2026-10-11T20:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:57:53Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "e9746ed3-a706-4fc8-9ef5-02ae966920f7",
+      "home": "Wydad Casablanca",
+      "away": "CODM Meknes",
+      "kickoff_tr": "23:00",
+      "kickoff_utc": "2026-10-11T20:00:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:57:53Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T13:57:53Z"
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "51428af0-b21f-4a99-bd2b-3caa4ebfe4b9",
+      "home": "Deportes Concepcion",
+      "away": "Union La Calera",
+      "kickoff_tr": "23:30",
+      "kickoff_utc": "2026-10-11T20:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T14:24:51Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T14:24:51Z"
+        },
+        "BTTS": {
+          "t6_status": "MISSING",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    },
+    {
+      "fixture_uid": "52421b05-f89a-44df-a7fd-6842800e46fc",
+      "home": "Flamengo",
+      "away": "Fluminense",
+      "kickoff_tr": "23:30",
+      "kickoff_utc": "2026-10-11T20:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T14:24:51Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T14:24:51Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T14:24:51Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "3c0f0aad-3a6b-4027-ba1c-9b73cf8a3e1d",
+      "home": "Gremio",
+      "away": "Internacional",
+      "kickoff_tr": "23:30",
+      "kickoff_utc": "2026-10-11T20:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T14:24:51Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T14:24:51Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T14:24:51Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "7be96e60-e326-4b52-a81e-eeefc538515b",
+      "home": "Nautico PE",
+      "away": "Vila Nova",
+      "kickoff_tr": "23:30",
+      "kickoff_utc": "2026-10-11T20:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T14:24:51Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T14:24:51Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T14:24:51Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "c86f541a-9052-44b0-9678-efabd509a4e6",
+      "home": "SE Palmeiras",
+      "away": "Corinthians",
+      "kickoff_tr": "23:30",
+      "kickoff_utc": "2026-10-11T20:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T14:24:51Z"
+        },
+        "OU25": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T14:24:51Z"
+        },
+        "BTTS": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T14:24:51Z"
+        }
+      }
+    },
+    {
+      "fixture_uid": "47f9080c-bd6c-477a-943e-d156775092fa",
+      "home": "Sport Boys (Per)",
+      "away": "Alianza Atletico",
+      "kickoff_tr": "23:30",
+      "kickoff_utc": "2026-10-11T20:30:00Z",
+      "markets": {
+        "1X2": {
+          "t6_status": "COMPLETE",
+          "t8_status": "COMPLETE",
+          "selected": "T-6",
+          "observed_at_utc": "2026-10-11T14:24:51Z"
+        },
+        "OU25": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "INCOMPLETE",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        },
+        "BTTS": {
+          "t6_status": "INCOMPLETE",
+          "t8_status": "MISSING",
+          "selected": "MISSING",
+          "observed_at_utc": null
+        }
+      }
+    }
+  ],
+  "retention_cancellations": [
+    {
+      "fixture_uid": "0baecd1f-4ee7-4838-8fc6-bcfe48bec7ee",
+      "match": "Hull – Everton",
+      "selection": "Everton",
+      "first_origin_checkpoint": "T-40",
+      "first_break_utc": "2026-10-10 01:37:38+00",
+      "observed_min_share_pct": 51.6
+    }
+  ],
+  "global_odds_exclusions": [
+    {
+      "match": "Union St Gilloise – Oud-Heverlee Leuven",
+      "market": "1X2",
+      "selection": "Union St Gilloise",
+      "odds": 1.27,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "reason": "GLOBAL_MIN_ODDS_LT_1_30"
+    },
+    {
+      "match": "Besiktas – Kocaelispor",
+      "market": "1X2",
+      "selection": "Besiktas",
+      "odds": 1.27,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "reason": "GLOBAL_MIN_ODDS_LT_1_30"
+    },
+    {
+      "match": "Benfica – Guimaraes",
+      "market": "1X2",
+      "selection": "Benfica",
+      "odds": 1.26,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "reason": "GLOBAL_MIN_ODDS_LT_1_30"
+    }
+  ],
+  "source_record_hashes_not_captured": true,
+  "warnings": [
+    "Retrospective research reconstruction; not an originally frozen pre-match report.",
+    "Decision is exactly match kickoff minus six hours where a complete snapshot is present; fallback to T-8 only when T-6 market is incomplete/unavailable.",
+    "CORE Retention-55 and V2 used available source raw history, but no independent full-capture completeness certification.",
+    "No final match scores or post-decision market observations were used.",
+    "Historical GitHub concentrated manifests were verified for relevant days. Detailed values here are queried from existing public Moneyway source snapshots.",
+    "All money/odds values are SXF data; not executable bookmaker prices.",
+    "SURPRISE non-loss is diagnostic; odds are 1X2 team win prices."
+  ]
+}
