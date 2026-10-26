@@ -1,0 +1,22 @@
+{
+  "schema_version": "SXF_RESEARCH_DAY_STATUS_V1",
+  "date_tr": "2026-10-26",
+  "kickoff_window_tr": "16:00–24:00",
+  "timezone": "Europe/Istanbul",
+  "mode": "CHECKPOINT_RESEARCH_T6_FALLBACK_T8",
+  "scan_status": "PENDING_ASOF_NOT_REACHED",
+  "authoritative_scan_created": false,
+  "selection_count": null,
+  "engine_counts": null,
+  "observation_as_of_tr": "2026-10-26T03:03:15+03:00",
+  "fixture_count_seen": 66,
+  "earliest_kickoff_tr": "16:00",
+  "latest_kickoff_tr": "23:45",
+  "earliest_t8_tr": "2026-10-26T08:00:00+03:00",
+  "earliest_t6_tr": "2026-10-26T10:00:00+03:00",
+  "last_t6_tr": "2026-10-26T17:45:00+03:00",
+  "t8_decisions_reached": 0,
+  "t6_decisions_reached": 0,
+  "source": "public.fixtures SELECT-only",
+  "note": "No SXF 1X2, OVER, BTTS or SURPRISE motor status evaluated at T-6/T-8 because their decision checkpoints are all in the future as of this status. Must not classify as 0 signals or scanned."
+}
