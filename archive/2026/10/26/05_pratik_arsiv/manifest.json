@@ -1,0 +1,89 @@
+{
+  "archive_name": "PRATİK ARŞİV",
+  "version": "v1",
+  "date": "2026-10-26",
+  "timezone": "Europe/Istanbul",
+  "checkpoint_hours": [
+    72,
+    69,
+    66,
+    63,
+    60,
+    57,
+    54,
+    51,
+    48,
+    45,
+    42,
+    39,
+    36,
+    33,
+    30,
+    27,
+    24,
+    22,
+    20,
+    18,
+    16,
+    14,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "fixtures": 134,
+  "results_present": 0,
+  "results_missing": 134,
+  "market_checkpoint_slots_total": 13668,
+  "market_checkpoint_slots_present": 8209,
+  "market_checkpoint_slots_missing": 5459,
+  "alarms": 110,
+  "fields": "Original market history fields are retained, including odds, share percentages, GBP amounts, volume and timestamps; source row IDs and fingerprints are retained when exposed by the source table.",
+  "source": "Supabase READ-ONLY; canonical roster provenance and table details are documented below.",
+  "source_archive_status": "PARTIAL",
+  "source_archive_notes": "No daily source manifest exists on the main branch. This archive uses the 134-fixture public.fixtures roster and read-only public market histories; no result rows were found in research_archive.results. Public history lacks source_fingerprint and source IDs may be null.",
+  "missing_policy": "MISSING explicit; latest observation at or before target only; exact fixture_uid preferred and match_id_hash fallback used only when unique; stable source id order for equal times; no interpolation or future substitution.",
+  "coverage_by_market": {
+    "1X2": {
+      "present": 2877,
+      "missing": 1679
+    },
+    "OU25": {
+      "present": 2866,
+      "missing": 1690
+    },
+    "BTTS": {
+      "present": 2466,
+      "missing": 2090
+    }
+  },
+  "files": {
+    "checkpoints": {
+      "name": "checkpoints.jsonl.gz",
+      "uncompressed_bytes": 3608560,
+      "compressed_bytes": 184285
+    },
+    "alarms": {
+      "name": "alarms.jsonl.gz",
+      "uncompressed_bytes": 53175,
+      "compressed_bytes": 8537
+    }
+  },
+  "integrity": {
+    "fixture_records": 134,
+    "alarm_records": 110,
+    "checkpoint_schedule_valid": true,
+    "future_snapshot_count": 0,
+    "selected_present_market_rows": 8209,
+    "checkpoints_sha256": "fd9cb58789937082762823592e7cee417035d9ea0dbce8a5837e64a62c70fc7a",
+    "alarms_sha256": "23bca74eac14833621c8960f5d7778390944949eae6346009ccbde445e6932d6"
+  }
+}

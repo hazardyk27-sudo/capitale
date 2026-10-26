@@ -1,0 +1,89 @@
+{
+  "archive_name": "PRATİK ARŞİV",
+  "version": "v1",
+  "date": "2026-10-25",
+  "timezone": "Europe/Istanbul",
+  "checkpoint_hours": [
+    72,
+    69,
+    66,
+    63,
+    60,
+    57,
+    54,
+    51,
+    48,
+    45,
+    42,
+    39,
+    36,
+    33,
+    30,
+    27,
+    24,
+    22,
+    20,
+    18,
+    16,
+    14,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "fixtures": 368,
+  "results_present": 366,
+  "results_missing": 2,
+  "market_checkpoint_slots_total": 37536,
+  "market_checkpoint_slots_present": 30548,
+  "market_checkpoint_slots_missing": 6988,
+  "alarms": 379,
+  "fields": "Original market history fields are retained, including odds, share percentages, GBP amounts, volume and timestamps; source row IDs and fingerprints are retained when exposed by the source table.",
+  "source": "Supabase READ-ONLY; canonical roster provenance and table details are documented below.",
+  "source_archive_status": "PARTIAL",
+  "source_archive_notes": "Source manifest declares 368 full-day fixtures and an incomplete source collection. The current public.fixtures table has 363 rows with a different roster; the canonical 368-fixture roster from the existing full-day concentrated archive is used. Historical rows are queried by fixture_uid or unique match_id_hash. research_archive.results has results for 366/368. Public history lacks source_fingerprint and source IDs may be null.",
+  "missing_policy": "MISSING explicit; latest observation at or before target only; exact fixture_uid preferred and match_id_hash fallback used only when unique; stable source id order for equal times; no interpolation or future substitution.",
+  "coverage_by_market": {
+    "1X2": {
+      "present": 10752,
+      "missing": 1760
+    },
+    "OU25": {
+      "present": 10715,
+      "missing": 1797
+    },
+    "BTTS": {
+      "present": 9081,
+      "missing": 3431
+    }
+  },
+  "files": {
+    "checkpoints": {
+      "name": "checkpoints.jsonl.gz",
+      "uncompressed_bytes": 12593813,
+      "compressed_bytes": 610174
+    },
+    "alarms": {
+      "name": "alarms.jsonl.gz",
+      "uncompressed_bytes": 192727,
+      "compressed_bytes": 27184
+    }
+  },
+  "integrity": {
+    "fixture_records": 368,
+    "alarm_records": 379,
+    "checkpoint_schedule_valid": true,
+    "future_snapshot_count": 0,
+    "selected_present_market_rows": 30548,
+    "checkpoints_sha256": "3d98a0ea10a447e085980a6122fabf14518c2490859feda844a0b9fe2ca85791",
+    "alarms_sha256": "05ebe9ca31b456041b716778fb4b63a2897d2bf753730f08c92d6bc7e534247d"
+  }
+}

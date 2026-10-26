@@ -18,4 +18,7 @@ Orijinal tarihçe alanları (oran, yüzde, GBP miktarı, hacim, kayıt zamanı, 
 
 ## Günler
 
-9–23 Ekim 2026 arşivlendi. Üst düzey index.json her günün maç, sonuç, alarm, kapsama ve dosya boyutu özetini listeler.
+9–26 Ekim 2026 arşivlendi. Üst düzey index.json her günün maç, sonuç, alarm, kapsama ve dosya boyutu özetini listeler.
+
+
+24–26 Ekim 2026 için kaynak manifest farklılıkları ve kısmi koleksiyon durumu günlük manifestlerde açıklanır. 25 Ekimde 368 maçlık doğrulanmış arşiv rosterı korunmuştur; 26 Ekim için günlük kaynak manifesti bulunmadığından güncel Supabase fixture rosterı kullanılmıştır.

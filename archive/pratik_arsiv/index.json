@@ -416,10 +416,103 @@
         }
       },
       "source_archive_status": "PARTIAL"
+    },
+    {
+      "date": "2026-10-24",
+      "fixtures": 477,
+      "results_present": 473,
+      "results_missing": 4,
+      "alarms": 347,
+      "checkpoint_bytes": 800764,
+      "alarm_bytes": 40101,
+      "total_bytes": 840865,
+      "uncompressed_bytes": 16478605,
+      "coverage": {
+        "1X2": {
+          "present": 13995,
+          "missing": 2223
+        },
+        "OU25": {
+          "present": 13961,
+          "missing": 2257
+        },
+        "BTTS": {
+          "present": 11213,
+          "missing": 5005
+        }
+      },
+      "checksums": {
+        "checkpoints": "a54684d4dc9ef57c6c848261038adadea15c0f98e99d837864e340b59708ba17",
+        "alarms": "bd79beaa53dd4f3ed621d200bced5484d915f3f36f3668ff57f66470597c59c5"
+      },
+      "future": 0,
+      "source_archive_status": "PARTIAL"
+    },
+    {
+      "date": "2026-10-25",
+      "fixtures": 368,
+      "results_present": 366,
+      "results_missing": 2,
+      "alarms": 379,
+      "checkpoint_bytes": 610174,
+      "alarm_bytes": 27184,
+      "total_bytes": 637358,
+      "uncompressed_bytes": 12786540,
+      "coverage": {
+        "1X2": {
+          "present": 10752,
+          "missing": 1760
+        },
+        "OU25": {
+          "present": 10715,
+          "missing": 1797
+        },
+        "BTTS": {
+          "present": 9081,
+          "missing": 3431
+        }
+      },
+      "checksums": {
+        "checkpoints": "3d98a0ea10a447e085980a6122fabf14518c2490859feda844a0b9fe2ca85791",
+        "alarms": "05ebe9ca31b456041b716778fb4b63a2897d2bf753730f08c92d6bc7e534247d"
+      },
+      "future": 0,
+      "source_archive_status": "PARTIAL"
+    },
+    {
+      "date": "2026-10-26",
+      "fixtures": 134,
+      "results_present": 0,
+      "results_missing": 134,
+      "alarms": 110,
+      "checkpoint_bytes": 184285,
+      "alarm_bytes": 8537,
+      "total_bytes": 192822,
+      "uncompressed_bytes": 3661735,
+      "coverage": {
+        "1X2": {
+          "present": 2877,
+          "missing": 1679
+        },
+        "OU25": {
+          "present": 2866,
+          "missing": 1690
+        },
+        "BTTS": {
+          "present": 2466,
+          "missing": 2090
+        }
+      },
+      "checksums": {
+        "checkpoints": "fd9cb58789937082762823592e7cee417035d9ea0dbce8a5837e64a62c70fc7a",
+        "alarms": "23bca74eac14833621c8960f5d7778390944949eae6346009ccbde445e6932d6"
+      },
+      "future": 0,
+      "source_archive_status": "PARTIAL"
     }
   ],
-  "total_fixtures": 3580,
-  "total_alarm_records": 3001,
-  "total_compressed_bytes": 10122749,
-  "total_uncompressed_bytes": 102938115
+  "total_fixtures": 4559,
+  "total_alarm_records": 3837,
+  "total_compressed_bytes": 11793794,
+  "total_uncompressed_bytes": 135864995
 }
