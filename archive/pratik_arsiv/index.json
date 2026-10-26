@@ -89,9 +89,9 @@
       "date": "2026-10-11",
       "fixtures": 334,
       "alarms": 336,
-      "checkpoint_bytes": 1018575,
+      "checkpoint_bytes": 1018574,
       "alarm_bytes": 32624,
-      "total_bytes": 1051199,
+      "total_bytes": 1051198,
       "uncompressed_bytes": 10200115,
       "coverage": {
         "1X2": {
@@ -180,6 +180,6 @@
   ],
   "total_fixtures": 1570,
   "total_alarm_records": 1175,
-  "total_compressed_bytes": 4277675,
+  "total_compressed_bytes": 4277674,
   "total_uncompressed_bytes": 44458876
 }

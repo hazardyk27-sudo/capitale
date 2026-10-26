@@ -1,7 +1,8 @@
 {
-  "archive": "PRATİK ARŞİV",
+  "archive_name": "PRATİK ARŞİV",
+  "version": "v1",
   "date": "2026-10-14",
-  "format": "JSONL + gzip level 6",
+  "timezone": "Europe/Istanbul",
   "checkpoint_hours": [
     72,
     69,
@@ -38,32 +39,46 @@
     2,
     1
   ],
-  "source": {
-    "fixtures": "research_archive.fixtures",
-    "histories": [
-      "research_archive.moneyway_1x2_history",
-      "research_archive.moneyway_ou25_history",
-      "research_archive.moneyway_btts_history"
-    ],
-    "alarms": "research_archive alarm tables",
-    "read_only": true
+  "fixtures": 152,
+  "market_checkpoint_slots_total": 15504,
+  "market_checkpoint_slots_present": 8880,
+  "market_checkpoint_slots_missing": 6624,
+  "alarms": 138,
+  "fields": "Original market history fields are retained, including source odds, share percentages, GBP amounts, volume, timestamps, row id and fingerprint.",
+  "files": {
+    "checkpoints": {
+      "name": "checkpoints.jsonl.gz",
+      "uncompressed_bytes": 4095215,
+      "compressed_bytes": 356715
+    },
+    "alarms": {
+      "name": "alarms.jsonl.gz",
+      "uncompressed_bytes": 89047,
+      "compressed_bytes": 12899
+    }
   },
-  "selection": "At each checkpoint, latest original history record at or before target time; no interpolation or future substitution. Missing explicitly recorded.",
-  "counts": {
-    "fixtures": 152,
-    "checkpoint_slots": 15504,
-    "present_market_slots": 8880,
-    "missing_market_slots": 6624,
-    "alarms": 138
+  "source": "Supabase research_archive (READ-ONLY)",
+  "missing_policy": "MISSING explicit; latest observation at or before target only; exact fixture_uid preferred; same-time ties broken by source_fingerprint ascending; no interpolation or future substitution.",
+  "coverage_by_market": {
+    "1X2": {
+      "present": 3043,
+      "missing": 2125
+    },
+    "OU25": {
+      "present": 3046,
+      "missing": 2122
+    },
+    "BTTS": {
+      "present": 2791,
+      "missing": 2377
+    }
   },
-  "uncompressed_bytes": 4184262,
-  "compressed_bytes": {
-    "checkpoints": 356715,
-    "alarms": 12899,
-    "total": 369614
-  },
-  "sha256": {
-    "checkpoints": "ead81cec82da2832d7ea567f0100b83c6b31aba4b0565ed452f959df49ba2f5f",
-    "alarms": "633d7503b067f26bb9bc39be6cf5dd10cb540a94ba829c315b2b164ab47e20b9"
+  "integrity": {
+    "fixture_records": 152,
+    "alarm_records": 138,
+    "checkpoint_schedule_valid": true,
+    "future_snapshot_count": 0,
+    "checkpoints_sha256": "ead81cec82da2832d7ea567f0100b83c6b31aba4b0565ed452f959df49ba2f5f",
+    "alarms_sha256": "633d7503b067f26bb9bc39be6cf5dd10cb540a94ba829c315b2b164ab47e20b9"
   }
 }

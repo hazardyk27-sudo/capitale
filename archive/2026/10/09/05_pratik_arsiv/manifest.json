@@ -58,7 +58,7 @@
     }
   },
   "source": "Supabase research_archive (READ-ONLY)",
-  "missing_policy": "MISSING explicit; latest observation at or before target only; no interpolation or future substitution.",
+  "missing_policy": "MISSING explicit; latest observation at or before target only; exact fixture_uid preferred; same-time ties broken by source_fingerprint ascending; no interpolation or future substitution.",
   "coverage_by_market": {
     "1X2": {
       "present": 6716,

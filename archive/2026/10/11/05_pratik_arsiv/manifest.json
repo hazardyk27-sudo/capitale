@@ -44,12 +44,12 @@
   "market_checkpoint_slots_present": 28866,
   "market_checkpoint_slots_missing": 5202,
   "alarms": 336,
-  "fields": "Original market history fields retained, including odds, percentage, GBP amounts, volume, capture timestamps, source row id and fingerprint.",
+  "fields": "Original market history fields are retained, including source odds, share percentages, GBP amounts, volume, timestamps, row id and fingerprint.",
   "files": {
     "checkpoints": {
       "name": "checkpoints.jsonl.gz",
       "uncompressed_bytes": 9988395,
-      "compressed_bytes": 1018575
+      "compressed_bytes": 1018574
     },
     "alarms": {
       "name": "alarms.jsonl.gz",
@@ -58,7 +58,7 @@
     }
   },
   "source": "Supabase research_archive (READ-ONLY)",
-  "missing_policy": "MISSING explicit; latest observation at or before target only; no interpolation or future substitution.",
+  "missing_policy": "MISSING explicit; latest observation at or before target only; exact fixture_uid preferred; same-time ties broken by source_fingerprint ascending; no interpolation or future substitution.",
   "coverage_by_market": {
     "1X2": {
       "present": 10280,
@@ -78,7 +78,7 @@
     "alarm_records": 336,
     "checkpoint_schedule_valid": true,
     "future_snapshot_count": 0,
-    "checkpoints_sha256": "ecbded3796fd0636419dd6ad6f23b23e314bd27d0433049b87e07a89e41d2fcb",
+    "checkpoints_sha256": "0b05d5226aea6bf5106a6fb00be975732d00bea5a664a551bd131d2a2a9fcf46",
     "alarms_sha256": "bff1664fb330ffac741ede616940929b0aa71c5d96640c1aeac51e2184aa6dd6"
   }
 }
