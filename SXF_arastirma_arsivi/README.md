@@ -105,3 +105,11 @@
 [**BTTS YES SXF fiyatı, mutlak £ hacmi ve T-8→T-6 para hareketi karşılaştırması**](sinyal_performanslari/SXF_OVER25_Filter_Research_2026-10-09_25_v1.md)
 
 66 orijinal Üst sinyalinden 1'i farklı snapshot kaynakları uyuşmadığı için çapraz piyasa analizinden ayrıldı. Kalan 65 örnekte **BTTS YES SXF >1,60 + Üst £≥2.500** araştırma filtresi **20/22 (%90,9)** isabet gösterdi; sonuç geçmişe yönelik ve yalnızca gölge test hipotezidir. v0.4 motor kuralları değiştirilmedi.
+
+---
+
+## 26 Ekim 2026 — Yeni sohbet için SXF devir dosyası
+
+[**CAPİTALE SXF YENİ SOHBET TAM DEVİR — 26 Ekim 2026**](../../CAPITALE_SXF_YENI_SOHBET_TAM_DEVIR_2026-10-26.md)
+
+Önce bu devir dosyasını, sonra kanonik rol/metodoloji ve orijinal 9–25 Ekim MD/JSON araştırma dosyalarını oku. **Son Üst 2.5 araştırması C1/C2/C3 yalnız gölge test önerisidir; v0.4 üretim metodolojisi değişmedi.** 26 Ekim taramasının tamamlanıp tamamlanmadığını canlı GitHub'dan doğrula.
