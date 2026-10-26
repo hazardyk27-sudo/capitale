@@ -95,3 +95,8 @@ Para üçlüsü sırasıyla T-8 → T-7 → T-6, quoted `odds` aynı sırada. '�
 - **Ekol-3 EARLY_ACCEL = gelecekte gölge takiple değerlendirilecek ARAŞTIRMA HİPOTEZİ**. Mevcut 48 sinyal içinden 34 seçer; kaynak ve sonuç bazlı ayrımlar yeniden arşivlenebilir.
 - **Gelecekte performans**: en az 100 yeni tekil sinyal, yeni T-6 karar anında dondurulmuş 8/7/6 snapshotları, maç/lig/odds dengesi, gerçek oynanabilir oran ve ROI. Hit ≥75–80 sınırı ve ≥2/gün **prospektif** olarak ölçülmeli.
 - Yeni Ekol-3 kuralını geçmiş sonuçlara göre tekrar optimize etmek YOK. SOFT 47/36 sürümü yalnız hacim referansıdır, bir kaybedeni elemesi sağlam iyileşme kanıtı değildir.
+
+
+## Birlikte not alınan SXF geliştirme adayları (2026-10-27)
+
+Kullanıcının isteğiyle bu araştırma adayı, diğer motor adayıyla aynı listede tutuluyor: [OVER_STRONG + EKOL 3 geliştirme adayları](SXF_GELISTIRME_ADAYLARI_OVER25_EKOL3_2026-10-27.md). Bu çapraz referans **aktif motora alma veya kanonik kural değişikliği değildir**.
