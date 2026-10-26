@@ -1,0 +1,595 @@
+{
+  "schema": "SXF_RESEARCH_OUTCOME_V1",
+  "date_tr": "2026-10-16",
+  "original_scan": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1",
+  "original_untouched": true,
+  "normal_time_only": true,
+  "created_at_utc": "2026-10-26T00:28:22.788Z",
+  "counts": {
+    "total": 19,
+    "settled": 19,
+    "unverified": 0
+  },
+  "engine_metrics": {
+    "V1": {
+      "n": 9,
+      "settled": 9,
+      "hits": 7,
+      "draw": 0,
+      "odds_sum": 15.709999999999999,
+      "avg_odds": 1.746,
+      "hit_pct": 77.78
+    },
+    "SURPRISE_TEAM": {
+      "n": 4,
+      "settled": 4,
+      "hits": 1,
+      "draw": 0,
+      "odds_sum": 14.75,
+      "avg_odds": 3.688,
+      "hit_pct": 25
+    },
+    "EARLY_T12": {
+      "n": 4,
+      "settled": 4,
+      "hits": 3,
+      "draw": 0,
+      "odds_sum": 7.91,
+      "avg_odds": 1.978,
+      "hit_pct": 75
+    },
+    "BTTS_YES": {
+      "n": 4,
+      "settled": 4,
+      "hits": 3,
+      "draw": 0,
+      "odds_sum": 7.0600000000000005,
+      "avg_odds": 1.765,
+      "hit_pct": 75
+    },
+    "V2": {
+      "n": 6,
+      "settled": 6,
+      "hits": 4,
+      "draw": 0,
+      "odds_sum": 10.93,
+      "avg_odds": 1.822,
+      "hit_pct": 66.67
+    },
+    "HEAVY": {
+      "n": 3,
+      "settled": 3,
+      "hits": 2,
+      "draw": 0,
+      "odds_sum": 5.92,
+      "avg_odds": 1.973,
+      "hit_pct": 66.67
+    }
+  },
+  "settlements": [
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s001",
+      "fixture_uid": "b5659f2c-d6b4-4539-ae3a-f5aaf58e8402",
+      "kickoff_tr": "17:00",
+      "kickoff_utc": "2026-10-16T14:00:00Z",
+      "home": "Sporting Club Delhi",
+      "away": "Mohun Bagan Super Giants",
+      "market": "1X2",
+      "side": "2",
+      "selection": "Mohun Bagan Super Giants",
+      "engine_tags": [
+        "V1"
+      ],
+      "sxf_odds": 1.4,
+      "score_90m": "1-2",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "1-2",
+        "research_status": "ft",
+        "live_score": "1-2",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s002",
+      "fixture_uid": "25deceb1-a770-4484-bf68-ca7d5ab66b55",
+      "kickoff_tr": "18:00",
+      "kickoff_utc": "2026-10-16T15:00:00Z",
+      "home": "Al Sarhan",
+      "away": "Yarmouk",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "2",
+      "selection": "Yarmouk",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "sxf_odds": 3.2,
+      "score_90m": "1-0",
+      "outcome": "LOSS",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "1-0",
+        "research_status": "ft",
+        "live_score": "1-0",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s003",
+      "fixture_uid": "9e8fdae5-c072-4d1e-bbec-24b53899c565",
+      "kickoff_tr": "18:30",
+      "kickoff_utc": "2026-10-16T15:30:00Z",
+      "home": "MFK Karvina",
+      "away": "Dukla Prague",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "2",
+      "selection": "Dukla Prague",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "sxf_odds": 4.2,
+      "score_90m": "3-0",
+      "outcome": "LOSS",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "3-0",
+        "research_status": "ft",
+        "live_score": "3-0",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s004",
+      "fixture_uid": "49540bbb-dee8-4a4f-b027-1793631ca10a",
+      "kickoff_tr": "18:30",
+      "kickoff_utc": "2026-10-16T15:30:00Z",
+      "home": "NK Aluminij",
+      "away": "Olimpija",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "1",
+      "selection": "NK Aluminij",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "sxf_odds": 4.3,
+      "score_90m": "0-1",
+      "outcome": "LOSS",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "0-1",
+        "research_status": "ft",
+        "live_score": "0-1",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s005",
+      "fixture_uid": "1822ca63-3dba-4556-b09a-7f9fccb61849",
+      "kickoff_tr": "19:30",
+      "kickoff_utc": "2026-10-16T16:30:00Z",
+      "home": "Holstein Kiel",
+      "away": "Hertha Berlin",
+      "market": "1X2",
+      "side": "2",
+      "selection": "Hertha Berlin",
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "sxf_odds": 2.42,
+      "score_90m": "0-0",
+      "outcome": "LOSS",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "0-0",
+        "research_status": "ft",
+        "live_score": "0-0",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s006",
+      "fixture_uid": "013c6e3f-0276-4449-b069-f244c19e0c14",
+      "kickoff_tr": "20:00",
+      "kickoff_utc": "2026-10-16T17:00:00Z",
+      "home": "Brommapojkarna",
+      "away": "Djurgardens",
+      "market": "1X2",
+      "side": "2",
+      "selection": "Djurgardens",
+      "engine_tags": [
+        "V1"
+      ],
+      "sxf_odds": 1.61,
+      "score_90m": "0-2",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "0-2",
+        "research_status": "ft",
+        "live_score": "0-2",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s007",
+      "fixture_uid": "c7c6fab4-2a09-425a-8a3a-c08259569c6d",
+      "kickoff_tr": "20:00",
+      "kickoff_utc": "2026-10-16T17:00:00Z",
+      "home": "IBV",
+      "away": "Hafnarfjordur",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "1",
+      "selection": "IBV",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "sxf_odds": 3.05,
+      "score_90m": "3-1",
+      "outcome": "NONLOSS_WIN",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "3-1",
+        "research_status": "ft",
+        "live_score": "3-1",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s008",
+      "fixture_uid": "908f7e25-865a-479f-87ef-19b658e093c0",
+      "kickoff_tr": "20:30",
+      "kickoff_utc": "2026-10-16T17:30:00Z",
+      "home": "Rapid Vienna",
+      "away": "Hartberg",
+      "market": "BTTS",
+      "side": "Y",
+      "selection": "KG VAR",
+      "engine_tags": [
+        "BTTS_YES"
+      ],
+      "sxf_odds": 1.88,
+      "score_90m": "3-1",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "3-1",
+        "research_status": "ft",
+        "live_score": "3-1",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s009",
+      "fixture_uid": "98f1e068-ef4e-47ec-be38-d1d4236c3507",
+      "kickoff_tr": "21:00",
+      "kickoff_utc": "2026-10-16T18:00:00Z",
+      "home": "Dinamo Bucharest",
+      "away": "Botosani",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Dinamo Bucharest",
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "sxf_odds": 1.5,
+      "score_90m": "2-0",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "2-0",
+        "research_status": "ft",
+        "live_score": "2-0",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s010",
+      "fixture_uid": "96ddd745-5a25-4dee-b68f-eb61de300224",
+      "kickoff_tr": "21:00",
+      "kickoff_utc": "2026-10-16T18:00:00Z",
+      "home": "Guingamp",
+      "away": "Pau",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Guingamp",
+      "engine_tags": [
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "sxf_odds": 2.36,
+      "score_90m": "1-2",
+      "outcome": "LOSS",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "1-2",
+        "research_status": "ft",
+        "live_score": "1-2",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s011",
+      "fixture_uid": "dad92e72-067f-4d92-ba76-6cec65f92297",
+      "kickoff_tr": "21:00",
+      "kickoff_utc": "2026-10-16T18:00:00Z",
+      "home": "Heerenveen",
+      "away": "Excelsior",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Heerenveen",
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "sxf_odds": 1.63,
+      "score_90m": "4-0",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "4-0",
+        "research_status": "ft",
+        "live_score": "4-0",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s012",
+      "fixture_uid": "5b880470-2fc9-4dd1-ac6a-0712cbd07dea",
+      "kickoff_tr": "21:30",
+      "kickoff_utc": "2026-10-16T18:30:00Z",
+      "home": "Ayr",
+      "away": "Partick",
+      "market": "1X2",
+      "side": "2",
+      "selection": "Partick",
+      "engine_tags": [
+        "V1",
+        "V2"
+      ],
+      "sxf_odds": 1.68,
+      "score_90m": "0-1",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "0-1",
+        "research_status": "ft",
+        "live_score": "0-1",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s013",
+      "fixture_uid": "b91d38e4-0679-477c-9f27-bc6eff82bd81",
+      "kickoff_tr": "21:30",
+      "kickoff_utc": "2026-10-16T18:30:00Z",
+      "home": "Eintracht Frankfurt",
+      "away": "FC Koln",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Eintracht Frankfurt",
+      "engine_tags": [
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "sxf_odds": 1.93,
+      "score_90m": "1-0",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "1-0",
+        "research_status": "ft",
+        "live_score": "1-0",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s014",
+      "fixture_uid": "26368836-9c04-4068-91f5-f0d1816de2ae",
+      "kickoff_tr": "21:30",
+      "kickoff_utc": "2026-10-16T18:30:00Z",
+      "home": "Widzew Lodz",
+      "away": "Wisla Krakow",
+      "market": "BTTS",
+      "side": "Y",
+      "selection": "KG VAR",
+      "engine_tags": [
+        "BTTS_YES"
+      ],
+      "sxf_odds": 1.7,
+      "score_90m": "0-0",
+      "outcome": "LOSS",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "0-0",
+        "research_status": "ft",
+        "live_score": "0-0",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s015",
+      "fixture_uid": "137be4c6-199d-4328-9a95-0c3ec9461326",
+      "kickoff_tr": "21:45",
+      "kickoff_utc": "2026-10-16T18:45:00Z",
+      "home": "Bohemians",
+      "away": "Waterford",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Bohemians",
+      "engine_tags": [
+        "V1"
+      ],
+      "sxf_odds": 1.77,
+      "score_90m": "2-1",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "2-1",
+        "research_status": "ft",
+        "live_score": "2-1",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s016",
+      "fixture_uid": "39a4cf99-0b5d-4957-9984-0b7d3eeb2a68",
+      "kickoff_tr": "21:45",
+      "kickoff_utc": "2026-10-16T18:45:00Z",
+      "home": "Galway Utd",
+      "away": "Shamrock Rovers",
+      "market": "1X2",
+      "side": "2",
+      "selection": "Shamrock Rovers",
+      "engine_tags": [
+        "V1",
+        "V2"
+      ],
+      "sxf_odds": 1.83,
+      "score_90m": "2-0",
+      "outcome": "LOSS",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "2-0",
+        "research_status": "ft",
+        "live_score": "2-0",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s017",
+      "fixture_uid": "891b0817-81d7-4203-a225-abf76cea4e69",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-16T19:00:00Z",
+      "home": "Burnley",
+      "away": "Wolves",
+      "market": "BTTS",
+      "side": "Y",
+      "selection": "KG VAR",
+      "engine_tags": [
+        "BTTS_YES"
+      ],
+      "sxf_odds": 1.73,
+      "score_90m": "1-2",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "1-2",
+        "research_status": "ft",
+        "live_score": "1-2",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s018",
+      "fixture_uid": "806fcfc1-7a1b-4db5-a327-05ec4dfd68c7",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-16T19:00:00Z",
+      "home": "Deportivo",
+      "away": "Levante",
+      "market": "BTTS",
+      "side": "Y",
+      "selection": "KG VAR",
+      "engine_tags": [
+        "BTTS_YES"
+      ],
+      "sxf_odds": 1.75,
+      "score_90m": "1-1",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "1-1",
+        "research_status": "ft",
+        "live_score": "1-1",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-s019",
+      "fixture_uid": "93b5b535-7334-4894-92a5-9aa06b5717e4",
+      "kickoff_tr": "23:30",
+      "kickoff_utc": "2026-10-16T20:30:00Z",
+      "home": "CD Los Chankas",
+      "away": "Asociacion Deportiva Tarma",
+      "market": "1X2",
+      "side": "1",
+      "selection": "CD Los Chankas",
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "sxf_odds": 2.36,
+      "score_90m": "2-1",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_DUAL_FT",
+        "research_score": "2-1",
+        "research_status": "ft",
+        "live_score": "2-1",
+        "live_status": "ft",
+        "external_links": [],
+        "conflict": false,
+        "kickoff_mismatch": false
+      }
+    }
+  ]
+}
