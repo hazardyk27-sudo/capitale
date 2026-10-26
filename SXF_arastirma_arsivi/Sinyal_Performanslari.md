@@ -168,3 +168,9 @@ Her hücre yalnız sonuçlanan sinyallerin ortalama oranıdır; `—` ilgili gü
 Bu 17 gün, geçmiş kaynaklardan yeniden oluşturulmuş T-6 araştırmasıdır; gerçek zamanda kilitlenmiş ileriye dönük test değildir. Günlük örneklem sayıları değişir. V1/V2/HEAVY ve CORE/T12 örtüşebilir, başarılarını bağımsız oy gibi toplamak hatalıdır. SURPRISE yenilmeme ölçütü doğrudan kazanma yüzdesinden farklıdır. Az sinyalli motorlarda tek bir maç yüzdeleri ciddi değiştirebilir.
 
 **Makine okunur genel performans:** [Sinyal_Performanslari.json](sinyal_performanslari/Sinyal_Performanslari.json).
+
+---
+
+## Kazanan–kaybeden araştırması
+
+**[Kaybeden sinyallerin ortak özellikleri ve deneysel iyileştirme hipotezleri](sinyal_performanslari/Kazanan_Kaybeden_Analizi_2026-10-09_25_v1.md)** — 463 sonuçlanan seçimde para payı, mutlak para, odds bandı, HEAVY/V2 ayrımı, beraberlik kaynaklı kayıplar ve ilk/son dönem kontrolleri. Mevcut v0.4 eşikleri değiştirilmedi.
