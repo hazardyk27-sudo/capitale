@@ -18,4 +18,4 @@ Orijinal tarihçe alanları (oran, yüzde, GBP miktarı, hacim, kayıt zamanı, 
 
 ## Günler
 
-9–20 Ekim 2026 arşivlendi. Üst düzey index.json her günün kapsamını ve gerçek dosya boyutlarını listeler.
+9–23 Ekim 2026 arşivlendi. Üst düzey index.json her günün maç, sonuç, alarm, kapsama ve dosya boyutu özetini listeler.

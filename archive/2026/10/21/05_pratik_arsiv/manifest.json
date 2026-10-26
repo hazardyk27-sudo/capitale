@@ -1,0 +1,89 @@
+{
+  "archive_name": "PRATİK ARŞİV",
+  "version": "v1",
+  "date": "2026-10-21",
+  "timezone": "Europe/Istanbul",
+  "checkpoint_hours": [
+    72,
+    69,
+    66,
+    63,
+    60,
+    57,
+    54,
+    51,
+    48,
+    45,
+    42,
+    39,
+    36,
+    33,
+    30,
+    27,
+    24,
+    22,
+    20,
+    18,
+    16,
+    14,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "fixtures": 142,
+  "results_present": 142,
+  "results_missing": 0,
+  "market_checkpoint_slots_total": 14484,
+  "market_checkpoint_slots_present": 9298,
+  "market_checkpoint_slots_missing": 5186,
+  "alarms": 107,
+  "fields": "Original market history fields are retained, including source odds, share percentages, GBP amounts, volume, timestamps, row id and fingerprint.",
+  "source": "Supabase research_archive (READ-ONLY)",
+  "source_archive_status": "PARTIAL",
+  "source_archive_notes": "Original daily source manifest is PARTIAL and recorded 141 fixtures at an incremental capture; current research_archive.fixtures contains 142. Current PRATIK uses all 142 fixtures and 142 results. Main history coverage is 1X2 142/142, OU25 142/142, BTTS 141/142; missing checkpoint slots remain explicit.",
+  "missing_policy": "MISSING explicit; latest observation at or before target only; exact fixture_uid preferred for same-time ties, then source_fingerprint ascending; hash fallback used only when fixture hash is unique; no interpolation or future substitution.",
+  "coverage_by_market": {
+    "1X2": {
+      "present": 3185,
+      "missing": 1643
+    },
+    "OU25": {
+      "present": 3195,
+      "missing": 1633
+    },
+    "BTTS": {
+      "present": 2918,
+      "missing": 1910
+    }
+  },
+  "files": {
+    "checkpoints": {
+      "name": "checkpoints.jsonl.gz",
+      "uncompressed_bytes": 3789087,
+      "compressed_bytes": 367477
+    },
+    "alarms": {
+      "name": "alarms.jsonl.gz",
+      "uncompressed_bytes": 68720,
+      "compressed_bytes": 11098
+    }
+  },
+  "integrity": {
+    "fixture_records": 142,
+    "alarm_records": 107,
+    "checkpoint_schedule_valid": true,
+    "future_snapshot_count": 0,
+    "selected_present_market_rows": 9298,
+    "checkpoints_sha256": "89379e1582875cf6b69ddb6e88da20e5f2fb002c3c85e9831da961ea031c6035",
+    "alarms_sha256": "bbb77fcafa7eb689723741cdf57e400b717605f95000f0b682a0124819ca55ce"
+  }
+}

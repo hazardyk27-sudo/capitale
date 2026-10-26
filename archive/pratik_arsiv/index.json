@@ -338,10 +338,88 @@
       },
       "results_present": 135,
       "results_missing": 4
+    },
+    {
+      "date": "2026-10-21",
+      "fixtures": 142,
+      "results_present": 142,
+      "results_missing": 0,
+      "alarms": 107,
+      "checkpoint_bytes": 367477,
+      "alarm_bytes": 11098,
+      "total_bytes": 378575,
+      "uncompressed_bytes": 3857807,
+      "coverage": {
+        "1X2": {
+          "present": 3185,
+          "missing": 1643
+        },
+        "OU25": {
+          "present": 3195,
+          "missing": 1633
+        },
+        "BTTS": {
+          "present": 2918,
+          "missing": 1910
+        }
+      },
+      "source_archive_status": "PARTIAL"
+    },
+    {
+      "date": "2026-10-22",
+      "fixtures": 129,
+      "results_present": 129,
+      "results_missing": 0,
+      "alarms": 160,
+      "checkpoint_bytes": 394314,
+      "alarm_bytes": 14780,
+      "total_bytes": 409094,
+      "uncompressed_bytes": 3718979,
+      "coverage": {
+        "1X2": {
+          "present": 3200,
+          "missing": 1186
+        },
+        "OU25": {
+          "present": 3177,
+          "missing": 1209
+        },
+        "BTTS": {
+          "present": 2868,
+          "missing": 1518
+        }
+      },
+      "source_archive_status": "PARTIAL"
+    },
+    {
+      "date": "2026-10-23",
+      "fixtures": 230,
+      "results_present": 229,
+      "results_missing": 1,
+      "alarms": 171,
+      "checkpoint_bytes": 602604,
+      "alarm_bytes": 19113,
+      "total_bytes": 621717,
+      "uncompressed_bytes": 6403930,
+      "coverage": {
+        "1X2": {
+          "present": 5654,
+          "missing": 2166
+        },
+        "OU25": {
+          "present": 5694,
+          "missing": 2126
+        },
+        "BTTS": {
+          "present": 4848,
+          "missing": 2972
+        }
+      },
+      "source_archive_status": "PARTIAL"
     }
   ],
-  "total_fixtures": 3079,
-  "total_alarm_records": 2563,
-  "total_compressed_bytes": 8713363,
-  "total_uncompressed_bytes": 88957399
+  "total_fixtures": 3580,
+  "total_alarm_records": 3001,
+  "total_compressed_bytes": 10122749,
+  "total_uncompressed_bytes": 102938115
 }
