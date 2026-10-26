@@ -1,0 +1,116 @@
+{
+  "archive_name": "PRATİK ARŞİV",
+  "version": "v1",
+  "timezone": "Europe/Istanbul",
+  "checkpoint_hours": [
+    72,
+    69,
+    66,
+    63,
+    60,
+    57,
+    54,
+    51,
+    48,
+    45,
+    42,
+    39,
+    36,
+    33,
+    30,
+    27,
+    24,
+    22,
+    20,
+    18,
+    16,
+    14,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "days": [
+    {
+      "date": "2026-10-09",
+      "fixtures": 260,
+      "alarms": 162,
+      "checkpoint_bytes": 701110,
+      "alarm_bytes": 16228,
+      "total_bytes": 717338,
+      "uncompressed_bytes": 7332548,
+      "coverage": {
+        "1X2": {
+          "present": 6716,
+          "missing": 2124
+        },
+        "OU25": {
+          "present": 6723,
+          "missing": 2117
+        },
+        "BTTS": {
+          "present": 5762,
+          "missing": 3078
+        }
+      }
+    },
+    {
+      "date": "2026-10-10",
+      "fixtures": 455,
+      "alarms": 376,
+      "checkpoint_bytes": 1333601,
+      "alarm_bytes": 35315,
+      "total_bytes": 1368916,
+      "uncompressed_bytes": 13416222,
+      "coverage": {
+        "1X2": {
+          "present": 12995,
+          "missing": 2475
+        },
+        "OU25": {
+          "present": 13067,
+          "missing": 2403
+        },
+        "BTTS": {
+          "present": 10270,
+          "missing": 5200
+        }
+      }
+    },
+    {
+      "date": "2026-10-11",
+      "fixtures": 334,
+      "alarms": 336,
+      "checkpoint_bytes": 1018575,
+      "alarm_bytes": 32624,
+      "total_bytes": 1051199,
+      "uncompressed_bytes": 10200115,
+      "coverage": {
+        "1X2": {
+          "present": 10280,
+          "missing": 1076
+        },
+        "OU25": {
+          "present": 10248,
+          "missing": 1108
+        },
+        "BTTS": {
+          "present": 8338,
+          "missing": 3018
+        }
+      }
+    }
+  ],
+  "total_fixtures": 1049,
+  "total_alarm_records": 874,
+  "total_compressed_bytes": 3137453,
+  "total_uncompressed_bytes": 30948885
+}

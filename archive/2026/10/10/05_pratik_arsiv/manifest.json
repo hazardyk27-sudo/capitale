@@ -1,0 +1,84 @@
+{
+  "archive_name": "PRATİK ARŞİV",
+  "version": "v1",
+  "date": "2026-10-10",
+  "timezone": "Europe/Istanbul",
+  "checkpoint_hours": [
+    72,
+    69,
+    66,
+    63,
+    60,
+    57,
+    54,
+    51,
+    48,
+    45,
+    42,
+    39,
+    36,
+    33,
+    30,
+    27,
+    24,
+    22,
+    20,
+    18,
+    16,
+    14,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "fixtures": 455,
+  "market_checkpoint_slots_total": 46410,
+  "market_checkpoint_slots_present": 36332,
+  "market_checkpoint_slots_missing": 10078,
+  "alarms": 376,
+  "fields": "Original market history fields retained, including odds, percentage, GBP amounts, volume, capture timestamps, source row id and fingerprint.",
+  "files": {
+    "checkpoints": {
+      "name": "checkpoints.jsonl.gz",
+      "uncompressed_bytes": 13185851,
+      "compressed_bytes": 1333601
+    },
+    "alarms": {
+      "name": "alarms.jsonl.gz",
+      "uncompressed_bytes": 230371,
+      "compressed_bytes": 35315
+    }
+  },
+  "source": "Supabase research_archive (READ-ONLY)",
+  "missing_policy": "MISSING explicit; latest observation at or before target only; no interpolation or future substitution.",
+  "coverage_by_market": {
+    "1X2": {
+      "present": 12995,
+      "missing": 2475
+    },
+    "OU25": {
+      "present": 13067,
+      "missing": 2403
+    },
+    "BTTS": {
+      "present": 10270,
+      "missing": 5200
+    }
+  },
+  "integrity": {
+    "fixture_records": 455,
+    "alarm_records": 376,
+    "checkpoint_schedule_valid": true,
+    "future_snapshot_count": 0,
+    "checkpoints_sha256": "cf58ec9edfcf1e64110fcbbf19be93ccb7b624e8abd096ea8fa15ff78e9b6c33",
+    "alarms_sha256": "e354453656ecc39f687ffe3b49f4a282cbded32a5c27003e15bc7a094949daf1"
+  }
+}
