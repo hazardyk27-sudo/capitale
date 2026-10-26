@@ -40,7 +40,7 @@ Mevcut STABLE: 24/33 (%72,7), PREMIUM: 24/33 (%72,7). Daha yüksek pay ve para a
 **C2 filtresinden kaçan iki mağlubiyet:**
 
 - **9 Ekim, West Ham – QPR, 1–1.** Üst SXF 1,57, £5.242,42; BTTS YES SXF 1,74. [West Ham resmî maç raporu](https://www.whufc.com/en/news/match-report-or-qpr-draw-a-tale-of-two-penalties).
-- **24 Ekim, FC Utrecht – PEC Zwolle, 1–1.** Üst SXF 1,58, £4.013,04; BTTS YES SXF 1,62. [Utrecht sezon maç kaydı](https://en.wikipedia.org/wiki/2026%E2%80%9327_FC_Utrecht_season).
+- **24 Ekim, FC Utrecht – PEC Zwolle, 1–1.** Üst SXF 1,58, £4.013,04; BTTS YES SXF 1,62. [Utrecht sezon maç kaydı](https://www.fcutrecht.nl/nieuws/2026/oktober/gelijkspel-tegen-pec-zwolle/).
 
 Üst sinyali doğru çıksa bile iki takımın beraberliğe veya 1-0/2-0 gibi skorlara gitme eğilimi yalnız KG VAR fiyatından türetilemez. Yeni bir kural tasarlanacaksa BTTS YES'in **orandan ziyade T-8/T-6 para tutarlılığı ve seçiminin tamlığı** da takip edilmelidir.
 
