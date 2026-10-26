@@ -70,3 +70,16 @@
 | **TOPLAM** | **596** | **456** | **108** | **115** | **216** | — | — |
 
 **23–24 Ekim kaynak açıklaması:** 23 Ekim ham arşiv sorgusu zaman aşımına takıldığı, 24 Ekim araştırma arşivi yalnız 5 fikstürü kapsadığı için daha geniş `public.moneyway_snapshots` salt-okunur kaynağı kullanıldı. Canlı DYNAMIC_AS_OF_V04 ile aynı araştırma değildir.
+
+---
+
+## 5. Parti: 25–26 Ekim 2026
+
+[25 Ekim tamamlandı / 26 Ekim T-6 zamanı bekleniyor](2026/10/README_25_26.md)
+
+| Tarih | Durum | Maç | Sinyalli | Seçim | Motor etiketi |
+|---|---|---:|---:|---:|---:|
+| 25.10.2026 | `RECONSTRUCTED_ARCHIVED` | 188 | 38 | 39 | 78 |
+| 26.10.2026 | `PENDING_ASOF_NOT_REACHED` (03:03 TSİ) | 66 aday fikstür | — | — | — |
+
+**26 Ekim: 0 sinyal değil, karar noktaları henüz gelmedi.** İlk T-8 08:00, ilk T-6 10:00, son T-6 17:45 TSİ. Bugünün taramasının tamamlandığı iddia edilmez.
