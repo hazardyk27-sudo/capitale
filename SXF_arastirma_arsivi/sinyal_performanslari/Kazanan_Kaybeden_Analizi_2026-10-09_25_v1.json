@@ -1,0 +1,899 @@
+{
+  "schema_version": "SXF_WINNER_LOSER_RESEARCH_V1",
+  "generated_at_utc": "2026-10-26T01:06:22.320Z",
+  "period": "2026-10-09/2026-10-25",
+  "source_files": [
+    "SXF_arastirma_arsivi/sinyal_performanslari/loss_features_2026-10-09_16_v1.json",
+    "SXF_arastirma_arsivi/sinyal_performanslari/loss_features_2026-10-17_25_v1.json"
+  ],
+  "method": "Postmatch comparative descriptive research using only pre-decision signal fields; separate 90-minute FT outcome linked by selection_id. Chronological split 09-16 and 17-25, NOT genuine prospective holdout.",
+  "no_canonical_rule_change": true,
+  "status": "EXPLORATORY_DRAFT_SHADOW_HYPOTHESES",
+  "quality": {
+    "records": 464,
+    "settled": 463,
+    "unverified": [
+      {
+        "date": "2026-10-15",
+        "match": "Sportivo Luqueno – Cerro Porteno"
+      }
+    ],
+    "distinctFixtureDate": 417,
+    "earlyPeriodCount": 197,
+    "laterPeriodCount": 266
+  },
+  "market_summary": {
+    "1X2": {
+      "n": 259,
+      "win": 167,
+      "lose": 92,
+      "hit_pct": 64.48,
+      "avg_odds": 1.801,
+      "avg_gbp": 45000.6,
+      "avg_share": 84.39
+    },
+    "OVER_2_5": {
+      "n": 66,
+      "win": 48,
+      "lose": 18,
+      "hit_pct": 72.73,
+      "avg_odds": 1.591,
+      "avg_gbp": 4821,
+      "avg_share": 82.58
+    },
+    "BTTS": {
+      "n": 41,
+      "win": 29,
+      "lose": 12,
+      "hit_pct": 70.73,
+      "avg_odds": 1.742,
+      "avg_gbp": 4055.1,
+      "avg_share": 79.7
+    },
+    "SURPRISE_NONLOSS_RISK": {
+      "n": 97,
+      "win": 60,
+      "lose": 37,
+      "hit_pct": 61.86,
+      "avg_odds": 3.334,
+      "avg_gbp": 964.2,
+      "avg_share": 66.75
+    }
+  },
+  "winner_loser_means": {
+    "one_x_two": {
+      "winners": {
+        "n": 167,
+        "win": 167,
+        "lose": 0,
+        "hit_pct": 100,
+        "avg_odds": 1.747,
+        "avg_gbp": 49628.1,
+        "avg_share": 84.24
+      },
+      "losers": {
+        "n": 92,
+        "win": 0,
+        "lose": 92,
+        "hit_pct": 0,
+        "avg_odds": 1.898,
+        "avg_gbp": 36600.8,
+        "avg_share": 84.67
+      }
+    },
+    "over": {
+      "winners": {
+        "n": 48,
+        "win": 48,
+        "lose": 0,
+        "hit_pct": 100,
+        "avg_odds": 1.6,
+        "avg_gbp": 5388.1,
+        "avg_share": 82.59
+      },
+      "losers": {
+        "n": 18,
+        "win": 0,
+        "lose": 18,
+        "hit_pct": 0,
+        "avg_odds": 1.566,
+        "avg_gbp": 3308.8,
+        "avg_share": 82.56
+      }
+    },
+    "btts": {
+      "winners": {
+        "n": 29,
+        "win": 29,
+        "lose": 0,
+        "hit_pct": 100,
+        "avg_odds": 1.732,
+        "avg_gbp": 4315.2,
+        "avg_share": 80.67
+      },
+      "losers": {
+        "n": 12,
+        "win": 0,
+        "lose": 12,
+        "hit_pct": 0,
+        "avg_odds": 1.768,
+        "avg_gbp": 3426.3,
+        "avg_share": 77.35
+      }
+    },
+    "surprise": {
+      "winners": {
+        "n": 60,
+        "win": 60,
+        "lose": 0,
+        "hit_pct": 100,
+        "avg_odds": 3.3,
+        "avg_gbp": 789.8,
+        "avg_share": 64.95
+      },
+      "losers": {
+        "n": 37,
+        "win": 0,
+        "lose": 37,
+        "hit_pct": 0,
+        "avg_odds": 3.39,
+        "avg_gbp": 1246.9,
+        "avg_share": 69.66
+      }
+    }
+  },
+  "comparisons": {
+    "v1_heavy": {
+      "kept": {
+        "n": 68,
+        "win": 49,
+        "lose": 19,
+        "hit_pct": 72.06,
+        "avg_odds": 1.753,
+        "avg_gbp": 90592.8,
+        "avg_share": 85.27
+      },
+      "other": {
+        "n": 116,
+        "win": 68,
+        "lose": 48,
+        "hit_pct": 58.62,
+        "avg_odds": 1.77,
+        "avg_gbp": 3373.9,
+        "avg_share": 88.58
+      },
+      "first": {
+        "kept": {
+          "n": 23,
+          "win": 18,
+          "lose": 5,
+          "hit_pct": 78.26,
+          "avg_odds": 1.849,
+          "avg_gbp": 83388.4,
+          "avg_share": 86.23
+        },
+        "other": {
+          "n": 46,
+          "win": 33,
+          "lose": 13,
+          "hit_pct": 71.74,
+          "avg_odds": 1.734,
+          "avg_gbp": 3556.7,
+          "avg_share": 88.81
+        }
+      },
+      "later": {
+        "kept": {
+          "n": 45,
+          "win": 31,
+          "lose": 14,
+          "hit_pct": 68.89,
+          "avg_odds": 1.704,
+          "avg_gbp": 94275,
+          "avg_share": 84.78
+        },
+        "other": {
+          "n": 70,
+          "win": 35,
+          "lose": 35,
+          "hit_pct": 50,
+          "avg_odds": 1.794,
+          "avg_gbp": 3253.8,
+          "avg_share": 88.43
+        }
+      }
+    },
+    "v1_heavy_same_odds_under_2": {
+      "kept": {
+        "n": 53,
+        "win": 41,
+        "lose": 12,
+        "hit_pct": 77.36,
+        "avg_odds": 1.635,
+        "avg_gbp": 100620.9,
+        "avg_share": 85.05
+      },
+      "other": {
+        "n": 91,
+        "win": 56,
+        "lose": 35,
+        "hit_pct": 61.54,
+        "avg_odds": 1.656,
+        "avg_gbp": 3517.7,
+        "avg_share": 89.38
+      },
+      "first": {
+        "kept": {
+          "n": 16,
+          "win": 14,
+          "lose": 2,
+          "hit_pct": 87.5,
+          "avg_odds": 1.679,
+          "avg_gbp": 98927.3,
+          "avg_share": 85.4
+        },
+        "other": {
+          "n": 36,
+          "win": 27,
+          "lose": 9,
+          "hit_pct": 75,
+          "avg_odds": 1.624,
+          "avg_gbp": 3632.6,
+          "avg_share": 89.52
+        }
+      },
+      "later": {
+        "kept": {
+          "n": 37,
+          "win": 27,
+          "lose": 10,
+          "hit_pct": 72.97,
+          "avg_odds": 1.616,
+          "avg_gbp": 101353.2,
+          "avg_share": 84.9
+        },
+        "other": {
+          "n": 55,
+          "win": 29,
+          "lose": 26,
+          "hit_pct": 52.73,
+          "avg_odds": 1.677,
+          "avg_gbp": 3442.5,
+          "avg_share": 89.28
+        }
+      }
+    },
+    "v1_heavy_odds_under_2_vs_all_v1": {
+      "kept": {
+        "n": 53,
+        "win": 41,
+        "lose": 12,
+        "hit_pct": 77.36,
+        "avg_odds": 1.635,
+        "avg_gbp": 100620.9,
+        "avg_share": 85.05
+      },
+      "other": {
+        "n": 131,
+        "win": 76,
+        "lose": 55,
+        "hit_pct": 58.02,
+        "avg_odds": 1.816,
+        "avg_gbp": 9303.7,
+        "avg_share": 88.29
+      },
+      "first": {
+        "kept": {
+          "n": 16,
+          "win": 14,
+          "lose": 2,
+          "hit_pct": 87.5,
+          "avg_odds": 1.679,
+          "avg_gbp": 98927.3,
+          "avg_share": 85.4
+        },
+        "other": {
+          "n": 53,
+          "win": 37,
+          "lose": 16,
+          "hit_pct": 69.81,
+          "avg_odds": 1.801,
+          "avg_gbp": 9409.5,
+          "avg_share": 88.72
+        }
+      },
+      "later": {
+        "kept": {
+          "n": 37,
+          "win": 27,
+          "lose": 10,
+          "hit_pct": 72.97,
+          "avg_odds": 1.616,
+          "avg_gbp": 101353.2,
+          "avg_share": 84.9
+        },
+        "other": {
+          "n": 78,
+          "win": 39,
+          "lose": 39,
+          "hit_pct": 50,
+          "avg_odds": 1.827,
+          "avg_gbp": 9231.7,
+          "avg_share": 87.99
+        }
+      }
+    },
+    "v1_odds_2_or_more": {
+      "kept": {
+        "n": 40,
+        "win": 20,
+        "lose": 20,
+        "hit_pct": 50,
+        "avg_odds": 2.18,
+        "avg_gbp": 22466.7,
+        "avg_share": 85.81
+      },
+      "other": {
+        "n": 144,
+        "win": 97,
+        "lose": 47,
+        "hit_pct": 67.36,
+        "avg_odds": 1.648,
+        "avg_gbp": 39257.1,
+        "avg_share": 87.79
+      },
+      "first": {
+        "kept": {
+          "n": 17,
+          "win": 10,
+          "lose": 7,
+          "hit_pct": 58.82,
+          "avg_odds": 2.174,
+          "avg_gbp": 21642.9,
+          "avg_share": 87.02
+        },
+        "other": {
+          "n": 52,
+          "win": 41,
+          "lose": 11,
+          "hit_pct": 78.85,
+          "avg_odds": 1.641,
+          "avg_gbp": 32954.1,
+          "avg_share": 88.26
+        }
+      },
+      "later": {
+        "kept": {
+          "n": 23,
+          "win": 10,
+          "lose": 13,
+          "hit_pct": 43.48,
+          "avg_odds": 2.185,
+          "avg_gbp": 23075.6,
+          "avg_share": 84.92
+        },
+        "other": {
+          "n": 92,
+          "win": 56,
+          "lose": 36,
+          "hit_pct": 60.87,
+          "avg_odds": 1.652,
+          "avg_gbp": 42819.6,
+          "avg_share": 87.52
+        }
+      }
+    },
+    "v1_share_at_least_95": {
+      "kept": {
+        "n": 20,
+        "win": 9,
+        "lose": 11,
+        "hit_pct": 45,
+        "avg_odds": 1.708,
+        "avg_gbp": 6055.8,
+        "avg_share": 96.44
+      },
+      "other": {
+        "n": 164,
+        "win": 108,
+        "lose": 56,
+        "hit_pct": 65.85,
+        "avg_odds": 1.771,
+        "avg_gbp": 39210.8,
+        "avg_share": 86.25
+      },
+      "first": {
+        "kept": {
+          "n": 9,
+          "win": 6,
+          "lose": 3,
+          "hit_pct": 66.67,
+          "avg_odds": 1.667,
+          "avg_gbp": 7693.8,
+          "avg_share": 96.84
+        },
+        "other": {
+          "n": 60,
+          "win": 45,
+          "lose": 15,
+          "hit_pct": 75,
+          "avg_odds": 1.788,
+          "avg_gbp": 33538.3,
+          "avg_share": 86.62
+        }
+      },
+      "later": {
+        "kept": {
+          "n": 11,
+          "win": 3,
+          "lose": 8,
+          "hit_pct": 27.27,
+          "avg_odds": 1.742,
+          "avg_gbp": 4715.6,
+          "avg_share": 96.11
+        },
+        "other": {
+          "n": 104,
+          "win": 63,
+          "lose": 41,
+          "hit_pct": 60.58,
+          "avg_odds": 1.761,
+          "avg_gbp": 42483.4,
+          "avg_share": 86.04
+        }
+      }
+    },
+    "v1_share_95_and_money_under_10k": {
+      "kept": {
+        "n": 18,
+        "win": 7,
+        "lose": 11,
+        "hit_pct": 38.89,
+        "avg_odds": 1.709,
+        "avg_gbp": 3205.9,
+        "avg_share": 96.46
+      },
+      "other": {
+        "n": 166,
+        "win": 110,
+        "lose": 56,
+        "hit_pct": 66.27,
+        "avg_odds": 1.77,
+        "avg_gbp": 39120.3,
+        "avg_share": 86.37
+      },
+      "first": {
+        "kept": {
+          "n": 8,
+          "win": 5,
+          "lose": 3,
+          "hit_pct": 62.5,
+          "avg_odds": 1.671,
+          "avg_gbp": 3249.9,
+          "avg_share": 97.04
+        },
+        "other": {
+          "n": 61,
+          "win": 46,
+          "lose": 15,
+          "hit_pct": 75.41,
+          "avg_odds": 1.786,
+          "avg_gbp": 33697.4,
+          "avg_share": 86.76
+        }
+      },
+      "later": {
+        "kept": {
+          "n": 10,
+          "win": 2,
+          "lose": 8,
+          "hit_pct": 20,
+          "avg_odds": 1.739,
+          "avg_gbp": 3170.7,
+          "avg_share": 95.99
+        },
+        "other": {
+          "n": 105,
+          "win": 64,
+          "lose": 41,
+          "hit_pct": 60.95,
+          "avg_odds": 1.761,
+          "avg_gbp": 42270.8,
+          "avg_share": 86.14
+        }
+      }
+    },
+    "v1_v2": {
+      "kept": {
+        "n": 144,
+        "win": 90,
+        "lose": 54,
+        "hit_pct": 62.5,
+        "avg_odds": 1.75,
+        "avg_gbp": 40135,
+        "avg_share": 87.23
+      },
+      "other": {
+        "n": 40,
+        "win": 27,
+        "lose": 13,
+        "hit_pct": 67.5,
+        "avg_odds": 1.813,
+        "avg_gbp": 19306.1,
+        "avg_share": 87.83
+      },
+      "first": {
+        "kept": {
+          "n": 49,
+          "win": 37,
+          "lose": 12,
+          "hit_pct": 75.51,
+          "avg_odds": 1.752,
+          "avg_gbp": 33772.1,
+          "avg_share": 87.97
+        },
+        "other": {
+          "n": 20,
+          "win": 14,
+          "lose": 6,
+          "hit_pct": 70,
+          "avg_odds": 1.823,
+          "avg_gbp": 21335.4,
+          "avg_share": 87.91
+        }
+      },
+      "later": {
+        "kept": {
+          "n": 95,
+          "win": 53,
+          "lose": 42,
+          "hit_pct": 55.79,
+          "avg_odds": 1.749,
+          "avg_gbp": 43416.9,
+          "avg_share": 86.84
+        },
+        "other": {
+          "n": 20,
+          "win": 13,
+          "lose": 7,
+          "hit_pct": 65,
+          "avg_odds": 1.804,
+          "avg_gbp": 17276.8,
+          "avg_share": 87.74
+        }
+      }
+    },
+    "v2_window_min_at_least_90": {
+      "kept": {
+        "n": 28,
+        "win": 12,
+        "lose": 16,
+        "hit_pct": 42.86,
+        "avg_odds": 1.751,
+        "avg_gbp": 7099.3,
+        "avg_share": 94.57
+      },
+      "other": {
+        "n": 116,
+        "win": 78,
+        "lose": 38,
+        "hit_pct": 67.24,
+        "avg_odds": 1.75,
+        "avg_gbp": 48109.1,
+        "avg_share": 85.45
+      },
+      "first": {
+        "kept": {
+          "n": 14,
+          "win": 9,
+          "lose": 5,
+          "hit_pct": 64.29,
+          "avg_odds": 1.767,
+          "avg_gbp": 9814.2,
+          "avg_share": 94.34
+        },
+        "other": {
+          "n": 35,
+          "win": 28,
+          "lose": 7,
+          "hit_pct": 80,
+          "avg_odds": 1.746,
+          "avg_gbp": 43355.3,
+          "avg_share": 85.42
+        }
+      },
+      "later": {
+        "kept": {
+          "n": 14,
+          "win": 3,
+          "lose": 11,
+          "hit_pct": 21.43,
+          "avg_odds": 1.734,
+          "avg_gbp": 4384.5,
+          "avg_share": 94.79
+        },
+        "other": {
+          "n": 81,
+          "win": 50,
+          "lose": 31,
+          "hit_pct": 61.73,
+          "avg_odds": 1.752,
+          "avg_gbp": 50163.3,
+          "avg_share": 85.47
+        }
+      }
+    },
+    "all_1x2_share_95": {
+      "kept": {
+        "n": 22,
+        "win": 10,
+        "lose": 12,
+        "hit_pct": 45.45,
+        "avg_odds": 1.783,
+        "avg_gbp": 6185,
+        "avg_share": 96.52
+      },
+      "other": {
+        "n": 237,
+        "win": 157,
+        "lose": 80,
+        "hit_pct": 66.24,
+        "avg_odds": 1.802,
+        "avg_gbp": 48603.8,
+        "avg_share": 83.27
+      },
+      "first": {
+        "kept": {
+          "n": 11,
+          "win": 7,
+          "lose": 4,
+          "hit_pct": 63.64,
+          "avg_odds": 1.824,
+          "avg_gbp": 7654.4,
+          "avg_share": 96.93
+        },
+        "other": {
+          "n": 98,
+          "win": 72,
+          "lose": 26,
+          "hit_pct": 73.47,
+          "avg_odds": 1.832,
+          "avg_gbp": 53870.8,
+          "avg_share": 82.31
+        }
+      },
+      "later": {
+        "kept": {
+          "n": 11,
+          "win": 3,
+          "lose": 8,
+          "hit_pct": 27.27,
+          "avg_odds": 1.742,
+          "avg_gbp": 4715.6,
+          "avg_share": 96.11
+        },
+        "other": {
+          "n": 139,
+          "win": 85,
+          "lose": 54,
+          "hit_pct": 61.15,
+          "avg_odds": 1.782,
+          "avg_gbp": 44890.4,
+          "avg_share": 83.94
+        }
+      }
+    },
+    "surprise_money_at_least_1000": {
+      "kept": {
+        "n": 15,
+        "win": 6,
+        "lose": 9,
+        "hit_pct": 40,
+        "avg_odds": 3.276,
+        "avg_gbp": 5203.2,
+        "avg_share": 68.19
+      },
+      "other": {
+        "n": 82,
+        "win": 54,
+        "lose": 28,
+        "hit_pct": 65.85,
+        "avg_odds": 3.345,
+        "avg_gbp": 188.7,
+        "avg_share": 66.48
+      },
+      "first": {
+        "kept": {
+          "n": 5,
+          "win": 2,
+          "lose": 3,
+          "hit_pct": 40,
+          "avg_odds": 3.304,
+          "avg_gbp": 6376.9,
+          "avg_share": 69.62
+        },
+        "other": {
+          "n": 32,
+          "win": 21,
+          "lose": 11,
+          "hit_pct": 65.63,
+          "avg_odds": 3.372,
+          "avg_gbp": 148.5,
+          "avg_share": 66.25
+        }
+      },
+      "later": {
+        "kept": {
+          "n": 10,
+          "win": 4,
+          "lose": 6,
+          "hit_pct": 40,
+          "avg_odds": 3.262,
+          "avg_gbp": 4616.4,
+          "avg_share": 67.48
+        },
+        "other": {
+          "n": 50,
+          "win": 33,
+          "lose": 17,
+          "hit_pct": 66,
+          "avg_odds": 3.327,
+          "avg_gbp": 214.5,
+          "avg_share": 66.63
+        }
+      }
+    },
+    "surprise_share_at_least_80": {
+      "kept": {
+        "n": 19,
+        "win": 9,
+        "lose": 10,
+        "hit_pct": 47.37,
+        "avg_odds": 3.339,
+        "avg_gbp": 1463.3,
+        "avg_share": 89.12
+      },
+      "other": {
+        "n": 78,
+        "win": 51,
+        "lose": 27,
+        "hit_pct": 65.38,
+        "avg_odds": 3.333,
+        "avg_gbp": 842.6,
+        "avg_share": 61.3
+      },
+      "first": {
+        "kept": {
+          "n": 8,
+          "win": 2,
+          "lose": 6,
+          "hit_pct": 25,
+          "avg_odds": 3.518,
+          "avg_gbp": 607.6,
+          "avg_share": 89.96
+        },
+        "other": {
+          "n": 29,
+          "win": 21,
+          "lose": 8,
+          "hit_pct": 72.41,
+          "avg_odds": 3.32,
+          "avg_gbp": 1095.7,
+          "avg_share": 60.29
+        }
+      },
+      "later": {
+        "kept": {
+          "n": 11,
+          "win": 7,
+          "lose": 4,
+          "hit_pct": 63.64,
+          "avg_odds": 3.21,
+          "avg_gbp": 2085.6,
+          "avg_share": 88.5
+        },
+        "other": {
+          "n": 49,
+          "win": 30,
+          "lose": 19,
+          "hit_pct": 61.22,
+          "avg_odds": 3.34,
+          "avg_gbp": 692.8,
+          "avg_share": 61.89
+        }
+      }
+    },
+    "over_premium": {
+      "kept": {
+        "n": 33,
+        "win": 24,
+        "lose": 9,
+        "hit_pct": 72.73,
+        "avg_odds": 1.577,
+        "avg_gbp": 6746,
+        "avg_share": 86.73
+      },
+      "other": {
+        "n": 33,
+        "win": 24,
+        "lose": 9,
+        "hit_pct": 72.73,
+        "avg_odds": 1.605,
+        "avg_gbp": 2896.1,
+        "avg_share": 78.44
+      },
+      "first": {
+        "kept": {
+          "n": 15,
+          "win": 10,
+          "lose": 5,
+          "hit_pct": 66.67,
+          "avg_odds": 1.583,
+          "avg_gbp": 5794.2,
+          "avg_share": 87.85
+        },
+        "other": {
+          "n": 16,
+          "win": 15,
+          "lose": 1,
+          "hit_pct": 93.75,
+          "avg_odds": 1.599,
+          "avg_gbp": 3039.2,
+          "avg_share": 78.76
+        }
+      },
+      "later": {
+        "kept": {
+          "n": 18,
+          "win": 14,
+          "lose": 4,
+          "hit_pct": 77.78,
+          "avg_odds": 1.572,
+          "avg_gbp": 7539.2,
+          "avg_share": 85.8
+        },
+        "other": {
+          "n": 17,
+          "win": 9,
+          "lose": 8,
+          "hit_pct": 52.94,
+          "avg_odds": 1.611,
+          "avg_gbp": 2761.4,
+          "avg_share": 78.14
+        }
+      }
+    }
+  },
+  "loss_types": {
+    "all_1x2": {
+      "wins": 167,
+      "draws": 53,
+      "opponentWins": 39
+    },
+    "v1": {
+      "wins": 117,
+      "draws": 41,
+      "opponentWins": 26
+    },
+    "heavy": {
+      "wins": 49,
+      "draws": 12,
+      "opponentWins": 7
+    },
+    "nonheavy": {
+      "wins": 68,
+      "draws": 29,
+      "opponentWins": 19
+    }
+  },
+  "limitations": [
+    "Thresholds were examined with known results. In-sample differences are subject to selection bias/multiple testing and do not establish a reliable predictive improvement.",
+    "Odds and liquidity are associated with baseline selection difficulty. Correlation is not causation.",
+    "Same fixture may appear in more than one independent market, and V1/V2/HEAVY/CORE/T12 may share evidence.",
+    "SXF odds are not execution prices. Only hit percentage investigated; ROI and units not computed.",
+    "Most original scores FT from SXF stored results, not independently web-verified for all 418 fixtures.",
+    "13 Oct Poland Women-Belgium Women uses 90-minute score; 15 Oct Sportivo Luqueno-Cerro Porteno UNVERIFIED is excluded.",
+    "T8 to T6 changes available for only early source formats, 17-25 source snapshot does not preserve comparable T8 per signal.",
+    "No model has been prospectively validated or calibrated."
+  ]
+}
