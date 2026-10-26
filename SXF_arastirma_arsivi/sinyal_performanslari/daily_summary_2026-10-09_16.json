@@ -1,0 +1,1150 @@
+{
+  "schema_version": "SXF_PERFORMANCE_SEGMENT_V1",
+  "period": "2026-10-09/2026-10-16",
+  "method": "Separate 90m outcome files; engine labels overlap and are not independent bets",
+  "days": [
+    {
+      "date": "2026-10-09",
+      "source_file": "SXF_arastirma_arsivi/2026/10/09/sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-outcome-v1.json",
+      "signals": 24,
+      "settled": 24,
+      "unverified": [],
+      "unique_fixtures": 20,
+      "engine": {
+        "EARLY_CORE": {
+          "signals": 2,
+          "settled": 2,
+          "hits": 0,
+          "misses": 2,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 2.9,
+          "odds_settled_sum": 2.9
+        },
+        "EARLY_T12": {
+          "signals": 4,
+          "settled": 4,
+          "hits": 1,
+          "misses": 3,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 6.54,
+          "odds_settled_sum": 6.54
+        },
+        "V1": {
+          "signals": 10,
+          "settled": 10,
+          "hits": 8,
+          "misses": 2,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 17.22,
+          "odds_settled_sum": 17.22
+        },
+        "V2": {
+          "signals": 7,
+          "settled": 7,
+          "hits": 6,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 11.45,
+          "odds_settled_sum": 11.45
+        },
+        "HEAVY": {
+          "signals": 1,
+          "settled": 1,
+          "hits": 0,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 1.51,
+          "odds_settled_sum": 1.51
+        },
+        "STABLE_OVER_2_5": {
+          "signals": 2,
+          "settled": 2,
+          "hits": 1,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 2.83,
+          "odds_settled_sum": 2.83
+        },
+        "PREMIUM_OVER_2_5": {
+          "signals": 3,
+          "settled": 3,
+          "hits": 1,
+          "misses": 2,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 4.63,
+          "odds_settled_sum": 4.63
+        },
+        "BTTS_YES": {
+          "signals": 3,
+          "settled": 3,
+          "hits": 3,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 5.25,
+          "odds_settled_sum": 5.25
+        },
+        "SURPRISE_TEAM": {
+          "signals": 4,
+          "settled": 4,
+          "hits": 3,
+          "misses": 1,
+          "draw_nonloss": 1,
+          "outright_side_wins": 2,
+          "odds_all_sum": 13.42,
+          "odds_settled_sum": 13.42
+        }
+      },
+      "market": {
+        "1X2": {
+          "signals": 12,
+          "settled": 12,
+          "hits": 8,
+          "misses": 4,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 20.57,
+          "odds_settled_sum": 20.57
+        },
+        "OVER_2_5": {
+          "signals": 5,
+          "settled": 5,
+          "hits": 2,
+          "misses": 3,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 7.46,
+          "odds_settled_sum": 7.46
+        },
+        "BTTS": {
+          "signals": 3,
+          "settled": 3,
+          "hits": 3,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 5.25,
+          "odds_settled_sum": 5.25
+        },
+        "SURPRISE_NONLOSS_RISK": {
+          "signals": 4,
+          "settled": 4,
+          "hits": 3,
+          "misses": 1,
+          "draw_nonloss": 1,
+          "outright_side_wins": 2,
+          "odds_all_sum": 13.42,
+          "odds_settled_sum": 13.42
+        }
+      }
+    },
+    {
+      "date": "2026-10-10",
+      "source_file": "SXF_arastirma_arsivi/2026/10/10/sxf-research-2026-10-10-t6-fallback-t8-16to24-v1-outcome-v1.json",
+      "signals": 52,
+      "settled": 52,
+      "unverified": [],
+      "unique_fixtures": 47,
+      "engine": {
+        "EARLY_CORE": {
+          "signals": 7,
+          "settled": 7,
+          "hits": 6,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 13.29,
+          "odds_settled_sum": 13.29
+        },
+        "EARLY_T12": {
+          "signals": 17,
+          "settled": 17,
+          "hits": 12,
+          "misses": 5,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 29.68,
+          "odds_settled_sum": 29.68
+        },
+        "V1": {
+          "signals": 15,
+          "settled": 15,
+          "hits": 10,
+          "misses": 5,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 27.83,
+          "odds_settled_sum": 27.83
+        },
+        "V2": {
+          "signals": 9,
+          "settled": 9,
+          "hits": 6,
+          "misses": 3,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 16.42,
+          "odds_settled_sum": 16.42
+        },
+        "HEAVY": {
+          "signals": 2,
+          "settled": 2,
+          "hits": 2,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 4.52,
+          "odds_settled_sum": 4.52
+        },
+        "STABLE_OVER_2_5": {
+          "signals": 3,
+          "settled": 3,
+          "hits": 3,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 4.75,
+          "odds_settled_sum": 4.75
+        },
+        "PREMIUM_OVER_2_5": {
+          "signals": 6,
+          "settled": 6,
+          "hits": 5,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 9.59,
+          "odds_settled_sum": 9.59
+        },
+        "BTTS_YES": {
+          "signals": 4,
+          "settled": 4,
+          "hits": 2,
+          "misses": 2,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 6.78,
+          "odds_settled_sum": 6.78
+        },
+        "SURPRISE_TEAM": {
+          "signals": 12,
+          "settled": 12,
+          "hits": 10,
+          "misses": 2,
+          "draw_nonloss": 5,
+          "outright_side_wins": 5,
+          "odds_all_sum": 40.7,
+          "odds_settled_sum": 40.7
+        }
+      },
+      "market": {
+        "1X2": {
+          "signals": 27,
+          "settled": 27,
+          "hits": 20,
+          "misses": 7,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 48.21,
+          "odds_settled_sum": 48.21
+        },
+        "OVER_2_5": {
+          "signals": 9,
+          "settled": 9,
+          "hits": 8,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 14.34,
+          "odds_settled_sum": 14.34
+        },
+        "BTTS": {
+          "signals": 4,
+          "settled": 4,
+          "hits": 2,
+          "misses": 2,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 6.78,
+          "odds_settled_sum": 6.78
+        },
+        "SURPRISE_NONLOSS_RISK": {
+          "signals": 12,
+          "settled": 12,
+          "hits": 10,
+          "misses": 2,
+          "draw_nonloss": 5,
+          "outright_side_wins": 5,
+          "odds_all_sum": 40.7,
+          "odds_settled_sum": 40.7
+        }
+      }
+    },
+    {
+      "date": "2026-10-11",
+      "source_file": "SXF_arastirma_arsivi/2026/10/11/sxf-research-2026-10-11-t6-fallback-t8-16to24-v1-outcome-v1.json",
+      "signals": 26,
+      "settled": 26,
+      "unverified": [],
+      "unique_fixtures": 24,
+      "engine": {
+        "EARLY_CORE": {
+          "signals": 6,
+          "settled": 6,
+          "hits": 6,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 11.12,
+          "odds_settled_sum": 11.12
+        },
+        "EARLY_T12": {
+          "signals": 7,
+          "settled": 7,
+          "hits": 7,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 12.93,
+          "odds_settled_sum": 12.93
+        },
+        "V1": {
+          "signals": 10,
+          "settled": 10,
+          "hits": 10,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 16.67,
+          "odds_settled_sum": 16.67
+        },
+        "V2": {
+          "signals": 8,
+          "settled": 8,
+          "hits": 8,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 13.37,
+          "odds_settled_sum": 13.37
+        },
+        "HEAVY": {
+          "signals": 3,
+          "settled": 3,
+          "hits": 3,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 4.97,
+          "odds_settled_sum": 4.97
+        },
+        "STABLE_OVER_2_5": {
+          "signals": 2,
+          "settled": 2,
+          "hits": 2,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 3.26,
+          "odds_settled_sum": 3.26
+        },
+        "PREMIUM_OVER_2_5": {
+          "signals": 1,
+          "settled": 1,
+          "hits": 1,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 1.72,
+          "odds_settled_sum": 1.72
+        },
+        "BTTS_YES": {
+          "signals": 3,
+          "settled": 3,
+          "hits": 3,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 5.17,
+          "odds_settled_sum": 5.17
+        },
+        "SURPRISE_TEAM": {
+          "signals": 6,
+          "settled": 6,
+          "hits": 5,
+          "misses": 1,
+          "draw_nonloss": 2,
+          "outright_side_wins": 3,
+          "odds_all_sum": 20.75,
+          "odds_settled_sum": 20.75
+        }
+      },
+      "market": {
+        "1X2": {
+          "signals": 14,
+          "settled": 14,
+          "hits": 14,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 25.1,
+          "odds_settled_sum": 25.1
+        },
+        "OVER_2_5": {
+          "signals": 3,
+          "settled": 3,
+          "hits": 3,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 4.98,
+          "odds_settled_sum": 4.98
+        },
+        "BTTS": {
+          "signals": 3,
+          "settled": 3,
+          "hits": 3,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 5.17,
+          "odds_settled_sum": 5.17
+        },
+        "SURPRISE_NONLOSS_RISK": {
+          "signals": 6,
+          "settled": 6,
+          "hits": 5,
+          "misses": 1,
+          "draw_nonloss": 2,
+          "outright_side_wins": 3,
+          "odds_all_sum": 20.75,
+          "odds_settled_sum": 20.75
+        }
+      }
+    },
+    {
+      "date": "2026-10-12",
+      "source_file": "SXF_arastirma_arsivi/2026/10/12/sxf-research-2026-10-12-t6-fallback-t8-16to24-v2-outcome-v1.json",
+      "signals": 11,
+      "settled": 11,
+      "unverified": [],
+      "unique_fixtures": 9,
+      "engine": {
+        "EARLY_CORE": {
+          "signals": 1,
+          "settled": 1,
+          "hits": 1,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 1.61,
+          "odds_settled_sum": 1.61
+        },
+        "EARLY_T12": {
+          "signals": 4,
+          "settled": 4,
+          "hits": 4,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 7.35,
+          "odds_settled_sum": 7.35
+        },
+        "V1": {
+          "signals": 6,
+          "settled": 6,
+          "hits": 5,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 11.49,
+          "odds_settled_sum": 11.49
+        },
+        "V2": {
+          "signals": 4,
+          "settled": 4,
+          "hits": 4,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 7.84,
+          "odds_settled_sum": 7.84
+        },
+        "HEAVY": {
+          "signals": 3,
+          "settled": 3,
+          "hits": 3,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 6.05,
+          "odds_settled_sum": 6.05
+        },
+        "STABLE_OVER_2_5": {
+          "signals": 1,
+          "settled": 1,
+          "hits": 1,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 1.57,
+          "odds_settled_sum": 1.57
+        },
+        "PREMIUM_OVER_2_5": {
+          "signals": 0,
+          "settled": 0,
+          "hits": 0,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 0,
+          "odds_settled_sum": 0
+        },
+        "BTTS_YES": {
+          "signals": 2,
+          "settled": 2,
+          "hits": 2,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 3.35,
+          "odds_settled_sum": 3.35
+        },
+        "SURPRISE_TEAM": {
+          "signals": 0,
+          "settled": 0,
+          "hits": 0,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 0,
+          "odds_settled_sum": 0
+        }
+      },
+      "market": {
+        "1X2": {
+          "signals": 8,
+          "settled": 8,
+          "hits": 7,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 15.29,
+          "odds_settled_sum": 15.29
+        },
+        "OVER_2_5": {
+          "signals": 1,
+          "settled": 1,
+          "hits": 1,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 1.57,
+          "odds_settled_sum": 1.57
+        },
+        "BTTS": {
+          "signals": 2,
+          "settled": 2,
+          "hits": 2,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 3.35,
+          "odds_settled_sum": 3.35
+        },
+        "SURPRISE_NONLOSS_RISK": {
+          "signals": 0,
+          "settled": 0,
+          "hits": 0,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 0,
+          "odds_settled_sum": 0
+        }
+      }
+    },
+    {
+      "date": "2026-10-13",
+      "source_file": "SXF_arastirma_arsivi/2026/10/13/sxf-research-2026-10-13-t6-fallback-t8-16to24-v1-outcome-v1.json",
+      "signals": 19,
+      "settled": 19,
+      "unverified": [],
+      "unique_fixtures": 16,
+      "engine": {
+        "EARLY_CORE": {
+          "signals": 7,
+          "settled": 7,
+          "hits": 5,
+          "misses": 2,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 12.92,
+          "odds_settled_sum": 12.92
+        },
+        "EARLY_T12": {
+          "signals": 7,
+          "settled": 7,
+          "hits": 3,
+          "misses": 4,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 14.64,
+          "odds_settled_sum": 14.64
+        },
+        "V1": {
+          "signals": 5,
+          "settled": 5,
+          "hits": 3,
+          "misses": 2,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 8.6,
+          "odds_settled_sum": 8.6
+        },
+        "V2": {
+          "signals": 3,
+          "settled": 3,
+          "hits": 3,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 4.73,
+          "odds_settled_sum": 4.73
+        },
+        "HEAVY": {
+          "signals": 3,
+          "settled": 3,
+          "hits": 2,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 5.35,
+          "odds_settled_sum": 5.35
+        },
+        "STABLE_OVER_2_5": {
+          "signals": 2,
+          "settled": 2,
+          "hits": 2,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 3.32,
+          "odds_settled_sum": 3.32
+        },
+        "PREMIUM_OVER_2_5": {
+          "signals": 0,
+          "settled": 0,
+          "hits": 0,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 0,
+          "odds_settled_sum": 0
+        },
+        "BTTS_YES": {
+          "signals": 2,
+          "settled": 2,
+          "hits": 1,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 3.51,
+          "odds_settled_sum": 3.51
+        },
+        "SURPRISE_TEAM": {
+          "signals": 4,
+          "settled": 4,
+          "hits": 3,
+          "misses": 1,
+          "draw_nonloss": 1,
+          "outright_side_wins": 2,
+          "odds_all_sum": 13.8,
+          "odds_settled_sum": 13.8
+        }
+      },
+      "market": {
+        "1X2": {
+          "signals": 11,
+          "settled": 11,
+          "hits": 6,
+          "misses": 5,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 22.46,
+          "odds_settled_sum": 22.46
+        },
+        "OVER_2_5": {
+          "signals": 2,
+          "settled": 2,
+          "hits": 2,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 3.32,
+          "odds_settled_sum": 3.32
+        },
+        "BTTS": {
+          "signals": 2,
+          "settled": 2,
+          "hits": 1,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 3.51,
+          "odds_settled_sum": 3.51
+        },
+        "SURPRISE_NONLOSS_RISK": {
+          "signals": 4,
+          "settled": 4,
+          "hits": 3,
+          "misses": 1,
+          "draw_nonloss": 1,
+          "outright_side_wins": 2,
+          "odds_all_sum": 13.8,
+          "odds_settled_sum": 13.8
+        }
+      }
+    },
+    {
+      "date": "2026-10-14",
+      "source_file": "SXF_arastirma_arsivi/2026/10/14/sxf-research-2026-10-14-t6-fallback-t8-16to24-v1-outcome-v1.json",
+      "signals": 22,
+      "settled": 22,
+      "unverified": [],
+      "unique_fixtures": 16,
+      "engine": {
+        "EARLY_CORE": {
+          "signals": 8,
+          "settled": 8,
+          "hits": 5,
+          "misses": 3,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 15.35,
+          "odds_settled_sum": 15.35
+        },
+        "EARLY_T12": {
+          "signals": 5,
+          "settled": 5,
+          "hits": 4,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 8.87,
+          "odds_settled_sum": 8.87
+        },
+        "V1": {
+          "signals": 4,
+          "settled": 4,
+          "hits": 3,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 6.48,
+          "odds_settled_sum": 6.48
+        },
+        "V2": {
+          "signals": 4,
+          "settled": 4,
+          "hits": 3,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 6.48,
+          "odds_settled_sum": 6.48
+        },
+        "HEAVY": {
+          "signals": 3,
+          "settled": 3,
+          "hits": 3,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 4.91,
+          "odds_settled_sum": 4.91
+        },
+        "STABLE_OVER_2_5": {
+          "signals": 3,
+          "settled": 3,
+          "hits": 3,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 4.84,
+          "odds_settled_sum": 4.84
+        },
+        "PREMIUM_OVER_2_5": {
+          "signals": 3,
+          "settled": 3,
+          "hits": 1,
+          "misses": 2,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 4.6,
+          "odds_settled_sum": 4.6
+        },
+        "BTTS_YES": {
+          "signals": 1,
+          "settled": 1,
+          "hits": 1,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 1.8,
+          "odds_settled_sum": 1.8
+        },
+        "SURPRISE_TEAM": {
+          "signals": 5,
+          "settled": 5,
+          "hits": 1,
+          "misses": 4,
+          "draw_nonloss": 1,
+          "outright_side_wins": 0,
+          "odds_all_sum": 15.15,
+          "odds_settled_sum": 15.15
+        }
+      },
+      "market": {
+        "1X2": {
+          "signals": 10,
+          "settled": 10,
+          "hits": 6,
+          "misses": 4,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 18.67,
+          "odds_settled_sum": 18.67
+        },
+        "OVER_2_5": {
+          "signals": 6,
+          "settled": 6,
+          "hits": 4,
+          "misses": 2,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 9.44,
+          "odds_settled_sum": 9.44
+        },
+        "BTTS": {
+          "signals": 1,
+          "settled": 1,
+          "hits": 1,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 1.8,
+          "odds_settled_sum": 1.8
+        },
+        "SURPRISE_NONLOSS_RISK": {
+          "signals": 5,
+          "settled": 5,
+          "hits": 1,
+          "misses": 4,
+          "draw_nonloss": 1,
+          "outright_side_wins": 0,
+          "odds_all_sum": 15.15,
+          "odds_settled_sum": 15.15
+        }
+      }
+    },
+    {
+      "date": "2026-10-15",
+      "source_file": "SXF_arastirma_arsivi/2026/10/15/sxf-research-2026-10-15-t6-fallback-t8-16to24-v1-outcome-v2.json",
+      "signals": 25,
+      "settled": 24,
+      "unverified": [
+        {
+          "uid": "d36503e7-1e65-4f70-a887-4322607207eb",
+          "match": "Sportivo Luqueno – Cerro Porteno",
+          "market": "1X2",
+          "selection": "Cerro Porteno"
+        }
+      ],
+      "unique_fixtures": 21,
+      "engine": {
+        "EARLY_CORE": {
+          "signals": 6,
+          "settled": 6,
+          "hits": 4,
+          "misses": 2,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 11.41,
+          "odds_settled_sum": 11.41
+        },
+        "EARLY_T12": {
+          "signals": 16,
+          "settled": 15,
+          "hits": 10,
+          "misses": 5,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 28.99,
+          "odds_settled_sum": 27.05
+        },
+        "V1": {
+          "signals": 11,
+          "settled": 10,
+          "hits": 5,
+          "misses": 5,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 20.24,
+          "odds_settled_sum": 18.3
+        },
+        "V2": {
+          "signals": 8,
+          "settled": 8,
+          "hits": 3,
+          "misses": 5,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 14.63,
+          "odds_settled_sum": 14.63
+        },
+        "HEAVY": {
+          "signals": 5,
+          "settled": 5,
+          "hits": 3,
+          "misses": 2,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 9.3,
+          "odds_settled_sum": 9.3
+        },
+        "STABLE_OVER_2_5": {
+          "signals": 3,
+          "settled": 3,
+          "hits": 3,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 5.01,
+          "odds_settled_sum": 5.01
+        },
+        "PREMIUM_OVER_2_5": {
+          "signals": 2,
+          "settled": 2,
+          "hits": 2,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 3.2,
+          "odds_settled_sum": 3.2
+        },
+        "BTTS_YES": {
+          "signals": 1,
+          "settled": 1,
+          "hits": 1,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 1.78,
+          "odds_settled_sum": 1.78
+        },
+        "SURPRISE_TEAM": {
+          "signals": 2,
+          "settled": 2,
+          "hits": 0,
+          "misses": 2,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 5.86,
+          "odds_settled_sum": 5.86
+        }
+      },
+      "market": {
+        "1X2": {
+          "signals": 17,
+          "settled": 16,
+          "hits": 10,
+          "misses": 6,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 30.7,
+          "odds_settled_sum": 28.76
+        },
+        "OVER_2_5": {
+          "signals": 5,
+          "settled": 5,
+          "hits": 5,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 8.21,
+          "odds_settled_sum": 8.21
+        },
+        "BTTS": {
+          "signals": 1,
+          "settled": 1,
+          "hits": 1,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 1.78,
+          "odds_settled_sum": 1.78
+        },
+        "SURPRISE_NONLOSS_RISK": {
+          "signals": 2,
+          "settled": 2,
+          "hits": 0,
+          "misses": 2,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 5.86,
+          "odds_settled_sum": 5.86
+        }
+      }
+    },
+    {
+      "date": "2026-10-16",
+      "source_file": "SXF_arastirma_arsivi/2026/10/16/sxf-research-2026-10-16-t6-fallback-t8-16to24-v1-outcome-v1.json",
+      "signals": 19,
+      "settled": 19,
+      "unverified": [],
+      "unique_fixtures": 19,
+      "engine": {
+        "EARLY_CORE": {
+          "signals": 0,
+          "settled": 0,
+          "hits": 0,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 0,
+          "odds_settled_sum": 0
+        },
+        "EARLY_T12": {
+          "signals": 4,
+          "settled": 4,
+          "hits": 3,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 7.91,
+          "odds_settled_sum": 7.91
+        },
+        "V1": {
+          "signals": 9,
+          "settled": 9,
+          "hits": 7,
+          "misses": 2,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 15.71,
+          "odds_settled_sum": 15.71
+        },
+        "V2": {
+          "signals": 6,
+          "settled": 6,
+          "hits": 4,
+          "misses": 2,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 10.93,
+          "odds_settled_sum": 10.93
+        },
+        "HEAVY": {
+          "signals": 3,
+          "settled": 3,
+          "hits": 2,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 5.92,
+          "odds_settled_sum": 5.92
+        },
+        "STABLE_OVER_2_5": {
+          "signals": 0,
+          "settled": 0,
+          "hits": 0,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 0,
+          "odds_settled_sum": 0
+        },
+        "PREMIUM_OVER_2_5": {
+          "signals": 0,
+          "settled": 0,
+          "hits": 0,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 0,
+          "odds_settled_sum": 0
+        },
+        "BTTS_YES": {
+          "signals": 4,
+          "settled": 4,
+          "hits": 3,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 7.06,
+          "odds_settled_sum": 7.06
+        },
+        "SURPRISE_TEAM": {
+          "signals": 4,
+          "settled": 4,
+          "hits": 1,
+          "misses": 3,
+          "draw_nonloss": 0,
+          "outright_side_wins": 1,
+          "odds_all_sum": 14.75,
+          "odds_settled_sum": 14.75
+        }
+      },
+      "market": {
+        "1X2": {
+          "signals": 11,
+          "settled": 11,
+          "hits": 8,
+          "misses": 3,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 20.49,
+          "odds_settled_sum": 20.49
+        },
+        "OVER_2_5": {
+          "signals": 0,
+          "settled": 0,
+          "hits": 0,
+          "misses": 0,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 0,
+          "odds_settled_sum": 0
+        },
+        "BTTS": {
+          "signals": 4,
+          "settled": 4,
+          "hits": 3,
+          "misses": 1,
+          "draw_nonloss": 0,
+          "outright_side_wins": 0,
+          "odds_all_sum": 7.06,
+          "odds_settled_sum": 7.06
+        },
+        "SURPRISE_NONLOSS_RISK": {
+          "signals": 4,
+          "settled": 4,
+          "hits": 1,
+          "misses": 3,
+          "draw_nonloss": 0,
+          "outright_side_wins": 1,
+          "odds_all_sum": 14.75,
+          "odds_settled_sum": 14.75
+        }
+      }
+    }
+  ]
+}
