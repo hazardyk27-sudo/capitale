@@ -66,13 +66,13 @@ Oranın yükseldikçe isabet yüzdesinin düşmesi kısmen beklenen bir olgudur:
 
 ## 6. Ayrıntılı tarihsel gölge-filtre karşılaştırması
 
-| Deneysel grup (V1 içinde) | İstenen koşul | İsabet | Kapsam | 9–16 Ekim | 17–25 Ekim |
-|---|---|---|---:|---|---|
-| HEAVY etiketi | ARAŞTIRMA | 49/68 (%72,1) | 68/184 | 18/23 (%78,3) | 31/45 (%68,9) |
-| HEAVY ve SXF <2,00 | ARAŞTIRMA | 41/53 (%77,4) | 53/184 | 14/16 (%87,5) | 27/37 (%73,0) |
-| SXF ≥2,00 (risk grubu) | ARAŞTIRMA | 20/40 (%50,0) | 40/184 | 10/17 (%58,8) | 10/23 (%43,5) |
-| Para payı ≥%95 (risk grubu) | ARAŞTIRMA | 9/20 (%45,0) | 20/184 | 6/9 (%66,7) | 3/11 (%27,3) |
-| Para ≥%95 ve <£10k (risk grubu) | ARAŞTIRMA | 7/18 (%38,9) | 18/184 | 5/8 (%62,5) | 2/10 (%20,0) |
+| Deneysel V1 koşulu | İsabet | V1 kapsamı | 9–16 Ekim | 17–25 Ekim |
+|---|---:|---:|---:|---:|
+| HEAVY etiketi | 49/68 (%72,1) | 68/184 | 18/23 (%78,3) | 31/45 (%68,9) |
+| HEAVY ve SXF <2,00 | 41/53 (%77,4) | 53/184 | 14/16 (%87,5) | 27/37 (%73,0) |
+| SXF ≥2,00 (risk grubu) | 20/40 (%50,0) | 40/184 | 10/17 (%58,8) | 10/23 (%43,5) |
+| Para payı ≥%95 (risk grubu) | 9/20 (%45,0) | 20/184 | 6/9 (%66,7) | 3/11 (%27,3) |
+| Para ≥%95 ve <£10k (risk grubu) | 7/18 (%38,9) | 18/184 | 5/8 (%62,5) | 2/10 (%20,0) |
 
 **Buradaki tüm eşikler geçmiş sonuçlara bakılarak denendi.** 'İlk/son dönem' sütunu aynı geçmiş arşivin kronolojik alt bölümü, geleceği görmeden yürütülmüş gerçek bir holdout testi değildir. Bu sonuçlar üretim motor kurallarını **değiştirmez**.
 
