@@ -107,10 +107,79 @@
           "missing": 3018
         }
       }
+    },
+    {
+      "date": "2026-10-12",
+      "fixtures": 177,
+      "alarms": 113,
+      "checkpoint_bytes": 501451,
+      "alarm_bytes": 11067,
+      "total_bytes": 512518,
+      "uncompressed_bytes": 5211454,
+      "coverage": {
+        "1X2": {
+          "present": 4317,
+          "missing": 1701
+        },
+        "OU25": {
+          "present": 4327,
+          "missing": 1691
+        },
+        "BTTS": {
+          "present": 3753,
+          "missing": 2265
+        }
+      }
+    },
+    {
+      "date": "2026-10-13",
+      "fixtures": 192,
+      "alarms": 50,
+      "checkpoint_bytes": 253164,
+      "alarm_bytes": 4926,
+      "total_bytes": 258090,
+      "uncompressed_bytes": 4114275,
+      "coverage": {
+        "1X2": {
+          "present": 1933,
+          "missing": 4595
+        },
+        "OU25": {
+          "present": 1955,
+          "missing": 4573
+        },
+        "BTTS": {
+          "present": 1720,
+          "missing": 4808
+        }
+      }
+    },
+    {
+      "date": "2026-10-14",
+      "fixtures": 152,
+      "alarms": 138,
+      "checkpoint_bytes": 356715,
+      "alarm_bytes": 12899,
+      "total_bytes": 369614,
+      "uncompressed_bytes": 4184262,
+      "coverage": {
+        "1X2": {
+          "present": 3043,
+          "missing": 2125
+        },
+        "OU25": {
+          "present": 3046,
+          "missing": 2122
+        },
+        "BTTS": {
+          "present": 2791,
+          "missing": 2377
+        }
+      }
     }
   ],
-  "total_fixtures": 1049,
-  "total_alarm_records": 874,
-  "total_compressed_bytes": 3137453,
-  "total_uncompressed_bytes": 30948885
+  "total_fixtures": 1570,
+  "total_alarm_records": 1175,
+  "total_compressed_bytes": 4277675,
+  "total_uncompressed_bytes": 44458876
 }

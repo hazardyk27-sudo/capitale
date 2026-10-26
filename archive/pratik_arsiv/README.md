@@ -14,12 +14,12 @@ Toplam 34 nokta. Her noktanın hedef zamanı kickoff UTC’den hesaplanır. O he
 
 Her gün klasöründe:
 
-- `checkpoints.jsonl.gz`: satır başına bir maç; fikstür kimliği, lig, kickoff, sonuç ve 34 checkpoint. Her checkpoint altında 1X2, OU25, BTTS kayıtları bulunur.
-- `alarms.jsonl.gz`: `alarm_table` ve orijinal alarm satırını taşıyan `payload`.
-- `manifest.json`: kapsam, kapsama sayıları, byte boyutları, SHA-256 ve eksik veri politikası.
+- checkpoints.jsonl.gz: satır başına bir maç; fikstür kimliği, lig, kickoff, sonuç ve 34 checkpoint. Her checkpoint altında 1X2, OU25, BTTS kayıtları bulunur.
+- alarms.jsonl.gz: alarm_table ve orijinal alarm satırını taşıyan payload.
+- manifest.json: kapsam, kapsama sayıları, byte boyutları, SHA-256 ve eksik veri politikası.
 
-Orijinal tarihçe alanları (oran, yüzde, GBP miktarı, hacim, kayıt zamanı, kaynak satır kimliği ve fingerprint) korunur. Arşiv Supabase `research_archive` tablosundan salt okunur üretildi; kaynak dosyalar değiştirilmedi.
+Orijinal tarihçe alanları (oran, yüzde, GBP miktarı, hacim, kayıt zamanı, kaynak satır kimliği ve fingerprint) korunur. Arşiv Supabase research_archive tablosundan salt okunur üretildi; kaynak dosyalar değiştirilmedi.
 
 ## Günler
 
-9–11 Ekim 2026 ilk parti olarak eklenmiştir. Üst düzey `index.json` dosyası her günün kapsamını ve gerçek dosya boyutlarını listeler.
+9–14 Ekim 2026, iki parti halinde eklenmiştir. Üst düzey index.json dosyası her günün kapsamını ve gerçek dosya boyutlarını listeler.

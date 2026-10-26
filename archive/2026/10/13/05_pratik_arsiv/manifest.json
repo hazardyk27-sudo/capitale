@@ -1,0 +1,69 @@
+{
+  "archive": "PRATİK ARŞİV",
+  "date": "2026-10-13",
+  "format": "JSONL + gzip level 6",
+  "checkpoint_hours": [
+    72,
+    69,
+    66,
+    63,
+    60,
+    57,
+    54,
+    51,
+    48,
+    45,
+    42,
+    39,
+    36,
+    33,
+    30,
+    27,
+    24,
+    22,
+    20,
+    18,
+    16,
+    14,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "source": {
+    "fixtures": "research_archive.fixtures",
+    "histories": [
+      "research_archive.moneyway_1x2_history",
+      "research_archive.moneyway_ou25_history",
+      "research_archive.moneyway_btts_history"
+    ],
+    "alarms": "research_archive alarm tables",
+    "read_only": true
+  },
+  "selection": "At each checkpoint, latest original history record at or before target time; no interpolation or future substitution. Missing explicitly recorded.",
+  "counts": {
+    "fixtures": 192,
+    "checkpoint_slots": 19584,
+    "present_market_slots": 5608,
+    "missing_market_slots": 13976,
+    "alarms": 50
+  },
+  "uncompressed_bytes": 4114275,
+  "compressed_bytes": {
+    "checkpoints": 253164,
+    "alarms": 4926,
+    "total": 258090
+  },
+  "sha256": {
+    "checkpoints": "ad51c9bdcfc0042fb827540d3d1dfdfc8e9002af743490d3fc97d53427b1b388",
+    "alarms": "62fad151ba4c496c781009423545005c860d1d11b2c49428b1d3b73a19769668"
+  }
+}
