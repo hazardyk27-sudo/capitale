@@ -1,0 +1,256 @@
+{
+  "source": "public.moneyway_snapshots",
+  "read_only": true,
+  "retention": [
+    {
+      "uid": "2469eeb3-478d-405c-9f77-887fcc008a3a",
+      "side": "2",
+      "origin_h": 24,
+      "origin_at": "2026-10-25 18:43:12+00",
+      "asof": "2026-10-26 12:45:00+00",
+      "ticks": 329,
+      "side_ticks": 329,
+      "partial_ticks": 0,
+      "min_share": "82.80",
+      "first_break_at": null
+    },
+    {
+      "uid": "2f6b2dc4-b037-4def-bdaa-029e2a9abb79",
+      "side": "1",
+      "origin_h": 24,
+      "origin_at": "2026-10-25 19:58:28+00",
+      "asof": "2026-10-26 14:00:00+00",
+      "ticks": 328,
+      "side_ticks": 328,
+      "partial_ticks": 0,
+      "min_share": "72.80",
+      "first_break_at": null
+    },
+    {
+      "uid": "2f6b2dc4-b037-4def-bdaa-029e2a9abb79",
+      "side": "1",
+      "origin_h": 40,
+      "origin_at": "2026-10-25 03:59:08+00",
+      "asof": "2026-10-26 14:00:00+00",
+      "ticks": 616,
+      "side_ticks": 616,
+      "partial_ticks": 0,
+      "min_share": "72.80",
+      "first_break_at": null
+    },
+    {
+      "uid": "4c8089ee-0d26-4628-87ee-2fe413c954ec",
+      "side": "2",
+      "origin_h": 60,
+      "origin_at": "2026-10-24 03:58:17+00",
+      "asof": "2026-10-26 10:00:00+00",
+      "ticks": 959,
+      "side_ticks": 959,
+      "partial_ticks": 0,
+      "min_share": "74.60",
+      "first_break_at": null
+    },
+    {
+      "uid": "ca3254d9-ada6-4ed6-a8f2-8462e0cf1803",
+      "side": "1",
+      "origin_h": 24,
+      "origin_at": "2026-10-25 19:29:02+00",
+      "asof": "2026-10-26 13:30:00+00",
+      "ticks": 329,
+      "side_ticks": 329,
+      "partial_ticks": 0,
+      "min_share": "80.30",
+      "first_break_at": null
+    },
+    {
+      "uid": "ca3254d9-ada6-4ed6-a8f2-8462e0cf1803",
+      "side": "1",
+      "origin_h": 40,
+      "origin_at": "2026-10-25 03:28:50+00",
+      "asof": "2026-10-26 13:30:00+00",
+      "ticks": 617,
+      "side_ticks": 617,
+      "partial_ticks": 0,
+      "min_share": "80.30",
+      "first_break_at": null
+    },
+    {
+      "uid": "ca3254d9-ada6-4ed6-a8f2-8462e0cf1803",
+      "side": "1",
+      "origin_h": 60,
+      "origin_at": "2026-10-24 07:27:14+00",
+      "asof": "2026-10-26 13:30:00+00",
+      "ticks": 963,
+      "side_ticks": 963,
+      "partial_ticks": 0,
+      "min_share": "80.30",
+      "first_break_at": null
+    },
+    {
+      "uid": "ca3254d9-ada6-4ed6-a8f2-8462e0cf1803",
+      "side": "1",
+      "origin_h": 72,
+      "origin_at": "2026-10-23 19:29:49+00",
+      "asof": "2026-10-26 13:30:00+00",
+      "ticks": 1166,
+      "side_ticks": 1166,
+      "partial_ticks": 0,
+      "min_share": "80.30",
+      "first_break_at": null
+    }
+  ],
+  "v2": [
+    {
+      "uid": "0407eb37-d8e6-4b84-b588-e26ee6ed66d2",
+      "side": "2",
+      "asof": "2026-10-26 07:45:00+00",
+      "anchor_at": "2026-10-26 04:42:33+00",
+      "anchor_share": "89.40",
+      "anchor_odds": "1.79",
+      "anchor_selections": 3,
+      "window_ticks": 55,
+      "missing_side_ticks": 0,
+      "partial_ticks": 0,
+      "min_share": "89.40",
+      "max_adverse_odds_pct": "3.95480225988700565000",
+      "first_below_70_at": null
+    },
+    {
+      "uid": "653a530e-38f0-479e-b017-f8fde2e49af1",
+      "side": "1",
+      "asof": "2026-10-26 09:00:00+00",
+      "anchor_at": "2026-10-26 05:57:47+00",
+      "anchor_share": "36.30",
+      "anchor_odds": "2.50",
+      "anchor_selections": 3,
+      "window_ticks": 55,
+      "missing_side_ticks": 0,
+      "partial_ticks": 0,
+      "min_share": "35.70",
+      "max_adverse_odds_pct": "4.67289719626168224300",
+      "first_below_70_at": "2026-10-26 05:57:47+00"
+    },
+    {
+      "uid": "a33105cb-a6ca-4596-b90d-0bacf0be3634",
+      "side": "2",
+      "asof": "2026-10-26 12:00:00+00",
+      "anchor_at": "2026-10-26 08:59:55+00",
+      "anchor_share": "76.10",
+      "anchor_odds": "1.56",
+      "anchor_selections": 3,
+      "window_ticks": 54,
+      "missing_side_ticks": 0,
+      "partial_ticks": 0,
+      "min_share": "76.10",
+      "max_adverse_odds_pct": "1.28205128205128205100",
+      "first_below_70_at": null
+    },
+    {
+      "uid": "a92e7612-34c0-4276-9936-59af22bafb85",
+      "side": "1",
+      "asof": "2026-10-26 11:00:00+00",
+      "anchor_at": "2026-10-26 07:57:09+00",
+      "anchor_share": "98.50",
+      "anchor_odds": "1.64",
+      "anchor_selections": 3,
+      "window_ticks": 55,
+      "missing_side_ticks": 0,
+      "partial_ticks": 0,
+      "min_share": "98.20",
+      "max_adverse_odds_pct": "5.10948905109489051100",
+      "first_below_70_at": null
+    }
+  ],
+  "retention_inputs": [
+    {
+      "uid": "4c8089ee-0d26-4628-87ee-2fe413c954ec",
+      "side": "2",
+      "origin_at": "2026-10-24T03:58:17+00:00",
+      "origin_h": 60,
+      "asof": "2026-10-26T10:00:00+00:00",
+      "match": "Rizespor-Trabzonspor"
+    },
+    {
+      "uid": "2469eeb3-478d-405c-9f77-887fcc008a3a",
+      "side": "2",
+      "origin_at": "2026-10-25T18:43:12+00:00",
+      "origin_h": 24,
+      "asof": "2026-10-26T12:45:00+00:00",
+      "match": "Santa Clara-Benfica"
+    },
+    {
+      "uid": "ca3254d9-ada6-4ed6-a8f2-8462e0cf1803",
+      "side": "1",
+      "origin_at": "2026-10-23T19:29:49+00:00",
+      "origin_h": 72,
+      "asof": "2026-10-26T13:30:00+00:00",
+      "match": "Paris St-G-Lyon"
+    },
+    {
+      "uid": "ca3254d9-ada6-4ed6-a8f2-8462e0cf1803",
+      "side": "1",
+      "origin_at": "2026-10-24T07:27:14+00:00",
+      "origin_h": 60,
+      "asof": "2026-10-26T13:30:00+00:00",
+      "match": "Paris St-G-Lyon"
+    },
+    {
+      "uid": "ca3254d9-ada6-4ed6-a8f2-8462e0cf1803",
+      "side": "1",
+      "origin_at": "2026-10-25T03:28:50+00:00",
+      "origin_h": 40,
+      "asof": "2026-10-26T13:30:00+00:00",
+      "match": "Paris St-G-Lyon"
+    },
+    {
+      "uid": "ca3254d9-ada6-4ed6-a8f2-8462e0cf1803",
+      "side": "1",
+      "origin_at": "2026-10-25T19:29:02+00:00",
+      "origin_h": 24,
+      "asof": "2026-10-26T13:30:00+00:00",
+      "match": "Paris St-G-Lyon"
+    },
+    {
+      "uid": "2f6b2dc4-b037-4def-bdaa-029e2a9abb79",
+      "side": "1",
+      "origin_at": "2026-10-25T03:59:08+00:00",
+      "origin_h": 40,
+      "asof": "2026-10-26T14:00:00+00:00",
+      "match": "Sevilla-Osasuna"
+    },
+    {
+      "uid": "2f6b2dc4-b037-4def-bdaa-029e2a9abb79",
+      "side": "1",
+      "origin_at": "2026-10-25T19:58:28+00:00",
+      "origin_h": 24,
+      "asof": "2026-10-26T14:00:00+00:00",
+      "match": "Sevilla-Osasuna"
+    }
+  ],
+  "v2_inputs": [
+    {
+      "uid": "0407eb37-d8e6-4b84-b588-e26ee6ed66d2",
+      "side": "2",
+      "asof": "2026-10-26T07:45:00+00:00",
+      "match": "Neftchi Fargona-Al-Ittihad"
+    },
+    {
+      "uid": "653a530e-38f0-479e-b017-f8fde2e49af1",
+      "side": "1",
+      "asof": "2026-10-26T09:00:00+00:00",
+      "match": "Lokomotiv Plovdiv-Slavia Sofia"
+    },
+    {
+      "uid": "a92e7612-34c0-4276-9936-59af22bafb85",
+      "side": "1",
+      "asof": "2026-10-26T11:00:00+00:00",
+      "match": "Oppsal-Lyn 2"
+    },
+    {
+      "uid": "a33105cb-a6ca-4596-b90d-0bacf0be3634",
+      "side": "2",
+      "asof": "2026-10-26T12:00:00+00:00",
+      "match": "ACS Sepsi OSK-Universitatea Craiova"
+    }
+  ]
+}
