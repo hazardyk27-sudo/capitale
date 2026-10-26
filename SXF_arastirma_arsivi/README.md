@@ -91,3 +91,9 @@
 [**Genel motor isabetleri, günlük başarı oranları, ortalama SXF oranları ve grafikler**](Sinyal_Performanslari.md)
 
 **17 gün · 464 farklı seçim · 463 sonuçlanan · 1 doğrulanamayan.** Günlerin her birinde [ayrı günlük skor/performans raporu](Sinyal_Performanslari.md#6-günlük-skor-kanıtları-ve-seçime-özel-raporlar) bulunmaktadır. Orijinal araştırma sinyal dosyaları değişmemiştir. 26 Ekim gününün T-6 taraması henüz bu performansa dahil değildir.
+
+### Kazanan / kaybeden karşılaştırması (EXPERIMENTAL)
+
+[**Para payı, mutlak para, HEAVY, V2, beraberlik riski ve gölge filtre araştırması**](sinyal_performanslari/Kazanan_Kaybeden_Analizi_2026-10-09_25_v1.md)
+
+> Bu analiz geçmiş sonuçları görerek yapılmış araştırmadır; mevcut SXF v0.4 motor eşikleri değişmedi.
