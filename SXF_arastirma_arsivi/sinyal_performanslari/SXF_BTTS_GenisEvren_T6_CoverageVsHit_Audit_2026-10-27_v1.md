@@ -44,3 +44,13 @@ Veri toplanmadan *önce* saklanan liste:
 5. Gelecek 50+ tercihen 100+ yeni T-6 gölge sinyal (eski v0.4 motor + frozen test flags), sample binomial CI, actual bookmaker odds & net ROI. Üretim canonical SXF değişmeyecek.
 
 **NO NEW CANONICAL ENGINE, NO PROSPECTIVE CLAIM.**
+
+
+## Opsiyonel saat genişletmesi: 00:00–15:59 TSİ (sonradan yapılan operasyonel kapsam kontrolü)
+- Aynı 9–25 Ekim 17 günde, kickoff saati **00:00–15:59 TSİ** olan başka **1722** fixture, **1698** FT ile doğrulanmış sonuç; yalnız **230** tanesinde T-8/T-6 tam/taze BTTS + ÜST snapshot, bunların **229**'unda da FT score mevcut.
+- Aynı **DUAL_CANONICAL** (≥%60, ≥£750, odds1.60–1.90, hem KG hem ÜST fiyat teyidi): **0 ilave sinyal**.
+- Aynı **DUAL_MAJORITY** (≥%50, ≥£750, odds1.60–1.90, çift fiyat teyidi): **0 ilave sinyal**.
+- Aynı **BTTS_PRICE_MAJORITY** (tek KG fiyat teyidi): **1 ek sinyal, 0 galibiyet** (17 Ekim Everton–Chelsea 0-2, 1,60).
+- Aynı kanonik KG YES fiyat/para koşulları, fiyat teyidi olmadan: **2/4** ilave. Bu 4 maçtan biri Everton–Chelsea kaybı, diğerleri Santos–Flamengo 2-2 WIN, Inter–Fiorentina 2-1 WIN, Fortuna Sittard–Excelsior 1-0 LOSS.
+- Yalnız başlangıç saatini genişletmek, dönemin mevcut T-6 kaynak kapsamı içinde güçlü çift fiyat adayına **hiç hacim kazandırmadı**. Bu uygulama notu mevcut filtre geliştirmelerinden sonra yapıldı, doğrulanmış bağımsız ileri tarih testi sayılmaz.
+- Tüm gün sonuçları: 2703 (16–24) +1722 (00–16) = **4425 benzersiz fixture**; T-6/T-8 tam iki piyasa coverage 633+230=**863**, kalite+FT 632+229=**861**. Bunlar yalnız bu belirlenmiş zaman/kapsam evreni içindir.
