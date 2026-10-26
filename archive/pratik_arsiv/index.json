@@ -482,13 +482,13 @@
     {
       "date": "2026-10-26",
       "fixtures": 134,
-      "results_present": 0,
-      "results_missing": 134,
+      "results_present": 128,
+      "results_missing": 6,
       "alarms": 110,
-      "checkpoint_bytes": 184285,
+      "checkpoint_bytes": 190078,
       "alarm_bytes": 8537,
-      "total_bytes": 192822,
-      "uncompressed_bytes": 3661735,
+      "total_bytes": 198615,
+      "uncompressed_bytes": 3680250,
       "coverage": {
         "1X2": {
           "present": 2877,
@@ -504,15 +504,17 @@
         }
       },
       "checksums": {
-        "checkpoints": "fd9cb58789937082762823592e7cee417035d9ea0dbce8a5837e64a62c70fc7a",
+        "checkpoints": "af8487a6b852c47af5594bcd57a5a359fd08e21a9ae434c5ac2ceb924a6c50f4",
         "alarms": "23bca74eac14833621c8960f5d7778390944949eae6346009ccbde445e6932d6"
       },
       "future": 0,
-      "source_archive_status": "PARTIAL"
+      "source_archive_status": "PARTIAL",
+      "live_score_present": 134,
+      "live_in_progress": 6
     }
   ],
   "total_fixtures": 4559,
   "total_alarm_records": 3837,
-  "total_compressed_bytes": 11793794,
-  "total_uncompressed_bytes": 135864995
+  "total_compressed_bytes": 11799587,
+  "total_uncompressed_bytes": 135883510
 }

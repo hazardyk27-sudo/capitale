@@ -14,7 +14,7 @@ Toplam 34 nokta. Her hedef zaman kickoff UTC’den hesaplanır. Hedef zamandan �
 
 Her gün klasöründe checkpoints.jsonl.gz (maç ve checkpoint kayıtları), alarms.jsonl.gz (orijinal alarm satırları) ve manifest.json (kapsam, alanlar, boyutlar, kapsama ve SHA-256) bulunur.
 
-Orijinal tarihçe alanları (oran, yüzde, GBP miktarı, hacim, kayıt zamanı, kaynak satır kimliği ve fingerprint) korunur. Arşiv Supabase research_archive tablolarından salt okunur üretildi; kaynak arşiv dosyaları değiştirilmedi. Günlük ana kaynak arşivi kısmi ise durum ve kapsam farkı ilgili manifestte açıkça belirtilir.
+Orijinal tarihçe alanları (oran, yüzde, GBP miktarı, hacim, kayıt zamanı, kaynak satır kimliği ve fingerprint) korunur. Pazar tarihçeleri ve fikstür verileri Supabase’den salt okunur üretildi; sonuç kaynağı gün bazında manifestte belirtilir. Kaynak arşiv dosyaları değiştirilmedi. Günlük ana kaynak arşivi kısmi ise durum ve kapsam farkı ilgili manifestte açıkça belirtilir.
 
 ## Günler
 
