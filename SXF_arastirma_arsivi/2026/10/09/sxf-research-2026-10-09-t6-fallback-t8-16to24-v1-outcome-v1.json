@@ -1,0 +1,975 @@
+{
+  "schema_version": "SXF_RESEARCH_OUTCOME_V1",
+  "date_tr": "2026-10-09",
+  "original_scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+  "original_scan_path": "SXF_arastirma_arsivi/2026/10/09/sxf-research-2026-10-09-t6-fallback-t8-16to24-v1.json",
+  "publication_state": "POSTMATCH_OUTCOME_SEPARATE_FROM_IMMUTABLE_SCAN",
+  "created_at_utc": "2026-10-26T00:21:06.505Z",
+  "verification_policy": "Match UID + source match hash + exact home/away + same kickoff. Prefer FT research archive; crosscheck SXF live FT; contradictory score and time mismatches remain UNVERIFIED. External checks attached separately.",
+  "score_90m_only": true,
+  "extra_time_and_penalty_excluded": true,
+  "grading": {
+    "one_x_two": "selected home/away must win normal time",
+    "over_25": "90m total goals >= 3",
+    "btts": "both teams score in normal time",
+    "surprise": "selected side must win or draw in normal time; draws are success, odds still outright 1X2 win quote"
+  },
+  "unique_metrics": {
+    "total": 24,
+    "settled": 24,
+    "correct": 16,
+    "unverified": 0
+  },
+  "fixture_count": 20,
+  "engine_metrics": {
+    "SURPRISE_TEAM": {
+      "total": 4,
+      "settled": 4,
+      "success": 3,
+      "miss": 1,
+      "draw": 1,
+      "side_wins": 2,
+      "odds_sum": 13.419999999999998,
+      "odds_settled_sum": 13.419999999999998,
+      "hit_pct": 75,
+      "avg_odds": 3.355,
+      "avg_settled_odds": 3.355
+    },
+    "V1": {
+      "total": 10,
+      "settled": 10,
+      "success": 8,
+      "miss": 2,
+      "draw": 0,
+      "side_wins": 0,
+      "odds_sum": 17.22,
+      "odds_settled_sum": 17.22,
+      "hit_pct": 80,
+      "avg_odds": 1.722,
+      "avg_settled_odds": 1.722
+    },
+    "V2": {
+      "total": 7,
+      "settled": 7,
+      "success": 6,
+      "miss": 1,
+      "draw": 0,
+      "side_wins": 0,
+      "odds_sum": 11.449999999999998,
+      "odds_settled_sum": 11.449999999999998,
+      "hit_pct": 85.71,
+      "avg_odds": 1.636,
+      "avg_settled_odds": 1.636
+    },
+    "EARLY_T12": {
+      "total": 4,
+      "settled": 4,
+      "success": 1,
+      "miss": 3,
+      "draw": 0,
+      "side_wins": 0,
+      "odds_sum": 6.539999999999999,
+      "odds_settled_sum": 6.539999999999999,
+      "hit_pct": 25,
+      "avg_odds": 1.635,
+      "avg_settled_odds": 1.635
+    },
+    "STABLE_OVER_2_5": {
+      "total": 2,
+      "settled": 2,
+      "success": 1,
+      "miss": 1,
+      "draw": 0,
+      "side_wins": 0,
+      "odds_sum": 2.83,
+      "odds_settled_sum": 2.83,
+      "hit_pct": 50,
+      "avg_odds": 1.415,
+      "avg_settled_odds": 1.415
+    },
+    "PREMIUM_OVER_2_5": {
+      "total": 3,
+      "settled": 3,
+      "success": 1,
+      "miss": 2,
+      "draw": 0,
+      "side_wins": 0,
+      "odds_sum": 4.63,
+      "odds_settled_sum": 4.63,
+      "hit_pct": 33.33,
+      "avg_odds": 1.543,
+      "avg_settled_odds": 1.543
+    },
+    "EARLY_CORE": {
+      "total": 2,
+      "settled": 2,
+      "success": 0,
+      "miss": 2,
+      "draw": 0,
+      "side_wins": 0,
+      "odds_sum": 2.9,
+      "odds_settled_sum": 2.9,
+      "hit_pct": 0,
+      "avg_odds": 1.45,
+      "avg_settled_odds": 1.45
+    },
+    "BTTS_YES": {
+      "total": 3,
+      "settled": 3,
+      "success": 3,
+      "miss": 0,
+      "draw": 0,
+      "side_wins": 0,
+      "odds_sum": 5.25,
+      "odds_settled_sum": 5.25,
+      "hit_pct": 100,
+      "avg_odds": 1.75,
+      "avg_settled_odds": 1.75
+    },
+    "HEAVY": {
+      "total": 1,
+      "settled": 1,
+      "success": 0,
+      "miss": 1,
+      "draw": 0,
+      "side_wins": 0,
+      "odds_sum": 1.51,
+      "odds_settled_sum": 1.51,
+      "hit_pct": 0,
+      "avg_odds": 1.51,
+      "avg_settled_odds": 1.51
+    }
+  },
+  "unverified_selections": [],
+  "settlements": [
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s001",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "8bd3418b-1b33-44c9-89cc-958a9311da1e",
+      "kickoff_utc": "2026-10-09T14:30:00Z",
+      "kickoff_tr": "17:30",
+      "home": "FC Yantra",
+      "away": "Vihren Sandanski",
+      "league": "Bulgarian B League",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "selection": "FC Yantra",
+      "side": "1",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "sxf_odds": 3.3,
+      "final_score_90m": "1-0",
+      "settlement": "NONLOSS_WIN",
+      "selected_team_outcome_90m": "WIN",
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "1-0",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 16:25:05+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s002",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "5dc7a408-09cc-49e1-b787-f7c739fb569c",
+      "kickoff_utc": "2026-10-09T14:55:00Z",
+      "kickoff_tr": "17:55",
+      "home": "Al-Fateh (KSA)",
+      "away": "Al Ahli",
+      "league": "Saudi Professional League",
+      "market": "1X2",
+      "selection": "Al Ahli",
+      "side": "2",
+      "engine_tags": [
+        "V1",
+        "V2"
+      ],
+      "sxf_odds": 1.48,
+      "final_score_90m": "0-4",
+      "settlement": "WIN",
+      "selected_team_outcome_90m": "WIN",
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "INDEPENDENT_WEB_CHECK",
+        "source_locations": [
+          "research_archive.results",
+          "https://www.football.com/livescore/web/en/Football/match/Al-Fateh_SC_vs_Al_Ahli_Saudi_FC/73215752"
+        ],
+        "archive_score": "0-4",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 17:18:04+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s003",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "bcfafd8c-dcdc-483c-a306-0720994ce1fc",
+      "kickoff_utc": "2026-10-09T15:00:00Z",
+      "kickoff_tr": "18:00",
+      "home": "Slavia Praha B",
+      "away": "FC Sellier & Bellot Vlasim",
+      "league": "Czech 2 Liga",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "selection": "FC Sellier & Bellot Vlasim",
+      "side": "2",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "sxf_odds": 2.92,
+      "final_score_90m": "0-2",
+      "settlement": "NONLOSS_WIN",
+      "selected_team_outcome_90m": "WIN",
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "0-2",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 16:54:23+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s004",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "27206771-a786-42ea-a0a7-2eb034bec684",
+      "kickoff_utc": "2026-10-09T15:30:00Z",
+      "kickoff_tr": "18:30",
+      "home": "Finland (W)",
+      "away": "Serbia (W)",
+      "league": "FIFA Ladies World Cup Qualifiers",
+      "market": "1X2",
+      "selection": "Finland (W)",
+      "side": "1",
+      "engine_tags": [
+        "V1",
+        "V2"
+      ],
+      "sxf_odds": 1.57,
+      "final_score_90m": "3-1",
+      "settlement": "WIN",
+      "selected_team_outcome_90m": "WIN",
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "3-1",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 17:22:12+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s005",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "001b2ff1-6c5c-4da9-a0b1-39ff52be7692",
+      "kickoff_utc": "2026-10-09T16:00:00Z",
+      "kickoff_tr": "19:00",
+      "home": "Turkey (W)",
+      "away": "Slovenia (W)",
+      "league": "FIFA Ladies World Cup Qualifiers",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "selection": "Turkey (W)",
+      "side": "1",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "sxf_odds": 3.25,
+      "final_score_90m": "3-3",
+      "settlement": "NONLOSS_DRAW",
+      "selected_team_outcome_90m": "DRAW",
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "3-3",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 17:59:48+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s006",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "9679e2cd-aaae-4b7c-9d44-a3174fb6dc11",
+      "kickoff_utc": "2026-10-09T16:30:00Z",
+      "kickoff_tr": "19:30",
+      "home": "FC Heidenheim",
+      "away": "Kaiserslautern",
+      "league": "German Bundesliga 2",
+      "market": "1X2",
+      "selection": "FC Heidenheim",
+      "side": "1",
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "sxf_odds": 1.96,
+      "final_score_90m": "0-0",
+      "settlement": "LOSS",
+      "selected_team_outcome_90m": "DRAW",
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "0-0",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 18:26:27+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s007",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "241aa9a1-8237-4b0c-95e0-8bf2bd5bc208",
+      "kickoff_utc": "2026-10-09T17:00:00Z",
+      "kickoff_tr": "20:00",
+      "home": "Brann",
+      "away": "Viking",
+      "league": "Norwegian Eliteserien",
+      "market": "OVER_2_5",
+      "selection": "Üst 2.5",
+      "side": "O",
+      "engine_tags": [
+        "STABLE_OVER_2_5"
+      ],
+      "sxf_odds": 1.42,
+      "final_score_90m": "0-2",
+      "settlement": "LOSS",
+      "selected_team_outcome_90m": null,
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "0-2",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 19:00:40+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s008",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "fbb1f874-3f63-4108-8588-6836e4e9fcc1",
+      "kickoff_utc": "2026-10-09T17:00:00Z",
+      "kickoff_tr": "20:00",
+      "home": "IFK Goteborg",
+      "away": "Vasteras SK",
+      "league": "Swedish Allsvenskan",
+      "market": "OVER_2_5",
+      "selection": "Üst 2.5",
+      "side": "O",
+      "engine_tags": [
+        "PREMIUM_OVER_2_5"
+      ],
+      "sxf_odds": 1.59,
+      "final_score_90m": "1-0",
+      "settlement": "LOSS",
+      "selected_team_outcome_90m": null,
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "1-0",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 19:00:40+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s009",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "7c2211c5-455c-43d4-a2a1-60225aba44df",
+      "kickoff_utc": "2026-10-09T18:00:00Z",
+      "kickoff_tr": "21:00",
+      "home": "ACS Sepsi OSK",
+      "away": "Dinamo Bucharest",
+      "league": "Romanian Liga I",
+      "market": "1X2",
+      "selection": "Dinamo Bucharest",
+      "side": "2",
+      "engine_tags": [
+        "EARLY_T12",
+        "V1"
+      ],
+      "sxf_odds": 1.68,
+      "final_score_90m": "0-2",
+      "settlement": "WIN",
+      "selected_team_outcome_90m": "WIN",
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "0-2",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 20:02:58+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s010",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "78a11969-d4f7-44df-87b9-bacdeb2a9d71",
+      "kickoff_utc": "2026-10-09T18:00:00Z",
+      "kickoff_tr": "21:00",
+      "home": "Al Nassr",
+      "away": "Al Draih",
+      "league": "Saudi Professional League",
+      "market": "1X2",
+      "selection": "Al Nassr",
+      "side": "1",
+      "engine_tags": [
+        "V1",
+        "V2"
+      ],
+      "sxf_odds": 1.4,
+      "final_score_90m": "3-0",
+      "settlement": "WIN",
+      "selected_team_outcome_90m": "WIN",
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "3-0",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 20:12:16+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s011",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "4e0cbe3f-2b5e-4881-a1e4-67e00bebe472",
+      "kickoff_utc": "2026-10-09T18:00:00Z",
+      "kickoff_tr": "21:00",
+      "home": "Almere City",
+      "away": "FC Eindhoven",
+      "league": "Dutch Eerste Divisie",
+      "market": "1X2",
+      "selection": "Almere City",
+      "side": "1",
+      "engine_tags": [
+        "V1",
+        "V2"
+      ],
+      "sxf_odds": 1.44,
+      "final_score_90m": "3-0",
+      "settlement": "WIN",
+      "selected_team_outcome_90m": "WIN",
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "3-0",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 19:59:52+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s012",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "f293234d-523a-4b15-8bb7-60efecda6997",
+      "kickoff_utc": "2026-10-09T18:00:00Z",
+      "kickoff_tr": "21:00",
+      "home": "Nancy",
+      "away": "Guingamp",
+      "league": "French Ligue 2",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "selection": "Guingamp",
+      "side": "2",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "sxf_odds": 3.95,
+      "final_score_90m": "1-0",
+      "settlement": "LOSS",
+      "selected_team_outcome_90m": "LOSS",
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "1-0",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 20:02:58+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s013",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "862469d9-38a6-4ed2-9ea2-a4dd598135bf",
+      "kickoff_utc": "2026-10-09T18:15:00Z",
+      "kickoff_tr": "21:15",
+      "home": "Belgium (W)",
+      "away": "Poland (W)",
+      "league": "FIFA Ladies World Cup Qualifiers",
+      "market": "1X2",
+      "selection": "Belgium (W)",
+      "side": "1",
+      "engine_tags": [
+        "V1",
+        "V2"
+      ],
+      "sxf_odds": 1.97,
+      "final_score_90m": "1-0",
+      "settlement": "WIN",
+      "selected_team_outcome_90m": "WIN",
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "1-0",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 20:16:07+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s014",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "e0a7aff4-1ce3-4404-a7dc-e8f9e57d0a6d",
+      "kickoff_utc": "2026-10-09T18:30:00Z",
+      "kickoff_tr": "21:30",
+      "home": "Dortmund",
+      "away": "Werder Bremen",
+      "league": "German Bundesliga",
+      "market": "1X2",
+      "selection": "Dortmund",
+      "side": "1",
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "sxf_odds": 1.39,
+      "final_score_90m": "2-2",
+      "settlement": "LOSS",
+      "selected_team_outcome_90m": "DRAW",
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "2-2",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 20:34:25+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s015",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "e0a7aff4-1ce3-4404-a7dc-e8f9e57d0a6d",
+      "kickoff_utc": "2026-10-09T18:30:00Z",
+      "kickoff_tr": "21:30",
+      "home": "Dortmund",
+      "away": "Werder Bremen",
+      "league": "German Bundesliga",
+      "market": "BTTS",
+      "selection": "KG VAR",
+      "side": "Y",
+      "engine_tags": [
+        "BTTS_YES"
+      ],
+      "sxf_odds": 1.67,
+      "final_score_90m": "2-2",
+      "settlement": "WIN",
+      "selected_team_outcome_90m": null,
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "2-2",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 20:34:25+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s016",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "e0a7aff4-1ce3-4404-a7dc-e8f9e57d0a6d",
+      "kickoff_utc": "2026-10-09T18:30:00Z",
+      "kickoff_tr": "21:30",
+      "home": "Dortmund",
+      "away": "Werder Bremen",
+      "league": "German Bundesliga",
+      "market": "OVER_2_5",
+      "selection": "Üst 2.5",
+      "side": "O",
+      "engine_tags": [
+        "STABLE_OVER_2_5"
+      ],
+      "sxf_odds": 1.41,
+      "final_score_90m": "2-2",
+      "settlement": "WIN",
+      "selected_team_outcome_90m": null,
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "2-2",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 20:34:25+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s017",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "c8b86669-f9c3-4272-b3de-84c1ca3fe4d2",
+      "kickoff_utc": "2026-10-09T18:30:00Z",
+      "kickoff_tr": "21:30",
+      "home": "First Vienna Fc 1894",
+      "away": "St Polten",
+      "league": "Austrian Erste Liga",
+      "market": "1X2",
+      "selection": "First Vienna Fc 1894",
+      "side": "1",
+      "engine_tags": [
+        "V1",
+        "V2"
+      ],
+      "sxf_odds": 2.08,
+      "final_score_90m": "3-1",
+      "settlement": "WIN",
+      "selected_team_outcome_90m": "WIN",
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "3-1",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 20:23:15+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s018",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "f9e80981-ab2a-4ad5-b815-bb6819598392",
+      "kickoff_utc": "2026-10-09T18:30:00Z",
+      "kickoff_tr": "21:30",
+      "home": "Rakow Czestochowa",
+      "away": "GKS Katowice",
+      "league": "Polish Ekstraklasa",
+      "market": "1X2",
+      "selection": "Rakow Czestochowa",
+      "side": "1",
+      "engine_tags": [
+        "V1"
+      ],
+      "sxf_odds": 2.3,
+      "final_score_90m": "1-4",
+      "settlement": "LOSS",
+      "selected_team_outcome_90m": "LOSS",
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "1-4",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 20:25:16+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s019",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "2f322d41-ba84-4b67-b540-c42c20d73c87",
+      "kickoff_utc": "2026-10-09T18:45:00Z",
+      "kickoff_tr": "21:45",
+      "home": "Shelbourne",
+      "away": "Sligo Rovers",
+      "league": "Irish Premier Division",
+      "market": "OVER_2_5",
+      "selection": "Üst 2.5",
+      "side": "O",
+      "engine_tags": [
+        "PREMIUM_OVER_2_5"
+      ],
+      "sxf_odds": 1.47,
+      "final_score_90m": "5-1",
+      "settlement": "WIN",
+      "selected_team_outcome_90m": null,
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "5-1",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 20:40:30+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s020",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "d2364353-c098-4fc7-bd2e-0181b4c00498",
+      "kickoff_utc": "2026-10-09T18:45:00Z",
+      "kickoff_tr": "21:45",
+      "home": "Sutton Utd",
+      "away": "Boreham Wood",
+      "league": "English National League",
+      "market": "1X2",
+      "selection": "Boreham Wood",
+      "side": "2",
+      "engine_tags": [
+        "V1"
+      ],
+      "sxf_odds": 1.79,
+      "final_score_90m": "0-2",
+      "settlement": "WIN",
+      "selected_team_outcome_90m": "WIN",
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "0-2",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 20:40:30+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s021",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "a0dc59f0-eb1e-4061-bf6b-4757ecfee3ff",
+      "kickoff_utc": "2026-10-09T19:00:00Z",
+      "kickoff_tr": "22:00",
+      "home": "West Ham",
+      "away": "QPR",
+      "league": "English Sky Bet Championship",
+      "market": "1X2",
+      "selection": "West Ham",
+      "side": "1",
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "sxf_odds": 1.51,
+      "final_score_90m": "1-1",
+      "settlement": "LOSS",
+      "selected_team_outcome_90m": "DRAW",
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "1-1",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 20:59:46+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s022",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "a0dc59f0-eb1e-4061-bf6b-4757ecfee3ff",
+      "kickoff_utc": "2026-10-09T19:00:00Z",
+      "kickoff_tr": "22:00",
+      "home": "West Ham",
+      "away": "QPR",
+      "league": "English Sky Bet Championship",
+      "market": "BTTS",
+      "selection": "KG VAR",
+      "side": "Y",
+      "engine_tags": [
+        "BTTS_YES"
+      ],
+      "sxf_odds": 1.74,
+      "final_score_90m": "1-1",
+      "settlement": "WIN",
+      "selected_team_outcome_90m": null,
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "1-1",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 20:59:46+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s023",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "a0dc59f0-eb1e-4061-bf6b-4757ecfee3ff",
+      "kickoff_utc": "2026-10-09T19:00:00Z",
+      "kickoff_tr": "22:00",
+      "home": "West Ham",
+      "away": "QPR",
+      "league": "English Sky Bet Championship",
+      "market": "OVER_2_5",
+      "selection": "Üst 2.5",
+      "side": "O",
+      "engine_tags": [
+        "PREMIUM_OVER_2_5"
+      ],
+      "sxf_odds": 1.57,
+      "final_score_90m": "1-1",
+      "settlement": "LOSS",
+      "selected_team_outcome_90m": null,
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "1-1",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 20:59:46+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1-s024",
+      "scan_id": "sxf-research-2026-10-09-t6-fallback-t8-16to24-v1",
+      "fixture_uid": "711d3d7e-564a-4413-a465-2518dcef8104",
+      "kickoff_utc": "2026-10-09T19:15:00Z",
+      "kickoff_tr": "22:15",
+      "home": "Braga",
+      "away": "Sporting Lisbon",
+      "league": "Portuguese Primeira Liga",
+      "market": "BTTS",
+      "selection": "KG VAR",
+      "side": "Y",
+      "engine_tags": [
+        "BTTS_YES"
+      ],
+      "sxf_odds": 1.84,
+      "final_score_90m": "1-3",
+      "settlement": "WIN",
+      "selected_team_outcome_90m": null,
+      "score_verification": {
+        "source": "SXF_ARCHIVE_FT",
+        "quality": "SINGLE_INTERNAL_FT",
+        "source_locations": [
+          "research_archive.results"
+        ],
+        "archive_score": "1-3",
+        "archive_status": "ft",
+        "archive_updated_at": "2026-10-09 21:21:07+00",
+        "live_score": null,
+        "live_status": null,
+        "live_updated_at": null,
+        "issues": []
+      }
+    }
+  ]
+}
