@@ -38,3 +38,8 @@ If BTTS/T8 snapshots are missing, stale, or source-inconsistent, use CROSSMARKET
 - Promotion would require an explicit later owner approval and versioned GitHub methodology / role / schema / MILESTONE changes.
 
 **Status: EXPERIMENTAL NOTE ONLY / NO CANONICAL CHANGES**
+
+
+## Birlikte not alınan SXF geliştirme adayları (2026-10-27)
+
+Kullanıcının isteğiyle bu araştırma adayı, diğer motor adayıyla aynı listede tutuluyor: [OVER_STRONG + EKOL 3 geliştirme adayları](SXF_GELISTIRME_ADAYLARI_OVER25_EKOL3_2026-10-27.md). Bu çapraz referans **aktif motora alma veya kanonik kural değişikliği değildir**.
