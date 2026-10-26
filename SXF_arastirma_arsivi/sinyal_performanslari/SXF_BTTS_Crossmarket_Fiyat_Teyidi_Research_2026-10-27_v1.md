@@ -112,3 +112,11 @@ Dönem performansı 9–16 Ekim: 7/7; 17–25 Ekim: 6/7.
 - Bu dosyayı daha eski ÜST 2.5 **OVER_STRONG** ve 1X2 **EKOL 3** kayıtlarıyla karıştırıp 'kanıtlanmış motor' olarak sunma; kullanıcı isterse ayrı BTTS araştırma adayı olarak yanına eklenebilir.
 
 **Status: EXPERIMENTAL ONLY / NO CANONICAL CHANGE.**
+
+
+## Ek takvim kontrolü — 26 Ekim 2026 T-6, FT sonucu doğrulanmadı
+9–25 Ekim araştırma döneminin dışındaki 26 Ekim 2026 günlük SXF T-6 taramasında **Paris St-G – Lyon KG VAR YES** sinyali bulunuyor (`fixture_uid=ca3254d9-ada6-4ed6-a8f2-8462e0cf1803`, T-6 **2026-10-26 13:30 UTC**, KG YES 1,67 / £6.329,43 / %70,7). Supabase salt SELECT orijinal aynı-fixture tarihsel snapshotları:
+- T-8: 2026-10-26 11:29:36 UTC, KG YES/NO odds **1,61/2,50**, OU25 O/U odds **1,39/3,45**.
+- T-6: 2026-10-26 13:29:44 UTC, KG YES/NO odds **1,67/2,50**, OU25 O/U odds **1,41/3,40**.
+- KG YES normalize piyasa yüzdesi **azalmış**, OVER2.5 normalize piyasa yüzdesi de **azalmış**; hem KG PRICE ONLY hem KG ÇİFT FİYAT TEYİDİ bu maça **YENİ ARAŞTIRMA ETİKETİ ÜRETMEZ**. Canonical KG VAR YES sinyali silinmez.
+- 26 Ekim FT sonuç dosyası burada **bulunmadı**, bu olay için WIN/LOSS iddiası yok. Sonuçsuz bir adet dış dönem olayının gözlenmesi başarı veya dış örneklem performansı sayılmaz. Sonradan skor öğrenilip eşik değiştirilmeyecek.
