@@ -1,0 +1,410 @@
+{
+  "schema_version": "SXF_RESEARCH_OUTCOME_V1",
+  "date_tr": "2026-10-12",
+  "original_scan_id": "sxf-research-2026-10-12-t6-fallback-t8-16to24-v2",
+  "original_scan_preserved": true,
+  "score_basis": "90_MIN_NORMAL_TIME",
+  "created_at_utc": "2026-10-26T00:25:42.419Z",
+  "source_policy": "SXF archived FT or live FT matched by source fixture/hash + home/away + kickoff; external verification for missing or extra-time case",
+  "counts": {
+    "all": 11,
+    "settled": 11,
+    "pending": 0
+  },
+  "engine_metrics": {
+    "EARLY_CORE": {
+      "n": 1,
+      "settled": 1,
+      "hits": 1,
+      "draw": 0,
+      "wins": 0,
+      "odds_sum": 1.61,
+      "avg_odds": 1.61,
+      "rate": 100
+    },
+    "EARLY_T12": {
+      "n": 4,
+      "settled": 4,
+      "hits": 4,
+      "draw": 0,
+      "wins": 0,
+      "odds_sum": 7.3500000000000005,
+      "avg_odds": 1.838,
+      "rate": 100
+    },
+    "V1": {
+      "n": 6,
+      "settled": 6,
+      "hits": 5,
+      "draw": 0,
+      "wins": 0,
+      "odds_sum": 11.490000000000002,
+      "avg_odds": 1.915,
+      "rate": 83.33
+    },
+    "HEAVY": {
+      "n": 3,
+      "settled": 3,
+      "hits": 3,
+      "draw": 0,
+      "wins": 0,
+      "odds_sum": 6.050000000000001,
+      "avg_odds": 2.017,
+      "rate": 100
+    },
+    "STABLE_OVER_2_5": {
+      "n": 1,
+      "settled": 1,
+      "hits": 1,
+      "draw": 0,
+      "wins": 0,
+      "odds_sum": 1.57,
+      "avg_odds": 1.57,
+      "rate": 100
+    },
+    "V2": {
+      "n": 4,
+      "settled": 4,
+      "hits": 4,
+      "draw": 0,
+      "wins": 0,
+      "odds_sum": 7.84,
+      "avg_odds": 1.96,
+      "rate": 100
+    },
+    "BTTS_YES": {
+      "n": 2,
+      "settled": 2,
+      "hits": 2,
+      "draw": 0,
+      "wins": 0,
+      "odds_sum": 3.35,
+      "avg_odds": 1.675,
+      "rate": 100
+    }
+  },
+  "settlements": [
+    {
+      "selection_id": "sxf-research-2026-10-12-t6-fallback-t8-16to24-v2-s001",
+      "fixture_uid": "7ad6dd6c-97b2-4efd-92fc-52381f1b9807",
+      "home": "Atalanta",
+      "away": "Venezia",
+      "kickoff_tr": "19:30",
+      "kickoff_utc": "2026-10-12T16:30:00Z",
+      "selection": "Atalanta",
+      "side": "1",
+      "market": "1X2",
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "HEAVY"
+      ],
+      "sxf_odds": 1.61,
+      "score_90m": "3-1",
+      "outcome": "WIN",
+      "source": {
+        "type": "SXF_ARCHIVE_FT",
+        "archive_score": "3-1",
+        "archive_status": "ft",
+        "live_score": null,
+        "live_status": null,
+        "score_conflict": false,
+        "kickoff_conflict": false,
+        "external_urls": [
+          "https://www.sofascore.com/tr/football/match/venezia-atalanta/LdbsNdb"
+        ],
+        "extra_time_note": null
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-12-t6-fallback-t8-16to24-v2-s002",
+      "fixture_uid": "7ad6dd6c-97b2-4efd-92fc-52381f1b9807",
+      "home": "Atalanta",
+      "away": "Venezia",
+      "kickoff_tr": "19:30",
+      "kickoff_utc": "2026-10-12T16:30:00Z",
+      "selection": "Üst 2.5",
+      "side": "O",
+      "market": "OVER_2_5",
+      "engine_tags": [
+        "STABLE_OVER_2_5"
+      ],
+      "sxf_odds": 1.57,
+      "score_90m": "3-1",
+      "outcome": "WIN",
+      "source": {
+        "type": "SXF_ARCHIVE_FT",
+        "archive_score": "3-1",
+        "archive_status": "ft",
+        "live_score": null,
+        "live_status": null,
+        "score_conflict": false,
+        "kickoff_conflict": false,
+        "external_urls": [
+          "https://www.sofascore.com/tr/football/match/venezia-atalanta/LdbsNdb"
+        ],
+        "extra_time_note": null
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-12-t6-fallback-t8-16to24-v2-s003",
+      "fixture_uid": "bc78152f-09e8-484f-b39a-ec8419a7329f",
+      "home": "Oviedo",
+      "away": "Eibar",
+      "kickoff_tr": "19:30",
+      "kickoff_utc": "2026-10-12T16:30:00Z",
+      "selection": "Oviedo",
+      "side": "1",
+      "market": "1X2",
+      "engine_tags": [
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "sxf_odds": 2.5,
+      "score_90m": "3-1",
+      "outcome": "WIN",
+      "source": {
+        "type": "SXF_ARCHIVE_FT",
+        "archive_score": "3-1",
+        "archive_status": "ft",
+        "live_score": null,
+        "live_status": null,
+        "score_conflict": false,
+        "kickoff_conflict": false,
+        "external_urls": [],
+        "extra_time_note": null
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-12-t6-fallback-t8-16to24-v2-s004",
+      "fixture_uid": "284a06b5-b696-4da2-8d43-a0508cac19b6",
+      "home": "Elfsborg",
+      "away": "Halmstads",
+      "kickoff_tr": "20:00",
+      "kickoff_utc": "2026-10-12T17:00:00Z",
+      "selection": "Elfsborg",
+      "side": "1",
+      "market": "1X2",
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "sxf_odds": 1.34,
+      "score_90m": "4-0",
+      "outcome": "WIN",
+      "source": {
+        "type": "SXF_ARCHIVE_FT",
+        "archive_score": "4-0",
+        "archive_status": "ft",
+        "live_score": null,
+        "live_status": null,
+        "score_conflict": false,
+        "kickoff_conflict": false,
+        "external_urls": [],
+        "extra_time_note": null
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-12-t6-fallback-t8-16to24-v2-s005",
+      "fixture_uid": "16a1455d-527b-4f68-8897-ca3fb992f556",
+      "home": "Eyupspor",
+      "away": "Goztepe",
+      "kickoff_tr": "20:00",
+      "kickoff_utc": "2026-10-12T17:00:00Z",
+      "selection": "Goztepe",
+      "side": "2",
+      "market": "1X2",
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "sxf_odds": 1.94,
+      "score_90m": "0-4",
+      "outcome": "WIN",
+      "source": {
+        "type": "SXF_ARCHIVE_FT",
+        "archive_score": "0-4",
+        "archive_status": "ft",
+        "live_score": null,
+        "live_status": null,
+        "score_conflict": false,
+        "kickoff_conflict": false,
+        "external_urls": [],
+        "extra_time_note": null
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-12-t6-fallback-t8-16to24-v2-s006",
+      "fixture_uid": "773bf905-bdf2-4f52-9433-0ccd49758008",
+      "home": "Pyramids",
+      "away": "Ceramica Cleopatra",
+      "kickoff_tr": "20:00",
+      "kickoff_utc": "2026-10-12T17:00:00Z",
+      "selection": "Pyramids",
+      "side": "1",
+      "market": "1X2",
+      "engine_tags": [
+        "V1",
+        "V2"
+      ],
+      "sxf_odds": 1.58,
+      "score_90m": "4-1",
+      "outcome": "WIN",
+      "source": {
+        "type": "SXF_ARCHIVE_FT",
+        "archive_score": "4-1",
+        "archive_status": "ft",
+        "live_score": null,
+        "live_status": null,
+        "score_conflict": false,
+        "kickoff_conflict": false,
+        "external_urls": [],
+        "extra_time_note": null
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-12-t6-fallback-t8-16to24-v2-s007",
+      "fixture_uid": "ec0317a5-90cd-4777-b1b6-f0d6da010fde",
+      "home": "CD Gualberto Villarroel",
+      "away": "Guabira",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-12T19:00:00Z",
+      "selection": "CD Gualberto Villarroel",
+      "side": "1",
+      "market": "1X2",
+      "engine_tags": [
+        "V1",
+        "V2"
+      ],
+      "sxf_odds": 1.82,
+      "score_90m": "4-1",
+      "outcome": "WIN",
+      "source": {
+        "type": "SXF_ARCHIVE_FT",
+        "archive_score": "4-1",
+        "archive_status": "ft",
+        "live_score": null,
+        "live_status": null,
+        "score_conflict": false,
+        "kickoff_conflict": false,
+        "external_urls": [],
+        "extra_time_note": null
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-12-t6-fallback-t8-16to24-v2-s008",
+      "fixture_uid": "5cee8898-11e3-49f5-bc1b-a177d2f1370c",
+      "home": "Coventry",
+      "away": "Newcastle",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-12T19:00:00Z",
+      "selection": "KG VAR",
+      "side": "Y",
+      "market": "BTTS",
+      "engine_tags": [
+        "BTTS_YES"
+      ],
+      "sxf_odds": 1.62,
+      "score_90m": "4-1",
+      "outcome": "WIN",
+      "source": {
+        "type": "SXF_ARCHIVE_FT",
+        "archive_score": "4-1",
+        "archive_status": "ft",
+        "live_score": null,
+        "live_status": null,
+        "score_conflict": false,
+        "kickoff_conflict": false,
+        "external_urls": [],
+        "extra_time_note": null
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-12-t6-fallback-t8-16to24-v2-s009",
+      "fixture_uid": "9159a868-678e-47d5-b42a-dd6700b677e5",
+      "home": "Fortaleza EC",
+      "away": "CRB",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-12T19:00:00Z",
+      "selection": "Fortaleza EC",
+      "side": "1",
+      "market": "1X2",
+      "engine_tags": [
+        "V1"
+      ],
+      "sxf_odds": 2.04,
+      "score_90m": "2-2",
+      "outcome": "LOSS",
+      "source": {
+        "type": "SXF_ARCHIVE_FT",
+        "archive_score": "2-2",
+        "archive_status": "ft",
+        "live_score": null,
+        "live_status": null,
+        "score_conflict": false,
+        "kickoff_conflict": false,
+        "external_urls": [],
+        "extra_time_note": null
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-12-t6-fallback-t8-16to24-v2-s010",
+      "fixture_uid": "4b4abdba-e42d-4bf5-af39-ce5aa7624813",
+      "home": "Shamrock Rovers",
+      "away": "Bohemians",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-12T19:00:00Z",
+      "selection": "Shamrock Rovers",
+      "side": "1",
+      "market": "1X2",
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "sxf_odds": 2.46,
+      "score_90m": "2-1",
+      "outcome": "WIN",
+      "source": {
+        "type": "SXF_ARCHIVE_FT",
+        "archive_score": "2-1",
+        "archive_status": "ft",
+        "live_score": null,
+        "live_status": null,
+        "score_conflict": false,
+        "kickoff_conflict": false,
+        "external_urls": [],
+        "extra_time_note": null
+      }
+    },
+    {
+      "selection_id": "sxf-research-2026-10-12-t6-fallback-t8-16to24-v2-s011",
+      "fixture_uid": "4b4abdba-e42d-4bf5-af39-ce5aa7624813",
+      "home": "Shamrock Rovers",
+      "away": "Bohemians",
+      "kickoff_tr": "22:00",
+      "kickoff_utc": "2026-10-12T19:00:00Z",
+      "selection": "KG VAR",
+      "side": "Y",
+      "market": "BTTS",
+      "engine_tags": [
+        "BTTS_YES"
+      ],
+      "sxf_odds": 1.73,
+      "score_90m": "2-1",
+      "outcome": "WIN",
+      "source": {
+        "type": "SXF_ARCHIVE_FT",
+        "archive_score": "2-1",
+        "archive_status": "ft",
+        "live_score": null,
+        "live_status": null,
+        "score_conflict": false,
+        "kickoff_conflict": false,
+        "external_urls": [],
+        "extra_time_note": null
+      }
+    }
+  ]
+}
