@@ -60,7 +60,9 @@
           "present": 5762,
           "missing": 3078
         }
-      }
+      },
+      "results_present": 0,
+      "results_missing": 260
     },
     {
       "date": "2026-10-10",
@@ -83,7 +85,9 @@
           "present": 10270,
           "missing": 5200
         }
-      }
+      },
+      "results_present": 0,
+      "results_missing": 455
     },
     {
       "date": "2026-10-11",
@@ -106,7 +110,9 @@
           "present": 8338,
           "missing": 3018
         }
-      }
+      },
+      "results_present": 0,
+      "results_missing": 334
     },
     {
       "date": "2026-10-12",
@@ -129,7 +135,9 @@
           "present": 3753,
           "missing": 2265
         }
-      }
+      },
+      "results_present": 0,
+      "results_missing": 177
     },
     {
       "date": "2026-10-13",
@@ -152,7 +160,9 @@
           "present": 1720,
           "missing": 4808
         }
-      }
+      },
+      "results_present": 0,
+      "results_missing": 192
     },
     {
       "date": "2026-10-14",
@@ -175,7 +185,9 @@
           "present": 2791,
           "missing": 2377
         }
-      }
+      },
+      "results_present": 152,
+      "results_missing": 0
     },
     {
       "date": "2026-10-15",
@@ -198,7 +210,9 @@
           "present": 3077,
           "missing": 2363
         }
-      }
+      },
+      "results_present": 0,
+      "results_missing": 160
     },
     {
       "date": "2026-10-16",
@@ -221,7 +235,9 @@
           "present": 4172,
           "missing": 2662
         }
-      }
+      },
+      "results_present": 0,
+      "results_missing": 201
     },
     {
       "date": "2026-10-17",
@@ -244,11 +260,88 @@
           "present": 10163,
           "missing": 4661
         }
-      }
+      },
+      "results_present": 0,
+      "results_missing": 436
+    },
+    {
+      "date": "2026-10-18",
+      "fixtures": 400,
+      "alarms": 366,
+      "checkpoint_bytes": 1141891,
+      "alarm_bytes": 41363,
+      "total_bytes": 1183254,
+      "uncompressed_bytes": 11796828,
+      "coverage": {
+        "1X2": {
+          "present": 11272,
+          "missing": 2328
+        },
+        "OU25": {
+          "present": 11336,
+          "missing": 2264
+        },
+        "BTTS": {
+          "present": 9452,
+          "missing": 4148
+        }
+      },
+      "results_present": 398,
+      "results_missing": 2
+    },
+    {
+      "date": "2026-10-19",
+      "fixtures": 173,
+      "alarms": 132,
+      "checkpoint_bytes": 439346,
+      "alarm_bytes": 12696,
+      "total_bytes": 452042,
+      "uncompressed_bytes": 4696659,
+      "coverage": {
+        "1X2": {
+          "present": 3990,
+          "missing": 1892
+        },
+        "OU25": {
+          "present": 4030,
+          "missing": 1852
+        },
+        "BTTS": {
+          "present": 3500,
+          "missing": 2382
+        }
+      },
+      "results_present": 173,
+      "results_missing": 0
+    },
+    {
+      "date": "2026-10-20",
+      "fixtures": 139,
+      "alarms": 166,
+      "checkpoint_bytes": 375813,
+      "alarm_bytes": 16052,
+      "total_bytes": 391865,
+      "uncompressed_bytes": 3856806,
+      "coverage": {
+        "1X2": {
+          "present": 3193,
+          "missing": 1533
+        },
+        "OU25": {
+          "present": 3178,
+          "missing": 1548
+        },
+        "BTTS": {
+          "present": 2849,
+          "missing": 1877
+        }
+      },
+      "results_present": 135,
+      "results_missing": 4
     }
   ],
-  "total_fixtures": 2367,
-  "total_alarm_records": 1899,
-  "total_compressed_bytes": 6686202,
-  "total_uncompressed_bytes": 68607106
+  "total_fixtures": 3079,
+  "total_alarm_records": 2563,
+  "total_compressed_bytes": 8713363,
+  "total_uncompressed_bytes": 88957399
 }

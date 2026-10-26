@@ -1,0 +1,89 @@
+{
+  "archive_name": "PRATİK ARŞİV",
+  "version": "v1",
+  "date": "2026-10-19",
+  "timezone": "Europe/Istanbul",
+  "checkpoint_hours": [
+    72,
+    69,
+    66,
+    63,
+    60,
+    57,
+    54,
+    51,
+    48,
+    45,
+    42,
+    39,
+    36,
+    33,
+    30,
+    27,
+    24,
+    22,
+    20,
+    18,
+    16,
+    14,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "fixtures": 173,
+  "market_checkpoint_slots_total": 17646,
+  "market_checkpoint_slots_present": 11520,
+  "market_checkpoint_slots_missing": 6126,
+  "alarms": 132,
+  "fields": "Original market history fields are retained, including source odds, share percentages, GBP amounts, volume, timestamps, row id and fingerprint.",
+  "source": "Supabase research_archive (READ-ONLY)",
+  "source_archive_status": "COMPLETE",
+  "source_archive_notes": "Original daily source archive status COMPLETE. Hash-only legacy matching was permitted only when the fixture hash was unique; ambiguous hash collisions were excluded.",
+  "missing_policy": "MISSING explicit; latest observation at or before target only; exact fixture_uid preferred for same-time ties, then source_fingerprint ascending; hash fallback used only when fixture hash is unique; no interpolation or future substitution.",
+  "coverage_by_market": {
+    "1X2": {
+      "present": 3990,
+      "missing": 1892
+    },
+    "OU25": {
+      "present": 4030,
+      "missing": 1852
+    },
+    "BTTS": {
+      "present": 3500,
+      "missing": 2382
+    }
+  },
+  "files": {
+    "checkpoints": {
+      "name": "checkpoints.jsonl.gz",
+      "uncompressed_bytes": 4614292,
+      "compressed_bytes": 439346
+    },
+    "alarms": {
+      "name": "alarms.jsonl.gz",
+      "uncompressed_bytes": 82367,
+      "compressed_bytes": 12696
+    }
+  },
+  "integrity": {
+    "fixture_records": 173,
+    "alarm_records": 132,
+    "checkpoint_schedule_valid": true,
+    "future_snapshot_count": 0,
+    "selected_present_market_rows": 11520,
+    "checkpoints_sha256": "e81d874ff6d2e313ce6c6d3dc955eea4c5543a37aee8a1c6131dea6a88631e94",
+    "alarms_sha256": "b566405b959814ad81fb9f1f97ea18bf3e7178741179bdaeda61d9954d9fed34"
+  },
+  "results_present": 173,
+  "results_missing": 0
+}
