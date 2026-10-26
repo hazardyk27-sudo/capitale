@@ -75,14 +75,14 @@
 
 ## 5. Parti: 25–26 Ekim 2026
 
-[25 Ekim tamamlandı / 26 Ekim T-6 zamanı bekleniyor](2026/10/README_25_26.md)
+[25–26 Ekim tamamlandı — kaynak ve kalite uyarılarıyla](2026/10/README_25_26.md)
 
 | Tarih | Durum | Maç | Sinyalli | Seçim | Motor etiketi |
 |---|---|---:|---:|---:|---:|
 | 25.10.2026 | `RECONSTRUCTED_ARCHIVED` | 188 | 38 | 39 | 78 |
-| 26.10.2026 | `PENDING_ASOF_NOT_REACHED` (03:03 TSİ) | 66 aday fikstür | — | — | — |
+| 26.10.2026 | `RECONSTRUCTED_ARCHIVED` | 87 | 15 | 18 | 23 |
 
-**26 Ekim: 0 sinyal değil, karar noktaları henüz gelmedi.** İlk T-8 08:00, ilk T-6 10:00, son T-6 17:45 TSİ. Bugünün taramasının tamamlandığı iddia edilmez.
+**26 Ekim araştırma taraması tamamlandı:** 87 fikstürün 64'ünde en az bir tam piyasa, 15 sinyalli maç, 18 farklı seçim, 23 motor etiketi. [Ayrıntılı rapor](2026/10/26/sxf-research-2026-10-26-t6-fallback-t8-16to24-v1.md) · [JSON](2026/10/26/sxf-research-2026-10-26-t6-fallback-t8-16to24-v1.json). 23 fikstürde tam piyasa yoktur (19 kısmi, 4 tamamen eksik); T-8'den ilave tam piyasa bulunmadı. Bu 26 Ekim'de canlı yayımlanmış tahmin değil, sonradan oluşturulmuş T-6/T-8 araştırmasıdır. Önceki 03:03 TSİ bekleme belgesi tarihsel kayıt olarak korunur.
 
 ---
 
