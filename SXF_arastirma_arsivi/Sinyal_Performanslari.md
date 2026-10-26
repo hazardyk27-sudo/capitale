@@ -24,6 +24,18 @@
 
 **SURPRISE:** Başarılı sayılması için takımın 90 dakikada yenilmemesi yeterlidir. Gösterilen SXF oranı **doğrudan takım kazanır** fiyatıdır, yenilmeme fiyatı değildir. SURPRISE yüzde sonuçları 1X2 motorlarının galibiyet başarılarıyla aynı anlamda değildir.
 
+## Motor başarı oranlarının grafiği
+
+```mermaid
+xychart-beta
+    title "9–25 Ekim: SXF motor isabet yüzdesi"
+    x-axis ["CORE", "T12", "V1", "V2", "HEAVY", "STABLE", "PREMIUM", "BTTS", "SURPRISE"]
+    y-axis "Başarı %" 0 --> 100
+    bar [66.27, 62.96, 63.59, 62.50, 72.06, 72.73, 72.73, 70.73, 61.86]
+```
+
+**Not:** SURPRISE yenilmeme başarısıdır; diğer 1X2 motorlarının galibiyet yüzdesiyle aynı bahis türü değildir. Grafik örneklem büyüklüğüne göre ağırlıklı olmayan yüzdeleri gösterir; kesin motor üstünlüğü ispatı değildir.
+
 ## 2. Tekilleştirilmiş piyasa başarısı
 
 | Piyasa | Sonuçlanan / sinyal | Başarılı | Başarı % | Ortalama SXF oranı |
