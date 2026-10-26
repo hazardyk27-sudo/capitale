@@ -83,3 +83,11 @@
 | 26.10.2026 | `PENDING_ASOF_NOT_REACHED` (03:03 TSİ) | 66 aday fikstür | — | — | — |
 
 **26 Ekim: 0 sinyal değil, karar noktaları henüz gelmedi.** İlk T-8 08:00, ilk T-6 10:00, son T-6 17:45 TSİ. Bugünün taramasının tamamlandığı iddia edilmez.
+
+---
+
+## SXF Sinyal Performansları — 9–25 Ekim 2026
+
+[**Genel motor isabetleri, günlük başarı oranları, ortalama SXF oranları ve grafikler**](Sinyal_Performanslari.md)
+
+**17 gün · 464 farklı seçim · 463 sonuçlanan · 1 doğrulanamayan.** Günlerin her birinde [ayrı günlük skor/performans raporu](Sinyal_Performanslari.md#6-günlük-skor-kanıtları-ve-seçime-özel-raporlar) bulunmaktadır. Orijinal araştırma sinyal dosyaları değişmemiştir. 26 Ekim gününün T-6 taraması henüz bu performansa dahil değildir.
