@@ -110,6 +110,6 @@
 
 ## 26 Ekim 2026 — Yeni sohbet için SXF devir dosyası
 
-[**CAPİTALE SXF YENİ SOHBET TAM DEVİR — 26 Ekim 2026**](../../CAPITALE_SXF_YENI_SOHBET_TAM_DEVIR_2026-10-26.md)
+[**CAPİTALE SXF YENİ SOHBET TAM DEVİR — 26 Ekim 2026**](../CAPITALE_SXF_YENI_SOHBET_TAM_DEVIR_2026-10-26.md)
 
 Önce bu devir dosyasını, sonra kanonik rol/metodoloji ve orijinal 9–25 Ekim MD/JSON araştırma dosyalarını oku. **Son Üst 2.5 araştırması C1/C2/C3 yalnız gölge test önerisidir; v0.4 üretim metodolojisi değişmedi.** 26 Ekim taramasının tamamlanıp tamamlanmadığını canlı GitHub'dan doğrula.
