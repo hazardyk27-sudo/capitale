@@ -1,0 +1,715 @@
+{
+  "schema": "SXF_RESEARCH_OUTCOME_V1",
+  "date_tr": "2026-10-26",
+  "source_scan_path": "SXF_arastirma_arsivi/2026/10/26/sxf-research-2026-10-26-t6-fallback-t8-16to24-v1.json",
+  "original_scan_untouched": true,
+  "scan_mode": "CHECKPOINT_RESEARCH_T6_FALLBACK_T8",
+  "publication_state": "RETROSPECTIVE_RECONSTRUCTION_NOT_ORIGINAL_LIVE_PREMATCH",
+  "score_rule": "Normal-time FT from SXF; not independently web verified",
+  "counts": {
+    "total": 18,
+    "settled": 18,
+    "unverified": [],
+    "unique_fixtures": 15,
+    "hits": 10
+  },
+  "engine_metrics": {
+    "EARLY_CORE": {
+      "signals": 4,
+      "settled": 4,
+      "hits": 4,
+      "misses": 0,
+      "draw_nonloss": 0,
+      "outright_side_wins": 0,
+      "odds_all_sum": 6.58,
+      "odds_settled_sum": 6.58
+    },
+    "EARLY_T12": {
+      "signals": 4,
+      "settled": 4,
+      "hits": 4,
+      "misses": 0,
+      "draw_nonloss": 0,
+      "outright_side_wins": 0,
+      "odds_all_sum": 6.51,
+      "odds_settled_sum": 6.51
+    },
+    "V1": {
+      "signals": 4,
+      "settled": 4,
+      "hits": 3,
+      "misses": 1,
+      "draw_nonloss": 0,
+      "outright_side_wins": 0,
+      "odds_all_sum": 7.05,
+      "odds_settled_sum": 7.05
+    },
+    "V2": {
+      "signals": 1,
+      "settled": 1,
+      "hits": 1,
+      "misses": 0,
+      "draw_nonloss": 0,
+      "outright_side_wins": 0,
+      "odds_all_sum": 1.54,
+      "odds_settled_sum": 1.54
+    },
+    "HEAVY": {
+      "signals": 0,
+      "settled": 0,
+      "hits": 0,
+      "misses": 0,
+      "draw_nonloss": 0,
+      "outright_side_wins": 0,
+      "odds_all_sum": 0,
+      "odds_settled_sum": 0
+    },
+    "STABLE_OVER_2_5": {
+      "signals": 1,
+      "settled": 1,
+      "hits": 0,
+      "misses": 1,
+      "draw_nonloss": 0,
+      "outright_side_wins": 0,
+      "odds_all_sum": 1.41,
+      "odds_settled_sum": 1.41
+    },
+    "PREMIUM_OVER_2_5": {
+      "signals": 1,
+      "settled": 1,
+      "hits": 1,
+      "misses": 0,
+      "draw_nonloss": 0,
+      "outright_side_wins": 0,
+      "odds_all_sum": 1.7,
+      "odds_settled_sum": 1.7
+    },
+    "BTTS_YES": {
+      "signals": 1,
+      "settled": 1,
+      "hits": 0,
+      "misses": 1,
+      "draw_nonloss": 0,
+      "outright_side_wins": 0,
+      "odds_all_sum": 1.67,
+      "odds_settled_sum": 1.67
+    },
+    "SURPRISE_TEAM": {
+      "signals": 7,
+      "settled": 7,
+      "hits": 2,
+      "misses": 5,
+      "draw_nonloss": 1,
+      "outright_side_wins": 1,
+      "odds_all_sum": 24.4,
+      "odds_settled_sum": 24.4
+    }
+  },
+  "market_metrics": {
+    "1X2": {
+      "signals": 8,
+      "settled": 8,
+      "hits": 7,
+      "misses": 1,
+      "draw_nonloss": 0,
+      "outright_side_wins": 0,
+      "odds_all_sum": 13.63,
+      "odds_settled_sum": 13.63
+    },
+    "OVER_2_5": {
+      "signals": 2,
+      "settled": 2,
+      "hits": 1,
+      "misses": 1,
+      "draw_nonloss": 0,
+      "outright_side_wins": 0,
+      "odds_all_sum": 3.11,
+      "odds_settled_sum": 3.11
+    },
+    "BTTS": {
+      "signals": 1,
+      "settled": 1,
+      "hits": 0,
+      "misses": 1,
+      "draw_nonloss": 0,
+      "outright_side_wins": 0,
+      "odds_all_sum": 1.67,
+      "odds_settled_sum": 1.67
+    },
+    "SURPRISE_NONLOSS_RISK": {
+      "signals": 7,
+      "settled": 7,
+      "hits": 2,
+      "misses": 5,
+      "draw_nonloss": 1,
+      "outright_side_wins": 1,
+      "odds_all_sum": 24.4,
+      "odds_settled_sum": 24.4
+    }
+  },
+  "settlements": [
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s001",
+      "fixture_uid": "433f0382-0d01-4f69-8982-f561a3b7529e",
+      "match_id_hash": "c91a1471c26d",
+      "kickoff_utc": "2026-10-26T13:00:00.000Z",
+      "kickoff_tr": "16:00",
+      "home": "Mladost Zdralovi",
+      "away": "Jadran Luka Ploce",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "2",
+      "selection": "Jadran Luka Ploce",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "sxf_odds": 3.2,
+      "selection_money_gbp": 69.16,
+      "money_share_pct": 62.1,
+      "decision_as_of_utc": "2026-10-26T07:00:00.000Z",
+      "score_90m": "1-0",
+      "outcome": "LOSS",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 14:59:08+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    },
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s002",
+      "fixture_uid": "02950141-441d-4093-8e22-01d743b7ee12",
+      "match_id_hash": "50ffc6f0b5fb",
+      "kickoff_utc": "2026-10-26T13:30:00.000Z",
+      "kickoff_tr": "16:30",
+      "home": "Sporting Ben Arous",
+      "away": "AS Megrine",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "2",
+      "selection": "AS Megrine",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "sxf_odds": 4.1,
+      "selection_money_gbp": 5.19,
+      "money_share_pct": 62.2,
+      "decision_as_of_utc": "2026-10-26T07:30:00.000Z",
+      "score_90m": "1-0",
+      "outcome": "LOSS",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 15:27:37+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    },
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s003",
+      "fixture_uid": "0407eb37-d8e6-4b84-b588-e26ee6ed66d2",
+      "match_id_hash": "7921b9b9758f",
+      "kickoff_utc": "2026-10-26T13:45:00.000Z",
+      "kickoff_tr": "16:45",
+      "home": "Neftchi Fargona",
+      "away": "Al-Ittihad",
+      "market": "1X2",
+      "side": "2",
+      "selection": "Al-Ittihad",
+      "engine_tags": [
+        "EARLY_T12",
+        "V1"
+      ],
+      "sxf_odds": 1.83,
+      "selection_money_gbp": 4515.45,
+      "money_share_pct": 89.5,
+      "decision_as_of_utc": "2026-10-26T07:45:00.000Z",
+      "score_90m": "1-2",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 15:45:53+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    },
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s004",
+      "fixture_uid": "653a530e-38f0-479e-b017-f8fde2e49af1",
+      "match_id_hash": "87f2cfe0c244",
+      "kickoff_utc": "2026-10-26T15:00:00.000Z",
+      "kickoff_tr": "18:00",
+      "home": "Lokomotiv Plovdiv",
+      "away": "Slavia Sofia",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Lokomotiv Plovdiv",
+      "engine_tags": [
+        "V1"
+      ],
+      "sxf_odds": 2.24,
+      "selection_money_gbp": 1131.05,
+      "money_share_pct": 84.9,
+      "decision_as_of_utc": "2026-10-26T09:00:00.000Z",
+      "score_90m": "0-0",
+      "outcome": "LOSS",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 16:57:01+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    },
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s005",
+      "fixture_uid": "e789a443-cdf7-463d-8641-e3c7432412b9",
+      "match_id_hash": "d3ff91f09df4",
+      "kickoff_utc": "2026-10-26T15:00:00.000Z",
+      "kickoff_tr": "18:00",
+      "home": "Al Bukayriyah",
+      "away": "Hajer Club",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "2",
+      "selection": "Hajer Club",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "sxf_odds": 3.25,
+      "selection_money_gbp": 19.64,
+      "money_share_pct": 70.1,
+      "decision_as_of_utc": "2026-10-26T09:00:00.000Z",
+      "score_90m": "2-1",
+      "outcome": "LOSS",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 17:01:06+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    },
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s006",
+      "fixture_uid": "9b72d22c-e232-44fe-8ebd-a3b23a74e0d2",
+      "match_id_hash": "a8ee74a0510c",
+      "kickoff_utc": "2026-10-26T15:30:00.000Z",
+      "kickoff_tr": "18:30",
+      "home": "SC Dimona",
+      "away": "Hapoel Rishon Lezion",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "1",
+      "selection": "SC Dimona",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "sxf_odds": 3.85,
+      "selection_money_gbp": 144.75,
+      "money_share_pct": 86.4,
+      "decision_as_of_utc": "2026-10-26T09:30:00.000Z",
+      "score_90m": "2-3",
+      "outcome": "LOSS",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 17:23:32+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    },
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s007",
+      "fixture_uid": "4c8089ee-0d26-4628-87ee-2fe413c954ec",
+      "match_id_hash": "261995590e50",
+      "kickoff_utc": "2026-10-26T16:00:00.000Z",
+      "kickoff_tr": "19:00",
+      "home": "Rizespor",
+      "away": "Trabzonspor",
+      "market": "1X2",
+      "side": "2",
+      "selection": "Trabzonspor",
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "sxf_odds": 1.95,
+      "selection_money_gbp": 15995.91,
+      "money_share_pct": 75.1,
+      "decision_as_of_utc": "2026-10-26T10:00:00.000Z",
+      "score_90m": "3-4",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 17:56:04+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    },
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s008",
+      "fixture_uid": "aed6b63d-a992-4ed5-bda4-e5593854e991",
+      "match_id_hash": "d5c9f32f4311",
+      "kickoff_utc": "2026-10-26T16:00:00.000Z",
+      "kickoff_tr": "19:00",
+      "home": "Pirata FC",
+      "away": "Union Comercio",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "1",
+      "selection": "Pirata FC",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "sxf_odds": 3.2,
+      "selection_money_gbp": 14.93,
+      "money_share_pct": 52.4,
+      "decision_as_of_utc": "2026-10-26T10:00:00.000Z",
+      "score_90m": "1-0",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 17:55:02+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    },
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s009",
+      "fixture_uid": "aef2021c-1b16-4028-8de7-fd81b6b913dd",
+      "match_id_hash": "1924b73e8e06",
+      "kickoff_utc": "2026-10-26T16:00:00.000Z",
+      "kickoff_tr": "19:00",
+      "home": "Nueva Chicago",
+      "away": "San Martin de San Juan",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "2",
+      "selection": "San Martin de San Juan",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "sxf_odds": 3.7,
+      "selection_money_gbp": 1300.15,
+      "money_share_pct": 85.3,
+      "decision_as_of_utc": "2026-10-26T10:00:00.000Z",
+      "score_90m": "1-1",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 18:04:12+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    },
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s010",
+      "fixture_uid": "a92e7612-34c0-4276-9936-59af22bafb85",
+      "match_id_hash": "5ff7ac263d4a",
+      "kickoff_utc": "2026-10-26T17:00:00.000Z",
+      "kickoff_tr": "20:00",
+      "home": "Oppsal",
+      "away": "Lyn 2",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Oppsal",
+      "engine_tags": [
+        "V1"
+      ],
+      "sxf_odds": 1.44,
+      "selection_money_gbp": 3261.3,
+      "money_share_pct": 98.3,
+      "decision_as_of_utc": "2026-10-26T11:00:00.000Z",
+      "score_90m": "3-0",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 18:55:02+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    },
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s011",
+      "fixture_uid": "9420716a-12f4-43e5-ab02-eb0b9618676b",
+      "match_id_hash": "777f7aefac46",
+      "kickoff_utc": "2026-10-26T17:00:00.000Z",
+      "kickoff_tr": "20:00",
+      "home": "Våg",
+      "away": "Odd II",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "2",
+      "selection": "Odd II",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "sxf_odds": 3.1,
+      "selection_money_gbp": 156.48,
+      "money_share_pct": 51.8,
+      "decision_as_of_utc": "2026-10-26T11:00:00.000Z",
+      "score_90m": "4-2",
+      "outcome": "LOSS",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 18:52:59+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    },
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s012",
+      "fixture_uid": "a33105cb-a6ca-4596-b90d-0bacf0be3634",
+      "match_id_hash": "78464a6bccb2",
+      "kickoff_utc": "2026-10-26T18:00:00.000Z",
+      "kickoff_tr": "21:00",
+      "home": "ACS Sepsi OSK",
+      "away": "Universitatea Craiova",
+      "market": "1X2",
+      "side": "2",
+      "selection": "Universitatea Craiova",
+      "engine_tags": [
+        "V1",
+        "V2"
+      ],
+      "sxf_odds": 1.54,
+      "selection_money_gbp": 1036.59,
+      "money_share_pct": 85.5,
+      "decision_as_of_utc": "2026-10-26T12:00:00.000Z",
+      "score_90m": "0-5",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 19:57:04+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    },
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s013",
+      "fixture_uid": "2469eeb3-478d-405c-9f77-887fcc008a3a",
+      "match_id_hash": "d30cb943c913",
+      "kickoff_utc": "2026-10-26T18:45:00.000Z",
+      "kickoff_tr": "21:45",
+      "home": "Santa Clara",
+      "away": "Benfica",
+      "market": "1X2",
+      "side": "2",
+      "selection": "Benfica",
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "sxf_odds": 1.35,
+      "selection_money_gbp": 52583.8,
+      "money_share_pct": 85.6,
+      "decision_as_of_utc": "2026-10-26T12:45:00.000Z",
+      "score_90m": "1-2",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 20:44:47+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    },
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s014",
+      "fixture_uid": "2469eeb3-478d-405c-9f77-887fcc008a3a",
+      "match_id_hash": "d30cb943c913",
+      "kickoff_utc": "2026-10-26T18:45:00.000Z",
+      "kickoff_tr": "21:45",
+      "home": "Santa Clara",
+      "away": "Benfica",
+      "market": "OVER_2_5",
+      "side": "O",
+      "selection": "Üst 2.5",
+      "engine_tags": [
+        "PREMIUM_OVER_2_5"
+      ],
+      "sxf_odds": 1.7,
+      "selection_money_gbp": 2877.64,
+      "money_share_pct": 81.8,
+      "decision_as_of_utc": "2026-10-26T12:45:00.000Z",
+      "score_90m": "1-2",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 20:44:47+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    },
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s015",
+      "fixture_uid": "ca3254d9-ada6-4ed6-a8f2-8462e0cf1803",
+      "match_id_hash": "84afb86c99fa",
+      "kickoff_utc": "2026-10-26T19:30:00.000Z",
+      "kickoff_tr": "22:30",
+      "home": "Paris St-G",
+      "away": "Lyon",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Paris St-G",
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "sxf_odds": 1.38,
+      "selection_money_gbp": 341066.04,
+      "money_share_pct": 80.3,
+      "decision_as_of_utc": "2026-10-26T13:30:00.000Z",
+      "score_90m": "2-0",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 21:29:25+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    },
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s016",
+      "fixture_uid": "ca3254d9-ada6-4ed6-a8f2-8462e0cf1803",
+      "match_id_hash": "84afb86c99fa",
+      "kickoff_utc": "2026-10-26T19:30:00.000Z",
+      "kickoff_tr": "22:30",
+      "home": "Paris St-G",
+      "away": "Lyon",
+      "market": "BTTS",
+      "side": "Y",
+      "selection": "KG VAR",
+      "engine_tags": [
+        "BTTS_YES"
+      ],
+      "sxf_odds": 1.67,
+      "selection_money_gbp": 6329.43,
+      "money_share_pct": 70.7,
+      "decision_as_of_utc": "2026-10-26T13:30:00.000Z",
+      "score_90m": "2-0",
+      "outcome": "LOSS",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 21:29:25+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    },
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s017",
+      "fixture_uid": "ca3254d9-ada6-4ed6-a8f2-8462e0cf1803",
+      "match_id_hash": "84afb86c99fa",
+      "kickoff_utc": "2026-10-26T19:30:00.000Z",
+      "kickoff_tr": "22:30",
+      "home": "Paris St-G",
+      "away": "Lyon",
+      "market": "OVER_2_5",
+      "side": "O",
+      "selection": "Üst 2.5",
+      "engine_tags": [
+        "STABLE_OVER_2_5"
+      ],
+      "sxf_odds": 1.41,
+      "selection_money_gbp": 1647.53,
+      "money_share_pct": 72.3,
+      "decision_as_of_utc": "2026-10-26T13:30:00.000Z",
+      "score_90m": "2-0",
+      "outcome": "LOSS",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 21:29:25+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    },
+    {
+      "selection_id": "sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-s018",
+      "fixture_uid": "2f6b2dc4-b037-4def-bdaa-029e2a9abb79",
+      "match_id_hash": "1ea61b46cc99",
+      "kickoff_utc": "2026-10-26T20:00:00.000Z",
+      "kickoff_tr": "23:00",
+      "home": "Sevilla",
+      "away": "Osasuna",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Sevilla",
+      "engine_tags": [
+        "EARLY_CORE"
+      ],
+      "sxf_odds": 1.9,
+      "selection_money_gbp": 70139.64,
+      "money_share_pct": 73.2,
+      "decision_as_of_utc": "2026-10-26T14:00:00.000Z",
+      "score_90m": "2-0",
+      "outcome": "WIN",
+      "verification": {
+        "source": "SXF_PUBLIC_LIVE_FIXTURES_MATCH_ID_HASH",
+        "live_status": "ft",
+        "live_updated_at": "2026-10-26 22:01:48+00",
+        "match_id_hash_matched": true,
+        "fixture_uid_equal": true,
+        "home_away_equal": true,
+        "independently_externally_verified": false
+      },
+      "note": ""
+    }
+  ]
+}
