@@ -68,8 +68,8 @@
   "files": {
     "checkpoints": {
       "name": "checkpoints.jsonl.gz",
-      "uncompressed_bytes": 12593813,
-      "compressed_bytes": 610174
+      "uncompressed_bytes": 12598571,
+      "compressed_bytes": 613250
     },
     "alarms": {
       "name": "alarms.jsonl.gz",
@@ -83,7 +83,9 @@
     "checkpoint_schedule_valid": true,
     "future_snapshot_count": 0,
     "selected_present_market_rows": 30548,
-    "checkpoints_sha256": "3d98a0ea10a447e085980a6122fabf14518c2490859feda844a0b9fe2ca85791",
+    "checkpoints_sha256": "fb9b7e27543c28bd8f9fbe9c36cf52a6964b0430ec4e78bf69f7c02ae96a6b2a",
     "alarms_sha256": "05ebe9ca31b456041b716778fb4b63a2897d2bf753730f08c92d6bc7e534247d"
-  }
+  },
+  "results_live": 0,
+  "live_score_present": 366
 }

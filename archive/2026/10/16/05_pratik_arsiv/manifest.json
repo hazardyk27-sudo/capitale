@@ -48,8 +48,8 @@
   "files": {
     "checkpoints": {
       "name": "checkpoints.jsonl.gz",
-      "uncompressed_bytes": 5766214,
-      "compressed_bytes": 545829
+      "uncompressed_bytes": 5803834,
+      "compressed_bytes": 558848
     },
     "alarms": {
       "name": "alarms.jsonl.gz",
@@ -78,7 +78,13 @@
     "alarm_records": 139,
     "checkpoint_schedule_valid": true,
     "future_snapshot_count": 0,
-    "checkpoints_sha256": "92735645aa29f63c4d3b2c558ea18fe10071409c260898ab641462463f78a11a",
-    "alarms_sha256": "6e375c99768e53ae2aaa4ddb15bc7b6e51f5315b4178192b7984ec1e30f8f644"
-  }
+    "checkpoints_sha256": "30853c25cbd9f6ca1eab10fa505b2c05c09edbed7eac5a6545d19be4174d56be",
+    "alarms_sha256": "8b9653ef73c219504991644dc279fc80ab87eb29f601586f0d3605cdfd1d9627"
+  },
+  "results_present": 190,
+  "results_missing": 11,
+  "results_live": 0,
+  "live_score_present": 190,
+  "result_source_notes": "Matched to research_archive.results. Where fixture_uid was not available, required exact match_id_hash and home/away team match plus kickoff within 30 minutes; ambiguous ties resolved by matching local_date and latest source_updated_at. Scores from live-status rows are retained as final=false and excluded from settled results.",
+  "source_archive_status": "PARTIAL"
 }

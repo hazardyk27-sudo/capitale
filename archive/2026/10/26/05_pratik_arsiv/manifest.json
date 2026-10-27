@@ -87,5 +87,6 @@
     "alarms_sha256": "23bca74eac14833621c8960f5d7778390944949eae6346009ccbde445e6932d6"
   },
   "live_score_present": 134,
-  "live_in_progress": 6
+  "live_in_progress": 6,
+  "results_live": 6
 }
