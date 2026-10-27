@@ -1,7 +1,7 @@
 # SXF Role
 
 Status: DRAFT
-Version: 0.4.1
+Version: 0.4.2
 
 ## Mission
 
@@ -42,20 +42,20 @@ For every match:
 
 ## Approved core engine set
 
-The following engines are the current SXF DRAFT v0.4 core set. No additional engine, threshold, score, or override may be invented without owner approval. The EARLY CORE 2.35 decision-snapshot odds cap below was explicitly owner-approved on 2026-10-27.
+The following engines are the current SXF DRAFT v0.4.x core set. No additional engine, threshold, score, or override may be invented without owner approval. The EARLY CORE 2.35 decision-snapshot odds cap was owner-approved on 2026-10-27. **Owner decision 2026-10-28 (v0.4.2): EARLY_T12 is RETIRED as an independent recommendation/engine; T-12 remains observation-only.**
 
 ### 1. EARLY MONEY
 
 Team side only: HOME or AWAY. Draw is excluded.
 
-Initial signal logic (EARLY CORE T-72/T-60/T-40/T-24 and separate EARLY T12):
+Active initial recommendation logic (EARLY CORE origins T-72/T-60/T-40/T-24 only):
 - T-72: top-money TEAM, money >= £5,000, share >= 50%
 - T-60: top-money TEAM, money >= £5,000, share >= 50%
 - T-40: top-money TEAM, money >= £10,000, share >= 50%
 - T-24: top-money TEAM, money >= £10,000, share >= 50%
-- T-12: top-money TEAM, money >= £1,000, share >= 80%
+- T-12: **observation-only (retired historical EARLY_T12 trigger: top-money TEAM, money >= £1,000, share >= 80%)**; do not emit an `EARLY_T12` engine tag, independent recommendation, duplicate selection, or extra confidence vote on new reports.
 
-**Owner-approved EARLY CORE 1X2 odds cap (2026-10-27):** For the T-72/T-60/T-40/T-24-origin EARLY CORE label only, the chosen team's current SmartXFlow 1X2 decimal odds at the exact match-specific decision `as_of_utc` MUST be `<= 2.35` (inclusive). If above 2.35 or missing, do not issue the EARLY CORE recommendation. This is a current decision-snapshot gate, not a retrospectively imposed requirement at the original early checkpoint. It does not impose a 2.35 cap on EARLY T12, V1/V2, HEAVY, or SURPRISE; these remain separately eligible. Do not relabel immutable earlier v0.4 research signals.
+**Owner-approved EARLY CORE 1X2 odds cap (2026-10-27):** For the T-72/T-60/T-40/T-24-origin EARLY CORE label only, the chosen team's current SmartXFlow 1X2 decimal odds at the exact match-specific decision `as_of_utc` MUST be `<= 2.35` (inclusive). If above 2.35 or missing, do not issue the EARLY CORE recommendation. This is a current decision-snapshot gate, not a retrospectively imposed requirement at the original early checkpoint. It does not impose a 2.35 cap on V1/V2, HEAVY, or SURPRISE; these remain separately eligible. EARLY_T12 is retired as an independent engine, not granted a separate odds cap. Do not relabel immutable earlier v0.4 research signals.
 
 Retention rule applies to Early Money signals first formed at T-72 / T-60 / T-40 / T-24:
 - retention threshold = 55% money share;
@@ -63,7 +63,7 @@ Retention rule applies to Early Money signals first formed at T-72 / T-60 / T-40
 - `RETENTION_BREAK` cancels the EARLY MONEY recommendation only;
 - the match itself is not automatically rejected, because another independent SXF engine may still trigger.
 
-T-12 is an Early Money observation point but is not itself subject to the Retention-55 origin rule.
+T-12 remains a money/share **observation checkpoint** for EARLY CORE follow-up and other allowed research; it is NOT an EARLY CORE origin or an independent signal. Retention-55 applies to active early origins only. Existing T-12 historical signals, scores and performance reports remain untouched. If a T-12 snapshot also qualifies under an independently active engine, emit only that active engine's recommendation.
 
 ### 2. 1X2 CONCENTRATION V1
 
@@ -161,4 +161,4 @@ Observed research hit rates are research evidence only, not calibrated productio
 
 ## Governance note
 
-SXF remains DRAFT. The owner has approved the v0.4 core engine set, the 2026-10-27 EARLY CORE 2.35 ceiling (v0.4.1), and dynamic per-match horizon rule, but production scoring, final precedence, normalized-volume math, and confidence calibration remain open until explicitly approved and tested.
+SXF remains DRAFT. The owner has approved the v0.4 core engine set, the 2026-10-27 EARLY CORE 2.35 ceiling (v0.4.1), **retirement of standalone EARLY_T12 for new recommendations (v0.4.2, 2026-10-28)**, and dynamic per-match horizon rule. EARLY CORE v2 (<2.00 odds + origin share <95%) remains RESEARCH ONLY, not approved/deployed; production scoring, final precedence, normalized-volume math, and confidence calibration remain open until explicitly approved and tested. Updating this document does not assert the running production engine is disabled.
