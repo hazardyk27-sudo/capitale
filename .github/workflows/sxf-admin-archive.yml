@@ -1,177 +1,90 @@
-name: SXF daily admin archive
-run-name: SXF ${{ inputs.day }} / ${{ inputs.archive_kind }}
+name: PRATİK daily archive
+run-name: PRATİK ${{ inputs.day || 'otomatik' }}
 
 on:
+  schedule:
+    - cron: "0 23 * * *"
   workflow_dispatch:
     inputs:
       day:
-        description: "Fixture date in Europe/Istanbul (YYYY-MM-DD)"
-        required: true
+        description: "Completed Europe/Istanbul fixture date (YYYY-MM-DD); blank means yesterday"
+        required: false
         type: string
-      archive_kind:
-        description: "Archive output type"
-        required: true
-        type: choice
-        options:
-          - full_snapshots
-          - concentrated
-
-
-  workflow_call:
-    inputs:
-      day:
-        description: "Fixture date in Europe/Istanbul (YYYY-MM-DD)"
-        required: true
-        type: string
-      archive_kind:
-        description: "Archive output type (full_snapshots or concentrated)"
-        required: true
-        type: string
-    secrets:
-      SXF_ARCHIVE_DATABASE_URL:
-        required: true
 
 permissions:
   contents: write
 
 concurrency:
-  group: sxf-archive-${{ inputs.day }}-${{ inputs.archive_kind }}
+  group: pratik-daily-archive
   cancel-in-progress: false
 
 jobs:
   archive:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 120
     env:
-      DAY: ${{ inputs.day }}
-      KIND: ${{ inputs.archive_kind }}
-      SXF_ARCHIVE_DATABASE_URL: ${{ secrets.SXF_ARCHIVE_DATABASE_URL }}
-      GH_TOKEN: ${{ github.token }}
-      GH_REPO: ${{ github.repository }}
+      PRATIK_ARCHIVE_DATABASE_URL: ${{ secrets.PRATIK_ARCHIVE_DATABASE_URL }}
+      INPUT_DAY: ${{ inputs.day || '' }}
     steps:
-      - name: Checkout archival script
+      - name: Checkout archive repository
         uses: actions/checkout@v4
-        with:
-          persist-credentials: false
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-      - name: Require safe inputs and private read-only source secret
+          python-version: "3.11"
+      - name: Choose and validate archive date
         shell: bash
         run: |
           set -euo pipefail
-          if [[ "$KIND" != full_snapshots && "$KIND" != concentrated ]]; then
-            echo 'Invalid archive type' >&2
-            exit 1
-          fi
-          if ! [[ "$DAY" =~ ^20[0-9]{2}-[0-9]{2}-[0-9]{2}$ ]]; then
-            echo 'Invalid day format' >&2
-            exit 1
-          fi
-          if [[ -z "$SXF_ARCHIVE_DATABASE_URL" ]]; then
-            echo 'Missing private SXF_ARCHIVE_DATABASE_URL read-only secret' >&2
-            exit 1
-          fi
-      - name: Install pinned PostgreSQL client
-        run: python -m pip install 'psycopg[binary]==3.2.9'
-      - name: Export bounded daily gzip assets and local verification
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [[ "$KIND" == full_snapshots ]]; then
-            tag="sxf-raw-$DAY-v1"
+          if [[ -n "$INPUT_DAY" ]]; then
+            day="$INPUT_DAY"
           else
-            tag="sxf-concentrated-$DAY-v1"
+            day="$(TZ=Europe/Istanbul date --date='yesterday' +%F)"
           fi
-          echo "ARCHIVE_RELEASE_TAG=$tag" >> "$GITHUB_ENV"
-          export SXF_ARCHIVE_RELEASE_TAG="$tag"
-          export SXF_STREAM_RELEASE_UPLOAD=1
-          python scripts/export_sxf_daily_archive.py \
-            --day "$DAY" --kind "$KIND" --chunk-rows 25000 --fixture-batch 25 \
-            --output-dir "$RUNNER_TEMP/sxf-export"
-      - name: Upload final manifest after streaming all checked source chunks
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [[ "$(gh release view "$ARCHIVE_RELEASE_TAG" --json isDraft --jq .isDraft)" != "true" ]]; then
-            echo 'Refusing verification for non-draft or missing Release' >&2
+          if ! [[ "$day" =~ ^20[0-9]{2}-[0-9]{2}-[0-9]{2}$ ]]; then
+            echo "Invalid archive date" >&2
             exit 1
           fi
-          if ! ls "$RUNNER_TEMP"/sxf-export/*.jsonl.gz >/dev/null 2>&1; then
-            echo 'No chunk assets exported' >&2
+          echo "DAY=$day" >> "$GITHUB_ENV"
+          echo "PRATIK archive date: $day"
+      - name: Require read-only database secret
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "$PRATIK_ARCHIVE_DATABASE_URL" ]]; then
+            echo "::error title=PRATIK archive blocked::Configure PRATIK_ARCHIVE_DATABASE_URL as a read-only database secret."
             exit 1
           fi
-          gh release upload "$ARCHIVE_RELEASE_TAG" "$RUNNER_TEMP/sxf-export/export_manifest.json"
-      - name: Download all assets; check byte identity, SHA and JSONL restore
+      - name: Install pinned PostgreSQL driver
+        run: python -m pip install "psycopg[binary]==3.2.9"
+      - name: Export compact checkpoints and alarms; restore and verify
+        run: |
+          python scripts/export_pratik_daily_archive.py \
+            --day "$DAY" \
+            --output-dir "$RUNNER_TEMP/pratik-export" \
+            --archive-root .
+      - name: Commit the verified immutable daily archive
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p "$RUNNER_TEMP/sxf-readback"
-          gh release download "$ARCHIVE_RELEASE_TAG" --dir "$RUNNER_TEMP/sxf-readback"
-          for original in "$RUNNER_TEMP"/sxf-export/*; do
-            cmp -s "$original" "$RUNNER_TEMP/sxf-readback/$(basename "$original")" || {
-              echo "Release asset byte mismatch: $(basename "$original")" >&2
-              exit 1
-            }
-          done
-          python scripts/export_sxf_daily_archive.py --verify-dir "$RUNNER_TEMP/sxf-readback"
-      - name: Publish verification receipt to draft and read it back
-        shell: bash
-        run: |
-          set -euo pipefail
-          python - <<'PY'
-          import datetime, hashlib, json, os, pathlib
-          folder = pathlib.Path(os.environ["RUNNER_TEMP"]) / "sxf-readback"
-          info = json.loads((folder / "export_manifest.json").read_text("utf-8"))
-          receipt = {
-            "status": "GITHUB_RELEASE_DRAFT_DOWNLOADED_AND_VERIFIED",
-            "github_run_id": os.environ["GITHUB_RUN_ID"],
-            "github_run_url": "https://github.com/" + os.environ["GITHUB_REPOSITORY"] + "/actions/runs/" + os.environ["GITHUB_RUN_ID"],
-            "release_tag": os.environ["ARCHIVE_RELEASE_TAG"],
-            "day": info["day"], "kind": info["kind"],
-            "source_run_status": info["source_archive_run_status"],
-            "source_count_consistency": info.get("source_run_counts_match"),
-            "source_day_complete_claim": bool(info["source_collection_complete"] and info.get("source_run_counts_match", True)),
-            "total_verified_rows": info.get("total_exported_rows", info.get("checkpoint_slots")),
-            "export_manifest_sha256": hashlib.sha256((folder / "export_manifest.json").read_bytes()).hexdigest(),
-            "verified_at_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-            "release_is_draft": True,
-          }
-          (folder / "verification_receipt.json").write_text(json.dumps(receipt, indent=2) + "\n", "utf-8")
-          PY
-          gh release upload "$ARCHIVE_RELEASE_TAG" "$RUNNER_TEMP/sxf-readback/verification_receipt.json"
-          mkdir -p "$RUNNER_TEMP/sxf-receipt"
-          gh release download "$ARCHIVE_RELEASE_TAG" --pattern verification_receipt.json --dir "$RUNNER_TEMP/sxf-receipt"
-          cmp -s "$RUNNER_TEMP/sxf-readback/verification_receipt.json" "$RUNNER_TEMP/sxf-receipt/verification_receipt.json"
-          echo 'SXF draft Release readback, SHA256, JSONL restore and receipt PASS'
-      - name: Write append-only archive receipt index to GitHub and read back
-        shell: bash
-        run: |
-          set -euo pipefail
-          python - <<'PY'
-          import base64, json, os, pathlib, subprocess
-          folder = pathlib.Path(os.environ["RUNNER_TEMP"]) / "sxf-readback"
-          manifest = json.loads((folder / "export_manifest.json").read_text("utf-8"))
-          receipt = json.loads((folder / "verification_receipt.json").read_text("utf-8"))
-          day = manifest["day"]
-          sub = "03_full_snapshots" if manifest["kind"] == "full_snapshots" else "04_concentrated"
-          target = "archive/" + day.replace("-", "/") + "/" + sub + "/admin_release_receipt_v1.json"
-          entries = manifest["tables"] if manifest["kind"] == "full_snapshots" else manifest["markets"]
-          index = {
-            **receipt,
-            "asset_inventory": [
-              {"name": a["name"], "rows": a["rows"], "bytes": a["bytes"], "sha256_gzip": a["sha256_gzip"]}
-              for entry in entries for a in entry["assets"]
-            ],
-            "source_notice": "This Release is verified, but existing daily scan/settlement and source PARTIAL flags remain unchanged.",
-          }
-          encoded = base64.b64encode((json.dumps(index, indent=2) + "\n").encode("utf-8")).decode("ascii")
-          repo = os.environ["GITHUB_REPOSITORY"]
-          subprocess.run(["gh", "api", "--method", "PUT", "repos/" + repo + "/contents/" + target,
-                          "-f", "branch=main",
-                          "-f", "message=SXF: record GitHub-verified draft archive " + day + " " + manifest["kind"],
-                          "-f", "content=" + encoded], check=True, stdout=subprocess.DEVNULL)
-          subprocess.run(["gh", "api", "repos/" + repo + "/contents/" + target, "--jq", ".sha"], check=True)
-          print("Append-only GitHub receipt verified: " + target)
-          PY
+          source_dir="$RUNNER_TEMP/pratik-export"
+          if [[ ! -d "$source_dir" ]]; then
+            echo "Existing PRATIK archive was verified; no new commit is needed."
+            exit 0
+          fi
+          target="archive/${DAY//-//}/05_pratik_arsiv"
+          if [[ -e "$target" ]]; then
+            echo "Target exists after preflight; refusing to overwrite it." >&2
+            exit 1
+          fi
+          mkdir -p "$(dirname "$target")"
+          cp "$source_dir/checkpoints.jsonl.gz" "$source_dir/alarms.jsonl.gz" "$source_dir/manifest.json" "$target/"
+          git add -- "$target"
+          if git diff --cached --quiet; then
+            echo "No archive changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Archive PRATIK data for $DAY"
+          git push origin HEAD:main
