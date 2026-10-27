@@ -4,6 +4,16 @@
 
 **Araştırma statüsü:** Sonuç görülmeden önce 10 piyasa mantığı ailesi [ön-kayıt](../hipotezler/SXF_OVER_BAGIMSIZ_MOTOR_OnKayit_2026-10-27_v1.md) ile GitHub'a konuldu. Bağımsız, kör prospektif test YAPILMADI. Önceki 66 orijinal Üst sinyal sonuçları araştırmacı tarafından daha önce görüldü; aynı veri kümesine ilişkin öğrenilmiş bilgi sızması olabilir.
 
+## Fiyat ve veri-kalitesi DÜZELTME NOTU (27 Ekim 2026)
+
+Bu denetim, rapordaki 33 maçın **tamamen fiyat olarak temiz** olduğunu varsaymanın yanlış olduğunu ortaya koydu. Bu not, alttaki orijinal kayıtları silmez; **esas yorumda aşağıdaki düzeltilmiş veri kümesini esas alın**:
+
+- Önceki **33** fiyat-olasılık eşiği geçen gözlemin **32** tanesinde SXF ÜST2.5 oranı **1.14–1.35**, yalnız **1** tanesinde oran **1.75** idi; 33 ham gözlemin basit fiyat ortalaması **1.28333**, medyan **1.28**.
+- Anormal gözlem: **Wigan – Reading**, 17 Ekim 17:00 TSİ, fixture UID `9e2f98d3-2dce-4508-8360-f7570a4cf107`; T-6 aynı anlık snapshotta **ÜST 1.75, ALT 29.00**. `1/1.75+1/29=0.60591`, olağan iki sonuçlu piyasa fiyatı ile bağdaşmayan, **%39.4 altında toplam implied-probability / geniş arbitraj anomalisi**. ÜST'ün marj-arındırılmış olasılığı hatalı bir şekilde **%94.31** hesaplanıyor. Ham SXF kaydında tekrar eden anormallik doğrulandı; diğer 32 maç için iki taraf ters-oran toplamı **0.98464–1.02252** aralığında. Bir veri/fiyat-kaynak güven sorunu olarak bu maç ana temiz kümeden ÇIKARILMALI.
+- **Düzeltilmiş fiyat-kalitesi örneklemi: 25/32 = %78.125**; basit ortalama SXF Üst oranı **1.26875**, medyan **1.28 civarı**, günde **32/12=2.67 maç**. Her maça 1 birim ve SXF fiyatının oynanabilir olduğu varsayımı altında **-0.37 hipotetik birim** (gerçek ROI değil).
+- Kritik: **Daha düşük düzeltilmiş ortalama, %75 olasılık koşulunun Üst 2.5 fiyatını zaten düşük tutmasından** kaynaklanıyor. Bu fiyat segmentinde yüksek isabet bahis değerini kanıtlamaz. Piyasa-kalite koşulu bundan sonraki araştırmalarda açıkça uygulanmalı; sonucu şüpheli tek maçı kazanma/kaybetme durumundan bağımsız şekilde çıkar.
+- Alttaki tarihsel tablolar/ham kayıtlar denetim şeffaflığı için **orijinal 33'lük ham sürüm** olarak korunmuştur. İleriye dönük kıyaslamalarda yukarıdaki **32 temiz fiyatlı** sonuç kullanılmalı. Tarihsel %78.125 gelecekteki isabet garantisi değildir.
+
 ## Önemli kaynak/kapsam açıklaması
 - 9–13 Ekim için önceki Supabase `research_archive.fixtures/results` artık bağlı projede yok (bağlantıdaki `to_regclass` null). `public.live_fixtures` FT kaynak eşleştirme 9–13 için büyük ölçüde yok; bu nedenle **bu rapor yalnız 14–25 Ekim 2026** içindir.
 - Her gün 16:00–24:00 TSİ; 12 takvim günü; `public.fixtures` ve `public.moneyway_snapshots` aynı fixture T-6 kararı; her durumda OU25 O/U tam, geçerli oran ve ≤10 dk eski.
