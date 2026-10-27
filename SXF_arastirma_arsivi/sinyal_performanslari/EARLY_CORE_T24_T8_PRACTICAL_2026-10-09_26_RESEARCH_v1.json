@@ -1,0 +1,1136 @@
+{
+  "schema": "CAPITALE_SXF_EARLY_CORE_T24_T8_PRACTICAL_RESEARCH_V1",
+  "date": "2026-10-27",
+  "status": "EXPLORATORY_NOT_VALIDATED_NO_PRODUCTION_CHANGE",
+  "scope": "original EARLY_CORE 1X2 <=2.35 2026-10-09 through 2026-10-26",
+  "total": {
+    "n": 81,
+    "win": 0,
+    "loss": 81,
+    "hit_pct": 0,
+    "mean_decision_odds": null
+  },
+  "practical_compared": {
+    "n": 48,
+    "win": 28,
+    "loss": 20,
+    "hit_pct": 58.33,
+    "mean_decision_odds": 1.715
+  },
+  "missing": {
+    "n": 33,
+    "win": 0,
+    "loss": 33,
+    "hit_pct": 0,
+    "mean_decision_odds": null
+  },
+  "quality_tiers": {
+    "A_native": {
+      "n": 38,
+      "win": 22,
+      "loss": 16,
+      "hit_pct": 57.89,
+      "mean_decision_odds": 1.665
+    },
+    "B_shifted": {
+      "n": 10,
+      "win": 6,
+      "loss": 4,
+      "hit_pct": 60,
+      "mean_decision_odds": 1.902
+    }
+  },
+  "sweep": [
+    {
+      "threshold": 1,
+      "rise_veto": {
+        "excluded": {
+          "n": 18,
+          "win": 12,
+          "loss": 6,
+          "hit_pct": 66.67,
+          "mean_decision_odds": 1.706
+        },
+        "kept": {
+          "n": 30,
+          "win": 16,
+          "loss": 14,
+          "hit_pct": 53.33,
+          "mean_decision_odds": 1.72
+        }
+      },
+      "absolute_veto": {
+        "excluded": {
+          "n": 39,
+          "win": 22,
+          "loss": 17,
+          "hit_pct": 56.41,
+          "mean_decision_odds": 1.695
+        },
+        "kept": {
+          "n": 9,
+          "win": 6,
+          "loss": 3,
+          "hit_pct": 66.67,
+          "mean_decision_odds": 1.798
+        }
+      }
+    },
+    {
+      "threshold": 1.5,
+      "rise_veto": {
+        "excluded": {
+          "n": 16,
+          "win": 10,
+          "loss": 6,
+          "hit_pct": 62.5,
+          "mean_decision_odds": 1.731
+        },
+        "kept": {
+          "n": 32,
+          "win": 18,
+          "loss": 14,
+          "hit_pct": 56.25,
+          "mean_decision_odds": 1.706
+        }
+      },
+      "absolute_veto": {
+        "excluded": {
+          "n": 33,
+          "win": 17,
+          "loss": 16,
+          "hit_pct": 51.52,
+          "mean_decision_odds": 1.721
+        },
+        "kept": {
+          "n": 15,
+          "win": 11,
+          "loss": 4,
+          "hit_pct": 73.33,
+          "mean_decision_odds": 1.701
+        }
+      }
+    },
+    {
+      "threshold": 2,
+      "rise_veto": {
+        "excluded": {
+          "n": 13,
+          "win": 8,
+          "loss": 5,
+          "hit_pct": 61.54,
+          "mean_decision_odds": 1.729
+        },
+        "kept": {
+          "n": 35,
+          "win": 20,
+          "loss": 15,
+          "hit_pct": 57.14,
+          "mean_decision_odds": 1.709
+        }
+      },
+      "absolute_veto": {
+        "excluded": {
+          "n": 25,
+          "win": 12,
+          "loss": 13,
+          "hit_pct": 48,
+          "mean_decision_odds": 1.701
+        },
+        "kept": {
+          "n": 23,
+          "win": 16,
+          "loss": 7,
+          "hit_pct": 69.57,
+          "mean_decision_odds": 1.73
+        }
+      }
+    },
+    {
+      "threshold": 3,
+      "rise_veto": {
+        "excluded": {
+          "n": 8,
+          "win": 5,
+          "loss": 3,
+          "hit_pct": 62.5,
+          "mean_decision_odds": 1.704
+        },
+        "kept": {
+          "n": 40,
+          "win": 23,
+          "loss": 17,
+          "hit_pct": 57.5,
+          "mean_decision_odds": 1.717
+        }
+      },
+      "absolute_veto": {
+        "excluded": {
+          "n": 17,
+          "win": 9,
+          "loss": 8,
+          "hit_pct": 52.94,
+          "mean_decision_odds": 1.66
+        },
+        "kept": {
+          "n": 31,
+          "win": 19,
+          "loss": 12,
+          "hit_pct": 61.29,
+          "mean_decision_odds": 1.745
+        }
+      }
+    },
+    {
+      "threshold": 4,
+      "rise_veto": {
+        "excluded": {
+          "n": 7,
+          "win": 4,
+          "loss": 3,
+          "hit_pct": 57.14,
+          "mean_decision_odds": 1.727
+        },
+        "kept": {
+          "n": 41,
+          "win": 24,
+          "loss": 17,
+          "hit_pct": 58.54,
+          "mean_decision_odds": 1.712
+        }
+      },
+      "absolute_veto": {
+        "excluded": {
+          "n": 13,
+          "win": 5,
+          "loss": 8,
+          "hit_pct": 38.46,
+          "mean_decision_odds": 1.725
+        },
+        "kept": {
+          "n": 35,
+          "win": 23,
+          "loss": 12,
+          "hit_pct": 65.71,
+          "mean_decision_odds": 1.711
+        }
+      }
+    },
+    {
+      "threshold": 4.5,
+      "rise_veto": {
+        "excluded": {
+          "n": 6,
+          "win": 3,
+          "loss": 3,
+          "hit_pct": 50,
+          "mean_decision_odds": 1.762
+        },
+        "kept": {
+          "n": 42,
+          "win": 25,
+          "loss": 17,
+          "hit_pct": 59.52,
+          "mean_decision_odds": 1.708
+        }
+      },
+      "absolute_veto": {
+        "excluded": {
+          "n": 11,
+          "win": 4,
+          "loss": 7,
+          "hit_pct": 36.36,
+          "mean_decision_odds": 1.758
+        },
+        "kept": {
+          "n": 37,
+          "win": 24,
+          "loss": 13,
+          "hit_pct": 64.86,
+          "mean_decision_odds": 1.702
+        }
+      }
+    },
+    {
+      "threshold": 5,
+      "rise_veto": {
+        "excluded": {
+          "n": 5,
+          "win": 2,
+          "loss": 3,
+          "hit_pct": 40,
+          "mean_decision_odds": 1.736
+        },
+        "kept": {
+          "n": 43,
+          "win": 26,
+          "loss": 17,
+          "hit_pct": 60.47,
+          "mean_decision_odds": 1.712
+        }
+      },
+      "absolute_veto": {
+        "excluded": {
+          "n": 9,
+          "win": 3,
+          "loss": 6,
+          "hit_pct": 33.33,
+          "mean_decision_odds": 1.701
+        },
+        "kept": {
+          "n": 39,
+          "win": 25,
+          "loss": 14,
+          "hit_pct": 64.1,
+          "mean_decision_odds": 1.718
+        }
+      }
+    },
+    {
+      "threshold": 6,
+      "rise_veto": {
+        "excluded": {
+          "n": 3,
+          "win": 1,
+          "loss": 2,
+          "hit_pct": 33.33,
+          "mean_decision_odds": 1.88
+        },
+        "kept": {
+          "n": 45,
+          "win": 27,
+          "loss": 18,
+          "hit_pct": 60,
+          "mean_decision_odds": 1.704
+        }
+      },
+      "absolute_veto": {
+        "excluded": {
+          "n": 6,
+          "win": 2,
+          "loss": 4,
+          "hit_pct": 33.33,
+          "mean_decision_odds": 1.763
+        },
+        "kept": {
+          "n": 42,
+          "win": 26,
+          "loss": 16,
+          "hit_pct": 61.9,
+          "mean_decision_odds": 1.708
+        }
+      }
+    },
+    {
+      "threshold": 7,
+      "rise_veto": {
+        "excluded": {
+          "n": 2,
+          "win": 0,
+          "loss": 2,
+          "hit_pct": 0,
+          "mean_decision_odds": 2.11
+        },
+        "kept": {
+          "n": 46,
+          "win": 28,
+          "loss": 18,
+          "hit_pct": 60.87,
+          "mean_decision_odds": 1.697
+        }
+      },
+      "absolute_veto": {
+        "excluded": {
+          "n": 3,
+          "win": 0,
+          "loss": 3,
+          "hit_pct": 0,
+          "mean_decision_odds": 1.917
+        },
+        "kept": {
+          "n": 45,
+          "win": 28,
+          "loss": 17,
+          "hit_pct": 62.22,
+          "mean_decision_odds": 1.701
+        }
+      }
+    },
+    {
+      "threshold": 8,
+      "rise_veto": {
+        "excluded": {
+          "n": 1,
+          "win": 0,
+          "loss": 1,
+          "hit_pct": 0,
+          "mean_decision_odds": 2.02
+        },
+        "kept": {
+          "n": 47,
+          "win": 28,
+          "loss": 19,
+          "hit_pct": 59.57,
+          "mean_decision_odds": 1.708
+        }
+      },
+      "absolute_veto": {
+        "excluded": {
+          "n": 2,
+          "win": 0,
+          "loss": 2,
+          "hit_pct": 0,
+          "mean_decision_odds": 1.775
+        },
+        "kept": {
+          "n": 46,
+          "win": 28,
+          "loss": 18,
+          "hit_pct": 60.87,
+          "mean_decision_odds": 1.712
+        }
+      }
+    }
+  ],
+  "missing_by_day": [
+    {
+      "day": "2026-10-10",
+      "total": 5,
+      "wins": 4,
+      "losses": 1
+    },
+    {
+      "day": "2026-10-11",
+      "total": 6,
+      "wins": 6,
+      "losses": 0
+    },
+    {
+      "day": "2026-10-13",
+      "total": 7,
+      "wins": 5,
+      "losses": 2
+    },
+    {
+      "day": "2026-10-15",
+      "total": 4,
+      "wins": 4,
+      "losses": 0
+    },
+    {
+      "day": "2026-10-17",
+      "total": 7,
+      "wins": 5,
+      "losses": 2
+    },
+    {
+      "day": "2026-10-18",
+      "total": 4,
+      "wins": 4,
+      "losses": 0
+    }
+  ],
+  "all_practical_compared_records": [
+    {
+      "date": "2026-10-09",
+      "fixture_uid": "e0a7aff4-1ce3-4404-a7dc-e8f9e57d0a6d",
+      "match": "Dortmund – Werder Bremen",
+      "selected": "Dortmund",
+      "side": "1",
+      "frozen_decision_odds": 1.39,
+      "win": false,
+      "t24_odds": 1.37,
+      "t8_odds": 1.4,
+      "change_pct": 2.189781,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/09/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-09",
+      "fixture_uid": "a0dc59f0-eb1e-4061-bf6b-4757ecfee3ff",
+      "match": "West Ham – QPR",
+      "selected": "West Ham",
+      "side": "1",
+      "frozen_decision_odds": 1.51,
+      "win": false,
+      "t24_odds": 1.5,
+      "t8_odds": 1.53,
+      "change_pct": 2,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/09/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-12",
+      "fixture_uid": "7ad6dd6c-97b2-4efd-92fc-52381f1b9807",
+      "match": "Atalanta – Venezia",
+      "selected": "Atalanta",
+      "side": "1",
+      "frozen_decision_odds": 1.61,
+      "win": true,
+      "t24_odds": 1.62,
+      "t8_odds": 1.64,
+      "change_pct": 1.234568,
+      "source_tier": "B_PRACTICAL_SHIFT_REINTERPRETED_CROSSCHECK",
+      "source_file": "archive/2026/10/12/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-14",
+      "fixture_uid": "52b67f7d-8361-4c2b-bdd1-304bc452b310",
+      "match": "Feyenoord – Como",
+      "selected": "Como",
+      "side": "2",
+      "frozen_decision_odds": 2.2,
+      "win": false,
+      "t24_odds": 1.96,
+      "t8_odds": 2.1,
+      "change_pct": 7.142857,
+      "source_tier": "B_PRACTICAL_SHIFT_REINTERPRETED_CROSSCHECK",
+      "source_file": "archive/2026/10/14/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-14",
+      "fixture_uid": "70ca1d12-a91a-4fc2-9366-ec6cb7094a1c",
+      "match": "Lask Linz – Liverpool",
+      "selected": "Liverpool",
+      "side": "2",
+      "frozen_decision_odds": 1.42,
+      "win": true,
+      "t24_odds": 1.34,
+      "t8_odds": 1.43,
+      "change_pct": 6.716418,
+      "source_tier": "B_PRACTICAL_SHIFT_REINTERPRETED_CROSSCHECK",
+      "source_file": "archive/2026/10/14/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-14",
+      "fixture_uid": "e99c7b67-91ad-4243-9bdb-2f1b60a042f3",
+      "match": "Aston Villa – Fenerbahce",
+      "selected": "Aston Villa",
+      "side": "1",
+      "frozen_decision_odds": 1.74,
+      "win": true,
+      "t24_odds": 1.65,
+      "t8_odds": 1.74,
+      "change_pct": 5.454545,
+      "source_tier": "B_PRACTICAL_SHIFT_REINTERPRETED_CROSSCHECK",
+      "source_file": "archive/2026/10/14/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-14",
+      "fixture_uid": "f38db51f-d649-4dc8-9dbb-531935cf4e68",
+      "match": "Betis – Porto",
+      "selected": "Betis",
+      "side": "1",
+      "frozen_decision_odds": 2.12,
+      "win": true,
+      "t24_odds": 2.1,
+      "t8_odds": 2.16,
+      "change_pct": 2.857143,
+      "source_tier": "B_PRACTICAL_SHIFT_REINTERPRETED_CROSSCHECK",
+      "source_file": "archive/2026/10/14/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-14",
+      "fixture_uid": "eb9e5c58-5811-48c9-83d2-b95831621fc4",
+      "match": "Bodo Glimt – Dortmund",
+      "selected": "Dortmund",
+      "side": "2",
+      "frozen_decision_odds": 2.3,
+      "win": false,
+      "t24_odds": 2.2,
+      "t8_odds": 2.26,
+      "change_pct": 2.727273,
+      "source_tier": "B_PRACTICAL_SHIFT_REINTERPRETED_CROSSCHECK",
+      "source_file": "archive/2026/10/14/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-14",
+      "fixture_uid": "6e68980b-acff-4a08-9c11-ce3d7ac0450f",
+      "match": "Man City – Paris St-G",
+      "selected": "Man City",
+      "side": "1",
+      "frozen_decision_odds": 2.14,
+      "win": false,
+      "t24_odds": 2.2,
+      "t8_odds": 2.1,
+      "change_pct": -4.545455,
+      "source_tier": "B_PRACTICAL_SHIFT_REINTERPRETED_CROSSCHECK",
+      "source_file": "archive/2026/10/14/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-14",
+      "fixture_uid": "bd864737-f3b4-4bbd-98b0-e9fb54c563fa",
+      "match": "Roma – Real Madrid",
+      "selected": "Real Madrid",
+      "side": "2",
+      "frozen_decision_odds": 2.04,
+      "win": true,
+      "t24_odds": 2.02,
+      "t8_odds": 2,
+      "change_pct": -0.990099,
+      "source_tier": "B_PRACTICAL_SHIFT_REINTERPRETED_CROSSCHECK",
+      "source_file": "archive/2026/10/14/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-14",
+      "fixture_uid": "eef9393e-d076-43fb-9ac9-2b6a8370776c",
+      "match": "Slovan Bratislava – Stuttgart",
+      "selected": "Stuttgart",
+      "side": "2",
+      "frozen_decision_odds": 1.39,
+      "win": true,
+      "t24_odds": 1.34,
+      "t8_odds": 1.36,
+      "change_pct": 1.492537,
+      "source_tier": "B_PRACTICAL_SHIFT_REINTERPRETED_CROSSCHECK",
+      "source_file": "archive/2026/10/14/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-15",
+      "fixture_uid": "62b5f1e8-b230-4b5f-8958-79f5353456c7",
+      "match": "Hoffenheim – Besiktas",
+      "selected": "Hoffenheim",
+      "side": "1",
+      "frozen_decision_odds": 2.06,
+      "win": false,
+      "t24_odds": 2.04,
+      "t8_odds": 2.06,
+      "change_pct": 0.980392,
+      "source_tier": "B_PRACTICAL_SHIFT_REINTERPRETED_CROSSCHECK",
+      "source_file": "archive/2026/10/15/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-19",
+      "fixture_uid": "bfb4298f-b05f-4428-a490-f72062f22161",
+      "match": "Tottenham – Coventry",
+      "selected": "Tottenham",
+      "side": "1",
+      "frozen_decision_odds": 1.59,
+      "win": true,
+      "t24_odds": 1.56,
+      "t8_odds": 1.59,
+      "change_pct": 1.923077,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/19/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-20",
+      "fixture_uid": "5ac19679-b984-4bf0-954e-930fa809e14c",
+      "match": "FC Sabah – Dortmund",
+      "selected": "Dortmund",
+      "side": "2",
+      "frozen_decision_odds": 1.33,
+      "win": true,
+      "t24_odds": 1.35,
+      "t8_odds": 1.34,
+      "change_pct": -0.740741,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/20/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-20",
+      "fixture_uid": "a1a05138-aa61-433d-94bb-2f05a17a7768",
+      "match": "Liverpool – Villarreal",
+      "selected": "Liverpool",
+      "side": "1",
+      "frozen_decision_odds": 1.54,
+      "win": true,
+      "t24_odds": 1.6,
+      "t8_odds": 1.55,
+      "change_pct": -3.125,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/20/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-20",
+      "fixture_uid": "2b3129c8-61c5-40aa-8e9e-1b4bdf0e00c1",
+      "match": "Porto – PSV",
+      "selected": "Porto",
+      "side": "1",
+      "frozen_decision_odds": 1.59,
+      "win": false,
+      "t24_odds": 1.62,
+      "t8_odds": 1.58,
+      "change_pct": -2.469136,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/20/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-20",
+      "fixture_uid": "b8b9c9f0-44b1-40d1-bdc5-5f1d194a5b95",
+      "match": "Stuttgart – Atletico Madrid",
+      "selected": "Atletico Madrid",
+      "side": "2",
+      "frozen_decision_odds": 2.16,
+      "win": false,
+      "t24_odds": 2.2,
+      "t8_odds": 2.14,
+      "change_pct": -2.727273,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/20/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-21",
+      "fixture_uid": "a3a6815f-11c2-47be-b2e5-13f8fa017fa5",
+      "match": "Club Brugge – Lens",
+      "selected": "Club Brugge",
+      "side": "1",
+      "frozen_decision_odds": 1.94,
+      "win": true,
+      "t24_odds": 2.1,
+      "t8_odds": 1.97,
+      "change_pct": -6.190476,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/21/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-21",
+      "fixture_uid": "5850f993-1227-49f0-882c-7ce2826b655d",
+      "match": "Sporting Lisbon – Lask Linz",
+      "selected": "Sporting Lisbon",
+      "side": "1",
+      "frozen_decision_odds": 1.3,
+      "win": false,
+      "t24_odds": 1.23,
+      "t8_odds": 1.3,
+      "change_pct": 5.691057,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/21/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-22",
+      "fixture_uid": "66bc0f79-d292-43db-b990-b5efdf1e33c1",
+      "match": "Dinamo Zagreb – NEC Nijmegen",
+      "selected": "Dinamo Zagreb",
+      "side": "1",
+      "frozen_decision_odds": 1.53,
+      "win": false,
+      "t24_odds": 1.7,
+      "t8_odds": 1.56,
+      "change_pct": -8.235294,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/22/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-22",
+      "fixture_uid": "7b53affd-b18e-4ac8-a880-4ed7bf96086f",
+      "match": "Juventus – Rennes",
+      "selected": "Juventus",
+      "side": "1",
+      "frozen_decision_odds": 1.47,
+      "win": false,
+      "t24_odds": 1.61,
+      "t8_odds": 1.51,
+      "change_pct": -6.21118,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/22/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-22",
+      "fixture_uid": "756a8a79-0890-4273-ae7b-9b111985ea52",
+      "match": "Lech Poznan – Sunderland",
+      "selected": "Sunderland",
+      "side": "2",
+      "frozen_decision_odds": 1.78,
+      "win": false,
+      "t24_odds": 1.77,
+      "t8_odds": 1.78,
+      "change_pct": 0.564972,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/22/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-22",
+      "fixture_uid": "b65d3e49-b17d-4036-9889-7f8bb4cd6b7e",
+      "match": "Ajax – Atalanta",
+      "selected": "Ajax",
+      "side": "1",
+      "frozen_decision_odds": 2.2,
+      "win": true,
+      "t24_odds": 2.2,
+      "t8_odds": 2.2,
+      "change_pct": 0,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/22/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-22",
+      "fixture_uid": "7385ca26-cbf2-4d5b-a2ef-2cc8f14f3f1c",
+      "match": "Bournemouth – AC Milan",
+      "selected": "Bournemouth",
+      "side": "1",
+      "frozen_decision_odds": 2.02,
+      "win": true,
+      "t24_odds": 2.06,
+      "t8_odds": 2.02,
+      "change_pct": -1.941748,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/22/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-22",
+      "fixture_uid": "499dbd53-66d0-4394-bf4a-ff3997b2198d",
+      "match": "Hoffenheim – Lyon",
+      "selected": "Hoffenheim",
+      "side": "1",
+      "frozen_decision_odds": 2.12,
+      "win": true,
+      "t24_odds": 2.1,
+      "t8_odds": 2.14,
+      "change_pct": 1.904762,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/22/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-22",
+      "fixture_uid": "448f3799-649c-4f94-bd52-29ad1a0d0b12",
+      "match": "NK Celje – Red Bull Salzburg",
+      "selected": "Red Bull Salzburg",
+      "side": "2",
+      "frozen_decision_odds": 1.57,
+      "win": false,
+      "t24_odds": 1.6,
+      "t8_odds": 1.57,
+      "change_pct": -1.875,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/22/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-22",
+      "fixture_uid": "3c4226f2-d073-4ec9-940d-b3464d815661",
+      "match": "Olympiakos – Sparta Prague",
+      "selected": "Olympiakos",
+      "side": "1",
+      "frozen_decision_odds": 1.56,
+      "win": true,
+      "t24_odds": 1.55,
+      "t8_odds": 1.55,
+      "change_pct": 0,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/22/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-22",
+      "fixture_uid": "2a3cb97d-b76f-42a7-b226-754b6b96e4da",
+      "match": "Omonia – Benfica",
+      "selected": "Benfica",
+      "side": "2",
+      "frozen_decision_odds": 1.36,
+      "win": true,
+      "t24_odds": 1.41,
+      "t8_odds": 1.36,
+      "change_pct": -3.546099,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/22/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-23",
+      "fixture_uid": "67bec279-b5c7-4443-b639-d073ebe103bf",
+      "match": "Stuttgart – Mgladbach",
+      "selected": "Stuttgart",
+      "side": "1",
+      "frozen_decision_odds": 1.38,
+      "win": false,
+      "t24_odds": 1.42,
+      "t8_odds": 1.4,
+      "change_pct": -1.408451,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/23/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-23",
+      "fixture_uid": "82e1af96-5a39-4ae7-b090-70487a5a36ed",
+      "match": "Alaves – Malaga",
+      "selected": "Alaves",
+      "side": "1",
+      "frozen_decision_odds": 1.69,
+      "win": false,
+      "t24_odds": 1.75,
+      "t8_odds": 1.65,
+      "change_pct": -5.714286,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/23/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-24",
+      "fixture_uid": "436d2ff9-7d7a-42e4-b40e-4cd32dd10802",
+      "match": "Como – Sassuolo",
+      "selected": "Como",
+      "side": "1",
+      "frozen_decision_odds": 1.52,
+      "win": true,
+      "t24_odds": 1.51,
+      "t8_odds": 1.52,
+      "change_pct": 0.662252,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/24/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-24",
+      "fixture_uid": "ccff7904-a107-436c-8991-bf7e05bab6ac",
+      "match": "Arsenal – Everton",
+      "selected": "Arsenal",
+      "side": "1",
+      "frozen_decision_odds": 1.47,
+      "win": true,
+      "t24_odds": 1.47,
+      "t8_odds": 1.51,
+      "change_pct": 2.721088,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/24/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-24",
+      "fixture_uid": "317ec8c5-29d9-40d6-8b31-457bd5bfa7d1",
+      "match": "Stevenage – MK Dons",
+      "selected": "Stevenage",
+      "side": "1",
+      "frozen_decision_odds": 2.1,
+      "win": false,
+      "t24_odds": 2.08,
+      "t8_odds": 2.06,
+      "change_pct": -0.961538,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/24/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-24",
+      "fixture_uid": "ad5943ab-f8e4-431c-906b-dc5733095413",
+      "match": "Chelsea – Tottenham",
+      "selected": "Chelsea",
+      "side": "1",
+      "frozen_decision_odds": 2.02,
+      "win": false,
+      "t24_odds": 1.82,
+      "t8_odds": 1.99,
+      "change_pct": 9.340659,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/24/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-24",
+      "fixture_uid": "a8a97e19-f84c-457f-9c6b-0dbf1f90a070",
+      "match": "Lazio – Parma",
+      "selected": "Lazio",
+      "side": "1",
+      "frozen_decision_odds": 1.52,
+      "win": true,
+      "t24_odds": 1.46,
+      "t8_odds": 1.52,
+      "change_pct": 4.109589,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/24/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "fixture_uid": "ac74ce9c-8716-4c86-97aa-ac7408cb26ba",
+      "match": "Athletic Bilbao – Getafe",
+      "selected": "Athletic Bilbao",
+      "side": "1",
+      "frozen_decision_odds": 1.59,
+      "win": true,
+      "t24_odds": 1.63,
+      "t8_odds": 1.62,
+      "change_pct": -0.613497,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "fixture_uid": "2f195c3b-0d8a-44ff-86a0-d99236e76a81",
+      "match": "Hull – Brentford",
+      "selected": "Brentford",
+      "side": "2",
+      "frozen_decision_odds": 1.7,
+      "win": false,
+      "t24_odds": 1.77,
+      "t8_odds": 1.72,
+      "change_pct": -2.824859,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "fixture_uid": "27362c89-51b1-4a10-afad-da23485736b7",
+      "match": "Monaco – Lille",
+      "selected": "Monaco",
+      "side": "1",
+      "frozen_decision_odds": 2.04,
+      "win": false,
+      "t24_odds": 2.1,
+      "t8_odds": 2.06,
+      "change_pct": -1.904762,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "fixture_uid": "90426ac1-fd7b-406a-9a53-fc741102526a",
+      "match": "Marseille – Le Havre",
+      "selected": "Marseille",
+      "side": "1",
+      "frozen_decision_odds": 1.52,
+      "win": true,
+      "t24_odds": 1.58,
+      "t8_odds": 1.55,
+      "change_pct": -1.898734,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "fixture_uid": "35d3546f-1859-48b7-8773-70c99b85522b",
+      "match": "Toulouse – ESTAC Troyes",
+      "selected": "Toulouse",
+      "side": "1",
+      "frozen_decision_odds": 1.57,
+      "win": false,
+      "t24_odds": 1.64,
+      "t8_odds": 1.57,
+      "change_pct": -4.268293,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "fixture_uid": "574c40dd-91ca-4fbf-ad96-508f73dff927",
+      "match": "Freiburg – Bayern Munich",
+      "selected": "Bayern Munich",
+      "side": "2",
+      "frozen_decision_odds": 1.54,
+      "win": true,
+      "t24_odds": 1.46,
+      "t8_odds": 1.51,
+      "change_pct": 3.424658,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "fixture_uid": "c5d5a3c5-9eb1-4781-95a7-fd52c51f3308",
+      "match": "Lecce – Juventus",
+      "selected": "Juventus",
+      "side": "2",
+      "frozen_decision_odds": 1.57,
+      "win": true,
+      "t24_odds": 1.55,
+      "t8_odds": 1.59,
+      "change_pct": 2.580645,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "fixture_uid": "513e3a4e-de18-41f0-82b2-9f08d5cf3958",
+      "match": "Real Sociedad – Levante",
+      "selected": "Real Sociedad",
+      "side": "1",
+      "frozen_decision_odds": 1.62,
+      "win": true,
+      "t24_odds": 1.64,
+      "t8_odds": 1.62,
+      "change_pct": -1.219512,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "fixture_uid": "a03a6983-7e1f-444f-87c8-26a85681ab2d",
+      "match": "Udinese – AC Milan",
+      "selected": "AC Milan",
+      "side": "2",
+      "frozen_decision_odds": 1.89,
+      "win": true,
+      "t24_odds": 1.8,
+      "t8_odds": 1.89,
+      "change_pct": 5,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-26",
+      "fixture_uid": "4c8089ee-0d26-4628-87ee-2fe413c954ec",
+      "match": "Rizespor – Trabzonspor",
+      "selected": "Trabzonspor",
+      "side": "2",
+      "frozen_decision_odds": 1.95,
+      "win": true,
+      "t24_odds": 2.02,
+      "t8_odds": 1.99,
+      "change_pct": -1.485149,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/26/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-26",
+      "fixture_uid": "2469eeb3-478d-405c-9f77-887fcc008a3a",
+      "match": "Santa Clara – Benfica",
+      "selected": "Benfica",
+      "side": "2",
+      "frozen_decision_odds": 1.35,
+      "win": true,
+      "t24_odds": 1.42,
+      "t8_odds": 1.37,
+      "change_pct": -3.521127,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/26/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-26",
+      "fixture_uid": "ca3254d9-ada6-4ed6-a8f2-8462e0cf1803",
+      "match": "Paris St-G – Lyon",
+      "selected": "Paris St-G",
+      "side": "1",
+      "frozen_decision_odds": 1.38,
+      "win": true,
+      "t24_odds": 1.39,
+      "t8_odds": 1.37,
+      "change_pct": -1.438849,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/26/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-26",
+      "fixture_uid": "2f6b2dc4-b037-4def-bdaa-029e2a9abb79",
+      "match": "Sevilla – Osasuna",
+      "selected": "Sevilla",
+      "side": "1",
+      "frozen_decision_odds": 1.9,
+      "win": true,
+      "t24_odds": 1.98,
+      "t8_odds": 1.95,
+      "change_pct": -1.515152,
+      "source_tier": "A_PRACTICAL_NATIVE",
+      "source_file": "archive/2026/10/26/05_pratik_arsiv/checkpoints.jsonl.gz"
+    }
+  ],
+  "supplementary_outside_primary": [
+    {
+      "date": "2026-10-11",
+      "match": "Freiburg – Schalke 04",
+      "selection": "Freiburg",
+      "t24": 1.68,
+      "t8": 1.71,
+      "win": true,
+      "change_pct": 1.785714,
+      "origin": "legacy original EARLY_T24 first signal + frozen T8; NOT part of Practical Archive primary cohort"
+    },
+    {
+      "date": "2026-10-11",
+      "match": "ESTAC Troyes – Marseille",
+      "selection": "Marseille",
+      "t24": 2.06,
+      "t8": 2.14,
+      "win": true,
+      "change_pct": 3.883495,
+      "origin": "legacy original EARLY_T24 first signal + frozen T8; NOT part of Practical Archive primary cohort"
+    }
+  ],
+  "notes": [
+    "NO source archive mutations",
+    "33 missing mostly winners -> severe sample selection",
+    "thresholds posthoc, not prospective",
+    "10 B-tier selected odds reinterpreted after T24 independent crosscheck; no de-vig proof",
+    "Only primary 48 for production-related threshold comparison"
+  ]
+}
