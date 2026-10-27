@@ -36,3 +36,10 @@ Bu erken durum daha sonra tamamlanan 26 Ekim taramasıyla **SUPERSEDED** oldu; k
 ## Araştırma notu
 
 Bu raporlar, tarihsel/AS_OF araştırmalarıdır; canlı SXF `DYNAMIC_AS_OF_V04` taramasıyla aynı karar zamanı garantisini iddia etmez. Skor ve final maç sonuçları seçim oluştururken kullanılmaz. SURPRISE non-loss riskini gösterir, 1X2 galibiyet fiyatı değildir.
+
+## 26 Ekim — sonradan tamamlanan sonuç/performans ek kaydı (28 Ekim)
+
+- [26 Ekim tam 18 seçimin FT skorları ve motor istatistikleri](26/sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-outcome-v1.md)
+- [Makine okunur tüm seçimlerin outcome ve motor kanıtları](26/sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-outcome-v1.json)
+- Sonuç: 18/18 FT, 10 WIN, 8 LOSS; 1X2 7/8, OVER 1/2, KG VAR 0/1, SURPRISE yenilmeme 2/7. Kaynak SXF iç FT, `match_id_hash` ve fixture UID / ad eşleşmesi; tüm maçlarda dış kaynaktan bağımsız teyit iddia edilmez.
+- Bu ek kayıt, yukarıdaki **"FT kullanılmadı" ifadesini sinyal üretimi açısından değiştirmez**: sonuçlar yalnız ayrı settlement dosyasına işlendi; T-6/T-8 as-of orijinal dosyaları korundu.
