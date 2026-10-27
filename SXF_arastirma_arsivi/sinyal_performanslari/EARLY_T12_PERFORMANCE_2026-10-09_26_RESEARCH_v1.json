@@ -1,0 +1,3248 @@
+{
+  "schema": "CAPITALE_SXF_EARLY_T12_FROZEN_PERFORMANCE_RESEARCH_V1",
+  "as_of": "2026-10-28",
+  "observation_period": "2026-10-09..2026-10-26",
+  "method": "Historical frozen T6 fallback T8 decision selections, filtered EARLY_T12 1X2; source settlement labels and four 26 Oct independently verified match results",
+  "status": "RESEARCH_ONLY_NO_ENGINE_OR_ARCHIVE_MODIFICATION",
+  "summary": {
+    "historical_9_25": {
+      "signals": 163,
+      "settled": 162,
+      "win": 102,
+      "loss": 60,
+      "unverified": 1,
+      "hit_pct": 62.96,
+      "avg_decision_odds": 1.792,
+      "retrospective_unit_profit": 14.74,
+      "illustrative_roi_percent": 9.1
+    },
+    "oct26": {
+      "signals": 4,
+      "settled": 4,
+      "win": 4,
+      "loss": 0,
+      "unverified": 0,
+      "hit_pct": 100,
+      "avg_decision_odds": 1.628,
+      "retrospective_unit_profit": 2.51,
+      "illustrative_roi_percent": 62.75
+    },
+    "combined_9_26": {
+      "signals": 167,
+      "settled": 166,
+      "win": 106,
+      "loss": 60,
+      "unverified": 1,
+      "hit_pct": 63.86,
+      "avg_decision_odds": 1.788,
+      "retrospective_unit_profit": 17.25,
+      "illustrative_roi_percent": 10.39
+    },
+    "period_9_16": {
+      "signals": 64,
+      "settled": 63,
+      "win": 44,
+      "loss": 19,
+      "unverified": 1,
+      "hit_pct": 69.84,
+      "avg_decision_odds": 1.825,
+      "retrospective_unit_profit": 13.13,
+      "illustrative_roi_percent": 20.84
+    },
+    "period_17_26": {
+      "signals": 103,
+      "settled": 103,
+      "win": 62,
+      "loss": 41,
+      "unverified": 0,
+      "hit_pct": 60.19,
+      "avg_decision_odds": 1.765,
+      "retrospective_unit_profit": 4.12,
+      "illustrative_roi_percent": 4
+    },
+    "t12_only": {
+      "signals": 35,
+      "settled": 35,
+      "win": 24,
+      "loss": 11,
+      "unverified": 0,
+      "hit_pct": 68.57,
+      "avg_decision_odds": 1.911,
+      "retrospective_unit_profit": 8.36,
+      "illustrative_roi_percent": 23.89
+    },
+    "with_early_core": {
+      "signals": 59,
+      "settled": 59,
+      "win": 41,
+      "loss": 18,
+      "unverified": 0,
+      "hit_pct": 69.49,
+      "avg_decision_odds": 1.705,
+      "retrospective_unit_profit": 8.84,
+      "illustrative_roi_percent": 14.98
+    },
+    "without_early_core": {
+      "signals": 108,
+      "settled": 107,
+      "win": 65,
+      "loss": 42,
+      "unverified": 1,
+      "hit_pct": 60.75,
+      "avg_decision_odds": 1.834,
+      "retrospective_unit_profit": 8.41,
+      "illustrative_roi_percent": 7.86
+    },
+    "with_heavy": {
+      "signals": 58,
+      "settled": 58,
+      "win": 42,
+      "loss": 16,
+      "unverified": 0,
+      "hit_pct": 72.41,
+      "avg_decision_odds": 1.73,
+      "retrospective_unit_profit": 14.08,
+      "illustrative_roi_percent": 24.28
+    },
+    "without_heavy": {
+      "signals": 109,
+      "settled": 108,
+      "win": 64,
+      "loss": 44,
+      "unverified": 1,
+      "hit_pct": 59.26,
+      "avg_decision_odds": 1.819,
+      "retrospective_unit_profit": 3.17,
+      "illustrative_roi_percent": 2.94
+    },
+    "t12_plus_heavy_without_core": {
+      "signals": 19,
+      "settled": 19,
+      "win": 15,
+      "loss": 4,
+      "unverified": 0,
+      "hit_pct": 78.95,
+      "avg_decision_odds": 1.736,
+      "retrospective_unit_profit": 6.84,
+      "illustrative_roi_percent": 36
+    },
+    "t12_plus_v1_v2_without_core_or_heavy": {
+      "signals": 44,
+      "settled": 44,
+      "win": 21,
+      "loss": 23,
+      "unverified": 0,
+      "hit_pct": 47.73,
+      "avg_decision_odds": 1.824,
+      "retrospective_unit_profit": -6.85,
+      "illustrative_roi_percent": -15.57
+    },
+    "decision_odds_below_2": {
+      "signals": 123,
+      "settled": 122,
+      "win": 83,
+      "loss": 39,
+      "unverified": 1,
+      "hit_pct": 68.03,
+      "avg_decision_odds": 1.612,
+      "retrospective_unit_profit": 9.61,
+      "illustrative_roi_percent": 7.88
+    },
+    "decision_odds_gte_2": {
+      "signals": 44,
+      "settled": 44,
+      "win": 23,
+      "loss": 21,
+      "unverified": 0,
+      "hit_pct": 52.27,
+      "avg_decision_odds": 2.275,
+      "retrospective_unit_profit": 7.64,
+      "illustrative_roi_percent": 17.36
+    },
+    "decision_odds_below_2_and_heavy": {
+      "signals": 46,
+      "settled": 46,
+      "win": 35,
+      "loss": 11,
+      "unverified": 0,
+      "hit_pct": 76.09,
+      "avg_decision_odds": 1.626,
+      "retrospective_unit_profit": 11.06,
+      "illustrative_roi_percent": 24.04
+    }
+  },
+  "daily": [
+    {
+      "date": "2026-10-09",
+      "signals": 4,
+      "settled": 4,
+      "win": 1,
+      "loss": 3,
+      "unverified": 0,
+      "hit_pct": 25,
+      "avg_decision_odds": 1.635,
+      "retrospective_unit_profit": -2.32,
+      "illustrative_roi_percent": -58
+    },
+    {
+      "date": "2026-10-10",
+      "signals": 17,
+      "settled": 17,
+      "win": 12,
+      "loss": 5,
+      "unverified": 0,
+      "hit_pct": 70.59,
+      "avg_decision_odds": 1.746,
+      "retrospective_unit_profit": 4.06,
+      "illustrative_roi_percent": 23.88
+    },
+    {
+      "date": "2026-10-11",
+      "signals": 7,
+      "settled": 7,
+      "win": 7,
+      "loss": 0,
+      "unverified": 0,
+      "hit_pct": 100,
+      "avg_decision_odds": 1.847,
+      "retrospective_unit_profit": 5.93,
+      "illustrative_roi_percent": 84.71
+    },
+    {
+      "date": "2026-10-12",
+      "signals": 4,
+      "settled": 4,
+      "win": 4,
+      "loss": 0,
+      "unverified": 0,
+      "hit_pct": 100,
+      "avg_decision_odds": 1.838,
+      "retrospective_unit_profit": 3.35,
+      "illustrative_roi_percent": 83.75
+    },
+    {
+      "date": "2026-10-13",
+      "signals": 7,
+      "settled": 7,
+      "win": 3,
+      "loss": 4,
+      "unverified": 0,
+      "hit_pct": 42.86,
+      "avg_decision_odds": 2.091,
+      "retrospective_unit_profit": -2.52,
+      "illustrative_roi_percent": -36
+    },
+    {
+      "date": "2026-10-14",
+      "signals": 5,
+      "settled": 5,
+      "win": 4,
+      "loss": 1,
+      "unverified": 0,
+      "hit_pct": 80,
+      "avg_decision_odds": 1.774,
+      "retrospective_unit_profit": 1.67,
+      "illustrative_roi_percent": 33.4
+    },
+    {
+      "date": "2026-10-15",
+      "signals": 16,
+      "settled": 15,
+      "win": 10,
+      "loss": 5,
+      "unverified": 1,
+      "hit_pct": 66.67,
+      "avg_decision_odds": 1.803,
+      "retrospective_unit_profit": 1.47,
+      "illustrative_roi_percent": 9.8
+    },
+    {
+      "date": "2026-10-16",
+      "signals": 4,
+      "settled": 4,
+      "win": 3,
+      "loss": 1,
+      "unverified": 0,
+      "hit_pct": 75,
+      "avg_decision_odds": 1.978,
+      "retrospective_unit_profit": 1.49,
+      "illustrative_roi_percent": 37.25
+    },
+    {
+      "date": "2026-10-17",
+      "signals": 17,
+      "settled": 17,
+      "win": 12,
+      "loss": 5,
+      "unverified": 0,
+      "hit_pct": 70.59,
+      "avg_decision_odds": 1.721,
+      "retrospective_unit_profit": 3.78,
+      "illustrative_roi_percent": 22.24
+    },
+    {
+      "date": "2026-10-18",
+      "signals": 11,
+      "settled": 11,
+      "win": 7,
+      "loss": 4,
+      "unverified": 0,
+      "hit_pct": 63.64,
+      "avg_decision_odds": 1.763,
+      "retrospective_unit_profit": 1.42,
+      "illustrative_roi_percent": 12.91
+    },
+    {
+      "date": "2026-10-19",
+      "signals": 3,
+      "settled": 3,
+      "win": 2,
+      "loss": 1,
+      "unverified": 0,
+      "hit_pct": 66.67,
+      "avg_decision_odds": 1.833,
+      "retrospective_unit_profit": 0.57,
+      "illustrative_roi_percent": 19
+    },
+    {
+      "date": "2026-10-20",
+      "signals": 13,
+      "settled": 13,
+      "win": 6,
+      "loss": 7,
+      "unverified": 0,
+      "hit_pct": 46.15,
+      "avg_decision_odds": 1.835,
+      "retrospective_unit_profit": -2.12,
+      "illustrative_roi_percent": -16.31
+    },
+    {
+      "date": "2026-10-21",
+      "signals": 3,
+      "settled": 3,
+      "win": 1,
+      "loss": 2,
+      "unverified": 0,
+      "hit_pct": 33.33,
+      "avg_decision_odds": 1.52,
+      "retrospective_unit_profit": -1.06,
+      "illustrative_roi_percent": -35.33
+    },
+    {
+      "date": "2026-10-22",
+      "signals": 17,
+      "settled": 17,
+      "win": 12,
+      "loss": 5,
+      "unverified": 0,
+      "hit_pct": 70.59,
+      "avg_decision_odds": 1.659,
+      "retrospective_unit_profit": 2.82,
+      "illustrative_roi_percent": 16.59
+    },
+    {
+      "date": "2026-10-23",
+      "signals": 4,
+      "settled": 4,
+      "win": 0,
+      "loss": 4,
+      "unverified": 0,
+      "hit_pct": 0,
+      "avg_decision_odds": 1.868,
+      "retrospective_unit_profit": -4,
+      "illustrative_roi_percent": -100
+    },
+    {
+      "date": "2026-10-24",
+      "signals": 17,
+      "settled": 17,
+      "win": 8,
+      "loss": 9,
+      "unverified": 0,
+      "hit_pct": 47.06,
+      "avg_decision_odds": 1.972,
+      "retrospective_unit_profit": -1.53,
+      "illustrative_roi_percent": -9
+    },
+    {
+      "date": "2026-10-25",
+      "signals": 14,
+      "settled": 14,
+      "win": 10,
+      "loss": 4,
+      "unverified": 0,
+      "hit_pct": 71.43,
+      "avg_decision_odds": 1.683,
+      "retrospective_unit_profit": 1.73,
+      "illustrative_roi_percent": 12.36
+    },
+    {
+      "date": "2026-10-26",
+      "signals": 4,
+      "settled": 4,
+      "win": 4,
+      "loss": 0,
+      "unverified": 0,
+      "hit_pct": 100,
+      "avg_decision_odds": 1.628,
+      "retrospective_unit_profit": 2.51,
+      "illustrative_roi_percent": 62.75
+    }
+  ],
+  "unverified": [
+    {
+      "date": "2026-10-15",
+      "match": "Sportivo Luqueno – Cerro Porteno",
+      "selected": "Cerro Porteno",
+      "odds": 1.94,
+      "reason": "Frozen result UNVERIFIED; 10 Oct official match with same teams is a different date, do not transfer settlement"
+    }
+  ],
+  "notes": [
+    "One 9-25 unresolved excluded from rate denominator",
+    "26 Oct Neftchi Fargona–Al-Ittihad settled as Al-Ittihad 1–2 away win supported by contemporary match reports and fixture source",
+    "The other three 26 Oct outcomes independently verified in frozen CORE research prior sources",
+    "T12 first-formation minimum £1000 and >=80% at T12; share field in per-selection records is DECISION snapshot (typically T6), not the T12 origination share",
+    "EARLY_T12 and overlapping ENGINE tags refer to same selection and are NOT independent bets",
+    "ROI is a theoretical level-stake computation from historical SXF quoted odds, no proof of price executability, latency, bookmaker spread or fees",
+    "Do not backfit new filters into production; flags are exploratory"
+  ],
+  "sources": [
+    "SXF_arastirma_arsivi/sinyal_performanslari/loss_features_2026-10-09_16_v1.json",
+    "SXF_arastirma_arsivi/sinyal_performanslari/loss_features_2026-10-17_25_v1.json",
+    "SXF_arastirma_arsivi/sinyal_performanslari/Sinyal_Performanslari.json",
+    "SXF_arastirma_arsivi/2026/10/26/sxf-research-2026-10-26-t6-fallback-t8-16to24-v1.json",
+    "https://gapim.uz/en/uzbekistan-en/65933-afc-champions-league-elite-ferganas-neftchi-suffers-bitter-defeat-against-saudi-opponent-1793034025"
+  ],
+  "records": [
+    {
+      "date": "2026-10-09",
+      "uid": "9679e2cd-aaae-4b7c-9d44-a3174fb6dc11",
+      "match": "FC Heidenheim – Kaiserslautern",
+      "selected_side": "1",
+      "selected_team": "FC Heidenheim",
+      "decision_odds": 1.96,
+      "decision_money_gbp": 11575.6,
+      "decision_share_pct": 77.8,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "0-0",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-09",
+      "uid": "7c2211c5-455c-43d4-a2a1-60225aba44df",
+      "match": "ACS Sepsi OSK – Dinamo Bucharest",
+      "selected_side": "2",
+      "selected_team": "Dinamo Bucharest",
+      "decision_odds": 1.68,
+      "decision_money_gbp": 4699.72,
+      "decision_share_pct": 91.7,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1"
+      ],
+      "score": "0-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-09",
+      "uid": "e0a7aff4-1ce3-4404-a7dc-e8f9e57d0a6d",
+      "match": "Dortmund – Werder Bremen",
+      "selected_side": "1",
+      "selected_team": "Dortmund",
+      "decision_odds": 1.39,
+      "decision_money_gbp": 210199.56,
+      "decision_share_pct": 83.8,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "2-2",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-09",
+      "uid": "a0dc59f0-eb1e-4061-bf6b-4757ecfee3ff",
+      "match": "West Ham – QPR",
+      "selected_side": "1",
+      "selected_team": "West Ham",
+      "decision_odds": 1.51,
+      "decision_money_gbp": 79031.02,
+      "decision_share_pct": 81.5,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "1-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-10",
+      "uid": "a44d2aa6-9dd9-4d5f-933f-1c3cbddfbc34",
+      "match": "Alanyaspor – Erzurum BB",
+      "selected_side": "1",
+      "selected_team": "Alanyaspor",
+      "decision_odds": 2.04,
+      "decision_money_gbp": 12017.45,
+      "decision_share_pct": 74,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "0-0",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-10",
+      "uid": "106b363b-218f-48ca-af77-e4aa618e3c63",
+      "match": "Samsunspor – Trabzonspor",
+      "selected_side": "2",
+      "selected_team": "Trabzonspor",
+      "decision_odds": 2.08,
+      "decision_money_gbp": 10230.99,
+      "decision_share_pct": 86.9,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "0-3",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-10",
+      "uid": "375035d4-9b7b-4da2-b965-9aeeb7ebae1f",
+      "match": "Bradford – Leyton Orient",
+      "selected_side": "1",
+      "selected_team": "Bradford",
+      "decision_odds": 1.63,
+      "decision_money_gbp": 4277.12,
+      "decision_share_pct": 86.5,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "0-0",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-10",
+      "uid": "6839fca4-b6e8-47d6-b95a-66a18f7c0253",
+      "match": "Cheltenham – Salford City",
+      "selected_side": "2",
+      "selected_team": "Salford City",
+      "decision_odds": 1.91,
+      "decision_money_gbp": 2357.38,
+      "decision_share_pct": 69.9,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "0-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-10",
+      "uid": "c9d08d9c-a687-4725-aacc-2b8e92f1449b",
+      "match": "Crawley Town – Chesterfield",
+      "selected_side": "2",
+      "selected_team": "Chesterfield",
+      "decision_odds": 1.69,
+      "decision_money_gbp": 1934.92,
+      "decision_share_pct": 89.5,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "2-2",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-10",
+      "uid": "0f413755-c2e7-412c-b09b-1de34b47c611",
+      "match": "Huddersfield – Sheff Wed",
+      "selected_side": "1",
+      "selected_team": "Huddersfield",
+      "decision_odds": 1.73,
+      "decision_money_gbp": 7435.82,
+      "decision_share_pct": 86,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "2-2",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-10",
+      "uid": "28453895-9a26-4f62-b1e1-ea576549799b",
+      "match": "Stockport – Barnsley",
+      "selected_side": "1",
+      "selected_team": "Stockport",
+      "decision_odds": 1.46,
+      "decision_money_gbp": 2075.21,
+      "decision_share_pct": 81.5,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "3-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-10",
+      "uid": "a8b893cf-f001-4990-949b-e08faabbfcc0",
+      "match": "Wealdstone – Yeovil",
+      "selected_side": "2",
+      "selected_team": "Yeovil",
+      "decision_odds": 2.34,
+      "decision_money_gbp": 2164.24,
+      "decision_share_pct": 85.8,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "0-6",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-10",
+      "uid": "5765e50e-bf84-4a94-b076-bfdbd1164f21",
+      "match": "York City – Northampton",
+      "selected_side": "1",
+      "selected_team": "York City",
+      "decision_odds": 1.53,
+      "decision_money_gbp": 7688.66,
+      "decision_share_pct": 90.3,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1"
+      ],
+      "score": "1-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-10",
+      "uid": "b0e93b66-21df-4b5a-b9c8-1ba611130ba9",
+      "match": "AD Ceuta FC – Sabadell",
+      "selected_side": "2",
+      "selected_team": "Sabadell",
+      "decision_odds": 2.44,
+      "decision_money_gbp": 17790.11,
+      "decision_share_pct": 91,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "1-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-10",
+      "uid": "c8b80a1d-c20e-4401-89e4-98880c378218",
+      "match": "Lugano – Luzern",
+      "selected_side": "1",
+      "selected_team": "Lugano",
+      "decision_odds": 1.78,
+      "decision_money_gbp": 4246,
+      "decision_share_pct": 93.9,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1"
+      ],
+      "score": "4-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-10",
+      "uid": "138d929e-baa0-42af-ab63-a23f17091341",
+      "match": "AEK Athens – OFI",
+      "selected_side": "1",
+      "selected_team": "AEK Athens",
+      "decision_odds": 1.31,
+      "decision_money_gbp": 11596.14,
+      "decision_share_pct": 98.9,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "3-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-10",
+      "uid": "f9b4bb42-4c6c-44a6-9a33-8ef6036346b0",
+      "match": "Maritimo – Porto",
+      "selected_side": "2",
+      "selected_team": "Porto",
+      "decision_odds": 1.33,
+      "decision_money_gbp": 13541.85,
+      "decision_share_pct": 87.1,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "1-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-10",
+      "uid": "f8b81948-3aaa-4591-8a24-15e9ebb1105e",
+      "match": "Toronto FC – CF Montreal",
+      "selected_side": "1",
+      "selected_team": "Toronto FC",
+      "decision_odds": 2.08,
+      "decision_money_gbp": 2726.67,
+      "decision_share_pct": 84.7,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1"
+      ],
+      "score": "2-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-10",
+      "uid": "cff17144-cc67-4f64-9a71-9a1e77b3883e",
+      "match": "FCSB – Otelul Galati",
+      "selected_side": "1",
+      "selected_team": "FCSB",
+      "decision_odds": 1.51,
+      "decision_money_gbp": 2351.62,
+      "decision_share_pct": 77.7,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "1-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-10",
+      "uid": "6b58f368-d755-4cff-8585-8f12dccb9a71",
+      "match": "Genk – Kortrijk",
+      "selected_side": "1",
+      "selected_team": "Genk",
+      "decision_odds": 1.43,
+      "decision_money_gbp": 4604.41,
+      "decision_share_pct": 73.6,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "3-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-10",
+      "uid": "2de709d1-ecd2-43e1-b4da-2f74f4972eaa",
+      "match": "Real Madrid – Villarreal",
+      "selected_side": "1",
+      "selected_team": "Real Madrid",
+      "decision_odds": 1.39,
+      "decision_money_gbp": 157673.59,
+      "decision_share_pct": 90,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "1-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-11",
+      "uid": "47751fd2-5e9b-4939-9684-0e53d12f4433",
+      "match": "Lazio – AC Monza",
+      "selected_side": "1",
+      "selected_team": "Lazio",
+      "decision_odds": 1.75,
+      "decision_money_gbp": 62933.36,
+      "decision_share_pct": 82.3,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "3-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-11",
+      "uid": "2ce78091-7dbd-4fe1-9e15-71322fe5d355",
+      "match": "Real Sociedad – Deportivo",
+      "selected_side": "1",
+      "selected_team": "Real Sociedad",
+      "decision_odds": 1.67,
+      "decision_money_gbp": 65112.27,
+      "decision_share_pct": 84.3,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "3-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-11",
+      "uid": "1f20e753-240f-496f-8514-9d55971bb98c",
+      "match": "Sparta Prague – Pardubice",
+      "selected_side": "1",
+      "selected_team": "Sparta Prague",
+      "decision_odds": 1.4,
+      "decision_money_gbp": 8398.43,
+      "decision_share_pct": 96.1,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "2-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-11",
+      "uid": "1fb9fa8c-8dc0-4e41-8309-e9b3d57ea7a0",
+      "match": "Betis – Osasuna",
+      "selected_side": "1",
+      "selected_team": "Betis",
+      "decision_odds": 1.55,
+      "decision_money_gbp": 126546.04,
+      "decision_share_pct": 87.3,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "5-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-11",
+      "uid": "e218aa31-4192-4519-9d8c-8e780822645a",
+      "match": "Westerlo – Antwerp",
+      "selected_side": "1",
+      "selected_team": "Westerlo",
+      "decision_odds": 2.14,
+      "decision_money_gbp": 2116.4,
+      "decision_share_pct": 80.5,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "5-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-11",
+      "uid": "0a22067a-6fc0-4766-825b-16882345f15b",
+      "match": "ESTAC Troyes – Marseille",
+      "selected_side": "2",
+      "selected_team": "Marseille",
+      "decision_odds": 2.14,
+      "decision_money_gbp": 49113.28,
+      "decision_share_pct": 76.7,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "0-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-11",
+      "uid": "28a9c7e1-c311-4f2e-a4bd-dbb8fbdcca36",
+      "match": "Atletico MG – Santos",
+      "selected_side": "1",
+      "selected_team": "Atletico MG",
+      "decision_odds": 2.28,
+      "decision_money_gbp": 6227.32,
+      "decision_share_pct": 77.2,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "2-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-12",
+      "uid": "7ad6dd6c-97b2-4efd-92fc-52381f1b9807",
+      "match": "Atalanta – Venezia",
+      "selected_side": "1",
+      "selected_team": "Atalanta",
+      "decision_odds": 1.61,
+      "decision_money_gbp": 137839.87,
+      "decision_share_pct": 81.1,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "HEAVY"
+      ],
+      "score": "3-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-12",
+      "uid": "284a06b5-b696-4da2-8d43-a0508cac19b6",
+      "match": "Elfsborg – Halmstads",
+      "selected_side": "1",
+      "selected_team": "Elfsborg",
+      "decision_odds": 1.34,
+      "decision_money_gbp": 3513.46,
+      "decision_share_pct": 86.2,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "4-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-12",
+      "uid": "16a1455d-527b-4f68-8897-ca3fb992f556",
+      "match": "Eyupspor – Goztepe",
+      "selected_side": "2",
+      "selected_team": "Goztepe",
+      "decision_odds": 1.94,
+      "decision_money_gbp": 13519.36,
+      "decision_share_pct": 83.8,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "0-4",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-12",
+      "uid": "4b4abdba-e42d-4bf5-af39-ce5aa7624813",
+      "match": "Shamrock Rovers – Bohemians",
+      "selected_side": "1",
+      "selected_team": "Shamrock Rovers",
+      "decision_odds": 2.46,
+      "decision_money_gbp": 2537.58,
+      "decision_share_pct": 67.9,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "2-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-13",
+      "uid": "149a3214-220e-4684-b234-6e3c68eb3b1e",
+      "match": "Walsall – Fulham U21",
+      "selected_side": "2",
+      "selected_team": "Fulham U21",
+      "decision_odds": 3.75,
+      "decision_money_gbp": 3357.79,
+      "decision_share_pct": 95.7,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "3-2",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-13",
+      "uid": "e5bb0339-4e33-4593-9c6e-9c9752a6883b",
+      "match": "Bristol City – Blackburn",
+      "selected_side": "1",
+      "selected_team": "Bristol City",
+      "decision_odds": 2.18,
+      "decision_money_gbp": 15692.27,
+      "decision_share_pct": 86.2,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "HEAVY"
+      ],
+      "score": "0-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-13",
+      "uid": "a59501c9-3689-468e-9cd0-8f807f505278",
+      "match": "Burnley – Charlton",
+      "selected_side": "1",
+      "selected_team": "Burnley",
+      "decision_odds": 1.69,
+      "decision_money_gbp": 2251.59,
+      "decision_share_pct": 90.1,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1"
+      ],
+      "score": "2-2",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-13",
+      "uid": "bd3507eb-c8e4-4485-8ad0-cd8f41315e01",
+      "match": "Millwall – Swansea",
+      "selected_side": "1",
+      "selected_team": "Millwall",
+      "decision_odds": 2.54,
+      "decision_money_gbp": 1807.5,
+      "decision_share_pct": 88.5,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "0-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-13",
+      "uid": "e5d99697-ae5a-49f6-b4e9-4460f0222aa2",
+      "match": "Birmingham – Preston",
+      "selected_side": "1",
+      "selected_team": "Birmingham",
+      "decision_odds": 1.53,
+      "decision_money_gbp": 52610.26,
+      "decision_share_pct": 91.8,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "4-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-13",
+      "uid": "c1903fb4-c4dd-4a4a-8e61-a639d3ebbf93",
+      "match": "Galatasaray – Barcelona",
+      "selected_side": "2",
+      "selected_team": "Barcelona",
+      "decision_odds": 1.31,
+      "decision_money_gbp": 374213.46,
+      "decision_share_pct": 87.1,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "1-4",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-13",
+      "uid": "cc4de8d8-7fc1-4320-8780-7c707f1c37b4",
+      "match": "RB Leipzig – PSV",
+      "selected_side": "1",
+      "selected_team": "RB Leipzig",
+      "decision_odds": 1.64,
+      "decision_money_gbp": 220235.98,
+      "decision_share_pct": 84.2,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "1-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-14",
+      "uid": "52b67f7d-8361-4c2b-bdd1-304bc452b310",
+      "match": "Feyenoord – Como",
+      "selected_side": "2",
+      "selected_team": "Como",
+      "decision_odds": 2.2,
+      "decision_money_gbp": 264334.63,
+      "decision_share_pct": 75.7,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "3-2",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-14",
+      "uid": "70ca1d12-a91a-4fc2-9366-ec6cb7094a1c",
+      "match": "Lask Linz – Liverpool",
+      "selected_side": "2",
+      "selected_team": "Liverpool",
+      "decision_odds": 1.42,
+      "decision_money_gbp": 353816.69,
+      "decision_share_pct": 86.6,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "3-6",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-14",
+      "uid": "e99c7b67-91ad-4243-9bdb-2f1b60a042f3",
+      "match": "Aston Villa – Fenerbahce",
+      "selected_side": "1",
+      "selected_team": "Aston Villa",
+      "decision_odds": 1.74,
+      "decision_money_gbp": 188103.26,
+      "decision_share_pct": 80.9,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "6-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-14",
+      "uid": "f38db51f-d649-4dc8-9dbb-531935cf4e68",
+      "match": "Betis – Porto",
+      "selected_side": "1",
+      "selected_team": "Betis",
+      "decision_odds": 2.12,
+      "decision_money_gbp": 97347.52,
+      "decision_share_pct": 79.2,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "3-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-14",
+      "uid": "eef9393e-d076-43fb-9ac9-2b6a8370776c",
+      "match": "Slovan Bratislava – Stuttgart",
+      "selected_side": "2",
+      "selected_team": "Stuttgart",
+      "decision_odds": 1.39,
+      "decision_money_gbp": 147865.61,
+      "decision_share_pct": 85.4,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "0-3",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-15",
+      "uid": "d36503e7-1e65-4f70-a887-4322607207eb",
+      "match": "Sportivo Luqueno – Cerro Porteno",
+      "selected_side": "2",
+      "selected_team": "Cerro Porteno",
+      "decision_odds": 1.94,
+      "decision_money_gbp": 4873.61,
+      "decision_share_pct": 84.6,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1"
+      ],
+      "score": null,
+      "result": "UNVERIFIED"
+    },
+    {
+      "date": "2026-10-15",
+      "uid": "ff02b04f-67e2-4ad9-af05-43685074e9ae",
+      "match": "Az Alkmaar – Hapoel Be'er Sheva",
+      "selected_side": "1",
+      "selected_team": "Az Alkmaar",
+      "decision_odds": 1.37,
+      "decision_money_gbp": 21683.69,
+      "decision_share_pct": 82.9,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "2-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-15",
+      "uid": "770cbb09-bb66-4e87-922e-a040a78263ff",
+      "match": "Egnatia Rrogozhine – Midtjylland",
+      "selected_side": "2",
+      "selected_team": "Midtjylland",
+      "decision_odds": 1.58,
+      "decision_money_gbp": 5666.4,
+      "decision_share_pct": 86.1,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "1-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-15",
+      "uid": "e9fa44f3-dc47-4734-9b0d-4ab2b6f3899a",
+      "match": "FK Riga – Kairat Almaty",
+      "selected_side": "1",
+      "selected_team": "FK Riga",
+      "decision_odds": 2.04,
+      "decision_money_gbp": 8271.23,
+      "decision_share_pct": 94.4,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "1-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-15",
+      "uid": "c5301523-a3df-48a6-98cb-a50d175a9548",
+      "match": "KuPS – Trabzonspor",
+      "selected_side": "2",
+      "selected_team": "Trabzonspor",
+      "decision_odds": 1.63,
+      "decision_money_gbp": 43244.63,
+      "decision_share_pct": 95.3,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "HEAVY"
+      ],
+      "score": "2-4",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-15",
+      "uid": "56997e98-70f0-4c82-9273-e6bbff428a5f",
+      "match": "Lech Poznan – Leverkusen",
+      "selected_side": "2",
+      "selected_team": "Leverkusen",
+      "decision_odds": 1.63,
+      "decision_money_gbp": 71631.27,
+      "decision_share_pct": 85.9,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "0-4",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-15",
+      "uid": "e9d49a3c-e1b4-479f-9d5f-1cab7894c862",
+      "match": "Lugano – Crvena Zvezda",
+      "selected_side": "2",
+      "selected_team": "Crvena Zvezda",
+      "decision_odds": 2.96,
+      "decision_money_gbp": 22622.62,
+      "decision_share_pct": 72.2,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "3-2",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-15",
+      "uid": "a4b904f2-a8f9-4051-b585-759591bfedc8",
+      "match": "Mjallby – Inter Club Escaldes",
+      "selected_side": "1",
+      "selected_team": "Mjallby",
+      "decision_odds": 1.37,
+      "decision_money_gbp": 7174.86,
+      "decision_share_pct": 85,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "2-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-15",
+      "uid": "96950ac2-c1ff-4188-afe9-6cc7967aaf3b",
+      "match": "Red Bull Salzburg – AC Milan",
+      "selected_side": "2",
+      "selected_team": "AC Milan",
+      "decision_odds": 2.04,
+      "decision_money_gbp": 174311.38,
+      "decision_share_pct": 86.2,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "HEAVY"
+      ],
+      "score": "0-4",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-15",
+      "uid": "39ba662f-ed11-46e5-b5f7-3d28134a4f15",
+      "match": "Torreense – Sunderland",
+      "selected_side": "2",
+      "selected_team": "Sunderland",
+      "decision_odds": 1.35,
+      "decision_money_gbp": 78216.45,
+      "decision_share_pct": 92.7,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "1-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-15",
+      "uid": "e14bd779-84ae-48d4-9326-faaee7dd6069",
+      "match": "Muglaspor – Bursaspor",
+      "selected_side": "2",
+      "selected_team": "Bursaspor",
+      "decision_odds": 1.67,
+      "decision_money_gbp": 2400.21,
+      "decision_share_pct": 97.9,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "0-3",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-15",
+      "uid": "cdabb53d-a1c6-4360-8187-3c3cec608079",
+      "match": "Atalanta – Pafos FC",
+      "selected_side": "1",
+      "selected_team": "Atalanta",
+      "decision_odds": 1.35,
+      "decision_money_gbp": 32812.47,
+      "decision_share_pct": 93.4,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "3-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-15",
+      "uid": "04953c39-e180-4379-a7a3-635a438e0c92",
+      "match": "Dinamo Zagreb – Anderlecht",
+      "selected_side": "1",
+      "selected_team": "Dinamo Zagreb",
+      "decision_odds": 2.06,
+      "decision_money_gbp": 16238.1,
+      "decision_share_pct": 77.6,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "1-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-15",
+      "uid": "a357b4d8-4af9-42f2-92f5-be9eff98e574",
+      "match": "Ferencvaros – Plzen",
+      "selected_side": "1",
+      "selected_team": "Ferencvaros",
+      "decision_odds": 2,
+      "decision_money_gbp": 9510.29,
+      "decision_share_pct": 83.1,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "2-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-15",
+      "uid": "62b5f1e8-b230-4b5f-8958-79f5353456c7",
+      "match": "Hoffenheim – Besiktas",
+      "selected_side": "1",
+      "selected_team": "Hoffenheim",
+      "decision_odds": 2.06,
+      "decision_money_gbp": 63276.16,
+      "decision_share_pct": 80.5,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "2-3",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-15",
+      "uid": "861ee3d6-4644-4ff8-9376-aa76666c4800",
+      "match": "NEC Nijmegen – PFC Levski Sofia",
+      "selected_side": "1",
+      "selected_team": "NEC Nijmegen",
+      "decision_odds": 1.94,
+      "decision_money_gbp": 18957.7,
+      "decision_share_pct": 93.1,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "1-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-16",
+      "uid": "1822ca63-3dba-4556-b09a-7f9fccb61849",
+      "match": "Holstein Kiel – Hertha Berlin",
+      "selected_side": "2",
+      "selected_team": "Hertha Berlin",
+      "decision_odds": 2.42,
+      "decision_money_gbp": 9625.59,
+      "decision_share_pct": 62.4,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "0-0",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-16",
+      "uid": "98f1e068-ef4e-47ec-be38-d1d4236c3507",
+      "match": "Dinamo Bucharest – Botosani",
+      "selected_side": "1",
+      "selected_team": "Dinamo Bucharest",
+      "decision_odds": 1.5,
+      "decision_money_gbp": 2296.79,
+      "decision_share_pct": 90.1,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "2-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-16",
+      "uid": "dad92e72-067f-4d92-ba76-6cec65f92297",
+      "match": "Heerenveen – Excelsior",
+      "selected_side": "1",
+      "selected_team": "Heerenveen",
+      "decision_odds": 1.63,
+      "decision_money_gbp": 23862.62,
+      "decision_share_pct": 84.5,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "4-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-16",
+      "uid": "93b5b535-7334-4894-92a5-9aa06b5717e4",
+      "match": "CD Los Chankas – Asociacion Deportiva Tarma",
+      "selected_side": "1",
+      "selected_team": "CD Los Chankas",
+      "decision_odds": 2.36,
+      "decision_money_gbp": 1533.04,
+      "decision_share_pct": 61.3,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "2-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-17",
+      "uid": "692f2eb8-9dcc-4a7e-8b8b-956da6f9b1fa",
+      "match": "Venezia – Napoli",
+      "selected_side": "2",
+      "selected_team": "Napoli",
+      "decision_odds": 1.8,
+      "decision_money_gbp": 95287.03,
+      "decision_share_pct": 84,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "1-0",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-17",
+      "uid": "54f17209-63b4-4bb1-b1dd-e7e4c8a856ce",
+      "match": "Birmingham – QPR",
+      "selected_side": "1",
+      "selected_team": "Birmingham",
+      "decision_odds": 2.08,
+      "decision_money_gbp": 11342.2,
+      "decision_share_pct": 82,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "3-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-17",
+      "uid": "934911e9-a0e9-49ba-92ba-038636550d64",
+      "match": "Crewe – Rochdale",
+      "selected_side": "1",
+      "selected_team": "Crewe",
+      "decision_odds": 1.97,
+      "decision_money_gbp": 1623.89,
+      "decision_share_pct": 64.5,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "3-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-17",
+      "uid": "489aba3a-5f19-4a47-b9e1-ccce4ae9c491",
+      "match": "Fulham – Hull",
+      "selected_side": "1",
+      "selected_team": "Fulham",
+      "decision_odds": 1.68,
+      "decision_money_gbp": 191753.5,
+      "decision_share_pct": 80.5,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "1-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-17",
+      "uid": "c6f901cd-91f2-494e-ae6a-405aa7cc63fe",
+      "match": "Hibernian – Falkirk",
+      "selected_side": "1",
+      "selected_team": "Hibernian",
+      "decision_odds": 1.77,
+      "decision_money_gbp": 5171.36,
+      "decision_share_pct": 95.1,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "1-2",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-17",
+      "uid": "92f4c0c5-0091-4414-b2a5-1ce22f101eef",
+      "match": "Leicester – Doncaster",
+      "selected_side": "1",
+      "selected_team": "Leicester",
+      "decision_odds": 2,
+      "decision_money_gbp": 2967.16,
+      "decision_share_pct": 73.9,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "2-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-17",
+      "uid": "22f8e01c-fe7f-4608-bb1b-8a820989c7bd",
+      "match": "Leyton Orient – Blackpool",
+      "selected_side": "1",
+      "selected_team": "Leyton Orient",
+      "decision_odds": 2.28,
+      "decision_money_gbp": 4467.74,
+      "decision_share_pct": 85.6,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "2-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-17",
+      "uid": "a98b5aac-c459-4080-8f95-055377bad744",
+      "match": "Southampton – Bolton",
+      "selected_side": "1",
+      "selected_team": "Southampton",
+      "decision_odds": 1.47,
+      "decision_money_gbp": 6080.13,
+      "decision_share_pct": 73.2,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "0-0",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-17",
+      "uid": "9e2f98d3-2dce-4508-8360-f7570a4cf107",
+      "match": "Wigan – Reading",
+      "selected_side": "2",
+      "selected_team": "Reading",
+      "decision_odds": 1.98,
+      "decision_money_gbp": 2427.51,
+      "decision_share_pct": 86.4,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "1-0",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-17",
+      "uid": "fe2ac5c6-c301-4ac2-ac1d-fa416bd913be",
+      "match": "Villarreal – Elche",
+      "selected_side": "1",
+      "selected_team": "Villarreal",
+      "decision_odds": 1.45,
+      "decision_money_gbp": 21267.23,
+      "decision_share_pct": 84.3,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "0-0",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-17",
+      "uid": "ccf7d433-4d41-464b-a509-f4de60aecfb4",
+      "match": "Strasbourg – Paris St-G",
+      "selected_side": "2",
+      "selected_team": "Paris St-G",
+      "decision_odds": 1.45,
+      "decision_money_gbp": 35091.88,
+      "decision_share_pct": 83.9,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "1-3",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-17",
+      "uid": "9d4fbcd4-8bbc-4631-aec3-6e04d4116a2a",
+      "match": "Viking – Fredrikstad",
+      "selected_side": "1",
+      "selected_team": "Viking",
+      "decision_odds": 1.39,
+      "decision_money_gbp": 2371.68,
+      "decision_share_pct": 86,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "3-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-17",
+      "uid": "a018ae91-45ce-41f8-9b57-88bee712154a",
+      "match": "Betis – Barcelona",
+      "selected_side": "2",
+      "selected_team": "Barcelona",
+      "decision_odds": 1.48,
+      "decision_money_gbp": 169394.92,
+      "decision_share_pct": 88.7,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "2-5",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-17",
+      "uid": "4ead0578-fd67-4a28-8550-e2e2159333e0",
+      "match": "SC Telstar – Feyenoord",
+      "selected_side": "2",
+      "selected_team": "Feyenoord",
+      "decision_odds": 1.37,
+      "decision_money_gbp": 3513.65,
+      "decision_share_pct": 76.4,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "3-4",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-17",
+      "uid": "d3938561-f133-4484-9f2b-0da6499bb68d",
+      "match": "ESTAC Troyes – Lens",
+      "selected_side": "2",
+      "selected_team": "Lens",
+      "decision_odds": 1.95,
+      "decision_money_gbp": 14937.86,
+      "decision_share_pct": 83.6,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "1-3",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-17",
+      "uid": "1b3b2b41-51a7-4b9e-8096-de20f3213db7",
+      "match": "Roma – Genoa",
+      "selected_side": "1",
+      "selected_team": "Roma",
+      "decision_odds": 1.62,
+      "decision_money_gbp": 210123.3,
+      "decision_share_pct": 85.1,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "2-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-17",
+      "uid": "5ee2f430-c43f-4af1-b709-ee34e10446fe",
+      "match": "Boyaca Chico – Atletico Nacional Medellin",
+      "selected_side": "2",
+      "selected_team": "Atletico Nacional Medellin",
+      "decision_odds": 1.51,
+      "decision_money_gbp": 2501.12,
+      "decision_share_pct": 87.7,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "1-4",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-18",
+      "uid": "275681fc-0ef5-4aca-a599-45b5b6a29d70",
+      "match": "Albion FC – Torque",
+      "selected_side": "2",
+      "selected_team": "Torque",
+      "decision_odds": 2.26,
+      "decision_money_gbp": 1513.54,
+      "decision_share_pct": 83.4,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "2-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-18",
+      "uid": "f7a06fab-ff73-4388-ac7b-2ec61738af44",
+      "match": "Angers – Marseille",
+      "selected_side": "2",
+      "selected_team": "Marseille",
+      "decision_odds": 2.06,
+      "decision_money_gbp": 14637.21,
+      "decision_share_pct": 84.5,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "2-5",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-18",
+      "uid": "bb10d807-2def-48d5-a192-a2e6fe4baa75",
+      "match": "Brighton – Crystal Palace",
+      "selected_side": "1",
+      "selected_team": "Brighton",
+      "decision_odds": 1.51,
+      "decision_money_gbp": 152915.16,
+      "decision_share_pct": 86,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "5-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-18",
+      "uid": "94f31b71-e899-4be8-a3f6-e1f3b607e827",
+      "match": "Leverkusen – Freiburg",
+      "selected_side": "1",
+      "selected_team": "Leverkusen",
+      "decision_odds": 1.67,
+      "decision_money_gbp": 58946.61,
+      "decision_share_pct": 83.4,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "2-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-18",
+      "uid": "60bfd279-c60f-4724-907f-9b5f1f9bb250",
+      "match": "Fatima – Academico de Viseu",
+      "selected_side": "2",
+      "selected_team": "Academico de Viseu",
+      "decision_odds": 1.49,
+      "decision_money_gbp": 1650.89,
+      "decision_share_pct": 91.6,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1"
+      ],
+      "score": "1-0",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-18",
+      "uid": "f4290332-5abb-428b-88bf-1757a3364ea5",
+      "match": "Mafra – Santa Clara",
+      "selected_side": "2",
+      "selected_team": "Santa Clara",
+      "decision_odds": 1.65,
+      "decision_money_gbp": 1162.3,
+      "decision_share_pct": 95.2,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "2-2",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-18",
+      "uid": "03c6bdc9-012e-4ca1-9899-afc811607f77",
+      "match": "Nottm Forest – Arsenal",
+      "selected_side": "2",
+      "selected_team": "Arsenal",
+      "decision_odds": 1.62,
+      "decision_money_gbp": 210842.08,
+      "decision_share_pct": 84.5,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "0-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-18",
+      "uid": "a84de65b-6c39-46f3-a99a-97c5729edf4c",
+      "match": "AC Milan – Atalanta",
+      "selected_side": "1",
+      "selected_team": "AC Milan",
+      "decision_odds": 1.79,
+      "decision_money_gbp": 77459.05,
+      "decision_share_pct": 84.1,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "3-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-18",
+      "uid": "4f88809e-53b1-4a47-8135-1acff608606d",
+      "match": "Girona – FC Andorra",
+      "selected_side": "1",
+      "selected_team": "Girona",
+      "decision_odds": 1.84,
+      "decision_money_gbp": 5335.65,
+      "decision_share_pct": 86.2,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "2-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-18",
+      "uid": "07de74b3-96a7-4286-a617-a3e2756a6162",
+      "match": "Lyon – Nice",
+      "selected_side": "1",
+      "selected_team": "Lyon",
+      "decision_odds": 1.93,
+      "decision_money_gbp": 79164.43,
+      "decision_share_pct": 83.5,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "2-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-18",
+      "uid": "64601924-06a2-4868-b8a6-93cb876431ae",
+      "match": "CA Guemes – Almagro BA",
+      "selected_side": "2",
+      "selected_team": "Almagro BA",
+      "decision_odds": 1.57,
+      "decision_money_gbp": 6332.93,
+      "decision_share_pct": 91.5,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "2-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-19",
+      "uid": "1eeca140-4f71-429e-99bf-49af518a9aa7",
+      "match": "FC Voluntari – FCSB",
+      "selected_side": "2",
+      "selected_team": "FCSB",
+      "decision_odds": 1.62,
+      "decision_money_gbp": 2607.7,
+      "decision_share_pct": 83.9,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "1-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-19",
+      "uid": "4f4217aa-d2c1-47cd-9704-657e75feb293",
+      "match": "Waterford – Galway Utd",
+      "selected_side": "1",
+      "selected_team": "Waterford",
+      "decision_odds": 1.95,
+      "decision_money_gbp": 3484.57,
+      "decision_share_pct": 73.6,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "3-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-19",
+      "uid": "619a2483-ceef-42ef-bcbf-09ce8d55c872",
+      "match": "Mushuc Runa – Orense Sporting Club",
+      "selected_side": "1",
+      "selected_team": "Mushuc Runa",
+      "decision_odds": 1.93,
+      "decision_money_gbp": 1288.48,
+      "decision_share_pct": 95.4,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "1-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-20",
+      "uid": "81754a04-45d8-4857-82a2-ceb174b981a9",
+      "match": "Al-Taawoun Buraidah – Al-Quadisiya (KSA)",
+      "selected_side": "2",
+      "selected_team": "Al-Quadisiya (KSA)",
+      "decision_odds": 1.47,
+      "decision_money_gbp": 2197.95,
+      "decision_share_pct": 87.9,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "0-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-20",
+      "uid": "5ac19679-b984-4bf0-954e-930fa809e14c",
+      "match": "FC Sabah – Dortmund",
+      "selected_side": "2",
+      "selected_team": "Dortmund",
+      "decision_odds": 1.33,
+      "decision_money_gbp": 133522.47,
+      "decision_share_pct": 82.3,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "1-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-20",
+      "uid": "b4edec4f-7a53-4643-ad5b-510b12472f7d",
+      "match": "Fenerbahce – Slavia Prague",
+      "selected_side": "1",
+      "selected_team": "Fenerbahce",
+      "decision_odds": 1.62,
+      "decision_money_gbp": 123808.6,
+      "decision_share_pct": 89.8,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "2-2",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-20",
+      "uid": "48b70bcf-485f-40fd-b1bb-c235eba6697e",
+      "match": "Norrkoping – Orebro",
+      "selected_side": "1",
+      "selected_team": "Norrkoping",
+      "decision_odds": 1.66,
+      "decision_money_gbp": 4824.86,
+      "decision_share_pct": 90.2,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "2-2",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-20",
+      "uid": "4df7167b-d3bd-4c48-b03f-aa19dce2a74e",
+      "match": "AFC Wimbledon – Mansfield",
+      "selected_side": "2",
+      "selected_team": "Mansfield",
+      "decision_odds": 2.18,
+      "decision_money_gbp": 2946.46,
+      "decision_share_pct": 84.5,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "0-3",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-20",
+      "uid": "80b0c9e8-042c-451f-9ff9-4c8ce11068d3",
+      "match": "Burton Albion – Bradford",
+      "selected_side": "2",
+      "selected_team": "Bradford",
+      "decision_odds": 1.88,
+      "decision_money_gbp": 4183.44,
+      "decision_share_pct": 71,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "0-0",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-20",
+      "uid": "ccbe35a5-b5ed-4bff-95e7-2202a7ad6176",
+      "match": "Cheltenham – Fleetwood Town",
+      "selected_side": "2",
+      "selected_team": "Fleetwood Town",
+      "decision_odds": 2.34,
+      "decision_money_gbp": 2521.81,
+      "decision_share_pct": 85.5,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "4-2",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-20",
+      "uid": "909a2430-2f68-48e2-af1b-85c7fea41f6c",
+      "match": "Crawley Town – Shrewsbury",
+      "selected_side": "2",
+      "selected_team": "Shrewsbury",
+      "decision_odds": 2.56,
+      "decision_money_gbp": 2119.13,
+      "decision_share_pct": 68.7,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "2-3",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-20",
+      "uid": "623fe81f-19d9-40ba-8297-59a128c83f4e",
+      "match": "Doncaster – Stockport",
+      "selected_side": "2",
+      "selected_team": "Stockport",
+      "decision_odds": 1.8,
+      "decision_money_gbp": 3310.38,
+      "decision_share_pct": 67.2,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "0-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-20",
+      "uid": "4c4d5c9e-9231-4ecd-83a1-225679e8a8f2",
+      "match": "Notts Co – Sheff Wed",
+      "selected_side": "2",
+      "selected_team": "Sheff Wed",
+      "decision_odds": 2.24,
+      "decision_money_gbp": 2820.89,
+      "decision_share_pct": 76.7,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "2-0",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-20",
+      "uid": "e51551d0-606b-4380-85ee-3ec75f333917",
+      "match": "Wolves – Portsmouth",
+      "selected_side": "1",
+      "selected_team": "Wolves",
+      "decision_odds": 1.65,
+      "decision_money_gbp": 9828.75,
+      "decision_share_pct": 85.7,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "1-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-20",
+      "uid": "a1a05138-aa61-433d-94bb-2f05a17a7768",
+      "match": "Liverpool – Villarreal",
+      "selected_side": "1",
+      "selected_team": "Liverpool",
+      "decision_odds": 1.54,
+      "decision_money_gbp": 266160.27,
+      "decision_share_pct": 86.2,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "4-3",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-20",
+      "uid": "2b3129c8-61c5-40aa-8e9e-1b4bdf0e00c1",
+      "match": "Porto – PSV",
+      "selected_side": "1",
+      "selected_team": "Porto",
+      "decision_odds": 1.59,
+      "decision_money_gbp": 137080.52,
+      "decision_share_pct": 84.5,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "0-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-21",
+      "uid": "cbbfaed5-b24f-44cd-9bd6-b67e8792bcba",
+      "match": "Al Ahly Cairo – Olympic El Qanal",
+      "selected_side": "1",
+      "selected_team": "Al Ahly Cairo",
+      "decision_odds": 1.32,
+      "decision_money_gbp": 4192.98,
+      "decision_share_pct": 92.9,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "3-3",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-21",
+      "uid": "a3a6815f-11c2-47be-b2e5-13f8fa017fa5",
+      "match": "Club Brugge – Lens",
+      "selected_side": "1",
+      "selected_team": "Club Brugge",
+      "decision_odds": 1.94,
+      "decision_money_gbp": 75679.46,
+      "decision_share_pct": 81.2,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "3-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-21",
+      "uid": "5850f993-1227-49f0-882c-7ce2826b655d",
+      "match": "Sporting Lisbon – Lask Linz",
+      "selected_side": "1",
+      "selected_team": "Sporting Lisbon",
+      "decision_odds": 1.3,
+      "decision_money_gbp": 234756.31,
+      "decision_share_pct": 89.7,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "2-3",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-22",
+      "uid": "ad2125c1-e8c4-4500-8a7c-395fe5486e6e",
+      "match": "Kairat Almaty – Panathinaikos",
+      "selected_side": "2",
+      "selected_team": "Panathinaikos",
+      "decision_odds": 1.69,
+      "decision_money_gbp": 9578.62,
+      "decision_share_pct": 87.7,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1"
+      ],
+      "score": "1-5",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-22",
+      "uid": "4e71788e-56bd-4d7b-8607-38b20c76eff2",
+      "match": "Ararat Armenia – Az Alkmaar",
+      "selected_side": "2",
+      "selected_team": "Az Alkmaar",
+      "decision_odds": 1.43,
+      "decision_money_gbp": 17414.48,
+      "decision_share_pct": 83,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "0-4",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-22",
+      "uid": "66bc0f79-d292-43db-b990-b5efdf1e33c1",
+      "match": "Dinamo Zagreb – NEC Nijmegen",
+      "selected_side": "1",
+      "selected_team": "Dinamo Zagreb",
+      "decision_odds": 1.53,
+      "decision_money_gbp": 55554.16,
+      "decision_share_pct": 89.2,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "2-4",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-22",
+      "uid": "67bf8064-109e-49bb-8508-bd2438f22b96",
+      "match": "FK Kauno Zalgiris – Brann",
+      "selected_side": "2",
+      "selected_team": "Brann",
+      "decision_odds": 1.79,
+      "decision_money_gbp": 5955.5,
+      "decision_share_pct": 87.6,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "1-4",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-22",
+      "uid": "45cf0ac6-e90f-4143-be23-9d363879b094",
+      "match": "Getafe – Lugano",
+      "selected_side": "1",
+      "selected_team": "Getafe",
+      "decision_odds": 2.04,
+      "decision_money_gbp": 8700.99,
+      "decision_share_pct": 81.6,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "2-5",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-22",
+      "uid": "f73be6e7-9cb3-4480-ac66-cf550ac291dc",
+      "match": "Inter Club Escaldes – Universitatea Craiova",
+      "selected_side": "2",
+      "selected_team": "Universitatea Craiova",
+      "decision_odds": 1.62,
+      "decision_money_gbp": 7890.51,
+      "decision_share_pct": 93.2,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "1-3",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-22",
+      "uid": "7b53affd-b18e-4ac8-a880-4ed7bf96086f",
+      "match": "Juventus – Rennes",
+      "selected_side": "1",
+      "selected_team": "Juventus",
+      "decision_odds": 1.47,
+      "decision_money_gbp": 78987.2,
+      "decision_share_pct": 86.3,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "2-2",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-22",
+      "uid": "756a8a79-0890-4273-ae7b-9b111985ea52",
+      "match": "Lech Poznan – Sunderland",
+      "selected_side": "2",
+      "selected_team": "Sunderland",
+      "decision_odds": 1.78,
+      "decision_money_gbp": 56791.04,
+      "decision_share_pct": 78.1,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "1-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-22",
+      "uid": "aa1caafb-a340-426b-bcae-93b426af9005",
+      "match": "Trabzonspor – Hearts",
+      "selected_side": "1",
+      "selected_team": "Trabzonspor",
+      "decision_odds": 1.31,
+      "decision_money_gbp": 23334.62,
+      "decision_share_pct": 93.1,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "2-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-22",
+      "uid": "c4b18834-2ed9-41eb-be83-41816478e78e",
+      "match": "Union St Gilloise – Hapoel Be'er Sheva",
+      "selected_side": "1",
+      "selected_team": "Union St Gilloise",
+      "decision_odds": 1.4,
+      "decision_money_gbp": 68246.07,
+      "decision_share_pct": 85.6,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "4-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-22",
+      "uid": "b65d3e49-b17d-4036-9889-7f8bb4cd6b7e",
+      "match": "Ajax – Atalanta",
+      "selected_side": "1",
+      "selected_team": "Ajax",
+      "decision_odds": 2.2,
+      "decision_money_gbp": 39669.5,
+      "decision_share_pct": 80.1,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "2-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-22",
+      "uid": "89f5993c-d244-4218-8866-da0d9ea90cd0",
+      "match": "Borac Banja Luka – KuPS",
+      "selected_side": "1",
+      "selected_team": "Borac Banja Luka",
+      "decision_odds": 1.86,
+      "decision_money_gbp": 3156.97,
+      "decision_share_pct": 89.6,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "2-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-22",
+      "uid": "499dbd53-66d0-4394-bf4a-ff3997b2198d",
+      "match": "Hoffenheim – Lyon",
+      "selected_side": "1",
+      "selected_team": "Hoffenheim",
+      "decision_odds": 2.12,
+      "decision_money_gbp": 186773.91,
+      "decision_share_pct": 85.9,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "3-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-22",
+      "uid": "489cf219-1a02-4bcb-abad-4077c0cbc5ac",
+      "match": "Lillestrom – Real Sociedad",
+      "selected_side": "2",
+      "selected_team": "Real Sociedad",
+      "decision_odds": 1.48,
+      "decision_money_gbp": 23854.44,
+      "decision_share_pct": 85,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "0-6",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-22",
+      "uid": "448f3799-649c-4f94-bd52-29ad1a0d0b12",
+      "match": "NK Celje – Red Bull Salzburg",
+      "selected_side": "2",
+      "selected_team": "Red Bull Salzburg",
+      "decision_odds": 1.57,
+      "decision_money_gbp": 38082.47,
+      "decision_share_pct": 83.4,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "2-2",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-22",
+      "uid": "3c4226f2-d073-4ec9-940d-b3464d815661",
+      "match": "Olympiakos – Sparta Prague",
+      "selected_side": "1",
+      "selected_team": "Olympiakos",
+      "decision_odds": 1.56,
+      "decision_money_gbp": 36097.83,
+      "decision_share_pct": 87.1,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "1-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-22",
+      "uid": "2a3cb97d-b76f-42a7-b226-754b6b96e4da",
+      "match": "Omonia – Benfica",
+      "selected_side": "2",
+      "selected_team": "Benfica",
+      "decision_odds": 1.36,
+      "decision_money_gbp": 34729.8,
+      "decision_share_pct": 91.4,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "1-4",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-23",
+      "uid": "c68aafac-3133-4467-9b3d-bf4de8eef825",
+      "match": "Bochum – Wolfsburg",
+      "selected_side": "2",
+      "selected_team": "Wolfsburg",
+      "decision_odds": 2.14,
+      "decision_money_gbp": 12217.01,
+      "decision_share_pct": 81.7,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "HEAVY"
+      ],
+      "score": "1-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-23",
+      "uid": "41481849-7ce1-4fd1-a902-e1580506b3b9",
+      "match": "Hvidovre – HB Koge",
+      "selected_side": "1",
+      "selected_team": "Hvidovre",
+      "decision_odds": 1.94,
+      "decision_money_gbp": 2794.32,
+      "decision_share_pct": 83.9,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "2-2",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-23",
+      "uid": "593f4b6e-1e75-4e65-8449-77c6cf1288b1",
+      "match": "Galway Utd – St Patricks",
+      "selected_side": "2",
+      "selected_team": "St Patricks",
+      "decision_odds": 1.7,
+      "decision_money_gbp": 1324.09,
+      "decision_share_pct": 77.9,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "0-0",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-23",
+      "uid": "82e1af96-5a39-4ae7-b090-70487a5a36ed",
+      "match": "Alaves – Malaga",
+      "selected_side": "1",
+      "selected_team": "Alaves",
+      "decision_odds": 1.69,
+      "decision_money_gbp": 131783.39,
+      "decision_share_pct": 87.1,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "HEAVY"
+      ],
+      "score": "1-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-24",
+      "uid": "436d2ff9-7d7a-42e4-b40e-4cd32dd10802",
+      "match": "Como – Sassuolo",
+      "selected_side": "1",
+      "selected_team": "Como",
+      "decision_odds": 1.52,
+      "decision_money_gbp": 56622.19,
+      "decision_share_pct": 82.1,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "2-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-24",
+      "uid": "966b9f84-4ece-4a21-b5b4-55137dcdc795",
+      "match": "Gaziantep FK – Erzurum BB",
+      "selected_side": "2",
+      "selected_team": "Erzurum BB",
+      "decision_odds": 3.1,
+      "decision_money_gbp": 18932.56,
+      "decision_share_pct": 84.2,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "1-3",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-24",
+      "uid": "ccff7904-a107-436c-8991-bf7e05bab6ac",
+      "match": "Arsenal – Everton",
+      "selected_side": "1",
+      "selected_team": "Arsenal",
+      "decision_odds": 1.47,
+      "decision_money_gbp": 339709.97,
+      "decision_share_pct": 83.6,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "2-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-24",
+      "uid": "77da3111-a3d4-4825-abe1-7a01d0e316e4",
+      "match": "Barnet – Oldham",
+      "selected_side": "1",
+      "selected_team": "Barnet",
+      "decision_odds": 1.75,
+      "decision_money_gbp": 5065.25,
+      "decision_share_pct": 87.8,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "1-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-24",
+      "uid": "39e78cd4-8904-4f6f-a7c8-06ced49b5f94",
+      "match": "Bromley – Peterborough",
+      "selected_side": "2",
+      "selected_team": "Peterborough",
+      "decision_odds": 2.08,
+      "decision_money_gbp": 2684.43,
+      "decision_share_pct": 88.4,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "1-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-24",
+      "uid": "a5305010-103f-419c-92fb-f0862c2dce60",
+      "match": "Chesterfield – Crewe",
+      "selected_side": "1",
+      "selected_team": "Chesterfield",
+      "decision_odds": 1.72,
+      "decision_money_gbp": 9393.46,
+      "decision_share_pct": 92.2,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "5-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-24",
+      "uid": "44f0b0ac-6b4f-4cdd-840e-418a4e21fb22",
+      "match": "Doncaster – Sheff Wed",
+      "selected_side": "2",
+      "selected_team": "Sheff Wed",
+      "decision_odds": 2.48,
+      "decision_money_gbp": 1596.46,
+      "decision_share_pct": 86.8,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "2-0",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-24",
+      "uid": "06add768-94aa-401d-a064-6d7a16b76cdc",
+      "match": "Exeter – Fleetwood Town",
+      "selected_side": "1",
+      "selected_team": "Exeter",
+      "decision_odds": 2.52,
+      "decision_money_gbp": 6422.03,
+      "decision_share_pct": 87.9,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "2-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-24",
+      "uid": "f31aedc5-fbcb-40f0-9806-1f76939a6ad6",
+      "match": "Gnistan – AC Oulu",
+      "selected_side": "1",
+      "selected_team": "Gnistan",
+      "decision_odds": 1.94,
+      "decision_money_gbp": 4622.93,
+      "decision_share_pct": 95.5,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "3-4",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-24",
+      "uid": "317ec8c5-29d9-40d6-8b31-457bd5bfa7d1",
+      "match": "Stevenage – MK Dons",
+      "selected_side": "1",
+      "selected_team": "Stevenage",
+      "decision_odds": 2.1,
+      "decision_money_gbp": 12541.82,
+      "decision_share_pct": 94.5,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "0-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-24",
+      "uid": "ad5943ab-f8e4-431c-906b-dc5733095413",
+      "match": "Chelsea – Tottenham",
+      "selected_side": "1",
+      "selected_team": "Chelsea",
+      "decision_odds": 2.02,
+      "decision_money_gbp": 314174.74,
+      "decision_share_pct": 79,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "0-2",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-24",
+      "uid": "b62970b8-30cd-4e23-b41b-a7bedadc37e9",
+      "match": "Nurnberg – Kaiserslautern",
+      "selected_side": "1",
+      "selected_team": "Nurnberg",
+      "decision_odds": 2.2,
+      "decision_money_gbp": 5293.8,
+      "decision_share_pct": 76.2,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "0-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-24",
+      "uid": "a3465615-3daa-49e5-a5de-9ceccaac6162",
+      "match": "Westerlo – Waasland-Beveren",
+      "selected_side": "1",
+      "selected_team": "Westerlo",
+      "decision_odds": 1.93,
+      "decision_money_gbp": 6863.64,
+      "decision_share_pct": 82.5,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "4-4",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-24",
+      "uid": "ea0ca258-7a9c-43e4-995e-09218a7086fb",
+      "match": "Columbus – Toronto FC",
+      "selected_side": "1",
+      "selected_team": "Columbus",
+      "decision_odds": 1.73,
+      "decision_money_gbp": 6350.06,
+      "decision_share_pct": 88.6,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "4-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-24",
+      "uid": "9fda742f-d933-45b3-ac0e-bffc92bf7e09",
+      "match": "CD Gualberto Villarroel – Blooming Santa Cruz",
+      "selected_side": "1",
+      "selected_team": "CD Gualberto Villarroel",
+      "decision_odds": 1.77,
+      "decision_money_gbp": 20164.62,
+      "decision_share_pct": 97.3,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "HEAVY"
+      ],
+      "score": "2-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-24",
+      "uid": "f70e9a7e-88d7-4355-9c56-f8561d363b17",
+      "match": "Barranquilla – Real Cartagena",
+      "selected_side": "2",
+      "selected_team": "Real Cartagena",
+      "decision_odds": 1.55,
+      "decision_money_gbp": 6292.27,
+      "decision_share_pct": 96.7,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "1-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-24",
+      "uid": "aa309f67-2516-42d6-8838-9e98d589b6c6",
+      "match": "Quindio – Tigres FC Zipaquira",
+      "selected_side": "1",
+      "selected_team": "Quindio",
+      "decision_odds": 1.64,
+      "decision_money_gbp": 3124.68,
+      "decision_share_pct": 96.1,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "2-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-25",
+      "uid": "ac74ce9c-8716-4c86-97aa-ac7408cb26ba",
+      "match": "Athletic Bilbao – Getafe",
+      "selected_side": "1",
+      "selected_team": "Athletic Bilbao",
+      "decision_odds": 1.59,
+      "decision_money_gbp": 48416.81,
+      "decision_share_pct": 78.6,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "4-0",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-25",
+      "uid": "dccb26f7-7292-43ab-b512-7922cab27f71",
+      "match": "Helsingborgs – Ljungskile",
+      "selected_side": "1",
+      "selected_team": "Helsingborgs",
+      "decision_odds": 2.32,
+      "decision_money_gbp": 1809.48,
+      "decision_share_pct": 85.5,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1"
+      ],
+      "score": "1-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-25",
+      "uid": "27362c89-51b1-4a10-afad-da23485736b7",
+      "match": "Monaco – Lille",
+      "selected_side": "1",
+      "selected_team": "Monaco",
+      "decision_odds": 2.04,
+      "decision_money_gbp": 34570.73,
+      "decision_share_pct": 83.4,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "1-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-25",
+      "uid": "573314ba-1a75-45f8-ab51-bddc4e4a33f4",
+      "match": "Mjallby – Hammarby",
+      "selected_side": "2",
+      "selected_team": "Hammarby",
+      "decision_odds": 1.47,
+      "decision_money_gbp": 3079.11,
+      "decision_share_pct": 89.9,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "0-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-25",
+      "uid": "acf5d095-9f37-4773-96b0-31aa70b5a0f3",
+      "match": "Sparta Rotterdam – Ajax",
+      "selected_side": "2",
+      "selected_team": "Ajax",
+      "decision_odds": 1.48,
+      "decision_money_gbp": 10635.82,
+      "decision_share_pct": 82,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "1-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-25",
+      "uid": "a9063dee-9860-4890-928f-f1f69fc00df7",
+      "match": "NFC Volos – Panathinaikos",
+      "selected_side": "2",
+      "selected_team": "Panathinaikos",
+      "decision_odds": 1.33,
+      "decision_money_gbp": 2275.26,
+      "decision_share_pct": 80.5,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "0-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-25",
+      "uid": "90426ac1-fd7b-406a-9a53-fc741102526a",
+      "match": "Marseille – Le Havre",
+      "selected_side": "1",
+      "selected_team": "Marseille",
+      "decision_odds": 1.52,
+      "decision_money_gbp": 44119.63,
+      "decision_share_pct": 80.5,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "4-3",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-25",
+      "uid": "35d3546f-1859-48b7-8773-70c99b85522b",
+      "match": "Toulouse – ESTAC Troyes",
+      "selected_side": "1",
+      "selected_team": "Toulouse",
+      "decision_odds": 1.57,
+      "decision_money_gbp": 39085.82,
+      "decision_share_pct": 81.6,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "0-0",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-25",
+      "uid": "c5d5a3c5-9eb1-4781-95a7-fd52c51f3308",
+      "match": "Lecce – Juventus",
+      "selected_side": "2",
+      "selected_team": "Juventus",
+      "decision_odds": 1.57,
+      "decision_money_gbp": 75711.46,
+      "decision_share_pct": 78.9,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "0-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-25",
+      "uid": "513e3a4e-de18-41f0-82b2-9f08d5cf3958",
+      "match": "Real Sociedad – Levante",
+      "selected_side": "1",
+      "selected_team": "Real Sociedad",
+      "decision_odds": 1.62,
+      "decision_money_gbp": 45001.17,
+      "decision_share_pct": 82.6,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "2-1",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-25",
+      "uid": "59b3906f-c2d9-491c-b386-c8f78e3f727b",
+      "match": "Union St Gilloise – Cercle Brugge",
+      "selected_side": "1",
+      "selected_team": "Union St Gilloise",
+      "decision_odds": 1.35,
+      "decision_money_gbp": 5159.17,
+      "decision_share_pct": 92.3,
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "score": "5-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-25",
+      "uid": "a03a6983-7e1f-444f-87c8-26a85681ab2d",
+      "match": "Udinese – AC Milan",
+      "selected_side": "2",
+      "selected_team": "AC Milan",
+      "decision_odds": 1.89,
+      "decision_money_gbp": 235659.95,
+      "decision_share_pct": 88.2,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "V2",
+        "HEAVY"
+      ],
+      "score": "0-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-25",
+      "uid": "f2338968-eab3-4c97-b8f7-a452fc47a465",
+      "match": "Club Atletico Mitre – Godoy Cruz",
+      "selected_side": "2",
+      "selected_team": "Godoy Cruz",
+      "decision_odds": 1.91,
+      "decision_money_gbp": 4238.09,
+      "decision_share_pct": 86.3,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "0-3",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-25",
+      "uid": "b74e8ac8-dbe3-4fe6-8395-261a1edd08fb",
+      "match": "Palestino – Colo Colo",
+      "selected_side": "2",
+      "selected_team": "Colo Colo",
+      "decision_odds": 1.9,
+      "decision_money_gbp": 5725.87,
+      "decision_share_pct": 98,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1",
+        "V2"
+      ],
+      "score": "1-1",
+      "result": "LOSS"
+    },
+    {
+      "date": "2026-10-26",
+      "uid": "0407eb37-d8e6-4b84-b588-e26ee6ed66d2",
+      "match": "Neftchi Fargona – Al-Ittihad",
+      "selected_side": "2",
+      "selected_team": "Al-Ittihad",
+      "decision_odds": 1.83,
+      "decision_money_gbp": 4515.45,
+      "decision_share_pct": 89.5,
+      "engine_tags": [
+        "EARLY_T12",
+        "V1"
+      ],
+      "score": "1-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-26",
+      "uid": "4c8089ee-0d26-4628-87ee-2fe413c954ec",
+      "match": "Rizespor – Trabzonspor",
+      "selected_side": "2",
+      "selected_team": "Trabzonspor",
+      "decision_odds": 1.95,
+      "decision_money_gbp": 15995.91,
+      "decision_share_pct": 75.1,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "3-4",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-26",
+      "uid": "2469eeb3-478d-405c-9f77-887fcc008a3a",
+      "match": "Santa Clara – Benfica",
+      "selected_side": "2",
+      "selected_team": "Benfica",
+      "decision_odds": 1.35,
+      "decision_money_gbp": 52583.8,
+      "decision_share_pct": 85.6,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "1-2",
+      "result": "WIN"
+    },
+    {
+      "date": "2026-10-26",
+      "uid": "ca3254d9-ada6-4ed6-a8f2-8462e0cf1803",
+      "match": "Paris St-G – Lyon",
+      "selected_side": "1",
+      "selected_team": "Paris St-G",
+      "decision_odds": 1.38,
+      "decision_money_gbp": 341066.04,
+      "decision_share_pct": 80.3,
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12"
+      ],
+      "score": "2-0",
+      "result": "WIN"
+    }
+  ]
+}
