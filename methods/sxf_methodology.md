@@ -1,7 +1,7 @@
 # SXF Methodology
 
 Status: DRAFT
-Version: 0.4.1
+Version: 0.4.2
 
 ## Objective
 
@@ -30,7 +30,7 @@ At every match-specific report timestamp:
 
 This rule applies equally to live operation and backtests.
 
-## Core engine set
+## Core engine set (v0.4.2: EARLY_T12 recommendation retired)
 
 ### 1. EARLY MONEY
 
@@ -46,13 +46,13 @@ Initial trigger conditions:
 | T-60 | top-money TEAM + money >= £5,000 + share >= 50% |
 | T-40 | top-money TEAM + money >= £10,000 + share >= 50% |
 | T-24 | top-money TEAM + money >= £10,000 + share >= 50% |
-| T-12 | top-money TEAM + money >= £1,000 + share >= 80% |
+| T-12 | **OBSERVATION ONLY / independent EARLY_T12 retired on 2026-10-28**. Historical trigger: top-money TEAM + money >= £1,000 + share >= 80%; do not produce a new EARLY_T12 recommendation |
 
 #### EARLY CORE 1X2 decision-odds ceiling (owner-approved 2026-10-27)
 
 For an EARLY CORE label whose first trigger is T-72/T-60/T-40/T-24, require the selected HOME/AWAY team's current SmartXFlow 1X2 decimal odds at the **exact match-specific decision `as_of_utc`** to be **`<= 2.35` inclusive**. An absent, stale or higher-than-2.35 quote is not a valid EARLY CORE recommendation. The early-origin money/share and Retention-55 rules still apply unchanged. This is **not** a retrospective rewriting of earlier v0.4 signals and does not require odds <=2.35 at the original early checkpoint.
 
-EARLY T12 is a separate observation/label and **does not inherit** the EARLY CORE odds cap. Other engine conditions (V1/V2/HEAVY/SURPRISE and all non-1X2 markets) are unchanged. Archived 9–25 October reports keep their original frozen v0.4 outcomes; report results from the new cap as separately versioned analysis only.
+EARLY_T12 was historically a separate label, but by explicit owner instruction on **2026-10-28 it is retired as an independent engine**. T-12 market readings may be collected as research/checkpoint observations; **no new EARLY_T12-only picks, engine tags, bet recommendations, or duplicate votes**. Other engine conditions (V1/V2/HEAVY/SURPRISE and all non-1X2 markets) are unchanged. Archived historical EARLY_T12, EARLY CORE and other results remain frozen. Research comparisons based on retroactively applied price caps must stay separately versioned.
 
 #### Retention 55
 
@@ -66,7 +66,7 @@ If selected-side money share is `< 55%` at any eligible later observation:
 - do NOT automatically PASS the whole match;
 - other engines remain independently eligible.
 
-T-12 remains an Early Money trigger point but is not an origin point for the Retention-55 rule.
+T-12 remains a **non-triggering observation/checkpoint**: it neither initiates EARLY CORE nor receives its own Retention-55 origin, and it must never independently generate new EARLY_T12 selections. T-12 observations still inform active EARLY CORE retention tracking (only if after the original early origin and available by `as_of_utc`). A selection that qualifies under V1/V2/HEAVY may still be reported through those independent active rules. Historical EARLY_T12 signals and performance reports are retained unchanged.
 
 The 55% threshold is an approved operational candidate for prospective testing, not a calibrated optimum.
 
@@ -226,3 +226,8 @@ The following are not approved and must not be invented:
 - sharp/public classification thresholds;
 - generic reversal veto outside the explicit Early Money retention rule;
 - final recommendation ranking logic beyond reporting triggered core engines.
+
+
+## Owner retirement decision — EARLY_T12 (2026-10-28)
+
+The owner explicitly decided to **remove standalone EARLY_T12 from future SXF recommendations**, leaving existing EARLY CORE T-72/T-60/T-40/T-24, Retention-55, V1, V2, HEAVY and other active engines unchanged. **Do not delete/overwrite historical archives or original outcome labels.** T-12 remains available as an observation point, not as an engine. Any implementation/deployment/scheduler/Telegram configuration must be independently checked before claiming runtime deactivation. The proposed EARLY CORE v2 research odds<2.00 and origin share<95% limits have NOT been formally promoted to the active core rules by this retirement decision.
