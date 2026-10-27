@@ -79,7 +79,55 @@ jobs:
           fi
           mkdir -p "$(dirname "$target")"
           cp "$source_dir/checkpoints.jsonl.gz" "$source_dir/alarms.jsonl.gz" "$source_dir/manifest.json" "$target/"
-          git add -- "$target"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          day = __import__("os").environ["DAY"]
+          manifest = json.loads(Path("archive", day.replace("-", "/"), "05_pratik_arsiv", "manifest.json").read_text("utf-8"))
+          index_path = Path("archive/pratik_arsiv/index.json")
+          index = json.loads(index_path.read_text("utf-8"))
+          if index.get("archive_name") != "PRATİK ARŞİV" or manifest.get("date") != day:
+              raise SystemExit("PRATIK manifest/index identity mismatch")
+          if index.get("checkpoint_hours") != manifest.get("checkpoint_hours"):
+              raise SystemExit("PRATIK index checkpoint schedule mismatch")
+          days = index.get("days")
+          if not isinstance(days, list) or any(item.get("date") == day for item in days):
+              raise SystemExit("Date already exists in index while archive folder is new; refusing update")
+          files = manifest["files"]
+          entry = {
+              "date": day,
+              "fixtures": manifest["fixtures"],
+              "alarms": manifest["alarms"],
+              "checkpoint_bytes": files["checkpoints"]["compressed_bytes"],
+              "alarm_bytes": files["alarms"]["compressed_bytes"],
+              "total_bytes": files["checkpoints"]["compressed_bytes"] + files["alarms"]["compressed_bytes"],
+              "uncompressed_bytes": files["checkpoints"]["uncompressed_bytes"] + files["alarms"]["uncompressed_bytes"],
+              "coverage": manifest["coverage_by_market"],
+              "results_present": manifest["results_present"],
+              "results_missing": manifest["results_missing"],
+              "results_live": manifest["results_live"],
+              "live_score_present": manifest["live_score_present"],
+              "live_in_progress": manifest["live_in_progress"],
+              "checksums": {
+                  "checkpoints": manifest["integrity"]["checkpoints_sha256"],
+                  "alarms": manifest["integrity"]["alarms_sha256"],
+              },
+              "future": manifest["integrity"]["future_snapshot_count"],
+              "archive_status": manifest["archive_status"],
+          }
+          days.append(entry)
+          days.sort(key=lambda item: item["date"])
+          if len({item["date"] for item in days}) != len(days):
+              raise SystemExit("Duplicate PRATIK index dates")
+          index["days"] = days
+          index["total_fixtures"] = sum(item["fixtures"] for item in days)
+          index["total_alarm_records"] = sum(item["alarms"] for item in days)
+          index["total_compressed_bytes"] = sum(item["total_bytes"] for item in days)
+          index["total_uncompressed_bytes"] = sum(item["uncompressed_bytes"] for item in days)
+          index_path.write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          PY
+          git add -- "$target" archive/pratik_arsiv/index.json"
           if git diff --cached --quiet; then
             echo "No archive changes to commit."
             exit 0
