@@ -2,7 +2,7 @@
 
 Status: CANONICAL
 Version: 1.14
-Last updated: 2026-10-23
+Last updated: 2026-10-27
 
 ## 1. Purpose
 
@@ -136,7 +136,7 @@ Bootstrap scoring rules may be CANONICAL for operational consistency while remai
 ANALYST: **v2.0 CANONICAL — the ONE AND ONLY active new-run methodology and schema**, effective 2026-10-23 by explicit owner decision. References: `roles/analyst.md`, `methods/analyst_methodology.md`, `schemas/analyst_report.md`, `prompts/analyst_start.md`. Follow exactly the preceding Torino–Monza report with compulsory home/away detail: (1) entire same-season league opponent habitual-possession profiles HIGH >=55%, BALANCED >45% to <55%, LOW <=45%, including verified first/second half data; (2) season baseline then last THREE and ONE league matches with distinct actual score/points and underlying xG/xGA/shots graph, opponent-difficulty interpretation; (3) football-logic opponent-level/tactical matchup, with BOTH teams' all HOME and all AWAY league fixtures listed by opponent, score and stats, especially comparing home side at home vs visitor away. End with only three-factor summary/qualified football lean, not 0–100 rating or odds/probability. Earlier v1.1, v1.2, v1.3, v1.4.x analyst methodologies and score engines are SUPERSEDED/INACTIVE for all new runs; historical files and as-of decisions retained intact. Source/isolation and AS_OF principles unchanged. This is an approved operational research procedure, NOT proof of predictive accuracy or calibrated win probabilities.
 NEWS: v1.4.1 CANONICAL — whole-match news and atmosphere, numbered source-verified H# stories, seven -3..+3 market-impact columns and arithmetic totals. v1.3 research instructions SUPERSEDED. Explicit match-impact relevance filter excludes routine, non-material fan logistics/PR from H# news and scoring.
 POLY: v1.4 CANONICAL — independent public Polymarket v2 + Gamma/CLOB + Polygon bettor discovery/verification; all CAPITALE Supabase and SXF POLY sources prohibited; candidate skill thresholds uncalibrated
-SXF: v0.4 DRAFT — core engines + dynamic per-match horizon approved; validation/calibration pending
+SXF: v0.4.1 DRAFT — original v0.4 engines plus the owner-approved EARLY CORE (T-72/T-60/T-40/T-24) selected-side decision-odds cap <=2.35 as of 2026-10-27; EARLY T12 and other motors unchanged; dynamic per-match horizon approved; validation/calibration pending
 FINAL: v0.2 DRAFT — synthesis architecture approved; numerical calibration pending
 ENGINEER: active governance/implementation role
 
