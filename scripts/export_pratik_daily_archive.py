@@ -85,10 +85,7 @@ def verified_existing(folder: Path, day: dt.date) -> bool:
     if manifest.get("checkpoint_hours") != list(CHECKPOINT_HOURS):
         raise ValueError("Existing PRATIK checkpoint schedule mismatch")
     integrity = manifest.get("integrity", {})
-    for key, filename in (("checkpoints_sha256", names[0]), ("alarms_sha256", names[1])):
-        digest, _ = line_digest_and_count(folder / filename)
-        if digest != integrity.get(key):
-            raise ValueError(f"Existing PRATIK checksum mismatch: {filename}")
+    verify_output(folder, day, integrity.get("fixture_records"), integrity.get("alarm_records"))
     print(json.dumps({"status": "SKIP_VERIFIED_EXISTING", "day": str(day)}), flush=True)
     return True
 
@@ -181,6 +178,8 @@ def load_fixtures(conn, day: dt.date):
         })
     if not fixtures:
         raise ValueError(f"No fixtures found in public.fixtures for {day}")
+    if any(not fixture["fixture_uid"] and not fixture["match_id_hash"] for fixture in fixtures):
+        raise ValueError("Fixture has no stable UID or match hash")
     return fixtures
 
 
@@ -403,12 +402,21 @@ def verify_output(folder: Path, day: dt.date, fixture_count: int, alarm_count: i
         digest, count = line_digest_and_count(folder / name)
         if count != expected or digest != manifest["integrity"].get(key):
             raise ValueError(f"Output restore/checksum validation failed: {name}")
-    for line in gzip.open(folder / "checkpoints.jsonl.gz", "rt", encoding="utf-8"):
-        record = json.loads(line)
-        if len(record.get("checkpoints", [])) != len(CHECKPOINT_HOURS):
-            raise ValueError("Fixture checkpoint count mismatch")
-        if [item.get("t_minus_hours") for item in record["checkpoints"]] != list(CHECKPOINT_HOURS):
-            raise ValueError("Fixture checkpoint schedule mismatch")
+    with gzip.open(folder / "checkpoints.jsonl.gz", "rt", encoding="utf-8") as stream:
+        for line in stream:
+            record = json.loads(line)
+            points = record.get("checkpoints", [])
+            if len(points) != len(CHECKPOINT_HOURS):
+                raise ValueError("Fixture checkpoint count mismatch")
+            if [item.get("t_minus_hours") for item in points] != list(CHECKPOINT_HOURS):
+                raise ValueError("Fixture checkpoint schedule mismatch")
+            for point in points:
+                target = parse_time(point.get("target_at_utc"))
+                for market in point.get("markets", {}).values():
+                    if market.get("status") == "PRESENT":
+                        actual = parse_time(market.get("actual_at_utc"))
+                        if actual is None or target is None or actual > target:
+                            raise ValueError("Future or invalid observation in checkpoint")
 
 
 def main():
