@@ -137,6 +137,7 @@ jobs:
               },
               "future": manifest["integrity"]["future_snapshot_count"],
               "archive_status": manifest["archive_status"],
+              "source_archive_status": manifest.get("source_archive_status"),
           }
           days.append(entry)
           days.sort(key=lambda item: item["date"])
