@@ -1,0 +1,1184 @@
+{
+  "schema": "CAPITALE_SXF_EARLY_CORE_T72_T24_PRICE_MOVE_RESEARCH_V1",
+  "as_of": "2026-10-27",
+  "archive_basis": "Github Practical Archive (immutable source files)",
+  "status": "EXPLORATORY_NOT_VALIDATED_NO_CANONICAL_CHANGE",
+  "original_eligible": {
+    "signals": 81,
+    "wins": 56,
+    "losses": 25,
+    "hit_pct": 69.14,
+    "decision_side_odds_max": 2.35
+  },
+  "comparable": {
+    "signals": 53,
+    "wins": 32,
+    "losses": 21,
+    "hit_pct": 60.38
+  },
+  "missing": {
+    "total": 28,
+    "wins": 24,
+    "losses": 4,
+    "known_causes": [
+      "10,11,17,18 Ekim GitHub Contents API büyük .gz dosyalarında içerik döndürmedi (22 sinyal)",
+      "15 Ekim kayıtlarda eksik/UID uyuşmazlığı veya T24 13.05 dk gecikme (4 sinyal)",
+      "22 Ekim Bournemouth–AC Milan T72 seçilen taraf odds boş (1 sinyal)",
+      "23 Ekim Stuttgart–Mgladbach T72 kaynak noktası 21.33 dakika gecikmeli (1 sinyal)"
+    ]
+  },
+  "validity": "A native fields 36, B older shifted 17, <=10-minute checkpoint source lag. No archive repairs.",
+  "definition": "(selected_sxf_1x2_odds_at_T24/selected_sxf_1x2_odds_at_T72 - 1)*100",
+  "thresholds": [
+    {
+      "threshold_pct": 0,
+      "rise_only": {
+        "blocked": {
+          "signals": 19,
+          "wins": 12,
+          "losses": 7,
+          "hit_pct": 63.16
+        },
+        "kept": {
+          "signals": 34,
+          "wins": 20,
+          "losses": 14,
+          "hit_pct": 58.82
+        }
+      },
+      "drop_only": {
+        "blocked": {
+          "signals": 25,
+          "wins": 14,
+          "losses": 11,
+          "hit_pct": 56
+        },
+        "kept": {
+          "signals": 28,
+          "wins": 18,
+          "losses": 10,
+          "hit_pct": 64.29
+        }
+      },
+      "absolute_change": {
+        "blocked": {
+          "signals": 44,
+          "wins": 26,
+          "losses": 18,
+          "hit_pct": 59.09
+        },
+        "kept": {
+          "signals": 9,
+          "wins": 6,
+          "losses": 3,
+          "hit_pct": 66.67
+        }
+      }
+    },
+    {
+      "threshold_pct": 1,
+      "rise_only": {
+        "blocked": {
+          "signals": 17,
+          "wins": 10,
+          "losses": 7,
+          "hit_pct": 58.82
+        },
+        "kept": {
+          "signals": 36,
+          "wins": 22,
+          "losses": 14,
+          "hit_pct": 61.11
+        }
+      },
+      "drop_only": {
+        "blocked": {
+          "signals": 19,
+          "wins": 10,
+          "losses": 9,
+          "hit_pct": 52.63
+        },
+        "kept": {
+          "signals": 34,
+          "wins": 22,
+          "losses": 12,
+          "hit_pct": 64.71
+        }
+      },
+      "absolute_change": {
+        "blocked": {
+          "signals": 36,
+          "wins": 20,
+          "losses": 16,
+          "hit_pct": 55.56
+        },
+        "kept": {
+          "signals": 17,
+          "wins": 12,
+          "losses": 5,
+          "hit_pct": 70.59
+        }
+      }
+    },
+    {
+      "threshold_pct": 1.5,
+      "rise_only": {
+        "blocked": {
+          "signals": 14,
+          "wins": 7,
+          "losses": 7,
+          "hit_pct": 50
+        },
+        "kept": {
+          "signals": 39,
+          "wins": 25,
+          "losses": 14,
+          "hit_pct": 64.1
+        }
+      },
+      "drop_only": {
+        "blocked": {
+          "signals": 18,
+          "wins": 10,
+          "losses": 8,
+          "hit_pct": 55.56
+        },
+        "kept": {
+          "signals": 35,
+          "wins": 22,
+          "losses": 13,
+          "hit_pct": 62.86
+        }
+      },
+      "absolute_change": {
+        "blocked": {
+          "signals": 32,
+          "wins": 17,
+          "losses": 15,
+          "hit_pct": 53.13
+        },
+        "kept": {
+          "signals": 21,
+          "wins": 15,
+          "losses": 6,
+          "hit_pct": 71.43
+        }
+      }
+    },
+    {
+      "threshold_pct": 2,
+      "rise_only": {
+        "blocked": {
+          "signals": 13,
+          "wins": 7,
+          "losses": 6,
+          "hit_pct": 53.85
+        },
+        "kept": {
+          "signals": 40,
+          "wins": 25,
+          "losses": 15,
+          "hit_pct": 62.5
+        }
+      },
+      "drop_only": {
+        "blocked": {
+          "signals": 15,
+          "wins": 9,
+          "losses": 6,
+          "hit_pct": 60
+        },
+        "kept": {
+          "signals": 38,
+          "wins": 23,
+          "losses": 15,
+          "hit_pct": 60.53
+        }
+      },
+      "absolute_change": {
+        "blocked": {
+          "signals": 28,
+          "wins": 16,
+          "losses": 12,
+          "hit_pct": 57.14
+        },
+        "kept": {
+          "signals": 25,
+          "wins": 16,
+          "losses": 9,
+          "hit_pct": 64
+        }
+      }
+    },
+    {
+      "threshold_pct": 2.5,
+      "rise_only": {
+        "blocked": {
+          "signals": 11,
+          "wins": 6,
+          "losses": 5,
+          "hit_pct": 54.55
+        },
+        "kept": {
+          "signals": 42,
+          "wins": 26,
+          "losses": 16,
+          "hit_pct": 61.9
+        }
+      },
+      "drop_only": {
+        "blocked": {
+          "signals": 13,
+          "wins": 8,
+          "losses": 5,
+          "hit_pct": 61.54
+        },
+        "kept": {
+          "signals": 40,
+          "wins": 24,
+          "losses": 16,
+          "hit_pct": 60
+        }
+      },
+      "absolute_change": {
+        "blocked": {
+          "signals": 24,
+          "wins": 14,
+          "losses": 10,
+          "hit_pct": 58.33
+        },
+        "kept": {
+          "signals": 29,
+          "wins": 18,
+          "losses": 11,
+          "hit_pct": 62.07
+        }
+      }
+    },
+    {
+      "threshold_pct": 3,
+      "rise_only": {
+        "blocked": {
+          "signals": 7,
+          "wins": 3,
+          "losses": 4,
+          "hit_pct": 42.86
+        },
+        "kept": {
+          "signals": 46,
+          "wins": 29,
+          "losses": 17,
+          "hit_pct": 63.04
+        }
+      },
+      "drop_only": {
+        "blocked": {
+          "signals": 12,
+          "wins": 7,
+          "losses": 5,
+          "hit_pct": 58.33
+        },
+        "kept": {
+          "signals": 41,
+          "wins": 25,
+          "losses": 16,
+          "hit_pct": 60.98
+        }
+      },
+      "absolute_change": {
+        "blocked": {
+          "signals": 19,
+          "wins": 10,
+          "losses": 9,
+          "hit_pct": 52.63
+        },
+        "kept": {
+          "signals": 34,
+          "wins": 22,
+          "losses": 12,
+          "hit_pct": 64.71
+        }
+      }
+    },
+    {
+      "threshold_pct": 3.5,
+      "rise_only": {
+        "blocked": {
+          "signals": 6,
+          "wins": 3,
+          "losses": 3,
+          "hit_pct": 50
+        },
+        "kept": {
+          "signals": 47,
+          "wins": 29,
+          "losses": 18,
+          "hit_pct": 61.7
+        }
+      },
+      "drop_only": {
+        "blocked": {
+          "signals": 11,
+          "wins": 7,
+          "losses": 4,
+          "hit_pct": 63.64
+        },
+        "kept": {
+          "signals": 42,
+          "wins": 25,
+          "losses": 17,
+          "hit_pct": 59.52
+        }
+      },
+      "absolute_change": {
+        "blocked": {
+          "signals": 17,
+          "wins": 10,
+          "losses": 7,
+          "hit_pct": 58.82
+        },
+        "kept": {
+          "signals": 36,
+          "wins": 22,
+          "losses": 14,
+          "hit_pct": 61.11
+        }
+      }
+    },
+    {
+      "threshold_pct": 4,
+      "rise_only": {
+        "blocked": {
+          "signals": 3,
+          "wins": 2,
+          "losses": 1,
+          "hit_pct": 66.67
+        },
+        "kept": {
+          "signals": 50,
+          "wins": 30,
+          "losses": 20,
+          "hit_pct": 60
+        }
+      },
+      "drop_only": {
+        "blocked": {
+          "signals": 9,
+          "wins": 5,
+          "losses": 4,
+          "hit_pct": 55.56
+        },
+        "kept": {
+          "signals": 44,
+          "wins": 27,
+          "losses": 17,
+          "hit_pct": 61.36
+        }
+      },
+      "absolute_change": {
+        "blocked": {
+          "signals": 12,
+          "wins": 7,
+          "losses": 5,
+          "hit_pct": 58.33
+        },
+        "kept": {
+          "signals": 41,
+          "wins": 25,
+          "losses": 16,
+          "hit_pct": 60.98
+        }
+      }
+    },
+    {
+      "threshold_pct": 4.5,
+      "rise_only": {
+        "blocked": {
+          "signals": 0,
+          "wins": 0,
+          "losses": 0,
+          "hit_pct": null
+        },
+        "kept": {
+          "signals": 53,
+          "wins": 32,
+          "losses": 21,
+          "hit_pct": 60.38
+        }
+      },
+      "drop_only": {
+        "blocked": {
+          "signals": 5,
+          "wins": 3,
+          "losses": 2,
+          "hit_pct": 60
+        },
+        "kept": {
+          "signals": 48,
+          "wins": 29,
+          "losses": 19,
+          "hit_pct": 60.42
+        }
+      },
+      "absolute_change": {
+        "blocked": {
+          "signals": 5,
+          "wins": 3,
+          "losses": 2,
+          "hit_pct": 60
+        },
+        "kept": {
+          "signals": 48,
+          "wins": 29,
+          "losses": 19,
+          "hit_pct": 60.42
+        }
+      }
+    },
+    {
+      "threshold_pct": 5,
+      "rise_only": {
+        "blocked": {
+          "signals": 0,
+          "wins": 0,
+          "losses": 0,
+          "hit_pct": null
+        },
+        "kept": {
+          "signals": 53,
+          "wins": 32,
+          "losses": 21,
+          "hit_pct": 60.38
+        }
+      },
+      "drop_only": {
+        "blocked": {
+          "signals": 4,
+          "wins": 2,
+          "losses": 2,
+          "hit_pct": 50
+        },
+        "kept": {
+          "signals": 49,
+          "wins": 30,
+          "losses": 19,
+          "hit_pct": 61.22
+        }
+      },
+      "absolute_change": {
+        "blocked": {
+          "signals": 4,
+          "wins": 2,
+          "losses": 2,
+          "hit_pct": 50
+        },
+        "kept": {
+          "signals": 49,
+          "wins": 30,
+          "losses": 19,
+          "hit_pct": 61.22
+        }
+      }
+    }
+  ],
+  "rows": [
+    {
+      "date": "2026-10-09",
+      "home": "Dortmund",
+      "away": "Werder Bremen",
+      "selection": "Dortmund",
+      "selected_side": "1",
+      "t72": 1.4,
+      "t24": 1.37,
+      "delta_pct": -2.142857,
+      "outcome": "LOSS",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/09/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-09",
+      "home": "West Ham",
+      "away": "QPR",
+      "selection": "West Ham",
+      "selected_side": "1",
+      "t72": 1.58,
+      "t24": 1.5,
+      "delta_pct": -5.063291,
+      "outcome": "LOSS",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/09/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-12",
+      "home": "Atalanta",
+      "away": "Venezia",
+      "selection": "Atalanta",
+      "selected_side": "1",
+      "t72": 1.62,
+      "t24": 1.62,
+      "delta_pct": 0,
+      "outcome": "WIN",
+      "source_class": "B_PRACTICAL_OLDER_SHIFTED_1X2",
+      "source_path": "archive/2026/10/12/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-13",
+      "home": "FC Sabah",
+      "away": "Slavia Prague",
+      "selection": "Slavia Prague",
+      "selected_side": "2",
+      "t72": 2.1,
+      "t24": 2.1,
+      "delta_pct": 0,
+      "outcome": "LOSS",
+      "source_class": "B_PRACTICAL_OLDER_SHIFTED_1X2",
+      "source_path": "archive/2026/10/13/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-13",
+      "home": "Bristol City",
+      "away": "Blackburn",
+      "selection": "Bristol City",
+      "selected_side": "1",
+      "t72": 2.1,
+      "t24": 2.18,
+      "delta_pct": 3.809524,
+      "outcome": "LOSS",
+      "source_class": "B_PRACTICAL_OLDER_SHIFTED_1X2",
+      "source_path": "archive/2026/10/13/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-13",
+      "home": "Atletico Madrid",
+      "away": "Man Utd",
+      "selection": "Atletico Madrid",
+      "selected_side": "1",
+      "t72": 2.08,
+      "t24": 1.97,
+      "delta_pct": -5.288462,
+      "outcome": "WIN",
+      "source_class": "B_PRACTICAL_OLDER_SHIFTED_1X2",
+      "source_path": "archive/2026/10/13/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-13",
+      "home": "Birmingham",
+      "away": "Preston",
+      "selection": "Birmingham",
+      "selected_side": "1",
+      "t72": 1.64,
+      "t24": 1.64,
+      "delta_pct": 0,
+      "outcome": "WIN",
+      "source_class": "B_PRACTICAL_OLDER_SHIFTED_1X2",
+      "source_path": "archive/2026/10/13/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-13",
+      "home": "Galatasaray",
+      "away": "Barcelona",
+      "selection": "Barcelona",
+      "selected_side": "2",
+      "t72": 1.29,
+      "t24": 1.3,
+      "delta_pct": 0.775194,
+      "outcome": "WIN",
+      "source_class": "B_PRACTICAL_OLDER_SHIFTED_1X2",
+      "source_path": "archive/2026/10/13/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-13",
+      "home": "RB Leipzig",
+      "away": "PSV",
+      "selection": "RB Leipzig",
+      "selected_side": "1",
+      "t72": 1.9,
+      "t24": 1.81,
+      "delta_pct": -4.736842,
+      "outcome": "WIN",
+      "source_class": "B_PRACTICAL_OLDER_SHIFTED_1X2",
+      "source_path": "archive/2026/10/13/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-13",
+      "home": "Villarreal",
+      "away": "Napoli",
+      "selection": "Villarreal",
+      "selected_side": "1",
+      "t72": 2.26,
+      "t24": 2.2,
+      "delta_pct": -2.654867,
+      "outcome": "WIN",
+      "source_class": "B_PRACTICAL_OLDER_SHIFTED_1X2",
+      "source_path": "archive/2026/10/13/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-14",
+      "home": "Feyenoord",
+      "away": "Como",
+      "selection": "Como",
+      "selected_side": "2",
+      "t72": 1.98,
+      "t24": 1.96,
+      "delta_pct": -1.010101,
+      "outcome": "LOSS",
+      "source_class": "B_PRACTICAL_OLDER_SHIFTED_1X2",
+      "source_path": "archive/2026/10/14/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-14",
+      "home": "Lask Linz",
+      "away": "Liverpool",
+      "selection": "Liverpool",
+      "selected_side": "2",
+      "t72": 1.31,
+      "t24": 1.34,
+      "delta_pct": 2.290076,
+      "outcome": "WIN",
+      "source_class": "B_PRACTICAL_OLDER_SHIFTED_1X2",
+      "source_path": "archive/2026/10/14/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-14",
+      "home": "Aston Villa",
+      "away": "Fenerbahce",
+      "selection": "Aston Villa",
+      "selected_side": "1",
+      "t72": 1.71,
+      "t24": 1.65,
+      "delta_pct": -3.508772,
+      "outcome": "WIN",
+      "source_class": "B_PRACTICAL_OLDER_SHIFTED_1X2",
+      "source_path": "archive/2026/10/14/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-14",
+      "home": "Betis",
+      "away": "Porto",
+      "selection": "Betis",
+      "selected_side": "1",
+      "t72": 2.1,
+      "t24": 2.1,
+      "delta_pct": 0,
+      "outcome": "WIN",
+      "source_class": "B_PRACTICAL_OLDER_SHIFTED_1X2",
+      "source_path": "archive/2026/10/14/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-14",
+      "home": "Bodo Glimt",
+      "away": "Dortmund",
+      "selection": "Dortmund",
+      "selected_side": "2",
+      "t72": 2.14,
+      "t24": 2.2,
+      "delta_pct": 2.803738,
+      "outcome": "LOSS",
+      "source_class": "B_PRACTICAL_OLDER_SHIFTED_1X2",
+      "source_path": "archive/2026/10/14/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-14",
+      "home": "Man City",
+      "away": "Paris St-G",
+      "selection": "Man City",
+      "selected_side": "1",
+      "t72": 2.22,
+      "t24": 2.2,
+      "delta_pct": -0.900901,
+      "outcome": "LOSS",
+      "source_class": "B_PRACTICAL_OLDER_SHIFTED_1X2",
+      "source_path": "archive/2026/10/14/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-14",
+      "home": "Roma",
+      "away": "Real Madrid",
+      "selection": "Real Madrid",
+      "selected_side": "2",
+      "t72": 1.97,
+      "t24": 2.02,
+      "delta_pct": 2.538071,
+      "outcome": "WIN",
+      "source_class": "B_PRACTICAL_OLDER_SHIFTED_1X2",
+      "source_path": "archive/2026/10/14/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-14",
+      "home": "Slovan Bratislava",
+      "away": "Stuttgart",
+      "selection": "Stuttgart",
+      "selected_side": "2",
+      "t72": 1.34,
+      "t24": 1.34,
+      "delta_pct": 0,
+      "outcome": "WIN",
+      "source_class": "B_PRACTICAL_OLDER_SHIFTED_1X2",
+      "source_path": "archive/2026/10/14/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-15",
+      "home": "Hoffenheim",
+      "away": "Besiktas",
+      "selection": "Hoffenheim",
+      "selected_side": "1",
+      "t72": 2,
+      "t24": 2.04,
+      "delta_pct": 2,
+      "outcome": "LOSS",
+      "source_class": "B_PRACTICAL_OLDER_SHIFTED_1X2",
+      "source_path": "archive/2026/10/15/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-19",
+      "home": "Tottenham",
+      "away": "Coventry",
+      "selection": "Tottenham",
+      "selected_side": "1",
+      "t72": 1.52,
+      "t24": 1.56,
+      "delta_pct": 2.631579,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/19/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-20",
+      "home": "FC Sabah",
+      "away": "Dortmund",
+      "selection": "Dortmund",
+      "selected_side": "2",
+      "t72": 1.35,
+      "t24": 1.35,
+      "delta_pct": 0,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/20/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-20",
+      "home": "Liverpool",
+      "away": "Villarreal",
+      "selection": "Liverpool",
+      "selected_side": "1",
+      "t72": 1.56,
+      "t24": 1.6,
+      "delta_pct": 2.564103,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/20/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-20",
+      "home": "Porto",
+      "away": "PSV",
+      "selection": "Porto",
+      "selected_side": "1",
+      "t72": 1.69,
+      "t24": 1.62,
+      "delta_pct": -4.142012,
+      "outcome": "LOSS",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/20/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-20",
+      "home": "Stuttgart",
+      "away": "Atletico Madrid",
+      "selection": "Atletico Madrid",
+      "selected_side": "2",
+      "t72": 2.2,
+      "t24": 2.2,
+      "delta_pct": 0,
+      "outcome": "LOSS",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/20/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-21",
+      "home": "Club Brugge",
+      "away": "Lens",
+      "selection": "Club Brugge",
+      "selected_side": "1",
+      "t72": 2.14,
+      "t24": 2.1,
+      "delta_pct": -1.869159,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/21/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-21",
+      "home": "Sporting Lisbon",
+      "away": "Lask Linz",
+      "selection": "Sporting Lisbon",
+      "selected_side": "1",
+      "t72": 1.25,
+      "t24": 1.23,
+      "delta_pct": -1.6,
+      "outcome": "LOSS",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/21/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-22",
+      "home": "Dinamo Zagreb",
+      "away": "NEC Nijmegen",
+      "selection": "Dinamo Zagreb",
+      "selected_side": "1",
+      "t72": 1.78,
+      "t24": 1.7,
+      "delta_pct": -4.494382,
+      "outcome": "LOSS",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/22/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-22",
+      "home": "Juventus",
+      "away": "Rennes",
+      "selection": "Juventus",
+      "selected_side": "1",
+      "t72": 1.61,
+      "t24": 1.61,
+      "delta_pct": 0,
+      "outcome": "LOSS",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/22/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-22",
+      "home": "Lech Poznan",
+      "away": "Sunderland",
+      "selection": "Sunderland",
+      "selected_side": "2",
+      "t72": 1.7,
+      "t24": 1.77,
+      "delta_pct": 4.117647,
+      "outcome": "LOSS",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/22/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-22",
+      "home": "Ajax",
+      "away": "Atalanta",
+      "selection": "Ajax",
+      "selected_side": "1",
+      "t72": 2.3,
+      "t24": 2.2,
+      "delta_pct": -4.347826,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/22/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-22",
+      "home": "Hoffenheim",
+      "away": "Lyon",
+      "selection": "Hoffenheim",
+      "selected_side": "1",
+      "t72": 2.12,
+      "t24": 2.1,
+      "delta_pct": -0.943396,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/22/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-22",
+      "home": "NK Celje",
+      "away": "Red Bull Salzburg",
+      "selection": "Red Bull Salzburg",
+      "selected_side": "2",
+      "t72": 1.7,
+      "t24": 1.6,
+      "delta_pct": -5.882353,
+      "outcome": "LOSS",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/22/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-22",
+      "home": "Olympiakos",
+      "away": "Sparta Prague",
+      "selection": "Olympiakos",
+      "selected_side": "1",
+      "t72": 1.56,
+      "t24": 1.55,
+      "delta_pct": -0.641026,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/22/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-22",
+      "home": "Omonia",
+      "away": "Benfica",
+      "selection": "Benfica",
+      "selected_side": "2",
+      "t72": 1.4,
+      "t24": 1.41,
+      "delta_pct": 0.714286,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/22/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-23",
+      "home": "Alaves",
+      "away": "Malaga",
+      "selection": "Alaves",
+      "selected_side": "1",
+      "t72": 1.81,
+      "t24": 1.75,
+      "delta_pct": -3.314917,
+      "outcome": "LOSS",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/23/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-24",
+      "home": "Como",
+      "away": "Sassuolo",
+      "selection": "Como",
+      "selected_side": "1",
+      "t72": 1.6,
+      "t24": 1.51,
+      "delta_pct": -5.625,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/24/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-24",
+      "home": "Arsenal",
+      "away": "Everton",
+      "selection": "Arsenal",
+      "selected_side": "1",
+      "t72": 1.45,
+      "t24": 1.47,
+      "delta_pct": 1.37931,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/24/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-24",
+      "home": "Stevenage",
+      "away": "MK Dons",
+      "selection": "Stevenage",
+      "selected_side": "1",
+      "t72": 2,
+      "t24": 2.08,
+      "delta_pct": 4,
+      "outcome": "LOSS",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/24/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-24",
+      "home": "Chelsea",
+      "away": "Tottenham",
+      "selection": "Chelsea",
+      "selected_side": "1",
+      "t72": 1.76,
+      "t24": 1.82,
+      "delta_pct": 3.409091,
+      "outcome": "LOSS",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/24/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-24",
+      "home": "Lazio",
+      "away": "Parma",
+      "selection": "Lazio",
+      "selected_side": "1",
+      "t72": 1.44,
+      "t24": 1.46,
+      "delta_pct": 1.388889,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/24/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "home": "Athletic Bilbao",
+      "away": "Getafe",
+      "selection": "Athletic Bilbao",
+      "selected_side": "1",
+      "t72": 1.67,
+      "t24": 1.63,
+      "delta_pct": -2.39521,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "home": "Hull",
+      "away": "Brentford",
+      "selection": "Brentford",
+      "selected_side": "2",
+      "t72": 1.73,
+      "t24": 1.77,
+      "delta_pct": 2.312139,
+      "outcome": "LOSS",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "home": "Monaco",
+      "away": "Lille",
+      "selection": "Monaco",
+      "selected_side": "1",
+      "t72": 2.14,
+      "t24": 2.1,
+      "delta_pct": -1.869159,
+      "outcome": "LOSS",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "home": "Marseille",
+      "away": "Le Havre",
+      "selection": "Marseille",
+      "selected_side": "1",
+      "t72": 1.59,
+      "t24": 1.58,
+      "delta_pct": -0.628931,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "home": "Toulouse",
+      "away": "ESTAC Troyes",
+      "selection": "Toulouse",
+      "selected_side": "1",
+      "t72": 1.65,
+      "t24": 1.64,
+      "delta_pct": -0.606061,
+      "outcome": "LOSS",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "home": "Freiburg",
+      "away": "Bayern Munich",
+      "selection": "Bayern Munich",
+      "selected_side": "2",
+      "t72": 1.41,
+      "t24": 1.46,
+      "delta_pct": 3.546099,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "home": "Lecce",
+      "away": "Juventus",
+      "selection": "Juventus",
+      "selected_side": "2",
+      "t72": 1.49,
+      "t24": 1.55,
+      "delta_pct": 4.026846,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "home": "Real Sociedad",
+      "away": "Levante",
+      "selection": "Real Sociedad",
+      "selected_side": "1",
+      "t72": 1.7,
+      "t24": 1.64,
+      "delta_pct": -3.529412,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-25",
+      "home": "Udinese",
+      "away": "AC Milan",
+      "selection": "AC Milan",
+      "selected_side": "2",
+      "t72": 1.73,
+      "t24": 1.8,
+      "delta_pct": 4.046243,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/25/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-26",
+      "home": "Rizespor",
+      "away": "Trabzonspor",
+      "selection": "Trabzonspor",
+      "selected_side": "2",
+      "t72": 2.02,
+      "t24": 2.02,
+      "delta_pct": 0,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/26/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-26",
+      "home": "Santa Clara",
+      "away": "Benfica",
+      "selection": "Benfica",
+      "selected_side": "2",
+      "t72": 1.4,
+      "t24": 1.42,
+      "delta_pct": 1.428571,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/26/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-26",
+      "home": "Paris St-G",
+      "away": "Lyon",
+      "selection": "Paris St-G",
+      "selected_side": "1",
+      "t72": 1.45,
+      "t24": 1.39,
+      "delta_pct": -4.137931,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/26/05_pratik_arsiv/checkpoints.jsonl.gz"
+    },
+    {
+      "date": "2026-10-26",
+      "home": "Sevilla",
+      "away": "Osasuna",
+      "selection": "Sevilla",
+      "selected_side": "1",
+      "t72": 2,
+      "t24": 1.98,
+      "delta_pct": -1,
+      "outcome": "WIN",
+      "source_class": "A_PRACTICAL_NATIVE_1X2",
+      "source_path": "archive/2026/10/26/05_pratik_arsiv/checkpoints.jsonl.gz"
+    }
+  ],
+  "notes": [
+    "PRATIK archive read only; files unchanged",
+    "33? no: 28 records missing",
+    "Historical posthoc threshold exploration; not prospective proof",
+    "Missing group 24W/4L means selected accessible cohort underrepresents successes",
+    "Older B tier requires reinterpreted shifted selected-odds columns as determined from independent T24 checks",
+    "=threshold is kept",
+    "T72 to T24 independent of T24->T8 or T8->T6"
+  ]
+}
