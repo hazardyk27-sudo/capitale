@@ -1,7 +1,7 @@
 # SXF Methodology
 
 Status: DRAFT
-Version: 0.4
+Version: 0.4.1
 
 ## Objective
 
@@ -47,6 +47,12 @@ Initial trigger conditions:
 | T-40 | top-money TEAM + money >= £10,000 + share >= 50% |
 | T-24 | top-money TEAM + money >= £10,000 + share >= 50% |
 | T-12 | top-money TEAM + money >= £1,000 + share >= 80% |
+
+#### EARLY CORE 1X2 decision-odds ceiling (owner-approved 2026-10-27)
+
+For an EARLY CORE label whose first trigger is T-72/T-60/T-40/T-24, require the selected HOME/AWAY team's current SmartXFlow 1X2 decimal odds at the **exact match-specific decision `as_of_utc`** to be **`<= 2.35` inclusive**. An absent, stale or higher-than-2.35 quote is not a valid EARLY CORE recommendation. The early-origin money/share and Retention-55 rules still apply unchanged. This is **not** a retrospective rewriting of earlier v0.4 signals and does not require odds <=2.35 at the original early checkpoint.
+
+EARLY T12 is a separate observation/label and **does not inherit** the EARLY CORE odds cap. Other engine conditions (V1/V2/HEAVY/SURPRISE and all non-1X2 markets) are unchanged. Archived 9–25 October reports keep their original frozen v0.4 outcomes; report results from the new cap as separately versioned analysis only.
 
 #### Retention 55
 
