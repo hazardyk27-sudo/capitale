@@ -393,8 +393,14 @@ def make_archive(conn, day: dt.date, output: Path):
 
 def verify_output(folder: Path, day: dt.date, fixture_count: int, alarm_count: int):
     manifest = json.loads((folder / "manifest.json").read_text("utf-8"))
-    if manifest.get("date") != str(day) or manifest.get("checkpoint_hours") != list(CHECKPOINT_HOURS):
-        raise ValueError("Output manifest date or checkpoint schedule mismatch")
+    if (manifest.get("archive_name") != "PRATİK ARŞİV"
+            or manifest.get("date") != str(day)
+            or manifest.get("checkpoint_hours") != list(CHECKPOINT_HOURS)):
+        raise ValueError("Output manifest identity/date/checkpoint schedule mismatch")
+    if (manifest.get("fixtures") != fixture_count or manifest.get("alarms") != alarm_count
+            or manifest.get("integrity", {}).get("checkpoint_schedule_valid") is not True
+            or manifest.get("integrity", {}).get("future_snapshot_count") != 0):
+        raise ValueError("Output manifest counts or integrity flags mismatch")
     for name, key, expected in (
         ("checkpoints.jsonl.gz", "checkpoints_sha256", fixture_count),
         ("alarms.jsonl.gz", "alarms_sha256", alarm_count),
@@ -405,13 +411,17 @@ def verify_output(folder: Path, day: dt.date, fixture_count: int, alarm_count: i
     with gzip.open(folder / "checkpoints.jsonl.gz", "rt", encoding="utf-8") as stream:
         for line in stream:
             record = json.loads(line)
+            kickoff = parse_time(record.get("kickoff_utc"))
             points = record.get("checkpoints", [])
-            if len(points) != len(CHECKPOINT_HOURS):
+            if kickoff is None or len(points) != len(CHECKPOINT_HOURS):
                 raise ValueError("Fixture checkpoint count mismatch")
             if [item.get("t_minus_hours") for item in points] != list(CHECKPOINT_HOURS):
                 raise ValueError("Fixture checkpoint schedule mismatch")
             for point in points:
                 target = parse_time(point.get("target_at_utc"))
+                expected_target = kickoff - dt.timedelta(hours=point["t_minus_hours"])
+                if target != expected_target:
+                    raise ValueError("Checkpoint target does not match fixture kickoff")
                 for market in point.get("markets", {}).values():
                     if market.get("status") == "PRESENT":
                         actual = parse_time(market.get("actual_at_utc"))
