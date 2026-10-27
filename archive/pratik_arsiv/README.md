@@ -28,6 +28,6 @@ Orijinal tarihçe alanları (oran, yüzde, GBP miktarı, hacim, kayıt zamanı, 
 
 CAPİTALE deposundaki `.github/workflows/sxf-admin-archive.yml` her gün 23:00 UTC'de (02:00 Europe/Istanbul) önceki tamamlanmış günün PRATİK ARŞİVİNİ üretir. İş akışı, mevcut 02:17 UTC saklama temizliğinden önce çalışacak şekilde zamanlanmıştır. Admin ekranından aynı iş akışı elle geçmiş bir tarih için başlatılabilir.
 
-Üretim girdisi yalnız okuma yetkili `PRATIK_ARCHIVE_DATABASE_URL` Actions sırrıdır. Kaynak `public.fixtures`, `public.live_fixtures`, üç para/oran tarihçe tablosu ve alarm tablolarıdır. Günlük dosyalar bu dizin yapısına eklenir; mevcut tarih tekrar çalıştırıldığında manifest, kayıt sayısı, 34 nokta çizelgesi, gelecek veri yasağı ve SHA-256 denetlenir. Doğrulanmış gün atlanır; eksik veya hatalı klasör üzerine yazılmaz ve iş başarısız olur.
+Üretim girdisi yalnız okuma yetkili `PRATIK_ARCHIVE_DATABASE_URL` Actions sırrıdır. Kaynak `public.fixtures`, `public.live_fixtures`, üç para/oran tarihçe tablosu ve alarm tablolarıdır. Günlük dosyalar bu dizin yapısına eklenir ve `archive/pratik_arsiv/index.json` gün özeti aynı commit içinde güncellenir; mevcut tarih tekrar çalıştırıldığında manifest, kayıt sayısı, 34 nokta çizelgesi, gelecek veri yasağı ve SHA-256 denetlenir. Doğrulanmış gün atlanır; eksik veya hatalı klasör üzerine yazılmaz ve iş başarısız olur.
 
 Arşiv kaynak tablolarını değiştirmez. `SXF_arastirma_arsivi/` ve öğrenme arşivi ayrı kalır.
