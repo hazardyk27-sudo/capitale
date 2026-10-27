@@ -681,3 +681,16 @@ The owner explicitly approved a **maximum SmartXFlow 1X2 team-win odds of 2.35 i
 Historical 9–25 October retrospective coverage: original EARLY CORE 55/83 (66.27%); applying <=2.35 to the recorded decision odds produces 52/77 (67.53%). Six archived signals >2.35 (3 wins / 3 losses) are excluded by the newly approved ceiling. This is an **in-sample descriptive comparison**, not prospective evidence of improved prediction. Separate 26 October scan lists four qualifying EARLY CORE signals, all winning based on independent dated result reports; these are not yet incorporated into the canonical 9–25 October outcome table.
 
 Source of research: `SXF_arastirma_arsivi/sinyal_performanslari/EARLY_CORE_235_Kazanan_Kaybeden_T8_Research_2026-10-27_v1.md`. Canonical changes: `roles/sxf.md` and `methods/sxf_methodology.md` v0.4.1 and `AGENTS.md`. This is a **methodology/rulebook update**, not evidence of a deployed live SXF scraper/alert-engine change or altered Supabase settings. The runtime must be synced and independently checked before asserting that the cap is enforced by production services.
+
+
+---
+
+## 2026-10-28 — Owner retires standalone EARLY_T12 recommendations (SXF v0.4.2 documentation)
+
+**Explicit owner instruction:** Remove EARLY_T12 as an independent signal motor for ALL new SXF recommendation scans. Do not create new EARLY_T12 labels/recommendations merely because T-12 top-money TEAM >= £1,000 and >=80% selected share occurs. T-12 money/odds checkpoints can still be retained as neutral observational data and can contribute to measuring the existing EARLY CORE Retention-55 rule; they cannot originate a new EARLY CORE trigger. When separate active V1/V2/HEAVY engines fire, those can still be reported on their own terms, without an EARLY_T12 vote or signal duplication.
+
+**Preservation:** No historical raw data, Pratik Arşiv, T-12 output, results, settlement, or performance research should be deleted or rewritten. Distinguish past frozen EARLY_T12 tags from forbidden *new* tags. EARLY CORE T-72/T-60/T-40/T-24 and its prior <=2.35 decision odds cap remain effective in the documented active v0.4.2 rules. The proposed EARLY CORE v2 research (<2.00 odds and early-origin share <95%) is a separate NOT-YET-ACTIVATED candidate.
+
+**Rationale:** Retrospective 9–26 Oct EARLY_T12: 106 wins / 166 settled signals = 63.86%, including 1 unresolved historical signal; without HEAVY 64/108 = 59.26%, with HEAVY 42/58 = 72.41%; overlap is not independent confirmation. Source: `SXF_arastirma_arsivi/sinyal_performanslari/EARLY_T12_PERFORMANCE_2026-10-09_26_RESEARCH_v1.md`. These are historical descriptive rates, not predictive guarantees.
+
+**Scope / runtime truth:** `roles/sxf.md`, `methods/sxf_methodology.md`, `AGENTS.md` updated. This is a repository methodology/rulebook decision, **NOT proof that executable code, GitHub Actions, Supabase configuration, Telegram delivery or a running live deployment has been disabled**. Runtime changes and smoke-test are a separate task. Historic outputs are untouched.
