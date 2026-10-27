@@ -1,7 +1,7 @@
 # SXF Role
 
 Status: DRAFT
-Version: 0.4
+Version: 0.4.1
 
 ## Mission
 
@@ -42,18 +42,20 @@ For every match:
 
 ## Approved core engine set
 
-The following engines are the current SXF DRAFT v0.4 core set. No additional engine, threshold, score, or override may be invented without owner approval.
+The following engines are the current SXF DRAFT v0.4 core set. No additional engine, threshold, score, or override may be invented without owner approval. The EARLY CORE 2.35 decision-snapshot odds cap below was explicitly owner-approved on 2026-10-27.
 
 ### 1. EARLY MONEY
 
 Team side only: HOME or AWAY. Draw is excluded.
 
-Initial signal logic:
+Initial signal logic (EARLY CORE T-72/T-60/T-40/T-24 and separate EARLY T12):
 - T-72: top-money TEAM, money >= £5,000, share >= 50%
 - T-60: top-money TEAM, money >= £5,000, share >= 50%
 - T-40: top-money TEAM, money >= £10,000, share >= 50%
 - T-24: top-money TEAM, money >= £10,000, share >= 50%
 - T-12: top-money TEAM, money >= £1,000, share >= 80%
+
+**Owner-approved EARLY CORE 1X2 odds cap (2026-10-27):** For the T-72/T-60/T-40/T-24-origin EARLY CORE label only, the chosen team's current SmartXFlow 1X2 decimal odds at the exact match-specific decision `as_of_utc` MUST be `<= 2.35` (inclusive). If above 2.35 or missing, do not issue the EARLY CORE recommendation. This is a current decision-snapshot gate, not a retrospectively imposed requirement at the original early checkpoint. It does not impose a 2.35 cap on EARLY T12, V1/V2, HEAVY, or SURPRISE; these remain separately eligible. Do not relabel immutable earlier v0.4 research signals.
 
 Retention rule applies to Early Money signals first formed at T-72 / T-60 / T-40 / T-24:
 - retention threshold = 55% money share;
@@ -159,4 +161,4 @@ Observed research hit rates are research evidence only, not calibrated productio
 
 ## Governance note
 
-SXF remains DRAFT. The owner has approved the v0.4 core engine set and dynamic per-match horizon rule, but production scoring, final precedence, normalized-volume math, and confidence calibration remain open until explicitly approved and tested.
+SXF remains DRAFT. The owner has approved the v0.4 core engine set, the 2026-10-27 EARLY CORE 2.35 ceiling (v0.4.1), and dynamic per-match horizon rule, but production scoring, final precedence, normalized-volume math, and confidence calibration remain open until explicitly approved and tested.
