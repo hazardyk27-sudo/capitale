@@ -1,7 +1,7 @@
 # CAPITALE — Milestone Log
 
 Status: CANONICAL PROJECT HISTORY
-Last updated: 2026-10-23
+Last updated: 2026-10-27
 
 This file records active state, decisions, superseded rules, technical debt, and next work. Historical decisions are never deleted; replaced rules are marked SUPERSEDED.
 
@@ -671,3 +671,13 @@ Active v1.4.1 CANONICAL NEWS filter:
 - Preserve seven outcome scoring, -3..+3 points for material events, exact sums, N1–N4 credibility, exact AS_OF, role isolation and independent immutable pre-match archive.
 
 Files modified: `roles/news.md` v1.4.1; `methods/news_methodology.md` v1.4.1; `policies/news_sources.md` v1.1.1; `schemas/news_report.md` v1.4.1; `prompts/news_start.md` v1.4.1; `AGENTS.md` v1.14; `MILESTONE.md` new section. No model calibration or outcome improvement is claimed.
+
+---
+
+## 2026-10-27 — Owner-approved EARLY CORE odds ceiling 2.35 (v0.4.1)
+
+The owner explicitly approved a **maximum SmartXFlow 1X2 team-win odds of 2.35 inclusive** for the T-72/T-60/T-40/T-24-origin **EARLY CORE** signal at the exact match-specific **decision timestamp**. The gate is on the selected side's current decision-snapshot quote, not on the historical early-origin quote. Missing valid decision odds produces no EARLY CORE recommendation. Existing Retention-55 and money/share checkpoint thresholds remain unchanged. EARLY T12, V1, V2, HEAVY, SURPRISE and non-1X2 engines are unaffected; other engines can still trigger after EARLY CORE is excluded. No older archived v0.4 signals/results are modified.
+
+Historical 9–25 October retrospective coverage: original EARLY CORE 55/83 (66.27%); applying <=2.35 to the recorded decision odds produces 52/77 (67.53%). Six archived signals >2.35 (3 wins / 3 losses) are excluded by the newly approved ceiling. This is an **in-sample descriptive comparison**, not prospective evidence of improved prediction. Separate 26 October scan lists four qualifying EARLY CORE signals, all winning based on independent dated result reports; these are not yet incorporated into the canonical 9–25 October outcome table.
+
+Source of research: `SXF_arastirma_arsivi/sinyal_performanslari/EARLY_CORE_235_Kazanan_Kaybeden_T8_Research_2026-10-27_v1.md`. Canonical changes: `roles/sxf.md` and `methods/sxf_methodology.md` v0.4.1 and `AGENTS.md`. This is a **methodology/rulebook update**, not evidence of a deployed live SXF scraper/alert-engine change or altered Supabase settings. The runtime must be synced and independently checked before asserting that the cap is enforced by production services.
