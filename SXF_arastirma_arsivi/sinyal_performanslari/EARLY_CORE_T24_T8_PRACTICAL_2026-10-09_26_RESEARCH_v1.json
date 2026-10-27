@@ -5,10 +5,10 @@
   "scope": "original EARLY_CORE 1X2 <=2.35 2026-10-09 through 2026-10-26",
   "total": {
     "n": 81,
-    "win": 0,
-    "loss": 81,
-    "hit_pct": 0,
-    "mean_decision_odds": null
+    "win": 56,
+    "loss": 25,
+    "hit_pct": 69.14,
+    "mean_decision_odds": 1.734
   },
   "practical_compared": {
     "n": 48,
@@ -19,10 +19,10 @@
   },
   "missing": {
     "n": 33,
-    "win": 0,
-    "loss": 33,
-    "hit_pct": 0,
-    "mean_decision_odds": null
+    "win": 28,
+    "loss": 5,
+    "hit_pct": 84.85,
+    "mean_decision_odds": 1.763
   },
   "quality_tiers": {
     "A_native": {
@@ -1131,6 +1131,7 @@
     "33 missing mostly winners -> severe sample selection",
     "thresholds posthoc, not prospective",
     "10 B-tier selected odds reinterpreted after T24 independent crosscheck; no de-vig proof",
-    "Only primary 48 for production-related threshold comparison"
+    "Only primary 48 for production-related threshold comparison",
+    "BUGFIX: total/missing win/loss classified by frozen hit field, rather than research-only win field."
   ]
 }
