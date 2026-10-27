@@ -1,0 +1,91 @@
+{
+  "archive_name": "PRATİK ARŞİV",
+  "version": "v1",
+  "date": "2026-10-23",
+  "timezone": "Europe/Istanbul",
+  "checkpoint_hours": [
+    72,
+    69,
+    66,
+    63,
+    60,
+    57,
+    54,
+    51,
+    48,
+    45,
+    42,
+    39,
+    36,
+    33,
+    30,
+    27,
+    24,
+    22,
+    20,
+    18,
+    16,
+    14,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "fixtures": 230,
+  "results_present": 229,
+  "results_missing": 1,
+  "market_checkpoint_slots_total": 23460,
+  "market_checkpoint_slots_present": 16196,
+  "market_checkpoint_slots_missing": 7264,
+  "alarms": 171,
+  "fields": "Original market history fields are retained, including source odds, share percentages, GBP amounts, volume, timestamps, row id and fingerprint.",
+  "source": "Supabase research_archive (READ-ONLY)",
+  "source_archive_status": "PARTIAL",
+  "source_archive_notes": "Original scan is a retrospective reconstruction; full snapshots were NOT_COLLECTED, and the concentrated archive source collection is PARTIAL. Current research_archive.fixtures contains 230 fixtures; results cover 229/230, and BTTS history has 229/230 fixture coverage. PRATIK uses the available main histories; missing checkpoint slots and the missing result are explicit.",
+  "missing_policy": "MISSING explicit; latest observation at or before target only; exact fixture_uid preferred for same-time ties, then source_fingerprint ascending; hash fallback used only when fixture hash is unique; no interpolation or future substitution.",
+  "coverage_by_market": {
+    "1X2": {
+      "present": 5654,
+      "missing": 2166
+    },
+    "OU25": {
+      "present": 5694,
+      "missing": 2126
+    },
+    "BTTS": {
+      "present": 4848,
+      "missing": 2972
+    }
+  },
+  "files": {
+    "checkpoints": {
+      "name": "checkpoints.jsonl.gz",
+      "uncompressed_bytes": 6293463,
+      "compressed_bytes": 603007
+    },
+    "alarms": {
+      "name": "alarms.jsonl.gz",
+      "uncompressed_bytes": 113444,
+      "compressed_bytes": 19113
+    }
+  },
+  "integrity": {
+    "fixture_records": 230,
+    "alarm_records": 171,
+    "checkpoint_schedule_valid": true,
+    "future_snapshot_count": 0,
+    "selected_present_market_rows": 16196,
+    "checkpoints_sha256": "bd937bc346dd91f9bdc1bacfc8ca7c7c6eeae08015a0cb3155ac62aead2c9254",
+    "alarms_sha256": "b4e1743bece915d8bb543d4a4e0bcb95da0020d70dfb2e7b68135546011b851a"
+  },
+  "results_live": 0,
+  "live_score_present": 229
+}

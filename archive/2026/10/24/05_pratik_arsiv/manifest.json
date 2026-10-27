@@ -1,0 +1,91 @@
+{
+  "archive_name": "PRATİK ARŞİV",
+  "version": "v1",
+  "date": "2026-10-24",
+  "timezone": "Europe/Istanbul",
+  "checkpoint_hours": [
+    72,
+    69,
+    66,
+    63,
+    60,
+    57,
+    54,
+    51,
+    48,
+    45,
+    42,
+    39,
+    36,
+    33,
+    30,
+    27,
+    24,
+    22,
+    20,
+    18,
+    16,
+    14,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "fixtures": 477,
+  "results_present": 473,
+  "results_missing": 4,
+  "market_checkpoint_slots_total": 48654,
+  "market_checkpoint_slots_present": 39169,
+  "market_checkpoint_slots_missing": 9485,
+  "alarms": 347,
+  "fields": "Original market history fields are retained, including odds, share percentages, GBP amounts, volume and timestamps; source row IDs and fingerprints are retained when exposed by the source table.",
+  "source": "Supabase READ-ONLY; canonical roster provenance and table details are documented below.",
+  "source_archive_status": "PARTIAL",
+  "source_archive_notes": "Source manifest: retrospective scan cohort is 238; full-day concentrated roster is 477, which is used here. Full snapshots were NOT_COLLECTED and source collection is PARTIAL. Checkpoints come from read-only public moneyway history, joined by fixture_uid; results and alarms from research_archive. Public history tables do not expose source_fingerprint, and source IDs may be null.",
+  "missing_policy": "MISSING explicit; latest observation at or before target only; exact fixture_uid preferred and match_id_hash fallback used only when unique; stable source id order for equal times; no interpolation or future substitution.",
+  "coverage_by_market": {
+    "1X2": {
+      "present": 13995,
+      "missing": 2223
+    },
+    "OU25": {
+      "present": 13961,
+      "missing": 2257
+    },
+    "BTTS": {
+      "present": 11213,
+      "missing": 5005
+    }
+  },
+  "files": {
+    "checkpoints": {
+      "name": "checkpoints.jsonl.gz",
+      "uncompressed_bytes": 16251032,
+      "compressed_bytes": 804799
+    },
+    "alarms": {
+      "name": "alarms.jsonl.gz",
+      "uncompressed_bytes": 233722,
+      "compressed_bytes": 40101
+    }
+  },
+  "integrity": {
+    "fixture_records": 477,
+    "alarm_records": 347,
+    "checkpoint_schedule_valid": true,
+    "future_snapshot_count": 0,
+    "selected_present_market_rows": 39169,
+    "checkpoints_sha256": "5c954313e7008bbbafdea24f7928a03cb136dd4e03a99bb340f3ec901567b8e6",
+    "alarms_sha256": "bd79beaa53dd4f3ed621d200bced5484d915f3f36f3668ff57f66470597c59c5"
+  },
+  "results_live": 0,
+  "live_score_present": 473
+}

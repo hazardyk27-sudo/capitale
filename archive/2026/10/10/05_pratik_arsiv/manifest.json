@@ -1,0 +1,90 @@
+{
+  "archive_name": "PRATİK ARŞİV",
+  "version": "v1",
+  "date": "2026-10-10",
+  "timezone": "Europe/Istanbul",
+  "checkpoint_hours": [
+    72,
+    69,
+    66,
+    63,
+    60,
+    57,
+    54,
+    51,
+    48,
+    45,
+    42,
+    39,
+    36,
+    33,
+    30,
+    27,
+    24,
+    22,
+    20,
+    18,
+    16,
+    14,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "fixtures": 455,
+  "market_checkpoint_slots_total": 46410,
+  "market_checkpoint_slots_present": 36332,
+  "market_checkpoint_slots_missing": 10078,
+  "alarms": 376,
+  "fields": "Original market history fields retained, including odds, percentage, GBP amounts, volume, capture timestamps, source row id and fingerprint.",
+  "files": {
+    "checkpoints": {
+      "name": "checkpoints.jsonl.gz",
+      "uncompressed_bytes": 13270199,
+      "compressed_bytes": 1359176
+    },
+    "alarms": {
+      "name": "alarms.jsonl.gz",
+      "uncompressed_bytes": 230371,
+      "compressed_bytes": 35315
+    }
+  },
+  "source": "Supabase research_archive (READ-ONLY)",
+  "missing_policy": "MISSING explicit; latest observation at or before target only; exact fixture_uid preferred; same-time ties broken by source_fingerprint ascending; no interpolation or future substitution.",
+  "coverage_by_market": {
+    "1X2": {
+      "present": 12995,
+      "missing": 2475
+    },
+    "OU25": {
+      "present": 13067,
+      "missing": 2403
+    },
+    "BTTS": {
+      "present": 10270,
+      "missing": 5200
+    }
+  },
+  "integrity": {
+    "fixture_records": 455,
+    "alarm_records": 376,
+    "checkpoint_schedule_valid": true,
+    "future_snapshot_count": 0,
+    "checkpoints_sha256": "0525bbf370199e8ec6ce328d112e7be9f2600565727b8c0b46a698258509c5fd",
+    "alarms_sha256": "7f62039f30823ba21d5bea934ef199061c022627898a5c973c0bf5aa4e0e2244"
+  },
+  "results_present": 426,
+  "results_missing": 29,
+  "results_live": 0,
+  "live_score_present": 426,
+  "result_source_notes": "Matched to research_archive.results. Where fixture_uid was not available, required exact match_id_hash and home/away team match plus kickoff within 30 minutes; ambiguous ties resolved by matching local_date and latest source_updated_at. Scores from live-status rows are retained as final=false and excluded from settled results.",
+  "source_archive_status": "PARTIAL"
+}

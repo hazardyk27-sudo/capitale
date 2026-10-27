@@ -1,0 +1,91 @@
+{
+  "archive_name": "PRATİK ARŞİV",
+  "version": "v1",
+  "date": "2026-10-20",
+  "timezone": "Europe/Istanbul",
+  "checkpoint_hours": [
+    72,
+    69,
+    66,
+    63,
+    60,
+    57,
+    54,
+    51,
+    48,
+    45,
+    42,
+    39,
+    36,
+    33,
+    30,
+    27,
+    24,
+    22,
+    20,
+    18,
+    16,
+    14,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "fixtures": 139,
+  "market_checkpoint_slots_total": 14178,
+  "market_checkpoint_slots_present": 9220,
+  "market_checkpoint_slots_missing": 4958,
+  "alarms": 166,
+  "fields": "Original market history fields are retained, including source odds, share percentages, GBP amounts, volume, timestamps, row id and fingerprint.",
+  "source": "Supabase research_archive (READ-ONLY)",
+  "source_archive_status": "PARTIAL",
+  "source_archive_notes": "Original daily source archive status PARTIAL (full_archive_complete=false; 4 FT results missing). Results had null fixture_uid and were joined only on unique match_id_hash; 135/139 results matched. Dropping-history tables were not used.",
+  "missing_policy": "MISSING explicit; latest observation at or before target only; exact fixture_uid preferred for same-time ties, then source_fingerprint ascending; hash fallback used only when fixture hash is unique; no interpolation or future substitution.",
+  "coverage_by_market": {
+    "1X2": {
+      "present": 3193,
+      "missing": 1533
+    },
+    "OU25": {
+      "present": 3178,
+      "missing": 1548
+    },
+    "BTTS": {
+      "present": 2849,
+      "missing": 1877
+    }
+  },
+  "files": {
+    "checkpoints": {
+      "name": "checkpoints.jsonl.gz",
+      "uncompressed_bytes": 3749657,
+      "compressed_bytes": 376186
+    },
+    "alarms": {
+      "name": "alarms.jsonl.gz",
+      "uncompressed_bytes": 108904,
+      "compressed_bytes": 16052
+    }
+  },
+  "integrity": {
+    "fixture_records": 139,
+    "alarm_records": 166,
+    "checkpoint_schedule_valid": true,
+    "future_snapshot_count": 0,
+    "selected_present_market_rows": 9220,
+    "checkpoints_sha256": "7853c7e88d7705576b7db0181224a7dd7e0510c454091064ce9d0dd95110ed80",
+    "alarms_sha256": "f83101a5ab6f93b4a079854aa380ab502f0447515dd0992d86d200230d5032b7"
+  },
+  "results_present": 135,
+  "results_missing": 4,
+  "results_live": 0,
+  "live_score_present": 135
+}
