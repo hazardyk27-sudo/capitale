@@ -86,11 +86,20 @@
 
 ---
 
-## SXF Sinyal Performansları — 9–25 Ekim 2026
+
+---
+
+## 27 Ekim 2026 — Sohbet taraması ve sonuçlar (sonradan GitHub'a aktarıldı)
+
+- **27 Ekim 19:00–24:00 TSİ:** 135 maç; orijinal dinamik AS_OF 23 seçim; T-8 EKOL 3'ün getirdiği 1 ilave Frankfurt seçimi. [Sohbet kaynaklı tarama](2026/10/27/sxf-2026-10-27-dynamic-asof-145728-chat-reconstructed-v1.md) ve [24 seçimin FT sonucu / kanonik ve deneysel motor performansı](2026/10/27/sxf-2026-10-27-dynamic-asof-145728-chat-outcome-v1.md).
+- **26 Ekim:** [18 seçimin FT sonucu / motor performansı](2026/10/26/sxf-research-2026-10-26-t6-fallback-t8-16to24-v1-outcome-v1.md). 10/18 isabet; SURPRISE yenilmeme olarak sayılır.
+- **Önemli ayrım:** 27 Ekim GitHub tarama dosyası maç sonrasında, önceden kullanıcıya sunulmuş sohbet raporundan oluşturulmuştur. 27 Ekim T-8 uyarlamaları 9–26 Ekim T-6/T-8 araştırma serisiyle aynı validasyon değildir.
+
+## SXF Sinyal Performansları — 9–27 Ekim 2026
 
 [**Genel motor isabetleri, günlük başarı oranları, ortalama SXF oranları ve grafikler**](Sinyal_Performanslari.md)
 
-**17 gün · 464 farklı seçim · 463 sonuçlanan · 1 doğrulanamayan.** Günlerin her birinde [ayrı günlük skor/performans raporu](Sinyal_Performanslari.md#6-günlük-skor-kanıtları-ve-seçime-özel-raporlar) bulunmaktadır. Orijinal araştırma sinyal dosyaları değişmemiştir. 26 Ekim gününün T-6 taraması henüz bu performansa dahil değildir.
+**19 gün · 506 farklı seçim · 505 sonuçlanan · 1 doğrulanamayan.** 9–26 Ekim T-6/T-8 tarihsel araştırma, 27 Ekim dinamik AS_OF sohbet taraması + 1 ek T-8 deneysel seçimdir. Günlük skor/performance raporlarının tamamı [genel rapora](Sinyal_Performanslari.md) bağlandı. 27 Ekim'deki 3 gölge etiketin 2'si kanonik seçimlerle çakışır ve ikinci kez sayılmaz. Orijinal araştırma sinyal dosyaları değişmemiştir.
 
 ### Kazanan / kaybeden karşılaştırması (EXPERIMENTAL)
 
