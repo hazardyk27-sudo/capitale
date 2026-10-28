@@ -99,6 +99,9 @@
 
 [**Genel motor isabetleri, günlük başarı oranları, ortalama SXF oranları ve grafikler**](Sinyal_Performanslari.md)
 
+
+**Pratik Arşiv kalite onarımı (13–15 Ekim):** [11 sinyalin T-6/T-8 denetimi, eksik veri ve tazelik uyarıları](sinyal_performanslari/SXF_PRATIK_T6_T8_KALITE_DUZELTME_2026-10-13_15_v1.md). Orijinal sonuçlar korunmuştur; T-6/T-8 doğrulanamayan 10 seçim hariç alternatif performans **328/496 (%66,13)**, 14 Ekim'deki 18 dakikalık kaydı da hariç tutan deneysel 10 dakika filtresi **328/495 (%66,26)**. T-5/T-4 verileri geriye taşınmadı.
+
 **19 gün · 506 farklı seçim · 505 sonuçlanan · 1 doğrulanamayan.** 9–26 Ekim T-6/T-8 tarihsel araştırma, 27 Ekim dinamik AS_OF sohbet taraması + 1 ek T-8 deneysel seçimdir. Günlük skor/performance raporlarının tamamı [genel rapora](Sinyal_Performanslari.md) bağlandı. 27 Ekim'deki 3 gölge etiketin 2'si kanonik seçimlerle çakışır ve ikinci kez sayılmaz. Orijinal araştırma sinyal dosyaları değişmemiştir.
 
 ### Kazanan / kaybeden karşılaştırması (EXPERIMENTAL)
