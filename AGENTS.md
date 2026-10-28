@@ -1,8 +1,8 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.15
-Last updated: 2026-10-27
+Version: 1.16
+Last updated: 2026-10-28
 
 ## 1. Purpose
 
@@ -82,7 +82,7 @@ Every department and FINAL decision is tied to an exact decision timestamp.
 
 No information that became available after that timestamp may be used to justify the decision.
 
-For SXF specifically, each match computes its own exact remaining time to kickoff. A batch MUST NOT use one shared T-6/T-5/T-4/T-3 horizon. Those labels are research/reference buckets, while the real cutoff is the match-specific `as_of_utc`.
+For SXF DAILY scans, the owner-approved default since 2026-10-28 is **per-fixture T-6 primary and T-8 fallback**: calculate `kickoff - 6h` and `kickoff - 8h` separately for each fixture; never use T-6 before it has occurred or after-the-decision snapshots. The signal `decision_as_of_utc` is its exact selected checkpoint timestamp (NOT the later `run_at_utc`). When T-6 is reached and has valid checkpoint data, evaluate T-6; use T-8 only if T-6 is not reached or T-6 market data is invalid/unavailable, NEVER to rescue a nontrigger at valid T-6. A T-6/T-8 signal remains in the daily report despite later market changes; present-state validity is a separate note. `DYNAMIC_AS_OF_V04` remains available only upon explicit request, as a distinctly labelled mode; previously frozen dynamic/research reports are not rewritten.
 
 If meaningful new information arrives later, create a new versioned run rather than mutating the historical decision.
 
@@ -136,7 +136,7 @@ Bootstrap scoring rules may be CANONICAL for operational consistency while remai
 ANALYST: **v2.0 CANONICAL — the ONE AND ONLY active new-run methodology and schema**, effective 2026-10-23 by explicit owner decision. References: `roles/analyst.md`, `methods/analyst_methodology.md`, `schemas/analyst_report.md`, `prompts/analyst_start.md`. Follow exactly the preceding Torino–Monza report with compulsory home/away detail: (1) entire same-season league opponent habitual-possession profiles HIGH >=55%, BALANCED >45% to <55%, LOW <=45%, including verified first/second half data; (2) season baseline then last THREE and ONE league matches with distinct actual score/points and underlying xG/xGA/shots graph, opponent-difficulty interpretation; (3) football-logic opponent-level/tactical matchup, with BOTH teams' all HOME and all AWAY league fixtures listed by opponent, score and stats, especially comparing home side at home vs visitor away. End with only three-factor summary/qualified football lean, not 0–100 rating or odds/probability. Earlier v1.1, v1.2, v1.3, v1.4.x analyst methodologies and score engines are SUPERSEDED/INACTIVE for all new runs; historical files and as-of decisions retained intact. Source/isolation and AS_OF principles unchanged. This is an approved operational research procedure, NOT proof of predictive accuracy or calibrated win probabilities.
 NEWS: v1.4.1 CANONICAL — whole-match news and atmosphere, numbered source-verified H# stories, seven -3..+3 market-impact columns and arithmetic totals. v1.3 research instructions SUPERSEDED. Explicit match-impact relevance filter excludes routine, non-material fan logistics/PR from H# news and scoring.
 POLY: v1.4 CANONICAL — independent public Polymarket v2 + Gamma/CLOB + Polygon bettor discovery/verification; all CAPITALE Supabase and SXF POLY sources prohibited; candidate skill thresholds uncalibrated
-SXF: v0.4.2 DRAFT — owner-approved EARLY CORE T-72/T-60/T-40/T-24 decision odds <=2.35 (2026-10-27); **EARLY_T12 RETIRED as standalone recommendation on 2026-10-28 (T-12 observation-only, historical records retained)**; V1/V2/HEAVY/SURPRISE/Over/BTTS remain unchanged; EARLY CORE v2 experimental (<2.00 odds + first share <95%) NOT deployed/approved; dynamic per-match horizon approved; live implementation verification pending
+SXF: v0.4.3 DRAFT — owner-approved EARLY CORE T-72/T-60/T-40/T-24 checkpoint decision odds <=2.35 (2026-10-27); **EARLY_T12 RETIRED** (2026-10-28); **daily scan T-6 primary / T-8 fallback now DEFAULT by owner decision (2026-10-28)**; DYNAMIC_AS_OF_V04 still available only by explicit request. V1/V2/HEAVY/SURPRISE/Over/BTTS thresholds unchanged; EARLY CORE v2, OVER_STRONG and EKOL 3 shadow experiments NOT canonical; live runtime implementation verification pending.
 FINAL: v0.2 DRAFT — synthesis architecture approved; numerical calibration pending
 ENGINEER: active governance/implementation role
 
