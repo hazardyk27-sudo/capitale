@@ -1,7 +1,7 @@
 # CAPITALE SXF Archive — GitHub-only Methodology
 
 Status: ARCHITECTURE APPROVED / IMPLEMENTATION PARTIAL
-Version: 1.0
+Version: 1.1
 Approved by owner: 2026-10-21
 
 ## Mission
@@ -25,8 +25,9 @@ All artifacts are keyed to **fixture kickoff local calendar date in Europe/Istan
 ## Freeze / as-of / mode discipline
 
 - Scan `as_of_utc` is frozen before outcomes; each fixture stores exact kickoff and hours to kickoff, and latest eligible snapshot <= the specific decision cutoff.
-- `DYNAMIC_AS_OF_V04`: apply live canonical research design with a common real analysis clock but **each match's exact T-minus duration**, and only information known then.
-- `CHECKPOINT_RESEARCH_T6_FALLBACK_T8`: explicit historical user-requested comparison mode, using documented eligible T-6 / T-8 observations. NEVER label it a full v0.4 dynamic live run.
+- `CHECKPOINT_DAILY_T6_FALLBACK_T8` (**DEFAULT for all new daily SXF scans since owner instruction 2026-10-28**): each match/market uses its own T-6 decision target if reached and source data eligible, otherwise its T-8 target if reached and valid. No T-8 rescues a valid T-6 nontrigger. Preserve triggered T-6/T-8 signals even after later market changes; optionally add a separate current-state note. Distinguish `run_at_utc`, `decision_as_of_utc` (checkpoint target), source time, lag and fallback reason. No later-than-target source row.
+- `DYNAMIC_AS_OF_V04`: old exact-current-time design; run ONLY upon explicit owner request, not the normal daily default. Each match uses its own exact remaining time; do not confuse with checkpoint daily mode.
+- `CHECKPOINT_RESEARCH_T6_FALLBACK_T8`: retrospective historical comparison mode with explicit provenance, not an originally published frozen pre-match scan.
 - Record `mode`, `methodology_version`, `ruleset_version`, `run_id`, `scan_id`, input source, coverage, prompt/version and SHA-256 per object.
 - Publication eligibility has user global odds floor **1.30**, distinct from specific engine ranges (V1 1.40–2.50, etc.). Keep excluded raw engine triggers in audit flags. Never infer executable odds from SXF odds. Later bookmaker odds are evaluation scenarios, not retrospective original signals.
 - An approved separate EXPERIMENTAL SURPRISE HOLD comparison may be kept, but cannot be silently promoted to SXF v0.4 core.
