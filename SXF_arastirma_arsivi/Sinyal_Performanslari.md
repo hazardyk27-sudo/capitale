@@ -6,6 +6,22 @@
 
 **Toplam:** **19 gün · 506 farklı piyasa seçimi · 505 sonuçlanan · 1 doğrulanamayan · 454 günlük toplam sinyalli maç kaydı.** 506 seçimden 505'i kanonik ana SXF taramalarından, 1'i yalnızca T-8 EKOL 3'ten gelen Frankfurt seçimidir; diğer iki gölge seçim tekrar sayılmaz. **903 kanonik motor etiketi**, ayrıca 3 gölge etiketi.
 
+## Veri kalitesi düzeltmesi — Pratik Arşiv (13–15 Ekim)
+
+**[11 şüpheli seçimin 34 noktalık Pratik Arşiv denetimi ve kalite filtreli motor tabloları](sinyal_performanslari/SXF_PRATIK_T6_T8_KALITE_DUZELTME_2026-10-13_15_v1.md)** · [JSON kanıtı](sinyal_performanslari/SXF_PRATIK_T6_T8_KALITE_DUZELTME_2026-10-13_15_v1.json)
+
+- **13 Ekim: 9** eski veriyle oluşturulmuş seçimde T-6 ve T-8 ilgili piyasa checkpoint'i **MISSING** (kaynak gecikmesi yaklaşık 13–16 saat).
+- **14 Ekim: 1** SURPRISE seçimi T-6'da mevcut ancak kaynak **18,13 dakika** eski; resmî 10 dakika sınırı olmadığı için uyarı ayrı tutuldu.
+- **15 Ekim: 1** şüpheli, sonucun da doğrulanamadığı maç T-6 ve T-8 için **MISSING** (kaynak yaklaşık 4,4 gün eski).
+
+| Dönem hesabı | Seçim | FT | Başarılı | Genel karışık isabet |
+|---|---:|---:|---:|---:|
+| Orijinal, değiştirilmedi | 506 | 505 | 331 | %65,54 |
+| T-6/T-8 kaynağı olmayan 10 seçim ayrıldı | 496 | 496 | 328 | %66,13 |
+| 10 dakika **deneysel** sıkı tazelik senaryosu | 495 | 495 | 328 | %66,26 |
+
+**Bu filtre kazanma olasılığı veya geçmiş kararı yeniden yazmak değildir.** Genel oran içinde SURPRISE (yenilmeme) ile doğrudan bahisler birleşik gösterildiği için tek bir bahis türünün başarı oranı diye kullanılmaz. Arşivde daha sonraki T-5/T-4 verisi bulunması, eksik tarihsel T-6'yı geriye dönük onarmaz. **Kanonik motorların 9–27 Ekim özgün istatistikleri aşağıda olduğu gibi korunmuştur.**
+
 ## 1. Genel motor başarıları
 
 | Motor | Sinyal | Sonuçlanan | Başarılı | Başarı % | Ortalama SXF oranı |
