@@ -1,7 +1,7 @@
 # CAPITALE SXF Daily Archive Schema
 
 Status: APPROVED STRUCTURAL DRAFT (collector not yet operational)
-Version: 1.0
+Version: 1.1
 Timezone: Europe/Istanbul (fixtures grouped by local kickoff date)
 Primary identity: fixture_uid + kickoff_utc, plus run_id and selection_id for report rows.
 
@@ -40,7 +40,8 @@ One record per unique `fixture_uid + market + selection + scan_id`; multiple eng
   "publication_state": "PUBLISHED_FROZEN|RECONSTRUCTED|DRAFT",
   "match_date_tr": "2026-10-20",
   "as_of_utc": "<ISO timestamp>",
-  "mode": "DYNAMIC_AS_OF_V04|CHECKPOINT_RESEARCH_T6_FALLBACK_T8",
+  "mode": "CHECKPOINT_DAILY_T6_FALLBACK_T8|DYNAMIC_AS_OF_V04|CHECKPOINT_RESEARCH_T6_FALLBACK_T8",
+  "run_at_utc": "<ISO timestamp>",
   "methodology_version": "sxf-draft-0.4",
   "prompt_version": "sxf-archive-scan-v1.0",
   "fixture_coverage": {"total": null, "with_snapshots": null, "without_signals": null},
@@ -62,7 +63,12 @@ One record per unique `fixture_uid + market + selection + scan_id`; multiple eng
       "source_snapshot_at_utc": "<ISO timestamp>",
       "decision_as_of_utc": "<ISO timestamp>",
       "hours_to_kickoff": null,
-      "reference_checkpoint": "T-6|null",
+      "reference_checkpoint": "T-6|T-8|null",
+      "checkpoint_used": "T-6|T-8|null",
+      "checkpoint_target_at_utc": "<ISO timestamp|null>",
+      "fallback_reason": "T6_NOT_REACHED|T6_MARKET_MISSING|T6_INVALID|null",
+      "source_lag_minutes": null,
+      "current_market_state_separate": "TRIGGERED|NO_LONGER_TRIGGERED|NOT_CHECKED|null",
       "passes_global_min_odds_1_30": true,
       "published": true,
       "quality_flags": [],
@@ -74,6 +80,8 @@ One record per unique `fixture_uid + market + selection + scan_id`; multiple eng
   "scan_document_hash_sha256": "<SHA-256 after serialization>"
 }
 ```
+
+**Default daily scan mode from 2026-10-28:** `CHECKPOINT_DAILY_T6_FALLBACK_T8`, per fixture/market: use valid T-6 if reached; otherwise valid T-8. T-8 must not be chosen just because an available valid T-6 yielded no signal. The choice's `decision_as_of_utc` is its checkpoint TARGET, distinct from later `run_at_utc`; source timestamp is latest eligible <= that checkpoint. Signals retain their original checkpoint status when the current market has moved. If not reached/valid use explicit missing/pending coverage; only explicitly requested dynamic mode uses run-time decision. Older archives remain immutable.
 
 `source_snapshot_hashes` may be empty only if explained in `quality_flags`; do not invent hash values or times. Separate (1) original SXF odds, (2) actual executable bookmaker odds, (3) hypothetical -7% odds.
 
