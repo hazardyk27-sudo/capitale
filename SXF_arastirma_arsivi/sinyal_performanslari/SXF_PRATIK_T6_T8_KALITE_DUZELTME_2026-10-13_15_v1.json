@@ -1,0 +1,726 @@
+{
+  "schema_version": "SXF_PRATIK_T6_T8_QUALITY_AUDIT_V1",
+  "scope": "9-27 October 2026 consolidated report; quality exceptions concentrated on 13-15 October",
+  "provenance": "Read-only GitHub 34-checkpoint pratik archive compared by exact fixture_uid to frozen retrospective scan. The original scan results and original outcome files are preserved.",
+  "criteria": {
+    "canonical_engine_changes": "NONE",
+    "permissive_filter": "Exclude only choices whose own T6 and T8 checkpoint markets are MISSING; 10 selections. This does not establish that every other historical event had complete upstream capture.",
+    "strict_sensitivity": "In addition exclude T6 observation lag >10 minutes, including 14 October 18.13-min SURPRISE. 10-min cutoff is an explicitly labeled diagnostic hypothesis, NOT approved canonical SXF global rule.",
+    "outcome_contamination": "No outcome was used to decide which choices were excluded; only fixture identity, source lag and pratik market checkpoint status.",
+    "future_data": "T5 / T4 or later checkpoint values may NOT substitute a historical T6/T8 decision."
+  },
+  "sources": {
+    "research_report": "SXF_arastirma_arsivi/sinyal_performanslari/Sinyal_Performanslari.json",
+    "original_scans": [
+      "SXF_arastirma_arsivi/2026/10/13/sxf-research-2026-10-13-t6-fallback-t8-16to24-v1.json",
+      "SXF_arastirma_arsivi/2026/10/14/sxf-research-2026-10-14-t6-fallback-t8-16to24-v1.json",
+      "SXF_arastirma_arsivi/2026/10/15/sxf-research-2026-10-15-t6-fallback-t8-16to24-v1.json"
+    ],
+    "pratik_archive": [
+      {
+        "date": "2026-10-13",
+        "manifest_path": "archive/2026/10/13/05_pratik_arsiv/manifest.json",
+        "checkpoint_path": "archive/2026/10/13/05_pratik_arsiv/checkpoints.jsonl.gz",
+        "manifest_sha256_uncompressed": "581d571fd26372f6330ba8e2cd97507c0ee0dab44deff5ba4313ac46343b1b5c"
+      },
+      {
+        "date": "2026-10-14",
+        "manifest_path": "archive/2026/10/14/05_pratik_arsiv/manifest.json",
+        "checkpoint_path": "archive/2026/10/14/05_pratik_arsiv/checkpoints.jsonl.gz",
+        "manifest_sha256_uncompressed": "8165774e1e2f158468458d2ab0e225be2ab21a6a0d46fbf9237488073f72361e"
+      },
+      {
+        "date": "2026-10-15",
+        "manifest_path": "archive/2026/10/15/05_pratik_arsiv/manifest.json",
+        "checkpoint_path": "archive/2026/10/15/05_pratik_arsiv/checkpoints.jsonl.gz",
+        "manifest_sha256_uncompressed": "2dd3aa79b12e1f71ae29932a153cce4d2f385eb7497db04d95468f147dfcc49b"
+      }
+    ]
+  },
+  "pratik_fixtures_by_day": {
+    "2026-10-13": 192,
+    "2026-10-14": 152,
+    "2026-10-15": 160
+  },
+  "original_global_summary": {
+    "signals": 506,
+    "settled": 505,
+    "wins": 331,
+    "unverified": 1
+  },
+  "quality_adjusted_no_checkpoint_filter": {
+    "summary": {
+      "signals": 496,
+      "settled": 496,
+      "wins": 328,
+      "losses": 168,
+      "unverified": 0,
+      "rate_pct": 66.13,
+      "excluded": 10
+    },
+    "engine_totals": {
+      "EARLY_CORE": {
+        "signals": 87,
+        "settled": 87,
+        "hits": 61,
+        "misses": 26,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 154.98,
+        "odds_settled_sum": 154.98,
+        "hit_pct": 70.11,
+        "avg_odds_settled": 1.781,
+        "avg_odds_all": 1.781
+      },
+      "EARLY_T12": {
+        "signals": 170,
+        "settled": 170,
+        "hits": 111,
+        "misses": 59,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 300.31,
+        "odds_settled_sum": 300.31,
+        "hit_pct": 65.29,
+        "avg_odds_settled": 1.767,
+        "avg_odds_all": 1.767
+      },
+      "V1": {
+        "signals": 191,
+        "settled": 191,
+        "hits": 122,
+        "misses": 69,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 335.96,
+        "odds_settled_sum": 335.96,
+        "hit_pct": 63.87,
+        "avg_odds_settled": 1.759,
+        "avg_odds_all": 1.759
+      },
+      "V2": {
+        "signals": 149,
+        "settled": 149,
+        "hits": 93,
+        "misses": 56,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 259.99,
+        "odds_settled_sum": 259.99,
+        "hit_pct": 62.42,
+        "avg_odds_settled": 1.745,
+        "avg_odds_all": 1.745
+      },
+      "HEAVY": {
+        "signals": 68,
+        "settled": 68,
+        "hits": 49,
+        "misses": 19,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 118.5,
+        "odds_settled_sum": 118.5,
+        "hit_pct": 72.06,
+        "avg_odds_settled": 1.743,
+        "avg_odds_all": 1.743
+      },
+      "STABLE_OVER_2_5": {
+        "signals": 35,
+        "settled": 35,
+        "hits": 25,
+        "misses": 10,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 56.13,
+        "odds_settled_sum": 56.13,
+        "hit_pct": 71.43,
+        "avg_odds_settled": 1.604,
+        "avg_odds_all": 1.604
+      },
+      "PREMIUM_OVER_2_5": {
+        "signals": 35,
+        "settled": 35,
+        "hits": 26,
+        "misses": 9,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 55.49,
+        "odds_settled_sum": 55.49,
+        "hit_pct": 74.29,
+        "avg_odds_settled": 1.585,
+        "avg_odds_all": 1.585
+      },
+      "BTTS_YES": {
+        "signals": 46,
+        "settled": 46,
+        "hits": 32,
+        "misses": 14,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 79.86,
+        "odds_settled_sum": 79.86,
+        "hit_pct": 69.57,
+        "avg_odds_settled": 1.736,
+        "avg_odds_all": 1.736
+      },
+      "SURPRISE_TEAM": {
+        "signals": 107,
+        "settled": 107,
+        "hits": 63,
+        "misses": 44,
+        "draw_nonloss": 37,
+        "outright_side_wins": 26,
+        "odds_all_sum": 357.52,
+        "odds_settled_sum": 357.52,
+        "hit_pct": 58.88,
+        "avg_odds_settled": 3.341,
+        "avg_odds_all": 3.341
+      }
+    },
+    "market_totals": {
+      "1X2": {
+        "signals": 273,
+        "settled": 273,
+        "hits": 182,
+        "misses": 91,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 487.35,
+        "odds_settled_sum": 487.35,
+        "hit_pct": 66.67,
+        "avg_odds_settled": 1.785,
+        "avg_odds_all": 1.785
+      },
+      "OVER_2_5": {
+        "signals": 70,
+        "settled": 70,
+        "hits": 51,
+        "misses": 19,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 111.62,
+        "odds_settled_sum": 111.62,
+        "hit_pct": 72.86,
+        "avg_odds_settled": 1.595,
+        "avg_odds_all": 1.595
+      },
+      "BTTS": {
+        "signals": 46,
+        "settled": 46,
+        "hits": 32,
+        "misses": 14,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 79.86,
+        "odds_settled_sum": 79.86,
+        "hit_pct": 69.57,
+        "avg_odds_settled": 1.736,
+        "avg_odds_all": 1.736
+      },
+      "SURPRISE_NONLOSS_RISK": {
+        "signals": 107,
+        "settled": 107,
+        "hits": 63,
+        "misses": 44,
+        "draw_nonloss": 37,
+        "outright_side_wins": 26,
+        "odds_all_sum": 357.52,
+        "odds_settled_sum": 357.52,
+        "hit_pct": 58.88,
+        "avg_odds_settled": 3.341,
+        "avg_odds_all": 3.341
+      }
+    }
+  },
+  "quality_adjusted_strict_10_min_sensitivity": {
+    "summary": {
+      "signals": 495,
+      "settled": 495,
+      "wins": 328,
+      "losses": 167,
+      "unverified": 0,
+      "rate_pct": 66.26,
+      "excluded": 11
+    },
+    "engine_totals": {
+      "EARLY_CORE": {
+        "signals": 87,
+        "settled": 87,
+        "hits": 61,
+        "misses": 26,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 154.98,
+        "odds_settled_sum": 154.98,
+        "hit_pct": 70.11,
+        "avg_odds_settled": 1.781,
+        "avg_odds_all": 1.781
+      },
+      "EARLY_T12": {
+        "signals": 170,
+        "settled": 170,
+        "hits": 111,
+        "misses": 59,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 300.31,
+        "odds_settled_sum": 300.31,
+        "hit_pct": 65.29,
+        "avg_odds_settled": 1.767,
+        "avg_odds_all": 1.767
+      },
+      "V1": {
+        "signals": 191,
+        "settled": 191,
+        "hits": 122,
+        "misses": 69,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 335.96,
+        "odds_settled_sum": 335.96,
+        "hit_pct": 63.87,
+        "avg_odds_settled": 1.759,
+        "avg_odds_all": 1.759
+      },
+      "V2": {
+        "signals": 149,
+        "settled": 149,
+        "hits": 93,
+        "misses": 56,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 259.99,
+        "odds_settled_sum": 259.99,
+        "hit_pct": 62.42,
+        "avg_odds_settled": 1.745,
+        "avg_odds_all": 1.745
+      },
+      "HEAVY": {
+        "signals": 68,
+        "settled": 68,
+        "hits": 49,
+        "misses": 19,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 118.5,
+        "odds_settled_sum": 118.5,
+        "hit_pct": 72.06,
+        "avg_odds_settled": 1.743,
+        "avg_odds_all": 1.743
+      },
+      "STABLE_OVER_2_5": {
+        "signals": 35,
+        "settled": 35,
+        "hits": 25,
+        "misses": 10,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 56.13,
+        "odds_settled_sum": 56.13,
+        "hit_pct": 71.43,
+        "avg_odds_settled": 1.604,
+        "avg_odds_all": 1.604
+      },
+      "PREMIUM_OVER_2_5": {
+        "signals": 35,
+        "settled": 35,
+        "hits": 26,
+        "misses": 9,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 55.49,
+        "odds_settled_sum": 55.49,
+        "hit_pct": 74.29,
+        "avg_odds_settled": 1.585,
+        "avg_odds_all": 1.585
+      },
+      "BTTS_YES": {
+        "signals": 46,
+        "settled": 46,
+        "hits": 32,
+        "misses": 14,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 79.86,
+        "odds_settled_sum": 79.86,
+        "hit_pct": 69.57,
+        "avg_odds_settled": 1.736,
+        "avg_odds_all": 1.736
+      },
+      "SURPRISE_TEAM": {
+        "signals": 106,
+        "settled": 106,
+        "hits": 63,
+        "misses": 43,
+        "draw_nonloss": 37,
+        "outright_side_wins": 26,
+        "odds_all_sum": 354.58,
+        "odds_settled_sum": 354.58,
+        "hit_pct": 59.43,
+        "avg_odds_settled": 3.345,
+        "avg_odds_all": 3.345
+      }
+    },
+    "market_totals": {
+      "1X2": {
+        "signals": 273,
+        "settled": 273,
+        "hits": 182,
+        "misses": 91,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 487.35,
+        "odds_settled_sum": 487.35,
+        "hit_pct": 66.67,
+        "avg_odds_settled": 1.785,
+        "avg_odds_all": 1.785
+      },
+      "OVER_2_5": {
+        "signals": 70,
+        "settled": 70,
+        "hits": 51,
+        "misses": 19,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 111.62,
+        "odds_settled_sum": 111.62,
+        "hit_pct": 72.86,
+        "avg_odds_settled": 1.595,
+        "avg_odds_all": 1.595
+      },
+      "BTTS": {
+        "signals": 46,
+        "settled": 46,
+        "hits": 32,
+        "misses": 14,
+        "draw_nonloss": 0,
+        "outright_side_wins": 0,
+        "odds_all_sum": 79.86,
+        "odds_settled_sum": 79.86,
+        "hit_pct": 69.57,
+        "avg_odds_settled": 1.736,
+        "avg_odds_all": 1.736
+      },
+      "SURPRISE_NONLOSS_RISK": {
+        "signals": 106,
+        "settled": 106,
+        "hits": 63,
+        "misses": 43,
+        "draw_nonloss": 37,
+        "outright_side_wins": 26,
+        "odds_all_sum": 354.58,
+        "odds_settled_sum": 354.58,
+        "hit_pct": 59.43,
+        "avg_odds_settled": 3.345,
+        "avg_odds_all": 3.345
+      }
+    }
+  },
+  "findings": {
+    "candidate_records": 11,
+    "missing_t6_and_t8": 10,
+    "present_t6_18_min_stale": 1,
+    "unverified_fixture_identity_15_oct": 1
+  },
+  "flags": [
+    {
+      "date": "2026-10-13",
+      "selection_id": "sxf-research-2026-10-13-t6-fallback-t8-16to24-v1-s001",
+      "fixture_uid": "3cd0ede3-dc36-4573-8237-3b66f8e92438",
+      "home": "Poland (W)",
+      "away": "Belgium (W)",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "1",
+      "selection": "Poland (W)",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "original_decision_sxf_odds": 3.25,
+      "original_source_at_utc": "2026-10-12T20:58:15Z",
+      "decision_t6_asof_utc": "2026-10-13T10:00:00.000Z",
+      "original_source_lag_minutes": 781.75,
+      "original_grade": "NONLOSS_WIN",
+      "score_90m": "2-1",
+      "pratik_checkpoint_status": {
+        "T8": "MISSING",
+        "T6": "MISSING"
+      },
+      "qa_class": "UNVERIFIABLE_T6_T8_NO_CHECKPOINT",
+      "exclusion_from_strict_10m": true,
+      "exclusion_from_missing_checkpoint_filter": true
+    },
+    {
+      "date": "2026-10-13",
+      "selection_id": "sxf-research-2026-10-13-t6-fallback-t8-16to24-v1-s002",
+      "fixture_uid": "e4d7aa1e-36c9-41ca-843a-b0c737efe4ee",
+      "home": "FC Sabah",
+      "away": "Slavia Prague",
+      "market": "1X2",
+      "side": "2",
+      "selection": "Slavia Prague",
+      "engine_tags": [
+        "EARLY_CORE"
+      ],
+      "original_decision_sxf_odds": 2.12,
+      "original_source_at_utc": "2026-10-12T20:58:15Z",
+      "decision_t6_asof_utc": "2026-10-13T10:45:00.000Z",
+      "original_source_lag_minutes": 826.75,
+      "original_grade": "LOSS",
+      "score_90m": "2-0",
+      "pratik_checkpoint_status": {
+        "T8": "MISSING",
+        "T6": "MISSING"
+      },
+      "qa_class": "UNVERIFIABLE_T6_T8_NO_CHECKPOINT",
+      "exclusion_from_strict_10m": true,
+      "exclusion_from_missing_checkpoint_filter": true
+    },
+    {
+      "date": "2026-10-13",
+      "selection_id": "sxf-research-2026-10-13-t6-fallback-t8-16to24-v1-s003",
+      "fixture_uid": "b69cabec-d582-4eed-a6bf-060a97d523f4",
+      "home": "Petrojet",
+      "away": "Wadi Degla",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "1",
+      "selection": "Petrojet",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "original_decision_sxf_odds": 3.4,
+      "original_source_at_utc": "2026-10-12T20:58:15Z",
+      "decision_t6_asof_utc": "2026-10-13T11:00:00.000Z",
+      "original_source_lag_minutes": 841.75,
+      "original_grade": "NONLOSS_DRAW",
+      "score_90m": "2-2",
+      "pratik_checkpoint_status": {
+        "T8": "MISSING",
+        "T6": "MISSING"
+      },
+      "qa_class": "UNVERIFIABLE_T6_T8_NO_CHECKPOINT",
+      "exclusion_from_strict_10m": true,
+      "exclusion_from_missing_checkpoint_filter": true
+    },
+    {
+      "date": "2026-10-13",
+      "selection_id": "sxf-research-2026-10-13-t6-fallback-t8-16to24-v1-s004",
+      "fixture_uid": "149a3214-220e-4684-b234-6e3c68eb3b1e",
+      "home": "Walsall",
+      "away": "Fulham U21",
+      "market": "1X2",
+      "side": "2",
+      "selection": "Fulham U21",
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "original_decision_sxf_odds": 3.75,
+      "original_source_at_utc": "2026-10-12T20:58:15Z",
+      "decision_t6_asof_utc": "2026-10-13T12:00:00.000Z",
+      "original_source_lag_minutes": 901.75,
+      "original_grade": "LOSS",
+      "score_90m": "3-2",
+      "pratik_checkpoint_status": {
+        "T8": "MISSING",
+        "T6": "MISSING"
+      },
+      "qa_class": "UNVERIFIABLE_T6_T8_NO_CHECKPOINT",
+      "exclusion_from_strict_10m": true,
+      "exclusion_from_missing_checkpoint_filter": true
+    },
+    {
+      "date": "2026-10-13",
+      "selection_id": "sxf-research-2026-10-13-t6-fallback-t8-16to24-v1-s005",
+      "fixture_uid": "149a3214-220e-4684-b234-6e3c68eb3b1e",
+      "home": "Walsall",
+      "away": "Fulham U21",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "2",
+      "selection": "Fulham U21",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "original_decision_sxf_odds": 3.75,
+      "original_source_at_utc": "2026-10-12T20:58:15Z",
+      "decision_t6_asof_utc": "2026-10-13T12:00:00.000Z",
+      "original_source_lag_minutes": 901.75,
+      "original_grade": "LOSS",
+      "score_90m": "3-2",
+      "pratik_checkpoint_status": {
+        "T8": "MISSING",
+        "T6": "MISSING"
+      },
+      "qa_class": "UNVERIFIABLE_T6_T8_NO_CHECKPOINT",
+      "exclusion_from_strict_10m": true,
+      "exclusion_from_missing_checkpoint_filter": true
+    },
+    {
+      "date": "2026-10-13",
+      "selection_id": "sxf-research-2026-10-13-t6-fallback-t8-16to24-v1-s006",
+      "fixture_uid": "e5bb0339-4e33-4593-9c6e-9c9752a6883b",
+      "home": "Bristol City",
+      "away": "Blackburn",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Bristol City",
+      "engine_tags": [
+        "EARLY_CORE",
+        "EARLY_T12",
+        "V1",
+        "HEAVY"
+      ],
+      "original_decision_sxf_odds": 2.18,
+      "original_source_at_utc": "2026-10-12T20:58:15Z",
+      "decision_t6_asof_utc": "2026-10-13T12:45:00.000Z",
+      "original_source_lag_minutes": 946.75,
+      "original_grade": "LOSS",
+      "score_90m": "0-1",
+      "pratik_checkpoint_status": {
+        "T8": "MISSING",
+        "T6": "MISSING"
+      },
+      "qa_class": "UNVERIFIABLE_T6_T8_NO_CHECKPOINT",
+      "exclusion_from_strict_10m": true,
+      "exclusion_from_missing_checkpoint_filter": true
+    },
+    {
+      "date": "2026-10-13",
+      "selection_id": "sxf-research-2026-10-13-t6-fallback-t8-16to24-v1-s007",
+      "fixture_uid": "a59501c9-3689-468e-9cd0-8f807f505278",
+      "home": "Burnley",
+      "away": "Charlton",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Burnley",
+      "engine_tags": [
+        "EARLY_T12",
+        "V1"
+      ],
+      "original_decision_sxf_odds": 1.69,
+      "original_source_at_utc": "2026-10-12T20:58:15Z",
+      "decision_t6_asof_utc": "2026-10-13T12:45:00.000Z",
+      "original_source_lag_minutes": 946.75,
+      "original_grade": "LOSS",
+      "score_90m": "2-2",
+      "pratik_checkpoint_status": {
+        "T8": "MISSING",
+        "T6": "MISSING"
+      },
+      "qa_class": "UNVERIFIABLE_T6_T8_NO_CHECKPOINT",
+      "exclusion_from_strict_10m": true,
+      "exclusion_from_missing_checkpoint_filter": true
+    },
+    {
+      "date": "2026-10-13",
+      "selection_id": "sxf-research-2026-10-13-t6-fallback-t8-16to24-v1-s008",
+      "fixture_uid": "bd3507eb-c8e4-4485-8ad0-cd8f41315e01",
+      "home": "Millwall",
+      "away": "Swansea",
+      "market": "1X2",
+      "side": "1",
+      "selection": "Millwall",
+      "engine_tags": [
+        "EARLY_T12"
+      ],
+      "original_decision_sxf_odds": 2.54,
+      "original_source_at_utc": "2026-10-12T20:58:15Z",
+      "decision_t6_asof_utc": "2026-10-13T12:45:00.000Z",
+      "original_source_lag_minutes": 946.75,
+      "original_grade": "LOSS",
+      "score_90m": "0-1",
+      "pratik_checkpoint_status": {
+        "T8": "MISSING",
+        "T6": "MISSING"
+      },
+      "qa_class": "UNVERIFIABLE_T6_T8_NO_CHECKPOINT",
+      "exclusion_from_strict_10m": true,
+      "exclusion_from_missing_checkpoint_filter": true
+    },
+    {
+      "date": "2026-10-13",
+      "selection_id": "sxf-research-2026-10-13-t6-fallback-t8-16to24-v1-s009",
+      "fixture_uid": "db6495fc-0e20-45be-8377-d4d0071afca0",
+      "home": "Wrexham",
+      "away": "West Brom",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "2",
+      "selection": "West Brom",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "original_decision_sxf_odds": 3.4,
+      "original_source_at_utc": "2026-10-12T20:58:15Z",
+      "decision_t6_asof_utc": "2026-10-13T12:45:00.000Z",
+      "original_source_lag_minutes": 946.75,
+      "original_grade": "NONLOSS_WIN",
+      "score_90m": "1-2",
+      "pratik_checkpoint_status": {
+        "T8": "MISSING",
+        "T6": "MISSING"
+      },
+      "qa_class": "UNVERIFIABLE_T6_T8_NO_CHECKPOINT",
+      "exclusion_from_strict_10m": true,
+      "exclusion_from_missing_checkpoint_filter": true
+    },
+    {
+      "date": "2026-10-14",
+      "selection_id": "sxf-research-2026-10-14-t6-fallback-t8-16to24-v1-s022",
+      "fixture_uid": "932788d1-3447-4ed3-ad52-fc12ac01b8fe",
+      "home": "Atletico el Vigia",
+      "away": "Zamora FC",
+      "market": "SURPRISE_NONLOSS_RISK",
+      "side": "1",
+      "selection": "Atletico el Vigia",
+      "engine_tags": [
+        "SURPRISE_TEAM"
+      ],
+      "original_decision_sxf_odds": 2.94,
+      "original_source_at_utc": "2026-10-14T13:11:52Z",
+      "decision_t6_asof_utc": "2026-10-14T13:30:00.000Z",
+      "original_source_lag_minutes": 18.13,
+      "original_grade": "LOSS",
+      "score_90m": "1-3",
+      "pratik_checkpoint_status": {
+        "T8": "PRESENT_3_77_MIN",
+        "T6": "PRESENT_18_13_MIN"
+      },
+      "qa_class": "FRESHNESS_WARNING_T6_18M",
+      "exclusion_from_strict_10m": true,
+      "exclusion_from_missing_checkpoint_filter": false
+    },
+    {
+      "date": "2026-10-15",
+      "selection_id": "sxf-research-2026-10-15-t6-fallback-t8-16to24-v1-s001",
+      "fixture_uid": "d36503e7-1e65-4f70-a887-4322607207eb",
+      "home": "Sportivo Luqueno",
+      "away": "Cerro Porteno",
+      "market": "1X2",
+      "side": "2",
+      "selection": "Cerro Porteno",
+      "engine_tags": [
+        "EARLY_T12",
+        "V1"
+      ],
+      "original_decision_sxf_odds": 1.94,
+      "original_source_at_utc": "2026-10-10T22:19:47Z",
+      "decision_t6_asof_utc": "2026-10-15T09:00:00.000Z",
+      "original_source_lag_minutes": 6400.22,
+      "original_grade": "UNVERIFIED",
+      "score_90m": null,
+      "pratik_checkpoint_status": {
+        "T8": "MISSING",
+        "T6": "MISSING"
+      },
+      "qa_class": "UNVERIFIABLE_T6_T8_NO_CHECKPOINT",
+      "exclusion_from_strict_10m": true,
+      "exclusion_from_missing_checkpoint_filter": true
+    }
+  ],
+  "limitations": [
+    "For 10 choices, Pratik Archive has no T6/T8 observation. No compliant historical re-generation at the same decision horizon can be made. Even when T5/T4 is present, using it would introduce later data.",
+    "The 14 Oct 18m observation is the actual latest Pratik Archive T6 checkpoint. The fact it is older than 10 minutes does NOT automatically violate the general v0.4 engine methodology.",
+    "Earlier original scan reports were historical reconstructions, not genuine live pre-match GitHub freeze.",
+    "Pratik Archive manifest status for Oct13, Oct14, Oct15 is PARTIAL. Passing the QC filter does not attest full upstream capture.",
+    "October 27 DYNAMIC_AS_OF is a different decision-time cohort and contributes one experimental-only selection to the original mixed period.",
+    "The quality-adjusted alternative is an audit and sensitivity analysis, not an overwrite or claim of prospective predictive performance."
+  ]
+}
