@@ -1,7 +1,7 @@
 # CAPITALE — Milestone Log
 
 Status: CANONICAL PROJECT HISTORY
-Last updated: 2026-10-27
+Last updated: 2026-10-28
 
 This file records active state, decisions, superseded rules, technical debt, and next work. Historical decisions are never deleted; replaced rules are marked SUPERSEDED.
 
@@ -694,3 +694,13 @@ Source of research: `SXF_arastirma_arsivi/sinyal_performanslari/EARLY_CORE_235_K
 **Rationale:** Retrospective 9–26 Oct EARLY_T12: 106 wins / 166 settled signals = 63.86%, including 1 unresolved historical signal; without HEAVY 64/108 = 59.26%, with HEAVY 42/58 = 72.41%; overlap is not independent confirmation. Source: `SXF_arastirma_arsivi/sinyal_performanslari/EARLY_T12_PERFORMANCE_2026-10-09_26_RESEARCH_v1.md`. These are historical descriptive rates, not predictive guarantees.
 
 **Scope / runtime truth:** `roles/sxf.md`, `methods/sxf_methodology.md`, `AGENTS.md` updated. This is a repository methodology/rulebook decision, **NOT proof that executable code, GitHub Actions, Supabase configuration, Telegram delivery or a running live deployment has been disabled**. Runtime changes and smoke-test are a separate task. Historic outputs are untouched.
+
+---
+
+## 2026-10-28 — Owner selects DAILY T-6 primary, T-8 fallback as the SXF default (v0.4.3 docs)
+
+The owner explicitly corrects the earlier assistant's omitted Parma–Udinese BTTS YES signal: **all routine daily SXF scans must use each fixture/market's T-6 decision point if formed and valid; only if T-6 is not yet reached or is missing/invalid, fall back to T-8 if already reached and valid.** The 2026-10-28 20:30 TSİ Parma–Udinese BTTS YES T-6 observation at 14:27 TSİ: SXF 1.84, share 62.4%, money £1,996.3, qualifying despite current share later dropping to 51.4% at 16:00. The assistant's previously shown live-current-only omission was wrong.
+
+Operational semantics: per-fixture target T-6 = kickoff minus 6h, T-8 = kickoff minus 8h (never one shared batch clock); distinct `run_at_utc` vs `decision_as_of_utc`; strictly <= checkpoint-source timestamps and correct source freshness; preserve checkpoint signals independently of later market changes, with optional later-state note. **A valid T-6 that did not trigger does NOT permit a switch to T-8 merely to obtain a positive signal.** No data at either point produces an explicit pending/missing case. The global odds floor >=1.30 and underlying engine rules are unchanged. EARLY_T12 remains retired; EARLY CORE v2 / EKOL 3 / OVER_STRONG stay shadow. Old pre-match and retrospective archive outputs remain untouched.
+
+New default mode: `CHECKPOINT_DAILY_T6_FALLBACK_T8`. Former `DYNAMIC_AS_OF_V04` remains available by **explicit user request only**. `CHECKPOINT_RESEARCH_T6_FALLBACK_T8` describes retrospectively reconstructed historical cohorts and must remain provenance-distinct from the daily pre-match scan. Updated: `AGENTS.md` 1.16, `roles/sxf.md` 0.4.3, `methods/sxf_methodology.md` 0.4.3, `schemas/sxf_report.md` 0.4.3, `prompts/sxf_archive_scan.md` 1.1.0, `methods/sxf_archive_methodology.md` 1.1 and `schemas/sxf_archive_schema.md` 1.1. **Only repository documents/schema were updated; production/SXF dashboard alert runner, Supabase configuration, or deployed bots were not verified/modified.**
