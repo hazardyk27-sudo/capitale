@@ -1,7 +1,7 @@
 # SXF Role
 
 Status: DRAFT
-Version: 0.4.2
+Version: 0.4.3
 
 ## Mission
 
@@ -18,9 +18,24 @@ SXF MUST NOT use:
 - ANALYST, NEWS, POLY, or FINAL reports;
 - any data that became available after the report timestamp.
 
-## Dynamic per-match decision-horizon rule
+## Owner-approved SXF DAILY scan policy — T-6 primary / T-8 fallback (2026-10-28)
 
-The decision horizon is calculated independently for every match from the actual analysis timestamp:
+**Default for every new daily scan request:** `CHECKPOINT_DAILY_T6_FALLBACK_T8` (user approved 2026-10-28). Calculate the two checkpoints separately for EVERY fixture: `t6_utc = kickoff_utc - 6 hours`, `t8_utc = kickoff_utc - 8 hours`. The overall scan time is `run_at_utc`, **not** the per-fixture signal decision timestamp.
+
+1. If the T-6 checkpoint has occurred by `run_at_utc` **and** has an eligible, verifiable same-fixture market snapshot at/before T-6, analyze and report T-6. **Do not also substitute T-8 simply because T-6 has no triggered signal.**
+2. If T-6 has NOT yet occurred OR its market observation is unavailable/invalid, check T-8. When T-8 occurred and its own eligible source observation exists, analyze T-8 and label it `T-8 FALLBACK` with its reason (`T6_NOT_REACHED` / `T6_MARKET_MISSING` / `T6_INVALID`). A future T-6 snapshot is forbidden.
+3. If neither point provides eligible data, report `CHECKPOINT_PENDING` or `NO_VALID_CHECKPOINT` for that fixture/market; fabricate no signal.
+4. A previously triggered checkpoint signal **must still appear** in the daily scan even if the more recent market share/odds changed and no longer meet that engine. Show present-day market state only in a clearly **separate informational field**, never silently discard or rerate the checkpoint signal.
+5. Apply all core engine price/money/share/retention/persistence conditions **as of the chosen checkpoint**, using only observations at/before that checkpoint. A market may be T-6 while another market in the same fixture requires T-8 fallback; preserve the market-specific source and timestamp. Exclude or warn on stale/incomplete data according to documented data-quality conditions, not an invented global 10-minute limit.
+6. Each displayed selection carries `checkpoint_used`, `checkpoint_target_at_utc` (= `decision_as_of_utc`), `source_snapshot_at_utc`, `source_lag_minutes`, `fallback_reason`, `run_at_utc` and actual hours-to-kickoff **at decision**. The same fixture/market/selection is counted once, with engine overlaps as tags.
+7. `DYNAMIC_AS_OF_V04` remains available **only if explicitly requested** and must be labelled separately; legacy dynamic reports and historical research archives are never retroactively reclassified or overwritten. `CHECKPOINT_RESEARCH_T6_FALLBACK_T8` remains a retrospective-research provenance mode and must not be confused with a newly frozen pre-match daily scan.
+8. `EARLY_T12` remains retired. EARLY CORE v2, OVER_STRONG and EKOL 3 remain experimental/shadow unless explicitly promoted; if studied at T-8, their look-back checkpoints must be causally shifted and labelled `T8_ADAPTED`, not mislabeled as the canonical T-6 research definition. Do not use any future checkpoint for a motor.
+
+**Example (Parma–Udinese, 2026-10-28 20:30 TSİ):** T-6 target 14:30 TSİ, source 14:27, BTTS YES at T-6 odds 1.84, £1,996.3, selected share 62.4% = triggered. At 16:00 TSİ share was 51.4%: this can be a separate current-state warning, NOT a reason to omit the T-6 signal.
+
+## Optional legacy DYNAMIC_AS_OF_V04 decision-horizon rule (explicit request only)
+
+**Only in explicitly requested `DYNAMIC_AS_OF_V04`:** the decision horizon is calculated independently for every match from the actual analysis timestamp:
 
 `hours_to_kickoff = kickoff_utc - as_of_utc`
 
@@ -153,7 +168,7 @@ Examples:
 
 ## Output discipline
 
-Every SXF report must show the match-specific `kickoff_utc`, `as_of_utc`, and exact `hours_to_kickoff` / horizon label used for that match.
+Every SXF report must show the match-specific `kickoff_utc`, `run_at_utc`, `decision_as_of_utc`, **T-6 or T-8 FALLBACK**, eligible snapshot time, lag and fallback reason. In explicitly requested DYNAMIC_AS_OF_V04, show the exact analysis-time horizon instead.
 
 SXF reports engine states and SmartXFlow-derived recommendations only. It does not assign FINAL A/B/C categories.
 
@@ -161,4 +176,4 @@ Observed research hit rates are research evidence only, not calibrated productio
 
 ## Governance note
 
-SXF remains DRAFT. The owner has approved the v0.4 core engine set, the 2026-10-27 EARLY CORE 2.35 ceiling (v0.4.1), **retirement of standalone EARLY_T12 for new recommendations (v0.4.2, 2026-10-28)**, and dynamic per-match horizon rule. EARLY CORE v2 (<2.00 odds + origin share <95%) remains RESEARCH ONLY, not approved/deployed; production scoring, final precedence, normalized-volume math, and confidence calibration remain open until explicitly approved and tested. Updating this document does not assert the running production engine is disabled.
+SXF remains DRAFT. The owner has approved the v0.4 core engine set, the 2026-10-27 EARLY CORE 2.35 ceiling (v0.4.1), **retirement of standalone EARLY_T12 for new recommendations (v0.4.2, 2026-10-28)**, and new daily T-6-primary/T-8-fallback default (2026-10-28), with dynamic AS_OF as explicit alternate mode. EARLY CORE v2 (<2.00 odds + origin share <95%) remains RESEARCH ONLY, not approved/deployed; production scoring, final precedence, normalized-volume math, and confidence calibration remain open until explicitly approved and tested. Updating this document does not assert the running production engine is disabled.
