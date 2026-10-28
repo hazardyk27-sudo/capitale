@@ -2922,7 +2922,8 @@
     "27 October 23 original user-visible dynamic AS_OF selections reconstructed into GitHub only after FT, plus one new EKOL3 T8-only Frankfurt signal; 24 unique market picks. This is NOT a pre-match GitHub freeze.",
     "27 Oct two other T8 shadow tag successes (Sassuolo OVER_STRONG and MK Dons EKOL3) overlap canonical 27 Oct selections: their successes are not added as extra distinct picks.",
     "SXF 9–26 Oct research T6/T8 and 27 Oct dynamic with shadow are different decision-time cohorts; aggregate hit-rate is descriptive mixed-method, NOT a homogeneous motor backtest.",
-    "The T8 adapted OVER_STRONG and EKOL3 motor win counts are kept outside canonical engine_totals in shadow_performance."
+    "The T8 adapted OVER_STRONG and EKOL3 motor win counts are kept outside canonical engine_totals in shadow_performance.",
+    "Pratik 34-checkpoint archive audit Oct13-15: 10 selections T6 and T8 MISSING; 14 Oct one SURPRISE T6 present but 18.13min stale. Original retrospective scans preserved. See quality_audit for quality-filtered supplementary stats; 10min is a sensitivity filter, not a canonical rule."
   ],
   "shadow_performance": {
     "date": "2026-10-27",
@@ -2952,5 +2953,26 @@
     },
     "overlap_with_canonical_selection_count": 2,
     "additional_unique_selection_count": 1
+  },
+  "quality_audit": {
+    "version": "SXF_PRATIK_T6_T8_QUALITY_AUDIT_V1",
+    "date_range": "2026-10-13/2026-10-15",
+    "report_path": "SXF_arastirma_arsivi/sinyal_performanslari/SXF_PRATIK_T6_T8_KALITE_DUZELTME_2026-10-13_15_v1.md",
+    "evidence_path": "SXF_arastirma_arsivi/sinyal_performanslari/SXF_PRATIK_T6_T8_KALITE_DUZELTME_2026-10-13_15_v1.json",
+    "flagged_selection_count": 11,
+    "missing_t6_t8_count": 10,
+    "warning_t6_lag18m_count": 1,
+    "unverified_original_results_among_flags": 1,
+    "summary_exclude_unverified_t6_t8": {
+      "selections": 496,
+      "settled": 496,
+      "hits": 328
+    },
+    "strict_10min_sensitivity": {
+      "selections": 495,
+      "settled": 495,
+      "hits": 328
+    },
+    "canonical_totals_unchanged": true
   }
 }
