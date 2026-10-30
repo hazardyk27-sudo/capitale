@@ -121,8 +121,9 @@ def rows_for_identities(conn, table: str, uids: list[str], hashes: list[str],
     if time_col:
         if time_col not in columns:
             raise ValueError(f"Required timestamp column missing: public.{table}.{time_col}")
+        # Source stores scraped_at as text; cast it for the bounded timestamp filter.
         clauses.append(
-            sql.SQL("r.{} >= %s AND r.{} <= %s").format(
+            sql.SQL("r.{}::timestamptz >= %s AND r.{}::timestamptz <= %s").format(
                 sql.Identifier(time_col), sql.Identifier(time_col)))
         params.extend([start, end])
     query = sql.SQL("SELECT to_jsonb(r) FROM public.{} AS r WHERE ").format(
