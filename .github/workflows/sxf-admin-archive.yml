@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     env:
-      PRATIK_ARCHIVE_DATABASE_URL: ${{ secrets.PRATIK_ARCHIVE_DATABASE_URL }}
+      PRATIK_ARCHIVE_DATABASE_URL: ${{ secrets.SXF_ARCHIVE_DATABASE_URL }}
       INPUT_DAY: ${{ inputs.day || '' }}
     steps:
       - name: Checkout archive repository
@@ -66,7 +66,7 @@ jobs:
         run: |
           set -euo pipefail
           if [[ -z "$PRATIK_ARCHIVE_DATABASE_URL" ]]; then
-            echo "::error title=PRATIK archive blocked::Configure PRATIK_ARCHIVE_DATABASE_URL as a read-only database secret."
+            echo "::error title=PRATIK archive blocked::Configure SXF_ARCHIVE_DATABASE_URL as a read-only database secret."
             exit 1
           fi
       - name: Install pinned PostgreSQL driver
