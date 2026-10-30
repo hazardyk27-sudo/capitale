@@ -80,7 +80,7 @@ jobs:
             python scripts/export_pratik_daily_archive.py \
               --day "$day" \
               --output-dir "$RUNNER_TEMP/pratik-export-$day" \
-              --archive-root .
+              --archive-root archive
           done < "$RUNNER_TEMP/pratik-days"
       - name: Commit verified daily files and index
         shell: bash
