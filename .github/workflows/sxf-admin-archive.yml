@@ -97,7 +97,7 @@ jobs:
               echo "Target exists after preflight; refusing overwrite." >&2
               exit 1
             fi
-            mkdir -p "$(dirname "$target")"
+            mkdir -p "$target"
             cp "$source_dir/checkpoints.jsonl.gz" "$source_dir/alarms.jsonl.gz" "$source_dir/manifest.json" "$target/"
             ARCHIVE_DAY="$day" python - <<'PY'
           import json
