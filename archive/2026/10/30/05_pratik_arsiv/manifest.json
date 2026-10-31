@@ -1,0 +1,99 @@
+{
+  "archive_name": "PRATİK ARŞİV",
+  "version": "v1",
+  "date": "2026-10-30",
+  "timezone": "Europe/Istanbul",
+  "checkpoint_hours": [
+    72,
+    69,
+    66,
+    63,
+    60,
+    57,
+    54,
+    51,
+    48,
+    45,
+    42,
+    39,
+    36,
+    33,
+    30,
+    27,
+    24,
+    22,
+    20,
+    18,
+    16,
+    14,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "fixtures": 196,
+  "results_present": 187,
+  "results_missing": 9,
+  "results_live": 0,
+  "live_score_present": 187,
+  "live_in_progress": 0,
+  "market_checkpoint_slots_total": 19992,
+  "market_checkpoint_slots_present": 13007,
+  "market_checkpoint_slots_missing": 6985,
+  "alarms": 143,
+  "fields": "Original market rows, source timestamps, IDs, odds, shares, GBP amounts and volumes are retained when present.",
+  "source": "public Supabase tables (read-only)",
+  "archive_status": "COMPLETE",
+  "missing_policy": "MISSING explicit; latest observation at or before target only; exact fixture_uid preferred; match hash only when unique for the day and team names agree; no interpolation or future substitution.",
+  "source_row_counts": {
+    "1X2": 92394,
+    "OU25": 93284,
+    "BTTS": 71635
+  },
+  "coverage_by_market": {
+    "1X2": {
+      "present": 4514,
+      "missing": 2150
+    },
+    "OU25": {
+      "present": 4532,
+      "missing": 2132
+    },
+    "BTTS": {
+      "present": 3961,
+      "missing": 2703
+    }
+  },
+  "files": {
+    "checkpoints": {
+      "name": "checkpoints.jsonl.gz",
+      "records": 196,
+      "uncompressed_sha256": "1d8013e1f1cfa16661619fc04ec8575e30f55052a19da210fb0ebbc5e0d15bb4",
+      "uncompressed_bytes": 7256613,
+      "compressed_bytes": 382498
+    },
+    "alarms": {
+      "name": "alarms.jsonl.gz",
+      "records": 143,
+      "uncompressed_sha256": "77e496b9226ff5e6cd9abaaaf57c2b127664c6bf1e35603f2a2604768fec0d5a",
+      "uncompressed_bytes": 68741,
+      "compressed_bytes": 10311
+    }
+  },
+  "integrity": {
+    "fixture_records": 196,
+    "alarm_records": 143,
+    "checkpoint_schedule_valid": true,
+    "future_snapshot_count": 0,
+    "checkpoints_sha256": "1d8013e1f1cfa16661619fc04ec8575e30f55052a19da210fb0ebbc5e0d15bb4",
+    "alarms_sha256": "77e496b9226ff5e6cd9abaaaf57c2b127664c6bf1e35603f2a2604768fec0d5a"
+  }
+}
