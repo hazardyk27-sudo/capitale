@@ -114,11 +114,6 @@ def load_snapshot_groups(conn, checkpoint_path: Path, day: str):
         if target is not None:
             source_to_archive[uid] = target
 
-    source_uids = [str(item["fixture_uid"]) for item in source if item.get("fixture_uid")]
-    source_hashes = list({str(item["match_id_hash"]) for item in source
-                          if item.get("match_id_hash")})
-    if not source_uids and not source_hashes:
-        return {}, 0
     start = min(item["_kickoff"] for item in source) - dt.timedelta(hours=72)
     end = max(item["_kickoff"] for item in source)
     with conn.cursor() as cur:
