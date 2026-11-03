@@ -46,8 +46,8 @@
   "live_score_present": 187,
   "live_in_progress": 0,
   "market_checkpoint_slots_total": 19992,
-  "market_checkpoint_slots_present": 4485,
-  "market_checkpoint_slots_missing": 6985,
+  "market_checkpoint_slots_present": 4500,
+  "market_checkpoint_slots_missing": 6956,
   "alarms": 143,
   "fields": "Original market rows, source timestamps, IDs, odds, shares, GBP amounts and volumes are retained when present.",
   "source": "public Supabase tables (read-only)",
@@ -60,31 +60,31 @@
   },
   "coverage_by_market": {
     "1X2": {
-      "present": 1934,
-      "partial": 1172,
+      "present": 1943,
+      "partial": 1182,
       "empty": 1408,
-      "missing": 2150
+      "missing": 2131
     },
     "OU25": {
-      "present": 1472,
-      "partial": 615,
+      "present": 1475,
+      "partial": 617,
       "empty": 2445,
-      "missing": 2132
+      "missing": 2127
     },
     "BTTS": {
-      "present": 1079,
-      "partial": 662,
+      "present": 1082,
+      "partial": 664,
       "empty": 2220,
-      "missing": 2703
+      "missing": 2698
     }
   },
   "files": {
     "checkpoints": {
       "name": "checkpoints.jsonl.gz",
       "records": 196,
-      "uncompressed_sha256": "5ff2921bb6fba8774c0a5a3139341d5aa60dc188f0cc3e4d2c7f99d96d114bca",
-      "uncompressed_bytes": 8915436,
-      "compressed_bytes": 420157
+      "uncompressed_sha256": "c4f0b25dbf710115ad856f63ac4e3371a3fa9a4c5f90d366c8c505a3f0357689",
+      "uncompressed_bytes": 8940886,
+      "compressed_bytes": 425392
     },
     "alarms": {
       "name": "alarms.jsonl.gz",
@@ -99,16 +99,16 @@
     "alarm_records": 143,
     "checkpoint_schedule_valid": true,
     "future_snapshot_count": 0,
-    "checkpoints_sha256": "5ff2921bb6fba8774c0a5a3139341d5aa60dc188f0cc3e4d2c7f99d96d114bca",
+    "checkpoints_sha256": "c4f0b25dbf710115ad856f63ac4e3371a3fa9a4c5f90d366c8c505a3f0357689",
     "alarms_sha256": "77e496b9226ff5e6cd9abaaaf57c2b127664c6bf1e35603f2a2604768fec0d5a"
   },
   "quality_version": "market-field-quality-v3",
-  "market_checkpoint_slots_partial": 2449,
+  "market_checkpoint_slots_partial": 2463,
   "market_checkpoint_slots_empty": 6073,
-  "snapshot_fallback_selection_rows": 0,
-  "snapshot_source_rows": 225856,
-  "snapshot_fallback_market_slots": 6934,
-  "snapshot_backfill_version": "snapshot-field-fill-v1",
+  "snapshot_fallback_selection_rows": 57,
+  "snapshot_source_rows": 242984,
+  "snapshot_fallback_market_slots": 6963,
+  "snapshot_backfill_version": "snapshot-field-fill-v2-asof-t72",
   "source_archive_status": "PARTIAL",
   "market_coverage_complete": false
 }

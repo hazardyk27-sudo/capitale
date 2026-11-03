@@ -103,9 +103,9 @@
   "market_checkpoint_slots_partial": 1521,
   "market_checkpoint_slots_empty": 3722,
   "snapshot_fallback_selection_rows": 0,
-  "snapshot_source_rows": 251231,
-  "snapshot_fallback_market_slots": 4458,
-  "snapshot_backfill_version": "snapshot-field-fill-v1",
+  "snapshot_source_rows": 265292,
+  "snapshot_fallback_market_slots": 4487,
+  "snapshot_backfill_version": "snapshot-field-fill-v2-asof-t72",
   "archive_status": "PARTIAL",
   "market_coverage_complete": false
 }
