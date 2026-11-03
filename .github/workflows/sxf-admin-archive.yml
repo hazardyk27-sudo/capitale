@@ -2,6 +2,14 @@ name: PRATİK daily archive
 run-name: PRATİK ${{ inputs.day || 'otomatik' }}
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/sxf-admin-archive.yml"
+      - "scripts/export_pratik_daily_archive.py"
+      - "scripts/pratik_archive_quality.py"
+      - "scripts/repair_pratik_archive_quality.py"
   schedule:
     - cron: "0 23 * * *"
   workflow_dispatch:
@@ -32,6 +40,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Reclassify and verify existing PRATIK archive
+        run: python scripts/repair_pratik_archive_quality.py --archive-root archive --index archive/pratik_arsiv/index.json
       - name: Select archive dates
         shell: bash
         run: |
@@ -126,6 +136,11 @@ jobs:
               "total_bytes": files["checkpoints"]["compressed_bytes"] + files["alarms"]["compressed_bytes"],
               "uncompressed_bytes": files["checkpoints"]["uncompressed_bytes"] + files["alarms"]["uncompressed_bytes"],
               "coverage": manifest["coverage_by_market"],
+              "market_checkpoint_slots_total": manifest["market_checkpoint_slots_total"],
+              "market_checkpoint_slots_present": manifest["market_checkpoint_slots_present"],
+              "market_checkpoint_slots_partial": manifest["market_checkpoint_slots_partial"],
+              "market_checkpoint_slots_empty": manifest["market_checkpoint_slots_empty"],
+              "market_checkpoint_slots_missing": manifest["market_checkpoint_slots_missing"],
               "results_present": manifest["results_present"],
               "results_missing": manifest["results_missing"],
               "results_live": manifest["results_live"],
@@ -143,6 +158,8 @@ jobs:
           days.sort(key=lambda item: item["date"])
           if len({item["date"] for item in days}) != len(days):
               raise SystemExit("Duplicate PRATIK index dates")
+          index["version"] = "v2"
+          index["quality_version"] = manifest["quality_version"]
           index["days"] = days
           index["total_fixtures"] = sum(item["fixtures"] for item in days)
           index["total_alarm_records"] = sum(item["alarms"] for item in days)
