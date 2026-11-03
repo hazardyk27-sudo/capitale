@@ -1,6 +1,6 @@
 {
   "archive_name": "PRATİK ARŞİV",
-  "version": "v1",
+  "version": "v2",
   "date": "2026-10-15",
   "timezone": "Europe/Istanbul",
   "checkpoint_hours": [
@@ -41,35 +41,45 @@
   ],
   "fixtures": 160,
   "market_checkpoint_slots_total": 16320,
-  "market_checkpoint_slots_present": 9686,
+  "market_checkpoint_slots_present": 0,
   "market_checkpoint_slots_missing": 6634,
   "alarms": 207,
   "fields": "Original market history fields are retained, including source odds, share percentages, GBP amounts, volume, timestamps, row id and fingerprint.",
   "files": {
     "checkpoints": {
       "name": "checkpoints.jsonl.gz",
-      "uncompressed_bytes": 4439665,
-      "compressed_bytes": 431787
+      "records": 160,
+      "uncompressed_sha256": "70f2142d94bb70d6f1d5115e2922d1896498ebbf9516d38c0ac5717867120043",
+      "uncompressed_bytes": 5679407,
+      "compressed_bytes": 544558
     },
     "alarms": {
       "name": "alarms.jsonl.gz",
+      "records": 207,
+      "uncompressed_sha256": "2f87e07e8d41fb1379d166fdd413bdb4982f4b9ed319db1e86343b325921d96c",
       "uncompressed_bytes": 128554,
       "compressed_bytes": 18662
     }
   },
   "source": "Supabase research_archive (READ-ONLY)",
-  "missing_policy": "MISSING explicit; latest observation at or before target only; exact fixture_uid preferred for same-time ties, then source_fingerprint ascending; no interpolation or future substitution.",
+  "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; latest observation at or before target only; no interpolation or future substitution.",
   "coverage_by_market": {
     "1X2": {
-      "present": 3338,
+      "present": 0,
+      "partial": 2617,
+      "empty": 721,
       "missing": 2102
     },
     "OU25": {
-      "present": 3271,
+      "present": 0,
+      "partial": 3271,
+      "empty": 0,
       "missing": 2169
     },
     "BTTS": {
-      "present": 3077,
+      "present": 0,
+      "partial": 1816,
+      "empty": 1261,
       "missing": 2363
     }
   },
@@ -78,7 +88,7 @@
     "alarm_records": 207,
     "checkpoint_schedule_valid": true,
     "future_snapshot_count": 0,
-    "checkpoints_sha256": "2dd3aa79b12e1f71ae29932a153cce4d2f385eb7497db04d95468f147dfcc49b",
+    "checkpoints_sha256": "70f2142d94bb70d6f1d5115e2922d1896498ebbf9516d38c0ac5717867120043",
     "alarms_sha256": "2f87e07e8d41fb1379d166fdd413bdb4982f4b9ed319db1e86343b325921d96c"
   },
   "results_present": 138,
@@ -86,5 +96,9 @@
   "results_live": 0,
   "live_score_present": 138,
   "result_source_notes": "Matched to research_archive.results. Where fixture_uid was not available, required exact match_id_hash and home/away team match plus kickoff within 30 minutes; ambiguous ties resolved by matching local_date and latest source_updated_at. Scores from live-status rows are retained as final=false and excluded from settled results.",
-  "source_archive_status": "PARTIAL"
+  "source_archive_status": "PARTIAL",
+  "quality_version": "market-field-quality-v3",
+  "market_checkpoint_slots_partial": 7704,
+  "market_checkpoint_slots_empty": 1982,
+  "snapshot_fallback_selection_rows": 0
 }

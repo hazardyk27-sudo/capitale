@@ -67,6 +67,7 @@
           "missing": 3078
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 256,
       "results_missing": 4,
       "results_live": 0,
@@ -113,6 +114,7 @@
           "missing": 5200
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 426,
       "results_missing": 29,
       "results_live": 0,
@@ -159,6 +161,7 @@
           "missing": 3018
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 331,
       "results_missing": 3,
       "results_live": 0,
@@ -205,6 +208,7 @@
           "missing": 2265
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 177,
       "results_missing": 0,
       "results_live": 0,
@@ -251,6 +255,7 @@
           "missing": 4808
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 179,
       "results_missing": 13,
       "results_live": 0,
@@ -297,6 +302,7 @@
           "missing": 2377
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 152,
       "results_missing": 0,
       "results_live": 0,
@@ -343,6 +349,7 @@
           "missing": 2363
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 138,
       "results_missing": 22,
       "results_live": 0,
@@ -389,6 +396,7 @@
           "missing": 2662
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 190,
       "results_missing": 11,
       "results_live": 0,
@@ -435,6 +443,7 @@
           "missing": 4661
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 425,
       "results_missing": 11,
       "results_live": 8,
@@ -481,6 +490,7 @@
           "missing": 4148
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 398,
       "results_missing": 2,
       "results_live": 0,
@@ -527,6 +537,7 @@
           "missing": 2382
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 173,
       "results_missing": 0,
       "results_live": 0,
@@ -573,6 +584,7 @@
           "missing": 1877
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 135,
       "results_missing": 4,
       "results_live": 0,
@@ -619,6 +631,7 @@
           "missing": 1910
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 142,
       "results_missing": 0,
       "results_live": 0,
@@ -665,6 +678,7 @@
           "missing": 1518
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 129,
       "results_missing": 0,
       "results_live": 0,
@@ -711,6 +725,7 @@
           "missing": 2972
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 229,
       "results_missing": 1,
       "results_live": 0,
@@ -757,6 +772,7 @@
           "missing": 5005
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 473,
       "results_missing": 4,
       "results_live": 0,
@@ -803,6 +819,7 @@
           "missing": 3431
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 366,
       "results_missing": 2,
       "results_live": 0,
@@ -849,6 +866,7 @@
           "missing": 2090
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 128,
       "results_missing": 6,
       "results_live": 6,
@@ -895,6 +913,7 @@
           "missing": 3057
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 204,
       "results_missing": 11,
       "results_live": 0,
@@ -941,6 +960,7 @@
           "missing": 2952
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 220,
       "results_missing": 13,
       "results_live": 0,
@@ -987,6 +1007,7 @@
           "missing": 2204
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 123,
       "results_missing": 35,
       "results_live": 0,
@@ -1033,6 +1054,7 @@
           "missing": 2703
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 187,
       "results_missing": 9,
       "results_live": 0,
@@ -1079,6 +1101,7 @@
           "missing": 4527
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 426,
       "results_missing": 7,
       "results_live": 0,
@@ -1125,6 +1148,7 @@
           "missing": 3014
         }
       },
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 291,
       "results_missing": 10,
       "results_live": 0,
@@ -1147,9 +1171,9 @@
       "date": "2026-11-02",
       "fixtures": 147,
       "alarms": 127,
-      "checkpoint_bytes": 336393,
+      "checkpoint_bytes": 336408,
       "alarm_bytes": 10080,
-      "total_bytes": 346473,
+      "total_bytes": 346488,
       "uncompressed_bytes": 7138565,
       "coverage": {
         "1X2": {
@@ -1171,11 +1195,7 @@
           "missing": 1827
         }
       },
-      "market_checkpoint_slots_total": 14994,
-      "market_checkpoint_slots_present": 3944,
-      "market_checkpoint_slots_partial": 1809,
-      "market_checkpoint_slots_empty": 4627,
-      "market_checkpoint_slots_missing": 4614,
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 140,
       "results_missing": 7,
       "results_live": 0,
@@ -1187,12 +1207,17 @@
       },
       "future": 0,
       "archive_status": "COMPLETE",
-      "source_archive_status": null
+      "source_archive_status": null,
+      "market_checkpoint_slots_total": 14994,
+      "market_checkpoint_slots_present": 3944,
+      "market_checkpoint_slots_partial": 1809,
+      "market_checkpoint_slots_empty": 4627,
+      "market_checkpoint_slots_missing": 4614
     }
   ],
   "total_fixtures": 6242,
   "total_alarm_records": 5417,
-  "total_compressed_bytes": 19292595,
+  "total_compressed_bytes": 19292610,
   "total_uncompressed_bytes": 262504404,
-  "quality_version": "market-field-quality-v2"
+  "quality_version": "market-field-quality-v3"
 }

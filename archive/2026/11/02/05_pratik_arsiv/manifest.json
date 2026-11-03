@@ -1,7 +1,7 @@
 {
   "archive_name": "PRATİK ARŞİV",
   "version": "v2",
-  "quality_version": "market-field-quality-v2",
+  "quality_version": "market-field-quality-v3",
   "date": "2026-11-02",
   "timezone": "Europe/Istanbul",
   "checkpoint_hours": [
@@ -87,7 +87,7 @@
       "records": 147,
       "uncompressed_sha256": "317a905cc345cd8341871cf54fca9e44372f3e7b6931c372e1cd68b027b8707d",
       "uncompressed_bytes": 7072664,
-      "compressed_bytes": 336393
+      "compressed_bytes": 336408
     },
     "alarms": {
       "name": "alarms.jsonl.gz",
@@ -104,5 +104,6 @@
     "future_snapshot_count": 0,
     "checkpoints_sha256": "317a905cc345cd8341871cf54fca9e44372f3e7b6931c372e1cd68b027b8707d",
     "alarms_sha256": "55e913c40cac76fe4e3a58e84f4246288bc2a2fca4977bdbda5c99d5352e3945"
-  }
+  },
+  "snapshot_fallback_selection_rows": 0
 }

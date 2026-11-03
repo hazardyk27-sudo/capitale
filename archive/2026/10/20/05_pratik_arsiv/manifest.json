@@ -1,6 +1,6 @@
 {
   "archive_name": "PRATİK ARŞİV",
-  "version": "v1",
+  "version": "v2",
   "date": "2026-10-20",
   "timezone": "Europe/Istanbul",
   "checkpoint_hours": [
@@ -41,36 +41,46 @@
   ],
   "fixtures": 139,
   "market_checkpoint_slots_total": 14178,
-  "market_checkpoint_slots_present": 9220,
+  "market_checkpoint_slots_present": 3668,
   "market_checkpoint_slots_missing": 4958,
   "alarms": 166,
   "fields": "Original market history fields are retained, including source odds, share percentages, GBP amounts, volume, timestamps, row id and fingerprint.",
   "source": "Supabase research_archive (READ-ONLY)",
   "source_archive_status": "PARTIAL",
   "source_archive_notes": "Original daily source archive status PARTIAL (full_archive_complete=false; 4 FT results missing). Results had null fixture_uid and were joined only on unique match_id_hash; 135/139 results matched. Dropping-history tables were not used.",
-  "missing_policy": "MISSING explicit; latest observation at or before target only; exact fixture_uid preferred for same-time ties, then source_fingerprint ascending; hash fallback used only when fixture hash is unique; no interpolation or future substitution.",
+  "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; latest observation at or before target only; no interpolation or future substitution.",
   "coverage_by_market": {
     "1X2": {
-      "present": 3193,
+      "present": 1728,
+      "partial": 643,
+      "empty": 822,
       "missing": 1533
     },
     "OU25": {
-      "present": 3178,
+      "present": 1093,
+      "partial": 409,
+      "empty": 1676,
       "missing": 1548
     },
     "BTTS": {
-      "present": 2849,
+      "present": 847,
+      "partial": 446,
+      "empty": 1556,
       "missing": 1877
     }
   },
   "files": {
     "checkpoints": {
       "name": "checkpoints.jsonl.gz",
-      "uncompressed_bytes": 3749657,
-      "compressed_bytes": 376186
+      "records": 139,
+      "uncompressed_sha256": "1a0e9b9f79c122fcaafcefdd6de70df17650bb56fad8a4a2113d87256cf4805b",
+      "uncompressed_bytes": 4925763,
+      "compressed_bytes": 471422
     },
     "alarms": {
       "name": "alarms.jsonl.gz",
+      "records": 166,
+      "uncompressed_sha256": "f83101a5ab6f93b4a079854aa380ab502f0447515dd0992d86d200230d5032b7",
       "uncompressed_bytes": 108904,
       "compressed_bytes": 16052
     }
@@ -81,11 +91,15 @@
     "checkpoint_schedule_valid": true,
     "future_snapshot_count": 0,
     "selected_present_market_rows": 9220,
-    "checkpoints_sha256": "7853c7e88d7705576b7db0181224a7dd7e0510c454091064ce9d0dd95110ed80",
+    "checkpoints_sha256": "1a0e9b9f79c122fcaafcefdd6de70df17650bb56fad8a4a2113d87256cf4805b",
     "alarms_sha256": "f83101a5ab6f93b4a079854aa380ab502f0447515dd0992d86d200230d5032b7"
   },
   "results_present": 135,
   "results_missing": 4,
   "results_live": 0,
-  "live_score_present": 135
+  "live_score_present": 135,
+  "quality_version": "market-field-quality-v3",
+  "market_checkpoint_slots_partial": 1498,
+  "market_checkpoint_slots_empty": 4054,
+  "snapshot_fallback_selection_rows": 0
 }
