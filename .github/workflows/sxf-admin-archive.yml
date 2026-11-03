@@ -169,6 +169,8 @@ jobs:
           PY
             git add -- "$target" archive/pratik_arsiv/index.json
           done < "$RUNNER_TEMP/pratik-days"
+          # The quality repair rewrites existing day files; stage those alongside new days.
+          git add -- archive
           if git diff --cached --quiet; then
             echo "All checked PRATIK dates are already verified; nothing to commit."
             exit 0
