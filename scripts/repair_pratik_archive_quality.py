@@ -75,7 +75,13 @@ def load_snapshot_groups(conn, checkpoint_path: Path, day: str):
                 "kickoff_utc": kickoff.isoformat().replace("+00:00", "Z"),
             })
 
-    source = load_fixtures(conn, dt.date.fromisoformat(day))
+    try:
+        source = load_fixtures(conn, dt.date.fromisoformat(day))
+    except ValueError as exc:
+        if "No fixtures found" not in str(exc):
+            raise
+        # Historical fixtures are no longer retained; never invent a source match.
+        return {}, 0
     archived_by_uid = {
         str(item["fixture_uid"]): item for item in archived if item.get("fixture_uid")
     }
