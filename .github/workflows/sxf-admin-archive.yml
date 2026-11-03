@@ -36,6 +36,8 @@ jobs:
     steps:
       - name: Checkout archive repository
         uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
