@@ -121,11 +121,16 @@ def load_snapshot_groups(conn, checkpoint_path: Path, day: str):
         return {}, 0
     start = min(item["_kickoff"] for item in source) - dt.timedelta(hours=72)
     end = max(item["_kickoff"] for item in source)
-    rows = rows_for_identities(
-        conn, "moneyway_snapshots", source_uids, source_hashes,
-        "scraped_at_utc", start, end,
-    )
-
+    with conn.cursor() as cur:
+        cur.execute(
+            "SELECT to_jsonb(s) FROM public.moneyway_snapshots AS s "
+            "JOIN public.fixtures AS f ON f.fixture_uid = s.fixture_uid "
+            "WHERE f.fixture_date = %s "
+            "AND s.scraped_at_utc >= f.kickoff_utc - interval '72 hours' "
+            "AND s.scraped_at_utc <= f.kickoff_utc",
+            (dt.date.fromisoformat(day),),
+        )
+        rows = [item[0] for item in cur.fetchall()]
     grouped = {}
     source_by_uid = {str(item["fixture_uid"]): item for item in source
                      if item.get("fixture_uid")}
