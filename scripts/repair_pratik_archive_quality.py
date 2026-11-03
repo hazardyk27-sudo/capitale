@@ -19,6 +19,7 @@ from pratik_archive_quality import (
 )
 
 ARCHIVE_NAME = "PRATİK ARŞİV"
+SNAPSHOT_BACKFILL_VERSION = "snapshot-field-fill-v1"
 
 
 def compact_json(value) -> str:
@@ -188,11 +189,20 @@ def archive_one(folder: Path, expected_hours: list[int], conn):
     if manifest.get("fixtures") != old_checkpoint_count or manifest.get("alarms") != old_alarm_count:
         raise ValueError(f"Existing archive record count mismatch; refusing rewrite: {day}")
 
-    snapshot_groups, snapshot_source_rows = load_snapshot_groups(
-        conn, checkpoint_path, day
-    )
-    fallback_market_slots = 0
-    fallback_selection_count = 0
+    if manifest.get("snapshot_backfill_version") == SNAPSHOT_BACKFILL_VERSION:
+        snapshot_groups, snapshot_source_rows = {}, manifest.get("snapshot_source_rows", 0)
+        fallback_market_slots = manifest.get("snapshot_fallback_market_slots", 0)
+        fallback_selection_count = manifest.get(
+            "snapshot_fallback_selection_rows", 0
+        )
+        skip_snapshot_recheck = True
+    else:
+        snapshot_groups, snapshot_source_rows = load_snapshot_groups(
+            conn, checkpoint_path, day
+        )
+        fallback_market_slots = 0
+        fallback_selection_count = 0
+        skip_snapshot_recheck = False
     temp_path = checkpoint_path.with_name("checkpoints.jsonl.gz.quality-tmp")
     coverage = empty_coverage()
     future_count = 0
@@ -228,11 +238,15 @@ def archive_one(folder: Path, expected_hours: list[int], conn):
                             fixture_key = str(
                                 record.get("fixture_uid") or record.get("match_id_hash")
                             )
-                            fallback, fallback_at, fallback_ids = build_snapshot_fallback(
-                                market,
-                                snapshot_groups.get(fixture_key, {}).get(market, {}),
-                                record,
-                                target_at,
+                            fallback, fallback_at, fallback_ids = (
+                                (None, None, {})
+                                if skip_snapshot_recheck
+                                else build_snapshot_fallback(
+                                    market,
+                                    snapshot_groups.get(fixture_key, {}).get(market, {}),
+                                    record,
+                                    target_at,
+                                )
                             )
                             if fallback:
                                 fallback_market_slots += 1
@@ -333,6 +347,7 @@ def archive_one(folder: Path, expected_hours: list[int], conn):
         "market_checkpoint_slots_empty": empty_slots,
         "market_checkpoint_slots_missing": missing_slots,
         "coverage_by_market": coverage,
+        "snapshot_backfill_version": SNAPSHOT_BACKFILL_VERSION,
         "snapshot_source_rows": snapshot_source_rows,
         "snapshot_fallback_market_slots": fallback_market_slots,
         "snapshot_source_rows": snapshot_source_rows,
@@ -380,6 +395,7 @@ def index_entry(manifest: dict) -> dict:
         "total_bytes": files["checkpoints"]["compressed_bytes"] + files["alarms"]["compressed_bytes"],
         "uncompressed_bytes": files["checkpoints"]["uncompressed_bytes"] + files["alarms"]["uncompressed_bytes"],
         "coverage": manifest["coverage_by_market"],
+        "snapshot_backfill_version": manifest.get("snapshot_backfill_version"),
         "snapshot_source_rows": manifest.get("snapshot_source_rows", 0),
         "snapshot_fallback_market_slots": manifest.get(
             "snapshot_fallback_market_slots", 0
