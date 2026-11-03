@@ -67,6 +67,18 @@ def archive_one(folder: Path, expected_hours: list[int]):
         raise ValueError(f"PRATIK identity mismatch: {folder}")
     if manifest.get("checkpoint_hours") != expected_hours:
         raise ValueError(f"Checkpoint schedule mismatch: {day}")
+    original_files = manifest.get("files", {})
+    original_integrity = manifest.get("integrity", {})
+    old_checkpoint_sha, _, old_checkpoint_count = hash_gzip_jsonl(checkpoint_path)
+    old_alarm_sha, old_alarm_bytes, old_alarm_count = hash_gzip_jsonl(alarm_path)
+    expected_checkpoint_sha = original_integrity.get("checkpoints_sha256") or original_files.get("checkpoints", {}).get("uncompressed_sha256")
+    expected_alarm_sha = original_integrity.get("alarms_sha256") or original_files.get("alarms", {}).get("uncompressed_sha256")
+    if expected_checkpoint_sha and old_checkpoint_sha != expected_checkpoint_sha:
+        raise ValueError(f"Existing checkpoint SHA mismatch; refusing rewrite: {day}")
+    if expected_alarm_sha and old_alarm_sha != expected_alarm_sha:
+        raise ValueError(f"Existing alarm SHA mismatch; refusing rewrite: {day}")
+    if manifest.get("fixtures") != old_checkpoint_count or manifest.get("alarms") != old_alarm_count:
+        raise ValueError(f"Existing archive record count mismatch; refusing rewrite: {day}")
 
     temp_path = checkpoint_path.with_name("checkpoints.jsonl.gz.quality-tmp")
     coverage = empty_coverage()
@@ -127,6 +139,8 @@ def archive_one(folder: Path, expected_hours: list[int]):
 
     checkpoints_sha = checkpoint_digest.hexdigest()
     alarms_sha, alarms_bytes, alarm_count = hash_gzip_jsonl(alarm_path)
+    if alarm_count != manifest.get("alarms"):
+        raise ValueError(f"Alarm record count changed during quality repair: {day}")
     total_slots = fixture_count * len(expected_hours) * len(MARKET_FIELDS)
     present_slots = sum(item["present"] for item in coverage.values())
     partial_slots = sum(item["partial"] for item in coverage.values())
