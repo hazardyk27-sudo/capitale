@@ -15,7 +15,7 @@ import psycopg
 from export_pratik_daily_archive import load_fixtures, rows_for_identities
 from pratik_archive_quality import (
     QUALITY_VERSION, MARKET_FIELDS, build_snapshot_fallback,
-    classify_market_data, quality_score,
+    classify_market_data, merge_snapshot_fields,
 )
 
 ARCHIVE_NAME = "PRATİK ARŞİV"
@@ -225,7 +225,6 @@ def archive_one(folder: Path, expected_hours: list[int], conn):
                             if not isinstance(item, dict):
                                 raise ValueError(f"Market state missing: {day} {market}")
                             data = item.get("data")
-                            current_score = quality_score(market, data or {})
                             fixture_key = str(
                                 record.get("fixture_uid") or record.get("match_id_hash")
                             )
@@ -237,26 +236,35 @@ def archive_one(folder: Path, expected_hours: list[int], conn):
                             )
                             if fallback:
                                 fallback_market_slots += 1
-                            if fallback:
-                                fallback_market_slots += 1
-                            if fallback and quality_score(market, fallback) > current_score:
-                                data = fallback
-                                status, quality = classify_market_data(market, data)
+                            merged, filled_fields = (
+                                merge_snapshot_fields(market, data, fallback)
+                                if fallback else (data, [])
+                            )
+                            if filled_fields:
+                                status, quality = classify_market_data(market, merged)
+                                previous_source = item.get("source_table")
                                 item.update({
                                     "status": status,
                                     "quality": quality,
-                                    "actual_at_utc": fallback_at.isoformat().replace(
-                                        "+00:00", "Z"
+                                    "source_table": (
+                                        f"{previous_source} + public.moneyway_snapshots"
+                                        if previous_source and item.get("status") != "MISSING"
+                                        else "public.moneyway_snapshots"
                                     ),
-                                    "lag_minutes": max(
-                                        0, int((target_at - fallback_at).total_seconds() // 60)
-                                    ),
-                                    "source_table": "public.moneyway_snapshots",
                                     "source_row_ids": fallback_ids,
-                                    "source_row_id": None,
-                                    "source_fingerprint": None,
-                                    "data": data,
+                                    "snapshot_fallback_actual_at_utc": (
+                                        fallback_at.isoformat().replace("+00:00", "Z")
+                                    ),
+                                    "snapshot_filled_fields": filled_fields,
+                                    "data": merged,
                                 })
+                                if item.get("status") == "MISSING" or not item.get("actual_at_utc"):
+                                    item["actual_at_utc"] = fallback_at.isoformat().replace(
+                                        "+00:00", "Z"
+                                    )
+                                    item["lag_minutes"] = max(
+                                        0, int((target_at - fallback_at).total_seconds() // 60)
+                                    )
                                 fallback_selection_count += len(fallback_ids)
                             elif item.get("status") == "MISSING":
                                 if data is not None:
