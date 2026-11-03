@@ -183,6 +183,8 @@ def archive_one(folder: Path, expected_hours: list[int], conn):
                                 record,
                                 target_at,
                             )
+                            if fallback:
+                                fallback_market_slots += 1
                             if fallback and quality_score(market, fallback) > current_score:
                                 data = fallback
                                 status, quality = classify_market_data(market, data)
@@ -269,6 +271,8 @@ def archive_one(folder: Path, expected_hours: list[int], conn):
         "market_checkpoint_slots_empty": empty_slots,
         "market_checkpoint_slots_missing": missing_slots,
         "coverage_by_market": coverage,
+        "snapshot_source_rows": snapshot_source_rows,
+        "snapshot_fallback_market_slots": fallback_market_slots,
         "snapshot_fallback_selection_rows": fallback_selection_count,
         "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; latest observation at or before target only; no interpolation or future substitution.",
     })
