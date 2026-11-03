@@ -139,6 +139,33 @@ def rows_for_identities(conn, table: str, uids: list[str], hashes: list[str],
         return [record[0] for record in cur.fetchall()]
 
 
+def rows_before_time(conn, table: str, uids: list[str], hashes: list[str],
+                     time_col: str, cutoff, distinct_columns: tuple[str, ...] = ()):
+    """Fetch only the last pre-window row per fixture (and selection, when requested)."""
+    columns = table_columns(conn, table)
+    identity, params = _identity_filter(columns, uids, hashes)
+    if identity is None:
+        return []
+    if time_col not in columns:
+        raise ValueError(f"Required timestamp column missing: public.{table}.{time_col}")
+    distinct = [sql.SQL("COALESCE(r.fixture_uid::text, r.match_id_hash::text)")]
+    for name in distinct_columns:
+        if name not in columns:
+            raise ValueError(f"Required baseline column missing: public.{table}.{name}")
+        distinct.append(sql.SQL("r.{}").format(sql.Identifier(name)))
+    distinct_sql = sql.SQL(", ").join(distinct)
+    query = (
+        sql.SQL("SELECT DISTINCT ON ({}) to_jsonb(r) FROM public.{} AS r WHERE ")
+        .format(distinct_sql, sql.Identifier(table))
+        + identity
+        + sql.SQL(" AND r.{}::timestamptz < %s ORDER BY {}, r.{}::timestamptz DESC, r.id ASC")
+        .format(sql.Identifier(time_col), distinct_sql, sql.Identifier(time_col))
+    )
+    with conn.cursor() as cur:
+        cur.execute(query, [*params, cutoff])
+        return [record[0] for record in cur.fetchall()]
+
+
 def row_fixture(row: dict, by_uid: dict, by_hash: dict, day: dt.date):
     uid = str(row.get("fixture_uid") or "")
     if uid and uid in by_uid:
@@ -247,15 +274,16 @@ def make_archive(conn, day: dt.date, output: Path):
     for market, (table, timestamp) in MARKETS.items():
         rows = rows_for_identities(conn, table, uids, hashes, timestamp,
                                    min(starts), max(ends))
+        rows.extend(rows_before_time(
+            conn, table, uids, hashes, timestamp, min(starts)
+        ))
         grouped = {f["fixture_uid"] or f["match_id_hash"]: [] for f in fixtures}
         for row in rows:
             fixture = row_fixture(row, by_uid, by_hash, day)
             if not fixture:
                 continue
             observed = parse_time(row.get(timestamp))
-            if observed is None or observed < fixture["_kickoff"] - dt.timedelta(hours=72):
-                continue
-            if observed > fixture["_kickoff"]:
+            if observed is None or observed > fixture["_kickoff"]:
                 continue
             key = fixture["fixture_uid"] or fixture["match_id_hash"]
             grouped.setdefault(key, []).append((observed, stable_row_id(row), row))
@@ -266,16 +294,17 @@ def make_archive(conn, day: dt.date, output: Path):
         conn, "moneyway_snapshots", uids, hashes, "scraped_at_utc",
         min(starts), max(ends),
     )
+    snapshot_rows.extend(rows_before_time(
+        conn, "moneyway_snapshots", uids, hashes, "scraped_at_utc", min(starts),
+        ("market", "selection"),
+    ))
     snapshot_histories = {f["fixture_uid"] or f["match_id_hash"]: {} for f in fixtures}
     for row in snapshot_rows:
         fixture = row_fixture(row, by_uid, by_hash, day)
         if not fixture:
             continue
         observed = parse_time(row.get("scraped_at_utc"))
-        if observed is None or not (
-            fixture["_kickoff"] - dt.timedelta(hours=72)
-            <= observed <= fixture["_kickoff"]
-        ):
+        if observed is None or observed > fixture["_kickoff"]:
             continue
         market = str(row.get("market") or "").strip().upper()
         selection = str(row.get("selection") or "").strip().upper()
@@ -454,7 +483,7 @@ def make_archive(conn, day: dt.date, output: Path):
         "market_coverage_complete": source_archive_status == "COMPLETE",
         "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; archive is COMPLETE only when every fixture/checkpoint/market slot is PRESENT; latest observation at or before target only; no interpolation or future substitution.",
         "source_row_counts": history_counts,
-        "snapshot_backfill_version": "snapshot-field-fill-v1",
+        "snapshot_backfill_version": "snapshot-field-fill-v2-asof-t72",
         "snapshot_source_rows": snapshot_row_count,
         "snapshot_fallback_market_slots": snapshot_fallback_market_slots,
         "snapshot_fallback_selection_rows": snapshot_fallback_selection_rows,

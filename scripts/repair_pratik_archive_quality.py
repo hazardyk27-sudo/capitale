@@ -12,14 +12,16 @@ from pathlib import Path
 
 import psycopg
 
-from export_pratik_daily_archive import load_fixtures, rows_for_identities
+from export_pratik_daily_archive import (
+    load_fixtures, rows_for_identities, rows_before_time,
+)
 from pratik_archive_quality import (
     QUALITY_VERSION, MARKET_FIELDS, build_snapshot_fallback,
     classify_market_data, merge_snapshot_fields,
 )
 
 ARCHIVE_NAME = "PRATİK ARŞİV"
-SNAPSHOT_BACKFILL_VERSION = "snapshot-field-fill-v1"
+SNAPSHOT_BACKFILL_VERSION = "snapshot-field-fill-v2-asof-t72"
 
 
 def compact_json(value) -> str:
@@ -115,18 +117,18 @@ def load_snapshot_groups(conn, checkpoint_path: Path, day: str):
         if target is not None:
             source_to_archive[uid] = target
 
-    start = min(item["_kickoff"] for item in source) - dt.timedelta(hours=72)
-    end = max(item["_kickoff"] for item in source)
-    with conn.cursor() as cur:
-        cur.execute(
-            "SELECT to_jsonb(s) FROM public.moneyway_snapshots AS s "
-            "JOIN public.fixtures AS f ON f.fixture_uid = s.fixture_uid "
-            "WHERE f.fixture_date = %s "
-            "AND s.scraped_at_utc >= f.kickoff_utc - interval '72 hours' "
-            "AND s.scraped_at_utc <= f.kickoff_utc",
-            (dt.date.fromisoformat(day),),
-        )
-        rows = [item[0] for item in cur.fetchall()]
+    starts = [item["_kickoff"] - dt.timedelta(hours=72) for item in source]
+    ends = [item["_kickoff"] for item in source]
+    uids = [str(item["fixture_uid"]) for item in source if item.get("fixture_uid")]
+    hashes = list({str(item["match_id_hash"]) for item in source if item.get("match_id_hash")})
+    rows = rows_for_identities(
+        conn, "moneyway_snapshots", uids, hashes, "scraped_at_utc",
+        min(starts), max(ends),
+    )
+    rows.extend(rows_before_time(
+        conn, "moneyway_snapshots", uids, hashes, "scraped_at_utc", min(starts),
+        ("market", "selection"),
+    ))
     grouped = {}
     source_by_uid = {str(item["fixture_uid"]): item for item in source
                      if item.get("fixture_uid")}
@@ -148,10 +150,7 @@ def load_snapshot_groups(conn, checkpoint_path: Path, day: str):
         if archive_fixture is None:
             continue
         observed = parse_time(row.get("scraped_at_utc"))
-        if observed is None or not (
-            fixture["_kickoff"] - dt.timedelta(hours=72)
-            <= observed <= fixture["_kickoff"]
-        ):
+        if observed is None or observed > fixture["_kickoff"]:
             continue
         market = str(row.get("market") or "").strip().upper()
         selection = str(row.get("selection") or "").strip().upper()
