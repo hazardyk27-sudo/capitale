@@ -13,7 +13,7 @@ from pathlib import Path
 import psycopg
 
 from export_pratik_daily_archive import (
-    load_fixtures, rows_for_identities, rows_before_time,
+    MARKETS, load_fixtures, row_fixture, rows_for_identities, rows_before_time,
 )
 from pratik_archive_quality import (
     QUALITY_VERSION, MARKET_FIELDS, build_snapshot_fallback,
@@ -21,7 +21,7 @@ from pratik_archive_quality import (
 )
 
 ARCHIVE_NAME = "PRATİK ARŞİV"
-SNAPSHOT_BACKFILL_VERSION = "snapshot-field-fill-v2-asof-t72"
+SNAPSHOT_BACKFILL_VERSION = "market-history-backfill-v3-asof-t72"
 
 
 def compact_json(value) -> str:
@@ -84,7 +84,7 @@ def load_snapshot_groups(conn, checkpoint_path: Path, day: str):
         if "No fixtures found" not in str(exc):
             raise
         # Historical fixtures are no longer retained; never invent a source match.
-        return {}, 0
+        return {}, 0, {}
     archived_by_uid = {
         str(item["fixture_uid"]): item for item in archived if item.get("fixture_uid")
     }
@@ -130,6 +130,7 @@ def load_snapshot_groups(conn, checkpoint_path: Path, day: str):
         ("market", "selection"),
     ))
     grouped = {}
+    history_grouped = {}
     source_by_uid = {str(item["fixture_uid"]): item for item in source
                      if item.get("fixture_uid")}
     source_by_hash = {}
@@ -160,7 +161,37 @@ def load_snapshot_groups(conn, checkpoint_path: Path, day: str):
         grouped.setdefault(key, {}).setdefault(market, {}).setdefault(
             selection, []
         ).append((observed, str(row.get("id") or ""), row))
-    return grouped, len(rows)
+    day_date = dt.date.fromisoformat(day)
+    for market, (table, time_col) in MARKETS.items():
+        history_rows = rows_for_identities(
+            conn, table, uids, hashes, time_col, min(starts), max(ends)
+        )
+        history_rows.extend(rows_before_time(
+            conn, table, uids, hashes, time_col, min(starts)
+        ))
+        for row in history_rows:
+            fixture = row_fixture(row, source_by_uid, source_by_hash, day_date)
+            if fixture is None:
+                continue
+            archive_fixture = source_to_archive.get(
+                str(fixture.get("fixture_uid") or "")
+            )
+            if archive_fixture is None:
+                continue
+            observed = parse_time(row.get(time_col))
+            if observed is None or observed > fixture["_kickoff"]:
+                continue
+            key = str(
+                archive_fixture.get("fixture_uid")
+                or archive_fixture.get("match_id_hash")
+            )
+            history_grouped.setdefault(key, {}).setdefault(market, []).append(
+                (observed, str(row.get("id") or ""), row)
+            )
+    for fixture_markets in history_grouped.values():
+        for market_rows in fixture_markets.values():
+            market_rows.sort(key=lambda item: (item[0], item[1]))
+    return grouped, len(rows), history_grouped
 
 def archive_one(folder: Path, expected_hours: list[int], conn):
     manifest_path = folder / "manifest.json"
@@ -189,14 +220,16 @@ def archive_one(folder: Path, expected_hours: list[int], conn):
         raise ValueError(f"Existing archive record count mismatch; refusing rewrite: {day}")
 
     if manifest.get("snapshot_backfill_version") == SNAPSHOT_BACKFILL_VERSION:
-        snapshot_groups, snapshot_source_rows = {}, manifest.get("snapshot_source_rows", 0)
+        snapshot_groups, snapshot_source_rows, history_groups = (
+            {}, manifest.get("snapshot_source_rows", 0), {}
+        )
         fallback_market_slots = manifest.get("snapshot_fallback_market_slots", 0)
         fallback_selection_count = manifest.get(
             "snapshot_fallback_selection_rows", 0
         )
         skip_snapshot_recheck = True
     else:
-        snapshot_groups, snapshot_source_rows = load_snapshot_groups(
+        snapshot_groups, snapshot_source_rows, history_groups = load_snapshot_groups(
             conn, checkpoint_path, day
         )
         fallback_market_slots = 0
@@ -237,6 +270,44 @@ def archive_one(folder: Path, expected_hours: list[int], conn):
                             fixture_key = str(
                                 record.get("fixture_uid") or record.get("match_id_hash")
                             )
+                            if item.get("status") == "MISSING":
+                                candidates = [
+                                    entry for entry in
+                                    history_groups.get(fixture_key, {}).get(market, [])
+                                    if entry[0] <= target_at
+                                ]
+                                if candidates:
+                                    latest_at = max(entry[0] for entry in candidates)
+                                    observed, _, history_row = min(
+                                        (entry for entry in candidates
+                                         if entry[0] == latest_at),
+                                        key=lambda entry: entry[1],
+                                    )
+                                    status, quality = classify_market_data(
+                                        market, history_row
+                                    )
+                                    item.update({
+                                        "status": status,
+                                        "quality": quality,
+                                        "actual_at_utc": (
+                                            observed.isoformat().replace("+00:00", "Z")
+                                        ),
+                                        "lag_minutes": max(
+                                            0, int((target_at-observed).total_seconds()//60)
+                                        ),
+                                        "source_table": (
+                                            f"public.{MARKETS[market][0]}"
+                                        ),
+                                        "source_row_id": history_row.get("id"),
+                                        "source_fingerprint": history_row.get(
+                                            "source_fingerprint"
+                                        ),
+                                        "data": history_row,
+                                        "backfill_reason": (
+                                            "latest source history at or before checkpoint"
+                                        ),
+                                    })
+                                    data = history_row
                             fallback, fallback_at, fallback_ids = (
                                 (None, None, {})
                                 if skip_snapshot_recheck
