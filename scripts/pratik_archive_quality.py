@@ -152,6 +152,27 @@ def quality_score(market: str, row: dict) -> int:
     return quality["odds_fields_present"] + quality["money_fields_present"]
 
 
+def merge_snapshot_fields(market: str, original: dict | None,
+                          fallback: dict) -> tuple[dict, list[str]]:
+    """Fill only invalid market fields from real fallback observations."""
+    fields = MARKET_FIELDS[market]
+    merged = dict(original) if isinstance(original, dict) else {}
+    filled = []
+    for name in (*fields["odds"], *fields["money"], *fields["volume"]):
+        if (not _field_is_valid(name, merged.get(name))
+                and _field_is_valid(name, fallback.get(name))):
+            merged[name] = fallback[name]
+            filled.append(name)
+    if filled:
+        merged["snapshot_filled_fields"] = sorted(
+            set(merged.get("snapshot_filled_fields", [])) | set(filled)
+        )
+        merged["snapshot_source_selection_rows"] = fallback.get(
+            "source_selection_rows", []
+        )
+    return merged, filled
+
+
 
 def _number(value) -> float | None:
     if value is None:
