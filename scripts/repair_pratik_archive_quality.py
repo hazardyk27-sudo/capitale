@@ -110,7 +110,7 @@ def load_snapshot_groups(conn, checkpoint_path: Path, day: str):
         grouped.setdefault(key, {}).setdefault(market, {}).setdefault(
             selection, []
         ).append((observed, str(row.get("id") or ""), row))
-    return grouped
+    return grouped, len(rows)
 
 
 def archive_one(folder: Path, expected_hours: list[int], conn):
@@ -139,7 +139,10 @@ def archive_one(folder: Path, expected_hours: list[int], conn):
     if manifest.get("fixtures") != old_checkpoint_count or manifest.get("alarms") != old_alarm_count:
         raise ValueError(f"Existing archive record count mismatch; refusing rewrite: {day}")
 
-    snapshot_groups = load_snapshot_groups(conn, checkpoint_path, day)
+    snapshot_groups, snapshot_source_rows = load_snapshot_groups(
+        conn, checkpoint_path, day
+    )
+    fallback_market_slots = 0
     fallback_selection_count = 0
     temp_path = checkpoint_path.with_name("checkpoints.jsonl.gz.quality-tmp")
     coverage = empty_coverage()
@@ -183,6 +186,8 @@ def archive_one(folder: Path, expected_hours: list[int], conn):
                                 record,
                                 target_at,
                             )
+                            if fallback:
+                                fallback_market_slots += 1
                             if fallback:
                                 fallback_market_slots += 1
                             if fallback and quality_score(market, fallback) > current_score:
@@ -273,6 +278,8 @@ def archive_one(folder: Path, expected_hours: list[int], conn):
         "coverage_by_market": coverage,
         "snapshot_source_rows": snapshot_source_rows,
         "snapshot_fallback_market_slots": fallback_market_slots,
+        "snapshot_source_rows": snapshot_source_rows,
+        "snapshot_fallback_market_slots": fallback_market_slots,
         "snapshot_fallback_selection_rows": fallback_selection_count,
         "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; latest observation at or before target only; no interpolation or future substitution.",
     })
@@ -316,6 +323,10 @@ def index_entry(manifest: dict) -> dict:
         "total_bytes": files["checkpoints"]["compressed_bytes"] + files["alarms"]["compressed_bytes"],
         "uncompressed_bytes": files["checkpoints"]["uncompressed_bytes"] + files["alarms"]["uncompressed_bytes"],
         "coverage": manifest["coverage_by_market"],
+        "snapshot_source_rows": manifest.get("snapshot_source_rows", 0),
+        "snapshot_fallback_market_slots": manifest.get(
+            "snapshot_fallback_market_slots", 0
+        ),
         "snapshot_fallback_selection_rows": manifest.get(
             "snapshot_fallback_selection_rows", 0
         ),
@@ -374,6 +385,10 @@ def main():
                 "date": manifest["date"],
                 "fixtures": manifest["fixtures"],
                 "coverage": manifest["coverage_by_market"],
+                "snapshot_source_rows": manifest.get("snapshot_source_rows", 0),
+                "snapshot_fallback_market_slots": manifest.get(
+                    "snapshot_fallback_market_slots", 0
+                ),
                 "snapshot_fallback_selection_rows": manifest.get(
                     "snapshot_fallback_selection_rows", 0
                 ),
