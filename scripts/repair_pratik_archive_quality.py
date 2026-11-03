@@ -200,6 +200,14 @@ def archive_one(folder: Path, expected_hours: list[int]):
 
 def index_entry(manifest: dict) -> dict:
     files = manifest["files"]
+    results_present = manifest.get("results_present", 0)
+    results_live = manifest.get(
+        "results_live",
+        max(0, manifest.get("live_score_present", results_present) - results_present),
+    )
+    live_score_present = manifest.get("live_score_present", results_present + results_live)
+    results_missing = manifest.get("results_missing", max(0, manifest["fixtures"] - live_score_present))
+    live_in_progress = manifest.get("live_in_progress", results_live)
     entry = {
         "date": manifest["date"],
         "fixtures": manifest["fixtures"],
@@ -209,17 +217,17 @@ def index_entry(manifest: dict) -> dict:
         "total_bytes": files["checkpoints"]["compressed_bytes"] + files["alarms"]["compressed_bytes"],
         "uncompressed_bytes": files["checkpoints"]["uncompressed_bytes"] + files["alarms"]["uncompressed_bytes"],
         "coverage": manifest["coverage_by_market"],
-        "results_present": manifest["results_present"],
-        "results_missing": manifest["results_missing"],
-        "results_live": manifest["results_live"],
-        "live_score_present": manifest["live_score_present"],
-        "live_in_progress": manifest["live_in_progress"],
+        "results_present": results_present,
+        "results_missing": results_missing,
+        "results_live": results_live,
+        "live_score_present": live_score_present,
+        "live_in_progress": live_in_progress,
         "checksums": {
             "checkpoints": manifest["integrity"]["checkpoints_sha256"],
             "alarms": manifest["integrity"]["alarms_sha256"],
         },
         "future": manifest["integrity"]["future_snapshot_count"],
-        "archive_status": manifest["archive_status"],
+        "archive_status": manifest.get("archive_status", "COMPLETE"),
         "source_archive_status": manifest.get("source_archive_status"),
     }
     for key in ("market_checkpoint_slots_total", "market_checkpoint_slots_present",
