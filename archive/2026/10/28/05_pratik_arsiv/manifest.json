@@ -51,7 +51,7 @@
   "alarms": 248,
   "fields": "Original market rows, source timestamps, IDs, odds, shares, GBP amounts and volumes are retained when present.",
   "source": "public Supabase tables (read-only)",
-  "archive_status": "COMPLETE",
+  "archive_status": "PARTIAL",
   "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; latest observation at or before target only; no interpolation or future substitution.",
   "source_row_counts": {
     "1X2": 147948,
@@ -108,5 +108,7 @@
   "snapshot_fallback_selection_rows": 0,
   "snapshot_source_rows": 431428,
   "snapshot_fallback_market_slots": 9342,
-  "snapshot_backfill_version": "snapshot-field-fill-v1"
+  "snapshot_backfill_version": "snapshot-field-fill-v1",
+  "source_archive_status": "PARTIAL",
+  "market_coverage_complete": false
 }

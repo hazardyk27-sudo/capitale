@@ -46,7 +46,7 @@
   "alarms": 132,
   "fields": "Original market history fields are retained, including source odds, share percentages, GBP amounts, volume, timestamps, row id and fingerprint.",
   "source": "Supabase research_archive (READ-ONLY)",
-  "source_archive_status": "COMPLETE",
+  "source_archive_status": "PARTIAL",
   "source_archive_notes": "Original daily source archive status COMPLETE. Hash-only legacy matching was permitted only when the fixture hash was unique; ambiguous hash collisions were excluded.",
   "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; latest observation at or before target only; no interpolation or future substitution.",
   "coverage_by_market": {
@@ -104,5 +104,7 @@
   "snapshot_fallback_selection_rows": 0,
   "snapshot_source_rows": 0,
   "snapshot_fallback_market_slots": 0,
-  "snapshot_backfill_version": "snapshot-field-fill-v1"
+  "snapshot_backfill_version": "snapshot-field-fill-v1",
+  "archive_status": "PARTIAL",
+  "market_coverage_complete": false
 }
