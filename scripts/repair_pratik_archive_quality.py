@@ -12,7 +12,7 @@ from pathlib import Path
 
 import psycopg
 
-from export_pratik_daily_archive import row_fixture, rows_for_identities
+from export_pratik_daily_archive import load_fixtures, rows_for_identities
 from pratik_archive_quality import (
     QUALITY_VERSION, MARKET_FIELDS, build_snapshot_fallback,
     classify_market_data, quality_score,
@@ -61,40 +61,84 @@ def hash_gzip_jsonl(path: Path):
 
 
 def load_snapshot_groups(conn, checkpoint_path: Path, day: str):
-    """Read surviving normalized market snapshots for this archived day."""
-    fixtures = []
+    """Read exact surviving market snapshots and map them to archived fixtures."""
+    archived = []
     with gzip.open(checkpoint_path, "rt", encoding="utf-8") as stream:
         for line in stream:
             record = json.loads(line)
             kickoff = parse_time(record.get("kickoff_utc"))
             if kickoff is None:
                 raise ValueError(f"Fixture has invalid kickoff on {day}")
-            fixtures.append({
+            archived.append({
                 **record,
                 "_kickoff": kickoff,
                 "kickoff_utc": kickoff.isoformat().replace("+00:00", "Z"),
             })
-    uids = [str(item["fixture_uid"]) for item in fixtures if item.get("fixture_uid")]
-    hashes = list({str(item["match_id_hash"]) for item in fixtures
-                   if item.get("match_id_hash")})
-    if not fixtures or (not uids and not hashes):
-        return {}
-    by_uid = {str(item["fixture_uid"]): item for item in fixtures
-              if item.get("fixture_uid")}
-    by_hash = {}
-    for fixture in fixtures:
-        if fixture.get("match_id_hash"):
-            by_hash.setdefault(str(fixture["match_id_hash"]), []).append(fixture)
-    start = min(item["_kickoff"] for item in fixtures) - dt.timedelta(hours=72)
-    end = max(item["_kickoff"] for item in fixtures)
+
+    source = load_fixtures(conn, dt.date.fromisoformat(day))
+    archived_by_uid = {
+        str(item["fixture_uid"]): item for item in archived if item.get("fixture_uid")
+    }
+    archived_by_hash = {}
+    archived_by_teams = {}
+    for item in archived:
+        if item.get("match_id_hash"):
+            archived_by_hash.setdefault(str(item["match_id_hash"]), []).append(item)
+        teams = (item.get("home", "").strip().casefold(),
+                 item.get("away", "").strip().casefold(),
+                 item["_kickoff"])
+        archived_by_teams.setdefault(teams, []).append(item)
+
+    source_to_archive = {}
+    for fixture in source:
+        uid = str(fixture.get("fixture_uid") or "")
+        match_hash = str(fixture.get("match_id_hash") or "")
+        target = archived_by_uid.get(uid) if uid else None
+        if target is None and match_hash:
+            matches = archived_by_hash.get(match_hash, [])
+            if len(matches) == 1:
+                target = matches[0]
+        if target is None:
+            teams = (fixture.get("home", "").strip().casefold(),
+                     fixture.get("away", "").strip().casefold(),
+                     fixture["_kickoff"])
+            matches = archived_by_teams.get(teams, [])
+            if len(matches) == 1:
+                target = matches[0]
+        if target is not None:
+            source_to_archive[uid] = target
+
+    source_uids = [str(item["fixture_uid"]) for item in source if item.get("fixture_uid")]
+    source_hashes = list({str(item["match_id_hash"]) for item in source
+                          if item.get("match_id_hash")})
+    if not source_uids and not source_hashes:
+        return {}, 0
+    start = min(item["_kickoff"] for item in source) - dt.timedelta(hours=72)
+    end = max(item["_kickoff"] for item in source)
     rows = rows_for_identities(
-        conn, "moneyway_snapshots", uids, hashes,
+        conn, "moneyway_snapshots", source_uids, source_hashes,
         "scraped_at_utc", start, end,
     )
+
     grouped = {}
+    source_by_uid = {str(item["fixture_uid"]): item for item in source
+                     if item.get("fixture_uid")}
+    source_by_hash = {}
+    for item in source:
+        if item.get("match_id_hash"):
+            source_by_hash.setdefault(str(item["match_id_hash"]), []).append(item)
     for row in rows:
-        fixture = row_fixture(row, by_uid, by_hash, dt.date.fromisoformat(day))
+        uid = str(row.get("fixture_uid") or "")
+        fixture = source_by_uid.get(uid) if uid else None
         if fixture is None:
+            match_hash = str(row.get("match_id_hash") or "")
+            matches = source_by_hash.get(match_hash, [])
+            if len(matches) == 1:
+                fixture = matches[0]
+        if fixture is None:
+            continue
+        archive_fixture = source_to_archive.get(str(fixture.get("fixture_uid") or ""))
+        if archive_fixture is None:
             continue
         observed = parse_time(row.get("scraped_at_utc"))
         if observed is None or not (
@@ -106,12 +150,11 @@ def load_snapshot_groups(conn, checkpoint_path: Path, day: str):
         selection = str(row.get("selection") or "").strip().upper()
         if market not in MARKET_FIELDS:
             continue
-        key = str(fixture.get("fixture_uid") or fixture.get("match_id_hash"))
+        key = str(archive_fixture.get("fixture_uid") or archive_fixture.get("match_id_hash"))
         grouped.setdefault(key, {}).setdefault(market, {}).setdefault(
             selection, []
         ).append((observed, str(row.get("id") or ""), row))
     return grouped, len(rows)
-
 
 def archive_one(folder: Path, expected_hours: list[int], conn):
     manifest_path = folder / "manifest.json"
