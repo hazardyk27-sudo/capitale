@@ -356,15 +356,24 @@ def main():
     if not folders:
         raise SystemExit("No PRATIK archive day folders found")
 
+    database_url = os.environ.get("PRATIK_ARCHIVE_DATABASE_URL", "")
+    if not database_url:
+        raise SystemExit("Missing PRATIK_ARCHIVE_DATABASE_URL read-only secret")
+
     entries = {}
-    for folder in folders:
-        manifest = archive_one(folder, expected_hours)
-        entries[manifest["date"]] = index_entry(manifest)
-        print(json.dumps({
-            "date": manifest["date"],
-            "fixtures": manifest["fixtures"],
-            "coverage": manifest["coverage_by_market"],
-        }, ensure_ascii=False), flush=True)
+    with psycopg.connect(database_url, connect_timeout=15, sslmode="require",
+                         options="-c default_transaction_read_only=on") as conn:
+        for folder in folders:
+            manifest = archive_one(folder, expected_hours, conn)
+            entries[manifest["date"]] = index_entry(manifest)
+            print(json.dumps({
+                "date": manifest["date"],
+                "fixtures": manifest["fixtures"],
+                "coverage": manifest["coverage_by_market"],
+                "snapshot_fallback_selection_rows": manifest.get(
+                    "snapshot_fallback_selection_rows", 0
+                ),
+            }, ensure_ascii=False), flush=True)
 
     old_days = index.get("days")
     if not isinstance(old_days, list):
