@@ -14,6 +14,8 @@ from zoneinfo import ZoneInfo
 import psycopg
 from psycopg import sql
 
+from pratik_archive_quality import QUALITY_VERSION, classify_market_data
+
 ISTANBUL = ZoneInfo("Europe/Istanbul")
 CHECKPOINT_HOURS = (
     *range(72, 23, -3),
@@ -84,6 +86,8 @@ def verified_existing(folder: Path, day: dt.date) -> bool:
         raise ValueError("Existing PRATIK manifest identity mismatch")
     if manifest.get("checkpoint_hours") != list(CHECKPOINT_HOURS):
         raise ValueError("Existing PRATIK checkpoint schedule mismatch")
+    if manifest.get("quality_version") != QUALITY_VERSION:
+        raise ValueError("Existing PRATIK archive needs market-quality reclassification before it can be skipped")
     integrity = manifest.get("integrity", {})
     verify_output(folder, day, integrity.get("fixture_records"), integrity.get("alarm_records"))
     print(json.dumps({"status": "SKIP_VERIFIED_EXISTING", "day": str(day)}), flush=True)
@@ -273,7 +277,7 @@ def make_archive(conn, day: dt.date, output: Path):
 
     results = load_results(conn, fixtures, uids, hashes, day)
     checkpoint_lines = []
-    coverage = {market: {"present": 0, "missing": 0} for market in MARKETS}
+    coverage = {market: {"present": 0, "partial": 0, "empty": 0, "missing": 0} for market in MARKETS}
     future_count = 0
     for fixture in fixtures:
         key = fixture["fixture_uid"] or fixture["match_id_hash"]
@@ -298,15 +302,17 @@ def make_archive(conn, day: dt.date, output: Path):
                 if observed > target:
                     future_count += 1
                     raise ValueError("Future snapshot selected; refusing archive")
+                status, quality = classify_market_data(market, row)
                 markets[market] = {
-                    "status": "PRESENT",
+                    "status": status,
+                    "quality": quality,
                     "actual_at_utc": iso_utc(observed),
                     "lag_minutes": lag,
                     "source_row_id": row.get("id"),
                     "source_fingerprint": row.get("source_fingerprint"),
                     "data": row,
                 }
-                coverage[market]["present"] += 1
+                coverage[market][status.lower()] += 1
             points.append({
                 "t_minus_hours": hours, "target_at_utc": iso_utc(target),
                 "markets": markets,
@@ -340,6 +346,9 @@ def make_archive(conn, day: dt.date, output: Path):
         }
     total_slots = len(fixtures) * len(CHECKPOINT_HOURS) * len(MARKETS)
     present_slots = sum(item["present"] for item in coverage.values())
+    partial_slots = sum(item["partial"] for item in coverage.values())
+    empty_slots = sum(item["empty"] for item in coverage.values())
+    missing_slots = sum(item["missing"] for item in coverage.values())
     final_count = sum(
         1 for fixture in fixtures
         if (results.get(fixture["fixture_uid"] or fixture["match_id_hash"])
@@ -351,7 +360,8 @@ def make_archive(conn, day: dt.date, output: Path):
     )
     manifest = {
         "archive_name": "PRATİK ARŞİV",
-        "version": "v1",
+        "version": "v2",
+        "quality_version": QUALITY_VERSION,
         "date": str(day),
         "timezone": "Europe/Istanbul",
         "checkpoint_hours": list(CHECKPOINT_HOURS),
@@ -363,12 +373,14 @@ def make_archive(conn, day: dt.date, output: Path):
         "live_in_progress": live_score_count - final_count,
         "market_checkpoint_slots_total": total_slots,
         "market_checkpoint_slots_present": present_slots,
-        "market_checkpoint_slots_missing": total_slots - present_slots,
+        "market_checkpoint_slots_partial": partial_slots,
+        "market_checkpoint_slots_empty": empty_slots,
+        "market_checkpoint_slots_missing": missing_slots,
         "alarms": len(alarms),
         "fields": "Original market rows, source timestamps, IDs, odds, shares, GBP amounts and volumes are retained when present.",
         "source": SOURCE,
         "archive_status": "COMPLETE",
-        "missing_policy": "MISSING explicit; latest observation at or before target only; exact fixture_uid preferred; match hash only when unique for the day and team names agree; no interpolation or future substitution.",
+        "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; latest observation at or before target only; no interpolation or future substitution.",
         "source_row_counts": history_counts,
         "coverage_by_market": coverage,
         "files": files,
@@ -409,6 +421,10 @@ def verify_output(folder: Path, day: dt.date, fixture_count: int, alarm_count: i
         digest, count = line_digest_and_count(folder / name)
         if count != expected or digest != manifest["integrity"].get(key):
             raise ValueError(f"Output restore/checksum validation failed: {name}")
+    observed_coverage = {
+        name: {"present": 0, "partial": 0, "empty": 0, "missing": 0}
+        for name in MARKETS
+    }
     with gzip.open(folder / "checkpoints.jsonl.gz", "rt", encoding="utf-8") as stream:
         for line in stream:
             record = json.loads(line)
@@ -423,11 +439,30 @@ def verify_output(folder: Path, day: dt.date, fixture_count: int, alarm_count: i
                 expected_target = kickoff - dt.timedelta(hours=point["t_minus_hours"])
                 if target != expected_target:
                     raise ValueError("Checkpoint target does not match fixture kickoff")
-                for market in point.get("markets", {}).values():
-                    if market.get("status") == "PRESENT":
-                        actual = parse_time(market.get("actual_at_utc"))
-                        if actual is None or target is None or actual > target:
-                            raise ValueError("Future or invalid observation in checkpoint")
+                markets = point.get("markets", {})
+                for name in MARKETS:
+                    item = markets.get(name)
+                    if not isinstance(item, dict):
+                        raise ValueError(f"Missing market state: {name}")
+                    status = item.get("status")
+                    if status == "MISSING":
+                        if item.get("data") is not None:
+                            raise ValueError("MISSING market unexpectedly has source data")
+                        observed_coverage[name]["missing"] += 1
+                        continue
+                    if status not in {"PRESENT", "PARTIAL", "EMPTY"}:
+                        raise ValueError(f"Invalid market status: {status}")
+                    actual = parse_time(item.get("actual_at_utc"))
+                    if actual is None or target is None or actual > target:
+                        raise ValueError("Future or invalid observation in checkpoint")
+                    expected_status, expected_quality = classify_market_data(name, item.get("data"))
+                    if status != expected_status or item.get("quality") != expected_quality:
+                        raise ValueError(f"Market quality classification mismatch: {name}")
+                    observed_coverage[name][status.lower()] += 1
+    if manifest.get("quality_version") != QUALITY_VERSION:
+        raise ValueError("Unsupported market quality version")
+    if observed_coverage != manifest.get("coverage_by_market"):
+        raise ValueError("Market coverage counters do not match checkpoint records")
 
 
 def main():
