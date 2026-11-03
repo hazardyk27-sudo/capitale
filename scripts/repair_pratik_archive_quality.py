@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reclassify existing PRATIK archives without inventing missing source values."""
+"""Repair PRATIK quality from retained exact snapshots, then verify immutable records."""
 from __future__ import annotations
 
 import argparse
@@ -10,7 +10,13 @@ import json
 import os
 from pathlib import Path
 
-from pratik_archive_quality import QUALITY_VERSION, MARKET_FIELDS, classify_market_data
+import psycopg
+
+from export_pratik_daily_archive import row_fixture, rows_for_identities
+from pratik_archive_quality import (
+    QUALITY_VERSION, MARKET_FIELDS, build_snapshot_fallback,
+    classify_market_data, quality_score,
+)
 
 ARCHIVE_NAME = "PRATİK ARŞİV"
 
@@ -54,7 +60,60 @@ def hash_gzip_jsonl(path: Path):
     return digest.hexdigest(), byte_count, record_count
 
 
-def archive_one(folder: Path, expected_hours: list[int]):
+def load_snapshot_groups(conn, checkpoint_path: Path, day: str):
+    """Read surviving normalized market snapshots for this archived day."""
+    fixtures = []
+    with gzip.open(checkpoint_path, "rt", encoding="utf-8") as stream:
+        for line in stream:
+            record = json.loads(line)
+            kickoff = parse_time(record.get("kickoff_utc"))
+            if kickoff is None:
+                raise ValueError(f"Fixture has invalid kickoff on {day}")
+            fixtures.append({
+                **record,
+                "_kickoff": kickoff,
+                "kickoff_utc": kickoff.isoformat().replace("+00:00", "Z"),
+            })
+    uids = [str(item["fixture_uid"]) for item in fixtures if item.get("fixture_uid")]
+    hashes = list({str(item["match_id_hash"]) for item in fixtures
+                   if item.get("match_id_hash")})
+    if not fixtures or (not uids and not hashes):
+        return {}
+    by_uid = {str(item["fixture_uid"]): item for item in fixtures
+              if item.get("fixture_uid")}
+    by_hash = {}
+    for fixture in fixtures:
+        if fixture.get("match_id_hash"):
+            by_hash.setdefault(str(fixture["match_id_hash"]), []).append(fixture)
+    start = min(item["_kickoff"] for item in fixtures) - dt.timedelta(hours=72)
+    end = max(item["_kickoff"] for item in fixtures)
+    rows = rows_for_identities(
+        conn, "moneyway_snapshots", uids, hashes,
+        "scraped_at_utc", start, end,
+    )
+    grouped = {}
+    for row in rows:
+        fixture = row_fixture(row, by_uid, by_hash, dt.date.fromisoformat(day))
+        if fixture is None:
+            continue
+        observed = parse_time(row.get("scraped_at_utc"))
+        if observed is None or not (
+            fixture["_kickoff"] - dt.timedelta(hours=72)
+            <= observed <= fixture["_kickoff"]
+        ):
+            continue
+        market = str(row.get("market") or "").strip().upper()
+        selection = str(row.get("selection") or "").strip().upper()
+        if market not in MARKET_FIELDS:
+            continue
+        key = str(fixture.get("fixture_uid") or fixture.get("match_id_hash"))
+        grouped.setdefault(key, {}).setdefault(market, {}).setdefault(
+            selection, []
+        ).append((observed, str(row.get("id") or ""), row))
+    return grouped
+
+
+def archive_one(folder: Path, expected_hours: list[int], conn):
     manifest_path = folder / "manifest.json"
     checkpoint_path = folder / "checkpoints.jsonl.gz"
     alarm_path = folder / "alarms.jsonl.gz"
@@ -80,6 +139,8 @@ def archive_one(folder: Path, expected_hours: list[int]):
     if manifest.get("fixtures") != old_checkpoint_count or manifest.get("alarms") != old_alarm_count:
         raise ValueError(f"Existing archive record count mismatch; refusing rewrite: {day}")
 
+    snapshot_groups = load_snapshot_groups(conn, checkpoint_path, day)
+    fallback_selection_count = 0
     temp_path = checkpoint_path.with_name("checkpoints.jsonl.gz.quality-tmp")
     coverage = empty_coverage()
     future_count = 0
@@ -111,21 +172,54 @@ def archive_one(folder: Path, expected_hours: list[int]):
                             item = markets.get(market)
                             if not isinstance(item, dict):
                                 raise ValueError(f"Market state missing: {day} {market}")
-                            if item.get("status") == "MISSING":
-                                if item.get("data") is not None:
-                                    raise ValueError(f"MISSING market has source data: {day} {market}")
+                            data = item.get("data")
+                            current_score = quality_score(market, data or {})
+                            fixture_key = str(
+                                record.get("fixture_uid") or record.get("match_id_hash")
+                            )
+                            fallback, fallback_at, fallback_ids = build_snapshot_fallback(
+                                market,
+                                snapshot_groups.get(fixture_key, {}).get(market, {}),
+                                record,
+                                target_at,
+                            )
+                            if fallback and quality_score(market, fallback) > current_score:
+                                data = fallback
+                                status, quality = classify_market_data(market, data)
+                                item.update({
+                                    "status": status,
+                                    "quality": quality,
+                                    "actual_at_utc": fallback_at.isoformat().replace(
+                                        "+00:00", "Z"
+                                    ),
+                                    "lag_minutes": max(
+                                        0, int((target_at - fallback_at).total_seconds() // 60)
+                                    ),
+                                    "source_table": "public.moneyway_snapshots",
+                                    "source_row_ids": fallback_ids,
+                                    "source_row_id": None,
+                                    "source_fingerprint": None,
+                                    "data": data,
+                                })
+                                fallback_selection_count += len(fallback_ids)
+                            elif item.get("status") == "MISSING":
+                                if data is not None:
+                                    raise ValueError(
+                                        f"MISSING market has source data: {day} {market}"
+                                    )
                                 item.pop("quality", None)
                                 coverage[market]["missing"] += 1
                                 continue
-
-                            data = item.get("data")
-                            status, quality = classify_market_data(market, data)
-                            actual_at = parse_time(item.get("actual_at_utc"))
-                            if actual_at is None or actual_at > target_at:
-                                raise ValueError(f"Future or invalid source time: {day} {market}")
-                            item["status"] = status
-                            item["quality"] = quality
-                            coverage[market][status.lower()] += 1
+                            else:
+                                status, quality = classify_market_data(market, data)
+                                actual_at = parse_time(item.get("actual_at_utc"))
+                                if actual_at is None or actual_at > target_at:
+                                    raise ValueError(
+                                        f"Future or invalid source time: {day} {market}"
+                                    )
+                                item["status"] = status
+                                item["quality"] = quality
+                            coverage[market][item["status"].lower()] += 1
 
                     output_line = (compact_json(record) + "\n").encode("utf-8")
                     target.write(output_line)
@@ -175,6 +269,7 @@ def archive_one(folder: Path, expected_hours: list[int]):
         "market_checkpoint_slots_empty": empty_slots,
         "market_checkpoint_slots_missing": missing_slots,
         "coverage_by_market": coverage,
+        "snapshot_fallback_selection_rows": fallback_selection_count,
         "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; latest observation at or before target only; no interpolation or future substitution.",
     })
     integrity = manifest.setdefault("integrity", {})
@@ -217,6 +312,9 @@ def index_entry(manifest: dict) -> dict:
         "total_bytes": files["checkpoints"]["compressed_bytes"] + files["alarms"]["compressed_bytes"],
         "uncompressed_bytes": files["checkpoints"]["uncompressed_bytes"] + files["alarms"]["uncompressed_bytes"],
         "coverage": manifest["coverage_by_market"],
+        "snapshot_fallback_selection_rows": manifest.get(
+            "snapshot_fallback_selection_rows", 0
+        ),
         "results_present": results_present,
         "results_missing": results_missing,
         "results_live": results_live,
