@@ -104,7 +104,7 @@
   "snapshot_fallback_selection_rows": 0,
   "snapshot_source_rows": 335923,
   "snapshot_fallback_market_slots": 6790,
-  "snapshot_backfill_version": "snapshot-field-fill-v2-asof-t72",
+  "snapshot_backfill_version": "market-history-backfill-v3-asof-t72",
   "archive_status": "PARTIAL",
   "market_coverage_complete": false
 }
