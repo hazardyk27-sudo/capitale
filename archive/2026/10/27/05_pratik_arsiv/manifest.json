@@ -105,5 +105,7 @@
   "quality_version": "market-field-quality-v3",
   "market_checkpoint_slots_partial": 2783,
   "market_checkpoint_slots_empty": 5611,
-  "snapshot_fallback_selection_rows": 0
+  "snapshot_fallback_selection_rows": 0,
+  "snapshot_source_rows": 0,
+  "snapshot_fallback_market_slots": 0
 }
