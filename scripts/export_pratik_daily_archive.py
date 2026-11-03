@@ -14,7 +14,9 @@ from zoneinfo import ZoneInfo
 import psycopg
 from psycopg import sql
 
-from pratik_archive_quality import QUALITY_VERSION, classify_market_data
+from pratik_archive_quality import (
+    QUALITY_VERSION, build_snapshot_fallback, classify_market_data, quality_score,
+)
 
 ISTANBUL = ZoneInfo("Europe/Istanbul")
 CHECKPOINT_HOURS = (
@@ -260,6 +262,31 @@ def make_archive(conn, day: dt.date, output: Path):
         histories[market] = grouped
         history_counts[market] = sum(len(items) for items in grouped.values())
 
+    snapshot_rows = rows_for_identities(
+        conn, "moneyway_snapshots", uids, hashes, "scraped_at_utc",
+        min(starts), max(ends),
+    )
+    snapshot_histories = {f["fixture_uid"] or f["match_id_hash"]: {} for f in fixtures}
+    for row in snapshot_rows:
+        fixture = row_fixture(row, by_uid, by_hash, day)
+        if not fixture:
+            continue
+        observed = parse_time(row.get("scraped_at_utc"))
+        if observed is None or not (
+            fixture["_kickoff"] - dt.timedelta(hours=72)
+            <= observed <= fixture["_kickoff"]
+        ):
+            continue
+        market = str(row.get("market") or "").strip().upper()
+        selection = str(row.get("selection") or "").strip().upper()
+        if market not in MARKETS:
+            continue
+        key = fixture["fixture_uid"] or fixture["match_id_hash"]
+        snapshot_histories.setdefault(key, {}).setdefault(market, {}).setdefault(
+            selection, []
+        ).append((observed, stable_row_id(row), row))
+    snapshot_row_count = len(snapshot_rows)
+
     alarms = []
     for table in ALARM_TABLES:
         if not table_columns(conn, table):
@@ -288,30 +315,53 @@ def make_archive(conn, day: dt.date, output: Path):
             for market in MARKETS:
                 eligible = [entry for entry in histories[market].get(key, [])
                             if entry[0] <= target]
-                if not eligible:
+                selected = None
+                if eligible:
+                    eligible.sort(key=lambda entry: (entry[0], entry[1]))
+                    observed, row_id, row = eligible[-1]
+                    tied = [entry for entry in eligible if entry[0] == observed]
+                    if tied:
+                        observed, row_id, row = min(tied, key=lambda entry: entry[1])
+                    selected = {
+                        "status": classify_market_data(market, row)[0],
+                        "actual_at_utc": iso_utc(observed),
+                        "lag_minutes": max(
+                            0, int((target - observed).total_seconds() // 60)
+                        ),
+                        "source_table": f"public.{MARKETS[market][0]}",
+                        "source_row_id": row.get("id"),
+                        "source_fingerprint": row.get("source_fingerprint"),
+                        "data": row,
+                    }
+                fallback, fallback_at, fallback_ids = build_snapshot_fallback(
+                    market, snapshot_histories.get(key, {}).get(market, {}),
+                    fixture, target,
+                )
+                if fallback and quality_score(market, fallback) > quality_score(
+                    market, (selected or {}).get("data") or {}
+                ):
+                    selected = {
+                        "data": fallback,
+                        "source_table": "public.moneyway_snapshots",
+                        "source_row_ids": fallback_ids,
+                        "source_row_id": None,
+                        "source_fingerprint": None,
+                        "actual_at_utc": iso_utc(fallback_at),
+                        "lag_minutes": max(
+                            0, int((target - fallback_at).total_seconds() // 60)
+                        ),
+                    }
+                if selected is None:
                     markets[market] = {"status": "MISSING"}
                     coverage[market]["missing"] += 1
                     continue
-                eligible.sort(key=lambda entry: (entry[0], entry[1]))
-                observed, row_id, row = eligible[-1]
-                # Stable source id ascending wins a same-time tie.
-                tied = [entry for entry in eligible if entry[0] == observed]
-                if tied:
-                    observed, row_id, row = min(tied, key=lambda entry: entry[1])
-                lag = max(0, int((target - observed).total_seconds() // 60))
-                if observed > target:
+                status, quality = classify_market_data(market, selected["data"])
+                if parse_time(selected["actual_at_utc"]) > target:
                     future_count += 1
                     raise ValueError("Future snapshot selected; refusing archive")
-                status, quality = classify_market_data(market, row)
-                markets[market] = {
-                    "status": status,
-                    "quality": quality,
-                    "actual_at_utc": iso_utc(observed),
-                    "lag_minutes": lag,
-                    "source_row_id": row.get("id"),
-                    "source_fingerprint": row.get("source_fingerprint"),
-                    "data": row,
-                }
+                selected["status"] = status
+                selected["quality"] = quality
+                markets[market] = selected
                 coverage[market][status.lower()] += 1
             points.append({
                 "t_minus_hours": hours, "target_at_utc": iso_utc(target),
@@ -382,6 +432,7 @@ def make_archive(conn, day: dt.date, output: Path):
         "archive_status": "COMPLETE",
         "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; latest observation at or before target only; no interpolation or future substitution.",
         "source_row_counts": history_counts,
+        "snapshot_source_rows": snapshot_row_count,
         "coverage_by_market": coverage,
         "files": files,
         "integrity": {
