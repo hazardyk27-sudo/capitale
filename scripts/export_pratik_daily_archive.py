@@ -416,6 +416,9 @@ def make_archive(conn, day: dt.date, output: Path):
     partial_slots = sum(item["partial"] for item in coverage.values())
     empty_slots = sum(item["empty"] for item in coverage.values())
     missing_slots = sum(item["missing"] for item in coverage.values())
+    source_archive_status = (
+        "COMPLETE" if total_slots > 0 and present_slots == total_slots else "PARTIAL"
+    )
     final_count = sum(
         1 for fixture in fixtures
         if (results.get(fixture["fixture_uid"] or fixture["match_id_hash"])
@@ -446,8 +449,10 @@ def make_archive(conn, day: dt.date, output: Path):
         "alarms": len(alarms),
         "fields": "Original market rows, source timestamps, IDs, odds, shares, GBP amounts and volumes are retained when present.",
         "source": SOURCE,
-        "archive_status": "COMPLETE",
-        "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; latest observation at or before target only; no interpolation or future substitution.",
+        "archive_status": source_archive_status,
+        "source_archive_status": source_archive_status,
+        "market_coverage_complete": source_archive_status == "COMPLETE",
+        "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; archive is COMPLETE only when every fixture/checkpoint/market slot is PRESENT; latest observation at or before target only; no interpolation or future substitution.",
         "source_row_counts": history_counts,
         "snapshot_backfill_version": "snapshot-field-fill-v1",
         "snapshot_source_rows": snapshot_row_count,
@@ -534,6 +539,17 @@ def verify_output(folder: Path, day: dt.date, fixture_count: int, alarm_count: i
         raise ValueError("Unsupported market quality version")
     if observed_coverage != manifest.get("coverage_by_market"):
         raise ValueError("Market coverage counters do not match checkpoint records")
+    observed_total = sum(sum(counts.values()) for counts in observed_coverage.values())
+    observed_present = sum(counts["present"] for counts in observed_coverage.values())
+    if manifest.get("market_checkpoint_slots_total") != observed_total:
+        raise ValueError("Market checkpoint slot total does not match checkpoint records")
+    expected_status = (
+        "COMPLETE" if observed_total > 0 and observed_present == observed_total else "PARTIAL"
+    )
+    if (manifest.get("archive_status") != expected_status
+            or manifest.get("source_archive_status") != expected_status
+            or manifest.get("market_coverage_complete") is not (expected_status == "COMPLETE")):
+        raise ValueError("Archive status does not match source market coverage")
 
 
 def main():

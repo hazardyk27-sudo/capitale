@@ -336,9 +336,15 @@ def archive_one(folder: Path, expected_hours: list[int], conn):
         "uncompressed_bytes": alarms_bytes,
         "compressed_bytes": alarm_path.stat().st_size,
     }
+    source_archive_status = (
+        "COMPLETE" if total_slots > 0 and present_slots == total_slots else "PARTIAL"
+    )
     manifest.update({
         "version": "v2",
         "quality_version": QUALITY_VERSION,
+        "archive_status": source_archive_status,
+        "source_archive_status": source_archive_status,
+        "market_coverage_complete": source_archive_status == "COMPLETE",
         "fixtures": fixture_count,
         "alarms": alarm_count,
         "market_checkpoint_slots_total": total_slots,

@@ -15,6 +15,10 @@ CAPITALE is a multi-agent football research and betting-decision system built ar
 
 ANALYST, NEWS, SXF, and POLY work independently and cannot see one another's reports. Only FINAL may combine them.
 
+## PRATİK archive completeness
+
+A PRATİK day is marked `COMPLETE` only when every fixture, scheduled checkpoint, and market has odds, money share, and amount data (`PRESENT`). Any partial, empty, or missing market slot makes the source archive `PARTIAL`. Missing match results are tracked separately and do not determine market archive completeness. Source values are never interpolated or filled with observations from after the checkpoint.
+
 ## Repository structure
 
 ```text
