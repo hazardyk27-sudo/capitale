@@ -704,8 +704,8 @@
           "missing": 1518
         }
       },
-      "snapshot_source_rows": 0,
-      "snapshot_fallback_market_slots": 0,
+      "snapshot_source_rows": 70456,
+      "snapshot_fallback_market_slots": 3324,
       "snapshot_fallback_selection_rows": 0,
       "results_present": 129,
       "results_missing": 0,
@@ -753,8 +753,8 @@
           "missing": 2972
         }
       },
-      "snapshot_source_rows": 0,
-      "snapshot_fallback_market_slots": 0,
+      "snapshot_source_rows": 338979,
+      "snapshot_fallback_market_slots": 13698,
       "snapshot_fallback_selection_rows": 0,
       "results_present": 229,
       "results_missing": 1,
@@ -802,8 +802,8 @@
           "missing": 5005
         }
       },
-      "snapshot_source_rows": 0,
-      "snapshot_fallback_market_slots": 0,
+      "snapshot_source_rows": 1029573,
+      "snapshot_fallback_market_slots": 35854,
       "snapshot_fallback_selection_rows": 0,
       "results_present": 473,
       "results_missing": 4,
@@ -851,8 +851,8 @@
           "missing": 3431
         }
       },
-      "snapshot_source_rows": 0,
-      "snapshot_fallback_market_slots": 0,
+      "snapshot_source_rows": 812091,
+      "snapshot_fallback_market_slots": 26844,
       "snapshot_fallback_selection_rows": 0,
       "results_present": 366,
       "results_missing": 2,
@@ -900,8 +900,8 @@
           "missing": 2090
         }
       },
-      "snapshot_source_rows": 0,
-      "snapshot_fallback_market_slots": 0,
+      "snapshot_source_rows": 251231,
+      "snapshot_fallback_market_slots": 8916,
       "snapshot_fallback_selection_rows": 0,
       "results_present": 128,
       "results_missing": 6,
@@ -949,8 +949,8 @@
           "missing": 3057
         }
       },
-      "snapshot_source_rows": 0,
-      "snapshot_fallback_market_slots": 0,
+      "snapshot_source_rows": 417727,
+      "snapshot_fallback_market_slots": 16028,
       "snapshot_fallback_selection_rows": 0,
       "results_present": 204,
       "results_missing": 11,
@@ -998,8 +998,8 @@
           "missing": 2952
         }
       },
-      "snapshot_source_rows": 0,
-      "snapshot_fallback_market_slots": 0,
+      "snapshot_source_rows": 431428,
+      "snapshot_fallback_market_slots": 18684,
       "snapshot_fallback_selection_rows": 0,
       "results_present": 220,
       "results_missing": 13,
@@ -1047,8 +1047,8 @@
           "missing": 2204
         }
       },
-      "snapshot_source_rows": 0,
-      "snapshot_fallback_market_slots": 0,
+      "snapshot_source_rows": 211203,
+      "snapshot_fallback_market_slots": 11690,
       "snapshot_fallback_selection_rows": 0,
       "results_present": 123,
       "results_missing": 35,
@@ -1096,8 +1096,8 @@
           "missing": 2703
         }
       },
-      "snapshot_source_rows": 0,
-      "snapshot_fallback_market_slots": 0,
+      "snapshot_source_rows": 225856,
+      "snapshot_fallback_market_slots": 13868,
       "snapshot_fallback_selection_rows": 0,
       "results_present": 187,
       "results_missing": 9,
@@ -1145,8 +1145,8 @@
           "missing": 4527
         }
       },
-      "snapshot_source_rows": 0,
-      "snapshot_fallback_market_slots": 0,
+      "snapshot_source_rows": 645064,
+      "snapshot_fallback_market_slots": 36696,
       "snapshot_fallback_selection_rows": 0,
       "results_present": 426,
       "results_missing": 7,
@@ -1194,8 +1194,8 @@
           "missing": 3014
         }
       },
-      "snapshot_source_rows": 0,
-      "snapshot_fallback_market_slots": 0,
+      "snapshot_source_rows": 459571,
+      "snapshot_fallback_market_slots": 25532,
       "snapshot_fallback_selection_rows": 0,
       "results_present": 291,
       "results_missing": 10,
@@ -1243,8 +1243,8 @@
           "missing": 1827
         }
       },
-      "snapshot_source_rows": 0,
-      "snapshot_fallback_market_slots": 0,
+      "snapshot_source_rows": 203440,
+      "snapshot_fallback_market_slots": 11506,
       "snapshot_fallback_selection_rows": 0,
       "results_present": 140,
       "results_missing": 7,

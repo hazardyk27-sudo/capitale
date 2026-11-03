@@ -106,6 +106,6 @@
   "market_checkpoint_slots_partial": 1904,
   "market_checkpoint_slots_empty": 4264,
   "snapshot_fallback_selection_rows": 0,
-  "snapshot_source_rows": 0,
-  "snapshot_fallback_market_slots": 0
+  "snapshot_source_rows": 211203,
+  "snapshot_fallback_market_slots": 11690
 }

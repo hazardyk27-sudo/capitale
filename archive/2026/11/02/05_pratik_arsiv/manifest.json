@@ -106,6 +106,6 @@
     "alarms_sha256": "55e913c40cac76fe4e3a58e84f4246288bc2a2fca4977bdbda5c99d5352e3945"
   },
   "snapshot_fallback_selection_rows": 0,
-  "snapshot_source_rows": 0,
-  "snapshot_fallback_market_slots": 0
+  "snapshot_source_rows": 203440,
+  "snapshot_fallback_market_slots": 11506
 }
