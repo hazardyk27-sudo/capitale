@@ -306,6 +306,8 @@ def make_archive(conn, day: dt.date, output: Path):
     checkpoint_lines = []
     coverage = {market: {"present": 0, "partial": 0, "empty": 0, "missing": 0} for market in MARKETS}
     future_count = 0
+    snapshot_fallback_market_slots = 0
+    snapshot_fallback_selection_rows = 0
     for fixture in fixtures:
         key = fixture["fixture_uid"] or fixture["match_id_hash"]
         points = []
@@ -338,11 +340,13 @@ def make_archive(conn, day: dt.date, output: Path):
                     fixture, target,
                 )
                 if fallback:
+                    snapshot_fallback_market_slots += 1
                     original = (selected or {}).get("data")
                     merged, filled_fields = merge_snapshot_fields(
                         market, original, fallback
                     )
                     if filled_fields:
+                        snapshot_fallback_selection_rows += len(fallback_ids)
                         selected = selected or {}
                         selected.update({
                             "data": merged,
@@ -445,7 +449,10 @@ def make_archive(conn, day: dt.date, output: Path):
         "archive_status": "COMPLETE",
         "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; latest observation at or before target only; no interpolation or future substitution.",
         "source_row_counts": history_counts,
+        "snapshot_backfill_version": "snapshot-field-fill-v1",
         "snapshot_source_rows": snapshot_row_count,
+        "snapshot_fallback_market_slots": snapshot_fallback_market_slots,
+        "snapshot_fallback_selection_rows": snapshot_fallback_selection_rows,
         "coverage_by_market": coverage,
         "files": files,
         "integrity": {
