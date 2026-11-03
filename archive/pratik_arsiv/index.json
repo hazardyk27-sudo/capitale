@@ -67,6 +67,7 @@
           "missing": 3078
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 0,
       "snapshot_fallback_market_slots": 0,
       "snapshot_fallback_selection_rows": 0,
@@ -116,6 +117,7 @@
           "missing": 5200
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 0,
       "snapshot_fallback_market_slots": 0,
       "snapshot_fallback_selection_rows": 0,
@@ -165,6 +167,7 @@
           "missing": 3018
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 0,
       "snapshot_fallback_market_slots": 0,
       "snapshot_fallback_selection_rows": 0,
@@ -214,6 +217,7 @@
           "missing": 2265
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 0,
       "snapshot_fallback_market_slots": 0,
       "snapshot_fallback_selection_rows": 0,
@@ -263,6 +267,7 @@
           "missing": 4808
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 0,
       "snapshot_fallback_market_slots": 0,
       "snapshot_fallback_selection_rows": 0,
@@ -312,6 +317,7 @@
           "missing": 2377
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 0,
       "snapshot_fallback_market_slots": 0,
       "snapshot_fallback_selection_rows": 0,
@@ -361,6 +367,7 @@
           "missing": 2363
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 0,
       "snapshot_fallback_market_slots": 0,
       "snapshot_fallback_selection_rows": 0,
@@ -410,6 +417,7 @@
           "missing": 2662
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 0,
       "snapshot_fallback_market_slots": 0,
       "snapshot_fallback_selection_rows": 0,
@@ -459,6 +467,7 @@
           "missing": 4661
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 0,
       "snapshot_fallback_market_slots": 0,
       "snapshot_fallback_selection_rows": 0,
@@ -508,6 +517,7 @@
           "missing": 4148
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 0,
       "snapshot_fallback_market_slots": 0,
       "snapshot_fallback_selection_rows": 0,
@@ -557,6 +567,7 @@
           "missing": 2382
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 0,
       "snapshot_fallback_market_slots": 0,
       "snapshot_fallback_selection_rows": 0,
@@ -606,6 +617,7 @@
           "missing": 1877
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 0,
       "snapshot_fallback_market_slots": 0,
       "snapshot_fallback_selection_rows": 0,
@@ -655,6 +667,7 @@
           "missing": 1910
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 0,
       "snapshot_fallback_market_slots": 0,
       "snapshot_fallback_selection_rows": 0,
@@ -704,6 +717,7 @@
           "missing": 1518
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 70456,
       "snapshot_fallback_market_slots": 1662,
       "snapshot_fallback_selection_rows": 0,
@@ -753,6 +767,7 @@
           "missing": 2972
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 338979,
       "snapshot_fallback_market_slots": 6849,
       "snapshot_fallback_selection_rows": 0,
@@ -802,6 +817,7 @@
           "missing": 5005
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 1029573,
       "snapshot_fallback_market_slots": 17927,
       "snapshot_fallback_selection_rows": 0,
@@ -851,6 +867,7 @@
           "missing": 3431
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 812091,
       "snapshot_fallback_market_slots": 13422,
       "snapshot_fallback_selection_rows": 0,
@@ -900,6 +917,7 @@
           "missing": 2090
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 251231,
       "snapshot_fallback_market_slots": 4458,
       "snapshot_fallback_selection_rows": 0,
@@ -949,6 +967,7 @@
           "missing": 3057
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 417727,
       "snapshot_fallback_market_slots": 8014,
       "snapshot_fallback_selection_rows": 0,
@@ -998,6 +1017,7 @@
           "missing": 2952
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 431428,
       "snapshot_fallback_market_slots": 9342,
       "snapshot_fallback_selection_rows": 0,
@@ -1047,6 +1067,7 @@
           "missing": 2204
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 211203,
       "snapshot_fallback_market_slots": 5845,
       "snapshot_fallback_selection_rows": 0,
@@ -1096,6 +1117,7 @@
           "missing": 2703
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 225856,
       "snapshot_fallback_market_slots": 6934,
       "snapshot_fallback_selection_rows": 0,
@@ -1145,6 +1167,7 @@
           "missing": 4527
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 645064,
       "snapshot_fallback_market_slots": 18348,
       "snapshot_fallback_selection_rows": 0,
@@ -1194,6 +1217,7 @@
           "missing": 3014
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 459571,
       "snapshot_fallback_market_slots": 12766,
       "snapshot_fallback_selection_rows": 0,
@@ -1243,6 +1267,7 @@
           "missing": 1827
         }
       },
+      "snapshot_backfill_version": "snapshot-field-fill-v1",
       "snapshot_source_rows": 203440,
       "snapshot_fallback_market_slots": 5753,
       "snapshot_fallback_selection_rows": 0,

@@ -107,5 +107,6 @@
   },
   "snapshot_fallback_selection_rows": 0,
   "snapshot_source_rows": 203440,
-  "snapshot_fallback_market_slots": 5753
+  "snapshot_fallback_market_slots": 5753,
+  "snapshot_backfill_version": "snapshot-field-fill-v1"
 }
