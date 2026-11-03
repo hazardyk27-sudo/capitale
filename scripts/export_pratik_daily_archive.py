@@ -15,7 +15,7 @@ import psycopg
 from psycopg import sql
 
 from pratik_archive_quality import (
-    QUALITY_VERSION, build_snapshot_fallback, classify_market_data, quality_score,
+    QUALITY_VERSION, build_snapshot_fallback, classify_market_data, merge_snapshot_fields,
 )
 
 ISTANBUL = ZoneInfo("Europe/Istanbul")
@@ -337,20 +337,33 @@ def make_archive(conn, day: dt.date, output: Path):
                     market, snapshot_histories.get(key, {}).get(market, {}),
                     fixture, target,
                 )
-                if fallback and quality_score(market, fallback) > quality_score(
-                    market, (selected or {}).get("data") or {}
-                ):
-                    selected = {
-                        "data": fallback,
-                        "source_table": "public.moneyway_snapshots",
-                        "source_row_ids": fallback_ids,
-                        "source_row_id": None,
-                        "source_fingerprint": None,
-                        "actual_at_utc": iso_utc(fallback_at),
-                        "lag_minutes": max(
-                            0, int((target - fallback_at).total_seconds() // 60)
-                        ),
-                    }
+                if fallback:
+                    original = (selected or {}).get("data")
+                    merged, filled_fields = merge_snapshot_fields(
+                        market, original, fallback
+                    )
+                    if filled_fields:
+                        selected = selected or {}
+                        selected.update({
+                            "data": merged,
+                            "source_table": (
+                                f"{selected['source_table']} + public.moneyway_snapshots"
+                                if selected.get("source_table")
+                                else "public.moneyway_snapshots"
+                            ),
+                            "source_row_ids": fallback_ids,
+                            "snapshot_fallback_actual_at_utc": iso_utc(fallback_at),
+                            "snapshot_filled_fields": filled_fields,
+                            "source_row_id": selected.get("source_row_id"),
+                            "source_fingerprint": selected.get("source_fingerprint"),
+                            "actual_at_utc": selected.get(
+                                "actual_at_utc", iso_utc(fallback_at)
+                            ),
+                            "lag_minutes": selected.get(
+                                "lag_minutes",
+                                max(0, int((target - fallback_at).total_seconds() // 60)),
+                            ),
+                        })
                 if selected is None:
                     markets[market] = {"status": "MISSING"}
                     coverage[market]["missing"] += 1
