@@ -97,7 +97,7 @@ jobs:
               --archive-root archive; then
               echo "Verified or exported PRATIK archive for $day"
             else
-              printf '%s\\n' "$day" >> "$failed_file"
+              printf '%s\n' "$day" >> "$failed_file"
               echo "::error title=PRATIK date blocked::$day could not be archived; inspect the priority-market coverage details above."
             fi
           done < "$RUNNER_TEMP/pratik-days"
