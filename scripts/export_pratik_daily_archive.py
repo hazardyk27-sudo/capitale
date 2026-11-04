@@ -594,9 +594,12 @@ def verify_output(folder: Path, day: dt.date, fixture_count: int, alarm_count: i
         name: {"present": 0, "partial": 0, "empty": 0, "missing": 0}
         for name in MARKETS
     }
+    priority_records = []
     with gzip.open(folder / "checkpoints.jsonl.gz", "rt", encoding="utf-8") as stream:
         for line in stream:
             record = json.loads(line)
+            if is_priority_league(record.get("league")):
+                priority_records.append(record)
             kickoff = parse_time(record.get("kickoff_utc"))
             points = record.get("checkpoints", [])
             if kickoff is None or len(points) != len(CHECKPOINT_HOURS):
@@ -628,6 +631,7 @@ def verify_output(folder: Path, day: dt.date, fixture_count: int, alarm_count: i
                     if status != expected_status or item.get("quality") != expected_quality:
                         raise ValueError(f"Market quality classification mismatch: {name}")
                     observed_coverage[name][status.lower()] += 1
+    assert_priority_market_coverage(day, priority_records)
     if manifest.get("quality_version") != QUALITY_VERSION:
         raise ValueError("Unsupported market quality version")
     if observed_coverage != manifest.get("coverage_by_market"):
