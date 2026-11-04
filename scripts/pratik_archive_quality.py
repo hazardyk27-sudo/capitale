@@ -6,7 +6,7 @@ import re
 from datetime import datetime, timezone
 from decimal import Decimal
 
-QUALITY_VERSION = "market-field-quality-v3"
+QUALITY_VERSION = "market-field-quality-v4-zero-volume"
 
 MARKET_FIELDS = {
     "1X2": {
@@ -64,7 +64,7 @@ def _text_number(value) -> str:
 
 def _money_text(value) -> str:
     number = _number(value)
-    return f"£ {number:g}" if number is not None and number > 0 else ""
+    return f"£ {number:g}" if number is not None and number >= 0 else ""
 
 
 def _share_text(value) -> str:
@@ -201,7 +201,7 @@ def _field_is_valid(field: str, value) -> bool:
     if field.startswith("pct"):
         return number is not None and 0.0 <= number <= 100.0
     if field.startswith("amt") or field == "volume":
-        return number is not None and number > 0.0
+        return number is not None and number >= 0.0
     return bool(text)
 
 
