@@ -29,6 +29,69 @@ MARKETS = {
     "OU25": ("moneyway_ou25_history", "scraped_at"),
     "BTTS": ("moneyway_btts_history", "scraped_at"),
 }
+
+# These competitions must have all 34 as-of checkpoints and all 3 markets
+# fully observed before a daily archive is allowed onto main.
+PRIORITY_LEAGUES = frozenset({
+    "uefa champions league",
+    "uefa europa league",
+    "uefa europa conference league",
+    "uefa conference league",
+    "english premier league",
+    "premier league",
+    "spanish la liga",
+    "la liga",
+    "italian serie a",
+    "serie a",
+    "german bundesliga",
+    "bundesliga",
+    "french ligue 1",
+    "ligue 1",
+    "turkish super lig",
+    "turkish süper lig",
+    "süper lig",
+})
+
+
+def is_priority_league(league: str) -> bool:
+    return str(league or "").strip().casefold() in PRIORITY_LEAGUES
+
+
+def assert_priority_market_coverage(day: dt.date, fixtures: list[dict]) -> None:
+    failures = []
+    for fixture in fixtures:
+        if not is_priority_league(fixture.get("league")):
+            continue
+        gaps = []
+        for checkpoint in fixture.get("checkpoints", []):
+            for market, item in checkpoint.get("markets", {}).items():
+                if item.get("status") != "PRESENT":
+                    gaps.append({
+                        "t_minus_hours": checkpoint.get("t_minus_hours"),
+                        "market": market,
+                        "status": item.get("status"),
+                        "source_table": item.get("source_table"),
+                        "actual_at_utc": item.get("actual_at_utc"),
+                        "quality": item.get("quality"),
+                    })
+        if gaps:
+            failures.append({
+                "league": fixture.get("league"),
+                "match": f'{fixture.get("home", "")} - {fixture.get("away", "")}',
+                "incomplete_slots": len(gaps),
+                "examples": gaps[:8],
+            })
+    if failures:
+        print(json.dumps({
+            "status": "BLOCKED_PRIORITY_MARKET_GAPS",
+            "day": str(day),
+            "policy": "Priority competitions require every checkpoint and all 3 markets to be PRESENT.",
+            "priority_fixtures_with_gaps": len(failures),
+            "fixtures": failures[:60],
+        }, ensure_ascii=False), flush=True)
+        raise ValueError(
+            f"PRATIK archive for {day} blocked: priority league market data is incomplete"
+        )
 ALARM_TABLES = (
     "bigmoney_alarms", "dropping_alarms", "insider_alarms", "mim_alarms",
     "publicmove_alarms", "sharp_alarms", "volume_leader_alarms",
@@ -421,6 +484,7 @@ def make_archive(conn, day: dt.date, output: Path):
             "result": results.get(key), "checkpoints": points,
         })
 
+    assert_priority_market_coverage(day, checkpoint_lines)
     output.mkdir(parents=True, exist_ok=False)
     files = {}
     for name, records in (("checkpoints", checkpoint_lines), ("alarms", alarms)):
