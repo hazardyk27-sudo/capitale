@@ -1,7 +1,7 @@
 {
   "archive_name": "PRATİK ARŞİV",
   "version": "v2",
-  "quality_version": "market-field-quality-v3",
+  "quality_version": "market-field-quality-v4-zero-volume",
   "date": "2026-11-03",
   "timezone": "Europe/Istanbul",
   "checkpoint_hours": [
@@ -57,16 +57,16 @@
   "archive_status": "PARTIAL",
   "source_archive_status": "PARTIAL",
   "market_coverage_complete": false,
-  "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; archive is COMPLETE only when every fixture/checkpoint/market slot is PRESENT; latest observation at or before target only; no interpolation or future substitution.",
+  "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; latest observation at or before target only; no interpolation or future substitution.",
   "source_row_counts": {
     "1X2": 68644,
     "OU25": 60938,
     "BTTS": 50028
   },
-  "snapshot_backfill_version": "snapshot-field-fill-v2-asof-t72",
+  "snapshot_backfill_version": "market-history-backfill-v3-asof-t72",
   "snapshot_source_rows": 227940,
   "snapshot_fallback_market_slots": 5879,
-  "snapshot_fallback_selection_rows": 177,
+  "snapshot_fallback_selection_rows": 0,
   "coverage_by_market": {
     "1X2": {
       "present": 1867,
@@ -93,7 +93,7 @@
       "records": 160,
       "uncompressed_sha256": "f3a5e6632c97d3efd55da4bbc9b910f4b612ae4146bddc698880364c84f4cbb9",
       "uncompressed_bytes": 7402930,
-      "compressed_bytes": 351047
+      "compressed_bytes": 351062
     },
     "alarms": {
       "name": "alarms.jsonl.gz",

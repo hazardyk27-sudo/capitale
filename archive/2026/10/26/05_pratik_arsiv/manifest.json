@@ -99,7 +99,7 @@
   "live_score_present": 134,
   "live_in_progress": 6,
   "results_live": 6,
-  "quality_version": "market-field-quality-v3",
+  "quality_version": "market-field-quality-v4-zero-volume",
   "market_checkpoint_slots_partial": 1521,
   "market_checkpoint_slots_empty": 3722,
   "snapshot_fallback_selection_rows": 0,

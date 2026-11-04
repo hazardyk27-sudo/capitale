@@ -97,7 +97,7 @@
   "live_score_present": 426,
   "result_source_notes": "Matched to research_archive.results. Where fixture_uid was not available, required exact match_id_hash and home/away team match plus kickoff within 30 minutes; ambiguous ties resolved by matching local_date and latest source_updated_at. Scores from live-status rows are retained as final=false and excluded from settled results.",
   "source_archive_status": "PARTIAL",
-  "quality_version": "market-field-quality-v3",
+  "quality_version": "market-field-quality-v4-zero-volume",
   "market_checkpoint_slots_partial": 6385,
   "market_checkpoint_slots_empty": 16995,
   "snapshot_fallback_selection_rows": 0,

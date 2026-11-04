@@ -98,7 +98,7 @@
   "results_missing": 0,
   "results_live": 0,
   "live_score_present": 173,
-  "quality_version": "market-field-quality-v3",
+  "quality_version": "market-field-quality-v4-zero-volume",
   "market_checkpoint_slots_partial": 1862,
   "market_checkpoint_slots_empty": 6206,
   "snapshot_fallback_selection_rows": 0,

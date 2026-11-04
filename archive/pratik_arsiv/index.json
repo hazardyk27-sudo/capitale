@@ -193,10 +193,10 @@
       "date": "2026-10-12",
       "fixtures": 177,
       "alarms": 113,
-      "checkpoint_bytes": 642686,
+      "checkpoint_bytes": 642656,
       "alarm_bytes": 11067,
-      "total_bytes": 653753,
-      "uncompressed_bytes": 6833015,
+      "total_bytes": 653723,
+      "uncompressed_bytes": 6833005,
       "coverage": {
         "1X2": {
           "present": 0,
@@ -227,7 +227,7 @@
       "live_score_present": 177,
       "live_in_progress": 0,
       "checksums": {
-        "checkpoints": "d6936cc064fec69f061bf5a78ffb266839b42a9776e41dcf534445f8b5d7dd7e",
+        "checkpoints": "0ec32523d47dd5bdc93ed959f104c96ce832eaf5e4ef50cdc25fb70a5bb89600",
         "alarms": "286cdba8c52b602fee3c7cf26cad4e547b0bb8f586b8ab07bb33dbaeba0bec2b"
       },
       "future": 0,
@@ -243,10 +243,10 @@
       "date": "2026-10-13",
       "fixtures": 192,
       "alarms": 50,
-      "checkpoint_bytes": 320003,
+      "checkpoint_bytes": 319987,
       "alarm_bytes": 4926,
-      "total_bytes": 324929,
-      "uncompressed_bytes": 4867349,
+      "total_bytes": 324913,
+      "uncompressed_bytes": 4867340,
       "coverage": {
         "1X2": {
           "present": 0,
@@ -277,7 +277,7 @@
       "live_score_present": 179,
       "live_in_progress": 0,
       "checksums": {
-        "checkpoints": "7b8981666036f8d00c2ea4e803c15fe0a3205f149946dc3fd4279eb653628188",
+        "checkpoints": "a6f2db825a1a29aeeb482deb1aeb87a3fad888159c8b6fc6b12ae01e7d909823",
         "alarms": "7608698096fdb40ec1d65fef4fc3fe4258004fc3e4bbcfbb1362ed96a45b2e0a"
       },
       "future": 0,
@@ -293,10 +293,10 @@
       "date": "2026-10-14",
       "fixtures": 152,
       "alarms": 138,
-      "checkpoint_bytes": 470281,
+      "checkpoint_bytes": 470280,
       "alarm_bytes": 12899,
-      "total_bytes": 483180,
-      "uncompressed_bytes": 5344628,
+      "total_bytes": 483179,
+      "uncompressed_bytes": 5344626,
       "coverage": {
         "1X2": {
           "present": 0,
@@ -327,7 +327,7 @@
       "live_score_present": 152,
       "live_in_progress": 0,
       "checksums": {
-        "checkpoints": "6a852ee05b556a65f5d52c6c8b06f097dd07846f6027b02077c073cb20e92699",
+        "checkpoints": "b0ffcca8cc602a5db88d5adfa0cab94f57dfc5b49d5ba4ab04324c5e04594694",
         "alarms": "c6506a61246c6869b21b87118705496a6685130a090cb0c724539421a8f14d4e"
       },
       "future": 0,
@@ -343,10 +343,10 @@
       "date": "2026-10-15",
       "fixtures": 160,
       "alarms": 207,
-      "checkpoint_bytes": 544558,
+      "checkpoint_bytes": 544547,
       "alarm_bytes": 18662,
-      "total_bytes": 563220,
-      "uncompressed_bytes": 5807961,
+      "total_bytes": 563209,
+      "uncompressed_bytes": 5807957,
       "coverage": {
         "1X2": {
           "present": 0,
@@ -377,7 +377,7 @@
       "live_score_present": 138,
       "live_in_progress": 0,
       "checksums": {
-        "checkpoints": "70f2142d94bb70d6f1d5115e2922d1896498ebbf9516d38c0ac5717867120043",
+        "checkpoints": "9a16e114516caf0c3c91ddeae97a56778b18ab2c32cdd6f7acc7e471e97faed9",
         "alarms": "2f87e07e8d41fb1379d166fdd413bdb4982f4b9ed319db1e86343b325921d96c"
       },
       "future": 0,
@@ -393,10 +393,10 @@
       "date": "2026-10-16",
       "fixtures": 201,
       "alarms": 139,
-      "checkpoint_bytes": 723567,
+      "checkpoint_bytes": 723560,
       "alarm_bytes": 13330,
-      "total_bytes": 736897,
-      "uncompressed_bytes": 7637325,
+      "total_bytes": 736890,
+      "uncompressed_bytes": 7637321,
       "coverage": {
         "1X2": {
           "present": 0,
@@ -427,7 +427,7 @@
       "live_score_present": 190,
       "live_in_progress": 0,
       "checksums": {
-        "checkpoints": "df3a8b66a301f8e62b9057f36aac4163f159f939e84aaed88e76e9ba73bd1b1e",
+        "checkpoints": "44cb6af11c70b943678ada3c854b94eee74624d878f2e3a0ee0be2cbb405b7e2",
         "alarms": "8b9653ef73c219504991644dc279fc80ab87eb29f601586f0d3605cdfd1d9627"
       },
       "future": 0,
@@ -443,10 +443,10 @@
       "date": "2026-10-17",
       "fixtures": 436,
       "alarms": 378,
-      "checkpoint_bytes": 1792857,
+      "checkpoint_bytes": 1792797,
       "alarm_bytes": 35587,
-      "total_bytes": 1828444,
-      "uncompressed_bytes": 18320018,
+      "total_bytes": 1828384,
+      "uncompressed_bytes": 18319978,
       "coverage": {
         "1X2": {
           "present": 0,
@@ -477,7 +477,7 @@
       "live_score_present": 433,
       "live_in_progress": 8,
       "checksums": {
-        "checkpoints": "d0524bf57d5837bdc30279638cbd50a14460b06c71218f699797f5de28d9d744",
+        "checkpoints": "e16a55b65a35a7809a790399a4ecf514cdaf403538de30d6e8fc3f944835dcfc",
         "alarms": "360b2ae4b7f743b3c6bbf1fdfb85a2c197e794b38b508177b46ba96cc6b0f9b7"
       },
       "future": 0,
@@ -1293,9 +1293,9 @@
       "date": "2026-11-03",
       "fixtures": 160,
       "alarms": 175,
-      "checkpoint_bytes": 351047,
+      "checkpoint_bytes": 351062,
       "alarm_bytes": 13375,
-      "total_bytes": 364422,
+      "total_bytes": 364437,
       "uncompressed_bytes": 7497603,
       "coverage": {
         "1X2": {
@@ -1317,11 +1317,10 @@
           "missing": 2282
         }
       },
-      "market_checkpoint_slots_total": 16320,
-      "market_checkpoint_slots_present": 4196,
-      "market_checkpoint_slots_partial": 1683,
-      "market_checkpoint_slots_empty": 4075,
-      "market_checkpoint_slots_missing": 6366,
+      "snapshot_backfill_version": "market-history-backfill-v3-asof-t72",
+      "snapshot_source_rows": 227940,
+      "snapshot_fallback_market_slots": 5879,
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 156,
       "results_missing": 4,
       "results_live": 0,
@@ -1333,12 +1332,17 @@
       },
       "future": 0,
       "archive_status": "PARTIAL",
-      "source_archive_status": "PARTIAL"
+      "source_archive_status": "PARTIAL",
+      "market_checkpoint_slots_total": 16320,
+      "market_checkpoint_slots_present": 4196,
+      "market_checkpoint_slots_partial": 1683,
+      "market_checkpoint_slots_empty": 4075,
+      "market_checkpoint_slots_missing": 6366
     }
   ],
   "total_fixtures": 6402,
   "total_alarm_records": 5592,
-  "total_compressed_bytes": 19739818,
-  "total_uncompressed_bytes": 270544545,
-  "quality_version": "market-field-quality-v3"
+  "total_compressed_bytes": 19739708,
+  "total_uncompressed_bytes": 270544476,
+  "quality_version": "market-field-quality-v4-zero-volume"
 }

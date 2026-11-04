@@ -102,7 +102,7 @@
     "checkpoints_sha256": "b852857f7a8c81b5c8fd8d58d05c3680b0748895d92e79a90255edc32a4a5b82",
     "alarms_sha256": "2b5cd8522dabbb4a5df38b51023c1d9a1d9de8ba2e81775a38a5fd534e7e551a"
   },
-  "quality_version": "market-field-quality-v3",
+  "quality_version": "market-field-quality-v4-zero-volume",
   "market_checkpoint_slots_partial": 2797,
   "market_checkpoint_slots_empty": 5641,
   "snapshot_fallback_selection_rows": 0,
