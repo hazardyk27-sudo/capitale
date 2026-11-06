@@ -45,7 +45,7 @@ Keep original eight research fields, match-relevance filter, event H# scoring an
 
 ## Audit and immutability
 
-Only source evidence available by AS_OF may justify points. Mark claimed but unverified stories as unscored or disputed, not as verified developments. Historical NEWS v1.0–v1.3 reports remain preserved in Git history and any existing archives, but their research and output format are SUPERSEDED for all new v1.4 runs.
+Only source evidence available by AS_OF may justify points. Mark claimed but unverified stories as unscored or disputed, not as verified developments. Historical NEWS v1.0–v1.3 reports remain preserved in Git history and any existing archives, but their research and output format are SUPERSEDED for all new v1.5 runs; archived v1.4.1 runs remain immutable.
 
 No underlying scoring formula beyond per-event seven integers and arithmetic column totals, except the one owner-approved display-only index for the user's preference out of 100. Scores are uncalibrated NEWS opinion weights, never bookmaker probabilities or betting advice. Review later selection settlement and on-field news mechanism separately. Repeated markets within a match are dependent observations, not independent success samples.
 
