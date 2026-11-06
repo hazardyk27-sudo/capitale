@@ -1,14 +1,14 @@
 # CAPITALE ANALYST — Active Report Schema
 
 Status: CANONICAL
-Version: 2.0
-Method: methods/analyst_methodology.md v2.0
-Effective: 2026-10-23
+Version: 2.1
+Method: methods/analyst_methodology.md v2.1
+Effective: 2026-11-06
 Prior canonical report schema v1.1 and experimental schemas v1.2/v1.3/v1.4.x are SUPERSEDED for NEW analyses, retained in git history.
 
 ```yaml
 role: ANALYST
-methodology_version: analyst-v2.0-canonical
+methodology_version: analyst-v2.1-canonical
 match: <verified home vs away>
 competition: <verified league / cup>
 kickoff_utc: <timestamp or unknown>
@@ -66,7 +66,17 @@ conclusion:
   most_important_failure_mode: <specific football mechanism>
   analyst_lean: <HOME|AWAY|DRAWISH|1X|X2|TOTALS_UP|TOTALS_DOWN|MIXED|NO_CLEAR_LEAN>
   evidence_confidence: <LOW|MEDIUM|HIGH>
+  selection_support_score_0_100: <integer 0..100 or null if insufficient evidence>
+  score_type: ordinal_support_not_win_probability
+  score_rationale: <source-grounded three-factor pro/con explanation>
+  score_missing_data: <limitations or null>
   short_rationale: <grounded readable Turkish>
 ```
 
-Strict presentation: title/match timestamp, **1. Topa sahip olma oyunu**, **2. Form ivmesi — son 3 ve son maç**, **3. Rakip mantığı** with clearly labeled **Ev sahibi/deplasman formu** within #3, **Üç faktörün birleşik sonucu**. This is exactly the prior Torino–Monza layout with mandatory venue comparison; do not add/remove numbered factors, discretionary 0–100 score, stochastic prediction or market/news inputs. Graph source values must be authentic. Do not claim fully covered league matches, possession histories or half-time statistics when unavailable.
+Strict presentation: title/match timestamp, **1. Topa sahip olma oyunu**, **2. Form ivmesi — son 3 ve son maç**, **3. Rakip mantığı** with clearly labeled **Ev sahibi/deplasman formu** within #3, **Üç faktörün birleşik sonucu**. This is exactly the prior Torino–Monza layout with mandatory venue comparison; do not add/remove numbered factors, calibrated win-probability score, stochastic prediction or market/news inputs. Show only the owner-approved v2.1 ordinal user-selection support score in the conclusion, or null when data is insufficient. Graph source values must be authentic. Do not claim fully covered league matches, possession histories or half-time statistics when unavailable.
+
+## v2.1 OWNER-APPROVED SELECTION SUPPORT SCORE (2026-11-06)
+
+For EVERY user-supplied selection, preserve the complete v2.0 three-pillar research and include "Tercih destek puanı: N/100" inside the existing three-factor conclusion, with one brief source-grounded rationale and counterargument. Score evaluates ONLY support for THAT pick, NOT the probability it wins, NOT an odds-derived forecast, and NOT a FINAL recommendation. This is not a fourth factor or the superseded v1.3 numeric engine.
+
+Ordinal anchors (not calibrated probabilities): 0-39 strong contradiction; 40-49 leaning against; 50 mixed; 51-69 conditional/limited support; 70-84 strong support; 85-100 unusually convergent evidence, rare. Use judgment based exclusively on the three approved pillars; no invented mathematical weights. Disclose missing possession, xG, venue data and contrary evidence. When insufficient credible evidence, output "Puan: veri yetersiz" (null), not a fabricated score. Do not revise archived pre-match reports or use results to change prior scores.
