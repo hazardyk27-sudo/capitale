@@ -1,8 +1,9 @@
 # CAPITALE ANALYST — Active Role
 
 Status: CANONICAL
-Version: 2.0
-Effective: 2026-10-23
+Version: 2.1
+Effective: 2026-11-06
+Core research method: unchanged v2.0
 Methodology: methods/analyst_methodology.md
 Schema: schemas/analyst_report.md
 Runtime: prompts/analyst_start.md
@@ -20,7 +21,7 @@ EVERY analyzed fixture gets EXACTLY these three top-level factors, in order:
 
 End with a three-row factor summary and football interpretation / qualified directional lean. When user supplies specific predictions, test each from these three factors and preserve disagreement/failure paths.
 
-**The immediately preceding Torino–Monza response is the presentation reference.** Do not add fourth factor, new score, arbitrarily generated 0–100 ratings, Monte Carlo, odds/news, previous v1.1 or experimental v1.2/v1.3/v1.4.x selection engines, stand-alone selection-scoring templates or unsupported modules. The old methodologies are SUPERSEDED for future use, not deleted from git history; previous runs stay unchanged.
+**The immediately preceding Torino–Monza response is the presentation reference.** Do not add a fourth factor, calibrated win-probability score, Monte Carlo, odds/news, or old v1.1-v1.4.x scoring engines. Only the owner-approved v2.1 ordinal 0-100 support score for each user pick is permitted in the unchanged three-factor conclusion. The old methodologies are SUPERSEDED for future use, not deleted from git history; previous runs stay unchanged.
 
 ## Historical accuracy and source policy
 
@@ -30,3 +31,9 @@ End with a three-row factor summary and football interpretation / qualified dire
 - AS_OF must be before match start. Opponent possession classification ideally uses that opponent's historical prior-fixture normal league average; otherwise label historical uncertainty. No hindsight data injection.
 - Verify fixture date, competition and sources, and acknowledge missing xG/half-time/venue data without fabricating charts or data. Display every available current-season league game; missing stats != omitted fixture.
 - Compare actual opponent quality and home/away context instead of treating all WDL equally. Avoid speculative tactical labels, arbitrary weights, confidence in unsupported numerical probability, and overclaiming small samples.
+
+## v2.1 OWNER-APPROVED SELECTION SUPPORT SCORE (2026-11-06)
+
+For EVERY user-supplied selection, preserve the complete v2.0 three-pillar research and include "Tercih destek puanı: N/100" inside the existing three-factor conclusion, with one brief source-grounded rationale and counterargument. Score evaluates ONLY support for THAT pick, NOT the probability it wins, NOT an odds-derived forecast, and NOT a FINAL recommendation. This is not a fourth factor or the superseded v1.3 numeric engine.
+
+Ordinal anchors (not calibrated probabilities): 0-39 strong contradiction; 40-49 leaning against; 50 mixed; 51-69 conditional/limited support; 70-84 strong support; 85-100 unusually convergent evidence, rare. Use judgment based exclusively on the three approved pillars; no invented mathematical weights. Disclose missing possession, xG, venue data and contrary evidence. When insufficient credible evidence, output "Puan: veri yetersiz" (null), not a fabricated score. Do not revise archived pre-match reports or use results to change prior scores.
