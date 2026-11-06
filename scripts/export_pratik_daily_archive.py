@@ -232,19 +232,41 @@ def row_fixture(row: dict, by_uid: dict, by_hash: dict, day: dt.date):
         return by_uid[uid]
     match_hash = str(row.get("match_id_hash") or "")
     matches = by_hash.get(match_hash, [])
-    if len(matches) != 1:
-        return None
-    fixture = matches[0]
     home = row.get("home") or row.get("home_team")
     away = row.get("away") or row.get("away_team")
-    if home and str(home).casefold() != fixture["home"].casefold():
-        return None
-    if away and str(away).casefold() != fixture["away"].casefold():
-        return None
     date_value = row.get("date") or row.get("match_date") or row.get("fixture_date")
     if date_value and str(date_value)[:10] != str(day):
         return None
-    return fixture
+    candidates = [
+        fixture for fixture in matches
+        if (not home or str(home).strip().casefold() == fixture["home"].strip().casefold())
+        and (not away or str(away).strip().casefold() == fixture["away"].strip().casefold())
+    ]
+    return candidates[0] if len(candidates) == 1 else None
+
+
+def row_fixtures(row: dict, by_uid: dict, by_hash: dict, day: dt.date):
+    fixture = row_fixture(row, by_uid, by_hash, day)
+    if fixture is None:
+        return []
+    match_hash = str(fixture.get("match_id_hash") or "")
+    matches = by_hash.get(match_hash, [])
+    aliases = []
+    for candidate in matches:
+        same_identity = (
+            candidate.get("home", "").strip().casefold()
+            == fixture.get("home", "").strip().casefold()
+            and candidate.get("away", "").strip().casefold()
+            == fixture.get("away", "").strip().casefold()
+            and candidate.get("league", "").strip().casefold()
+            == fixture.get("league", "").strip().casefold()
+        )
+        close_kickoff = abs(
+            (candidate["_kickoff"] - fixture["_kickoff"]).total_seconds()
+        ) <= 300
+        if same_identity and close_kickoff:
+            aliases.append(candidate)
+    return aliases or [fixture]
 
 
 def stable_row_id(row: dict) -> str:
@@ -339,14 +361,12 @@ def make_archive(conn, day: dt.date, output: Path):
         ))
         grouped = {f["fixture_uid"] or f["match_id_hash"]: [] for f in fixtures}
         for row in rows:
-            fixture = row_fixture(row, by_uid, by_hash, day)
-            if not fixture:
-                continue
-            observed = parse_time(row.get(timestamp))
-            if observed is None or observed > fixture["_kickoff"]:
-                continue
-            key = fixture["fixture_uid"] or fixture["match_id_hash"]
-            grouped.setdefault(key, []).append((observed, stable_row_id(row), row))
+            for fixture in row_fixtures(row, by_uid, by_hash, day):
+                observed = parse_time(row.get(timestamp))
+                if observed is None or observed > fixture["_kickoff"]:
+                    continue
+                key = fixture["fixture_uid"] or fixture["match_id_hash"]
+                grouped.setdefault(key, []).append((observed, stable_row_id(row), row))
         histories[market] = grouped
         history_counts[market] = sum(len(items) for items in grouped.values())
 
@@ -360,20 +380,18 @@ def make_archive(conn, day: dt.date, output: Path):
     ))
     snapshot_histories = {f["fixture_uid"] or f["match_id_hash"]: {} for f in fixtures}
     for row in snapshot_rows:
-        fixture = row_fixture(row, by_uid, by_hash, day)
-        if not fixture:
-            continue
-        observed = parse_time(row.get("scraped_at_utc"))
-        if observed is None or observed > fixture["_kickoff"]:
-            continue
         market = str(row.get("market") or "").strip().upper()
         selection = str(row.get("selection") or "").strip().upper()
         if market not in MARKETS:
             continue
-        key = fixture["fixture_uid"] or fixture["match_id_hash"]
-        snapshot_histories.setdefault(key, {}).setdefault(market, {}).setdefault(
-            selection, []
-        ).append((observed, stable_row_id(row), row))
+        observed = parse_time(row.get("scraped_at_utc"))
+        for fixture in row_fixtures(row, by_uid, by_hash, day):
+            if observed is None or observed > fixture["_kickoff"]:
+                continue
+            key = fixture["fixture_uid"] or fixture["match_id_hash"]
+            snapshot_histories.setdefault(key, {}).setdefault(market, {}).setdefault(
+                selection, []
+            ).append((observed, stable_row_id(row), row))
     snapshot_row_count = len(snapshot_rows)
 
     alarms = []
