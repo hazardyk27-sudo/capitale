@@ -30,8 +30,8 @@ MARKETS = {
     "BTTS": ("moneyway_btts_history", "scraped_at"),
 }
 
-# These competitions must have all 34 as-of checkpoints and all 3 markets
-# fully observed before a daily archive is allowed onto main.
+# Priority competitions are audited for gaps, but a gap in one market must
+# never discard source values for the rest of the day.
 PRIORITY_LEAGUES = frozenset({
     "uefa champions league",
     "uefa europa league",
@@ -83,15 +83,12 @@ def assert_priority_market_coverage(day: dt.date, fixtures: list[dict]) -> None:
             })
     if failures:
         print(json.dumps({
-            "status": "BLOCKED_PRIORITY_MARKET_GAPS",
+            "status": "PRIORITY_MARKET_GAPS_RECORDED",
             "day": str(day),
-            "policy": "Priority competitions require every checkpoint and all 3 markets to be PRESENT.",
+            "policy": "Keep all source-backed checkpoints; record true gaps as PARTIAL/EMPTY/MISSING.",
             "priority_fixtures_with_gaps": len(failures),
             "fixtures": failures[:60],
         }, ensure_ascii=False), flush=True)
-        raise ValueError(
-            f"PRATIK archive for {day} blocked: priority league market data is incomplete"
-        )
 ALARM_TABLES = (
     "bigmoney_alarms", "dropping_alarms", "insider_alarms", "mim_alarms",
     "publicmove_alarms", "sharp_alarms", "volume_leader_alarms",
