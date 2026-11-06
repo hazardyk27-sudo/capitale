@@ -723,3 +723,13 @@ Owner-approved change **ONLY to user-facing scoring presentation**: keep all NEW
 IMPORTANT: **100-point index is not a predicted win probability, calibrated model confidence, bookmaker odds or FINAL decision**. If T=0 due to no credible relevant news say "veri yetersiz"; if independent credible impacts net to zero say "haber etkileri dengelendi". The earlier v1.2 arbitrary 0-100 confidence remains retired; this v1.5 score is only a deterministic display conversion of the owner's v1.4 signed NEWS sum. Do not retroactively modify any archived prematch report.
 
 Repository docs updated: `roles/news.md` v1.5; `methods/news_methodology.md` v1.5; `schemas/news_report.md` v1.5; `prompts/news_start.md` v1.5; `policies/news_sources.md` v1.2 source provisions unchanged; `AGENTS.md` v1.18. No runtime deployment or empirical calibration is claimed.
+
+---
+
+## 2026-11-06 — NEWS MATCH IMPACT v1.6 CANONICAL — owner-selected exact /100 judgments
+
+The owner rejected NEWS v1.5's automatic 10-point jumps (`50 + 10 * signed_news_total`) and explicitly requires NEWS itself to choose a single precise integer out of 100 for **each user-supplied preference** (for example 75, 83, 61). The prior v1.5 fixed conversion is **SUPERSEDED for new reports**; its historical repository record must be preserved.
+
+NEWS v1.6 keeps ALL original v1.4.1 research, eight news categories, direct on-field impact and routine-fan-event exclusion, N1–N4 evidence policy, independence, prematch AS_OF, numbered H# stories, per-story -3..+3 seven outcome matrix, seven signed totals, same four numbered report sections, and historical prematch immutability. The ONLY change from v1.5 is: for EACH supplied selection, assign one **individually reasoned 0–100 integer NEWS support score** considering quality/strength of actual sourced news, direct football mechanism, current significance, credible replacements/mitigation and opposed evidence. Do NOT use fixed multiples of ten, rounding to tens, any simple conversion of signed impact totals, or a percentage interpretation. The /100 should be coherent with signed NEWS direction; if no material source exists display 50/100 with explicit **veri yetersiz**, not invented confidence. Display only in existing "4. NEWS sonucu" and optional selected-preference list summary. Score is subjective and UNCALIBRATED, never win probability or FINAL betting decision.
+
+Updated: `roles/news.md` v1.6, `methods/news_methodology.md` v1.6, `schemas/news_report.md` v1.6, `prompts/news_start.md` v1.6, `policies/news_sources.md` v1.3 (same source rules), `AGENTS.md` v1.19. This is methodology/documentation only; no predictive calibration or deployed runtime update is claimed.
