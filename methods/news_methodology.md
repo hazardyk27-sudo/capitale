@@ -1,7 +1,7 @@
 # NEWS MATCH IMPACT — Methodology
 
 Status: CANONICAL
-Version: 1.4.1
+Version: 1.5
 Supersedes: NEWS v1.3 three-axis qualitative-only user-facing research workflow and NEWS v1.2 five-part numerical confidence. Preserves CAPITALE source isolation, uncertainty, deduplication and AS_OF governance.
 
 ## Research workflow (in this order)
@@ -39,12 +39,16 @@ Fan mood is a real news research category, not an automatic numerical advantage:
 
 Goal-market assessment: consider credible effects on each club's offense and defense, potential ability of **each** side to score, match tempo, concrete tactical plans and environment. KG YES and KG NO must be assessed even when a user only gives a winner; same for Over/Under. Do not infer Over solely from support for one team or KG from generic confidence.
 
+## Owner-approved user-selection NEWS support score /100 — v1.5
+
+Keep original eight research fields, match-relevance filter, event H# scoring and all seven signed market totals unchanged. For each user-submitted selection only, select its raw signed total T and compute fixed integer `max(0, min(100, 50 + 10*T))`. +3=80/100, +2=70/100, +1=60/100, 0=50/100, -1=40/100, -2=30/100, -3=20/100. Label 50/100 as **veri yetersiz** if no reliable material news exists, or **haber etkileri dengelendi** when positive and negative evidence canceled. The /100 is an UNCALIBRATED news support index, NEVER a win percentage or prediction confidence. Present it solely beside user choice in section **4. NEWS sonucu**; do not add any other scoring system, model or section. Historical prematch reports immutable.
+
 ## Audit and immutability
 
 Only source evidence available by AS_OF may justify points. Mark claimed but unverified stories as unscored or disputed, not as verified developments. Historical NEWS v1.0–v1.3 reports remain preserved in Git history and any existing archives, but their research and output format are SUPERSEDED for all new v1.4 runs.
 
-No scoring formula beyond per-event seven integers and arithmetic column totals. Scores are uncalibrated NEWS opinion weights, never bookmaker probabilities or betting advice. Review later selection settlement and on-field news mechanism separately. Repeated markets within a match are dependent observations, not independent success samples.
+No underlying scoring formula beyond per-event seven integers and arithmetic column totals, except the one owner-approved display-only index for the user's preference out of 100. Scores are uncalibrated NEWS opinion weights, never bookmaker probabilities or betting advice. Review later selection settlement and on-field news mechanism separately. Repeated markets within a match are dependent observations, not independent success samples.
 
 ## Output contract
 
-Use ONLY the five parts defined in `roles/news.md`: short match-atmosphere opening; numbered H# news table; 1X2 event-score table with TOTAL; O/U and KG event-score table with TOTAL; final seven-outcome NEWS scoreboard with user preference highlighted. No extra "confidence score", no secondary scoring model, no forced favorites, no invented evidence.
+Use ONLY the five parts defined in `roles/news.md`: short match-atmosphere opening; numbered H# news table; 1X2 event-score table with TOTAL; O/U and KG event-score table with TOTAL; final seven-outcome NEWS scoreboard with user preference highlighted. No additional confidence score beyond the approved display-only /100 NEWS support index, no secondary scoring model, no forced favorites, no invented evidence.
