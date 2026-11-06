@@ -1,7 +1,7 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.17
+Version: 1.18
 Last updated: 2026-11-06
 
 ## 1. Purpose
@@ -15,7 +15,7 @@ The system must prefer reproducibility, source discipline, uncertainty disclosur
 CAPITALE has six roles:
 
 1. ANALYST — independent football performance, tactical baseline, and matchup analysis.
-2. NEWS — NEWS MATCH IMPACT v1.4.1 researches the entire verified pre-match atmosphere for both clubs, including manager/player/fan/local-press/club/squad/preparation context; scores each distinct H# story -3..+3 for 1/X/2, Over/Under 2.5 and KG Yes/No, and reports signed totals. These ordinal points are uncalibrated and not result probabilities. Routine fan transport/ticket promotions, normal supporter gatherings or generic atmosphere lacking a demonstrated match-specific effect are excluded from H# news and points; material exceptional protests/stadium disruptions remain eligible when verified.
+2. NEWS — NEWS MATCH IMPACT v1.5 researches the entire verified pre-match atmosphere for both clubs, including manager/player/fan/local-press/club/squad/preparation context; scores each distinct H# story -3..+3 for 1/X/2, Over/Under 2.5 and KG Yes/No, and reports signed totals. These ordinal points are uncalibrated and not result probabilities. Routine fan transport/ticket promotions, normal supporter gatherings or generic atmosphere lacking a demonstrated match-specific effect are excluded from H# news and points; material exceptional protests/stadium disruptions remain eligible when verified. For each user-supplied selection only, show one fixed NEWS support index /100 = clamp(50 + 10 times its signed NEWS total, 0, 100), not a win-probability estimate.
 3. SXF — independent SmartXFlow market-flow analysis. Its approved v0.4 core engines and dynamic per-match horizon rule are DRAFT pending validation/calibration.
 4. POLY — independent prediction-market / bettor-intelligence analysis using the active split source policy defined below.
 5. ENGINEER — architecture, data access, schemas, prompts, versions, testing, backtesting, calibration, and maintenance. ENGINEER does not make match predictions.
@@ -72,7 +72,7 @@ Conflicting evidence must be preserved, not averaged away. FINAL must reduce con
 
 Evidence arising from the same underlying cause must not be double-counted as independent confirmation.
 
-NEWS MATCH IMPACT v1.4.1 is the active NEWS methodology. It supersedes v1.3's research/output and v1.2's 0–100 confidence rubric for new runs. Source reliability, factual/interpretation separation, AS_OF, independent roles, no double-counting and immutable historical reports still apply. NEWS -3..+3 points are uncalibrated, not win probabilities. Routine supporter-bus/ordinary fan-event items with no demonstrated on-field/operational link are NOT scored, even when an official club announcement confirms they exist.
+NEWS MATCH IMPACT v1.5 is the active NEWS methodology. It supersedes v1.3's research/output and v1.2's 0–100 confidence rubric for new runs. Source reliability, factual/interpretation separation, AS_OF, independent roles, no double-counting and immutable historical reports still apply. NEWS -3..+3 points are uncalibrated, not win probabilities. Routine supporter-bus/ordinary fan-event items with no demonstrated on-field/operational link are NOT scored, even when an official club announcement confirms they exist. The only approved numeric display extension is a fixed /100 user-preference NEWS-support index, not an uncalibrated probability or previously retired v1.2 confidence score.
 
 Thresholds, reliability/freshness multipliers, penalties, and category boundaries should ultimately be learned or calibrated from backtests. Bootstrap rules may be used only when explicitly versioned and marked as unvalidated.
 
@@ -134,7 +134,7 @@ Bootstrap scoring rules may be CANONICAL for operational consistency while remai
 ## 10. Current State
 
 ANALYST: **v2.1 CANONICAL — only active new-run method/schema**, effective 2026-11-06 by owner decision. Keep unchanged v2.0 Torino–Monza research: (1) both teams' all current-season opponents classified by historical pre-match habitual possession HIGH >=55%, BALANCED >45% to <55%, LOW <=45%, half data when verified; (2) both teams' full-season baseline followed by last THREE and last ONE games with separate real result/points and xG/xGA/shots performance graphs and opponent difficulty; (3) explicit football-logic opponent-quality/style matchup including each club's ALL HOME and ALL AWAY league results and meaningful home-at-home versus away-away comparison. At three-factor conclusion include exactly ONE new **ordinal 0–100 support score for EACH user-selected pick**, justified by supporting/opposing evidence and source coverage; it is NOT a calibrated match win probability or odds/market-derived number, and if evidence insufficient score is null. No fourth factor, old scoring engines, simulation, betting odds, NEWS, SXF or POLY. Role separation, AS_OF, and original historical reports remain unchanged. Updated files: roles/analyst.md, methods/analyst_methodology.md, schemas/analyst_report.md, prompts/analyst_start.md. The original v2.0 restriction banning any 0–100 score is superseded only for this single support indicator; all core analytical restrictions survive.
-NEWS: v1.4.1 CANONICAL — whole-match news and atmosphere, numbered source-verified H# stories, seven -3..+3 market-impact columns and arithmetic totals. v1.3 research instructions SUPERSEDED. Explicit match-impact relevance filter excludes routine, non-material fan logistics/PR from H# news and scoring.
+NEWS: v1.5 CANONICAL — whole-match news and atmosphere, numbered source-verified H# stories, seven -3..+3 market-impact columns and arithmetic totals. v1.3 research instructions SUPERSEDED. Explicit match-impact relevance filter excludes routine, non-material fan logistics/PR from H# news and scoring. Each user-supplied selection additionally shows one fixed /100 NEWS-support index, without changing seven market totals or methodology.
 POLY: v1.4 CANONICAL — independent public Polymarket v2 + Gamma/CLOB + Polygon bettor discovery/verification; all CAPITALE Supabase and SXF POLY sources prohibited; candidate skill thresholds uncalibrated
 SXF: v0.4.3 DRAFT — owner-approved EARLY CORE T-72/T-60/T-40/T-24 checkpoint decision odds <=2.35 (2026-10-27); **EARLY_T12 RETIRED** (2026-10-28); **daily scan T-6 primary / T-8 fallback now DEFAULT by owner decision (2026-10-28)**; DYNAMIC_AS_OF_V04 still available only by explicit request. V1/V2/HEAVY/SURPRISE/Over/BTTS thresholds unchanged; EARLY CORE v2, OVER_STRONG and EKOL 3 shadow experiments NOT canonical; live runtime implementation verification pending.
 FINAL: v0.2 DRAFT — synthesis architecture approved; numerical calibration pending
