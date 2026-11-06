@@ -1,7 +1,7 @@
 # NEWS MATCH IMPACT — Methodology
 
 Status: CANONICAL
-Version: 1.5
+Version: 1.6
 Supersedes: NEWS v1.3 three-axis qualitative-only user-facing research workflow and NEWS v1.2 five-part numerical confidence. Preserves CAPITALE source isolation, uncertainty, deduplication and AS_OF governance.
 
 ## Research workflow (in this order)
@@ -39,15 +39,15 @@ Fan mood is a real news research category, not an automatic numerical advantage:
 
 Goal-market assessment: consider credible effects on each club's offense and defense, potential ability of **each** side to score, match tempo, concrete tactical plans and environment. KG YES and KG NO must be assessed even when a user only gives a winner; same for Over/Under. Do not infer Over solely from support for one team or KG from generic confidence.
 
-## Owner-approved user-selection NEWS support score /100 — v1.5
+## Owner-approved user-selection NEWS support score /100 — v1.6
 
-Keep original eight research fields, match-relevance filter, event H# scoring and all seven signed market totals unchanged. For each user-submitted selection only, select its raw signed total T and compute fixed integer `max(0, min(100, 50 + 10*T))`. +3=80/100, +2=70/100, +1=60/100, 0=50/100, -1=40/100, -2=30/100, -3=20/100. Label 50/100 as **veri yetersiz** if no reliable material news exists, or **haber etkileri dengelendi** when positive and negative evidence canceled. The /100 is an UNCALIBRATED news support index, NEVER a win percentage or prediction confidence. Present it solely beside user choice in section **4. NEWS sonucu**; do not add any other scoring system, model or section. Historical prematch reports immutable.
+Keep the original eight-area research, match-relevance filter, H# event scores and all seven signed market totals. For EACH user-submitted preference, assess the **actual strength and directness of verified news, quality of its sources, match-specific relevance, replacement/mitigation, and credible opposing news**, then independently pick ONE exact integer 0–100 (e.g. 61, 75, 83). No fixed increment, tens rounding, 50+10*T, statistical win probability or automatic conversion of the signed total. The chosen /100 should be coherent with the signed NEWS direction; explain any mismatch. No usable material information => **50/100 — veri yetersiz** placeholder; credible offsetting factors => near 50 with **haber etkileri dengelendi**. This is a SUBJECTIVE, UNCALIBRATED news-support judgment, never success percentage or prediction confidence. Display only beside the user selection in **4. NEWS sonucu**. Historical prematch reports immutable.
 
 ## Audit and immutability
 
-Only source evidence available by AS_OF may justify points. Mark claimed but unverified stories as unscored or disputed, not as verified developments. Historical NEWS v1.0–v1.3 reports remain preserved in Git history and any existing archives, but their research and output format are SUPERSEDED for all new v1.5 runs; archived v1.4.1 runs remain immutable.
+Only source evidence available by AS_OF may justify points. Mark claimed but unverified stories as unscored or disputed, not as verified developments. Historical NEWS v1.0–v1.3 reports remain preserved in Git history and any existing archives, but their research and output format are SUPERSEDED for all new v1.6 runs; archived v1.4.1 and v1.5 runs remain immutable.
 
-No underlying scoring formula beyond per-event seven integers and arithmetic column totals, except the one owner-approved display-only index for the user's preference out of 100. Scores are uncalibrated NEWS opinion weights, never bookmaker probabilities or betting advice. Review later selection settlement and on-field news mechanism separately. Repeated markets within a match are dependent observations, not independent success samples.
+No underlying scoring formula beyond per-event seven integers and arithmetic column totals, except the one owner-approved separately judged, uncalibrated 0–100 NEWS support number for the user's preference. Scores are uncalibrated NEWS opinion weights, never bookmaker probabilities or betting advice. Review later selection settlement and on-field news mechanism separately. Repeated markets within a match are dependent observations, not independent success samples.
 
 ## Output contract
 
