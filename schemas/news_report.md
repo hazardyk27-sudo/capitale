@@ -1,12 +1,12 @@
 # NEWS MATCH IMPACT — Report Schema
 
 Status: CANONICAL
-Version: 1.5
+Version: 1.6
 Supersedes: NEWS report schema v1.3 for new runs
 
 ```yaml
 role: NEWS
-methodology_version: news-match-impact-v1.5
+methodology_version: news-match-impact-v1.6
 match_id: <match ID or explicitly unknown>
 match: <home> vs <away>
 competition: <verified competition>
@@ -75,9 +75,9 @@ no_betting_recommendation: true
 post_match_review: <absent in original pre-match report; separate record after kickoff>
 ```
 
-## Owner-approved v1.5 output addition — for user-supplied preferences
+## Owner-approved v1.6 output addition — for user-supplied preferences
 
-Add an item in `user_preference_news_support_scores_100` for EACH user-supplied selection only, with `preference`, `raw_news_total` (the matching market's signed TOTAL), `score_100 = max(0,min(100,50+10*raw_news_total))` integer, `evidence_label` (`SUPPORTED`, `OPPOSED`, `CANCELLED_EFFECTS` or `INSUFFICIENT_EVIDENCE`), and `is_win_probability: false`. Show the /100 score in existing NEWS sonucu only. The seven underlying totals and H# event tables do not change. If 50/100 comes from no reliable evidence, state that; otherwise distinguish offsetting news. No new scoring layer.
+Add an item in `user_preference_news_support_scores_100` for EACH user-supplied selection only, with `preference`, `raw_news_total` (matching signed TOTAL), `score_100` (independently judged exact integer 0–100 using credible news quality, causal strength, materiality, mitigation and counterevidence), `brief_score_reason`, `evidence_label` (`SUPPORTED`, `OPPOSED`, `CANCELLED_EFFECTS` or `INSUFFICIENT_EVIDENCE`), and `is_win_probability: false`. NEVER compute score_100 using 50+10*T, fixed ten-point increments or automatic rounding to tens. Insufficient evidence: 50/100 as explicitly labeled placeholder, not a real assessment. Show the /100 solely in NEWS sonucu; the seven raw totals and H# story tables remain unchanged. No new output section.
 
 ## Enforced rules
 
@@ -91,4 +91,4 @@ Add an item in `user_preference_news_support_scores_100` for EACH user-supplied 
 5. `NO_EVIDENCE` is not a verified neutral fact. Keep gaps explicit. If no credible scored news exists, seven totals are 0 with declared `INSUFFICIENT NEWS EVIDENCE`, not balanced prediction or 50% probability.
 6. Retain AS_OF, source policy, both-team research, verification and independent NEWS isolation. Do not use market/odds/team statistical department inputs, or later results to modify the pre-match report.
 7. Present the exact five-part human-readable output specified in `roles/news.md` and `prompts/news_start.md`; do not display raw YAML unless explicitly requested.
-8. Legacy v1.2/v1.3 numeric-confidence and three-axis-only output models are SUPERSEDED for new v1.5 runs; the only approved /100 addition is the fixed user-selection NEWS support index documented above.
+8. Legacy v1.2/v1.3 numeric-confidence and three-axis-only output models are SUPERSEDED for new v1.6 runs; the only approved /100 addition is the individually judged user-selection NEWS support number documented above.
