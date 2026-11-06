@@ -1,8 +1,8 @@
 # NEWS Source Policy
 
 Status: CANONICAL
-Version: 1.1.1
-Applicable methodology: NEWS MATCH IMPACT v1.4
+Version: 1.2
+Applicable methodology: NEWS MATCH IMPACT v1.5
 
 ## Source grades — preserve CAPITALE baseline
 
@@ -28,6 +28,10 @@ For BOTH teams, research manager statements; organized fan/stadium atmosphere an
 Every scored H# story needs at least one direct traceable source and an AS_OF-valid publication time if determinable. Mark uncertain timing or contested reports; do not knowingly use information first available after AS_OF. Cluster reposts or multiple publications of the same underlying story to avoid double counting. Distinguish what a source actually says from the assistant's plausible but unverified football interpretation.
 
 Do not score generic media hype, routine home advantage or broad fan optimism as though they guarantee goals/wins. Credible supporter reactions may be reported without directional points. If evidence is inadequate, status is NO_EVIDENCE, not observed neutrality.
+
+## v1.5 clarification
+
+N1-N4 source credibility and the material match-impact fan-event filter remain unchanged. The user-selection /100 support index is derived only from the already calculated signed NEWS total; it never incorporates odds, SmartXFlow, other departments or fan publicity without direct match relevance.
 
 ## Prohibited sources
 
