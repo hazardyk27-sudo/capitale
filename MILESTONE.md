@@ -1,7 +1,7 @@
 # CAPITALE — Milestone Log
 
 Status: CANONICAL PROJECT HISTORY
-Last updated: 2026-10-28
+Last updated: 2026-11-06
 
 This file records active state, decisions, superseded rules, technical debt, and next work. Historical decisions are never deleted; replaced rules are marked SUPERSEDED.
 
@@ -704,3 +704,12 @@ The owner explicitly corrects the earlier assistant's omitted Parma–Udinese BT
 Operational semantics: per-fixture target T-6 = kickoff minus 6h, T-8 = kickoff minus 8h (never one shared batch clock); distinct `run_at_utc` vs `decision_as_of_utc`; strictly <= checkpoint-source timestamps and correct source freshness; preserve checkpoint signals independently of later market changes, with optional later-state note. **A valid T-6 that did not trigger does NOT permit a switch to T-8 merely to obtain a positive signal.** No data at either point produces an explicit pending/missing case. The global odds floor >=1.30 and underlying engine rules are unchanged. EARLY_T12 remains retired; EARLY CORE v2 / EKOL 3 / OVER_STRONG stay shadow. Old pre-match and retrospective archive outputs remain untouched.
 
 New default mode: `CHECKPOINT_DAILY_T6_FALLBACK_T8`. Former `DYNAMIC_AS_OF_V04` remains available by **explicit user request only**. `CHECKPOINT_RESEARCH_T6_FALLBACK_T8` describes retrospectively reconstructed historical cohorts and must remain provenance-distinct from the daily pre-match scan. Updated: `AGENTS.md` 1.16, `roles/sxf.md` 0.4.3, `methods/sxf_methodology.md` 0.4.3, `schemas/sxf_report.md` 0.4.3, `prompts/sxf_archive_scan.md` 1.1.0, `methods/sxf_archive_methodology.md` 1.1 and `schemas/sxf_archive_schema.md` 1.1. **Only repository documents/schema were updated; production/SXF dashboard alert runner, Supabase configuration, or deployed bots were not verified/modified.**
+
+
+---
+
+## 2026-11-06 — ANALYST v2.1 CANONICAL: owner approves 0–100 user-selection SUPPORT score
+
+Owner instructed ANALYST to continue its exact three-factor Torino–Monza v2.0 method, but include a score out of 100 for each user's specific pick. A v2.1 additive output field is approved: "Tercih destek puanı: N/100", with explicit evidence for and against, and data coverage limits. This is an ordinal evidence support score only, NOT a calibrated win probability, bookmaker-implied probability, expected value, or FINAL category. Descriptive anchors: 0–39 strongly contradicted; 40–49 tending against; 50 mixed; 51–69 conditional support; 70–84 strong support; 85–100 exceptionally convergent strong evidence and rare. No artificial mathematical formula or historical v1.3 scoring engine; score null ("veri yetersiz") if sufficient evidence unavailable.
+
+The full same-season opponent-possession records, last-three and last-one performance graphs, opponent quality and ALL home/away fixtures of BOTH sides remain mandatory as in v2.0; no fourth factor. Other-department inputs, future information and mutation of historical reports remain prohibited. Updated: AGENTS.md, roles/analyst.md, methods/analyst_methodology.md, schemas/analyst_report.md, prompts/analyst_start.md. Previous v2.0 ban on any numeric score is superseded only in this specific respect.
