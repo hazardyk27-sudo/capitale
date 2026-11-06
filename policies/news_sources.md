@@ -1,8 +1,8 @@
 # NEWS Source Policy
 
 Status: CANONICAL
-Version: 1.2
-Applicable methodology: NEWS MATCH IMPACT v1.5
+Version: 1.3
+Applicable methodology: NEWS MATCH IMPACT v1.6
 
 ## Source grades — preserve CAPITALE baseline
 
@@ -31,7 +31,7 @@ Do not score generic media hype, routine home advantage or broad fan optimism as
 
 ## v1.5 clarification
 
-N1-N4 source credibility and the material match-impact fan-event filter remain unchanged. The user-selection /100 support index is derived only from the already calculated signed NEWS total; it never incorporates odds, SmartXFlow, other departments or fan publicity without direct match relevance.
+N1-N4 source credibility and the material match-impact fan-event filter remain unchanged. The user-selection /100 support number is a separate judgment based on already cited material NEWS evidence, its reliability and credible on-field mechanism—not an automatic 10-point conversion of signed NEWS totals. It never incorporates odds, SmartXFlow, other departments or fan publicity without direct match relevance.
 
 ## Prohibited sources
 
