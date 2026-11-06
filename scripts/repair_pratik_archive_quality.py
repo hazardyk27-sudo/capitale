@@ -98,15 +98,22 @@ def load_snapshot_groups(conn, checkpoint_path: Path, day: str):
                  item["_kickoff"])
         archived_by_teams.setdefault(teams, []).append(item)
 
-    source_to_archive = {}
+    source_to_archives = {}
     for fixture in source:
         uid = str(fixture.get("fixture_uid") or "")
         match_hash = str(fixture.get("match_id_hash") or "")
         target = archived_by_uid.get(uid) if uid else None
         if target is None and match_hash:
             matches = archived_by_hash.get(match_hash, [])
-            if len(matches) == 1:
-                target = matches[0]
+            exact = [
+                item for item in matches
+                if item.get("home", "").strip().casefold()
+                == fixture.get("home", "").strip().casefold()
+                and item.get("away", "").strip().casefold()
+                == fixture.get("away", "").strip().casefold()
+            ]
+            if len(exact) == 1:
+                target = exact[0]
         if target is None:
             teams = (fixture.get("home", "").strip().casefold(),
                      fixture.get("away", "").strip().casefold(),
@@ -115,7 +122,23 @@ def load_snapshot_groups(conn, checkpoint_path: Path, day: str):
             if len(matches) == 1:
                 target = matches[0]
         if target is not None:
-            source_to_archive[uid] = target
+            aliases = [target]
+            for item in archived_by_hash.get(match_hash, []):
+                same_identity = (
+                    item.get("home", "").strip().casefold()
+                    == fixture.get("home", "").strip().casefold()
+                    and item.get("away", "").strip().casefold()
+                    == fixture.get("away", "").strip().casefold()
+                    and item.get("league", "").strip().casefold()
+                    == fixture.get("league", "").strip().casefold()
+                )
+                close_kickoff = abs(
+                    (item["_kickoff"] - fixture["_kickoff"]).total_seconds()
+                ) <= 300
+                if same_identity and close_kickoff and item not in aliases:
+                    aliases.append(item)
+            source_key = uid or f"hash:{match_hash}"
+            source_to_archives[source_key] = aliases
 
     starts = [item["_kickoff"] - dt.timedelta(hours=72) for item in source]
     ends = [item["_kickoff"] for item in source]
@@ -147,20 +170,27 @@ def load_snapshot_groups(conn, checkpoint_path: Path, day: str):
                 fixture = matches[0]
         if fixture is None:
             continue
-        archive_fixture = source_to_archive.get(str(fixture.get("fixture_uid") or ""))
-        if archive_fixture is None:
+        source_key = (
+            str(fixture.get("fixture_uid") or "")
+            or f"hash:{fixture.get('match_id_hash') or ''}"
+        )
+        archive_fixtures = source_to_archives.get(source_key, [])
+        if not archive_fixtures:
             continue
         observed = parse_time(row.get("scraped_at_utc"))
-        if observed is None or observed > fixture["_kickoff"]:
+        if observed is None:
             continue
         market = str(row.get("market") or "").strip().upper()
         selection = str(row.get("selection") or "").strip().upper()
         if market not in MARKET_FIELDS:
             continue
-        key = str(archive_fixture.get("fixture_uid") or archive_fixture.get("match_id_hash"))
-        grouped.setdefault(key, {}).setdefault(market, {}).setdefault(
-            selection, []
-        ).append((observed, str(row.get("id") or ""), row))
+        for archive_fixture in archive_fixtures:
+            if observed > archive_fixture["_kickoff"]:
+                continue
+            key = str(archive_fixture.get("fixture_uid") or archive_fixture.get("match_id_hash"))
+            grouped.setdefault(key, {}).setdefault(market, {}).setdefault(
+                selection, []
+            ).append((observed, str(row.get("id") or ""), row))
     day_date = dt.date.fromisoformat(day)
     for market, (table, time_col) in MARKETS.items():
         history_rows = rows_for_identities(
@@ -173,21 +203,26 @@ def load_snapshot_groups(conn, checkpoint_path: Path, day: str):
             fixture = row_fixture(row, source_by_uid, source_by_hash, day_date)
             if fixture is None:
                 continue
-            archive_fixture = source_to_archive.get(
+            source_key = (
                 str(fixture.get("fixture_uid") or "")
+                or f"hash:{fixture.get('match_id_hash') or ''}"
             )
-            if archive_fixture is None:
+            archive_fixtures = source_to_archives.get(source_key, [])
+            if not archive_fixtures:
                 continue
             observed = parse_time(row.get(time_col))
-            if observed is None or observed > fixture["_kickoff"]:
+            if observed is None:
                 continue
-            key = str(
-                archive_fixture.get("fixture_uid")
-                or archive_fixture.get("match_id_hash")
-            )
-            history_grouped.setdefault(key, {}).setdefault(market, []).append(
-                (observed, str(row.get("id") or ""), row)
-            )
+            for archive_fixture in archive_fixtures:
+                if observed > archive_fixture["_kickoff"]:
+                    continue
+                key = str(
+                    archive_fixture.get("fixture_uid")
+                    or archive_fixture.get("match_id_hash")
+                )
+                history_grouped.setdefault(key, {}).setdefault(market, []).append(
+                    (observed, str(row.get("id") or ""), row)
+                )
     for fixture_markets in history_grouped.values():
         for market_rows in fixture_markets.values():
             market_rows.sort(key=lambda item: (item[0], item[1]))
