@@ -1,8 +1,8 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.16
-Last updated: 2026-10-28
+Version: 1.17
+Last updated: 2026-11-06
 
 ## 1. Purpose
 
@@ -133,7 +133,7 @@ Bootstrap scoring rules may be CANONICAL for operational consistency while remai
 
 ## 10. Current State
 
-ANALYST: **v2.0 CANONICAL — the ONE AND ONLY active new-run methodology and schema**, effective 2026-10-23 by explicit owner decision. References: `roles/analyst.md`, `methods/analyst_methodology.md`, `schemas/analyst_report.md`, `prompts/analyst_start.md`. Follow exactly the preceding Torino–Monza report with compulsory home/away detail: (1) entire same-season league opponent habitual-possession profiles HIGH >=55%, BALANCED >45% to <55%, LOW <=45%, including verified first/second half data; (2) season baseline then last THREE and ONE league matches with distinct actual score/points and underlying xG/xGA/shots graph, opponent-difficulty interpretation; (3) football-logic opponent-level/tactical matchup, with BOTH teams' all HOME and all AWAY league fixtures listed by opponent, score and stats, especially comparing home side at home vs visitor away. End with only three-factor summary/qualified football lean, not 0–100 rating or odds/probability. Earlier v1.1, v1.2, v1.3, v1.4.x analyst methodologies and score engines are SUPERSEDED/INACTIVE for all new runs; historical files and as-of decisions retained intact. Source/isolation and AS_OF principles unchanged. This is an approved operational research procedure, NOT proof of predictive accuracy or calibrated win probabilities.
+ANALYST: **v2.1 CANONICAL — only active new-run method/schema**, effective 2026-11-06 by owner decision. Keep unchanged v2.0 Torino–Monza research: (1) both teams' all current-season opponents classified by historical pre-match habitual possession HIGH >=55%, BALANCED >45% to <55%, LOW <=45%, half data when verified; (2) both teams' full-season baseline followed by last THREE and last ONE games with separate real result/points and xG/xGA/shots performance graphs and opponent difficulty; (3) explicit football-logic opponent-quality/style matchup including each club's ALL HOME and ALL AWAY league results and meaningful home-at-home versus away-away comparison. At three-factor conclusion include exactly ONE new **ordinal 0–100 support score for EACH user-selected pick**, justified by supporting/opposing evidence and source coverage; it is NOT a calibrated match win probability or odds/market-derived number, and if evidence insufficient score is null. No fourth factor, old scoring engines, simulation, betting odds, NEWS, SXF or POLY. Role separation, AS_OF, and original historical reports remain unchanged. Updated files: roles/analyst.md, methods/analyst_methodology.md, schemas/analyst_report.md, prompts/analyst_start.md. The original v2.0 restriction banning any 0–100 score is superseded only for this single support indicator; all core analytical restrictions survive.
 NEWS: v1.4.1 CANONICAL — whole-match news and atmosphere, numbered source-verified H# stories, seven -3..+3 market-impact columns and arithmetic totals. v1.3 research instructions SUPERSEDED. Explicit match-impact relevance filter excludes routine, non-material fan logistics/PR from H# news and scoring.
 POLY: v1.4 CANONICAL — independent public Polymarket v2 + Gamma/CLOB + Polygon bettor discovery/verification; all CAPITALE Supabase and SXF POLY sources prohibited; candidate skill thresholds uncalibrated
 SXF: v0.4.3 DRAFT — owner-approved EARLY CORE T-72/T-60/T-40/T-24 checkpoint decision odds <=2.35 (2026-10-27); **EARLY_T12 RETIRED** (2026-10-28); **daily scan T-6 primary / T-8 fallback now DEFAULT by owner decision (2026-10-28)**; DYNAMIC_AS_OF_V04 still available only by explicit request. V1/V2/HEAVY/SURPRISE/Over/BTTS thresholds unchanged; EARLY CORE v2, OVER_STRONG and EKOL 3 shadow experiments NOT canonical; live runtime implementation verification pending.
