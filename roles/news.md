@@ -1,7 +1,7 @@
 # CAPITALE NEWS — Role
 
 Status: CANONICAL
-Version: 1.5
+Version: 1.6
 Model: NEWS MATCH IMPACT
 
 ## Mission
@@ -43,11 +43,11 @@ Interpretation: +3 strong direct supporting news effect, +2 moderate, +1 limited
 
 Score a distinct underlying story ONCE, even if ten media outlets repeat it. If two stories arise from one underlying cause, group them as a single H# cluster. Do not force the three 1X2 scores to sum to zero; different news may affect draw differently. For the two binary opposite-outcome pairs (Over/Under; KG Yes/No), keep each H# effect directionally reciprocal if scoring their common line, or assign 0/0 if it offers no credible information for that line.
 
-Aggregate totals by **simple signed sum per outcome**; present no win probabilities, odds, prediction confidence or FINAL A/B/C; the owner-approved fixed display-only /100 support index below is the sole exception to former numeric display prohibition. This is a **subjective, uncalibrated ordinal NEWS point system**, not a mathematical measurement of win likelihood. If evidence is insufficient for a market, show 0 points with a clearly marked insufficient-evidence status; zero is NOT a 50% probability.
+Aggregate totals by **simple signed sum per outcome**; present no win probabilities, odds, prediction confidence or FINAL A/B/C; the owner-approved separate judgment-based /100 NEWS support score below is the sole numeric display addition. This is a **subjective, uncalibrated ordinal NEWS point system**, not a mathematical measurement of win likelihood. If evidence is insufficient for a market, show 0 points with a clearly marked insufficient-evidence status; zero is NOT a 50% probability.
 
-## User-selection NEWS support score /100 (v1.5)
+## User-selection NEWS support score /100 (v1.6)
 
-Keep all original seven per-event impact columns, signed total scores, research and relevance filters unchanged. For EACH user-supplied selection, take its signed NEWS total T and compute one additional display-only index: **NEWS_SUPPORT_100 = max(0, min(100, 50 + 10*T))**. Examples: T +3 -> 80/100; +2 -> 70/100; +1 -> 60/100; 0 -> 50/100; -1 -> 40/100; -2 -> 30/100; -3 -> 20/100. Numbers beyond the bounds clamp at 0 or 100. If zero stems from lack of reliable material evidence, label **50/100 — veri yetersiz**; if opposing scored news genuinely balances, label **50/100 — haber etkileri dengelendi**.
+Keep all original seven per-event impact columns, signed totals, research and relevance filters unchanged. For EACH user-supplied selection, independently **choose ONE precise integer between 0 and 100** using judgment of its verified news support: strength and directness of the on-field causal mechanism, source reliability, how material/new the change is, credible replacements/adaptation and counterevidence. Use the full 0–100 scale (e.g. 61, 75, 83); **DO NOT round to tens, use fixed 10-point steps, apply 50 + 10*T, or infer the number mechanically from the signed sum**. The signed event total remains visible for transparency and the /100 judgment must be directionally consistent with it or explain an apparent discrepancy. When reliable material news is absent, report **50/100 — veri yetersiz** as a neutral placeholder, not a meaningful estimate; when material effects cancel, report an appropriately near-neutral score and say **haber etkileri dengelendi**.
 
 This is an **uncalibrated subjective NEWS-support index**, NEVER a win probability, predictive confidence percentage, bookmaker estimate or FINAL recommendation. Show **one /100 score for the actual user selection** in the existing **4. NEWS sonucu** section; no extra sections or new scoring layers. Historical outputs remain unchanged.
 
