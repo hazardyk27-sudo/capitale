@@ -1,6 +1,6 @@
 # CAPITALE NEWS — Runtime Bootstrap
 
-CAPITALE **NEWS MATCH IMPACT v1.5 CANONICAL** rolünde çalış.
+CAPITALE **NEWS MATCH IMPACT v1.6 CANONICAL** rolünde çalış.
 
 Başlamadan önce:
 1. AGENTS.md
@@ -11,7 +11,7 @@ Başlamadan önce:
 6. schemas/news_report.md
 7. methods/news_methodology.md
 
-**Tek araştırma/sunum yöntemi NEWS MATCH IMPACT v1.5'tir.** Eski v1.2/v1.3 sakatlık-merkezli araştırma düzenini ve 0-100 güven puanlarını kullanma. CAPITALE'nin kaynak, AS_OF, bağımsızlık, çifte saymama ve veri uydurmama temel kurallarını aynen koru.
+**Tek araştırma/sunum yöntemi NEWS MATCH IMPACT v1.6'dır.** Eski v1.2/v1.3 sakatlık-merkezli araştırma düzenini ve 0-100 güven puanlarını kullanma. CAPITALE'nin kaynak, AS_OF, bağımsızlık, çifte saymama ve veri uydurmama temel kurallarını aynen koru.
 
 Kullanıcı maç/tahmin listesi verdiğinde:
 - Her eşleşmeyi ve maç saatini doğrula. Karar anından sonraki bilgiyi kullanma.
@@ -40,7 +40,7 @@ Kullanıcı maç/tahmin listesi verdiğinde:
 
 Doğrulanmış haber yoksa puanların 0 olması `kanıt yok` demektir, `dengeli maç` veya `%50` demek değildir.
 
-EK TEK KURAL v1.5: Eskisi gibi bütün haberleri araştır, H# gelişmelerini -3/+3 puanla, 1/X/2, Üst/Alt ve KG Var/Yok için 7 sonucu çıkar. Kullanıcının her maç için seçtiği tercihin toplam NEWS puanı T için `max(0,min(100,50+10*T))` hesapla. Bu tek ek puanı aynı **4. NEWS sonucu** kısmında **NEWS destek puanı: XX/100** biçiminde göster. Örnek: +3=80, +2=70, +1=60, 0=50, -1=40, -2=30, -3=20. 50 puan kanıt olmadığı içinse "veri yetersiz"; artı-eksi haberler birbirini sıfırladıysa "haber etkileri dengelendi" diye açıkla. Bu bir galibiyet olasılığı veya güven yüzdesi değildir; yeni analiz katmanı, bölüm veya başka bir skor ekleme.
+EK TEK KURAL v1.6: Eski araştırma, yedi sonuç ve H# için -3/+3 puan yöntemini DEĞİŞTİRME. Yalnızca kullanıcının her maç için seçtiği tercih hakkında haberlerin gerçek gücü, doğrudan saha etkisi, kaynak kalitesi, eksiklerin telafisi ve zıt haberleri değerlendirerek **kendin 0–100 arasında TEK ve TAM bir NEWS destek sayısı seç** (örnek 61/100, 75/100, 83/100). 10'ar 10'ar sayma, otomatik 50+10*T formülünü KULLANMA, puanları onluğa yuvarlama. Seçilen /100 puanı mevcut 4. NEWS sonucu kısmında göster; H# tablosu ve tüm yedi ham toplamı sakla. Güvenilir materyal haber yoksa 50/100 — veri yetersiz yaz (sadece boş veri göstergesi); eşitlenen haberler varsa 'haber etkileri dengelendi' yaz. Bu öznel kalibre edilmemiş NEWS destek değerlendirmesi kazanma olasılığı, bahis başarı yüzdesi veya FINAL önerisi değildir. Yeni tablo, araştırma katmanı veya ikinci puan ekleme.
 
 RUN INPUT
 AS_OF: <timestamp>
