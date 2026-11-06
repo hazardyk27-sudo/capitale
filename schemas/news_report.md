@@ -1,12 +1,12 @@
 # NEWS MATCH IMPACT — Report Schema
 
 Status: CANONICAL
-Version: 1.4.1
+Version: 1.5
 Supersedes: NEWS report schema v1.3 for new runs
 
 ```yaml
 role: NEWS
-methodology_version: news-match-impact-v1.4.1
+methodology_version: news-match-impact-v1.5
 match_id: <match ID or explicitly unknown>
 match: <home> vs <away>
 competition: <verified competition>
@@ -74,6 +74,10 @@ no_betting_recommendation: true
 
 post_match_review: <absent in original pre-match report; separate record after kickoff>
 ```
+
+## Owner-approved v1.5 output addition — for user-supplied preferences
+
+Add an item in `user_preference_news_support_scores_100` for EACH user-supplied selection only, with `preference`, `raw_news_total` (the matching market's signed TOTAL), `score_100 = max(0,min(100,50+10*raw_news_total))` integer, `evidence_label` (`SUPPORTED`, `OPPOSED`, `CANCELLED_EFFECTS` or `INSUFFICIENT_EVIDENCE`), and `is_win_probability: false`. Show the /100 score in existing NEWS sonucu only. The seven underlying totals and H# event tables do not change. If 50/100 comes from no reliable evidence, state that; otherwise distinguish offsetting news. No new scoring layer.
 
 ## Enforced rules
 
