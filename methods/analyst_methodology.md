@@ -1,8 +1,9 @@
 # CAPITALE ANALYST — Active Match Analysis Method
 
 Status: CANONICAL
-Version: 2.0
-Effective: 2026-10-23
+Version: 2.1
+Effective: 2026-11-06
+Core three-factor research unchanged
 Owner decision: The Torino–Monza report is the exact active presentation template, with one mandatory addition: both clubs' home/away form and opponent-by-opponent venue comparisons.
 
 ## Single active contract
@@ -12,7 +13,7 @@ For EVERY new list of fixture predictions, analyze each fixture independently, u
 2. FORM IVMESI — last 3 and last 1
 3. RAKIP MANTIGI — including HOME/AWAY FORM as a mandatory subsection
 
-The report must be demonstrably like the actual Torino–Monza analysis: fixture header; two clubs' season league matches tables and possession buckets; each team's whole-season baseline; two actual last-three performance graphs (results/points and xGD), exact latest-match changes and if possible half comparisons; separate, football-reasoned assessment of both teams' likely opponent difficulty and playstyle; explicit venue match lists comparing the host's HOME record to the visitor's AWAY record; factor comparison table and one qualified final match interpretation / lean. There is NO fourth independent factor or generic extra methodology section.
+The report must be demonstrably like the actual Torino–Monza analysis: fixture header; two clubs' season league matches tables and possession buckets; each team's whole-season baseline; two actual last-three performance graphs (results/points and xGD), exact latest-match changes and if possible half comparisons; separate, football-reasoned assessment of both teams' likely opponent difficulty and playstyle; explicit venue match lists comparing the host's HOME record to the visitor's AWAY record; factor comparison table and one qualified final match interpretation / lean. There is NO fourth independent factor or generic extra methodology section. The same conclusion includes the owner-approved v2.1 ordinal 0-100 pick support score.
 
 Old v1.1, v1.2, v1.3, v1.4.x decision engines, experimental ratings, v1.3 0–100 gates, side-market selection routing, standalone scoring or simulations are SUPERSEDED for NEW ANALYST runs. Their past snapshots and the Git history remain unchanged; don't erase any historical selections or as-of reports. The old modes must NEVER run alongside v2 or replace the three-factor report. Source isolation, as-of integrity, genuine missing-data reporting and historical immutability still apply.
 
@@ -46,7 +47,7 @@ B. UNDERLYING STAT FORM: per-match xGD (xG minus xGA) for both teams, with xG/xG
 State for each club whether last-game score is up/down versus prior two, whether true stat performance is up/down, and whether the results-versus-statistics signals diverge. When >=6 matches, last-three versus prior-three level can also be checked; do not call one good/bad match a statistically established trend.
 - Interpret last-three performance in context of each game's rival difficulty, venue, game state, red-card distortions, tactical era. A win against weak opposition does not automatically signal stronger form than an honorable result versus elite opposition.
 - Include 1H/2H score statistics and underlying stats only when independently sourced; denote missing.
-- Do not automatically extrapolate trend slopes into a goal forecast or subjective numeric score.
+- Do not automatically extrapolate trend slopes into a goal forecast or calibrated win probability. The v2.1 support score is only an ordinal conclusion about a user pick.
 
 ## 3. Rakip mantığı — what the actual upcoming encounter means
 
@@ -68,10 +69,16 @@ For BOTH teams, list actual current-season LEAGUE fixtures:
 
 ## Conclusion — exactly like Torino–Monza
 
-Use a short three-factor synthesis/comparison table: possession matchup; scoreboard-versus-underlying momentum; opponent quality, tactical matchup AND venue form integrated in the third row. Conclude with a brief intuitive football-match scenario and if evidence allows a clear lean (1/X/2, 1X/X2, totals etc. when relevant) with LOW/MEDIUM/HIGH descriptive uncertainty, not a fake calibrated percentage or unsupported 0–100 ANALYST score. If no confident direction: NO_CLEAR_LEAN. If user supplied picks, explicitly state whether each pick is supported/contradicted and most plausible failure route within this final evaluation; do not reorganize into older scored-support templates.
+Use a short three-factor synthesis/comparison table: possession matchup; scoreboard-versus-underlying momentum; opponent quality, tactical matchup AND venue form integrated in the third row. Conclude with a brief intuitive football-match scenario and if evidence allows a clear lean (1/X/2, 1X/X2, totals etc. when relevant) with LOW/MEDIUM/HIGH descriptive uncertainty, not a fake calibrated probability; include only the approved v2.1 0-100 ordinal user-pick support score with an evidence explanation. If no confident direction: NO_CLEAR_LEAN. If user supplied picks, explicitly state whether each pick is supported/contradicted and most plausible failure route within this final evaluation; do not reorganize into older scored-support templates.
 
 Do not append extra sections (separate simulation, stochastic models, odds, NEWS, synthetic examples, arbitrary weights) not requested. If sources missing show available real evidence, a narrow limitation, and constrained interpretation, not a false completed analysis.
 
 ## Operational requirements
 
 For a multi-match list, repeat the same format for each fixture with source-backed numbers and timestamp; do not let analysis of one game influence another or cite another department. For a massive batch where full evidence isn't obtainable, report per-match coverage truthfully; never silently shorten the method while calling it complete.
+
+## v2.1 OWNER-APPROVED SELECTION SUPPORT SCORE (2026-11-06)
+
+For EVERY user-supplied selection, preserve the complete v2.0 three-pillar research and include "Tercih destek puanı: N/100" inside the existing three-factor conclusion, with one brief source-grounded rationale and counterargument. Score evaluates ONLY support for THAT pick, NOT the probability it wins, NOT an odds-derived forecast, and NOT a FINAL recommendation. This is not a fourth factor or the superseded v1.3 numeric engine.
+
+Ordinal anchors (not calibrated probabilities): 0-39 strong contradiction; 40-49 leaning against; 50 mixed; 51-69 conditional/limited support; 70-84 strong support; 85-100 unusually convergent evidence, rare. Use judgment based exclusively on the three approved pillars; no invented mathematical weights. Disclose missing possession, xG, venue data and contrary evidence. When insufficient credible evidence, output "Puan: veri yetersiz" (null), not a fabricated score. Do not revise archived pre-match reports or use results to change prior scores.
