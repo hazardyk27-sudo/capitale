@@ -21,7 +21,7 @@ from pratik_archive_quality import (
 )
 
 ARCHIVE_NAME = "PRATİK ARŞİV"
-SNAPSHOT_BACKFILL_VERSION = "market-history-backfill-v3-asof-t72"
+SNAPSHOT_BACKFILL_VERSION = "market-history-backfill-v4-duplicate-fixture-aliases"
 
 
 def compact_json(value) -> str:
