@@ -1,0 +1,114 @@
+{
+  "archive_name": "PRATİK ARŞİV",
+  "version": "v2",
+  "quality_version": "market-field-quality-v4-zero-volume",
+  "date": "2026-11-09",
+  "timezone": "Europe/Istanbul",
+  "checkpoint_hours": [
+    72,
+    69,
+    66,
+    63,
+    60,
+    57,
+    54,
+    51,
+    48,
+    45,
+    42,
+    39,
+    36,
+    33,
+    30,
+    27,
+    24,
+    22,
+    20,
+    18,
+    16,
+    14,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "fixtures": 75,
+  "results_present": 72,
+  "results_missing": 3,
+  "results_live": 0,
+  "live_score_present": 72,
+  "live_in_progress": 0,
+  "market_checkpoint_slots_total": 7650,
+  "market_checkpoint_slots_present": 1441,
+  "market_checkpoint_slots_partial": 936,
+  "market_checkpoint_slots_empty": 0,
+  "market_checkpoint_slots_missing": 5273,
+  "alarms": 34,
+  "fields": "Original market rows, source timestamps, IDs, odds, shares, GBP amounts and volumes are retained when present.",
+  "source": "public Supabase tables (read-only)",
+  "archive_status": "PARTIAL",
+  "source_archive_status": "PARTIAL",
+  "market_coverage_complete": false,
+  "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; archive is COMPLETE only when every fixture/checkpoint/market slot is PRESENT; latest observation at or before target only; no interpolation or future substitution.",
+  "source_row_counts": {
+    "1X2": 17809,
+    "OU25": 11323,
+    "BTTS": 8724
+  },
+  "snapshot_backfill_version": "snapshot-field-fill-v2-asof-t72",
+  "snapshot_source_rows": 72382,
+  "snapshot_fallback_market_slots": 2377,
+  "snapshot_fallback_selection_rows": 1182,
+  "coverage_by_market": {
+    "1X2": {
+      "present": 614,
+      "partial": 433,
+      "empty": 0,
+      "missing": 1503
+    },
+    "OU25": {
+      "present": 503,
+      "partial": 224,
+      "empty": 0,
+      "missing": 1823
+    },
+    "BTTS": {
+      "present": 324,
+      "partial": 279,
+      "empty": 0,
+      "missing": 1947
+    }
+  },
+  "files": {
+    "checkpoints": {
+      "name": "checkpoints.jsonl.gz",
+      "records": 75,
+      "uncompressed_sha256": "504d2b7edefd244b2bcd2f2c584431da6709df6133567002a48e80572376b244",
+      "uncompressed_bytes": 2348855,
+      "compressed_bytes": 131634
+    },
+    "alarms": {
+      "name": "alarms.jsonl.gz",
+      "records": 34,
+      "uncompressed_sha256": "edd5b29a5d88758b8c1716d1d334dfd369b62b8828f75ce6c3c8fe7bb261c496",
+      "uncompressed_bytes": 15496,
+      "compressed_bytes": 3026
+    }
+  },
+  "integrity": {
+    "fixture_records": 75,
+    "alarm_records": 34,
+    "checkpoint_schedule_valid": true,
+    "future_snapshot_count": 0,
+    "checkpoints_sha256": "504d2b7edefd244b2bcd2f2c584431da6709df6133567002a48e80572376b244",
+    "alarms_sha256": "edd5b29a5d88758b8c1716d1d334dfd369b62b8828f75ce6c3c8fe7bb261c496"
+  }
+}

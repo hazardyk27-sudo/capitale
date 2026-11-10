@@ -1588,11 +1588,57 @@
       "market_checkpoint_slots_partial": 5959,
       "market_checkpoint_slots_empty": 1030,
       "market_checkpoint_slots_missing": 20504
+    },
+    {
+      "date": "2026-11-09",
+      "fixtures": 75,
+      "alarms": 34,
+      "checkpoint_bytes": 131634,
+      "alarm_bytes": 3026,
+      "total_bytes": 134660,
+      "uncompressed_bytes": 2364351,
+      "coverage": {
+        "1X2": {
+          "present": 614,
+          "partial": 433,
+          "empty": 0,
+          "missing": 1503
+        },
+        "OU25": {
+          "present": 503,
+          "partial": 224,
+          "empty": 0,
+          "missing": 1823
+        },
+        "BTTS": {
+          "present": 324,
+          "partial": 279,
+          "empty": 0,
+          "missing": 1947
+        }
+      },
+      "market_checkpoint_slots_total": 7650,
+      "market_checkpoint_slots_present": 1441,
+      "market_checkpoint_slots_partial": 936,
+      "market_checkpoint_slots_empty": 0,
+      "market_checkpoint_slots_missing": 5273,
+      "results_present": 72,
+      "results_missing": 3,
+      "results_live": 0,
+      "live_score_present": 72,
+      "live_in_progress": 0,
+      "checksums": {
+        "checkpoints": "504d2b7edefd244b2bcd2f2c584431da6709df6133567002a48e80572376b244",
+        "alarms": "edd5b29a5d88758b8c1716d1d334dfd369b62b8828f75ce6c3c8fe7bb261c496"
+      },
+      "future": 0,
+      "archive_status": "PARTIAL",
+      "source_archive_status": "PARTIAL"
     }
   ],
-  "total_fixtures": 7612,
-  "total_alarm_records": 6753,
-  "total_compressed_bytes": 22390750,
-  "total_uncompressed_bytes": 320399180,
+  "total_fixtures": 7687,
+  "total_alarm_records": 6787,
+  "total_compressed_bytes": 22525410,
+  "total_uncompressed_bytes": 322763531,
   "quality_version": "market-field-quality-v4-zero-volume"
 }
