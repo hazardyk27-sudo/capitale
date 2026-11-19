@@ -1262,6 +1262,14 @@ export function registerWhopRoutes(app: Express) {
     }
 
     if (REVOKE_EVENTS.has(event ?? "")) {
+      // A cancellation/refund delivery may be stale or out of order. Revoke only when
+      // Whop explicitly confirms the membership is invalid; preserve access when the
+      // live lookup is valid or temporarily unavailable.
+      const revokeState = await fetchMembershipState(membershipIdFromEvent);
+      if (revokeState.valid !== false) {
+        console.log(`[whop-webhook] REVOKE deferred — membership=${membershipIdFromEvent ?? "unknown"} remains valid or its current state is unavailable`);
+        return res.json({ received: true, action: "revoke_deferred_access_still_valid_or_unknown" });
+      }
       const dbUser = await resolveDbUser();
       const logEmail = dbUser?.email ?? normalizedEmail ?? "unknown";
       if (dbUser) {
