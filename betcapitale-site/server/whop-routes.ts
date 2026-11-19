@@ -1058,6 +1058,8 @@ export function registerWhopRoutes(app: Express) {
     const user = (data.user && typeof data.user === "object" ? data.user : {}) as Record<string, unknown>;
     const member = (data.member && typeof data.member === "object" ? data.member : {}) as Record<string, unknown>;
     const memberId = (data.member_id ?? member.id ?? (typeof data.user === "string" && data.user.startsWith("mber_") ? data.user : undefined)) as string | undefined;
+    const linkedMembership = (data.membership && typeof data.membership === "object" ? data.membership : {}) as Record<string, unknown>;
+    const membershipIdFromEvent = (data.membership_id ?? linkedMembership.id ?? (event?.startsWith("membership.") ? data.id : undefined)) as string | undefined;
     let email = (member.email ?? user.email_address ?? user.email ?? data.email ?? data.user_email) as string | undefined;
     if (!email && memberId) {
       try { email = await getWhopMemberEmail(memberId); }
@@ -1070,6 +1072,7 @@ export function registerWhopRoutes(app: Express) {
     const rawPlan = data.plan;
     const planId = (
       data.variant_id ??
+      linkedMembership.variant_id ??
       data.plan_id ??
       (typeof rawPlan === "string" ? rawPlan : (rawPlan as Record<string, unknown> | undefined)?.id)
     ) as string | undefined;
@@ -1173,7 +1176,7 @@ export function registerWhopRoutes(app: Express) {
     if (CANCEL_TOGGLE_EVENTS.has(event ?? "")) {
       // Auto-renew was turned on/off (or a cancellation was undone). Access is unaffected;
       // just re-sync the authoritative expiry in case Whop's period end moved.
-      const membershipId = data.id as string | undefined;
+      const membershipId = membershipIdFromEvent;
       const dbUser = await resolveDbUser();
       const logEmail = dbUser?.email ?? normalizedEmail ?? "unknown";
       if (dbUser) {
@@ -1202,7 +1205,7 @@ export function registerWhopRoutes(app: Express) {
 
     if (GRANT_EVENTS.has(event ?? "")) {
       const tier = (resolvedPlanId ? PLAN_TIER_MAP[resolvedPlanId] : undefined) ?? "select";
-      const membershipId = data.id as string | undefined;
+      const membershipId = membershipIdFromEvent;
       const dbUser = await resolveDbUser();
       const logEmail = dbUser?.email ?? normalizedEmail ?? "unknown";
 
