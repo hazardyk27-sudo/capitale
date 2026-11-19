@@ -46,6 +46,25 @@ const LEGACY_WHOP_PLANS: WhopPlanMeta[] = [
 ];
 
 const ALL_WHOP_PLANS = [...WHOP_PLANS, ...LEGACY_WHOP_PLANS];
+export function isKnownWhopPlanId(planId: string): boolean {
+  return ALL_WHOP_PLANS.some((plan) => plan.id === planId);
+}
+export function isWhopMembershipValid(
+  status: string | null | undefined,
+  expiresAt: Date | null,
+  nowMs = Date.now(),
+): boolean | null {
+  if (!status) return null;
+  const hasFutureExpiry = expiresAt !== null && expiresAt.getTime() > nowMs;
+  if (["active", "trialing"].includes(status)) {
+    return expiresAt === null || hasFutureExpiry;
+  }
+  if (["past_due", "canceling", "canceled", "completed", "expiring", "one_time"].includes(status)) {
+    return hasFutureExpiry;
+  }
+  if (["expired", "paused", "banned"].includes(status)) return false;
+  return null;
+}
 
 const PLAN_TIER_MAP: Record<string, "select" | "unlimited"> = {};
 for (const plan of ALL_WHOP_PLANS) {
@@ -95,7 +114,7 @@ async function listWhopMemberships(statuses: string[], maxPages = 10): Promise<R
   return rows;
 }
 
-/** Whop's v2 API returns expires_at as a Unix timestamp in seconds (sometimes ms). Normalizes to ms. */
+/** Normalizes Whop API timestamps (ISO strings or Unix seconds/milliseconds) to milliseconds. */
 function whopTimestampToMs(raw: number | string | Date | null | undefined): number | null {
   if (raw === null || raw === undefined) return null;
   if (raw instanceof Date) return isNaN(raw.getTime()) ? null : raw.getTime();
@@ -261,7 +280,7 @@ async function assertAdmin(req: Request & { session?: any }, res: any): Promise<
 function parseWhopTimestamp(raw: number | string | null | undefined): Date | null {
   if (raw === null || raw === undefined) return null;
   if (typeof raw === "number") {
-    // Whop's v2 API returns timestamps as Unix seconds.
+    // Numeric provider timestamps can be Unix seconds or milliseconds.
     const ms = raw < 1e12 ? raw * 1000 : raw;
     const d = new Date(ms);
     return isNaN(d.getTime()) ? null : d;
@@ -297,9 +316,8 @@ export async function fetchMembershipState(membershipId: string | undefined): Pr
   try {
     const m = await whopFetch(`/memberships/${encodeURIComponent(membershipId)}`);
     const expiresAt = parseWhopTimestamp((m?.expires_at ?? m?.current_period_end ?? null) as number | string | null);
-    const status = typeof m?.status === "string" ? m.status : "";
-    const future = expiresAt !== null && expiresAt.getTime() > Date.now();
-    const valid = ["active", "trialing"].includes(status) || (future && ["past_due", "canceling", "canceled", "completed", "expiring", "one_time"].includes(status));
+    const status = typeof m?.status === "string" ? m.status : null;
+    const valid = isWhopMembershipValid(status, expiresAt);
     return { valid, expiresAt };
   } catch (err) {
     if (err instanceof WhopApiError && err.status === 404) return { valid: false, expiresAt: null };
@@ -552,7 +570,7 @@ export async function reconcileAllActiveWhopMemberships(): Promise<{
         continue;
       }
       const planMeta = planId ? ALL_WHOP_PLANS.find(p => p.id === planId) : undefined;
-      const providerExpiry = parseWhopTimestamp((m.expires_at ?? m.renewal_period_end ?? null) as number | string | null);
+      const providerExpiry = parseWhopTimestamp((m.expires_at ?? m.current_period_end ?? null) as number | string | null);
       const expiresAt = localMembershipExpiry({
         valid: true,
         createdAt: m.created_at as number | string | null | undefined,
@@ -683,9 +701,10 @@ export function registerWhopRoutes(app: Express) {
       localAccessRows.map(row => [row.email.toLowerCase().trim(), row]),
     );
 
-    function shapeWhopRow(m: Record<string, unknown>, defaultStatus: "active" | "cancelled") {
+    async function shapeWhopRow(m: Record<string, unknown>, defaultStatus: "active" | "cancelled") {
       const user = (m.member && typeof m.member === "object" ? m.member : {}) as Record<string, unknown>;
-      const email = (user.email ?? m.email ?? null) as string | null;
+      const memberId = (m.member_id ?? user.id) as string | undefined;
+      const email = ((user.email ?? m.email ?? null) as string | null) ?? await getWhopMemberEmail(memberId) ?? null;
       const planId = (m.variant_id ?? m.plan_id ?? m.plan) as string | undefined;
       const planMeta = ALL_WHOP_PLANS.find(p => p.id === planId);
       const tier = planId ? PLAN_TIER_MAP[planId] : undefined;
@@ -728,8 +747,8 @@ export function registerWhopRoutes(app: Express) {
     }
 
     if (whopWorked) {
-      const members   = whopActive.map(m => shapeWhopRow(m, "active"));
-      const cancelled = whopCancelled.map(m => shapeWhopRow(m, "cancelled"));
+      const members   = await Promise.all(whopActive.map(m => shapeWhopRow(m, "active")));
+      const cancelled = await Promise.all(whopCancelled.map(m => shapeWhopRow(m, "cancelled")));
 
       const byCounts: Record<string, number> = {};
       for (const m of members.filter(m => m.accessStatus === "active")) {
