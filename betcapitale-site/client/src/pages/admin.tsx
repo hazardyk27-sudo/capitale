@@ -407,7 +407,7 @@ export default function Admin() {
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
           <Link href="/today" className="text-blue-200 hover:text-white">Today ↗</Link>
           <Link href="/coupons" className="text-blue-200 hover:text-white">Coupons ↗</Link>
-          <Link href="/admin/software" data-testid="link-admin-software" className="rounded border border-orange-400/50 bg-orange-500/10 px-3 py-1.5 font-semibold text-orange-200 hover:bg-orange-500/20">Yazılım</Link>
+          <Link href="/admin/software" data-testid="link-admin-software" className="rounded border border-orange-400/50 bg-orange-500/10 px-3 py-1.5 font-semibold text-orange-200 hover:bg-orange-500/20">Software</Link>
         </div>
       </div>
 
