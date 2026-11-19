@@ -1,0 +1,30 @@
+name: Betcapitale Whop API v1 checks
+
+on:
+  push:
+    branches:
+      - fix/betcapitale-whop-api-v1-migration
+    paths:
+      - "betcapitale-site/**"
+      - ".github/workflows/whop-api-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  typecheck-and-contract-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: betcapitale-site
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: betcapitale-site/package-lock.json
+      - run: npm ci
+      - run: npm run check
+      - run: npm run test:whop-migration
