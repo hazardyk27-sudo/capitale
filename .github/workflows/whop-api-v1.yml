@@ -19,7 +19,7 @@ permissions:
   contents: read
 
 jobs:
-  typecheck-and-contract-tests:
+  syntax-and-contract-tests:
     runs-on: ubuntu-latest
     defaults:
       run:
