@@ -214,6 +214,7 @@ function Router() {
       <Route path="/admin/coupons" component={AdminCoupons} />
       <Route path="/admin/today" component={AdminBugun} />
       <Route path="/admin/social-media" component={AdminSocialMedia} />
+      <Route path="/admin/software" component={AdminSoftware} />
 
       <Route component={NotFound} />
     </Switch>
