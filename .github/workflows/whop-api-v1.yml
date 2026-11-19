@@ -31,5 +31,7 @@ jobs:
           node-version: 22
       - name: Check pure contract module syntax
         run: node --check server/whop-contract.js
+      - name: Check Whop route TypeScript syntax
+        run: node --experimental-strip-types --check server/whop-routes.ts
       - name: Run Whop contract tests
         run: node --test server/whop-migration.test.js
