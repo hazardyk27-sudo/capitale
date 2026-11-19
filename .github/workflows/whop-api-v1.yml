@@ -1,6 +1,12 @@
 name: Betcapitale Whop API v1 checks
 
 on:
+  pull_request:
+    branches:
+      - import/betcapitale-site-source-2026-11-17
+    paths:
+      - "betcapitale-site/**"
+      - ".github/workflows/whop-api-v1.yml"
   push:
     branches:
       - fix/betcapitale-whop-api-v1-migration
