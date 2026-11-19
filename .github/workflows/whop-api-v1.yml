@@ -31,6 +31,6 @@ jobs:
           node-version: 22
           cache: npm
           cache-dependency-path: betcapitale-site/package-lock.json
-      - run: npm ci
+      - run: npm ci --no-audit --no-fund
       - run: npm run check
       - run: npm run test:whop-migration
