@@ -59,7 +59,8 @@ export function isWhopMembershipValid(
   if (["active", "trialing"].includes(status)) {
     return expiresAt === null || hasFutureExpiry;
   }
-  if (["past_due", "canceling", "canceled", "completed", "expiring", "one_time"].includes(status)) {
+  if (status === "one_time") return expiresAt === null || hasFutureExpiry;
+  if (["past_due", "canceling", "canceled", "completed", "expiring"].includes(status)) {
     return hasFutureExpiry;
   }
   if (["expired", "paused", "banned"].includes(status)) return false;
@@ -549,7 +550,7 @@ export async function reconcileAllActiveWhopMemberships(): Promise<{
 
   let rows: Record<string, unknown>[] = [];
   try {
-    rows = await listWhopMemberships(["active", "trialing", "past_due", "canceling", "expiring", "one_time"]);
+    rows = await listWhopMemberships(["active", "trialing", "past_due", "canceling", "expiring", "one_time", "canceled"]);
   } catch (err) {
     console.error("[whop-sync] failed to list active memberships:", (err as Error).message);
     summary.errors++;
@@ -673,7 +674,7 @@ export function registerWhopRoutes(app: Express) {
     let whopWorked = false;
 
     try {
-      whopActive = await listWhopMemberships(["active", "trialing", "past_due", "canceling", "expiring", "one_time"]);
+      whopActive = await listWhopMemberships(["active", "trialing", "past_due", "canceling", "expiring", "one_time", "canceled"]);
       whopCancelled = await listWhopMemberships(["completed", "canceled", "expired"]);
       whopWorked = true;
     } catch (err) {
@@ -710,8 +711,9 @@ export function registerWhopRoutes(app: Express) {
       const tier = planId ? PLAN_TIER_MAP[planId] : undefined;
       const cancelAtEnd = !!m.cancel_at_period_end || m.status === "canceling";
       const authoritativeExpiry = (m.expires_at ?? m.current_period_end ?? null) as number | string | null;
+      const membershipValid = isWhopMembershipValid(String(m.status), parseWhopTimestamp(authoritativeExpiry));
       const localExpiry = localMembershipExpiry({
-        valid: ["active", "trialing", "past_due", "canceling", "expiring", "one_time"].includes(String(m.status)),
+        valid: membershipValid,
         createdAt: m.created_at as number | string | null | undefined,
         providerExpiry: authoritativeExpiry,
         planDays: planMeta?.days,
@@ -721,7 +723,7 @@ export function registerWhopRoutes(app: Express) {
       const localAccess = email ? localAccessByEmail.get(email.toLowerCase().trim()) : undefined;
       const siteExpiresAtMs = localAccess?.membershipExpiresAt?.getTime() ?? null;
       const status = getWhopRenewalStatus(
-        !["canceled", "expired", "completed"].includes(String(m.status)),
+        isWhopMembershipValid(String(m.status), parseWhopTimestamp(authoritativeExpiry)),
         cancelAtEnd,
         defaultStatus,
       );
