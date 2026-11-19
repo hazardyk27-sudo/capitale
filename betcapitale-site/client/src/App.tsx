@@ -63,6 +63,7 @@ const AdminCoupons = lazy(() => import("@/pages/admin-coupons"));
 const AdminBugun = lazy(() => import("@/pages/admin-bugun"));
 const Admin = lazy(() => import("@/pages/admin"));
 const AdminSocialMedia = lazy(() => import("@/pages/admin-social-media"));
+const AdminSoftware = lazy(() => import("@/pages/admin-software"));
 const History = lazy(() => import("@/pages/history"));
 const HowItWorks = lazy(() => import("@/pages/how-it-works"));
 const Login = lazy(() => import("@/pages/login"));
@@ -213,6 +214,7 @@ function Router() {
       <Route path="/admin/coupons" component={AdminCoupons} />
       <Route path="/admin/today" component={AdminBugun} />
       <Route path="/admin/social-media" component={AdminSocialMedia} />
+      <Route path="/admin/software" component={AdminSoftware} />
 
       <Route component={NotFound} />
     </Switch>

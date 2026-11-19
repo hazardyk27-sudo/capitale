@@ -1232,6 +1232,11 @@ function promotionAssessment(input: {
     res.json({ isAdmin: true, email: user?.email ?? "" });
   });
 
+  // CAPITALE software analysis feed. It deliberately returns no sample data until a trusted source is connected.
+  app.get("/api/admin/software", requireAdmin, (_req, res) => {
+    res.json({ items: [], dataSource: "not_connected" });
+  });
+
   // Registered site users (distinct from Whop paying-member records) — for the
   // admin "Kullanıcılar" tab: who signed up, when, and their member tier.
   app.get("/api/admin/users", requireAdmin, async (_req, res) => {
