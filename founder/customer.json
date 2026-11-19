@@ -1,0 +1,92 @@
+{
+  "business": "CAPITALE — software-based football analysis, Instagram account and optional free Telegram channel",
+  "target": "Adults aged 18–55 in Italy who follow football and watch Instagram Reels; some are interested in statistical match analysis. Simulated profiles are not representative research respondents.",
+  "where": "Italy (national audience; not tied to a single city)",
+  "age": [
+    18,
+    55
+  ],
+  "segments": [
+    {
+      "name": "Serie A football followers",
+      "share": 0.35,
+      "income": [
+        18000,
+        52000
+      ]
+    },
+    {
+      "name": "Football statistics and data enthusiasts",
+      "share": 0.25,
+      "income": [
+        22000,
+        70000
+      ]
+    },
+    {
+      "name": "Cautious viewers skeptical of betting promises",
+      "share": 0.25,
+      "income": [
+        18000,
+        65000
+      ]
+    },
+    {
+      "name": "Telegram-using football discussion followers",
+      "share": 0.15,
+      "income": [
+        18000,
+        55000
+      ]
+    }
+  ],
+  "behaviours": [
+    {
+      "name": "Reels skimmer",
+      "share": 0.25,
+      "how": "Scrolls fast; watches only if the opening is relevant and clear."
+    },
+    {
+      "name": "Statistical explainer viewer",
+      "share": 0.18,
+      "how": "Follows accounts explaining football data and methodology, not only predictions."
+    },
+    {
+      "name": "Trust-first skeptic",
+      "share": 0.18,
+      "how": "Checks transparency, past losses, methodology and authenticity before following."
+    },
+    {
+      "name": "Serie A loyalist",
+      "share": 0.15,
+      "how": "Mostly consumes analysis of Italian teams and familiar competitions."
+    },
+    {
+      "name": "Telegram participant",
+      "share": 0.12,
+      "how": "Joins niche football channels but leaves when notifications are spammy."
+    },
+    {
+      "name": "Privacy-conscious observer",
+      "share": 0.12,
+      "how": "Avoids unfamiliar links and channels; reads profile carefully before interacting."
+    }
+  ],
+  "objections": [
+    "Is this a genuine football analysis page or a get-rich-quick promotion?",
+    "Are unsuccessful picks and past losses shown as transparently as wins?",
+    "Why should I join Telegram instead of reading the Instagram posts?",
+    "The profile language is English; is the content relevant to football fans in Italy?",
+    "Is following or joining truly free, or will I be pushed into a paid offer?",
+    "I do not want gambling encouragement or promises of easy profit.",
+    "How does the football analysis software choose matches, and can its claims be verified?",
+    "Will the Telegram link expose me to spam or suspicious groups?"
+  ],
+  "habits": [
+    "you watch short football analysis videos after Serie A matches",
+    "you compare football data accounts before deciding which to follow",
+    "you read the comments when a video makes numerical performance claims",
+    "you rarely click from Instagram to Telegram unless the purpose is clear",
+    "you share interesting tactical videos with friends but avoid financial promises"
+  ]
+}
