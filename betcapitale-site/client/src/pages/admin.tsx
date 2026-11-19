@@ -402,7 +402,7 @@ export default function Admin() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header — always visible */}
-      <div className="bg-[#0E1726] text-white px-4 py-3 flex items-center justify-between">
+      <div className="bg-[#0E1726] text-white px-4 py-3 flex flex-wrap items-center justify-between gap-y-2">
         <span className="font-bold text-base tracking-tight">Bet Capitale Admin</span>
         <div className="flex gap-3 text-sm">
           <Link href="/today" className="text-blue-200 hover:text-white">Today ↗</Link>
