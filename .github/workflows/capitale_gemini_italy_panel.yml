@@ -1,0 +1,74 @@
+name: CAPITALE Gemini Italy Panel
+
+on:
+  workflow_dispatch:
+    inputs:
+      panel_size:
+        description: 'Simulated personas / separate API requests'
+        required: true
+        type: choice
+        default: '10'
+        options:
+          - '10'
+          - '20'
+          - '100'
+      dry_run:
+        description: 'Generate personas only (no API requests)'
+        type: boolean
+        required: true
+        default: true
+      model:
+        description: 'Gemini model available in your free-tier project'
+        type: string
+        required: true
+        default: 'gemini-3.5-flash-lite'
+      delay_seconds:
+        description: 'Seconds between API calls to reduce rate limiting'
+        type: string
+        required: true
+        default: '7'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: capitale-gemini-panel
+  cancel-in-progress: false
+
+jobs:
+  gemini-panel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout CAPITALE repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify local panel logic
+        run: python -m unittest discover -s tests -p 'test_gemini_italy_panel.py' -v
+      - name: Run 10 / 20 / 100 synthetic personas
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PANEL_SIZE: ${{ inputs.panel_size }}
+          PANEL_DRY: ${{ inputs.dry_run }}
+          PANEL_MODEL: ${{ inputs.model }}
+          PANEL_DELAY: ${{ inputs.delay_seconds }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          options=(--n "$PANEL_SIZE" --model "$PANEL_MODEL" --delay "$PANEL_DELAY"
+                   --out "founder/gemini_runs/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}")
+          if [[ "$PANEL_DRY" == "true" ]]; then
+            options+=(--dry-run)
+          fi
+          python scripts/gemini_italy_panel.py "${options[@]}"
+      - name: Upload individual responses and report (including partial runs)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: capitale-gemini-panel-${{ github.run_id }}-${{ github.run_attempt }}
+          path: founder/gemini_runs/
+          if-no-files-found: warn
+          retention-days: 30
