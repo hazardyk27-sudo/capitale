@@ -127,7 +127,10 @@ export default function AdminSoftware() {
   const pageSize = 20;
   const items = data?.items ?? [];
 
-  useEffect(() => setPage(0), [date, search, signal, timeFrom, timeTo, reportStatus]);
+  useEffect(() => {
+    setPage(0);
+    setSelectedId(null);
+  }, [date, search, signal, timeFrom, timeTo, reportStatus]);
 
   const signals = useMemo(() => Array.from(new Set(items.map((row) => row.signalCode).filter(Boolean))).sort(), [items]);
   const filtered = useMemo(() => {
