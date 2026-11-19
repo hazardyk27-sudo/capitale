@@ -28,9 +28,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
-          cache-dependency-path: betcapitale-site/package-lock.json
-      - run: npm ci --ignore-scripts --omit=optional --no-audit --no-fund
-      - run: npm run check
-      - run: npm run test:whop-migration
+          node-version: 22
+      - name: Check pure contract module syntax
+        run: node --check server/whop-contract.js
+      - name: Run Whop contract tests
+        run: node --test server/whop-migration.test.js
