@@ -628,12 +628,6 @@ export function registerWhopRoutes(app: Express) {
     }
 
     // ── Helper: shape a Whop API membership row ───────────────────
-    // NOTE on Whop's actual `/api/v2/memberships` row shape (verified against a live
-    // payment): `user` is just a user-id string, not an object — email lives at the
-    // top level as `m.email`. The plan id is under `m.plan`, not `m.plan_id`. And an
-    // active (not-yet-expired) subscription's real expiry lives in `renewal_period_end`
-    // — `expires_at` is null until the membership actually lapses/cancels. This mirrors
-    // the fallback `fetchAuthoritativeExpiry` already uses for the webhook path.
     // Keep the local site-access tier alongside the provider membership. A user can
     // legitimately have more than one Whop membership, while the site still needs
     // one admin-controlled access tier.
