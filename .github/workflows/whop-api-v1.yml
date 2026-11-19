@@ -1,0 +1,37 @@
+name: Betcapitale Whop API v1 checks
+
+on:
+  pull_request:
+    branches:
+      - import/betcapitale-site-source-2026-11-17
+    paths:
+      - "betcapitale-site/**"
+      - ".github/workflows/whop-api-v1.yml"
+  push:
+    branches:
+      - fix/betcapitale-whop-api-v1-migration
+    paths:
+      - "betcapitale-site/**"
+      - ".github/workflows/whop-api-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  syntax-and-contract-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: betcapitale-site
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check pure contract module syntax
+        run: node --check server/whop-contract.js
+      - name: Check Whop route TypeScript syntax
+        run: node --experimental-strip-types --check server/whop-routes.ts
+      - name: Run Whop contract tests
+        run: node --test server/whop-migration.test.js

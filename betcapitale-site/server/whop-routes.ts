@@ -7,35 +7,8 @@ import { counterDailyPlan, users, whopCheckouts } from "@shared/schema";
 import { eq, sql, isNotNull, isNull } from "drizzle-orm";
 import { hasAcceptedCurrentTerms } from "./terms-routes";
 
-interface WhopPlanMeta {
-  id: string;
-  tier: "standard" | "elite";
-  label: string;
-  days: number;
-  price: number;
-  currency: string;
-}
-
-export const WHOP_PLANS: WhopPlanMeta[] = [
-  { id: "plan_kkubDpOL8w15B", tier: "standard", label: "Deneme",     days: 3,  price: 1.00,   currency: "eur" },
-  { id: "plan_lBt72kE1sk3Jf", tier: "standard", label: "Haftalık",   days: 7,  price: 49.90,  currency: "eur" },
-  { id: "plan_1Ty9Fqp2UAFLz", tier: "standard", label: "2 Haftalık", days: 14, price: 79.90,  currency: "eur" },
-  { id: "plan_zw42pDTHWJ4zu", tier: "standard", label: "Aylık",      days: 30, price: 99.90,  currency: "eur" },
-  { id: "plan_a9dQJJ06lNI5m", tier: "standard", label: "3 Aylık",    days: 90, price: 179.90, currency: "eur" },
-  { id: "plan_UbJysF7UeVvBE", tier: "elite",    label: "Haftalık",   days: 7,  price: 129.90, currency: "eur" },
-  { id: "plan_IyW3QRXibb3jL", tier: "elite",    label: "2 Haftalık", days: 14, price: 199.90, currency: "eur" },
-  { id: "plan_TWqTvjQAa9TS9", tier: "elite",    label: "Aylık",      days: 30, price: 249.90, currency: "eur" },
-  { id: "plan_MpIeqiuyzO4KP", tier: "elite",    label: "3 Aylık",    days: 90, price: 399.90, currency: "eur" },
-];
-
-// Keep sold plan ids recognizable for existing membership webhooks,
-// while exposing only the replacement plans in the checkout catalog.
-const LEGACY_WHOP_PLANS: WhopPlanMeta[] = [
-  { id: "plan_5TJSkdk8Xhx9o", tier: "elite", label: "Haftalık",    days: 7,  price: 99.90,  currency: "eur" },
-  { id: "plan_Ikppjr71XVqxh", tier: "elite", label: "2 Haftalık",  days: 14, price: 159.90, currency: "eur" },
-  { id: "plan_sBQtSPgR7sdVL", tier: "elite", label: "Aylık",       days: 30, price: 199.90, currency: "eur" },
-  { id: "plan_mII3DkdkWfXTW", tier: "elite", label: "3 Aylık",     days: 90, price: 359.90, currency: "eur" },
-];
+import { WHOP_PLANS, LEGACY_WHOP_PLANS, isWhopMembershipValid } from "./whop-contract.js";
+export { WHOP_PLANS } from "./whop-contract.js";
 
 const ALL_WHOP_PLANS = [...WHOP_PLANS, ...LEGACY_WHOP_PLANS];
 
@@ -44,22 +17,50 @@ for (const plan of ALL_WHOP_PLANS) {
   PLAN_TIER_MAP[plan.id] = plan.tier === "standard" ? "select" : "unlimited";
 }
 
+const WHOP_API_BASE = process.env.WHOP_ENVIRONMENT === "sandbox" ? "https://sandbox-api.whop.com/api/v1" : "https://api.whop.com/api/v1";
+const WHOP_API_VERSION_DATE = process.env.WHOP_API_VERSION_DATE || "2026-11-17-3";
+class WhopApiError extends Error { constructor(readonly status: number, message: string) { super(message); this.name = "WhopApiError"; } }
+export function getWhopAccountId(): string {
+  const id = process.env.WHOP_ACCOUNT_ID?.trim();
+  if (!id) throw new Error("WHOP_ACCOUNT_ID not set");
+  return id;
+}
 async function whopFetch(path: string, options: RequestInit = {}) {
   const apiKey = process.env.WHOP_API_KEY;
   if (!apiKey) throw new Error("WHOP_API_KEY not set");
-
-  const res = await fetch(`https://api.whop.com${path}`, {
-    ...options,
-    headers: {
-      "Authorization": `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-      ...(options.headers ?? {}),
-    },
-  });
-  return res.json();
+  const res = await fetch(`${WHOP_API_BASE}${path}`, { ...options, headers: {
+    "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json",
+    "Api-Version-Date": WHOP_API_VERSION_DATE, ...(options.headers ?? {}),
+  }});
+  const body = await res.text();
+  let data: any = {};
+  try { data = body ? JSON.parse(body) : {}; } catch { data = { message: body.slice(0, 200) }; }
+  if (!res.ok) {
+    const message = typeof data?.error?.message === "string" ? data.error.message : typeof data?.message === "string" ? data.message : `Whop API returned HTTP ${res.status}`;
+    throw new WhopApiError(res.status, message);
+  }
+  return data;
+}
+async function getWhopMemberEmail(memberId: string | undefined): Promise<string | undefined> {
+  if (!memberId) return undefined;
+  const member = await whopFetch(`/members/${encodeURIComponent(memberId)}`);
+  return typeof member?.email === "string" ? member.email : undefined;
+}
+async function listWhopMemberships(statuses: string[], maxPages = 10): Promise<Record<string, unknown>[]> {
+  const rows: Record<string, unknown>[] = []; let after: string | undefined;
+  for (let page = 0; page < maxPages; page++) {
+    const query = new URLSearchParams({ account_id: getWhopAccountId(), first: "100" });
+    statuses.forEach(status => query.append("statuses", status)); if (after) query.set("after", after);
+    const data = await whopFetch(`/memberships?${query.toString()}`);
+    rows.push(...((data?.data ?? []) as Record<string, unknown>[]));
+    const info = data?.page_info as Record<string, unknown> | undefined;
+    if (info?.has_next_page !== true || typeof info.end_cursor !== "string" || !info.end_cursor) break;
+    after = info.end_cursor;
+  }
+  return rows;
 }
 
-/** Whop's v2 API returns expires_at as a Unix timestamp in seconds (sometimes ms). Normalizes to ms. */
+/** Normalizes Whop API timestamps (ISO strings or Unix seconds/milliseconds) to milliseconds. */
 function whopTimestampToMs(raw: number | string | Date | null | undefined): number | null {
   if (raw === null || raw === undefined) return null;
   if (raw instanceof Date) return isNaN(raw.getTime()) ? null : raw.getTime();
@@ -149,9 +150,9 @@ export function getMembershipAccessStatus(
  */
 async function addFreeDaysToWhopMembership(membershipId: string, freeDays: number): Promise<{ ok: boolean; error?: string }> {
   try {
-    const result = await whopFetch(`/api/v1/memberships/${membershipId}/add_free_days`, {
+    const result = await whopFetch(`/memberships/${encodeURIComponent(membershipId)}/extend`, {
       method: "POST",
-      body: JSON.stringify({ free_days: freeDays }),
+      body: JSON.stringify({ days: freeDays }),
     });
     if (result && typeof result === "object" && "error" in result && result.error) {
       return { ok: false, error: typeof result.error === "string" ? result.error : JSON.stringify(result.error) };
@@ -171,9 +172,10 @@ async function addFreeDaysToWhopMembership(membershipId: string, freeDays: numbe
  */
 async function verifyWhopMembershipEmail(membershipId: string, expectedEmail: string): Promise<{ ok: boolean; error?: string }> {
   try {
-    const m = await whopFetch(`/api/v2/memberships/${membershipId}`);
-    const user = (m?.user ?? {}) as Record<string, unknown>;
-    const actualEmail = ((user.email_address ?? user.email ?? "") as string).toLowerCase().trim();
+    const m = await whopFetch(`/memberships/${encodeURIComponent(membershipId)}`);
+    const member = (m?.member ?? {}) as Record<string, unknown>;
+    const memberId = (m?.member_id ?? member.id) as string | undefined;
+    const actualEmail = (typeof member.email === "string" ? member.email : await getWhopMemberEmail(memberId) ?? "").toLowerCase().trim();
     if (!actualEmail) {
       return { ok: false, error: "Whop üyeliğine ait e-posta doğrulanamadı." };
     }
@@ -224,7 +226,7 @@ async function assertAdmin(req: Request & { session?: any }, res: any): Promise<
 function parseWhopTimestamp(raw: number | string | null | undefined): Date | null {
   if (raw === null || raw === undefined) return null;
   if (typeof raw === "number") {
-    // Whop's v2 API returns timestamps as Unix seconds.
+    // Numeric provider timestamps can be Unix seconds or milliseconds.
     const ms = raw < 1e12 ? raw * 1000 : raw;
     const d = new Date(ms);
     return isNaN(d.getTime()) ? null : d;
@@ -258,24 +260,13 @@ export async function fetchMembershipState(membershipId: string | undefined): Pr
     return { valid: null, expiresAt: null };
   }
   try {
-    const res = await fetch(`https://api.whop.com/api/v2/memberships/${membershipId}`, {
-      headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
-    });
-    if (res.status === 404) {
-      // Membership no longer exists (e.g. deleted) — authoritatively invalid.
-      return { valid: false, expiresAt: null };
-    }
-    if (!res.ok) {
-      // Transient/server-side failure — unknown, not invalid. Don't fail open OR
-      // closed; let the caller fall back to its existing non-Whop-verified behavior.
-      console.error(`[whop-webhook] membership state fetch for ${membershipId} returned HTTP ${res.status}`);
-      return { valid: null, expiresAt: null };
-    }
-    const m = await res.json();
-    const expiresAt = parseWhopTimestamp((m?.expires_at ?? m?.renewal_period_end ?? null) as number | string | null);
-    const valid = typeof m?.valid === "boolean" ? m.valid : (typeof m?.status === "string" ? m.status === "active" || m.status === "trialing" : null);
+    const m = await whopFetch(`/memberships/${encodeURIComponent(membershipId)}`);
+    const expiresAt = parseWhopTimestamp((m?.expires_at ?? m?.current_period_end ?? null) as number | string | null);
+    const status = typeof m?.status === "string" ? m.status : null;
+    const valid = isWhopMembershipValid(status, expiresAt);
     return { valid, expiresAt };
   } catch (err) {
+    if (err instanceof WhopApiError && err.status === 404) return { valid: false, expiresAt: null };
     console.error(`[whop-webhook] failed to fetch membership state for membership=${membershipId}:`, (err as Error).message);
     return { valid: null, expiresAt: null };
   }
@@ -504,13 +495,7 @@ export async function reconcileAllActiveWhopMemberships(): Promise<{
 
   let rows: Record<string, unknown>[] = [];
   try {
-    for (let page = 1; page <= 10; page++) {
-      const data = await whopFetch(`/api/v2/memberships?per_page=50&page=${page}&valid=true`);
-      const pageRows = (data?.data ?? []) as Record<string, unknown>[];
-      if (pageRows.length === 0) break;
-      rows.push(...pageRows);
-      if (pageRows.length < 50) break;
-    }
+    rows = await listWhopMemberships(["active", "trialing", "past_due", "canceling", "expiring", "one_time", "canceled"]);
   } catch (err) {
     console.error("[whop-sync] failed to list active memberships:", (err as Error).message);
     summary.errors++;
@@ -520,17 +505,18 @@ export async function reconcileAllActiveWhopMemberships(): Promise<{
   for (const m of rows) {
     summary.checked++;
     try {
-      const email = (m.email ?? (typeof m.user === "object" ? (m.user as Record<string, unknown>)?.email : undefined)) as string | undefined;
-      const planId = (m.plan ?? m.plan_id) as string | undefined;
+      const member = (m.member && typeof m.member === "object" ? m.member : {}) as Record<string, unknown>;
+      const email = ((member.email ?? m.email) as string | undefined) ?? await getWhopMemberEmail((m.member_id ?? member.id) as string | undefined);
+      const planId = (m.variant_id ?? m.plan_id ?? m.plan) as string | undefined;
       const membershipId = m.id as string | undefined;
-      const checkoutConfigId = m.checkout_session as string | undefined;
+      const checkoutConfigId = (m.checkout_configuration_id ?? m.checkout_session) as string | undefined;
       const tier = planId ? PLAN_TIER_MAP[planId] : undefined;
       if (!tier || (!email && !checkoutConfigId)) {
         summary.skipped++;
         continue;
       }
       const planMeta = planId ? ALL_WHOP_PLANS.find(p => p.id === planId) : undefined;
-      const providerExpiry = parseWhopTimestamp((m.expires_at ?? m.renewal_period_end ?? null) as number | string | null);
+      const providerExpiry = parseWhopTimestamp((m.expires_at ?? m.current_period_end ?? null) as number | string | null);
       const expiresAt = localMembershipExpiry({
         valid: true,
         createdAt: m.created_at as number | string | null | undefined,
@@ -633,34 +619,15 @@ export function registerWhopRoutes(app: Express) {
     let whopWorked = false;
 
     try {
-      // Fetch active memberships (paginate up to 200)
-      for (let page = 1; page <= 4; page++) {
-        const data = await whopFetch(`/api/v2/memberships?per_page=50&page=${page}&valid=true`);
-        const rows = (data?.data ?? []) as Record<string, unknown>[];
-        if (rows.length === 0) break;
-        whopActive.push(...rows);
-        if (rows.length < 50) break;
-      }
-      // Fetch cancelled / expired
-      for (let page = 1; page <= 4; page++) {
-        const data = await whopFetch(`/api/v2/memberships?per_page=50&page=${page}&valid=false`);
-        const rows = (data?.data ?? []) as Record<string, unknown>[];
-        if (rows.length === 0) break;
-        whopCancelled.push(...rows);
-        if (rows.length < 50) break;
-      }
-      whopWorked = whopActive.length > 0 || whopCancelled.length > 0;
-    } catch {
+      whopActive = await listWhopMemberships(["active", "trialing", "past_due", "canceling", "expiring", "one_time", "canceled"]);
+      whopCancelled = await listWhopMemberships(["completed", "canceled", "expired"]);
+      whopWorked = true;
+    } catch (err) {
+      console.error("[whop-admin] membership list failed:", (err as Error).message);
       whopWorked = false;
     }
 
     // ── Helper: shape a Whop API membership row ───────────────────
-    // NOTE on Whop's actual `/api/v2/memberships` row shape (verified against a live
-    // payment): `user` is just a user-id string, not an object — email lives at the
-    // top level as `m.email`. The plan id is under `m.plan`, not `m.plan_id`. And an
-    // active (not-yet-expired) subscription's real expiry lives in `renewal_period_end`
-    // — `expires_at` is null until the membership actually lapses/cancels. This mirrors
-    // the fallback `fetchAuthoritativeExpiry` already uses for the webhook path.
     // Keep the local site-access tier alongside the provider membership. A user can
     // legitimately have more than one Whop membership, while the site still needs
     // one admin-controlled access tier.
@@ -674,16 +641,18 @@ export function registerWhopRoutes(app: Express) {
       localAccessRows.map(row => [row.email.toLowerCase().trim(), row]),
     );
 
-    function shapeWhopRow(m: Record<string, unknown>, defaultStatus: "active" | "cancelled") {
-      const user = (typeof m.user === "object" && m.user ? m.user : {}) as Record<string, unknown>;
-      const email = (m.email ?? user.email_address ?? user.email ?? null) as string | null;
-      const planId = (m.plan ?? m.plan_id) as string | undefined;
+    async function shapeWhopRow(m: Record<string, unknown>, defaultStatus: "active" | "cancelled") {
+      const user = (m.member && typeof m.member === "object" ? m.member : {}) as Record<string, unknown>;
+      const memberId = (m.member_id ?? user.id) as string | undefined;
+      const email = ((user.email ?? m.email ?? null) as string | null) ?? await getWhopMemberEmail(memberId) ?? null;
+      const planId = (m.variant_id ?? m.plan_id ?? m.plan) as string | undefined;
       const planMeta = ALL_WHOP_PLANS.find(p => p.id === planId);
       const tier = planId ? PLAN_TIER_MAP[planId] : undefined;
-      const cancelAtEnd = !!(m.cancel_at_period_end);
-      const authoritativeExpiry = (m.expires_at ?? m.renewal_period_end ?? null) as number | string | null;
+      const cancelAtEnd = !!m.cancel_at_period_end || m.status === "canceling";
+      const authoritativeExpiry = (m.expires_at ?? m.current_period_end ?? null) as number | string | null;
+      const membershipValid = isWhopMembershipValid(String(m.status), parseWhopTimestamp(authoritativeExpiry));
       const localExpiry = localMembershipExpiry({
-        valid: typeof m.valid === "boolean" ? m.valid : null,
+        valid: membershipValid,
         createdAt: m.created_at as number | string | null | undefined,
         providerExpiry: authoritativeExpiry,
         planDays: planMeta?.days,
@@ -693,7 +662,7 @@ export function registerWhopRoutes(app: Express) {
       const localAccess = email ? localAccessByEmail.get(email.toLowerCase().trim()) : undefined;
       const siteExpiresAtMs = localAccess?.membershipExpiresAt?.getTime() ?? null;
       const status = getWhopRenewalStatus(
-        typeof m.valid === "boolean" ? m.valid : null,
+        isWhopMembershipValid(String(m.status), parseWhopTimestamp(authoritativeExpiry)),
         cancelAtEnd,
         defaultStatus,
       );
@@ -719,8 +688,8 @@ export function registerWhopRoutes(app: Express) {
     }
 
     if (whopWorked) {
-      const members   = whopActive.map(m => shapeWhopRow(m, "active"));
-      const cancelled = whopCancelled.map(m => shapeWhopRow(m, "cancelled"));
+      const members   = await Promise.all(whopActive.map(m => shapeWhopRow(m, "active")));
+      const cancelled = await Promise.all(whopCancelled.map(m => shapeWhopRow(m, "cancelled")));
 
       const byCounts: Record<string, number> = {};
       for (const m of members.filter(m => m.accessStatus === "active")) {
@@ -952,11 +921,14 @@ export function registerWhopRoutes(app: Express) {
     const returnPath = return_to && ALLOWED_CHECKOUT_RETURN_PATHS.has(return_to) ? return_to : "/plans";
 
     try {
-      const data = await whopFetch("/api/v1/checkout_configurations", {
+      const data = await whopFetch("/checkout_configurations", {
         method: "POST",
+        headers: { "Idempotency-Key": crypto.randomUUID() },
         body: JSON.stringify({
-          plan_id,
+          account_id: getWhopAccountId(),
+          variant_id: plan_id,
           redirect_url: `${baseUrl}${returnPath}?success=true`,
+          metadata: { betcapitale_user_id: String(req.session.userId), betcapitale_plan_id: plan_id },
         }),
       });
 
@@ -1019,20 +991,27 @@ export function registerWhopRoutes(app: Express) {
     // webhook-id (Svix) is the canonical idempotency key for this delivery
     const webhookId = (req.headers["webhook-id"] as string | undefined) ?? `fallback-${Date.now()}`;
     const payload = req.body as Record<string, unknown>;
-    const event   = (payload.action ?? payload.event ?? payload.type) as string | undefined;
+    const event   = (payload.type ?? payload.action ?? payload.event) as string | undefined;
     const data    = (payload.data ?? payload.membership ?? payload) as Record<string, unknown>;
-
-    console.log(`[whop-webhook] event=${event}`, JSON.stringify(data).slice(0, 200));
-
-    // ── 3. Extract user email and plan ────────────────────────────
-    const user   = (data.user ?? {}) as Record<string, unknown>;
-    const email  = (user.email_address ?? user.email ?? data.email ?? data.user_email) as string | undefined;
+    console.log(`[whop-webhook] event=${event ?? "unknown"} id=${String(payload.id ?? webhookId)}`);
+    const user = (data.user && typeof data.user === "object" ? data.user : {}) as Record<string, unknown>;
+    const member = (data.member && typeof data.member === "object" ? data.member : {}) as Record<string, unknown>;
+    const memberId = (data.member_id ?? member.id ?? (typeof data.user === "string" && data.user.startsWith("mber_") ? data.user : undefined)) as string | undefined;
+    const linkedMembership = (data.membership && typeof data.membership === "object" ? data.membership : {}) as Record<string, unknown>;
+    const membershipIdFromEvent = (data.membership_id ?? linkedMembership.id ?? (event?.startsWith("membership.") ? data.id : undefined)) as string | undefined;
+    let email = (member.email ?? user.email_address ?? user.email ?? data.email ?? data.user_email) as string | undefined;
+    if (!email && memberId) {
+      try { email = await getWhopMemberEmail(memberId); }
+      catch (err) { console.warn("[whop-webhook] member email lookup failed:", (err as Error).message); }
+    }
     // Whop's live membership payload carries the plan reference as a bare plan-id
     // STRING under `data.plan` (not an object) — confirmed against live membership
     // data elsewhere in this module. `data.plan_id` and `data.plan.id` are also
     // accepted for any payload shapes that do use an object/alternate key.
     const rawPlan = data.plan;
     const planId = (
+      data.variant_id ??
+      linkedMembership.variant_id ??
       data.plan_id ??
       (typeof rawPlan === "string" ? rawPlan : (rawPlan as Record<string, unknown> | undefined)?.id)
     ) as string | undefined;
@@ -1041,9 +1020,11 @@ export function registerWhopRoutes(app: Express) {
     // them as `checkout_session` (confirmed against live membership data). When present,
     // this resolves the *exact* local account that clicked "buy" — reliable even when
     // the buyer typed a different/misspelled email into Whop's own checkout screen.
-    const checkoutConfigId = (data.checkout_session ?? data.checkout_configuration_id ?? data.checkout_config_id) as string | undefined;
+    const checkoutConfigId = (data.checkout_configuration_id ?? data.checkout_session ?? data.checkout_config_id) as string | undefined;
+    const metadata = (data.metadata && typeof data.metadata === "object" ? data.metadata : {}) as Record<string, unknown>;
+    const metadataUserId = Number(metadata.betcapitale_user_id);
 
-    if (!email && !checkoutConfigId) {
+    if (!email && !checkoutConfigId && !(Number.isSafeInteger(metadataUserId) && metadataUserId > 0)) {
       console.log("[whop-webhook] No email or checkout id in payload — skipping");
       return res.json({ received: true, skipped: "no_email" });
     }
@@ -1091,9 +1072,11 @@ export function registerWhopRoutes(app: Express) {
           return byMapping;
         }
       }
-      if (normalizedEmail) {
-        return storage.getUserByEmail(normalizedEmail);
+      if (Number.isSafeInteger(metadataUserId) && metadataUserId > 0) {
+        const byMetadata = await storage.getUser(metadataUserId);
+        if (byMetadata) return byMetadata;
       }
+      if (normalizedEmail) return storage.getUserByEmail(normalizedEmail);
       return undefined;
     }
 
@@ -1126,12 +1109,13 @@ export function registerWhopRoutes(app: Express) {
 
     const CANCEL_TOGGLE_EVENTS = new Set([
       "membership.cancel_at_period_end_changed", "membership_cancel_at_period_end_changed",
+      "membership.updated",
     ]);
 
     if (CANCEL_TOGGLE_EVENTS.has(event ?? "")) {
       // Auto-renew was turned on/off (or a cancellation was undone). Access is unaffected;
       // just re-sync the authoritative expiry in case Whop's period end moved.
-      const membershipId = data.id as string | undefined;
+      const membershipId = membershipIdFromEvent;
       const dbUser = await resolveDbUser();
       const logEmail = dbUser?.email ?? normalizedEmail ?? "unknown";
       if (dbUser) {
@@ -1160,7 +1144,7 @@ export function registerWhopRoutes(app: Express) {
 
     if (GRANT_EVENTS.has(event ?? "")) {
       const tier = (resolvedPlanId ? PLAN_TIER_MAP[resolvedPlanId] : undefined) ?? "select";
-      const membershipId = data.id as string | undefined;
+      const membershipId = membershipIdFromEvent;
       const dbUser = await resolveDbUser();
       const logEmail = dbUser?.email ?? normalizedEmail ?? "unknown";
 
@@ -1278,6 +1262,14 @@ export function registerWhopRoutes(app: Express) {
     }
 
     if (REVOKE_EVENTS.has(event ?? "")) {
+      // A cancellation/refund delivery may be stale or out of order. Revoke only when
+      // Whop explicitly confirms the membership is invalid; preserve access when the
+      // live lookup is valid or temporarily unavailable.
+      const revokeState = await fetchMembershipState(membershipIdFromEvent);
+      if (revokeState.valid !== false) {
+        console.log(`[whop-webhook] REVOKE deferred — membership=${membershipIdFromEvent ?? "unknown"} remains valid or its current state is unavailable`);
+        return res.json({ received: true, action: "revoke_deferred_access_still_valid_or_unknown" });
+      }
       const dbUser = await resolveDbUser();
       const logEmail = dbUser?.email ?? normalizedEmail ?? "unknown";
       if (dbUser) {

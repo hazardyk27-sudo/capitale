@@ -10,6 +10,7 @@
     "check": "tsc",
     "test:free-bet": "tsx --test client/src/utils/freeBetCalculations.test.ts",
     "test:tier-override": "tsx --test server/tier-override.test.ts",
+    "test:whop-migration": "node --test server/whop-migration.test.js",
     "db:push": "drizzle-kit push"
   },
   "dependencies": {
