@@ -143,3 +143,11 @@ ENGINEER: active governance/implementation role
 POLY v1.4 replaces the SXF POLY-only bettor source rule with direct primary-source independent discovery. Its purpose is verified profitable football bettor identification and follow-up; no betting-edge claim or source substitution is permitted without independently collected evidence. See MILESTONE.md.
 
 See MILESTONE.md for current implementation state, superseded rules, and technical backlog.
+
+## 2026-11-20 — Owner-approved manual report-chain routing (operational only)
+
+Kullanıcının ayrı modda seçtiği manuel iş akışı: **SXF tam rapor → sonundaki nötr seçim/maç tablosu ANALYST → onun sonundaki nötr tablo NEWS → üç özgün tamamlanmış rapor FINAL → yetkili Commander ile site**. Ayrıntı `prompts/manual_report_chain.md` ve role startup promptlarında.
+
+**Kaynak ayrımı DEĞİŞMEZ:** ANALYST SXF'nin sinyal/odds/market raporundan, NEWS ANALYST skoru veya SXF sonuçlarından kanıt alamaz. Diğer departmana **yalnız** maç, kickoff, kullanıcı tercihi, fixture_uid, run_id, karar AS_OF taşıyan nötr yönlendirme tablosu verilir; raporların tamamını yalnız FINAL bir arada alır. Tam raporları kullanıcı FINAL'e kadar saklar. Bu bir yeni motor/metot/kalibrasyon değildir. POLY üç uzmanlı manuel zincire alınmazsa FINAL, POLY bilgisini `NO_EVIDENCE` işaretler; yokluğunda pozitif katkı/oy/sahte cüzdan kanıtı üretmez.
+
+Sadece onaylı Commander servis bağlantısı ve kayıt sonrası doğrulama varsa FINAL siteye yayın yapabilir. GitHub promptu, `run_id` veya yükleyicinin varlığı tek başına FINAL yazma izni değildir. Hâlihazırdaki ANALYST/NEWS/SXF rapor köprüsüne FINAL rolü taklit edilmez.
