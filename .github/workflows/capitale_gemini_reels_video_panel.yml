@@ -1,0 +1,84 @@
+name: CAPITALE Gemini Reels Video Panel
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/gemini_reels_video_panel.py'
+      - 'tests/test_gemini_reels_video_panel.py'
+      - '.github/workflows/capitale_gemini_reels_video_panel.yml'
+  workflow_dispatch:
+    inputs:
+      panel_size:
+        description: 'Distinct fictional personas / separate real-video model calls'
+        required: true
+        type: choice
+        default: '10'
+        options:
+          - '10'
+          - '20'
+          - '100'
+      dry_run:
+        description: 'No Gemini calls; only validate video & 100 profiles'
+        type: boolean
+        required: true
+        default: true
+      model:
+        description: 'Gemini model supporting video on your project'
+        type: string
+        required: true
+        default: 'gemini-3.5-flash-lite'
+      delay_seconds:
+        description: 'Wait between API calls (rate limits)'
+        type: string
+        required: true
+        default: '10'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: capitale-gemini-reels-video
+  cancel-in-progress: false
+
+jobs:
+  video-panel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 115
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run offline mock tests, never consuming Gemini quota
+        run: python -m unittest discover -s tests -p 'test_gemini_reels_video_panel.py' -v
+      - name: Run actual MP4 evaluation (only when manually triggered)
+        if: github.event_name == 'workflow_dispatch'
+        shell: bash
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PANEL_SIZE: ${{ inputs.panel_size }}
+          PANEL_DRY: ${{ inputs.dry_run }}
+          PANEL_MODEL: ${{ inputs.model }}
+          PANEL_DELAY: ${{ inputs.delay_seconds }}
+        run: |
+          set -euo pipefail
+          video="founder/videos/CAPITALE_Reels_Gemini_Test.mp4"
+          if [[ ! -f "$video" ]]; then
+            echo "::error::Missing $video. Upload the MP4 in GitHub Code > founder/videos > Add file > Upload files. See founder/VIDEO_PANEL_INSTRUCTIONS.md"
+            exit 2
+          fi
+          options=(--video "$video" --n "$PANEL_SIZE" --model "$PANEL_MODEL"
+                   --delay "$PANEL_DELAY" --out "founder/video_runs/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}")
+          if [[ "$PANEL_DRY" == "true" ]]; then
+            options+=(--dry-run)
+          fi
+          python scripts/gemini_reels_video_panel.py "${options[@]}"
+      - name: Upload per-person video results / partial results
+        if: always() && github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: capitale-reels-video-panel-${{ github.run_id }}-${{ github.run_attempt }}
+          path: founder/video_runs/
+          if-no-files-found: warn
+          retention-days: 30
