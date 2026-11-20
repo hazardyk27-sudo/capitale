@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       panel_size:
-        description: 'Distinct fictional personas / separate real-video model calls'
+        description: 'TOTAL fictional personas (hybrid: half Gemini, half Codex)'
         required: true
         type: choice
         default: '10'
@@ -18,6 +18,11 @@ on:
           - '10'
           - '20'
           - '100'
+      hybrid_split:
+        description: 'Split total panel evenly between Gemini and Codex (Gemini job only)'
+        type: boolean
+        required: true
+        default: true
       dry_run:
         description: 'No Gemini calls; only validate video & 100 profiles'
         type: boolean
@@ -59,6 +64,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PANEL_SIZE: ${{ inputs.panel_size }}
           PANEL_DRY: ${{ inputs.dry_run }}
+          PANEL_HYBRID: ${{ inputs.hybrid_split }}
           PANEL_MODEL: ${{ inputs.model }}
           PANEL_DELAY: ${{ inputs.delay_seconds }}
         run: |
@@ -68,7 +74,19 @@ jobs:
             echo "::error::Missing $video. Upload the MP4 in GitHub Code > founder/videos > Add file > Upload files. See founder/VIDEO_PANEL_INSTRUCTIONS.md"
             exit 2
           fi
-          options=(--video "$video" --n "$PANEL_SIZE" --model "$PANEL_MODEL"
+          if [[ "$PANEL_HYBRID" == "true" ]]; then
+            if (( PANEL_SIZE % 2 != 0 )); then
+              echo "::error::Hybrid panel size must be even."
+              exit 2
+            fi
+            GEMINI_SIZE=$((PANEL_SIZE / 2))
+            options=(--hybrid-gemini)
+            echo "Hybrid mode: requesting $GEMINI_SIZE Gemini responses of $PANEL_SIZE; the remaining half belongs to Codex."
+          else
+            GEMINI_SIZE=$PANEL_SIZE
+            options=()
+          fi
+          options+=(--video "$video" --n "$GEMINI_SIZE" --model "$PANEL_MODEL"
                    --delay "$PANEL_DELAY" --out "founder/video_runs/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}")
           if [[ "$PANEL_DRY" == "true" ]]; then
             options+=(--dry-run)
