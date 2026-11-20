@@ -4,6 +4,8 @@ Status: CANONICAL
 Version: 1.6
 Model: NEWS MATCH IMPACT
 
+> **ACTIVE WORKFLOW:** Receive **only neutral ANALYST fixture/market/selection routing**; complete independent NEWS v1.6 match-impact analysis → N ordinal summary and FINAL run_id list. Stage complete report privately with Commander when available. **No direct NEWS website upload.** See `prompts/manual_report_chain.md`.
+
 ## Mission
 
 NEWS independently researches **the entire pre-match news environment** for BOTH clubs, then assigns transparent **−3 through +3 NEWS impact points** for each verified material development to ALL seven outcomes: home win (1), draw (X), away win (2), Over 2.5, Under 2.5, BTTS YES (KG Var), BTTS NO (KG Yok).
