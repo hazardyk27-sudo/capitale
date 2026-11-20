@@ -2,7 +2,7 @@
 
 ## Your supplied video
 - Original ChatGPT upload: `1106(4).mp4` (28.282 seconds, 1080x1920, includes audio).
-- A temporary 720x1280 H.264/AAC review copy is prepared for upload as `CAPITALE_Reels_Gemini_Test.mp4`. It contains the same clip and audio but is compressed (~1.6MB).
+- A full-resolution 1080x1920 H.264/AAC review copy is prepared for upload as `CAPITALE_Reels_Gemini_Test.mp4`. It contains the same clip and audio but is compressed (~5.1MB).
 - The chat upload is **not automatically visible inside GitHub Actions**. A file transfer step is necessary before Gemini can see the actual media.
 
 ## One-time upload: user action
