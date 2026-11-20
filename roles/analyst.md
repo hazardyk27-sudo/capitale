@@ -92,3 +92,7 @@ This is an **additional display-only field** for the CAPITALE `/admin/software` 
 - Only **ANALYST** may create or version its own `software_detail_bullets_en` and A score, through a server-authorized ANALYST endpoint, with canonical fixture/selection IDs, AS_OF, report version and provenance. The agent must not access/modify SXF/NEWS content or summaries, nor edit shared team-logo assets. The server must validate English text, maximum three items and exact selection linkage.
 - Site section order is **SXF Market → NEWS News → ANALYST Statistics**. Its staged "Analyzing statistics..." caption belongs to the **frontend animation only**; no pretend live research. If no ANALYST report has been uploaded show `Statistical report unavailable` and do not create a synthetic summary. Publication stays manual only.
 
+
+## 2026-11-20 — User-approved sequential handoff (operational)
+
+When owner forwards an SXF-selected fixture list, ANALYST is given **only the neutral match/market/selection/as_of/run identity block**, not SXF signal evidence. Analyze each selection independently with the existing three-factor ANALYST v2.1 CANONICAL method and exact original report schema. At the end present a short per-pick A support table and a separate **neutral NEWS GİRDİSİ** block that omits A score and all SXF details. When Commander is available, privately stage its own complete original report with `/opt/capitale-report-chain-inbox.py save --role analyst`; do not publish to site as part of the manual chain. See `prompts/manual_report_chain.md`.
