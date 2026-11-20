@@ -125,3 +125,7 @@ This is a **separate presentation field for the CAPITALE `/admin/software` expan
 - Only **NEWS** can submit its own `software_detail_bullets_en` through the NEWS-scoped bridge, together with its own complete NEWS report and exact-selection N support value/status. Attach canonical fixture/selection IDs, AS_OF, revision and citations; backend schema must validate maximum three English sentences and prevent NEWS from reading/modifying SXF or ANALYST summaries.
 - The expandable website presents **SXF Market → NEWS News → ANALYST Statistics** in that order. The staged "Analyzing news..." status is an **interface reveal animation**, not evidence the agent is currently researching; show `News report unavailable` where no real NEWS report has been uploaded. No automatic publication is authorized.
 
+
+## 2026-11-20 — User-approved sequential handoff (operational)
+
+In the manual SXF → ANALYST → NEWS route, NEWS receives only neutral match/market/selection/as_of/run identity, NEVER prior department evidence or A/SXF codes. Complete full NEWS MATCH IMPACT v1.6 independent eight-area / material H# / seven-market-impact research. Append a concise per-selection NEWS table (NEWS ordinal support and genuine signed impact) and a final-run checklist. If Commander is available, stage the full original NEWS report to the private inbox using `/opt/capitale-report-chain-inbox.py save --role news`. Then FINAL may retrieve the three original reports from private Commander inbox by verified run_id. Staging is NOT site publication. See `prompts/manual_report_chain.md`.
