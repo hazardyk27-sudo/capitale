@@ -45,7 +45,7 @@ test("invalid run identifiers, non-complete reports, and malformed evidence are 
   const incomplete = validRequest();
   (incomplete.report as Record<string, unknown>).status = "pending";
   const badEvidence = validRequest();
-  badEvidence.evidence.push({ source_kind: "", claim_text: "bad" });
+  badEvidence.evidence.push({ source_kind: "", claim_text: "bad", payload: {} });
 
   assert.equal(agentWriteRequestSchema.safeParse(invalidRun).success, false);
   assert.equal(agentWriteRequestSchema.safeParse(incomplete).success, false);
