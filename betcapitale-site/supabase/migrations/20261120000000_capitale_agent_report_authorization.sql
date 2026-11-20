@@ -172,7 +172,7 @@ begin
     return jsonb_build_object('ok', false, 'error', 'invalid_request');
   end if;
 
-  if jsonb_typeof(p_report) <> 'object' then
+  if coalesce(jsonb_typeof(p_report), '') <> 'object' then
     insert into capitale.audit_log(actor_role, event_type, details)
     values (v_actor_role, 'agent_report_denied',
             jsonb_build_object('reason', 'report_schema_invalid', 'run_id', p_run_id));
@@ -506,7 +506,7 @@ for each row execute function capitale_private.deny_immutable_change();
             jsonb_build_object('reason', 'report_schema_invalid', 'run_id', p_run_id));
     return jsonb_build_object('ok', false, 'error', 'invalid_report');
   end if;
-  if jsonb_typeof(p_evidence) <> 'array' then
+  if coalesce(jsonb_typeof(p_evidence), '') <> 'array' then
     insert into capitale.audit_log(actor_role, event_type, details)
     values (v_actor_role, 'agent_report_denied',
             jsonb_build_object('reason', 'evidence_schema_invalid', 'run_id', p_run_id));
