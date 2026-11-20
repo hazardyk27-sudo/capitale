@@ -62,7 +62,7 @@ test("direct API calls without agent/admin credentials are denied", async (t) =>
   const server = createServer(app);
   server.listen(0, "127.0.0.1");
   await once(server, "listening");
-  t.after(() => server.close());
+  t.after(() => { server.close(); });
   const address = server.address();
   assert.ok(address && typeof address !== "string");
   const root = `http://127.0.0.1:${address.port}`;
