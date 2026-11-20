@@ -42,7 +42,7 @@ Tüm mevcut üç faktörlü ANALYST v2.1 araştırmasını eksiksiz yap. Sonunda
 1. `ANALYST — KISA SONUÇ`: Maç (TSİ), market/seçim, A ordinal destek (0–100 veya veri yetersiz), tek cümle üç faktör gerekçesi, doğrulanmış run_id. N/FINAL kategori/olasılık uydurma.
 2. `KOPYALA → NEWS GİRDİSİ`: girdideki **aynı nötr sütunlar**, aynı satırlar: tarih, saat, ev, deplasman, market, seçim, fixture_uid, run_id, AS_OF. Bu blokta SXF kodu veya ANALYST puanı/görüşü KESİNLİKLE bulunmasın. Bir tercihi desteklemiyorsan satırı silme; NEWS bağımsız inceler.
 
-Kullanıcı sadece ikinci tabloyu NEWS'e aktaracak ve ANALYST tam raporunu FINAL için saklayacak. ANALYST bu zincirde doğrudan site kaydı yapmaz.
+Kullanıcı sadece ikinci nötr tabloyu NEWS'e aktarır. ANALYST özgün tam raporunu FINAL için saklar ve Commander bağlıysa ayrıca özel devir arşivine kaydeder. Bu dosya/kayıt site yayını değildir. ANALYST bu zincirde doğrudan site kaydı yapmaz.
 
 ## COMMANDER ARŞİVLEME
 
