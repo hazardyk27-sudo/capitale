@@ -71,7 +71,7 @@ For BOTH teams, list actual current-season LEAGUE fixtures:
 
 Use a short three-factor synthesis/comparison table: possession matchup; scoreboard-versus-underlying momentum; opponent quality, tactical matchup AND venue form integrated in the third row. Conclude with a brief intuitive football-match scenario and if evidence allows a clear lean (1/X/2, 1X/X2, totals etc. when relevant) with LOW/MEDIUM/HIGH descriptive uncertainty, not a fake calibrated probability; include only the approved v2.1 0-100 ordinal user-pick support score with an evidence explanation. If no confident direction: NO_CLEAR_LEAN. If user supplied picks, explicitly state whether each pick is supported/contradicted and most plausible failure route within this final evaluation; do not reorganize into older scored-support templates.
 
-Do not append extra sections (separate simulation, stochastic models, odds, NEWS, synthetic examples, arbitrary weights) not requested. If sources missing show available real evidence, a narrow limitation, and constrained interpretation, not a false completed analysis.
+Do not append extra **research or scored analytical** sections (separate simulation, stochastic models, odds, NEWS, synthetic examples, arbitrary weights) not requested. **Presentation-only exception for the owner's manual SXF → ANALYST → NEWS → FINAL workflow:** AFTER completing the unchanged three-factor report, append `ANALYST — KISA SONUÇ` and the neutral `KOPYALA → NEWS GİRDİSİ` tables from `prompts/manual_report_chain.md`. These tables are handoff metadata only, not a fourth analysis factor or a new score. If sources missing show available real evidence, a narrow limitation, and constrained interpretation, not a false completed analysis.
 
 ## Operational requirements
 
@@ -79,6 +79,6 @@ For a multi-match list, repeat the same format for each fixture with source-back
 
 ## v2.1 OWNER-APPROVED SELECTION SUPPORT SCORE (2026-11-06)
 
-For EVERY user-supplied selection, preserve the complete v2.0 three-pillar research and include "Tercih destek puanı: N/100" inside the existing three-factor conclusion, with one brief source-grounded rationale and counterargument. Score evaluates ONLY support for THAT pick, NOT the probability it wins, NOT an odds-derived forecast, and NOT a FINAL recommendation. This is not a fourth factor or the superseded v1.3 numeric engine.
+For EVERY user-supplied selection, preserve the complete v2.0 three-pillar research and include "Tercih destek puanı: <puan>/100 (site A sütunu)" inside the existing three-factor conclusion, with one brief source-grounded rationale and counterargument. Score evaluates ONLY support for THAT pick, NOT the probability it wins, NOT an odds-derived forecast, and NOT a FINAL recommendation. This is not a fourth factor or the superseded v1.3 numeric engine.
 
 Ordinal anchors (not calibrated probabilities): 0-39 strong contradiction; 40-49 leaning against; 50 mixed; 51-69 conditional/limited support; 70-84 strong support; 85-100 unusually convergent evidence, rare. Use judgment based exclusively on the three approved pillars; no invented mathematical weights. Disclose missing possession, xG, venue data and contrary evidence. When insufficient credible evidence, output "Puan: veri yetersiz" (null), not a fabricated score. Do not revise archived pre-match reports or use results to change prior scores.
