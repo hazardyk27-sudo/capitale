@@ -5,6 +5,8 @@ Version: 0.2
 
 ```yaml
 role: FINAL
+run_id: <verified canonical research run UUID or null if not verified>
+fixture_uid: <canonical fixture identity as validated against input reports>
 match_id: <canonical match id>
 match: <home> vs <away>
 run_at_utc: <timestamp>
@@ -50,10 +52,10 @@ input_reports:
 
 weights:
   structural:
-    analyst_pct: <number>
-    news_pct: <number>
-    sxf_pct: <number>
-    poly_pct: <number>   # must remain 5-15
+    analyst_pct: <number|null> # null only while required weights remain uncalibrated/unresolved
+    news_pct: <number|null>
+    sxf_pct: <number|null>
+    poly_pct: <number|null> # when POLY present and qualified: 5-15; when absent: null, not zero/forced 5
   effective:
     analyst_pct: <number|null>
     news_pct: <number|null>
@@ -130,8 +132,8 @@ versioning:
 
 ## Structural rules
 
-- POLY structural weight must stay within 5%-15%.
-- The remainder is split equally across ANALYST, NEWS, and SXF as base structural weights.
+- If an independent POLY report is **present and qualified**, its existing lower structural band remains 5%-15% (no methodology change). If POLY was **not supplied**, set `input_reports.poly.present: false`, `weights.structural.poly_pct: null` and `weights.effective.poly_pct: null`. Do **not** invent a 5%-15% contribution from no POLY evidence.
+- When POLY is present, the remaining base structural weight is split equally across ANALYST, NEWS, and SXF. When absent, the missing-data logic already in FINAL v0.2 applies: reflect redistribution only when justified without inventing numeric formula or fixed penalty; uncalibrated numeric values may remain null.
 - Reliability/freshness can modify effective contribution but does not change the approved structural architecture.
 - Missing data is `NO_EVIDENCE`, not positive/negative evidence; most unused contribution may be redistributed while a small missing-data penalty remains.
 - Exact multipliers/penalties remain uncalibrated.
