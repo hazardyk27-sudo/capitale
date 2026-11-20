@@ -1,0 +1,63 @@
+--- a/client/src/pages/admin-software.tsx
++++ b/client/src/pages/admin-software.tsx
+@@ -336,29 +336,6 @@
+   );
+ }
+ 
+-function MetricStrip({ row }: { row: SoftwareMatch }) {
+-  const delta = deltaInfo(row);
+-  const items = [
+-    { label: "SIGNAL", hint: checkpointOf(row) || "Unconfirmed", key: "signal", value: <SignalPill code={row.signalCode} /> },
+-    { label: "A", hint: "Analyst support", key: "analyst", value: <span className="metricstrip-number">{score(row.analystScore)} <em>/ 100</em></span> },
+-    { label: "N", hint: "News support", key: "news", value: <span className="metricstrip-number">{score(row.newsScore)} <em>/ 100</em></span> },
+-    { label: "V", hint: "Market money share", key: "volume", value: <span className="metricstrip-number">{percentage(row.volumeShare)}</span> },
+-    { label: "B", hint: "1X2 draw money", key: "draw", value: <span className="metricstrip-number">{percentage(row.drawShare)}</span> },
+-    { label: "O Δ%", hint: "Odds movement", key: "odds", value: <span className={"metricstrip-number " + delta.className}>{delta.text}</span> },
+-  ];
+-  return (
+-    <div className="metricstrip premium-metricstrip" aria-label="Signal and department metrics">
+-      {items.map(item => (
+-        <div className={"metricstrip-cell metricstrip-" + item.key} key={item.key}>
+-          <div className="metricstrip-label">{item.label}</div>
+-          <div className="metricstrip-value">{item.value}</div>
+-          <div className="metricstrip-hint">{item.hint}</div>
+-        </div>
+-      ))}
+-    </div>
+-  );
+-}
+-
+ function AnalysisDrawer({ row, preview }: { row: SoftwareMatch; preview: boolean }) {
+   return (
+     <div id={"software-detail-" + row.id} className="detail-outer">
+@@ -370,15 +347,12 @@
+           </div>
+           <span className="detail-tag">{preview ? "DESIGN PREVIEW" : "SAVED REPORTS"}</span>
+         </div>
+-        <MetricStrip row={row} />
+         <DetailStages row={row} />
+-        <div className="source-meta">
+-          <span>Market: <b>{row.market || "—"}</b></span>
+-          <span>Decision: <b>{checkpointOf(row) || "—"}</b></span>
+-          <span>Odds: <b>{row.currentOdds?.toFixed(2) ?? "—"}</b></span>
+-          <span>Reference quote: <b>{row.referenceOdds?.toFixed(2) ?? "—"}</b> · {dateTime(row.referenceOddsAt)}</span>
+-          <span>Source: <b>{row.source || "—"}</b></span>
+-        </div>
++        {row.source && (
++          <p className="source-meta" aria-label="Research source">
++            <span>Report source: <b>{row.source}</b></span>
++          </p>
++        )}
+       </div>
+     </div>
+   );
+--- a/client/src/pages/software-design-preview.css
++++ b/client/src/pages/software-design-preview.css
+@@ -346,3 +346,7 @@
+   .capitale-design .premium-metricstrip .metricstrip-hint {font-size:8px;}
+   .capitale-design .detail-inner {margin-left:9px;}
+ }
++
++/* v5: detail opens directly into the staged analysis, without repeated metric tiles. */
++.capitale-design .detail-top{margin-bottom:14px;}
++.capitale-design .detail-inner>.source-meta{margin-top:14px;}
