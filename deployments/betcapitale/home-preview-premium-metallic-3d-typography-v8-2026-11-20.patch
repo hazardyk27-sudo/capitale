@@ -1,0 +1,108 @@
+--- a/client/src/components/DailyProfitTickerDemo.tsx
++++ b/client/src/components/DailyProfitTickerDemo.tsx
+@@ -25,21 +25,21 @@
+   return (
+     <div className="dpt-row" role="presentation">
+       <div className="dpt-date">
+-        <strong>{item.date}</strong>
++        <strong className="dpt-raised-text">{item.date}</strong>
+         <span>{item.day} <span className="dpt-example-tag">· SAMPLE</span></span>
+       </div>
+       <div className="dpt-number">
+-        <strong>{item.coupons}</strong>
++        <strong className="dpt-raised-text">{item.coupons}</strong>
+         <span>COUPONS</span>
+       </div>
+       <div className="dpt-number">
+-        <strong>{item.matches}</strong>
++        <strong className="dpt-raised-text">{item.matches}</strong>
+         <span>MATCHES</span>
+       </div>
+       <div className={`dpt-profit ${positive ? "is-positive" : "is-negative"}`}>
+         <div className="dpt-profit-line">
+           {positive ? <ArrowUpRight size={13} aria-hidden="true" /> : <ArrowDownRight size={13} aria-hidden="true" />}
+-          <strong className="dpt-profit-amount">{formatProfit(item.profit)}</strong>
++          <strong className="dpt-profit-amount dpt-raised-text">{formatProfit(item.profit)}</strong>
+         </div>
+         <span className="dpt-profit-status">{positive ? "PROFIT" : "LOSS"}</span>
+       </div>
+--- a/client/src/components/daily-profit-ticker-demo.css
++++ b/client/src/components/daily-profit-ticker-demo.css
+@@ -382,3 +382,77 @@
+       0 2px 2px rgba(0,0,0,.42);
+   }
+ }
++
++/* CAPITALE Preview v8 — visibly raised engraved lettering + executive metal palette.
++   Keep the trusted v6 black 3D cards and their geometry entirely intact. */
++.dpt-row .dpt-raised-text {
++  position: relative;
++  display: inline-block;
++  font-weight: 900;
++  -webkit-background-clip: text;
++  background-clip: text;
++  -webkit-text-fill-color: transparent;
++  -webkit-text-stroke: .15px rgba(255,255,255,.14);
++  filter: drop-shadow(0 1px 0 rgba(0,0,0,.95)) drop-shadow(0 3px 2px rgba(0,0,0,.78));
++  text-shadow: none;
++  transform: translateZ(0);
++}
++/* Engraved depth uses layered drop-shadows rather than doubled glyphs,
++   preventing dark text from obscuring the gradient foreground. */
++.dpt-date strong.dpt-raised-text {
++  font-size: 13px;
++  letter-spacing: .008em;
++  color: #ead2b6;
++  background-image: linear-gradient(180deg,
++    #fff6e6 0%, #efdec4 32%, #c8a780 63%, #f6e3c9 82%, #bfa17d 100%);
++}
++.dpt-number strong.dpt-raised-text {
++  font-size: 20px;
++  letter-spacing: -.04em;
++  color: #e4e9f2;
++  background-image: linear-gradient(180deg,
++    #ffffff 0%, #f1f5fb 28%, #acb6c5 58%, #f4f6fa 78%, #a5afbd 100%);
++  -webkit-text-stroke: .18px rgba(255,255,255,.10);
++}
++.dpt-profit.is-positive .dpt-profit-amount.dpt-raised-text {
++  color: #9be7bd;
++  font-size: 18px;
++  background-image: linear-gradient(180deg,
++    #eefff4 0%, #bcf4d3 28%, #5fbf92 58%, #a8e7c4 79%, #51aa82 100%);
++  -webkit-text-stroke: .2px rgba(185,255,216,.13);
++}
++.dpt-profit.is-negative .dpt-profit-amount.dpt-raised-text {
++  color: #e9a39e;
++  font-size: 18px;
++  background-image: linear-gradient(180deg,
++    #ffece7 0%, #ffcbc3 30%, #cf7c79 58%, #f3b7ad 80%, #bd706d 100%);
++  -webkit-text-stroke: .2px rgba(255,215,211,.12);
++}
++.dpt-profit-status {
++  color: #c0c5d0;
++  font-size: 8px;
++  font-weight: 850;
++  letter-spacing: .12em;
++  text-shadow: 0 1px 1px #000, 0 -1px 0 rgba(255,255,255,.07);
++}
++.dpt-date > span { color: #b7a99b; font-weight: 750; }
++.dpt-example-tag { color: #9294a0; }
++.dpt-number span {
++  color: #9fa7b5;
++  font-weight: 800;
++  letter-spacing: .06em;
++}
++@media (max-width:767px) {
++  .dpt-date strong.dpt-raised-text { font-size: 12px; }
++  .dpt-number strong.dpt-raised-text { font-size: 18px; }
++  .dpt-profit.is-positive .dpt-profit-amount.dpt-raised-text,
++  .dpt-profit.is-negative .dpt-profit-amount.dpt-raised-text { font-size: 16px; }
++  .dpt-profit-status { font-size: 7px; }
++}
++@media (max-width:355px) {
++  .dpt-date strong.dpt-raised-text { font-size: 11px; }
++  .dpt-number strong.dpt-raised-text { font-size: 16px; }
++  .dpt-profit.is-positive .dpt-profit-amount.dpt-raised-text,
++  .dpt-profit.is-negative .dpt-profit-amount.dpt-raised-text { font-size: 14px; }
++  .dpt-profit-status { font-size: 6.5px; }
++}
