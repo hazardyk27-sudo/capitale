@@ -1,0 +1,69 @@
+--- a/client/src/components/daily-profit-ticker-demo.css
++++ b/client/src/components/daily-profit-ticker-demo.css
+@@ -457,2 +457,66 @@
+   .dpt-profit-status { font-size: 6.5px; }
+ }
++/* CAPITALE Preview v9 — branded metallic orange dates, vivid 3D green profits,
++   metallic red losses, controlled highlights; previous 3D card geometry preserved. */
++.dpt-date strong.dpt-raised-text {
++  color: #F28A1E;
++  background-image: linear-gradient(180deg,
++    #FFE0BC 0%, #FFB46B 23%, #F28A1E 46%, #DB690D 73%, #A34808 100%);
++  -webkit-text-stroke: .12px rgba(255, 186, 105, .12);
++}
++.dpt-profit.is-positive {
++  color: #68D994;
++}
++.dpt-profit.is-negative {
++  color: #E7726D;
++}
++.dpt-profit.is-positive .dpt-profit-amount.dpt-raised-text {
++  color: #6CDA98;
++  background-image: linear-gradient(180deg,
++    #E6FFEF 0%, #B7F3CC 21%, #65D695 45%, #3FAE73 70%, #287B50 100%);
++  -webkit-text-stroke: .18px rgba(151, 248, 188, .15);
++}
++.dpt-profit.is-negative .dpt-profit-amount.dpt-raised-text {
++  color: #E77972;
++  background-image: linear-gradient(180deg,
++    #FFE6E0 0%, #FFB4AC 24%, #EE756B 49%, #CD514B 73%, #973B38 100%);
++  -webkit-text-stroke: .18px rgba(255, 163, 155, .14);
++}
++.dpt-number strong.dpt-raised-text {
++  background-image: linear-gradient(180deg,
++    #FFFFFF 0%, #E5EAF1 28%, #B8C2D0 56%, #E2E8F0 80%, #9EABB9 100%);
++  -webkit-text-stroke: .12px rgba(248, 251, 255, .08);
++}
++.dpt-row .dpt-raised-text {
++  filter: drop-shadow(0 1px 0 rgba(0,0,0,.87))
++          drop-shadow(0 2px 1px rgba(0,0,0,.50));
++  -webkit-text-stroke-width: .12px;
++}
++.dpt-date > span { color: #C9A17A; }
++.dpt-example-tag { color: #888F9C; }
++.dpt-number span { color: #9BA4B2; }
++.dpt-profit-status {
++  color: #B2BBC9;
++  text-shadow: 0 1px 1px rgba(0,0,0,.53);
++}
++.dpt-row {
++  box-shadow:
++    0 2px 3px rgba(8,12,18,.23),
++    0 7px 12px rgba(8,12,18,.17),
++    0 15px 23px -7px rgba(8,12,18,.16),
++    inset 0 1px 0 rgba(255,255,255,.08),
++    inset 0 -2px 2px rgba(0,0,0,.42);
++}
++.dpt-row:hover {
++  box-shadow:
++    0 3px 5px rgba(8,12,18,.24),
++    0 9px 15px rgba(8,12,18,.19),
++    0 17px 26px -8px rgba(8,12,18,.17),
++    inset 0 1px 0 rgba(255,255,255,.10),
++    inset 0 -2px 2px rgba(0,0,0,.43);
++}
++.dpt-row::before {
++  background: linear-gradient(90deg, transparent,
++    rgba(255,255,255,.11) 25%,
++    rgba(255,255,255,.04) 75%, transparent);
++}
