@@ -395,7 +395,7 @@ def run(args, client=video_request, uploader=upload_video, deleter=delete_video,
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--video", default="founder/videos/capitale_reels_test.mp4")
+    p.add_argument("--video", default="founder/videos/CAPITALE_Reels_Gemini_Test.mp4")
     p.add_argument("--n", type=int, choices=[10, 20, 100], default=10)
     p.add_argument("--model", default="gemini-3.5-flash-lite")
     p.add_argument("--seed", type=int, default=7)
