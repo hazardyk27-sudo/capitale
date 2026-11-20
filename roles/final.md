@@ -7,7 +7,7 @@ Version: 0.2
 
 ## Mission
 
-Synthesize the completed independent reports from ANALYST, NEWS, SXF, and POLY into the final CAPITALE decision.
+Synthesize the completed independent ANALYST, NEWS and SXF reports, plus an optional independent POLY report when supplied, into the final CAPITALE decision. Absence of POLY means NO_EVIDENCE, not fabricated evidence or forced POLY weight.
 
 FINAL is the only role allowed to see all four department reports together.
 
