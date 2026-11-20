@@ -95,7 +95,7 @@ The caller must resolve the exact existing run before submitting. The bridge doe
 
 ## Admin reads
 
-- `GET /api/admin/capitale/agent-reports/:runId` returns the reports and evidence for one run. Admin session required.
+- `GET /api/admin/capitale/research-runs?limit=50` lists run identifiers and safe metadata (it omits free-form context). Admin session required.\n- `GET /api/admin/capitale/agent-reports/:runId` returns the reports and evidence for one run. Admin session required.
 - Reports include all allowed departments; no agent bearer token can use this endpoint.
 
 ## Rollout order
