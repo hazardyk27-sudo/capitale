@@ -1,0 +1,404 @@
+--- a/client/src/pages/admin-software.tsx
++++ b/client/src/pages/admin-software.tsx
+@@ -41,19 +41,18 @@
+   items: SoftwareMatch[];
+   dataSource: "connected" | "not_connected";
+ };
+-type SortKey = "kickoffAt" | "matchName" | "selection" | "signalCode" | "analystScore" | "newsScore" | "volumeShare" | "drawShare" | "oddsChange";
++type SortKey = "kickoffAt" | "matchName" | "signalCode" | "analystScore" | "newsScore" | "volumeShare" | "drawShare" | "oddsChange";
+ type ApiError = Error & { status?: number };
+ 
+-const SORTABLE: { key: SortKey; label: string }[] = [
++const SORTABLE: { key: SortKey; label: string; meaning?: string }[] = [
+   { key: "kickoffAt", label: "KICKOFF" },
+   { key: "matchName", label: "FIXTURE" },
+-  { key: "selection", label: "SELECTION" },
+   { key: "signalCode", label: "SIGNAL" },
+-  { key: "analystScore", label: "A" },
+-  { key: "newsScore", label: "N" },
+-  { key: "volumeShare", label: "V" },
+-  { key: "drawShare", label: "B" },
+-  { key: "oddsChange", label: "O Δ%" },
++  { key: "analystScore", label: "A", meaning: "Analyst support index (0–100)" },
++  { key: "newsScore", label: "N", meaning: "News support index (0–100)" },
++  { key: "volumeShare", label: "V", meaning: "Selected-market money share" },
++  { key: "drawShare", label: "B", meaning: "1X2 draw money share" },
++  { key: "oddsChange", label: "O Δ%", meaning: "Verified odds movement percentage" },
+ ];
+ 
+ const STAGES: {
+@@ -67,21 +66,21 @@
+ }[] = [
+   {
+     role: "sxf", label: "01", title: "Market analysis",
+-    processing: "Piyasa analiz ediliyor...",
++    processing: "Analyzing market activity...",
+     subtitle: "Reviewing verified checkpoint and market-flow evidence.",
+     unavailable: "Market report unavailable — no verified SXF summary was uploaded.",
+     durationMs: 2000,
+   },
+   {
+     role: "news", label: "02", title: "News analysis",
+-    processing: "Haberler analiz ediliyor...",
++    processing: "Analyzing match news...",
+     subtitle: "Reviewing sourced team news and independent story impact.",
+     unavailable: "News report unavailable — no verified NEWS summary was uploaded.",
+     durationMs: 3000,
+   },
+   {
+     role: "analyst", label: "03", title: "Statistical analysis",
+-    processing: "İstatistikler analiz ediliyor...",
++    processing: "Analyzing statistical performance...",
+     subtitle: "Reviewing possession, form momentum and opponent logic.",
+     unavailable: "Statistical report unavailable — no verified ANALYST summary was uploaded.",
+     durationMs: 4000,
+@@ -275,7 +274,13 @@
+ 
+ function SignalPill({ code }: { code: string }) {
+   const family = code.slice(0, 3).toUpperCase();
+-  return <span className="signal-code" style={family === "MOM" ? { background: "#f4e6f8", borderColor: "#ebceef", color: "#913f9f" } : undefined}>{code || "—"}</span>;
++  const palette: Record<string, { background: string; borderColor: string; color: string }> = {
++    MOM: { background: "#f4e7f8", borderColor: "#ecd4f0", color: "#823995" },
++    PRM: { background: "#fff2e7", borderColor: "#f5dec8", color: "#ba702c" },
++    SLD: { background: "#eaf1fb", borderColor: "#d5e4f7", color: "#2b669e" },
++    CRL: { background: "#fbf5e6", borderColor: "#f0e6c9", color: "#967331" },
++  };
++  return <span className="signal-code" style={palette[family]}>{code || "—"}</span>;
+ }
+ 
+ function DetailStages({ row }: { row: SoftwareMatch }) {
+@@ -333,16 +338,23 @@
+ 
+ function MetricStrip({ row }: { row: SoftwareMatch }) {
+   const delta = deltaInfo(row);
++  const items = [
++    { label: "SIGNAL", hint: checkpointOf(row) || "Unconfirmed", key: "signal", value: <SignalPill code={row.signalCode} /> },
++    { label: "A", hint: "Analyst support", key: "analyst", value: <span className="metricstrip-number">{score(row.analystScore)} <em>/ 100</em></span> },
++    { label: "N", hint: "News support", key: "news", value: <span className="metricstrip-number">{score(row.newsScore)} <em>/ 100</em></span> },
++    { label: "V", hint: "Market money share", key: "volume", value: <span className="metricstrip-number">{percentage(row.volumeShare)}</span> },
++    { label: "B", hint: "1X2 draw money", key: "draw", value: <span className="metricstrip-number">{percentage(row.drawShare)}</span> },
++    { label: "O Δ%", hint: "Odds movement", key: "odds", value: <span className={"metricstrip-number " + delta.className}>{delta.text}</span> },
++  ];
+   return (
+-    <div className="metricstrip" aria-label="Selected market evidence">
+-      {[
+-        { label: "SIGNAL", value: <SignalPill code={row.signalCode} /> },
+-        { label: "A", value: <span className="value-badge">{score(row.analystScore)}</span> },
+-        { label: "N", value: <span className="value-badge">{score(row.newsScore)}</span> },
+-        { label: "V", value: <span className="value-badge">{percentage(row.volumeShare)}</span> },
+-        { label: "B", value: <span className="value-badge">{percentage(row.drawShare)}</span> },
+-        { label: "O Δ%", value: <span className={delta.className}>{delta.text}</span> },
+-      ].map(item => <div className="metricstrip-cell" key={item.label}><div className="metricstrip-label">{item.label}</div><div className="metricstrip-value">{item.value}</div></div>)}
++    <div className="metricstrip premium-metricstrip" aria-label="Signal and department metrics">
++      {items.map(item => (
++        <div className={"metricstrip-cell metricstrip-" + item.key} key={item.key}>
++          <div className="metricstrip-label">{item.label}</div>
++          <div className="metricstrip-value">{item.value}</div>
++          <div className="metricstrip-hint">{item.hint}</div>
++        </div>
++      ))}
+     </div>
+   );
+ }
+@@ -361,7 +373,7 @@
+         <MetricStrip row={row} />
+         <DetailStages row={row} />
+         <div className="source-meta">
+-          <span>Market: <b>{row.selection || "—"}</b> · {row.market || "—"}</span>
++          <span>Market: <b>{row.market || "—"}</b></span>
+           <span>Decision: <b>{checkpointOf(row) || "—"}</b></span>
+           <span>Odds: <b>{row.currentOdds?.toFixed(2) ?? "—"}</b></span>
+           <span>Reference quote: <b>{row.referenceOdds?.toFixed(2) ?? "—"}</b> · {dateTime(row.referenceOddsAt)}</span>
+@@ -377,7 +389,7 @@
+   return (
+     <div className="fixture-unit" data-row-id={row.id}>
+       <button type="button" className={"game-main" + (expanded ? " selected" : "")} onClick={onToggle} aria-expanded={expanded} aria-controls={"software-detail-" + row.id} aria-label={(expanded ? "Close" : "Open") + " " + row.homeTeam + " versus " + row.awayTeam + " analysis details"}>
+-        <div className="time-col">{timeTRT(row.kickoffAt)}<small>TRT</small></div>
++        <div className="time-col">{timeTRT(row.kickoffAt)}<small>UTC+3</small></div>
+         <div className="teams-col">
+           <div className="logos"><TeamCrest name={row.homeTeam} src={row.homeLogoUrl} /><TeamCrest name={row.awayTeam} src={row.awayLogoUrl} away /></div>
+           <div className="fixture-text">
+@@ -385,13 +397,33 @@
+             <div className="fixture-league">{row.league || "Competition not specified"}</div>
+           </div>
+         </div>
+-        <div className="pick-col"><span className="mobile-col-label">SELECTION</span><div className="pick-strong">{row.selection || "—"}</div><div className="pick-detail">{row.market || "—"}</div><div className="selection-odds">{row.currentOdds && row.currentOdds > 0 ? "Odds " + row.currentOdds.toFixed(2) : ""}</div></div>
+-        <div className="code-col"><span className="mobile-col-label">SIGNAL</span><SignalPill code={row.signalCode} />{checkpointOf(row) && <span className="checkpoint">{checkpointOf(row)}</span>}</div>
+-        <div className="value-col" title="ANALYST support score (not win probability)"><span className="mobile-col-label">A</span><span className={"value-badge " + scoreTone(row.analystScore)}>{score(row.analystScore)}</span><small>/ 100 support</small></div>
+-        <div className="value-col" title="NEWS support score (not win probability)"><span className="mobile-col-label">N</span><span className={"value-badge " + scoreTone(row.newsScore)}>{score(row.newsScore)}</span><small>/ 100 support</small></div>
+-        <div className="value-col" title="Selected-market money share"><span className="mobile-col-label">V</span><span className="value-badge">{percentage(row.volumeShare)}</span>{row.selectionMoneyGbp != null && <small>{gbp(row.selectionMoneyGbp)}</small>}</div>
+-        <div className="value-col" title="Verified 1X2 draw money share"><span className="mobile-col-label">B</span><span className="value-badge">{percentage(row.drawShare)}</span></div>
+-        <div className="value-col"><span className="mobile-col-label">O Δ%</span><span className={delta.className}>{delta.text}</span></div>
++        <div className="code-col premium-code-col"><span className="mobile-col-label">SIGNAL</span><SignalPill code={row.signalCode} />{checkpointOf(row) && <span className="checkpoint">{checkpointOf(row)}</span>}</div>
++        <div className="value-col premium-cell premium-score-analyst" title="ANALYST support index, not a win probability">
++          <span className="mobile-col-label">A · ANALYST</span>
++          <span className={"premium-value " + scoreTone(row.analystScore)}>{score(row.analystScore)}</span>
++          <small>of 100</small>
++        </div>
++        <div className="value-col premium-cell premium-score-news" title="NEWS support index, not a win probability">
++          <span className="mobile-col-label">N · NEWS</span>
++          <span className={"premium-value " + scoreTone(row.newsScore)}>{score(row.newsScore)}</span>
++          <small>of 100</small>
++        </div>
++        <div className="value-col premium-cell premium-volume" title="Selected-market money share">
++          <span className="mobile-col-label">V · VOLUME</span>
++          <span className="premium-value">{percentage(row.volumeShare)}</span>
++          {row.volumeShare !== null && Number.isFinite(row.volumeShare) && <span className="mini-track" aria-hidden="true"><span style={{ width: Math.max(0, Math.min(100, row.volumeShare)) + "%" }} /></span>}
++          <small>{row.selectionMoneyGbp != null ? gbp(row.selectionMoneyGbp) : "Money share"}</small>
++        </div>
++        <div className="value-col premium-cell premium-draw" title="Verified 1X2 draw money share">
++          <span className="mobile-col-label">B · DRAW SHARE</span>
++          <span className="premium-value">{percentage(row.drawShare)}</span>
++          <small>1X2 draw</small>
++        </div>
++        <div className="value-col premium-cell premium-odds" title="Verified odds movement of the selected market">
++          <span className="mobile-col-label">O · ODDS CHANGE</span>
++          <span className={"premium-value " + delta.className}>{delta.text}</span>
++          <small>Odds move</small>
++        </div>
+         <span className="caret" aria-hidden="true"><ChevronDown size={15} /></span>
+       </button>
+       {expanded && <AnalysisDrawer row={row} preview={preview} />}
+@@ -443,7 +475,7 @@
+ 
+   function setSort(key: SortKey) {
+     if (key === sortKey) setSortDirection(v => v === "asc" ? "desc" : "asc");
+-    else { setSortKey(key); setSortDirection(["matchName", "selection", "signalCode", "kickoffAt"].includes(key) ? "asc" : "desc"); }
++    else { setSortKey(key); setSortDirection(["matchName", "signalCode", "kickoffAt"].includes(key) ? "asc" : "desc"); }
+   }
+   function togglePreview() {
+     const next = !previewMode;
+@@ -476,10 +508,10 @@
+           </div>
+           <div className="datepanel">
+             <span className="calendar"><CalendarDays size={18} /></span>
+-            <span><small>{previewMode ? "DESIGN EXAMPLE · TRT" : "MATCH INTELLIGENCE · TRT"}</small><strong>{previewMode ? "21 November 2026" : "CAPITALE Software"}</strong></span>
+-          </div>
+-        </div>
+-        {previewMode && <div className="synthetic-banner"><i className="dot" /><div><strong>DESIGN PREVIEW · SYNTHETIC DATA</strong> — Real team names and emblems, but all selections, scores, market figures and report statements below are fictional interface examples. <span>Not actual signals or betting advice.</span></div></div>}
++            <span><small>{previewMode ? "DESIGN EXAMPLE · UTC+3" : "MATCH INTELLIGENCE · UTC+3"}</small><strong>{previewMode ? "21 November 2026" : "CAPITALE Software"}</strong></span>
++          </div>
++        </div>
++        {previewMode && <div className="synthetic-banner"><i className="dot" /><div><strong>DESIGN PREVIEW · SYNTHETIC DATA</strong> — Club names and emblems are real; signal tags, support scores, market figures and research notes are fictional interface examples. <span>Not actual signals or betting advice.</span></div></div>}
+ 
+         <section className="board" aria-label="Match intelligence list">
+           <div className="board-top">
+@@ -496,7 +528,7 @@
+           {!previewMode && data?.dataSource !== "connected" && !isLoading && !error && <div className="not-connected">The verified Software feed is not connected. Use DESIGN PREVIEW to inspect the interface without changing production reports.</div>}
+           <div className="list-scroller">
+             <div className="list-head">
+-              {SORTABLE.map(col => <div key={col.key}><button type="button" className="sort-head" onClick={() => setSort(col.key)} title={"Sort by " + col.label}>{col.label}{sortKey === col.key ? (sortDirection === "asc" ? " ↑" : " ↓") : ""}</button></div>)}
++              {SORTABLE.map(col => <div key={col.key}><button type="button" className="sort-head" onClick={() => setSort(col.key)} title={col.meaning || "Sort by " + col.label}>{col.label}{sortKey === col.key ? (sortDirection === "asc" ? " ↑" : " ↓") : ""}</button></div>)}
+             </div>
+             <div aria-live="polite">
+               {isLoading && !previewMode ? <div className="empty">Loading verified match analyses…</div>
+--- a/client/src/pages/software-design-preview.css
++++ b/client/src/pages/software-design-preview.css
+@@ -142,3 +142,207 @@
+ @media(prefers-reduced-motion:reduce){
+   .capitale-design *, .capitale-design *::before, .capitale-design *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:0ms!important;}
+ }
++
++
++/* CAPITALE Software v4 — eight-column premium metric bar; no Selection or Prediction column. */
++.capitale-design .list-head,
++.capitale-design .game-main {
++  grid-template-columns: 76px minmax(240px,3.2fr) minmax(104px,1fr) 72px 72px 106px 88px 106px;
++  gap:10px;
++  padding-left:23px;
++  padding-right:28px;
++}
++.capitale-design .list-head {
++  background:linear-gradient(180deg,#fbfbfc,#f7f8fa);
++  border-top:1px solid #f0f1f3;
++  border-bottom:1px solid #e8ebef;
++  padding-top:15px;
++  padding-bottom:15px;
++  color:#8d9aab;
++  font-size:9px;
++  font-weight:850;
++  letter-spacing:.17em;
++}
++.capitale-design .list-head>div:nth-child(n+3) {text-align:center;}
++.capitale-design .sort-head {font-size:9px;letter-spacing:.13em;line-height:1.4;}
++.capitale-design .game-main {
++  min-height:96px;
++  padding-top:17px;
++  padding-bottom:17px;
++  transition:background .18s,box-shadow .18s;
++}
++.capitale-design .fixture-title {font-size:13px;font-weight:800;letter-spacing:-.2px;white-space:normal;line-height:1.35;}
++.capitale-design .fixture-league {margin-top:6px;}
++.capitale-design .time-col {font-size:15px;font-weight:850;color:#1a2c43;}
++.capitale-design .time-col small {font-weight:800;color:#adb8c6;letter-spacing:.13em;}
++.capitale-design .logos {width:74px;}
++.capitale-design .crest {width:44px;height:44px;border:1px solid #e9edf1;box-shadow:0 2px 12px rgba(30,45,65,.08);}
++.capitale-design .teams-col {gap:13px;}
++.capitale-design .game-main.selected {box-shadow:inset 3px 0 #ddac79;}
++.capitale-design .premium-code-col {gap:7px;}
++.capitale-design .premium-code-col .signal-code {
++  min-width:72px;
++  text-align:center;
++  font-size:10px;
++  letter-spacing:.045em;
++  font-weight:900;
++  line-height:1.2;
++  padding:8px 10px;
++  border-radius:6px;
++  box-shadow:0 1px 0 rgba(30,35,44,.035);
++}
++.capitale-design .premium-code-col .checkpoint {letter-spacing:.11em;font-size:9px;color:#94a1b2;}
++.capitale-design .premium-cell {
++  display:flex;
++  flex-direction:column;
++  align-items:center;
++  justify-content:center;
++  gap:0;
++  min-width:0;
++  position:relative;
++  font-variant-numeric:tabular-nums;
++}
++.capitale-design .premium-cell .premium-value {
++  min-width:53px;
++  max-width:100%;
++  min-height:34px;
++  border-radius:6px;
++  display:inline-flex;
++  justify-content:center;
++  align-items:center;
++  padding:4px 9px;
++  font-size:13px;
++  line-height:1.2;
++  font-weight:900;
++  color:#21354f;
++  border:1px solid transparent;
++}
++.capitale-design .premium-score-analyst .premium-value {background:#eef2f8;border-color:#e7edf5;color:#213b62;}
++.capitale-design .premium-score-news .premium-value {background:#f3f1f8;border-color:#eae6f3;color:#50416c;}
++.capitale-design .premium-volume .premium-value {background:#eef6f2;border-color:#e1eee7;color:#255c49;font-size:12px;}
++.capitale-design .premium-draw .premium-value {background:#f5f4f1;border-color:#ece9e4;color:#4f5a67;font-size:12px;}
++.capitale-design .premium-cell small {
++  margin-top:6px;
++  min-height:10px;
++  font-size:9px;
++  line-height:1.3;
++  color:#9ba8b8;
++  font-weight:650;
++  white-space:nowrap;
++}
++.capitale-design .premium-volume .mini-track {
++  display:block;
++  height:3px;
++  width:62px;
++  margin:6px auto 0;
++  overflow:hidden;
++  background:#e7ede9;
++  border-radius:5px;
++}
++.capitale-design .premium-volume .mini-track > span {
++  display:block;
++  height:100%;
++  background:linear-gradient(90deg,#d9b380,#df8644);
++  border-radius:5px;
++}
++.capitale-design .premium-volume .mini-track + small {margin-top:4px;}
++.capitale-design .premium-odds .premium-value {
++  min-width:78px;
++  background:transparent;
++  border-color:transparent;
++  font-size:13px;
++  letter-spacing:-.2px;
++  font-weight:900;
++}
++.capitale-design .premium-odds .premium-value.delta-negative {color:#168b66;}
++.capitale-design .premium-odds .premium-value.delta-positive {color:#c45a58;}
++.capitale-design .premium-odds .premium-value.delta-flat {color:#8d9bae;}
++.capitale-design .premium-odds small {font-size:9px;}
++.capitale-design .premium-metricstrip {
++  grid-template-columns:repeat(6,minmax(0,1fr));
++  padding:8px;
++  gap:8px;
++  border:1px solid #e7ebf0;
++  border-radius:11px;
++  background:linear-gradient(180deg,#fcfcfd,#f7f9fa);
++  box-shadow:0 3px 12px rgba(32,53,76,.025);
++  margin-bottom:17px;
++}
++.capitale-design .premium-metricstrip .metricstrip-cell {
++  padding:12px 7px 10px;
++  min-height:91px;
++  border-radius:7px;
++  background:#fff;
++  border:1px solid #eef0f3;
++  display:flex;
++  flex-direction:column;
++  align-items:center;
++  justify-content:center;
++  gap:0;
++}
++.capitale-design .premium-metricstrip .metricstrip-label {
++  color:#98a4b4;
++  letter-spacing:.17em;
++  font-size:9px;
++  font-weight:850;
++  margin-bottom:8px;
++}
++.capitale-design .premium-metricstrip .metricstrip-value {line-height:1.2;min-height:26px;display:flex;align-items:center;justify-content:center;}
++.capitale-design .premium-metricstrip .metricstrip-number {font-size:16px;font-weight:900;color:#243a55;}
++.capitale-design .premium-metricstrip .metricstrip-number em {font-size:10px;font-style:normal;font-weight:650;color:#a7b2c0;}
++.capitale-design .premium-metricstrip .metricstrip-number.delta-negative {color:#168b66;}
++.capitale-design .premium-metricstrip .metricstrip-number.delta-positive {color:#c45a58;}
++.capitale-design .premium-metricstrip .metricstrip-number.delta-flat {color:#8d9bae;}
++.capitale-design .premium-metricstrip .metricstrip-signal .signal-code {padding:6px 10px;font-size:10px;min-width:70px;}
++.capitale-design .premium-metricstrip .metricstrip-hint {
++  margin-top:7px;
++  min-height:12px;
++  color:#a1adbb;
++  font-size:9px;
++  line-height:1.25;
++  font-weight:600;
++  text-align:center;
++}
++.capitale-design .detail-inner {margin-left:75px;border-left-color:#dab68e;}
++.capitale-design .completed ul {color:#607187;font-size:12px;line-height:1.75;gap:6px;}
++.capitale-design .completed-title {color:#27384f;font-size:12px;}
++.capitale-design .done-check {font-size:10px;}
++.capitale-design .detail-sub {font-size:11px;color:#91a0af;}
++.capitale-design .board-bottom {color:#98a4b3;}
++@media(max-width:1150px) {
++  .capitale-design .list-head,
++  .capitale-design .game-main {min-width:1030px;}
++  .capitale-design .detail-outer {min-width:1030px;}
++}
++@media(max-width:760px) {
++  .capitale-design .game-main {
++    display:grid;
++    grid-template-columns:repeat(6,minmax(0,1fr));
++    min-width:0;
++    gap:12px 8px;
++    padding:15px 13px;
++  }
++  .capitale-design .detail-outer {min-width:0;}
++  .capitale-design .time-col {grid-column:1/2;font-size:13px;}
++  .capitale-design .teams-col {grid-column:2/7;gap:9px;}
++  .capitale-design .logos {width:61px;}
++  .capitale-design .crest {width:36px;height:36px;padding:5px;}
++  .capitale-design .fixture-title {font-size:12px;}
++  .capitale-design .premium-code-col {grid-column:1/3;align-items:center;justify-content:center;}
++  .capitale-design .premium-score-analyst {grid-column:3/5;}
++  .capitale-design .premium-score-news {grid-column:5/7;}
++  .capitale-design .premium-volume {grid-column:1/3;}
++  .capitale-design .premium-draw {grid-column:3/5;}
++  .capitale-design .premium-odds {grid-column:5/7;}
++  .capitale-design .premium-cell .premium-value {min-height:31px;padding:4px 8px;font-size:12px;}
++  .capitale-design .premium-cell small {margin-top:4px;font-size:9px;}
++  .capitale-design .premium-code-col .signal-code {min-width:63px;padding:7px 8px;}
++  .capitale-design .mobile-col-label {display:block;margin-bottom:5px;font-size:8px;letter-spacing:.075em;font-weight:800;color:#a2adbb;white-space:nowrap;}
++  .capitale-design .premium-volume .mini-track {margin-top:5px;}
++  .capitale-design .metricstrip {grid-template-columns:repeat(3,minmax(0,1fr));padding:6px;gap:6px;}
++  .capitale-design .premium-metricstrip .metricstrip-cell {min-height:80px;padding:10px 3px 8px;}
++  .capitale-design .premium-metricstrip .metricstrip-number {font-size:13px;}
++  .capitale-design .premium-metricstrip .metricstrip-number em {font-size:9px;}
++  .capitale-design .premium-metricstrip .metricstrip-hint {font-size:8px;}
++  .capitale-design .detail-inner {margin-left:9px;}
++}
