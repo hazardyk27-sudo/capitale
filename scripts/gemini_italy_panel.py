@@ -74,7 +74,7 @@ def personas(customer, n, seed):
         raise ValueError("Use a 10, 20 or 100 persona panel")
     if n == 100:
         return cards
-    # A distinct, deterministic, evenly-spaced pilot sampling of the frozen cohort.
+    # A deterministic pseudorandom subset of the same frozen 100-person cohort.
     rng = random.Random(seed)
     indices = list(range(100))
     rng.shuffle(indices)
