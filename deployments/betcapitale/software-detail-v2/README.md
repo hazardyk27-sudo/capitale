@@ -22,12 +22,13 @@ The Hetzner Desktop Commander connection was restored. The v2 frontend was built
 1. `software-brain-sequence.tsx` — React staged animation component.
 2. `software-brain-sequence.css` — minimal responsive design and CSS animation.
 3. `apply_v2.py` — conservative, source-anchored integration into a copy of the deployed v1 Betcapitale source. It writes a `.tsx.before-v2` backup and **does not deploy**.
+4. `team-logos/juventus.svg` and `team-logos/parma.svg` — verified local demo logos copied to the website's static assets by the script.
 
 ### Verified deployment and rollback
 
 - Website source base: `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-animation-work`.
 - Isolated v2 source and build: `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-animation-v2-work`.
-- Ran the `apply_v2.py` integration script successfully, then replaced external Wikimedia URLs in the demo with the locally hosted SVG files (not yet reflected in the generic GitHub script, which includes verified external URLs as a fallback).
+- Ran `apply_v2.py` integration successfully; locally hosted SVGs were added. The script in GitHub has now been updated to reproduce both the team-logo paths and corresponding static files for future rebuilds.
 - `tsx --test client/src/lib/software-details.test.ts`: **4/4 passed**.
 - `tsc --noEmit`: passed.
 - `npm run build`: passed.
