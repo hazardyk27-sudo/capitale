@@ -1,0 +1,509 @@
+{
+  "title": "CAPITALE Hybrid Video Panel: 50 Gemini + 50 Codex",
+  "version": 1,
+  "seed": 20261120,
+  "method": "Exactly half of each originally fixed segment assigned to each provider; every persona assigned exactly once. Assignment is experimental and not population-representative.",
+  "limitation": "Split-sample comparisons confound model provider with individual fictional personas; consider optional overlap/crossover later to test model effects.",
+  "assignments": [
+    {
+      "persona_id": "P001",
+      "segment": "football_only",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P002",
+      "segment": "serie_a_fan",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P003",
+      "segment": "serie_a_fan",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P004",
+      "segment": "telegram_community",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P005",
+      "segment": "data_analyst",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P006",
+      "segment": "data_analyst",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P007",
+      "segment": "serie_a_fan",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P008",
+      "segment": "pick_reader",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P009",
+      "segment": "data_analyst",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P010",
+      "segment": "serie_a_fan",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P011",
+      "segment": "serie_a_fan",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P012",
+      "segment": "data_analyst",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P013",
+      "segment": "serie_a_fan",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P014",
+      "segment": "football_only",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P015",
+      "segment": "data_analyst",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P016",
+      "segment": "pick_reader",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P017",
+      "segment": "telegram_community",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P018",
+      "segment": "pick_reader",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P019",
+      "segment": "verification_skeptic",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P020",
+      "segment": "serie_a_fan",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P021",
+      "segment": "serie_a_fan",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P022",
+      "segment": "serie_a_fan",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P023",
+      "segment": "football_only",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P024",
+      "segment": "verification_skeptic",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P025",
+      "segment": "football_only",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P026",
+      "segment": "serie_a_fan",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P027",
+      "segment": "serie_a_fan",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P028",
+      "segment": "pick_reader",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P029",
+      "segment": "pick_reader",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P030",
+      "segment": "serie_a_fan",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P031",
+      "segment": "data_analyst",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P032",
+      "segment": "serie_a_fan",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P033",
+      "segment": "data_analyst",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P034",
+      "segment": "data_analyst",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P035",
+      "segment": "telegram_community",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P036",
+      "segment": "football_only",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P037",
+      "segment": "verification_skeptic",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P038",
+      "segment": "football_only",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P039",
+      "segment": "telegram_community",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P040",
+      "segment": "telegram_community",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P041",
+      "segment": "pick_reader",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P042",
+      "segment": "football_only",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P043",
+      "segment": "serie_a_fan",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P044",
+      "segment": "data_analyst",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P045",
+      "segment": "data_analyst",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P046",
+      "segment": "data_analyst",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P047",
+      "segment": "data_analyst",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P048",
+      "segment": "football_only",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P049",
+      "segment": "serie_a_fan",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P050",
+      "segment": "data_analyst",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P051",
+      "segment": "data_analyst",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P052",
+      "segment": "verification_skeptic",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P053",
+      "segment": "football_only",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P054",
+      "segment": "telegram_community",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P055",
+      "segment": "verification_skeptic",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P056",
+      "segment": "football_only",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P057",
+      "segment": "pick_reader",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P058",
+      "segment": "data_analyst",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P059",
+      "segment": "serie_a_fan",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P060",
+      "segment": "data_analyst",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P061",
+      "segment": "pick_reader",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P062",
+      "segment": "verification_skeptic",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P063",
+      "segment": "telegram_community",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P064",
+      "segment": "football_only",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P065",
+      "segment": "football_only",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P066",
+      "segment": "serie_a_fan",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P067",
+      "segment": "verification_skeptic",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P068",
+      "segment": "telegram_community",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P069",
+      "segment": "football_only",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P070",
+      "segment": "data_analyst",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P071",
+      "segment": "serie_a_fan",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P072",
+      "segment": "serie_a_fan",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P073",
+      "segment": "telegram_community",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P074",
+      "segment": "telegram_community",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P075",
+      "segment": "data_analyst",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P076",
+      "segment": "football_only",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P077",
+      "segment": "pick_reader",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P078",
+      "segment": "serie_a_fan",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P079",
+      "segment": "verification_skeptic",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P080",
+      "segment": "telegram_community",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P081",
+      "segment": "pick_reader",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P082",
+      "segment": "serie_a_fan",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P083",
+      "segment": "data_analyst",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P084",
+      "segment": "telegram_community",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P085",
+      "segment": "data_analyst",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P086",
+      "segment": "serie_a_fan",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P087",
+      "segment": "data_analyst",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P088",
+      "segment": "serie_a_fan",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P089",
+      "segment": "football_only",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P090",
+      "segment": "football_only",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P091",
+      "segment": "football_only",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P092",
+      "segment": "serie_a_fan",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P093",
+      "segment": "telegram_community",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P094",
+      "segment": "telegram_community",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P095",
+      "segment": "serie_a_fan",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P096",
+      "segment": "serie_a_fan",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P097",
+      "segment": "serie_a_fan",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P098",
+      "segment": "football_only",
+      "provider": "codex"
+    },
+    {
+      "persona_id": "P099",
+      "segment": "serie_a_fan",
+      "provider": "gemini"
+    },
+    {
+      "persona_id": "P100",
+      "segment": "data_analyst",
+      "provider": "codex"
+    }
+  ]
+}
