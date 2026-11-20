@@ -27,9 +27,9 @@ This normalization is reasoning support, not a fixed numerical probability model
 
 ## 3. Structural department weights
 
-POLY alone has a lower structural band.
+POLY alone has a lower structural band **when a verified independent POLY report is supplied and materially relevant**. In this owner-approved manual chain, POLY is optional. When POLY is absent, report `POLY: NO_EVIDENCE`, leave its structural/effective numeric weight **null** (not a fake 5% or an unsupported 0% vote), and apply the existing missing-data handling without inventing numeric redistribution or penalty parameters. This does not change the original lower-weight range when POLY is actually available.
 
-Let `p = POLY structural weight`, where:
+**Only when POLY is present and qualified**, let `p = POLY structural weight`, where:
 
 `0.05 <= p <= 0.15`
 
