@@ -315,18 +315,19 @@ def report_for(url, key, group):
 
 
 def readback(url, key, run_id, report_id, version, source_hash):
-    _, results = rest(url, key, "GET", "agent_reports", profile="capitale", params={
-        "select": "id,role,run_id,report_version,input_snapshot_hash,payload",
-        "id": "eq." + report_id,
-        "run_id": "eq." + run_id,
-        "role": "eq.sxf",
-        "report_version": "eq." + str(version),
-        "limit": "1",
-    })
-    if len(results) != 1 or results[0]["input_snapshot_hash"] != source_hash:
-        raise ImportRejected("Saved SXF row readback did not match original data hash")
+    # The internal capitale schema is deliberately not exposed through
+    # PostgREST. Use the already available privileged, server-only read RPC.
+    _, obj = rest(url, key, "POST", "rpc/capitale_admin_get_agent_reports",
+                  body={"p_run_id": run_id})
+    matched = [r for r in obj.get("reports", []) if
+               r.get("id") == report_id and
+               r.get("run_id") == run_id and
+               r.get("role") == "sxf" and
+               r.get("report_version") == version and
+               r.get("input_snapshot_hash") == source_hash]
+    if not obj.get("ok") or len(matched) != 1:
+        raise ImportRejected("Saved SXF row readback did not match original report and hash")
     return True
-
 
 def upload(url, key, token, item, fixture):
     status, prepared = rest(url, key, "POST", "rpc/capitale_admin_prepare_run", body={
