@@ -68,8 +68,12 @@ Mevcut kapsamlı SXF raporunu ASLA yalnız listeye indirgeme. Full SXF kaynak/sn
 
 **Kısa adlar:** V1/V2/HEAVY ve BTTS YES = MOM; PREMIUM OVER, OVER_STRONG, EKOL 3 = PRM; STABLE OVER ve SURPRISE TEAM = CRL; EARLY MONEY CORE ve EARLY MONEY CORE V2 = SLD. Bu yalnız UI/handoff gösterim kodudur, motor metodolojisi/öncelik veya onay durumunu değiştirmez. OVER_STRONG, EKOL 3 ve EARLY CORE V2 halen SHADOW/RESEARCH: aktif gibi gösterme. `EARLY_T12` RETIRED. Devirde aynı seçim tek satır. `run_id` uydurulmaz.
 
-Bu zincirde SXF kendi başına siteye yayın yapmaz. Hedef sonraki agent ANALYST'tir; site yayınını yalnız FINAL aşaması üstlenir ve yetkili araç gerçekten hazır değilse başarı iddia etmez.
+Bu zincirde SXF gerçek `FINAL_SIGNAL` sinyallerini Commander sunucu otomatik aktarımı ile doğrudan Software'e kaydeder. Tam SXF sohbet raporunu da kendi SXF kayıt alanında sürümleyebilir; ANALYST'e yalnız nötr tablo verir. FINAL yalnız son kararını yayınlar. `SAVED_READBACK_OK` olmadan SXF kaydedildi deme.
 
-## COMMANDER ARŞİVLEME (FULL REPORT → FINAL, ARA AGENTA DEĞİL)
+## ZORUNLU CANLI SXF KAYDI (2026-11-20)
 
-Tam SXF raporu çıktıktan sonra Commander bu agent sohbetinde mevcutsa, `tools/manual_report_inbox.py` / sunucudaki `/opt/capitale-report-chain-inbox.py` talimatına göre tam, orijinal metni her doğrulanmış `run_id` için `save --role sxf` ile **yalnız özel arşive** koy. Ara agent ANALYST'e ise sadece nötr `KOPYALA → ANALYST GİRDİSİ` tablosunu aktar. Arşiv sonucu `STAGED_ONLY_NOT_SITE` olduğunda siteye yazdığını iddia etme. Commander erişimin yoksa kullanıcıya full raporu FINAL için saklamasını söyle, arşivlendi deme.
+SXF'nin gerçek, onaylı T-6/T-8 `FINAL_SIGNAL` olayları `/opt/capitale-sxf-software-watch.py` ile yaklaşık 3 dakikada bir otomatik kontrol edilip `/opt/capitale-sxf-software-sync.py` üzerinden **doğrudan `/admin/software` kayıtlarına** gönderilir. V1/V2 ve Stable/Premium aynı market/seçimde tek kayıt; deneysel/retired/preliminary olaylar yayın dışıdır. SURPRISE watch_only, doğrudan kazanan taraf önerisi değildir. Kaynak temelli en az bir, en fazla üç bulgu zorunludur; kaynağı eksik oran değişim yüzdesi uydurma.
+
+Yeni sohbet SXF raporunda mevcut `run_id` ile ilgili site kaydını doğrula. Tam özgün raporunu siteye sürümlemek için Commander ile `python3 /opt/capitale-report-uploader.py submit --role sxf --file /tmp/<orijinal-sxf-rapor>.json` kullan; dosya gerçekten doğrulanmış kaynak `input_snapshot_hash` ve aynı market/selection içermelidir. Eski SXF rapor sürümlerini silme. Otomatik kayıt/CLI yoksa neyin eksik olduğunu söyle; arşive kaydedilmiş gibi gösterme.
+
+ANALYST'e göndereceğin `KOPYALA → ANALYST GİRDİSİ` yalnız nötr maç/tercih/`fixture_uid`/`run_id` sütunlarını taşımalıdır. SXF kanıt/para/yorumları ANALYST'e kanıt olarak aktarılmaz. Site yazma kuralları: `prompts/manual_report_chain.md` v3.0.
