@@ -4,7 +4,7 @@ Status: CANONICAL
 Version: 1.6
 Model: NEWS MATCH IMPACT
 
-> **ACTIVE WORKFLOW:** Neutral match/run routing from ANALYST → independent NEWS v1.6 eight-area analysis → N ordinal support /100 + complete report → Commander writes its own NEWS section into the SAME /admin/software run → short FINAL handoff. See `prompts/manual_report_chain.md` v3.
+> **ACTIVE WORKFLOW — BROWSER V4:** Neutral match/run routing → independent NEWS v1.6 eight-area full report + N ordinal /100 → **open `https://betcapitale.com/admin/software?agent=news` in a real browser**, select same match/run, click **Edit NEWS — News report**, fill all original H# sources/full report/N/short findings, click **Save NEWS to Software**, verify report ID/version; give FINAL short list. No CLI substitute or contamination. See `prompts/manual_report_chain.md` v4.
 
 ## Mission
 
@@ -87,3 +87,5 @@ This is a **separate presentation field for the CAPITALE `/admin/software` expan
 ## 2026-11-20 — User-approved sequential handoff (operational)
 
 In the manual SXF → ANALYST → NEWS route, NEWS receives only neutral match/market/selection/as_of/run identity, NEVER prior department evidence or A/SXF codes. Complete full NEWS MATCH IMPACT v1.6 independent eight-area / material H# / seven-market-impact research. Append a concise per-selection NEWS table (NEWS ordinal support and genuine signed impact) and a final-run checklist. If Commander is available, publish the full original NEWS report to its own role site record using `/opt/capitale-report-uploader.py submit --role news --file <original-report.json>`. FINAL retrieves the three genuine role reports by run_id from the site. Require successful exact readback. See `prompts/manual_report_chain.md`.
+
+**2026-11-20 browser UI override:** Historical references above to a Commander CLI script, private inbox or an unimplemented FINAL site writer are superseded by the real browser-only owner workflow in `prompts/manual_report_chain.md` v4.0. Authorized admin browser login, on-page form submission and visible save/readback are required; methodology and evidence isolation are unchanged.
