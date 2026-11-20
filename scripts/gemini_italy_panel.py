@@ -9,7 +9,6 @@ import json
 import os
 from pathlib import Path
 import random
-import runpy
 import sys
 import time
 import urllib.error
@@ -45,17 +44,41 @@ def save(path, data):
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 def personas(customer, n, seed):
-    upstream = runpy.run_path(str(ROOT / ".claude/skills/founder-consumer/panel.py"))
-    cards = upstream["deal"](customer, n=n, seed=seed)
+    """Load frozen, auditable Italian male personas. For smaller pilots pick a stable random subset."""
+    path = ROOT / "founder/italy_male_personas_100.json"
+    cards = json.loads(path.read_text(encoding="utf-8"))
+    if len(cards) != 100 or len({c["id"] for c in cards}) != 100:
+        raise ValueError("The frozen Italian male panel must contain 100 unique IDs")
+    if len({c["name"] for c in cards}) != 100:
+        raise ValueError("The frozen panel contains duplicate full names")
+    for c in cards:
+        if (c.get("gender") != "male" or c.get("nationality") != "italian"
+            or c.get("country") != "Italy" or c.get("language") != "it"
+            or not isinstance(c.get("age"), int) or not 18 <= c["age"] <= 55):
+            raise ValueError("Panel contains a non-adult, non-Italian or non-male persona")
+        b = c.get("budget", {})
+        for key in ("personal_monthly_net_resources_eur", "monthly_essential_costs_eur",
+                    "monthly_planned_savings_eur", "monthly_optional_spending_eur",
+                    "monthly_sports_betting_self_limit_eur"):
+            if not isinstance(b.get(key), (int, float)) or b[key] < 0:
+                raise ValueError("Invalid EUR budget for " + c["id"])
+        if (b["personal_monthly_net_resources_eur"] !=
+            b["monthly_essential_costs_eur"] + b["monthly_planned_savings_eur"] +
+            b["monthly_optional_spending_eur"]):
+            raise ValueError("Unbalanced budget for " + c["id"])
+        if b["monthly_sports_betting_self_limit_eur"] > b["monthly_optional_spending_eur"]:
+            raise ValueError("Sports betting cap exceeds optional spending for " + c["id"])
+        if c["betting_history"] in ("never", "former") and b["monthly_sports_betting_self_limit_eur"] != 0:
+            raise ValueError("Non-bettor must have zero wagering limit: " + c["id"])
+    if n not in (10, 20, 100):
+        raise ValueError("Use a 10, 20 or 100 persona panel")
+    if n == 100:
+        return cards
+    # A distinct, deterministic, evenly-spaced pilot sampling of the frozen cohort.
     rng = random.Random(seed)
-    names = [f"{a} {b}" for b in SURNAMES for a in NAMES]
-    rng.shuffle(names)
-    keys = ("id", "age", "segment", "behaviour", "behaviour_how", "objection", "habit")
-    result = [{**{key: card[key] for key in keys}, "name": names[i]} for i, card in enumerate(cards)]
-    assert len(result) == len({c["id"] for c in result}) == n
-    assert len({c["name"] for c in result}) == n
-    assert all(c["age"] >= 18 for c in result)
-    return result
+    indices = list(range(100))
+    rng.shuffle(indices)
+    return sorted((cards[i] for i in indices[:n]), key=lambda c: c["id"])
 
 def make_prompt(card, pitch):
     return ("You are an explicitly FICTIONAL adult Italian football viewer in a simulation. "
@@ -65,7 +88,11 @@ def make_prompt(card, pitch):
             "Telegram channel. Reply with JSON only, in Italian. Do not be artificially agreeable; "
             "be specific about distrust and why the channel may not add value. "
             "Do not advocate easy income from gambling or bypass gambling promotion rules. "
-            "These are imaginary qualitative choices, NOT forecasts or probabilities.\n\n"
+            "These are imaginary qualitative choices, NOT forecasts or probabilities. "
+            "Evaluate every person individually; age, income, region or betting history must NOT "
+            "automatically determine a yes/no. Non-bettors must not be persuaded to gamble. "
+            "Do not tailor persuasion to financial hardship. Keep the answer natural and grounded "
+            "in the provided text, including the option to reject the content.\n\n"
             "PERSONA: " + json.dumps(card, ensure_ascii=False, sort_keys=True) +
             "\n\nIDENTICAL PITCH SHOWN TO ALL PROFILES:\n" + pitch +
             "\n\nReturn persona_id exactly " + card["id"] +
@@ -125,7 +152,9 @@ def render_report(meta, results):
         f"- Separately validated Gemini API responses: {len(results)}",
         f"- Missing or failed: {meta['requested'] - len(results)}",
         f"- Dry run (no API calls): {meta['dry_run']}",
-        f"- Persona seed: {meta['seed']}",
+        f"- Persona selection seed (for 10/20): {meta['seed']}",
+        f"- Frozen 100-persona file: {meta['persona_source']}",
+        f"- Frozen persona file SHA256: {meta['persona_source_sha256']}",
         f"- Pitch SHA256: {meta['pitch_sha256']}",
         "", "## Fictional qualitative decisions (counts only)", "",
         f"- Instagram follow: {count('follow')}",
@@ -139,6 +168,8 @@ def render_report(meta, results):
     lines += ["", "## Limitations", "",
               "- Each saved answer comes from a separate Gemini generateContent request, not a separate human or different model architecture.",
               "- All inputs share the same artificially constructed audience assumptions and pitch. Shared model bias remains possible.",
+              "- Financial resources are synthetic estimates, not confirmed Italian individual-income data or estimates of willingness to pay.",
+              "- All personas are male by owner request, so women and other audiences are outside the scope; the panel is not population-representative.",
               "- No video was supplied. Reel hook and watch-through were **not evaluated**.",
               "- Actual Italian Instagram reach, conversion and legal compliance cannot be predicted from this panel.",
               "- Never use simulated quotes as testimonials or count fractions as real-world conversion rates.",
@@ -156,6 +187,7 @@ def run(args, client=request_gemini, sleeper=time.sleep):
     if args.delay < 0:
         raise ValueError("Delay cannot be negative")
     cards = personas(customer, args.n, args.seed)
+    all_cards_path = ROOT / "founder/italy_male_personas_100.json"
     folder = Path(args.out)
     folder.mkdir(parents=True, exist_ok=True)
     save(folder / "personas.json", cards)
@@ -163,6 +195,8 @@ def run(args, client=request_gemini, sleeper=time.sleep):
             "model": args.model, "requested": args.n, "seed": args.seed,
             "dry_run": args.dry_run,
             "pitch_sha256": hashlib.sha256(pitch.encode()).hexdigest(),
+            "persona_source": "founder/italy_male_personas_100.json",
+            "persona_source_sha256": hashlib.sha256(all_cards_path.read_bytes()).hexdigest(),
             "run_id": os.environ.get("GITHUB_RUN_ID"), "states": []}
     save(folder / "manifest.json", meta)
     results, errors = [], []
