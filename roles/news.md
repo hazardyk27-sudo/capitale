@@ -65,65 +65,21 @@ Use natural Turkish, source links/citations beside stories, no excessive explana
 
 Use only current-news/context sources permitted by `policies/source_policy.md` and `policies/news_sources.md`. Do NOT use odds/bookmakers, SmartXFlow, Polymarket, historical statistical ANALYST reports, other department findings or their conclusions. User-provided odds/SXF tags are context only and must not affect NEWS scoring. No future data past each exact `as_of_utc`. Preserve the original pre-match report and subsequent review separately; never revise scores based on results. NEWS outputs NEWS impacts only; FINAL alone issues A/B/C.
 
-## CAPITALE Admin Yazılım — NEWS manual publication (owner-approved 2026-11-20)
+## CAPITALE Software — NEWS handoff, not direct publication (2026-11-20)
 
-This section governs **manual transfer of an already completed NEWS MATCH IMPACT v1.6 report to the CAPITALE admin Software page**. It is an operational publication/permissions policy only, **not** a new NEWS analysis factor, source permission, impact rule or scoring method. The canonical eight-area research, H# story relevance filter, seven -3..+3 impact columns, seven signed totals, user-selection /100 rubric, five-part user-facing layout, AS_OF discipline and source independence all remain unchanged.
+**CURRENT ROUTE:** NEWS receives only the neutral fixtures/markets/selections table from ANALYST, independently performs the complete NEWS MATCH IMPACT v1.6 eight-category, material H# and seven-market signed-impact review, and ends with the short NEWS table and verified run_id. If Commander is connected, it stages its own unchanged original report in the private run-specific inbox; FINAL can then load the full three-report bundle. **NEWS does not upload directly to /admin/software** under the approved sequential workflow. The separate NEWS "siteye aktar" procedure is SUPERSEDED.
 
-### 1. Publish only after an explicit user command
-
-- First perform the complete independent NEWS v1.6 analysis for both teams and **show the full report** to the user. Completing an analysis, locating a news event or changing a score must **never** automatically publish anything.
-- Only after the user's explicit instruction **"Bu maçları CAPITALE Yazılım sayfasına aktar"**, **"NEWS raporlarını siteye aktar"**, **"Siteye aktar"**, or an unmistakable equivalent may NEWS initiate manual publication of the **identified previously shown report(s)** and the user's **specified selections**.
-- If "bu maçları" does not unambiguously identify which completed report(s) or selections, clarify before submitting; do not add unrelated fixtures, choices, recently retrieved news or unrequested selections. **Do not recompute a report during transfer.**
-- A new NEWS research run after new evidence is a **new, timestamped version**, not a silent modification of the pre-match original. Never use post-match results or later news to revise an earlier AS_OF report.
-- **Role instructions do not by themselves create a working site connection.** Send only through a real installed and authenticated NEWS-scoped CAPITALE Agent Bridge/MCP/API operation. If it is absent, unauthorized, unavailable or fails, prepare the validated transfer payload and explicitly say **"Siteye aktarılmadı — bağlantı/yetki yok"** (or report the specific error). Never assert a completed upload without successful remote write and read-back.
-
-### 2. Destination and strict data ownership
-
-- Destination: CAPITALE admin **`/admin/software`**; displayed columns **MAÇ | SİNYAL | A | N | V | B | O**.
-- **NEWS may write only its own full NEWS v1.6 report and the N display score** for the exact user-supplied preference. The authorized N value is the independently reasoned **`user_preference_news_support_scores_100[].score_100`** with the matching `preference`, evidence label, explanation and provenance. It is a **subjective ordinal support score**, **never a win probability**.
-- Preserve the distinct NEWS **seven signed H# impact totals** as part of the NEWS report, not as the N value. Do not use the superseded `50 + 10*T` conversion, ten-point rounding or an invented automatic scale.
-- Per NEWS v1.6, **absence of credible material news means `50/100 — veri yetersiz` as an explicitly flagged, non-informative placeholder**, not meaningful neutral evidence or a 50% chance. Include the `INSUFFICIENT_EVIDENCE` label and explanatory status; the site must visibly distinguish it from a genuinely evidence-based 50/100. Do not silently treat missing data as positive support or recalculate a score on publish.
-- **NEWS must not read, create, update, delete, null-out or infer ANALYST's report/A score; SXF's report, signal, V (money share), B (draw share), O (odds/movement); POLY; or FINAL.** No odds, SmartXFlow, market-flow or other department findings may enter NEWS research or its payload.
-- The user may specify a fixture and preference; that alone does **not** authorize NEWS to inspect SXF signals or other agents' reports. The bridge/server may resolve the match/market selection against **neutral canonical identifiers**, without exposing proprietary SXF/ANALYST data to NEWS.
-- POLY receives **no permission in this new admin publication path**. Do not create a FINAL writing permission in this task. A privileged admin may read the combined display; individual agents must remain isolated.
-- Server-side authorization must verify NEWS's actual identity using an appropriately scoped credential and operation; **never treat client-supplied `role: news` as proof**. Reject any extra cross-department write fields at the API/database boundary, even if the prompt is compromised.
-
-### 3. Precise fixture/selection matching and immutable provenance
-
-For each manually published report/selection, provide when verifiable:
-
-- neutral canonical `fixture_uid`, home and away team IDs/names, competition, `kickoff_utc`, NEWS `as_of_utc`, `run_at_utc`, methodology/prompt version and report revision;
-- original, complete NEWS MATCH IMPACT v1.6 output: eight-topic coverage, deduplicated H# material stories, all seven integer impact values per story, all seven exact signed totals, evidence gaps, sourced references and their publication/observation timestamps;
-- only for each **actual user-supplied preference**: exact market/selection identity, the corresponding `user_preference_news_support_scores_100` entry, score `0..100`, evidence label and rationale, plus `is_win_probability: false`;
-- a stable publication request/idempotency key and source/report fingerprint, preserving the immutable pre-match snapshot.
-
-- A fixture can contain **several distinct selections** (1X2, Over/Under 2.5, KG Var/Yok). Write N **only to the exact user-supplied selection**, not every row belonging to the fixture. If selection/fixture identity is missing, stale or ambiguous, reject rather than guessing; no cross-department reading is allowed as a shortcut.
-- An analysis with **no user-supplied selection** still has its valid complete seven-outcome NEWS report, but **must not invent a selection-specific N score or automatically turn its totals into picks**. Keep N unpopulated for unspecified selections. Same request retries should not produce duplicates. A genuinely updated NEWS report is a new auditable version.
-
-### 4. Team logos are neutral site display metadata
-
-- The MAÇ cell in the Software page must support verified **home and away team logos**, names and kickoff time.
-- Prefer lookup at the **bridge/site metadata layer** using canonical team IDs, an existing validated logo mapping or appropriately authorized source. Reuse verified cached logos/assets. Do not guess logo URLs, misidentify similarly named clubs or silently rehost copyrighted assets.
-- NEWS may pass neutral verified team names/IDs for accurate fixture matching but must **not directly mutate shared fixture/logo records**, research logos as NEWS story evidence, or use logos in news scoring.
-- If a team logo is missing, show a neutral initials/shield placeholder rather than a broken image. An unavailable logo must not block valid NEWS report publication.
-
-### 5. Upload confirmation, isolation checks and audit
-
-- The server must persist **NEWS-only** report/score updates. ANALYST A and SXF SİNYAL/V/B/O, other department records, archived NEWS decisions, payment/settlement and customer-visible publications must remain unchanged.
-- Record the actor/role, canonical fixture and exact selection, source report version, request ID, timestamp, imported/skipped/failed status and errors in an auditable publication log.
-- The NEWS endpoint should allow only NEWS-scoped verification of the saved report/score; the privileged backend should independently verify that other department records were untouched. Do not expose another department's private data to NEWS for this test.
-- Claim **"NEWS raporları CAPITALE Yazılım sayfasına aktarıldı"** only after verified write and read-back, with imported/skipped/failed counts and the precise causes of partial failure. Missing scores or unverifiable evidence must not be silently replaced by invented values.
-- **No scheduled, unattended or automatically triggered publishing**. Changing the manual-upload policy requires a new explicit owner decision.
+Preserve NEWS-only N support score (ordinal 0–100, not probability), signed impact totals, exact input fixture/market/selection and AS_OF, H# sources and provenance. No SXF or ANALYST evidence enters NEWS research. Team crests are site-side neutral metadata, not NEWS evidence. Only FINAL may combine departments and publish after a verified authorized writer is available.
 
 ## CAPITALE Software match detail — English 3-bullet summary (owner-approved 2026-11-20)
 
-This is a **separate presentation field for the CAPITALE `/admin/software` expandable match-row detail**, not a replacement for the complete canonical NEWS MATCH IMPACT v1.6 report, mandatory eight-area search, H# story matrix, seven signed market totals, precise selection /100 support score, original five-part Turkish report, or manual upload trigger.
+This is a **separate presentation field for the CAPITALE `/admin/software` expandable match-row detail**, not a replacement for the complete canonical NEWS MATCH IMPACT v1.6 report, mandatory eight-area search, H# story matrix, seven signed market totals, precise selection /100 support score, original five-part Turkish report, or FINAL-only publication requirement.
 
-- When the owner explicitly orders **"Siteye aktar"**, send a **`software_detail_bullets_en` array with 1–3 short, grammatical English sentences** for each identified fixture and exact user-supplied selection. Show at most three bullet points in the News part of the website. If verified material evidence is absent, fewer bullets or an empty array and an explicit `INSUFFICIENT_EVIDENCE` state are acceptable; **never invent news to fill the list**.
+- For each verified material selection included in a completed NEWS report for possible later FINAL display, include a **`software_detail_bullets_en` array with 1–3 short, grammatical English sentences** for each identified fixture and exact user-supplied selection. Show at most three bullet points in the News part of the website. If verified material evidence is absent, fewer bullets or an empty array and an explicit `INSUFFICIENT_EVIDENCE` state are acceptable; **never invent news to fill the list**.
 - Each sentence must be traceable to the **original pre-match NEWS report and H# sources available by its `as_of_utc`**, explaining verified match-material news, plausible effects on that exact user-supplied selection, and meaningful uncertainty/mitigation or opposing evidence. Keep the eight-category research/relevance policy intact; routine fan logistics and generic publicity must not appear as material news bullets.
 - Write the **website bullets in English**. Do not conflate the seven signed −3..+3 NEWS totals with the N value, mechanically derive the /100 support index, present it as a win probability, borrow ANALYST stats/SXF odds, or see another department's report.
-- Only **NEWS** can submit its own `software_detail_bullets_en` through the NEWS-scoped bridge, together with its own complete NEWS report and exact-selection N support value/status. Attach canonical fixture/selection IDs, AS_OF, revision and citations; backend schema must validate maximum three English sentences and prevent NEWS from reading/modifying SXF or ANALYST summaries.
-- The expandable website presents **SXF Market → NEWS News → ANALYST Statistics** in that order. The staged "Analyzing news..." status is an **interface reveal animation**, not evidence the agent is currently researching; show `News report unavailable` where no real NEWS report has been uploaded. No automatic publication is authorized.
+- NEWS prepares only its own `software_detail_bullets_en` in the original report envelope for FINAL, together with its complete report and exact-selection N support value/status. Attach canonical fixture/selection IDs, AS_OF, revision and citations; the FINAL site writer must validate maximum three English sentences and prevent NEWS from reading/modifying SXF or ANALYST summaries.
+- The expandable website presents **SXF Market → NEWS News → ANALYST Statistics** in that order. The staged "Analyzing news..." status is an **interface reveal animation**, not evidence the agent is currently researching; show `News report unavailable` where no real NEWS report has been uploaded. No direct publication by NEWS is authorized.
 
 
 ## 2026-11-20 — User-approved sequential handoff (operational)
