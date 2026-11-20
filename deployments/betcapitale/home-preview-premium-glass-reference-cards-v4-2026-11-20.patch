@@ -1,0 +1,87 @@
+--- a/client/src/components/daily-profit-ticker-demo.css
++++ b/client/src/components/daily-profit-ticker-demo.css
+@@ -325,3 +325,84 @@
+   .dpt-profit-amount { font-size: 12px; }
+   .dpt-profit-status { font-size: 6.5px; padding-left: 3px; }
+ }
++
++/* CAPITALE Preview v4 — copy ONLY the supplied reference's premium card surface.
++   Geometry, horizontal orientation, data positions and ticker timing remain unchanged.
++   No perspective, rotation or row motion outside the existing downward ticker. */
++.dpt-row {
++  isolation: isolate;
++  background:
++    radial-gradient(ellipse 75% 165% at 0% 0%, rgba(163, 221, 191, .11) 0%, transparent 62%),
++    radial-gradient(ellipse 75% 140% at 100% 110%, rgba(63, 181, 128, .13) 0%, transparent 58%),
++    linear-gradient(111deg, #111a1b 0%, #10191b 49%, #0c1516 100%);
++  border: 1px solid rgba(150, 198, 171, .60);
++  border-radius: 11px;
++  box-shadow:
++    0 7px 15px rgba(7, 23, 19, .14),
++    0 0 0 1px rgba(63, 180, 120, .065),
++    0 0 14px rgba(45, 176, 109, .095),
++    inset 0 1px 0 rgba(234, 255, 245, .30),
++    inset 0 -1px 0 rgba(64, 191, 128, .34);
++  transition: border-color .2s ease, box-shadow .2s ease;
++}
++.dpt-row::before {
++  content: "";
++  position: absolute;
++  z-index: 0;
++  left: 0;
++  top: 8px;
++  bottom: 8px;
++  width: 2px;
++  border-radius: 0 2px 2px 0;
++  opacity: .92;
++  background: linear-gradient(180deg, transparent 0%, #c9f7d9 33%, #43d190 67%, transparent 100%);
++  box-shadow: 1px 0 10px rgba(79, 213, 143, .35);
++}
++.dpt-row::after {
++  content: "";
++  position: absolute;
++  z-index: 0;
++  pointer-events: none;
++  height: 1px;
++  left: 12px;
++  right: 12px;
++  bottom: 0;
++  border-radius: 8px;
++  opacity: .74;
++  background: linear-gradient(90deg, transparent 0%, rgba(105, 234, 159, .76) 22%, rgba(179, 249, 207, .30) 53%, transparent 92%);
++  box-shadow: 0 0 9px rgba(67, 212, 140, .22);
++}
++.dpt-row:hover {
++  border-color: rgba(178, 232, 200, .72);
++  box-shadow:
++    0 8px 16px rgba(7, 23, 19, .17),
++    0 0 0 1px rgba(95, 210, 149, .10),
++    0 0 16px rgba(45, 176, 109, .13),
++    inset 0 1px 0 rgba(234, 255, 245, .36),
++    inset 0 -1px 0 rgba(64, 191, 128, .37);
++}
++.dpt-date strong,
++.dpt-number strong { color: #f5f9f7; }
++.dpt-date > span,
++.dpt-number span { color: #9eafa9; }
++.dpt-example-tag { color: #85958e; }
++.dpt-profit,
++.dpt-profit.is-positive,
++.dpt-profit.is-negative {
++  background: transparent;
++  border: 0;
++  border-radius: 0;
++  box-shadow: none;
++  padding: 0;
++  min-height: 0;
++}
++.dpt-profit.is-positive { color: #72e2a0; }
++.dpt-profit.is-negative { color: #ff9791; }
++.dpt-profit-status {
++  color: inherit;
++  opacity: .84;
++  border-left-color: rgba(191, 218, 203, .44);
++}
++@media (prefers-reduced-motion: reduce) {
++  .dpt-row { transition: none; }
++}
