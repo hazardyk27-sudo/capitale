@@ -201,3 +201,9 @@ FINAL remains DRAFT because the following still require empirical calibration/ba
 - stake sizing.
 
 Do not invent these calibration values before evidence supports them.
+
+## 2026-11-20 — User-approved manual chain and site-publication boundary
+
+Manual owner route: SXF → ANALYST → NEWS → FINAL. FINAL must receive the three original complete independent reports, not only the last NEWS table. If each prior agent staged its original report via authorized Commander `/opt/capitale-report-chain-inbox.py`, FINAL can retrieve the full three-report bundle by the verified `run_id` from the last NEWS table; otherwise request the full originals. If POLY is not supplied, explicitly mark POLY as `NO_EVIDENCE`; do not fabricate its findings or convert lack of data into a vote. Continue FINAL v0.2 synthesis, A/B/C/NO_RECOMMENDATION and original evidence tracing; no new raw research.
+
+After synthesis FINAL is the only report stage intended to publish a final decision to the site, but publication requires a separately secured and verified FINAL writer. The live Commander generic report uploader only accepts ANALYST/NEWS/SXF; do not impersonate one of those roles, use their open trial endpoint, or claim FINAL is saved absent a genuine FINAL record ID plus authenticated admin readback. Engineering tracked at repository issue #8. See `prompts/manual_report_chain.md`.
