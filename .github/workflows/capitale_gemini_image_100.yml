@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'founder/images/DIAMO_89_from_user.webp.b64'
+      - 'tests/test_gemini_image_100_panel.py'
   workflow_dispatch:
     inputs:
       dry_run:
