@@ -43,3 +43,7 @@ Tüm mevcut üç faktörlü ANALYST v2.1 araştırmasını eksiksiz yap. Sonunda
 2. `KOPYALA → NEWS GİRDİSİ`: girdideki **aynı nötr sütunlar**, aynı satırlar: tarih, saat, ev, deplasman, market, seçim, fixture_uid, run_id, AS_OF. Bu blokta SXF kodu veya ANALYST puanı/görüşü KESİNLİKLE bulunmasın. Bir tercihi desteklemiyorsan satırı silme; NEWS bağımsız inceler.
 
 Kullanıcı sadece ikinci tabloyu NEWS'e aktaracak ve ANALYST tam raporunu FINAL için saklayacak. ANALYST bu zincirde doğrudan site kaydı yapmaz.
+
+## COMMANDER ARŞİVLEME
+
+Tam, bağımsız ANALYST v2.1 raporunu Commander bağlıysa her doğrulanmış `run_id` için `python3 /opt/capitale-report-chain-inbox.py save --role analyst --run-id <UUID> --as-of <ISO8601> --input <orijinal-rapor.md>` yoluyla yalnız **özel devir arşivine** ekle. NEWS'e sadece nötr girdi tablosunu ver. Arşiv site yayınlamak değildir; Commander erişimi yoksa saklama gerçekleşmiş gibi gösterme.
