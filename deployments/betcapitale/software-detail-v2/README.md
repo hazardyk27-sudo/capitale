@@ -1,13 +1,13 @@
 # CAPITALE Software — Populated demo & animated virtual brain (v2, 2026-11-20)
 
-## State: PREPARED, NOT DEPLOYED
+## State: LIVE FRONTEND DEPLOYED — 2026-11-20
 
-This repository now has the v2 frontend component, styling, and integration script. **The Hetzner Desktop Commander device went offline during this iteration. The production website has not been updated to v2; the previously deployed v1 frontend is still the last verified live build.** Do not report completion or live availability until access is restored and validated.
+The Hetzner Desktop Commander connection was restored. The v2 frontend was built, checked and **deployed to https://betcapitale.com/admin/software**. Only frontend static assets and local logo files changed. The production backend and real agent ingestion remain unchanged/unconnected. This is a labeled synthetic demo, not a verified match analysis.
 
 ## Requested behavior
 
 - Manual **Preview populated demo** mode, separate from all production API data. Two Juventus–Parma selection rows with visible illustrative figures in MAÇ | SİNYAL | A | N | V | B | O. Clearly stamped `DEMO / SYNTHETIC`; no real betting evidence is implied.
-- Preview team badges link to the matching **Juventus current J mark** and **Parma crest** hosted on Wikimedia Commons. Missing logos fall back to initials. In a production deployment, prefer verified cached/local assets where permitted and test logo HTTP status.
+- Preview team badges use the **Juventus J mark** and **Parma crest** from Wikimedia Commons, copied as site-local static assets at `/team-logos/juventus.svg` and `/team-logos/parma.svg`. Their live URLs both returned HTTP 200. Missing logos fall back to initials.
 - Click **Details** under a match/selection: same-row drawer opens and stages run in strict order:
   - SXF Market: animated neural-brain processing for **2,000ms**, then up to 3 English bullets;
   - NEWS: **3,000ms**, then up to 3 English bullets;
@@ -23,15 +23,28 @@ This repository now has the v2 frontend component, styling, and integration scri
 2. `software-brain-sequence.css` — minimal responsive design and CSS animation.
 3. `apply_v2.py` — conservative, source-anchored integration into a copy of the deployed v1 Betcapitale source. It writes a `.tsx.before-v2` backup and **does not deploy**.
 
-### Installation (only when server access is restored)
+### Verified deployment and rollback
 
-1. Make a fresh **isolated working copy** of the exact v1 source tree, not the live `/app/betcapitale/dist`.
-2. Obtain this folder from GitHub and run `python3 apply_v2.py --website-root /path/to/isolated/site`.
-3. Run the site TypeScript check, targeted summary tests, and production build. Inspect both matched logo images and the 2/3/4-second sequence in a browser including reduced-motion mode.
-4. Compare generated backend bundle byte-for-byte with the live backend, and refuse deployment if it differs unexpectedly.
-5. Back up live `dist`, add the new frontend hashed assets and atomically swap only the frontend `public/index.html`; keep rollback available.
-6. Verify live HTML/JS endpoints, admin API 401 for unauthenticated requests, existing Whop and payment endpoints, and actual admin browser preview.
-7. Update this README to DEPLOYED with verifiable checks and exact rollback path only after a successful deployment.
+- Website source base: `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-animation-work`.
+- Isolated v2 source and build: `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-animation-v2-work`.
+- Ran the `apply_v2.py` integration script successfully, then replaced external Wikimedia URLs in the demo with the locally hosted SVG files (not yet reflected in the generic GitHub script, which includes verified external URLs as a fallback).
+- `tsx --test client/src/lib/software-details.test.ts`: **4/4 passed**.
+- `tsc --noEmit`: passed.
+- `npm run build`: passed.
+- `dist/index.cjs` backend bundle SHA-256 matched live backend exactly: `20a63de0a477fcb9df3a9ec8ad84ab8338c132b1216cbe2dc00adc3bf649c139`. Backend, database, Whop and payment services were untouched.
+- Live previous static release backed up: `/app/betcapitale/dist.rollback-software-detail-v2-20261120T0130Z`.
+- Published new hashed frontend assets and team logos, atomically updated live `dist/public/index.html`, kept old assets.
+- Live main JS: `/assets/index-CdlFKgyK.js`; software JS: `/assets/admin-software-BC794oO8.js`; software CSS: `/assets/admin-software-Co6uw3G6.css` — all HTTP **200**.
+- Live `/team-logos/juventus.svg` and `/team-logos/parma.svg`: **200 image/svg+xml**.
+- Website `betcapitale-web.service`: active. Admin route HTML: HTTP 200. Unauthenticated feed remained protected earlier with HTTP 401.
+- **Interactive signed-in admin browser inspection was not performed**. The 2/3/4-second animation is validated from component source and a successful client production build, not measured in a live browser.
+- Rollback: atomically restore `public/index.html` from the above backup; previous hashed assets are retained. Local logos can be left in place.
+
+### Continuous Desktop Commander service
+
+- A dedicated copy of Desktop Commander Remote v0.3.4 installed at `/opt/desktop-commander-remote`.
+- Systemd unit: `/etc/systemd/system/desktop-commander-remote.service`, enabled at boot and active with `Restart=always` and `RestartSec=12s`. Connection restored as the same `smartxflow` device. Old terminal-driven process stopped.
+- This protects against terminal closure and process exits but cannot guarantee uninterrupted service during network/provider outages.
 
 ## Logo provenance
 
@@ -40,6 +53,6 @@ This repository now has the v2 frontend component, styling, and integration scri
 
 Both are team identity marks. Source pages describe them as geometric/text logos; trademark restrictions may still apply. They are used only for identifying clubs, not product endorsement. No logo assets have yet been cached in the production site for this v2 release.
 
-## Tests
+## Tests and limitations
 
-Only source-level review/role policy compatibility has been performed for these staged v2 files. **No successful production build, device-side compilation or browser animation test of v2 has been carried out as of this README.** The previously deployed v1 tests and build are not evidence of v2 test completion.
+The 4 summary-contract unit tests, TypeScript compilation, and full production build passed. No browser-based signed-in animation/screenshot test was available in this session; no evidence of real agent publishing was created. The backend feed still needs role-scoped Agent Bridge ingestion, report storage and server-side authorization before real match rows populate without demo mode.
