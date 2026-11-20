@@ -32,6 +32,18 @@ Tam raporun **en sonunda**, ilgili veri varsa iki **kısa** tablo üret:
 
 **Etiket sözlüğü:** V1/V2/HEAVY + BTTS YES → MOM; Premium Over, OVER_STRONG, EKOL 3 → PRM; Stable Over + SURPRISE TEAM → CRL; Early Money Core + Early Money Core V2 → SLD. Kod, farklı motorları **tek motor** haline getirmez; tam orijinal motorlar ve precedence raporda korunur. Experimental/shadow EARLY CORE V2, OVER_STRONG ve EKOL 3 bulunsa bile "SHADOW / NOT ACTIVE" diye ayrıca göster; doğrulanmış aktif sinyal gibi ANALYST girişine sokma. Sinyal yoksa `SİNYAL YOK` yaz, maç veya tercih uydurma.
 
+**SXF — MAÇ / TERCİH BAZINDA KISA AÇIKLAMALAR (1–3 MADDE)**
+
+Tetiklenen her aktif seçim için tablo satırından hemen sonra (ve `KOPYALA → ANALYST GİRDİSİ` bloğundan **önce**) **en fazla 3 kısa, anlaşılır, SmartXFlow kaynaklı madde** yaz. 3 ayrı doğrulanmış bulgu varsa 3; yalnız 2 varsa 2; yalnız 1 varsa 1. İlgili seçim için en az 1 doğrulanmış bulgu bulunuyorsa onu mutlaka göster. Hiç doğrulanmış bulgu yoksa madde uydurma, `Doğrulanmış SXF açıklaması yok / NO_EVIDENCE` yaz. Özet bir sonuca ulaşılsa dahi desteklenmeyen odds/para/motor detayı ekleme.
+
+Öncelik sırasıyla: (i) tetiklenen aktif motor + gerçek T-6/T-8 checkpoint, (ii) seçim tarafı para payı/tutarı ve varsa ilgili beraberlik payı, (iii) aynı seçim ve marketin doğrulanmış odds hareketi/retention/persistence, çelişki veya risk. Maddeyi **ilgili tek maç+market+seçim** kimliğine bağla. Bu maddeler SXF tam raporundan gelir ve ANALYST'in nötr girdi bloğuna, NEWS'e veya FINAL dışındaki bir departmana **aktarılmaz**. Site için ayrı `software_detail_bullets_en` kullanılıyorsa aynı doğrulanmış 1–3 bulgunun İngilizce sunumudur, yeni kanıt değildir.
+
+Örnek yerleşim (tamamen **biçim örneği**, gerçek bulgu değil):
+`Maç / Tercih`
+- `1. [doğrulanmış motor ve checkpoint]`
+- `2. [varsa doğrulanmış para akışı]`
+- `3. [varsa doğrulanmış odds/retention/risk]`
+
 **KOPYALA → ANALYST GİRDİSİ** (yalnızca şu tablo)
 
 | tarih (TSİ) | başlama (TSİ) | ev sahibi | deplasman | market | seçim | fixture_uid | run_id | AS_OF / karar kesiti |
