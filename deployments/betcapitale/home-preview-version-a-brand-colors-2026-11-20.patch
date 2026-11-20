@@ -1,0 +1,54 @@
+--- a/client/src/components/horizontal-member-strip.css
++++ b/client/src/components/horizontal-member-strip.css
+@@ -508,3 +508,51 @@
+     font-size: 9px;
+   }
+ }
++
++/* CAPITALE brand color restoration.
++   Keep the approved Version A two-tier geometry intact. */
++.capitale-members-strip {
++  color: #08090B;
++}
++.capitale-members-strip .cms-label small {
++  color: #E8771F;
++}
++.capitale-members-strip .cms-label strong {
++  color: #08090B;
++}
++.capitale-members-strip .cms-people-icon {
++  color: #E8771F;
++  background: rgba(232,119,31,.10);
++}
++.capitale-members-strip .cms-stats {
++  background: #FFFFFF;
++}
++.capitale-members-strip .cms-stat-label {
++  color: #606774;
++}
++.capitale-members-strip .cms-stat-label svg {
++  color: #E8771F;
++}
++.capitale-members-strip .cms-live-dot {
++  background: #1DBB67;
++}
++.capitale-members-strip .cms-stat-number {
++  color: #08090B;
++}
++.capitale-members-strip .cms-highlight {
++  color: #E8771F;
++}
++.capitale-members-strip .cms-join {
++  background: #E8771F;
++  border-color: #E8771F;
++  color: #FFFFFF !important;
++  box-shadow: 0 3px 12px rgba(232,119,31,.18);
++}
++.capitale-members-strip .cms-join:hover {
++  background: #D56B17;
++  border-color: #D56B17;
++  color: #FFFFFF !important;
++}
++.capitale-members-strip .cms-action p {
++  color: #606774;
++}
