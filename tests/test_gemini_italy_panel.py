@@ -32,6 +32,42 @@ class GeminiPanelTests(unittest.TestCase):
             self.assertEqual(n, len({c["name"] for c in cards}))
             self.assertTrue(all(c["age"] >= 18 for c in cards))
 
+    def test_frozen_italian_male_panel_and_budget_consistency(self):
+        cards = panel.personas(self.customer, 100, 7)
+        self.assertEqual(100, len(cards))
+        self.assertEqual(100, len(set(c["name"] for c in cards)))
+        self.assertTrue(all(c["gender"] == "male" for c in cards))
+        self.assertTrue(all(c["nationality"] == "italian" and c["country"] == "Italy" for c in cards))
+        self.assertTrue(all(18 <= c["age"] <= 55 for c in cards))
+        self.assertGreaterEqual(len(set(c["city"] for c in cards)), 15)
+        self.assertGreaterEqual(len(set(c["occupation"] for c in cards)), 12)
+        self.assertGreaterEqual(len(set(c["segment"] for c in cards)), 6)
+        self.assertGreaterEqual(len(set(c["instagram_style"] for c in cards)), 8)
+        self.assertGreaterEqual(len(set(c["budget"]["monthly_optional_spending_eur"] for c in cards)), 20)
+        self.assertGreaterEqual(sum(c["budget"]["monthly_sports_betting_self_limit_eur"] == 0 for c in cards), 50)
+        for c in cards:
+            b = c["budget"]
+            self.assertEqual(b["personal_monthly_net_resources_eur"],
+                             b["monthly_essential_costs_eur"] +
+                             b["monthly_planned_savings_eur"] +
+                             b["monthly_optional_spending_eur"])
+            self.assertGreaterEqual(b["monthly_optional_spending_eur"],
+                                    b["monthly_sports_betting_self_limit_eur"])
+            if c["betting_history"] in ("never", "former"):
+                self.assertEqual(0, b["monthly_sports_betting_self_limit_eur"])
+
+    def test_pilots_reuse_the_frozen_profile_identities(self):
+        all_cards = {c["id"]: c for c in panel.personas(self.customer, 100, 7)}
+        for n in (10, 20):
+            pilot = panel.personas(self.customer, n, 7)
+            self.assertEqual(n, len(pilot))
+            for card in pilot:
+                self.assertEqual(all_cards[card["id"]], card)
+        p = panel.make_prompt(pilot[0], "CAPITALE biography")
+        self.assertIn(pilot[0]["name"], p)
+        self.assertIn("monthly_sports_betting_self_limit_eur", p)
+        self.assertIn("Non-bettors must not be persuaded", p)
+
     def test_response_validation(self):
         self.assertEqual("conditional", panel.verify(self.answer("P001"), "P001")["follow"])
         with self.assertRaises(ValueError):
