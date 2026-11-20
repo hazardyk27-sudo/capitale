@@ -52,6 +52,7 @@ jobs:
           x=base64.b64decode(p.read_bytes(),validate=True)
           assert x.startswith(b'RIFF') and x[8:12]==b'WEBP'
           assert len(x)>1024
+          assert hashlib.sha256(x).hexdigest()=='59d1e8588d81c05d20fe248f156e8d3c35dd143d8bff5ff81629cd26546abe16', 'Image transfer does not match user creative'
           print('Actual image WebP transported successfully; bytes=',len(x))
           print('Image SHA256:',hashlib.sha256(x).hexdigest())
           PY
