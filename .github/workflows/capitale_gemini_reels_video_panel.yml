@@ -6,6 +6,10 @@ on:
     paths:
       - 'scripts/gemini_reels_video_panel.py'
       - 'tests/test_gemini_reels_video_panel.py'
+      - 'tests/test_hybrid_reels_panel.py'
+      - 'scripts/codex_reels_hybrid_panel.py'
+      - 'scripts/merge_hybrid_reels_results.py'
+      - 'founder/hybrid_panel_assignments.json'
       - '.github/workflows/capitale_gemini_reels_video_panel.yml'
   workflow_dispatch:
     inputs:
@@ -57,6 +61,8 @@ jobs:
           python-version: '3.11'
       - name: Run offline mock tests, never consuming Gemini quota
         run: python -m unittest discover -s tests -p 'test_gemini_reels_video_panel.py' -v
+      - name: Verify 50-50 hybrid assignments and no-cost dry-runs
+        run: python -m unittest discover -s tests -p 'test_hybrid_reels_panel.py' -v
       - name: Run actual MP4 evaluation (only when manually triggered)
         if: github.event_name == 'workflow_dispatch'
         shell: bash
