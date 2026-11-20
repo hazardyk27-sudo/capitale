@@ -4,6 +4,8 @@ Status: CANONICAL
 Version: 1.19
 Last updated: 2026-11-06
 
+> **CURRENT DEFAULT — 2026-11-20:** `SXF → ANALYST → NEWS → FINAL → site`. Specialist reports remain independent; SXF and ANALYST pass **only neutral match/selection lists** downstream, while their original full reports are retained for FINAL in Commander staging when available. SXF must provide **1–3 numbered findings per fixture/market/selection, minimum one**. Direct site uploads by SXF, ANALYST and NEWS are retired for this workflow; FINAL is the only final publisher, and its secure site writer is **not yet implemented/verified** (issue #8). Full operational contract: `prompts/manual_report_chain.md`. Historical/experimental documents are not agent startup instructions.
+
 ## 1. Purpose
 
 CAPITALE is a multi-agent football match research and decision-support system designed to reduce confirmation bias, source contamination, future-data leakage, and hidden double-counting. Independent specialist departments produce isolated reports. Only FINAL may synthesize those reports into recommendations.
