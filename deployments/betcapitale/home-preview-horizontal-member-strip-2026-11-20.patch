@@ -1,0 +1,248 @@
+--- a/client/src/pages/landing.tsx
++++ b/client/src/pages/landing.tsx
+@@ -7,7 +7,7 @@
+ } from "recharts";
+ import SiteHeader from "@/components/SiteHeader";
+ import CommunityVoicesSection from "@/components/CommunityVoicesSection";
+-import LiveCommunityPanel from "@/components/LiveCommunityPanel";
++import HorizontalMemberStrip from "@/components/HorizontalMemberStrip";
+ import { ArrowRight, MessageSquare, Calendar, BarChart2, Users, CircleDollarSign } from "lucide-react";
+ import MobileHomePage from "@/components/MobileHomePage";
+ 
+@@ -200,7 +200,7 @@
+       {/* ═══ HERO ════════════════════════════════════════════════ */}
+       <section style={{ background: "#FFFFFF", padding: "38px 24px 100px" }}>
+ 
+-        <div className="hero-grid mx-auto" style={{ maxWidth: "1160px" }}>
++        <div className="hero-grid capitale-preview-hero mx-auto" style={{ maxWidth: "1160px" }}>
+ 
+           {/* ── Left: copy ──────────────────────────────────────── */}
+           <div style={{ maxWidth: "500px" }}>
+@@ -321,14 +321,10 @@
+             </div>
+           </div>
+ 
+-          {/* ── Right: membership panel ─────────────────────────── */}
+-          <div
+-            className="hero-right-col"
+-            style={{ display: "flex", justifyContent: "center", width: "100%", minWidth: 0 }}
+-          >
+-            <LiveCommunityPanel />
+-          </div>
+         </div>
++
++        {/* ── Horizontal member counter: below the hero, never beside it ── */}
++        <HorizontalMemberStrip />
+ 
+         {/* ── Mobile actions panel (inside section, below grid) ── */}
+         <div
+--- a/client/src/components/MobileHomePage.tsx
++++ b/client/src/components/MobileHomePage.tsx
+@@ -11,6 +11,7 @@
+ } from "recharts";
+ import * as FlagIcons from "country-flag-icons/react/3x2";
+ import { MobileHeader, MobileActionPanel } from "./MobileSharedLayout";
++import HorizontalMemberStrip from "./HorizontalMemberStrip";
+ import {
+   communityReviews, COUNTRY_FILTERS, FEATURED_IDS,
+   type CommunityReview,
+@@ -937,7 +938,11 @@
+           <p style={{ marginTop: "16px", fontSize: "17px", lineHeight: 1.55, color: "#5F6673", fontFamily: FONT, marginBottom: 0 }}>
+             Built on the right strategy for consistent long-term profits.
+           </p>
+-          <MobileMemberCard />
++        </div>
++
++        {/* ── Wide responsive member strip directly under mobile hero ── */}
++        <div style={{ padding: "0 16px 26px", width: "100%", boxSizing: "border-box" }}>
++          <HorizontalMemberStrip />
+         </div>
+ 
+         {/* ── Community Voices ──────────────────────────────────── */}
+--- /dev/null
++++ b/client/src/components/HorizontalMemberStrip.tsx
+@@ -0,0 +1,110 @@
++import { useEffect, useRef, useState } from "react";
++import { useQuery } from "@tanstack/react-query";
++import { Link } from "wouter";
++import { ArrowRight, TrendingUp, Users } from "lucide-react";
++import "./horizontal-member-strip.css";
++
++interface CommunityStats {
++  totalMembers: number;
++  currentlyActive: number;
++  todayIncrease: number;
++  weekIncrease: number;
++}
++const DIGIT_COUNT = 4;
++
++function useAnimatedMembers(value: number | null) {
++  const [display, setDisplay] = useState<number | null>(null);
++  const lastRef = useRef<number | null>(null);
++  useEffect(() => {
++    if (value === null) return;
++    const start = lastRef.current ?? 0;
++    const end = Math.max(0, Math.floor(value));
++    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
++    if (reduced || start === end) {
++      lastRef.current = end;
++      setDisplay(end);
++      return;
++    }
++    const started = performance.now();
++    const duration = 1100;
++    let handle = 0;
++    const tick = (time: number) => {
++      const p = Math.min((time - started) / duration, 1);
++      const eased = 1 - Math.pow(1 - p, 3);
++      setDisplay(Math.round(start + (end - start) * eased));
++      if (p < 1) handle = requestAnimationFrame(tick);
++      else lastRef.current = end;
++    };
++    handle = requestAnimationFrame(tick);
++    return () => cancelAnimationFrame(handle);
++  }, [value]);
++  return display;
++}
++
++function MemberDigits({ value }: { value: number | null }) {
++  const digits = value === null
++    ? Array.from({ length: DIGIT_COUNT }, () => "–")
++    : Math.max(0, value).toString().padStart(DIGIT_COUNT, "0").split("");
++  return (
++    <div className="cms-digits" aria-label={value === null ? "Loading member total" : `${value.toLocaleString("en-GB")} total members`}>
++      {digits.map((digit, index) => (
++        <span className="cms-digit" aria-hidden="true" key={index}>{digit}</span>
++      ))}
++    </div>
++  );
++}
++
++export default function HorizontalMemberStrip() {
++  const { data, isLoading } = useQuery<CommunityStats>({
++    queryKey: ["/api/community/stats"],
++    refetchInterval: 15000,
++  });
++  const displayed = useAnimatedMembers(
++    typeof data?.totalMembers === "number" ? data.totalMembers : null
++  );
++  const stats = [
++    { label: "Currently active", key: "active", value: data?.currentlyActive, prefix: "", icon: "active" },
++    { label: "Today", key: "today", value: data?.todayIncrease, prefix: "+", icon: "up" },
++    { label: "This week", key: "week", value: data?.weekIncrease, prefix: "+", icon: "up" },
++  ] as const;
++
++  return (
++    <section className="capitale-members-strip" aria-label="CAPITALE community membership">
++      <div className="cms-total">
++        <div className="cms-label">
++          <span className="cms-people-icon"><Users size={17} strokeWidth={1.8} /></span>
++          <div>
++            <strong>Total Bet Capitale Members</strong>
++            <small>OUR GROWING COMMUNITY</small>
++          </div>
++        </div>
++        <MemberDigits value={displayed} />
++      </div>
++
++      <div className="cms-stats">
++        {stats.map((item) => (
++          <div className="cms-stat" key={item.key}>
++            <div className="cms-stat-label">
++              {item.icon === "active"
++                ? <span className="cms-live-dot" aria-hidden="true" />
++                : <TrendingUp size={12} strokeWidth={2.1} aria-hidden="true" />}
++              <span>{item.label}</span>
++            </div>
++            <div className={`cms-stat-number ${item.key === "active" ? "" : "cms-highlight"}`}>
++              {typeof item.value === "number"
++                ? `${item.prefix}${item.value.toLocaleString("en-GB")}`
++                : "—"}
++            </div>
++          </div>
++        ))}
++      </div>
++
++      <div className="cms-action">
++        <Link href="/plans" className="cms-join" data-testid="button-live-community-cta">
++          Join the Community <ArrowRight size={15} aria-hidden="true" />
++        </Link>
++        <p>{isLoading ? "Loading live membership data" : "Member count updates throughout the day"}</p>
++      </div>
++    </section>
++  );
++}
+--- /dev/null
++++ b/client/src/components/horizontal-member-strip.css
+@@ -0,0 +1,71 @@
++/* CAPITALE Home v1: compact, responsive horizontal member counter below hero. */
++.capitale-members-strip {
++  width: 100%;
++  max-width: 1160px;
++  margin: 42px auto 0;
++  display: grid;
++  grid-template-columns: minmax(300px, 1.08fr) minmax(380px, 1.24fr) minmax(194px, 0.7fr);
++  align-items: center;
++  gap: 0;
++  background: linear-gradient(110deg, #fff 0%, #fff 65%, #fffdfb 100%);
++  border: 1px solid #e5e9ed;
++  border-radius: 20px;
++  box-shadow: 0 10px 34px rgba(16, 27, 44, .07), 0 2px 5px rgba(16, 27, 44, .025);
++  overflow: hidden;
++  font-family: "Manrope", sans-serif;
++  color: #111a29;
++}
++.cms-total { padding: 22px 26px; min-width: 0; }
++.cms-label { display: flex; align-items: center; gap: 11px; margin-bottom: 12px; }
++.cms-label strong { display: block; font-weight: 800; font-size: 13px; letter-spacing: -.025em; line-height: 1.3; }
++.cms-label small { display: block; color: #9aa7b7; font-size: 8px; font-weight: 800; letter-spacing: .16em; margin-top: 4px; }
++.cms-people-icon { width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0; display: grid; place-items: center; background: #fff2e8; color: #e8771f; }
++.cms-digits { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; max-width: 275px; }
++.cms-digit { position: relative; display: grid; place-items: center; height: 56px; overflow: hidden; border-radius: 9px; background: #12151c; color: #fff; font-size: 33px; line-height: 1; font-weight: 900; font-variant-numeric: tabular-nums; box-shadow: 0 2px 5px rgba(0, 0, 0, .16); }
++.cms-digit::after { content: ""; position: absolute; top: 50%; left: 3px; right: 3px; height: 1px; background: rgba(255,255,255,.18); }
++.cms-stats { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); align-items: stretch; min-height: 128px; border-left: 1px solid #e9edf1; border-right: 1px solid #e9edf1; }
++.cms-stat { min-width: 0; align-content: center; padding: 12px 15px; text-align: center; position: relative; }
++.cms-stat + .cms-stat::before { position: absolute; content: ""; height: 66px; top: calc(50% - 33px); left: 0; width: 1px; background: #edf0f3; }
++.cms-stat-label { display: inline-flex; align-items: center; justify-content: center; gap: 5px; white-space: nowrap; font-size: 10px; line-height: 1.3; font-weight: 800; color: #8290a3; text-transform: uppercase; letter-spacing: .035em; }
++.cms-stat-label svg { color: #e8771f; flex-shrink: 0; }
++.cms-live-dot { display: inline-block; width: 6px; height: 6px; background: #2eae77; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 3px rgba(46,174,119,.09); }
++.cms-stat-number { margin-top: 11px; font-size: 28px; font-variant-numeric: tabular-nums; letter-spacing: -.055em; line-height: 1; font-weight: 900; color: #17263a; }
++.cms-highlight { color: #e8771f; }
++.cms-action { padding: 20px 22px; text-align: center; min-width: 0; }
++.cms-join { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 49px; width: 100%; padding: 11px 13px; border-radius: 10px; color: #fff !important; font-size: 12px; font-weight: 800; line-height: 1.2; text-align: center; white-space: nowrap; text-decoration: none !important; background: #e8771f; box-shadow: 0 4px 15px rgba(232,119,31,.20); transition: background .18s ease, transform .18s ease; }
++.cms-join:hover { background: #d56b17; transform: translateY(-1px); }
++.cms-join:focus-visible { outline: 3px solid #173a6a; outline-offset: 3px; }
++.cms-action p { margin-top: 10px; font-size: 9px; line-height: 1.5; color: #99a5b5; }
++.desktopHome .hero-grid.capitale-preview-hero { display: block; max-width: 1160px !important; }
++.desktopHome .hero-grid.capitale-preview-hero > div:first-child { max-width: 700px !important; }
++@media (max-width: 1050px) {
++  .capitale-members-strip { grid-template-columns: minmax(245px,.9fr) minmax(350px,1.2fr); }
++  .cms-action { grid-column: 1 / -1; border-top: 1px solid #edf0f3; display: flex; align-items: center; gap: 20px; padding: 12px 20px; }
++  .cms-join { max-width: 235px; }
++  .cms-action p { margin: 0; text-align: left; }
++}
++@media (max-width: 767px) {
++  .capitale-members-strip { margin: 0 auto; border-radius: 17px; grid-template-columns: 1fr; width: 100%; }
++  .cms-total { display: grid; grid-template-columns: 1fr; gap: 12px; padding: 16px 16px 15px; }
++  .cms-label { margin-bottom: 0; }
++  .cms-label strong { font-size: 13px; }
++  .cms-people-icon { width: 32px; height: 32px; }
++  .cms-digits { width: 100%; max-width: 100%; gap: 7px; }
++  .cms-digit { height: 51px; font-size: 29px; }
++  .cms-stats { min-height: 81px; border-left: 0; border-right: 0; border-top: 1px solid #edf0f3; border-bottom: 1px solid #edf0f3; }
++  .cms-stat { padding: 12px 6px; }
++  .cms-stat + .cms-stat::before { height: 45px; top: calc(50% - 22.5px); }
++  .cms-stat-label { font-size: 8px; letter-spacing: 0; }
++  .cms-stat-number { font-size: 23px; margin-top: 8px; }
++  .cms-action { grid-column: auto; display: flex; align-items: center; flex-direction: column; gap: 7px; padding: 13px 16px 15px; border-top: 0; }
++  .cms-join { max-width: none; min-height: 45px; font-size: 13px; }
++  .cms-action p { font-size: 10px; text-align: center; }
++}
++@media (max-width: 360px) {
++  .cms-label strong { font-size: 12px; }
++  .cms-stat-label { font-size: 7.5px; }
++  .cms-stat-number { font-size: 21px; }
++}
++@media (prefers-reduced-motion: reduce) {
++  .cms-join { transition: none !important; }
++}
