@@ -1,0 +1,130 @@
+--- a/client/src/components/SiteHeader.tsx
++++ b/client/src/components/SiteHeader.tsx
+@@ -1,7 +1,7 @@
+ import { useState } from "react";
+ import { Link, useLocation } from "wouter";
+ import { Menu, X, LogOut, User } from "lucide-react";
+-import logoImg from "@assets/bet-capitale-wordmark.webp";
++import { CapitaleHeaderBrand } from "./CapitaleHeaderBrand";
+ import { useAuth, useLogout } from "@/hooks/useAuth";
+ import { MobileHeader } from "./MobileSharedLayout";
+ 
+@@ -55,27 +55,7 @@
+           style={{ textDecoration: "none" }}
+           data-testid="link-home"
+         >
+-          <div style={{
+-            overflow: "hidden",
+-            width: "clamp(126px, 21vw, 238px)",
+-            height: "36px",
+-            flexShrink: 0,
+-            position: "relative",
+-          }}>
+-            <img
+-              src={logoImg}
+-              alt="Bet Capitale"
+-              style={{
+-                position: "absolute",
+-                width: "clamp(126px, 21vw, 238px)",
+-                height: "auto",
+-                top: "50%",
+-                left: "50%",
+-                transform: "translate(-50%, -50%)",
+-                display: "block",
+-              }}
+-            />
+-          </div>
++          <CapitaleHeaderBrand />
+         </Link>
+ 
+         {/* Desktop nav */}
+--- a/client/src/components/MobileSharedLayout.tsx
++++ b/client/src/components/MobileSharedLayout.tsx
+@@ -1,7 +1,7 @@
+ import { useState } from "react";
+ import { Link, useLocation } from "wouter";
+ import { Menu, X, Calendar, MessageSquare, TrendingUp } from "lucide-react";
+-import logoImg from "@assets/bet-capitale-wordmark.webp";
++import { CapitaleHeaderBrand } from "./CapitaleHeaderBrand";
+ import { useAuth, useLogout } from "@/hooks/useAuth";
+ 
+ const ORANGE = "#F25A00";
+@@ -36,12 +36,7 @@
+         padding: "0 20px", boxSizing: "border-box",
+       }}>
+         <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+-          <div style={{ width: "190px", height: "32px", position: "relative", overflow: "hidden", flexShrink: 0 }}>
+-            <img src={logoImg} alt="Bet Capitale" style={{
+-              position: "absolute", width: "190px", height: "auto",
+-              top: "50%", left: "50%", transform: "translate(-50%, -50%)", display: "block",
+-            }} />
+-          </div>
++          <CapitaleHeaderBrand compact />
+         </Link>
+ 
+         <button onClick={() => setMenuOpen(o => !o)} style={{
+--- /dev/null
++++ b/client/src/components/CapitaleHeaderBrand.tsx
+@@ -0,0 +1,62 @@
++/** Shared dark-mode variant of the approved Software Intelligence header identity. */
++export function CapitaleHeaderBrand({ compact = false }: { compact?: boolean }) {
++  return (
++    <span
++      className="capitale-header-brand"
++      style={{
++        display: "inline-flex",
++        alignItems: "center",
++        gap: compact ? "9px" : "12px",
++        flexShrink: 0,
++        whiteSpace: "nowrap",
++        lineHeight: 1,
++      }}
++    >
++      <img
++        src="/capitale-premium-symbol.svg"
++        alt=""
++        aria-hidden="true"
++        width={compact ? 33 : 36}
++        height={compact ? 33 : 36}
++        style={{
++          display: "block",
++          width: compact ? "33px" : "36px",
++          height: compact ? "33px" : "36px",
++          objectFit: "contain",
++          flexShrink: 0,
++        }}
++      />
++      <span style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", minWidth: 0 }}>
++        <strong
++          style={{
++            display: "block",
++            color: "#FFFFFF",
++            fontFamily: 'Georgia, "Times New Roman", serif',
++            fontSize: compact ? "17px" : "19px",
++            letterSpacing: compact ? "0.15em" : "0.18em",
++            lineHeight: 1.15,
++            fontWeight: 600,
++            whiteSpace: "nowrap",
++          }}
++        >
++          CAPITALE
++        </strong>
++        <small
++          style={{
++            display: "block",
++            marginTop: compact ? "5px" : "6px",
++            color: "#C9CED7",
++            fontFamily: '"Manrope", Arial, sans-serif',
++            fontSize: compact ? "7px" : "8px",
++            fontWeight: 750,
++            letterSpacing: compact ? "0.14em" : "0.20em",
++            lineHeight: 1.25,
++            whiteSpace: "nowrap",
++          }}
++        >
++          SOFTWARE INTELLIGENCE
++        </small>
++      </span>
++    </span>
++  );
++}
