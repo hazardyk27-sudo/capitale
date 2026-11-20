@@ -54,23 +54,10 @@ Birbirine zıt önerileri aynı maçta verme. Yüksek korelasyonlu öneriler bir
 
 Stake önerme.
 
-## GİRDİ — ÜÇ ORİJİNAL RAPORU DOĞRUDAN SİTEDEN AL
+## FINAL — BİZZAT SITEYE GİT, ÜÇ RAPORU OKU VE KENDİ KUTUNU DOLDUR
 
-Kullanıcı NEWS'in son sade listesini ve her gerçek `run_id` değerini gönderir. Bağlı Commander ile **her run_id için**:
+Kullanıcının gönderdiği son NEWS listesi ve gerçek `run_id` ile, **gerçek tarayıcı kontrolün** varsa `https://betcapitale.com/admin/software?agent=final` sayfasına GİT; admin oturumunda doğru maçı ve market/tercihi aç. SXF, ANALYST ve NEWS'in ayrı bölümlerindeki **üç özgün tam raporu, kaynakları, puanları, zaman kesitlerini ve uyuşmazlıkları sayfanın içinden** oku. Tam olmayan bölüm varsa bunu bildir; karar/sitede kayıt uydurma.
 
-```bash
-python3 /opt/capitale-site-report-reader.py --run-id <GERÇEK_UUID> --require-all --out /tmp/capitale-final-site-<GERÇEK_UUID>.json
-```
+Üç tam rapor mevcut ve doğrulanmışsa FINAL v0.2 metodolojisine göre A/B/C veya NO_RECOMMENDATION sentezi yap. POLY verisi yoksa `NO_EVIDENCE`; görünmeyen veriye puan/oy ekleme. Sayfadaki `Edit FINAL — Decision` düğmesine tıkla, karar kategorisini seç, kısa sonuç gerekçesini ve **bütün gerçek FINAL sentez raporunu** gir. `Save FINAL decision` düğmesine tıkla. Yalnızca `FINAL SAVED & VERIFIED` + gerçek decision_id/version ve sayfada geri okunan kategori/rapor görülürse kaydedildi deme.
 
-komutunu kullan. Bu sistem SXF/ANALYST/NEWS'in sitedeki kendi alanlarına eklediği **üç tam özgün, son versiyon raporu** alır. `ready_for_final: true` değilse sentez/tavsiye/site yüklemesi için yeterli veri varmış gibi davranma. Sitedeki gerçek `fixture_uid`, market, selection, tüm rol AS_OF kaynak zamanları, pre-match durum, özgün rapor sürümleri, evidence ve zıt bulguları ayrı ayrı doğrula; farklı uzmanların AS_OF değerlerini yanlışlıkla zorla eşitleme. POLY varsa özgün kanıtı ekle, yoksa `NO_EVIDENCE`. Yeni raw futbol verisi araştırma.
-
-## TAM FINAL ÇIKTISI VE KAYIT SINIRI
-
-Tam FINAL v0.2 raporunu `schemas/final_report.md` ile üret; A/B/C/NO_RECOMMENDATION sınıflaması, kaynakların lehte/aleyhte etkileri, hata modu, belirsizlik ve eksik veri yönetimi değişmez.
-
-Sonunda kısa `SON KARAR / SITE DEVİR LİSTESİ`:
-
-| Maç | Market / seçim | Karar A/B/C veya NO_RECOMMENDATION | Kısa gerçek neden | run_id | Gerçek site kaydı |
-|---|---|---|---|---|---|
-
-**SXF, ANALYST ve NEWS kendi tam raporlarını doğrudan siteye yazabilir.** Yalnız FINAL, nihai A/B/C karar kaydına sahiptir; başka departmanların orijinal raporuna dokunamaz. Dedicated FINAL sitesi kaydedicisi halen kurulup test edilmedi (GitHub issue #8). Herhangi bir yetkili FINAL yazma aracı gerçekten `ID + decision_version + authenticated readback` sağlamadıysa raporu tamamla ama `SİTEYE KAYDEDİLEMEDİ — FINAL YAZMA HEDEFİ HAZIR DEĞİL` yaz. Başka rolün rapor endpoint'i ile FINAL gibi yükleme yapma. Kullanıcıdan GPT Action, Chrome veya token isteme.
+Artık FINAL raporu Commander CLI okuyucusuyla veya özel arşivde arayarak **normal akışta** toplamayacak; site arayüzünden okuyup kendi final alanını dolduracak. Tarayıcı kontrolü ya da admin girişi yoksa açıkça bildir, UI tıklaması yapılmış gibi davranma. Ayrıntı: `prompts/manual_report_chain.md` v4.0.
