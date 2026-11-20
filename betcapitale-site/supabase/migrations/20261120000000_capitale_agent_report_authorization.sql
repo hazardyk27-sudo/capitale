@@ -303,21 +303,80 @@ begin
 end;
 $$;
 
+create or replace function public.capitale_admin_list_runs(p_limit integer default 50)
+returns jsonb
+language sql
+security definer
+set search_path = pg_catalog, capitale
+as $
+  select jsonb_build_object(
+    'ok', true,
+    'runs', coalesce(
+      jsonb_agg(
+        jsonb_build_object(
+          'id', r.id,
+          'fixture_uid', r.fixture_uid,
+          'run_revision', r.run_revision,
+          'status', r.status,
+          'target_markets', r.target_markets,
+          'analysis_cutoff_at', r.analysis_cutoff_at,
+          'requested_at', r.requested_at,
+          'orchestrator_version', r.orchestrator_version
+        ) order by r.requested_at desc
+      ),
+      '[]'::jsonb
+    )
+  )
+  from (
+    select id, fixture_uid, run_revision, status, target_markets,
+           analysis_cutoff_at, requested_at, orchestrator_version
+    from capitale.research_runs
+    order by requested_at desc
+    limit greatest(1, least(coalesce(p_limit, 50), 100))
+  ) r;
+$;
+
+create or replace function public.capitale_admin_get_agent_reports(p_run_id uuid)
+returns jsonb
+language sql
+security definer
+set search_path = pg_catalog, capitale
+as $
+  select jsonb_build_object(
+    'ok', true,
+    'run_id', p_run_id,
+    'reports', coalesce((
+      select jsonb_agg(to_jsonb(r) order by r.role, r.report_version desc)
+      from capitale.agent_reports r
+      where r.run_id = p_run_id
+    ), '[]'::jsonb),
+    'evidence', coalesce((
+      select jsonb_agg(to_jsonb(e) order by e.observed_at asc)
+      from capitale.evidence_items e
+      join capitale.agent_reports r on r.id = e.report_id
+      where r.run_id = p_run_id
+    ), '[]'::jsonb)
+  );
+$;
+
 -- No browser role can invoke the privileged bridge or read/write the CAPITALE tables.
 revoke all on function public.capitale_provision_agent_tokens(jsonb) from public, anon, authenticated;
 revoke all on function public.capitale_record_agent_denial(text, text, text) from public, anon, authenticated;
 revoke all on function public.capitale_submit_agent_report(text, uuid, text, jsonb, jsonb) from public, anon, authenticated;
+revoke all on function public.capitale_admin_list_runs(integer) from public, anon, authenticated;
+revoke all on function public.capitale_admin_get_agent_reports(uuid) from public, anon, authenticated;
 grant execute on function public.capitale_provision_agent_tokens(jsonb) to service_role;
 grant execute on function public.capitale_record_agent_denial(text, text, text) to service_role;
 grant execute on function public.capitale_submit_agent_report(text, uuid, text, jsonb, jsonb) to service_role;
+grant execute on function public.capitale_admin_list_runs(integer) to service_role;
+grant execute on function public.capitale_admin_get_agent_reports(uuid) to service_role;
 
 alter table capitale.research_runs enable row level security;
 alter table capitale.agent_reports enable row level security;
 alter table capitale.evidence_items enable row level security;
 alter table capitale.audit_log enable row level security;
 revoke all on capitale.research_runs, capitale.agent_reports, capitale.evidence_items, capitale.audit_log from public, anon, authenticated;
-revoke insert, update, delete, truncate, references, trigger on capitale.research_runs, capitale.agent_reports, capitale.evidence_items, capitale.audit_log from service_role;
-grant select on capitale.agent_reports, capitale.evidence_items to service_role;
+revoke all on capitale.research_runs, capitale.agent_reports, capitale.evidence_items, capitale.audit_log from public, anon, authenticated, service_role;
 
 alter table capitale.agent_reports drop constraint if exists agent_reports_role_check;
 alter table capitale.agent_reports add constraint agent_reports_role_check
