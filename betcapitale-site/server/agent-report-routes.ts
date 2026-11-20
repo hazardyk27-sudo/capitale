@@ -219,6 +219,15 @@ export function registerAgentReportRoutes(app: Express, requireAdmin: RequestHan
     }
   });
 
+  // Admin-only delivery to configure each department's API connector. Never cache or log this response.
+  app.get("/api/admin/capitale/agent-bridge/credentials", requireAdmin, (_req,res)=>{
+    res.setHeader("Cache-Control","no-store, private");
+    res.setHeader("Pragma","no-cache");
+    const credentials={analyst:process.env.CAPITALE_AGENT_ANALYST_TOKEN,news:process.env.CAPITALE_AGENT_NEWS_TOKEN,sxf:process.env.CAPITALE_AGENT_SXF_TOKEN};
+    if(Object.values(credentials).some(v=>!v||v.length<32))return sendSafeError(res,503,"agent_tokens_missing");
+    return res.json({credentials});
+  });
+
   // Run metadata is Admin-only and deliberately excludes free-form context.
   app.get("/api/admin/capitale/research-runs", requireAdmin, async (req, res) => {
     const config = getSupabaseConfig();
