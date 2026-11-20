@@ -1,0 +1,246 @@
+--- a/client/src/components/horizontal-member-strip.css
++++ b/client/src/components/horizontal-member-strip.css
+@@ -268,3 +268,243 @@
+ @media (prefers-reduced-motion: reduce) {
+   .cms-join { transition: none !important; }
+ }
++
++
++/* VERSION A DISTINCT — large editorial counter on the main row; tiny stats in a footer ribbon.
++   This two-tier layout deliberately differs from Version B's three equal-height columns. */
++.capitale-members-strip {
++  grid-template-columns: minmax(0, 1fr) 220px;
++  grid-template-rows: minmax(155px, auto) auto;
++  background: #fff;
++  border: 1px solid #e4e8ec;
++  border-radius: 20px;
++  box-shadow: 0 9px 29px rgba(19, 33, 52, .055);
++}
++.capitale-members-strip .cms-total {
++  grid-column: 1;
++  grid-row: 1;
++  display: flex;
++  align-items: center;
++  gap: 27px;
++  padding: 24px 30px;
++  background: #fff;
++}
++.capitale-members-strip .cms-label {
++  flex: 0 0 174px;
++  margin: 0;
++  align-items: flex-start;
++}
++.capitale-members-strip .cms-label strong {
++  font-size: 12px;
++  line-height: 1.45;
++  color: #687688;
++}
++.capitale-members-strip .cms-label small {
++  color: #aa906f;
++  font-size: 8.5px;
++  letter-spacing: .11em;
++}
++.capitale-members-strip .cms-people-icon {
++  background: #f9f5f0;
++  color: #bb875e;
++}
++.capitale-members-strip .cms-digits {
++  flex: 1 1 auto;
++  width: 100%;
++  max-width: 544px;
++  gap: 12px;
++}
++.capitale-members-strip .cms-digit {
++  height: 104px;
++  font-size: 64px;
++  font-weight: 850;
++  border-radius: 12px;
++  background: #111821;
++  border: 1px solid #222c38;
++  box-shadow: 0 3px 8px rgba(13, 21, 31, .12);
++}
++.capitale-members-strip .cms-stats {
++  grid-column: 1 / -1;
++  grid-row: 2;
++  display: flex;
++  justify-content: center;
++  align-items: center;
++  min-height: 58px;
++  padding: 9px 15px;
++  background: #f7f8f9;
++  border-top: 1px solid #e8ebef;
++  border-left: 0;
++  border-right: 0;
++}
++.capitale-members-strip .cms-stat {
++  display: flex;
++  flex: 0 1 235px;
++  align-items: center;
++  justify-content: center;
++  gap: 11px;
++  padding: 6px 15px;
++}
++.capitale-members-strip .cms-stat + .cms-stat::before {
++  top: calc(50% - 12px);
++  height: 24px;
++  background: #e5e9ed;
++}
++.capitale-members-strip .cms-stat-label {
++  min-height: 0;
++  color: #9aa6b2;
++  font-size: 9px;
++  font-weight: 750;
++  white-space: nowrap;
++}
++.capitale-members-strip .cms-stat-number {
++  margin: 0;
++  color: #627186;
++  font-size: 17px;
++  font-weight: 800;
++}
++.capitale-members-strip .cms-highlight { color: #ab8c70; }
++.capitale-members-strip .cms-action {
++  grid-column: 2;
++  grid-row: 1;
++  gap: 11px;
++  padding: 25px 21px;
++  border-left: 1px solid #edf0f2;
++  border-top: 0;
++  background: #fff;
++  justify-content: center;
++}
++.capitale-members-strip .cms-join {
++  width: 100%;
++  min-height: 42px;
++  border-radius: 9px;
++  border: 1px solid #e9d4c0;
++  background: #fff;
++  color: #a8764c !important;
++  font-size: 11px;
++  box-shadow: none;
++}
++.capitale-members-strip .cms-join:hover { background: #fbf7f2; }
++.capitale-members-strip .cms-action p {
++  max-width: 200px;
++  margin: 0 auto;
++  font-size: 9px;
++  color: #a2adba;
++  text-align: center;
++}
++
++@media (min-width: 768px) and (max-width: 1030px) {
++  .capitale-members-strip {
++    grid-template-columns: minmax(0, 1fr) 196px;
++    grid-template-rows: minmax(165px, auto) auto;
++  }
++  .capitale-members-strip .cms-total {
++    display: block;
++    padding: 18px 23px 23px;
++  }
++  .capitale-members-strip .cms-label {
++    margin-bottom: 13px;
++    align-items: center;
++  }
++  .capitale-members-strip .cms-digits {
++    max-width: 505px;
++    gap: 9px;
++  }
++  .capitale-members-strip .cms-digit {
++    height: 81px;
++    font-size: 54px;
++  }
++  .capitale-members-strip .cms-action {
++    grid-column: 2;
++    grid-row: 1;
++    display: flex;
++    flex-direction: column;
++    align-items: stretch;
++    padding: 18px 14px;
++  }
++  .capitale-members-strip .cms-join {
++    order: 0;
++    min-width: 0;
++  }
++  .capitale-members-strip .cms-action p {
++    order: 1;
++  }
++}
++
++@media (max-width: 767px) {
++  .capitale-members-strip {
++    display: grid;
++    grid-template-columns: minmax(0, 1fr);
++    grid-template-rows: auto auto auto;
++    border-radius: 17px;
++    background: #fff;
++  }
++  .capitale-members-strip .cms-total {
++    grid-column: 1;
++    grid-row: 1;
++    display: flex;
++    flex-direction: column;
++    align-items: stretch;
++    gap: 15px;
++    padding: 20px 16px 21px;
++  }
++  .capitale-members-strip .cms-label {
++    flex: 0 0 auto;
++    margin: 0;
++    align-items: center;
++  }
++  .capitale-members-strip .cms-digits {
++    flex: none;
++    width: 100%;
++    max-width: none;
++    gap: 8px;
++  }
++  .capitale-members-strip .cms-digit {
++    height: clamp(68px, 22vw, 83px);
++    font-size: clamp(44px, 13vw, 55px);
++    border-radius: 10px;
++  }
++  .capitale-members-strip .cms-stats {
++    grid-column: 1;
++    grid-row: 2;
++    display: grid;
++    grid-template-columns: repeat(3, minmax(0, 1fr));
++    padding: 8px 4px;
++    min-height: 61px;
++    gap: 0;
++  }
++  .capitale-members-strip .cms-stat {
++    display: flex;
++    flex-direction: column;
++    flex: none;
++    gap: 5px;
++    padding: 5px 2px;
++  }
++  .capitale-members-strip .cms-stat-label {
++    min-height: 0;
++    font-size: 7.5px;
++    white-space: normal;
++    line-height: 1.2;
++  }
++  .capitale-members-strip .cms-stat-number {
++    font-size: 19px;
++  }
++  .capitale-members-strip .cms-action {
++    grid-column: 1;
++    grid-row: 3;
++    display: flex;
++    padding: 12px 16px 16px;
++    gap: 7px;
++    flex-direction: column;
++    align-items: stretch;
++    border: 0;
++  }
++  .capitale-members-strip .cms-join {
++    width: 100%;
++    min-height: 41px;
++    font-size: 11px;
++  }
++  .capitale-members-strip .cms-action p {
++    max-width: none;
++    font-size: 9px;
++  }
++}
