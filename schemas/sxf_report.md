@@ -7,14 +7,14 @@ SXF reports must be generated strictly as-of each match's own decision horizon. 
 
 ```yaml
 role: SXF
+run_id: <existing verified research run UUID or null with explicit UNVERIFIED status>
+fixture_uid: <verified canonical fixture identity or null>
 match_id: <canonical match id>
 match: <home> vs <away>
 run_at_utc: <timestamp>
 prompt_version: <version>
 methodology_version: sxf-draft-0.4.3
 scan_mode: <CHECKPOINT_DAILY_T6_FALLBACK_T8|DYNAMIC_AS_OF_V04|CHECKPOINT_RESEARCH_T6_FALLBACK_T8>
-run_at_utc: <timestamp>
-
 decision_horizon:
   kickoff_utc: <timestamp>
   as_of_utc: <timestamp> # equals decision checkpoint target in daily mode, NOT run_at_utc
