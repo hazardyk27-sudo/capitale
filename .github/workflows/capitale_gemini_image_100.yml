@@ -1,0 +1,84 @@
+name: CAPITALE Gemini 100 Italian Male Image Review
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'founder/images/DIAMO_89_from_user.webp.b64'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Only prepare profile set; no Gemini calls'
+        type: boolean
+        default: false
+        required: true
+      panel_size:
+        description: 'Number of separate Gemini API requests'
+        type: choice
+        options:
+          - '10'
+          - '100'
+        default: '100'
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: capitale-gemini-image-100
+  cancel-in-progress: false
+
+jobs:
+  gemini-image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout CAPITALE repository
+        uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate image runner and fixed 100 profiles with no Gemini usage
+        run: python -m unittest discover -s tests -p 'test_gemini_image_100_panel.py' -v
+      - name: Check actual transported image
+        run: |
+          python - <<'PY'
+          import base64
+          from pathlib import Path
+          import hashlib
+          p=Path('founder/images/DIAMO_89_from_user.webp.b64')
+          assert p.is_file(), "The actual user image was not uploaded"
+          x=base64.b64decode(p.read_bytes(),validate=True)
+          assert x.startswith(b'RIFF') and x[8:12]==b'WEBP'
+          assert len(x)>1024
+          print('Actual image WebP transported successfully; bytes=',len(x))
+          print('Image SHA256:',hashlib.sha256(x).hexdigest())
+          PY
+      - name: Gemini-only 100 separate REAL image API calls
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DRY: ${{ inputs.dry_run }}
+          SIZE: ${{ inputs.panel_size }}
+          TRIGGER: ${{ github.event_name }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$TRIGGER" == "push" ]]; then
+            SIZE=100
+            DRY=false
+          fi
+          opts=(--n "$SIZE" --model "gemini-3.5-flash-lite" --delay 7
+                --out "founder/image_runs/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}")
+          if [[ "$DRY" == "true" ]]; then
+            opts+=(--dry-run)
+          fi
+          python scripts/gemini_image_100_panel.py "${opts[@]}"
+      - name: Upload complete and partial real-model answers
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: capitale-gemini-image-100-${{ github.run_id }}-${{ github.run_attempt }}
+          path: founder/image_runs/
+          if-no-files-found: warn
+          retention-days: 30
