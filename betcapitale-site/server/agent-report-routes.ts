@@ -129,6 +129,22 @@ export function registerAgentReportRoutes(app: Express, requireAdmin: RequestHan
     catch{return sendSafeError(res,503,"run_preparation_unavailable");}
   });
 
+  // Tokenless connector variant: the route fixes the server-side department identity.
+  app.post("/api/capitale/agent-bridge/reports/:department", async (req,res)=>{
+    const role=req.params.department;
+    if(!allowedRoles.includes(role as typeof allowedRoles[number]))return sendSafeError(res,404,"unknown_department");
+    const token=process.env[`CAPITALE_AGENT_${role.toUpperCase()}_TOKEN`]?.trim();
+    const config=getSupabaseConfig();
+    if(!token||!config)return sendSafeError(res,503,"agent_bridge_not_configured");
+    const parsed=agentWriteRequestSchema.safeParse(req.body);
+    if(!parsed.success)return sendSafeError(res,400,"invalid_request");
+    try{
+      const result=await rpc<{ok:boolean;error?:string;duplicate?:boolean;report_id?:string;report_version?:number;fixture_uid?:string;actor_role?:string}>(config,"capitale_submit_agent_report",{p_bearer_token:token,p_run_id:parsed.data.run_id,p_idempotency_key:parsed.data.idempotency_key,p_report:parsed.data.report,p_evidence:parsed.data.evidence});
+      if(!result.ok)return sendSafeError(res,result.error==="invalid_fixture"?404:result.error==="idempotency_conflict"?409:422,result.error??"report_rejected");
+      return res.status(result.duplicate?200:201).json({ok:true,duplicate:result.duplicate===true,report_id:result.report_id,report_version:result.report_version,fixture_uid:result.fixture_uid,actor_role:result.actor_role});
+    }catch{return sendSafeError(res,503,"report_store_unavailable");}
+  });
+
   app.post("/api/capitale/agent-bridge/reports", async (req, res) => {
     const token = bearerToken(req);
     if (!token) {
