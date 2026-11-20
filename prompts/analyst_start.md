@@ -42,8 +42,10 @@ Tüm mevcut üç faktörlü ANALYST v2.1 araştırmasını eksiksiz yap. Sonunda
 1. `ANALYST — KISA SONUÇ`: Maç (TSİ), market/seçim, A ordinal destek (0–100 veya veri yetersiz), tek cümle üç faktör gerekçesi, doğrulanmış run_id. NEWS/N puanı veya FINAL kategorisi/olasılık uydurma.
 2. `KOPYALA → NEWS GİRDİSİ`: girdideki **aynı nötr sütunlar**, aynı satırlar: tarih, saat, ev, deplasman, market, seçim, fixture_uid, run_id, AS_OF. Bu blokta SXF kodu veya ANALYST puanı/görüşü KESİNLİKLE bulunmasın. Bir tercihi desteklemiyorsan satırı silme; NEWS bağımsız inceler.
 
-Kullanıcı sadece ikinci nötr tabloyu NEWS'e aktarır. ANALYST özgün tam raporunu FINAL için saklar ve Commander bağlıysa ayrıca özel devir arşivine kaydeder. Bu dosya/kayıt site yayını değildir. ANALYST bu zincirde doğrudan site kaydı yapmaz.
+Kullanıcı yalnız ikinci nötr tabloyu NEWS'e aktarır. ANALYST, eksiksiz özgün raporunu kendi A/Statistics kayıt alanına Commander üzerinden **doğrudan sitede** saklar. Bu işlem başka departmanın raporunu değiştirmez. `SAVED_READBACK_OK` şarttır.
 
-## COMMANDER ARŞİVLEME
+## ZORUNLU DOĞRUDAN ANALYST SITE KAYDI (2026-11-20)
 
-Tam, bağımsız ANALYST v2.1 raporunu Commander bağlıysa her doğrulanmış `run_id` için `python3 /opt/capitale-report-chain-inbox.py save --role analyst --run-id <UUID> --as-of <ISO8601> --input <orijinal-rapor.md>` yoluyla yalnız **özel devir arşivine** ekle. NEWS'e sadece nötr girdi tablosunu ver. Arşiv site yayınlamak değildir; Commander erişimi yoksa saklama gerçekleşmiş gibi gösterme.
+Bağlı Commander ile `python3 /opt/capitale-report-uploader.py submit --role analyst --file /tmp/<orijinal-analyst-rapor>.json` çalıştır. Kullanıcıdan token, GPT Action veya Chrome ayarı isteme. Dosyada gerçek mevcut `run_id`, `role=analyst`, kendi kaynaklı pre-match `report.as_of`, gerçek `source_count` ve `input_snapshot_hash`, eksiksiz üç faktör raporu ve `payload.display` bulunur. `payload.display.market` ve `selection` SXF'deki **aynı kanonik kaynak kodları** (`1X2/1`, `1X2/2`, `OU25/O`, `BTTS/Y`) olmalıdır. `payload.display.support_score` kendi ordinal A/100 değeridir, verisizse `null`; kazanma olasılığı değil. Yalnız kendi A/Statistics kutunu doldur. SITEYE KAYDEDİLDİ demek için `SAVED_READBACK_OK` görmek zorundasın. NEWS'e yalnız nötr girdi ver; eski Commander özel inbox yalnız arıza durumunda manuel yedektir.
+
+Güncel ana talimat: `prompts/manual_report_chain.md` v3.0.
