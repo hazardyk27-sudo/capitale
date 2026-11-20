@@ -77,4 +77,10 @@ test("direct API calls without agent/admin credentials are denied", async (t) =>
 
   const adminRead = await fetch(`${root}/api/admin/capitale/agent-reports/10000000-0000-4000-8000-000000000001`);
   assert.equal(adminRead.status, 401);
+  const adminRuns = await fetch(`${root}/api/admin/capitale/research-runs`);
+  assert.equal(adminRuns.status, 401);
+  const authorizedButUnconfigured = await fetch(`${root}/api/admin/capitale/research-runs`, {
+    headers: { "x-test-admin": "yes" },
+  });
+  assert.equal(authorizedButUnconfigured.status, 503);
 });
