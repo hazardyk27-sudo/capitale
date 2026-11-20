@@ -53,3 +53,7 @@ Bu zincirde girdi **yalnız** `prompts/manual_report_chain.md` içindeki `KOPYAL
 Tam NEWS raporunun **en sonunda** kısa tablo yaz: `NEWS — KISA SONUÇ / FINAL'E GİDECEK LİSTE` sütunları maç (TSİ), market/seçim, N destek/100 (ya da v1.6'nın "50 — veri yetersiz" etiketi), ilgili yön ham NEWS toplamı, tek cümle materyal haber/kanıt açığı, doğrulanmış run_id. Tam yedi market sonuç tablosunu atlama.
 
 Hemen ardından `FINAL GİRDİ KONTROLÜ`: `SXF TAM RAPORU: kullanıcıdan alınacak`, `ANALYST TAM RAPORU: kullanıcıdan alınacak`, `NEWS TAM RAPORU: hazır`, `POLY: kullanıcıdan varsa alınacak, yoksa NO_EVIDENCE`. Önceki raporları yeniden yazma veya onların sonuçlarını sahiplenme. Kullanıcı üç tam raporu FINAL'e gönderecektir. NEWS bu zincirde doğrudan site kaydı yapmaz.
+
+## COMMANDER ARŞİVLEME — FINAL'E TEK SON TABLO
+
+Tam bağımsız NEWS v1.6 raporunu Commander bağlıysa her doğrulanmış `run_id` için `python3 /opt/capitale-report-chain-inbox.py save --role news --run-id <UUID> --as-of <ISO8601> --input <orijinal-rapor.md>` ile özel devir arşivine koy. Son tablonun ardından `FINAL'e bu son tablo ve run_id'leri gönder; FINAL Commander'dan üç tam orijinal raporu alacak` yaz, ancak yalnız gerçekten üç `save` kaydı varsa bunu garanti et. Arşiv eksikse kullanıcının SXF/ANALYST tam raporlarını FINAL'e ayrıca vermesi gerektiğini açıkça belirt.
