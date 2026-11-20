@@ -1,0 +1,50 @@
+/* CAPITALE · staged report visualization. All classes are scoped to Software details. */
+.capitale-analysis-sequence{color:#0e1726}
+.capitale-analysis-sequence-header{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:16px}
+.capitale-analysis-sequence-kicker{font-size:10px;line-height:1.6;font-weight:800;letter-spacing:.19em;color:#df751e}
+.capitale-analysis-sequence-heading{margin:4px 0 2px;font-size:18px;font-weight:800;letter-spacing:-.03em}
+.capitale-analysis-sequence-caption{font-size:11px;line-height:1.7;color:#768398}
+.capitale-analysis-sequence-count{white-space:nowrap;background:#fff;border:1px solid #e3e8ef;border-radius:20px;padding:6px 10px;font-size:11px;color:#526173;font-weight:700}
+.capitale-analysis-demo{margin:0 0 14px;padding:9px 12px;background:#fff5e8;border:1px solid #fed7aa;border-radius:8px;color:#914c17;font-size:11px;line-height:1.55;font-weight:650}
+.capitale-analysis-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.capitale-analysis-card{min-height:258px;overflow:hidden;border:1px solid #e1e7ef;border-radius:14px;background:#fff;transition:border-color .25s,box-shadow .25s}
+.capitale-analysis-card-active{border-color:#f1a060;box-shadow:0 10px 25px rgba(14,23,38,.07)}
+.capitale-analysis-card-done{border-color:#d6e6e0}
+.capitale-analysis-card-heading{display:flex;align-items:flex-start;gap:10px;padding:17px 15px 14px;border-bottom:1px solid #edf0f4}
+.capitale-analysis-icon{width:36px;height:36px;flex-shrink:0;display:grid;place-items:center;border-radius:10px;background:#fef3e6;color:#dc711a}
+.capitale-analysis-eyebrow{color:#95a0ae;letter-spacing:.15em;font-size:10px;font-weight:800}
+.capitale-analysis-title{margin-top:2px;color:#0e1726;font-size:13px;font-weight:800}
+.capitale-analysis-status{display:inline-flex;gap:5px;align-items:center;white-space:nowrap;padding:4px 6px;border-radius:5px;background:#f4f6f9;color:#7b8899;font-size:10px;font-weight:750}
+.capitale-analysis-card-active .capitale-analysis-status{background:#fff1e2;color:#bb5915}
+.capitale-analysis-status-done{background:#e7f4ee;color:#187352}
+.capitale-live-dot{width:6px;height:6px;display:inline-block;border-radius:50%;background:#ed822d;animation:capitale-neural-pulse 1s infinite}
+.capitale-analysis-processing{position:relative;display:flex;align-items:center;flex-direction:column;justify-content:center;min-height:202px;padding:6px 17px 15px;background:radial-gradient(ellipse at 50% 28%,#fff6eb 0%,#fff 69%)}
+.capitale-neural-scene{height:115px;width:158px;position:relative;display:grid;place-items:center;isolation:isolate}
+.capitale-neural-orbit{position:absolute;width:102px;height:76px;border:1px dashed rgba(228,125,44,.33);border-radius:50%;transform:rotate(-30deg);animation:capitale-neural-spin 10s linear infinite}
+.capitale-neural-orbit-b{transform:rotate(55deg);width:78px;height:105px;animation-direction:reverse;animation-duration:8s}
+.capitale-neural-center{display:grid;place-items:center;width:64px;height:64px;border-radius:18px;background:#fff;color:#d76c19;box-shadow:0 0 0 1px rgba(224,125,42,.12),0 0 28px rgba(237,121,36,.18);animation:capitale-neural-breathe 1.7s ease-in-out infinite}
+.capitale-neural-node{position:absolute;z-index:2;width:7px;height:7px;background:#e8771f;border-radius:50%;box-shadow:0 0 0 5px rgba(232,119,31,.13);animation:capitale-neural-pulse 1.4s ease-in-out infinite}
+.capitale-neural-node-a{top:22px;left:17px}.capitale-neural-node-b{top:20px;right:24px;animation-delay:.3s}.capitale-neural-node-c{bottom:21px;left:34px;animation-delay:.6s}.capitale-neural-node-d{bottom:26px;right:22px;animation-delay:.9s}
+.capitale-neural-sweep{position:absolute;inset:17px 13px;overflow:hidden;pointer-events:none;background:linear-gradient(90deg,transparent 43%,rgba(231,130,44,.20) 50%,transparent 57%);background-size:220% 100%;animation:capitale-neural-scan linear both}
+.capitale-analysis-phase{font-size:12px;font-weight:800;color:#9d4a12;text-align:center}
+.capitale-analysis-helper{margin-top:4px;font-size:9px;font-weight:750;letter-spacing:.1em;color:#b4a493}
+.capitale-analysis-progress-track{margin-top:12px;width:100%;height:4px;background:#f3e9db;border-radius:6px;overflow:hidden}
+.capitale-analysis-progress-bar{height:100%;width:0;background:linear-gradient(90deg,#f1ac69,#e8771f);border-radius:6px;animation:capitale-progress linear forwards}
+.capitale-analysis-time{margin-top:7px;font-size:10px;color:#b0a296}
+.capitale-analysis-pending{padding:24px 19px;color:#a9b1bd}
+.capitale-analysis-pending p{font-size:10px;margin-top:20px;font-weight:600}
+.capitale-analysis-skeleton{height:8px;border-radius:8px;background:#f0f3f6;margin-bottom:16px}
+.capitale-analysis-results{padding:16px 15px 20px}
+.capitale-analysis-bullets{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.capitale-analysis-bullet{display:flex;align-items:flex-start;gap:9px;font-size:12px;line-height:1.68;color:#435063;animation:capitale-result-rise .43s ease-out both}
+.capitale-analysis-bullet-index{flex-shrink:0;color:#e8771f;font-size:11px;font-weight:850;font-variant-numeric:tabular-nums}
+.capitale-analysis-unavailable{padding:12px;background:#f5f7f9;border-radius:7px;font-size:12px;color:#758093;line-height:1.6}
+@keyframes capitale-neural-spin{to{transform:rotate(330deg)}}
+@keyframes capitale-neural-breathe{50%{transform:scale(1.065);box-shadow:0 0 0 1px rgba(224,125,42,.22),0 0 35px rgba(237,121,36,.30)}}
+@keyframes capitale-neural-pulse{50%{opacity:.45;transform:scale(.80)}}
+@keyframes capitale-neural-scan{from{background-position:100% 50%}to{background-position:-120% 50%}}
+@keyframes capitale-progress{from{width:0}to{width:100%}}
+@keyframes capitale-result-rise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1100px){.capitale-analysis-grid{grid-template-columns:1fr}.capitale-analysis-card{min-height:180px}.capitale-analysis-processing{min-height:195px}.capitale-analysis-pending{padding:25px 20px}}
+@media(max-width:600px){.capitale-analysis-sequence-header{flex-direction:column}.capitale-analysis-sequence-count{align-self:flex-start}.capitale-analysis-card-heading{padding:13px}.capitale-analysis-results{padding:15px}}
+@media(prefers-reduced-motion:reduce){.capitale-analysis-sequence *, .capitale-analysis-sequence *::before,.capitale-analysis-sequence *::after{animation:none!important;transition:none!important}}
