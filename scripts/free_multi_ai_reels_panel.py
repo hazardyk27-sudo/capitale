@@ -347,6 +347,7 @@ def run(args, gemini_uploader=upload_video, gemini_client=video_request,
                                 modality = ("3_silent_jpg_frames" if provider == "groq"
                                             else "8_silent_jpg_frames")
                             validate(answer, pid)
+                            err = None  # A previously retried error is no longer active.
                             entry = {
                                 "provider": provider, "persona": card, "answer": answer,
                                 "model_requested": MODELS[provider],
