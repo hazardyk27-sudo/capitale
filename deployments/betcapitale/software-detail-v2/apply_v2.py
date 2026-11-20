@@ -29,8 +29,8 @@ const PREVIEW_MATCHES: SoftwareMatch[] = [
     volumeShare: 84.2, drawShare: 12.8, currentOdds: 1.92, referenceOdds: 2.03,
     referenceOddsAt: "2026-11-22T10:00:00Z", currentOddsAt: "2026-11-22T13:00:00Z",
     capturedAt: null, source: "SYNTHETIC DEMO DATA — NOT LIVE", reportStatus: "complete",
-    homeLogoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Juventus_FC_-_logo_black_%28Italy%2C_2020%29.svg",
-    awayLogoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo_Parma_Calcio_1913_%28adozione_2016%29.svg",
+    homeLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/ed/Juventus_FC_-_logo_black_%28Italy%2C_2020%29.svg",
+    awayLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/9/97/Logo_Parma_Calcio_1913_%28adozione_2016%29.svg",
     departmentSummaries: {
       sxf: { software_detail_bullets_en: [
         "In this fictional example, 84.2% of selected-market money is on Juventus.",
@@ -57,8 +57,8 @@ const PREVIEW_MATCHES: SoftwareMatch[] = [
     volumeShare: 77.5, drawShare: 12.8, currentOdds: 1.78, referenceOdds: 1.85,
     referenceOddsAt: "2026-11-22T10:00:00Z", currentOddsAt: "2026-11-22T13:00:00Z",
     capturedAt: null, source: "SYNTHETIC DEMO DATA — NOT LIVE", reportStatus: "complete",
-    homeLogoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Juventus_FC_-_logo_black_%28Italy%2C_2020%29.svg",
-    awayLogoUrl: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Logo_Parma_Calcio_1913_%28adozione_2016%29.svg",
+    homeLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/ed/Juventus_FC_-_logo_black_%28Italy%2C_2020%29.svg",
+    awayLogoUrl: "https://upload.wikimedia.org/wikipedia/commons/9/97/Logo_Parma_Calcio_1913_%28adozione_2016%29.svg",
     departmentSummaries: {
       sxf: { software_detail_bullets_en: [
         "This simulated Over 2.5 selection carries 77.5% of market money.",
