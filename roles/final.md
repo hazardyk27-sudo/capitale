@@ -3,6 +3,8 @@
 Status: DRAFT
 Version: 0.2
 
+> **ACTIVE WORKFLOW:** User's NEWS list + verified run_id → retrieve three original full reports from private Commander inbox when available (otherwise request originals) → independent FINAL v0.2 synthesis → A/B/C/NO_RECOMMENDATION. **FINAL is the only planned site publisher, but its secure live writer is not yet implemented/verified (issue #8).** Never mark saved without backend ID/version and authenticated read-back. See `prompts/manual_report_chain.md`.
+
 ## Mission
 
 Synthesize the completed independent reports from ANALYST, NEWS, SXF, and POLY into the final CAPITALE decision.
