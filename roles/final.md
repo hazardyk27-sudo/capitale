@@ -3,7 +3,7 @@
 Status: DRAFT
 Version: 0.2
 
-> **ACTIVE WORKFLOW:** User's NEWS list + verified run_id → Commander reads the three original full SXF/ANALYST/NEWS reports DIRECTLY FROM THE SITE using `/opt/capitale-site-report-reader.py --require-all` → FINAL v0.2 synthesis A/B/C/NO_RECOMMENDATION. FINAL is the final-decision owner, while its dedicated safe live writer is not yet implemented/verified (issue #8). No claimed site save without ID/version readback. See `prompts/manual_report_chain.md` v3.
+> **ACTIVE WORKFLOW — BROWSER V4:** User's NEWS list + real run_id → **open `https://betcapitale.com/admin/software?agent=final`**, click same match, read three complete ORIGINAL role reports on page, synthesize FINAL v0.2 A/B/C/NO_RECOMMENDATION, click **Edit FINAL — Decision**, enter category/complete report, **Save FINAL decision**, and verify saved decision ID/version on page. The guarded browser FINAL writer is deployed; it must still be tested with a genuine three-report pre-match case. Do NOT claim the real user-case worked until a successful on-page save/readback. See `prompts/manual_report_chain.md` v4.
 
 ## Mission
 
@@ -209,3 +209,5 @@ Do not invent these calibration values before evidence supports them.
 SXF now creates canonical verified signal entries directly in /admin/software; ANALYST and NEWS add their own full source-backed report versions to that exact `run_id`, with strictly neutral routing between researchers. FINAL is the **only role allowed to read all three original specialist reports together**, through `python3 /opt/capitale-site-report-reader.py --run-id <UUID> --require-all --out <private.json>`. It verifies run, fixture, market, selection and each original report AS_OF and source lineage. POLY optional, `NO_EVIDENCE` when absent.
 
 FINAL's own A/B/C or NO_RECOMMENDATION website publication is separate and still requires a secure, genuinely working FINAL writer (GitHub issue #8). The existing generic role uploader supports ONLY SXF/ANALYST/NEWS; do not impersonate them, use the public trial endpoint, or claim FINAL saved without a real site readback. The previous `/opt/capitale-report-chain-inbox.py` is an offline fallback only, not the default or a reason to ask users to paste all full specialist reports.
+
+**2026-11-20 browser UI override:** Historical references above to a Commander CLI script, private inbox or an unimplemented FINAL site writer are superseded by the real browser-only owner workflow in `prompts/manual_report_chain.md` v4.0. Authorized admin browser login, on-page form submission and visible save/readback are required; methodology and evidence isolation are unchanged.
