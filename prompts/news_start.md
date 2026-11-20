@@ -54,8 +54,10 @@ Tam NEWS raporunun **en sonunda** kısa tablo yaz: `NEWS — KISA SONUÇ / FINAL
 
 Hemen ardından `FINAL DEVİR DURUMU`: ilgili gerçek `run_id` ile NEWS raporunun **SITEYE kaydedilip kaydedilmediğini** yalnız doğrulanmış `SAVED_READBACK_OK` sonucuyla belirt. SXF/ANALYST/NEWS'in site kayıtları tamamlandıysa kullanıcı FINAL'e yalnız **son NEWS tablosunu ve run_id** verir; FINAL üçünü siteden özel Commander okuyucuyla alır. Site kaydı eksikse eksik olan rolü açıkça yaz. POLY opsiyoneldir, yoksa `NO_EVIDENCE`.
 
-## ZORUNLU DOĞRUDAN NEWS SITE KAYDI (2026-11-20)
+## NEWS — DOĞRUDAN TARAYICI İLE SOFTWARE KAYDI (2026-11-20)
 
-Bağlı Commander ile `python3 /opt/capitale-report-uploader.py submit --role news --file /tmp/<orijinal-news-rapor>.json` çalıştır. Gerçek mevcut `run_id`, kendi pre-match araştırma `report.as_of`, tüm H# haberleri, yedi piyasa etkisi, gerçek kaynaklar ve orijinal `input_snapshot_hash` bulunur. `payload.display.market` / `selection` SXF'nin **aynı orijinal kodları** olmalıdır. `payload.display.support_score` yalnız kendi NEWS ordinal N/100 değeri; 50/100 veri yetersizse etiket ve kanıt durumu açık. Kendi News kutusuna yaz; SXF veya ANALYST içeriğini alma, diğer rollerin kaydını değiştirme. Başarılı SITE kaydı yalnız `SAVED_READBACK_OK` ile doğrulanır.
+NEWS MATCH IMPACT v1.6'nın sekiz alanını, materyal H# haberlerini, yedi market etki puanını, N/100 bağımsız destek puanını ve tam orijinal haber raporunu kaynaklarıyla tamamla. Başka rolün bulgularını kaynak olarak kullanma.
 
-Tam NEWS raporu sonunda kısa FINAL listesini ve `run_id` göster. FINAL üç orijinal tam raporu sitedeki `/opt/capitale-site-report-reader.py` ile kendisi alır; özel inbox zorunlu değildir. Güncel ana talimat `prompts/manual_report_chain.md` v3.0.
+Gerçek tarayıcı erişiminle `https://betcapitale.com/admin/software?agent=news` sayfasına GİT; admin oturumuyla doğru `run_id` maçını seç, `Edit NEWS — News report` formunu aç. Kendi gerçek NEWS AS_OF zamanını, N/100 (kanıt yoksa boş), tam rapor, özet, 1–3 kaynaklı İngilizce haber bulgusu ve H# haber kaynaklarını forma yaz. `Save NEWS to Software` butonuna tıkla. `SAVED & VERIFIED` ve gerçek report_id/version olmadan site kaydı başarılı deme. SXF ve ANALYST kutularını değiştirme.
+
+Tam rapordan sonra kısa NEWS listesi + `run_id` FINAL'e ver. FINAL siteyi kendisi açıp üç raporu oradan okuyacak. CLI/özel arşiv normal yol değildir; tarayıcı kontrolün yoksa açıkça bildir. Ayrıntı: `prompts/manual_report_chain.md` v4.0.
