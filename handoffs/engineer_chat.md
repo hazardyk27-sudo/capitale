@@ -58,3 +58,11 @@
 
 ---
 **Not:** Bu MD, ayrı ENGINEER sohbetinin operasyonel hafızasıdır; uzman raporu, kaynak kanıtı veya otomatik sistem logu değildir.
+
+### 2026-11-21 — Software liste görünümünde oran değerinin kaldırılması
+- **İstek / hedef:** Kullanıcı /admin/software MATCH / SIGNAL / A / N / V / B / O Δ% tablosunda ham oran (ör. 3.15, 1.77) gösterilmesini istemiyor; yalnız oran değişimi yüzde/ok gösterilecek. Ekran görüntüsü hem ham oran hem Δ% gösterildiğini doğruladı.
+- **Yapılan değişiklikler:** Aktif üretim sunucusunda `/app/betcapitale/dist/public/assets/admin-software-B_RQbAaY.js` liste hücresindeki ham `currentOdds.toFixed(2)` çıktı elemanı kaldırılarak yalnız mevcut delta metni bırakıldı. Yeni asset: `admin-software-delta-only-20261121.js`. Aktif `index-Bg9uIRfV.js` dosyasındaki iki chunk referansı yeni asset'e geçirildi; index yedeği `index-Bg9uIRfV.js.bak-20261121-delta-only` olarak tutuldu. Detay panelinin odds bilgileri, veriler, backend ve hesaplama değişmedi.
+- **Doğrulanan testler:** Sunucu yerel patch kontrolü başarılı; aktif index'te yeni chunk referansı 2 adet; canlı HTTPS'te yeni asset HTTP 200. Gerçek admin oturumu ile görsel GUI doğrulaması henüz yapılmadı. Eski browser cache'i hard refresh gerektirebilir.
+- **Eksik / başarısız / bloke olanlar:** Bu değişiklik doğrudan üretim derlenmiş asset'ine yapıldı. Kalıcı kaynak reposunda aynı gösterim kuralı ayrıca güvence altına alınmalı; yeniden build/deploy eski sürümü geri getirmemeli. Kapsam kuralı: sadece liste O Δ% hücresinde ham oran yok; talep netleştirilmedikçe analiz detaylarındaki ham veriler korunur.
+- **Sonraki adım:** Kullanıcıyla aktif admin UI'de görsel kontrol; uygun kaynak koduna delta-only render testi ve kalıcı commit; browser-direct E2E agent zinciri henüz beklemede.
+- **Sürüm/kanonik kural etkisi:** Yok, sadece UI düzeltmesi.
