@@ -1,4 +1,5 @@
 import type { Express } from "express";
+import { registerAgentReportRoutes } from "./agent-report-routes";
 import { createServer, type Server } from "http";
 import { createHash } from "crypto";
 import { storage } from "./storage";
@@ -2184,6 +2185,8 @@ function promotionAssessment(input: {
       res.status(500).json({ error: "Events could not be loaded." });
     }
   });
+
+  registerAgentReportRoutes(app, requireAdmin);
 
   // ── Background interval: apply increments every 60s without needing traffic ─
   setInterval(async () => {
