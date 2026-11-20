@@ -1,102 +1,76 @@
-# CAPITALE — AKTİF MANUEL AGENT ZİNCİRİ
+# CAPITALE — CANLI DOĞRUDAN RAPOR AKIŞI
 
-Status: OWNER-APPROVED OPERATIONAL WORKFLOW
-Version: 2.0 — 2026-11-20
+Status: OWNER-APPROVED — ACTIVE DEFAULT
+Version: 3.0 — 2026-11-20
 
-**Tek varsayılan kullanıcı iş akışı: SXF → ANALYST → NEWS → FINAL → site.**
-Başka bir akış yalnız kullanıcı açıkça isterse ayrı bir araştırma modu olarak çalışabilir; bu belge geçmişteki bağımsız/parallel yayın modunu AKTİF KABUL ETMEZ.
-Bu belge yalnız rapor aktarımı ve sunum biçimidir; SXF/ANALYST/NEWS/FINAL/POLY analiz eşikleri, source policy, AS_OF veya sonuç metodolojilerini değiştirmez.
+**SXF → ANALYST → NEWS → FINAL. HER ROL KENDİ RAPORUNU AYNI CANLI MAÇ KAYDINA YAZAR.** Artık üç raporun FINAL'e kadar gizli bir arşivde bekletilmesi normal akış değildir. Sitenin `/admin/software` sayfası çalışmanın ana kayıt merkezidir. Tam uzman raporları korunur; yalnız kısa özet yayınlamak tam raporun yerine geçmez.
 
-## Ortak ilkeler
+## 1. SXF — sinyal oluşunca Software'e doğrudan aktarım
 
-- SXF, ANALYST ve NEWS **tam bağımsız özgün rapor** üretir ve yalnız kendi izinli verisini kullanır.
-- SXF → ANALYST ve ANALYST → NEWS **yalnız nötr seçim bilgisi** taşır: tarih, saat, ev sahibi, deplasman, market, seçim, doğrulanmış fixture_uid, run_id ve karar AS_OF. Uzmanın açıklama ve puanları sonraki uzman için kanıt değildir.
-- Orijinal üç tam raporu yalnız FINAL birlikte değerlendirir. POLY bağımsız isteğe bağlıdır; yoksa `NOT_PROVIDED / NO_EVIDENCE`, asla sahte POLY desteği yoktur.
-- `run_id` formatı geçerli olmakla kalmayıp kanonik araştırma kaydıyla gerçekten eşleştirilmiş olmalıdır; UUID uydurulmaz. `fixture_uid`, market, seçim, kickoff ve tüm kaynak kesitleri tutarlı olmalıdır.
-- Nötr tabloda SXF'den gelen `AS_OF` **SXF'nin dondurulmuş sinyal karar kesitidir**, ANALYST/NEWS'in kendi araştırmasının AS_OF değerini zorunlu olarak eşitlemez. Her bağımsız uzman kendi gerçek **report_as_of_utc** zamanını raporlar; bu zaman kendi dayandığı kaynakların yayınından sonra ve maç öncesinde olmalıdır. FINAL farklı departman zamanlarını **etiketleyerek** karşılaştırır; eşit olmamaları tek başına sahte veri veya hata değildir. FINAL'in kendi karar kesitinden sonraki rapor/kanıt kullanılmaz.
-- Verisi eksik maçı sinyal varmış gibi gösterme; AS_OF sonrasındaki hiçbir snapshot karar verisini değiştiremez.
+- SmartXFlow'un `public.sxf_base_signal_events` tablosundaki **doğrulanmış `FINAL_SIGNAL`** olayları sunucuda `tools/capitale_sxf_software_sync.py` / `/opt/capitale-sxf-software-sync.py` ile analiz edilir.
+- `tools/capitale_sxf_software_watch.py` / `/opt/capitale-sxf-software-watch.py` her **3 dakikada bir** yeni olay olup olmadığını denetler. Yalnız geçerli T-6/T-8 checkpoint, source snapshot zamanı karar kesitini aşmayan, kanonik fixture kimliğiyle doğrulanmış **aktif motorları** kullanır. Deneysel/retired motorlar, prelim/sıradan alarm ve gelecekteki veri otomatik sinyal sayılmaz. Aynı seçimde V1+V2 veya STABLE+PREMIUM tek seçim kaydı olur. Farklı seçimli/şüpheli gruplaşma kontrol bekler, sessizce diğer seçimi atmaz. Varsayılan günlük yöntem T-6, uygun durumda T-8 fallback; geçerli T-6 nontrigger sonrasında T-8'e kaçılmaz. `SURPRISE_TEAM` sadece **watch_only** izleme etiketiyle aktarılır; kazanan taraf bahsi olarak önerilmez.
+- Siteye seçimin `fixture_uid`, gerçek `run_id`, maç saati, market/seçim, motorlar, MOM/PRM/CRL/SLD görünüm kodu, checkpoint, verified share/amount, mevcut ve gerçekten geçmiş referans odds ve oran değişim % bilgileri ile **1–3 kanıt maddesi** kaydedilir. Kaynak odds referansı yoksa O sütunu `—` gösterir, oran yüzdesi uydurulmaz. Maç listesindeki O alanı **yalnız oran değişim yüzdesidir**.
+- SXF sohbet agentı kendi **tam kaynak/snapshot/motor raporunu** ayrıca üretir. Kapanışta `SXF — TETİKLENEN SİNYALLER` tablosu, her incelenen maç+market+tercih için **en az bir, en fazla üç numaralı doğrulanmış bulgu** ve `KOPYALA → ANALYST GİRDİSİ` nötr tablosu bulunur. Sinyal yoksa en az bir dürüst doğrulama bulgusu yazılır; aktifmiş gibi yayınlanmaz.
+- SXF sohbeti otomatik veri kaydını önce doğrular (yalnız gerçek `run_id` ve rapor kimliğiyle `SAVED_READBACK_OK`). Tam sohbet raporuna yeni gerçek kanıt eklendiyse kendi `sxf` raporunun **yeni versiyonunu**, aynı `run_id` ile Commander uploader'dan yükleyebilir; eski sürümü silmez.
+- Sadece gerçekten aktif ve doğrulanmış seçimleri ANALYST'e ver. `SURPRISE_TEAM` watch_only ise otomatik kazanan taraf tercihi olarak aktarılmaz.
 
-## 1. SXF — tam rapor, sinyaller, en az 1 bulgu, nötr liste
+## 2. ANALYST — kendi tam raporunu aynı site kaydına ekler
 
-SXF v0.4.3 DRAFT; SmartXFlow kaynakları, engine precedence ve AS_OF politikası uygulanır. Günlük varsayılan: her maç/market için geçmişte oluşmuş geçerli **T-6**. T-6 henüz gelmediyse veya market T-6 verisi eksik/geçersizse ve gerçek T-8 verisi uygunsa **T-8 fallback**; geçerli T-6 sinyal vermediği için T-8'e geçilemez. `DYNAMIC_AS_OF_V04` yalnız özel istekle. Retired/shadow motorlar asla aktif sinyal diye listelenmez.
+- ALDIĞI: yalnız nötr `tarih | saat | ev sahibi | deplasman | market | seçim | fixture_uid | run_id | SXF karar AS_OF` tablosu. SXF motor/para/oran/yorum bilgisi analiz kanıtı olarak kullanılmaz.
+- ANALYST v2.1 CANONICAL üç bağımsız futbol faktörünü eksiksiz çalıştırır: (1) topa sahip olma, (2) sezon, son üç ve son bir maç form ivmesi, (3) rakip seviyesi/taktik ve iki takımın bütün ev/deplasman lig maçları. Tek **ordinal A destek /100** veya `veri yetersiz`; kazanma olasılığı değildir.
+- Tam raporun sonunda `ANALYST — KISA SONUÇ` + aynı nötr sütunlu `KOPYALA → NEWS GİRDİSİ` gösterir.
+- Commander bağlıysa **orijinal tam raporunu** ve rolüne ait `payload.display` bilgilerini `python3 /opt/capitale-report-uploader.py submit --role analyst --file /tmp/analyst-<run_id>.json` ile siteye yazar. SXF'ye ait anahtarları değiştirmez. `SAVED_READBACK_OK` sonucunu görmeden başarı iddiasında bulunmaz.
 
-Önce **eksiksiz SXF raporunu** üret. En sonunda sırasıyla:
+## 3. NEWS — kendi tam raporunu aynı site kaydına ekler
 
-**SXF — TETİKLENEN SİNYALLER**
+- ALDIĞI: yalnız `KOPYALA → NEWS GİRDİSİ` nötr tablosu. Önceki A puanı/SXF sinyal/yorumları kaynak değildir. Her iki takımın sekiz haber alanını simetrik araştır, yalnız materyal H# haberlerini yedi 1/X/2/O/U/KG Y/KG N etki sütunuyla puanla. N/100 yalnız kaynağa dayalı ordinal destek, olasılık değildir. Yeterli haber yoksa `50/100 — veri yetersiz` etiketi.
+- Tam rapor sonunda `NEWS — KISA SONUÇ / FINAL'E GİDECEK LİSTE` (maç, market, seçim, N/100, yedi marketten ilgili ham NEWS etkisi, kısa gerekçe, gerçek run_id) göster.
+- Commander bağlıysa **orijinal tam NEWS raporunu** `python3 /opt/capitale-report-uploader.py submit --role news --file /tmp/news-<run_id>.json` ile kaydet; `SAVED_READBACK_OK` şarttır. SXF/ANALYST alanlarını değiştirmez.
 
-| Maç ve başlangıç (TSİ) | Market / seçim | Gerçek motor(lar) | Kısa kod | Karar checkpoint | run_id |
-|---|---|---|---|---|---|
-| Gerçek veri varsa satır | Gerçek seçim | Tetiklenen onaylı motor(lar) | MOM / PRM / CRL / SLD | T-6 veya gerekçeli T-8 | Doğrulanmış UUID |
+## 4. Her rolün yazma zarfı — sunucu tarafından doğrulanır
 
-Kısa kodlar SADECE görüntü etiketidir; motor listesi/önceliği korunur. V1/V2/HEAVY ve BTTS YES → MOM; PREMIUM OVER → PRM; STABLE OVER ve SURPRISE TEAM → CRL; EARLY MONEY CORE → SLD. OVER_STRONG, EKOL 3 ve EARLY CORE v2 yalnız SHADOW/RESEARCH; core sinyal olarak aktarılmaz. Aktif sinyal yoksa `SİNYAL YOK` yaz.
+`/opt/capitale-report-uploader.py` mevcut yetkili **localhost-only Commander** rapor yükleyicisidir. Kullanıcı token, GPT Actions veya Chrome işlemi yapmaz. Dosya **gerçek mevcut rapordan** hazırlanmış JSON olmalı; uydurma örnek kimlik, maç veya kaynak hash'i yüklenmez.
 
-**SXF — HER MAÇ/TERCİH İÇİN 1–3 NUMARALI BULGU (ZORUNLU)**
-
-- Her incelenen maç + market + seçim için **EN AZ 1** numaralı somut bulgu yaz; veri yeterliyse 2 ya da 3, **en fazla 3**. Madde hiç atlanmaz.
-- Aktif sinyal varsa en azından doğrulanan **motor + checkpoint + o tercihe neden tetiklendiği** birinci maddedir. Kalan maddelerde doğrulanmış para payı/tutarı, retention, aynı market-seçimin odds hareketi, önemli conflict/risk yaz.
-- Veri/sinyal doğrulanamıyorsa yine bir numaralı **doğrulama bulgusu** yaz: `1. Geçerli SXF sinyali doğrulanamadı; [gerçekten bilinen veri/kesit eksiği veya gerekçe bilinmiyor].` Bu maç aktif sinyal tablosunda veya nötr aktif seçim devrinde yer alamaz. Gerekçe, sayı veya olay uydurulmaz.
-- Bu açıklamalar SXF tam raporunda saklanır, **ANALYST veya NEWS'in yönlendirme girdisine girmez**.
-
-**KOPYALA → ANALYST GİRDİSİ** (yalnız gerçek aktif seçimler)
-
-| Tarih TSİ | Saat TSİ | Ev sahibi | Deplasman | Market | Seçim | fixture_uid | run_id | AS_OF |
-|---|---|---|---|---|---|---|---|---|
-
-Örtüşen motorların aynı market/seçiminde tek satır; farklı gerçek seçim ayrı satır. Nötr girdide motor, kısa kod, odds, para, risk açıklaması, SXF maddesi yok. Kimlik yoksa `YOK — DOĞRULAMA GEREKİR`, sahte UUID yok.
-
-## 2. ANALYST — tam üç faktör, A ve NEWS nötr girdisi
-
-ALDIĞI: yalnız `KOPYALA → ANALYST GİRDİSİ`.
-ANALYST v2.1 CANONICAL: bağımsız topa sahip olma, form ivmesi (son 3/son 1), rakip ve ev/deplasman mantığı. A, tek tercihi destekleyen ordinal /100 veya veri yetersizdir, kazanma olasılığı değildir. Önce **tam orijinal araştırma raporunu** yaz.
-
-**ANALYST — KISA SONUÇ**
-
-| Maç (TSİ) | Market / seçim | A /100 veya veri yetersiz | Kısa futbol değerlendirmesi | run_id |
-|---|---|---|---|---|
-
-**KOPYALA → NEWS GİRDİSİ:** SXF'deki nötr girdinin **aynı sütun ve bütün seçimleri**. A, SXF kodu, money, odds veya analiz yorumu bulunmaz; olumsuz analizi olan seçim bile sessizce elenmez.
-
-## 3. NEWS — tam haber analizi, N ve FINAL listesi
-
-ALDIĞI: yalnız `KOPYALA → NEWS GİRDİSİ`. NEWS v1.6 CANONICAL iki takımı simetrik inceler, sekiz haber alanını araştırır, yalnız materyal H# hikâyelerini yedi 1/X/2/Üst/Alt/KG VAR/KG YOK etki sütununda −3..+3 puanlar ve yedi imzalı toplamı hesaplar; seçimin **bağımsız** NEWS ordinal N /100 desteğini verir. Veri yoksa `50/100 — veri yetersiz` kalıbını belirtir. Önce tam rapor yaz.
-
-**NEWS — SONUÇ / FINAL'E VERİLECEK LİSTE**
-
-| Maç (TSİ) | Market / seçim | N /100 (veya veri yetersiz) | İlgili imzalı ham NEWS toplamı | Materyal kanıt/eksik | run_id |
-|---|---|---|---|---|---|
-
-**FINAL DEVİR DURUMU:** Commander arşivinde SXF / ANALYST / NEWS tam raporlarının bulunma durumunu ancak gerçekten kontrol edebiliyorsan yaz. Kontrol edemiyorsan `ARŞİV DOĞRULANMADI` yaz; hepsinin yüklendiğini varsayma.
-
-## 4. Özel Commander arşivi — tam raporları FINAL'e taşır; siteye yazmaz
-
-Kullanıcının token veya GPT Action kurmasına gerek yoktur. Her uzman, **bu sohbette Commander gerçekten bağlıysa**, orijinal tam raporunu geçici UTF-8 dosyasına kaydeder ve **her doğrulanmış run_id için** sunucudaki `/opt/capitale-report-chain-inbox.py` komutuna kendi rolüyle verir:
-
-```bash
-python3 /opt/capitale-report-chain-inbox.py save --role sxf --run-id <GERÇEK_UUID> --as-of <ISO8601> --input /tmp/<tam-sxf-rapor>.md
+```text
+{
+  "run_id": "<SXF tarafından oluşturulmuş GERÇEK UUID>",
+  "role": "<analyst veya news veya sxf>",
+  "report": {
+    "status": "complete",
+    "as_of": "<rolün GERÇEK kaynak araştırma kesiti UTC>",
+    "source_count": "<orijinal raporda doğrulanmış tamsayı>",
+    "summary": "<tam raporun kısa özeti>",
+    "payload": {
+      "display": {
+        "market": "<SXF ile aynı orijinal 1X2 / OU25 / BTTS>",
+        "selection": "<SXF ile aynı orijinal 1 / 2 / O / Y>",
+        "support_score": "<yalnız ANALYST/NEWS: 0-100 veya null>",
+        "software_detail_bullets_en": ["<varsa en çok üç kaynaklı İngilizce bulgu>"]
+      },
+      "<role>_full_report": "<kaynaklarıyla birlikte eksiksiz orijinal rapor>"
+    },
+    "prompt_version": "<gerçek sürüm>",
+    "input_snapshot_hash": "<gerçek giriş/kaynak setinin SHA256 hex'i>"
+  },
+  "evidence": "<0..100 kanıt girdisi>"
+}
 ```
 
-ANALYST için `--role analyst`, NEWS için `--role news`. Beklenen `STAGED_ONLY_NOT_SITE` veya `ALREADY_STAGED` yanıtıdır. Bu **özel devir kaydı**; CAPITALE sitesine yayın değildir. Orijinal raporlar SHA256 ve sürüm ile saklanır.
+Bu bir **alan sözleşmesi gösterimi**dir, çalıştırılabilir hazır örnek JSON değildir. `role` dış zarfta yalnız CLI tutarlılık kontrolüne yarar; sunucu rolü gizli server kimliğiyle belirler. `as_of` yalnız gerçek raporun veri kesitidir ve kickoff'tan önce olmalıdır. SXF'nin T-6/T-8 karar kesitiyle ANALYST/NEWS'in bağımsız rapor AS_OF değerlerinin aynı olması gerekmez. Tüm raporlar `FINAL` karar anından önceki kanıta dayanmalı ve maç sonrası haber/görüş ile eski karar değiştirilmemelidir. `source_count` ve `input_snapshot_hash` uydurulmaz.
 
-Kullanıcı FINAL'e **yalnız son NEWS tablosu + run_id** verebilir, ancak 3 tam rapor da gerçekten Commander arşivindeyse. FINAL:
+## 5. FINAL — sitedeki üç gerçek raporu okur ve sentezler
 
-```bash
-python3 /opt/capitale-report-chain-inbox.py status --run-id <GERÇEK_UUID>
-python3 /opt/capitale-report-chain-inbox.py bundle --run-id <GERÇEK_UUID> --out /tmp/capitale-final-<GERÇEK_UUID>.json
-```
+- Kullanıcı FINAL'e yalnız son NEWS listesini ve gerçek `run_id` verir. FINAL, Commander aracılığıyla `python3 /opt/capitale-site-report-reader.py --run-id <UUID> --require-all --out /tmp/capitale-final-source-<UUID>.json` komutunu çalıştırıp **sitedeki** SXF, ANALYST ve NEWS tam kaynak raporlarını alır; özgeçmiş Commander devir arşivinden alması zorunlu değildir.
+- CLI `ready_for_final:true` olmadan, aynı maç+market+seçim, kaynak kesitleri, pre-match ve rapor bütünlüğü eşleşmeden FINAL kararını siteye yazmaz. Yalnız `sxf` mevcutsa ANALYST/NEWS'i var saymaz.
+- FINAL v0.2 **A/B/C/NO_RECOMMENDATION** sentezi; sadece diğer departmanların tam raporlarını kullanır. POLY raporu varsa bağımsız ek kanıt olarak sunulabilir; yoksa `NO_EVIDENCE`, sahte %5–15 POLY oyu üretme.
+- Tam FINAL raporu sonunda kısa `SON KARAR / SITE DEVİR LİSTESİ` yazılır.
+- **FINAL yazma bağlantısı henüz ayrıca tamamlanıp canlı test edilmedi** (GitHub issue #8). Gerçek son kayıt ID/version + authenticated admin readback görülmediyse `SİTEYE KAYDEDİLEMEDİ — FINAL YAZMA HEDEFİ HAZIR DEĞİL`. Başka rolün alanını veya tokenless endpoint'i taklit ederek FINAL yükleme YASAK.
 
-`ready_for_final:true` sadece 3 rolün arşivde bulunduğuna işaret eder; orijinal raporların aynı fixture/selection/cutoff olduğunu ayrıca doğrulamadan sentez yapılmaz. Paket hiç yeni analiz üretmez. Commander bağlantısı yoksa, eksik rapor varsa veya arşiv bütünlüğü doğrulanmıyorsa kullanıcı **üç tam raporu** FINAL'e manuel verir; eksikler uydurulmaz.
+## 6. Güvenlik ve durumlar
 
-## 5. FINAL — tam sentez ve son yayın adımı
-
-FINAL v0.2 DRAFT; yalnız **özgün üç tam rapor** (POLY varsa dört) üzerinden sentezler. Aynı maç/market/seçim/run ile **her departmanın ayrı AS_OF uygunluğu** doğrulanır; çatışma, freshness, etki bağımlılıkları ve eksikler açıkça işlenir. A/B/C veya NO_RECOMMENDATION yalnız FINAL kararlarıdır; kimse yeni raw maç kanıtı icat etmez.
-
-**SON KARAR / SITE DEVİR LİSTESİ**
-
-| Maç | Market | Seçim | A/B/C veya NO_RECOMMENDATION | Kısa neden | run_id | Site kayıt durumu |
-|---|---|---|---|---|---|---|
-
-**Tek site-yayın sahibi FINAL'dir.** FULL FINAL raporunu, üç kaynak raporunu ve evidence trace'i korur. Yalnız yetkili Commander sunucu yazıcısı gerçek kayıt ID/versiyon döndürüp **authenticated admin read-back** ile doğrulanırsa `KAYDEDİLDİ` denir. Mevcut `/opt/capitale-report-uploader.py` SXF/ANALYST/NEWS içindir, **FINAL desteklemez**. FINAL yazıcısı henüz doğrulanmamıştır (GitHub issue #8): destek olmadan rapor üretilir fakat `SİTEYE KAYDEDİLEMEDİ — FINAL YAZMA HEDEFİ HAZIR DEĞİL` denir. Diğer agent kimliğiyle gönderme, açık/tokensız endpoint'i kullanma, token veya GPT Action isteme.
-
-## Değişmeyenler
-
-Source policies, mevcut analiz sürümleri, SXF T-6/T-8 önceliği, AS_OF, bağımsızlık, geçmiş raporların değiştirilmemesi, ekranda A/N/V/B/O alanlarının kaynak ayrımı ve hatalı veri üretmeme aynen geçerlidir. Arşiv ve görüntüleme amaçlı geçmiş belgeler günlük agent giriş kuralı sayılmaz.
+- SXF, ANALYST ve NEWS sadece kendi rol kayıtlarının **yeni sürümünü** ekler; eski rapor/diğer departman kaydı değiştirilmez. FINAL ayrı karar alanına yazar.
+- Sunucu eski `/api/capitale/agent-bridge/reports/:department` tokenless **internet** yolunu Nginx'te 403 ile kapatır. Yetkili localhost Commander backend ve server-only DB credentials işler. Chat veya browser hiçbir gizli anahtar almaz.
+- `KAYDEDİLDİ` ancak gerçek `report_id`, `report_version` ve aynı rol/`run_id`/`input_snapshot_hash` tekrar okunup doğrulanınca kullanılır. Bir rapor yoksa sitede `RAPOR BEKLENİYOR`/eksik statüsü olur.
+- Çok seçimli tek fikstürde mevcut arayüz yalnız bir ayrı `display` seçimini bir `run_id` için göstermektedir; otomatik import bu durumları **sessizce elemez/uydurmaz**, `multiple_picks_require_expanded_board` olarak işaretler. Tüm seçimleri ayrı satır gösteren genişletme ayrıca doğrulanmalıdır.
+- Geçmiş `tools/manual_report_inbox.py` ve üç tam raporu FINAL'de toplayan arşiv yolu sadece **bağlantı yoksa manuel yedek**; günlük varsayılan akış DEĞİL.
+- Motor eşikleri, ANALYST üç faktörü, NEWS H# ve source-policy ayrımı, SXF tarihsel snapshot/arşivleri veya FINAL karar metodolojisi değiştirilmez.
