@@ -1234,9 +1234,7 @@ function promotionAssessment(input: {
   });
 
   // CAPITALE software analysis feed. It deliberately returns no sample data until a trusted source is connected.
-  app.get("/api/admin/software", requireAdmin, (_req, res) => {
-    res.json({ items: [], dataSource: "not_connected" });
-  });
+  // Software feed is registered by registerAgentReportRoutes.
 
   // Registered site users (distinct from Whop paying-member records) — for the
   // admin "Kullanıcılar" tab: who signed up, when, and their member tier.

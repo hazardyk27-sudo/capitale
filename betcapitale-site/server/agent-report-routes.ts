@@ -1,3 +1,4 @@
+import { softwareRow } from "./agent-report-projection";
 import type { Express, Request, RequestHandler, Response } from "express";
 import { z } from "zod";
 
@@ -90,6 +91,44 @@ function sendSafeError(res: Response, status: number, code: string) {
 }
 
 export function registerAgentReportRoutes(app: Express, requireAdmin: RequestHandler) {
+  app.post("/api/capitale/agent-bridge/resolve", async (req,res)=>{
+    const token=bearerToken(req);
+    if(!token) { await recordDenial(req,"missing_resolver_token",null); return sendSafeError(res,401,"unauthorized"); }
+    const parsed=z.object({query:z.string().trim().min(2).max(160),day:z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional()}).strict().safeParse(req.body);
+    if(!parsed.success) return sendSafeError(res,400,"invalid_query");
+    const config=getSupabaseConfig();
+    if(!config) return sendSafeError(res,503,"agent_bridge_not_configured");
+    try {
+      const result=await rpc<{ok:boolean;error?:string}>(config,"capitale_agent_resolve_run",{p_bearer_token:token,p_query:parsed.data.query,p_day:parsed.data.day??null});
+      return res.status(result.ok?200:result.error==="unauthorized"?401:422).json(result);
+    } catch {return sendSafeError(res,503,"resolver_unavailable");}
+  });
+  app.get("/api/admin/software",requireAdmin,async (_req,res)=>{
+    const config=getSupabaseConfig();
+    if(!config) return sendSafeError(res,503,"agent_bridge_not_configured");
+    try{
+      const result=await rpc<{ok:boolean;runs?:Record<string,any>[]}>(config,"capitale_admin_software_feed",{});
+      if(!result.ok) return sendSafeError(res,503,"software_feed_unavailable");
+      return res.json({items:(result.runs??[]).map(softwareRow),dataSource:"connected"});
+    }catch{return sendSafeError(res,503,"software_feed_unavailable");}
+  });
+  app.get("/api/admin/capitale/fixtures",requireAdmin,async(req,res)=>{
+    const config=getSupabaseConfig();
+    if(!config)return sendSafeError(res,503,"agent_bridge_not_configured");
+    const parsed=z.object({query:z.string().trim().min(2).max(160),day:z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional()}).safeParse(req.query);
+    if(!parsed.success)return sendSafeError(res,400,"invalid_query");
+    try{return res.json(await rpc(config,"capitale_admin_fixture_runs",{p_query:parsed.data.query,p_day:parsed.data.day??null}));}
+    catch{return sendSafeError(res,503,"fixtures_unavailable");}
+  });
+  app.post("/api/admin/capitale/research-runs",requireAdmin,async(req,res)=>{
+    const config=getSupabaseConfig();
+    if(!config)return sendSafeError(res,503,"agent_bridge_not_configured");
+    const parsed=z.object({fixture_uid:z.string().uuid(),as_of:z.string().datetime({offset:true})}).strict().safeParse(req.body);
+    if(!parsed.success)return sendSafeError(res,400,"invalid_request");
+    try{const result=await rpc<{ok:boolean}>(config,"capitale_admin_prepare_run",{p_fixture_uid:parsed.data.fixture_uid,p_as_of:parsed.data.as_of});return res.status(result.ok?200:422).json(result);}
+    catch{return sendSafeError(res,503,"run_preparation_unavailable");}
+  });
+
   app.post("/api/capitale/agent-bridge/reports", async (req, res) => {
     const token = bearerToken(req);
     if (!token) {

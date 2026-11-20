@@ -33,15 +33,17 @@ test("CAPITALE database authorization enforces role isolation, append-only histo
       drop schema if exists capitale_private cascade;
       drop schema if exists capitale cascade;
       create schema capitale;
+      drop table if exists public.fixtures;
+      create table public.fixtures(fixture_uid uuid primary key,home_team text,away_team text,league text,kickoff_utc timestamptz);
       create table capitale.research_runs (
-        id uuid primary key,
+        id uuid primary key default gen_random_uuid(),
         fixture_uid uuid not null,
         run_revision integer not null default 1,
         status text not null default 'collecting',
         target_markets text[] not null default '{}',
         analysis_cutoff_at timestamptz,
         requested_at timestamptz not null default now(),
-        orchestrator_version text not null default 'v0.1.0'
+        orchestrator_version text not null default 'v0.1.0', context jsonb not null default '{}'::jsonb
       );
       create table capitale.agent_reports (
         id uuid primary key default gen_random_uuid(),
@@ -88,6 +90,7 @@ test("CAPITALE database authorization enforces role isolation, append-only histo
 
     const migration = await readFile(resolve(here, "../supabase/migrations/20261120000000_capitale_agent_report_authorization.sql"), "utf8");
     await client.query(migration);
+    await client.query(await readFile(resolve(here,"../supabase/migrations/20261120010000_capitale_bridge_integration.sql"),"utf8"));
     await client.query("grant usage on schema capitale to authenticated");
     await client.query("grant select, insert on capitale.agent_reports to authenticated");
 
@@ -99,6 +102,7 @@ test("CAPITALE database authorization enforces role isolation, append-only histo
       [runId, fixtureUid, cutoff],
     );
 
+    await client.query("insert into public.fixtures values ($1,'Home Test','Away Test','Test League','2026-11-21T20:00:00Z')",[fixtureUid]);
     const tokens = {
       analyst: "analyst-test-token-" + "a".repeat(48),
       news: "news-test-token-" + "b".repeat(48),
@@ -153,6 +157,8 @@ test("CAPITALE database authorization enforces role isolation, append-only histo
     const duplicate = await submit(tokens.analyst, "analyst-write-000001");
     assert.equal(duplicate.duplicate, true);
     assert.equal(duplicate.report_id, analyst.report_id);
+    assert.equal(duplicate.actor_role,"analyst");
+    assert.equal(duplicate.report_version,1);
     const conflict = await submit(tokens.analyst, "analyst-write-000001", { ...baseReport, summary: "changed" });
     assert.equal(conflict.error, "idempotency_conflict");
 
@@ -172,6 +178,18 @@ test("CAPITALE database authorization enforces role isolation, append-only histo
     const adminReports = await client.query("select public.capitale_admin_get_agent_reports($1::uuid) as value", [runId]);
     assert.equal(adminReports.rows[0].value.reports.length, 4);
     assert.equal(adminReports.rows[0].value.evidence.length, 4);
+    const resolved=await client.query("select public.capitale_agent_resolve_run($1,'Home','2026-11-21') as value",[tokens.news]);
+    assert.equal(resolved.rows[0].value.matches.length,1);
+    assert.equal(resolved.rows[0].value.matches[0].run_id,runId);
+    assert.equal(JSON.stringify(resolved.rows[0].value).includes("summary"),false);
+    const prepared=await client.query("select public.capitale_admin_prepare_run($1,$2) as value",[fixtureUid,cutoff]);
+    assert.equal(prepared.rows[0].value.run_id,runId);
+    const feed=await client.query("select public.capitale_admin_software_feed() as value");
+    assert.equal(feed.rows[0].value.runs[0].reports.length,3);
+    const created=await client.query("select public.capitale_admin_prepare_run($1,'2026-11-19T10:00:00Z') as value",[fixtureUid]);
+    assert.equal(created.rows[0].value.run_revision,2);
+    const denied=await client.query("select public.capitale_agent_resolve_run('invalid','Home',null) as value");
+    assert.equal(denied.rows[0].value.error,'unauthorized');
     await assert.rejects(client.query("select * from capitale.agent_reports"));
     await client.query("reset role");
 

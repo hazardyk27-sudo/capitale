@@ -1,3 +1,4 @@
+import { DepartmentReports, PrepareAnalysis } from "./admin-software-reports";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
@@ -39,7 +40,7 @@ const SORTABLE: { key: SortKey; label: string }[] = [
   { key: "analystScore", label: "A" },
   { key: "newsScore", label: "N" },
   { key: "volumeShare", label: "V" },
-  { key: "drawShare", label: "D" },
+  { key: "drawShare", label: "B" },
   { key: "currentOdds", label: "O" },
 ];
 const STATUS_LABEL: Record<ReportStatus, string> = {
@@ -195,6 +196,7 @@ export default function AdminSoftware() {
       </header>
 
       <main className="mx-auto max-w-[1600px] space-y-5 px-4 py-5 sm:px-6 lg:px-8 lg:py-7">
+        <PrepareAnalysis />
         <section className="rounded-lg border border-slate-200 bg-white shadow-sm">
           <div className="flex flex-col gap-2 border-b border-slate-200 px-4 py-4 sm:px-5">
             <div className="flex items-center gap-2">
@@ -258,7 +260,7 @@ export default function AdminSoftware() {
             <span className="inline-flex items-center gap-2">
               Sort by:
               <select value={sortKey} onChange={(e) => setSortKey(e.target.value as SortKey)} className="h-9 rounded-md border border-slate-300 bg-white px-2 text-sm text-[#172235]">
-                {SORTABLE.map((column) => <option key={column.key} value={column.key}>{column.label === "A" ? "ANALYST (A)" : column.label === "N" ? "NEWS (N)" : column.label === "V" ? "VOLUME (V)" : column.label === "B" ? "DRAW (D)" : column.label === "O" ? "ODDS (O)" : column.label}</option>)}
+                {SORTABLE.map((column) => <option key={column.key} value={column.key}>{column.label === "A" ? "ANALYST (A)" : column.label === "N" ? "NEWS (N)" : column.label === "V" ? "VOLUME (V)" : column.label === "B" ? "DRAW (B)" : column.label === "O" ? "ODDS (O)" : column.label}</option>)}
               </select>
               <button type="button" onClick={() => setSortDirection((old) => old === "asc" ? "desc" : "asc")} className="h-9 rounded-md border border-slate-300 bg-white px-3 font-medium text-[#172235] hover:bg-slate-50">
                 {sortDirection === "asc" ? "Ascending" : "Descending"}
@@ -348,7 +350,7 @@ export default function AdminSoftware() {
               <div><dt className="text-sm text-slate-600">Data captured at</dt><dd className="mt-1 font-semibold">{dateTime(selected.capturedAt)}</dd></div>
               <div><dt className="text-sm text-slate-600">Source and report status</dt><dd className="mt-1 flex flex-wrap items-center gap-2"><span>{selected.source || "—"}</span><span className={`rounded border px-2 py-0.5 text-xs font-semibold ${statusTone(selected.reportStatus)}`}>{STATUS_LABEL[selected.reportStatus]}</span></dd></div>
             </dl>
-            <p className="border-t border-slate-200 px-4 py-3 text-sm text-slate-600 sm:px-5">ANALYST and NEWS scores indicate department support, not win probabilities. SXF and POLY reports can be connected to these details later.</p>
+            <DepartmentReports runId={selected.id} />
           </section>
         )}
       </main>

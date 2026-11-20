@@ -1,6 +1,6 @@
 # CAPITALE Agent Report Bridge
 
-Status: implementation on an unpublished feature branch. The Supabase migration is **not applied** and Hetzner is **not deployed**.
+Release procedure: apply both dated migrations, configure the three server tokens, provision their hashes, then deploy the app. Deployment status must be verified separately.
 
 ## Purpose and allowed writers
 
@@ -10,7 +10,7 @@ This bridge accepts completed reports for exactly three independent departments:
 - `news`
 - `sxf`
 
-It gives no write permission to `poly` or `final`. There is no endpoint for agent reads. Full report and evidence reads are behind the site's database-backed Admin session.
+It gives no write permission to `poly` or `final`. Agents can only resolve fixture/run metadata; they cannot read reports. Full report and evidence reads are behind the site's database-backed Admin session.
 
 ## Security boundary
 
@@ -33,7 +33,7 @@ Configure these variables in the Hetzner service environment:
 - `CAPITALE_AGENT_NEWS_TOKEN`
 - `CAPITALE_AGENT_SXF_TOKEN`
 
-Use three unique random tokens of at least 32 characters. Never put them in source, GitHub Actions variables, a browser, or a report. The Supabase service-role key is server-only.
+Use three unique random tokens of at least 32 characters. Never put them in source, GitHub Actions variables, client source code, or a report. The Supabase service-role key is server-only.
 
 After the database migration is applied and the server is running with those variables, an authenticated Admin calls:
 
@@ -95,7 +95,8 @@ The caller must resolve the exact existing run before submitting. The bridge doe
 
 ## Admin reads
 
-- `GET /api/admin/capitale/research-runs?limit=50` lists run identifiers and safe metadata (it omits free-form context). Admin session required.\n- `GET /api/admin/capitale/agent-reports/:runId` returns the reports and evidence for one run. Admin session required.
+- `GET /api/admin/capitale/research-runs?limit=50` lists run identifiers and safe metadata (it omits free-form context). Admin session required.
+- `GET /api/admin/capitale/agent-reports/:runId` returns the reports and evidence for one run. Admin session required.
 - Reports include all allowed departments; no agent bearer token can use this endpoint.
 
 ## Rollout order
@@ -107,3 +108,18 @@ The caller must resolve the exact existing run before submitting. The bridge doe
 5. Connect each agent to the write endpoint using only that agent's token. Send `Siteye aktar` only after the report is complete and run ID is verified.
 
 This change does not deploy or apply the migration by itself. The current Supabase inspection found the four target tables empty, RLS enabled, and no policies. The database already allowed `poly` in the report-role check; the migration narrows that constraint to ANALYST, NEWS, and SXF.
+
+
+## Existing-report transfer and Admin integration
+Agents only transfer existing reports, never research, invent missing values or change conclusions. Admin prepares the canonical fixture and original AS_OF at `/admin/software`. `POST /api/capitale/agent-bridge/resolve` accepts `{ "query": "team name", "day": "YYYY-MM-DD" }` with the department bearer token and returns fixture/run metadata only. If several matches or cutoffs remain possible, ask rather than guessing. No run means Admin must prepare it first.
+
+The report's full original structured data remains in `payload`. An optional `payload.display` projection may copy **existing** values for the table. Do not generate absent fields:
+- All roles: `market`, `selection` identify exactly the same selection (e.g. `1X2`, `1`).
+- ANALYST and NEWS: `support_score` (0..100), only if explicitly present in their own report.
+- SXF: `signal_code`, `volume_share_pct`, `draw_share_pct`, `current_odds`, `reference_odds`, `current_odds_at`, `reference_odds_at`, `source`.
+A/N appear only when their market and selection match SXF. Wrong-owner values are ignored by the projection. Missing values remain dashes. Full reports remain readable separately and append-only.
+
+The second migration `20261120010000_capitale_bridge_integration.sql` adds safe fixture resolution and Admin preparation/feed. Fixture metadata is captured when a run is prepared so retention does not erase the match name. Report response bodies are excluded from HTTP logs.
+
+## Connection boundary
+Publishing the API does not install a tool into an existing ChatGPT conversation. Configure a supported API client/custom action with the published OpenAPI schema and **only its department bearer credential** in its secret authentication setting. Never paste the server service-role key or agent tokens into report prompts. A live end-to-end transfer is complete only when the API returns an accepted report ID and the Admin page shows that same report.

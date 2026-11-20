@@ -243,7 +243,8 @@ begin
   where agent_role = v_actor_role and run_id = p_run_id and idempotency_key = p_idempotency_key;
   if found then
     if v_existing_hash = v_hash then
-      return jsonb_build_object('ok', true, 'duplicate', true, 'report_id', v_report_id);
+      select report_version into v_report_version from capitale.agent_reports where id=v_report_id;
+      return jsonb_build_object('ok', true, 'duplicate', true, 'report_id', v_report_id, 'report_version',v_report_version,'fixture_uid',v_fixture_uid,'actor_role',v_actor_role);
     end if;
     insert into capitale.audit_log(run_id, actor_role, event_type, details)
     values (p_run_id, v_actor_role, 'agent_report_denied',

@@ -84,3 +84,11 @@ test("direct API calls without agent/admin credentials are denied", async (t) =>
   });
   assert.equal(authorizedButUnconfigured.status, 503);
 });
+
+import {softwareRow} from "./agent-report-projection";
+test("dashboard projects only owning departments and matching selections",()=>{
+ const run={id:"test",reports:[{role:"sxf",display:{market:"1X2",selection:"1",volume_share_pct:82,support_score:99}},{role:"analyst",display:{market:"1X2",selection:"1",support_score:71,volume_share_pct:100}},{role:"news",display:{market:"1X2",selection:"2",support_score:85}}]};
+ const row=softwareRow(run);
+ assert.equal(row.analystScore,71);assert.equal(row.newsScore,null);assert.equal(row.volumeShare,82);
+ assert.equal(softwareRow({reports:[run.reports[1]]}).volumeShare,null);
+});
