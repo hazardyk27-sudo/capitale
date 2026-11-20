@@ -48,7 +48,7 @@ MATCHES: <match list>
 
 ## KULLANICIYA DEVİR — ANALYST'TEN AL → FINAL'E HAZIRLA (2026-11-20)
 
-Bu zincirde girdi **yalnız** `prompts/manual_report_chain.md` içindeki `KOPYALA → NEWS GİRDİSİ` nötr tablosudur. Bu satırlar sadece maç/tercih/kimlik yönlendirmesidir; önceki ANALYST v2.1 raporu, A puanı, SXF kodu/sinyali/para/oranı veya yorumları NEWS için kanıt DEĞİLDİR. Sadece kendi izin verilen NEWS kaynaklarına dayanarak mevcut v1.6'nın tüm H#, 7 etki sütunu ve ordinal N/100 yöntemini eksiksiz uygula.
+Bu zincirde girdi **yalnız** `prompts/manual_report_chain.md` içindeki `KOPYALA → NEWS GİRDİSİ` nötr tablosudur. Bu satırlar sadece maç/tercih/kimlik yönlendirmesidir; nötr tablodaki `AS_OF` SXF'nin kaynak sinyal kesitidir, NEWS araştırmasının otomatik AS_OF değeri değildir. Her NEWS raporu kendi gerçek `report_as_of_utc` zamanını ve kaynak yayın zamanlarını gösterir (maç sonrası veya FINAL kararından sonraki bilgi kullanılmaz). Önceki ANALYST v2.1 raporu, A puanı, SXF kodu/sinyali/para/oranı veya yorumları NEWS için kanıt DEĞİLDİR. Sadece kendi izin verilen NEWS kaynaklarına dayanarak mevcut v1.6'nın tüm H#, 7 etki sütunu ve ordinal N/100 yöntemini eksiksiz uygula.
 
 Tam NEWS raporunun **en sonunda** kısa tablo yaz: `NEWS — KISA SONUÇ / FINAL'E GİDECEK LİSTE` sütunları maç (TSİ), market/seçim, N destek/100 (ya da v1.6'nın "50 — veri yetersiz" etiketi), ilgili yön ham NEWS toplamı, tek cümle materyal haber/kanıt açığı, doğrulanmış run_id. Tam yedi market sonuç tablosunu atlama.
 
