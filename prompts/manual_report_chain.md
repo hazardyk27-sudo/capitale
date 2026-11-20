@@ -13,6 +13,7 @@ Bu belge yalnız rapor aktarımı ve sunum biçimidir; SXF/ANALYST/NEWS/FINAL/PO
 - SXF → ANALYST ve ANALYST → NEWS **yalnız nötr seçim bilgisi** taşır: tarih, saat, ev sahibi, deplasman, market, seçim, doğrulanmış fixture_uid, run_id ve karar AS_OF. Uzmanın açıklama ve puanları sonraki uzman için kanıt değildir.
 - Orijinal üç tam raporu yalnız FINAL birlikte değerlendirir. POLY bağımsız isteğe bağlıdır; yoksa `NOT_PROVIDED / NO_EVIDENCE`, asla sahte POLY desteği yoktur.
 - `run_id` formatı geçerli olmakla kalmayıp kanonik araştırma kaydıyla gerçekten eşleştirilmiş olmalıdır; UUID uydurulmaz. `fixture_uid`, market, seçim, kickoff ve tüm kaynak kesitleri tutarlı olmalıdır.
+- Nötr tabloda SXF'den gelen `AS_OF` **SXF'nin dondurulmuş sinyal karar kesitidir**, ANALYST/NEWS'in kendi araştırmasının AS_OF değerini zorunlu olarak eşitlemez. Her bağımsız uzman kendi gerçek **report_as_of_utc** zamanını raporlar; bu zaman kendi dayandığı kaynakların yayınından sonra ve maç öncesinde olmalıdır. FINAL farklı departman zamanlarını **etiketleyerek** karşılaştırır; eşit olmamaları tek başına sahte veri veya hata değildir. FINAL'in kendi karar kesitinden sonraki rapor/kanıt kullanılmaz.
 - Verisi eksik maçı sinyal varmış gibi gösterme; AS_OF sonrasındaki hiçbir snapshot karar verisini değiştiremez.
 
 ## 1. SXF — tam rapor, sinyaller, en az 1 bulgu, nötr liste
@@ -87,7 +88,7 @@ python3 /opt/capitale-report-chain-inbox.py bundle --run-id <GERÇEK_UUID> --out
 
 ## 5. FINAL — tam sentez ve son yayın adımı
 
-FINAL v0.2 DRAFT; yalnız **özgün üç tam rapor** (POLY varsa dört) üzerinden sentezler. Aynı maç/market/seçim/run ve AS_OF doğrulanır; çatışma, freshness, etki bağımlılıkları ve eksikler açıkça işlenir. A/B/C veya NO_RECOMMENDATION yalnız FINAL kararlarıdır; kimse yeni raw maç kanıtı icat etmez.
+FINAL v0.2 DRAFT; yalnız **özgün üç tam rapor** (POLY varsa dört) üzerinden sentezler. Aynı maç/market/seçim/run ile **her departmanın ayrı AS_OF uygunluğu** doğrulanır; çatışma, freshness, etki bağımlılıkları ve eksikler açıkça işlenir. A/B/C veya NO_RECOMMENDATION yalnız FINAL kararlarıdır; kimse yeni raw maç kanıtı icat etmez.
 
 **SON KARAR / SITE DEVİR LİSTESİ**
 
