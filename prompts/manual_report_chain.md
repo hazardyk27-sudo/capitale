@@ -1,76 +1,67 @@
-# CAPITALE — CANLI DOĞRUDAN RAPOR AKIŞI
+# CAPITALE — BROWSER-DIRECT AGENT WORKFLOW
 
-Status: OWNER-APPROVED — ACTIVE DEFAULT
-Version: 3.0 — 2026-11-20
+**Status:** OWNER-APPROVED ACTIVE DEFAULT
+**Version:** 4.0 — 2026-11-20
 
-**SXF → ANALYST → NEWS → FINAL. HER ROL KENDİ RAPORUNU AYNI CANLI MAÇ KAYDINA YAZAR.** Artık üç raporun FINAL'e kadar gizli bir arşivde bekletilmesi normal akış değildir. Sitenin `/admin/software` sayfası çalışmanın ana kayıt merkezidir. Tam uzman raporları korunur; yalnız kısa özet yayınlamak tam raporun yerine geçmez.
+**THE RULE:** Every ChatGPT research agent must **open the actual `https://betcapitale.com/admin/software` webpage in a browser**, find the correct match + market + selection, **fill ONLY its own on-page edit form**, click **Save**, and verify the actual report ID/version shown. **Do not use the Commander CLI report uploader, JSON API submission, or manual private inbox as the default user workflow.** Commander may be used to open/operate a browser if browser GUI automation is genuinely available; ordinary terminal/file access alone is not proof of a click. ChatGPT Work browser or another authorized browser-control capability can operate the UI. If no browser control or admin login exists, report that limitation; don't fabricate a save.
 
-## 1. SXF — sinyal oluşunca Software'e doğrudan aktarım
+### Exact individual agent pages
 
-- SmartXFlow'un `public.sxf_base_signal_events` tablosundaki **doğrulanmış `FINAL_SIGNAL`** olayları sunucuda `tools/capitale_sxf_software_sync.py` / `/opt/capitale-sxf-software-sync.py` ile analiz edilir.
-- `tools/capitale_sxf_software_watch.py` / `/opt/capitale-sxf-software-watch.py` her **3 dakikada bir** yeni olay olup olmadığını denetler. Yalnız geçerli T-6/T-8 checkpoint, source snapshot zamanı karar kesitini aşmayan, kanonik fixture kimliğiyle doğrulanmış **aktif motorları** kullanır. Deneysel/retired motorlar, prelim/sıradan alarm ve gelecekteki veri otomatik sinyal sayılmaz. Aynı seçimde V1+V2 veya STABLE+PREMIUM tek seçim kaydı olur. Farklı seçimli/şüpheli gruplaşma kontrol bekler, sessizce diğer seçimi atmaz. Varsayılan günlük yöntem T-6, uygun durumda T-8 fallback; geçerli T-6 nontrigger sonrasında T-8'e kaçılmaz. `SURPRISE_TEAM` sadece **watch_only** izleme etiketiyle aktarılır; kazanan taraf bahsi olarak önerilmez.
-- Siteye seçimin `fixture_uid`, gerçek `run_id`, maç saati, market/seçim, motorlar, MOM/PRM/CRL/SLD görünüm kodu, checkpoint, verified share/amount, mevcut ve gerçekten geçmiş referans odds ve oran değişim % bilgileri ile **1–3 kanıt maddesi** kaydedilir. Kaynak odds referansı yoksa O sütunu `—` gösterir, oran yüzdesi uydurulmaz. Maç listesindeki O alanı **yalnız oran değişim yüzdesidir**.
-- SXF sohbet agentı kendi **tam kaynak/snapshot/motor raporunu** ayrıca üretir. Kapanışta `SXF — TETİKLENEN SİNYALLER` tablosu, her incelenen maç+market+tercih için **en az bir, en fazla üç numaralı doğrulanmış bulgu** ve `KOPYALA → ANALYST GİRDİSİ` nötr tablosu bulunur. Sinyal yoksa en az bir dürüst doğrulama bulgusu yazılır; aktifmiş gibi yayınlanmaz.
-- SXF sohbeti otomatik veri kaydını önce doğrular (yalnız gerçek `run_id` ve rapor kimliğiyle `SAVED_READBACK_OK`). Tam sohbet raporuna yeni gerçek kanıt eklendiyse kendi `sxf` raporunun **yeni versiyonunu**, aynı `run_id` ile Commander uploader'dan yükleyebilir; eski sürümü silmez.
-- Sadece gerçekten aktif ve doğrulanmış seçimleri ANALYST'e ver. `SURPRISE_TEAM` watch_only ise otomatik kazanan taraf tercihi olarak aktarılmaz.
+- **SXF:** `https://betcapitale.com/admin/software?agent=sxf` — Edit SXF — Market.
+- **ANALYST:** `https://betcapitale.com/admin/software?agent=analyst` — Edit ANALYST — Statistics.
+- **NEWS:** `https://betcapitale.com/admin/software?agent=news` — Edit NEWS — News.
+- **FINAL:** `https://betcapitale.com/admin/software?agent=final` — Edit FINAL — Decision.
 
-## 2. ANALYST — kendi tam raporunu aynı site kaydına ekler
+Each page requires an existing logged-in **CAPITALE administrator browser session**. Never ask the user to paste passwords or tokens into chat. Admin must authenticate normally in the browser if not already signed in. These are *focus views*: ANALYST and NEWS do not show other agents' scores/details, protecting independence. A completed report is added as an **append-only version**; each agent uses its own box. Never modify another specialist's report.
 
-- ALDIĞI: yalnız nötr `tarih | saat | ev sahibi | deplasman | market | seçim | fixture_uid | run_id | SXF karar AS_OF` tablosu. SXF motor/para/oran/yorum bilgisi analiz kanıtı olarak kullanılmaz.
-- ANALYST v2.1 CANONICAL üç bağımsız futbol faktörünü eksiksiz çalıştırır: (1) topa sahip olma, (2) sezon, son üç ve son bir maç form ivmesi, (3) rakip seviyesi/taktik ve iki takımın bütün ev/deplasman lig maçları. Tek **ordinal A destek /100** veya `veri yetersiz`; kazanma olasılığı değildir.
-- Tam raporun sonunda `ANALYST — KISA SONUÇ` + aynı nötr sütunlu `KOPYALA → NEWS GİRDİSİ` gösterir.
-- Commander bağlıysa **orijinal tam raporunu** ve rolüne ait `payload.display` bilgilerini `python3 /opt/capitale-report-uploader.py submit --role analyst --file /tmp/analyst-<run_id>.json` ile siteye yazar. SXF'ye ait anahtarları değiştirmez. `SAVED_READBACK_OK` sonucunu görmeden başarı iddiasında bulunmaz.
+## SXF browser steps
 
-## 3. NEWS — kendi tam raporunu aynı site kaydına ekler
+1. The live `FINAL_SIGNAL` watcher independently creates verified SXF Software rows every 3 minutes from real SmartXFlow evidence. Never invent a match or treat `PRELIMINARY_SIGNAL`, a retired motor, shadow motor, or a `SURPRISE_TEAM` watch-only flag as a verified team-win recommendation.
+2. First produce the **complete real SXF v0.4.3 report** with source timestamps, T-6 primary / eligible T-8 fallback, exact market and choice; at its end list the signals plus **at least one and at most three numbered, verified SXF findings per match/market/selection** and a neutral ANALYST routing table. Unsupported selections must get an explicit factual verification finding, not a fictional signal.
+3. Open the SXF page in a browser. Click the match, confirm its **existing** real `run_id`, market, selection and source checkpoint. Open **Edit SXF — Market report**. Enter the original SXF AS_OF time exactly (T-6/T-8 cutoff), a short summary, the complete original report, **1–3 verified English findings**, and real source evidence lines; click **Save SXF to Software**.
+4. Verify the site displays `SAVED & VERIFIED`, exact report_id/version and the new SXF report version. Auto-sourced SXF data can already exist, but the full original specialist report is **not automatically created by that source-only import**. Do not say a full SXF report was uploaded until this UI save is verified.
+5. Hand ANALYST only the neutral fixture/time/market/choice/`fixture_uid`/`run_id`/SXF checkpoint AS_OF list, not SXF evidence, scores or opinions.
 
-- ALDIĞI: yalnız `KOPYALA → NEWS GİRDİSİ` nötr tablosu. Önceki A puanı/SXF sinyal/yorumları kaynak değildir. Her iki takımın sekiz haber alanını simetrik araştır, yalnız materyal H# haberlerini yedi 1/X/2/O/U/KG Y/KG N etki sütunuyla puanla. N/100 yalnız kaynağa dayalı ordinal destek, olasılık değildir. Yeterli haber yoksa `50/100 — veri yetersiz` etiketi.
-- Tam rapor sonunda `NEWS — KISA SONUÇ / FINAL'E GİDECEK LİSTE` (maç, market, seçim, N/100, yedi marketten ilgili ham NEWS etkisi, kısa gerekçe, gerçek run_id) göster.
-- Commander bağlıysa **orijinal tam NEWS raporunu** `python3 /opt/capitale-report-uploader.py submit --role news --file /tmp/news-<run_id>.json` ile kaydet; `SAVED_READBACK_OK` şarttır. SXF/ANALYST alanlarını değiştirmez.
+## ANALYST browser steps
 
-## 4. Her rolün yazma zarfı — sunucu tarafından doğrulanır
+1. Receive the **neutral fixture/selection/run data only**, not SXF market evidence.
+2. Complete the unchanged ANALYST v2.1 CANONICAL three-factor real football analysis and ordinal A support score /100. An unsupported score is `null`, never a fabricated winning probability.
+3. Open `?agent=analyst`, find the same match and `run_id`, click **Edit ANALYST — Statistics report**; fill the ANALYST research AS_OF, A score (if supported), brief summary, **the entire original three-factor report**, 1–3 genuinely supported English facts and independently researched source evidence.
+4. Click **Save ANALYST to Software**. Require `SAVED & VERIFIED` with actual report ID/version. Do not access or change SXF, NEWS or FINAL boxes. At the end of the full report give the A summary and the **neutral NEWS handoff table**.
 
-`/opt/capitale-report-uploader.py` mevcut yetkili **localhost-only Commander** rapor yükleyicisidir. Kullanıcı token, GPT Actions veya Chrome işlemi yapmaz. Dosya **gerçek mevcut rapordan** hazırlanmış JSON olmalı; uydurma örnek kimlik, maç veya kaynak hash'i yüklenmez.
+## NEWS browser steps
 
-```text
-{
-  "run_id": "<SXF tarafından oluşturulmuş GERÇEK UUID>",
-  "role": "<analyst veya news veya sxf>",
-  "report": {
-    "status": "complete",
-    "as_of": "<rolün GERÇEK kaynak araştırma kesiti UTC>",
-    "source_count": "<orijinal raporda doğrulanmış tamsayı>",
-    "summary": "<tam raporun kısa özeti>",
-    "payload": {
-      "display": {
-        "market": "<SXF ile aynı orijinal 1X2 / OU25 / BTTS>",
-        "selection": "<SXF ile aynı orijinal 1 / 2 / O / Y>",
-        "support_score": "<yalnız ANALYST/NEWS: 0-100 veya null>",
-        "software_detail_bullets_en": ["<varsa en çok üç kaynaklı İngilizce bulgu>"]
-      },
-      "<role>_full_report": "<kaynaklarıyla birlikte eksiksiz orijinal rapor>"
-    },
-    "prompt_version": "<gerçek sürüm>",
-    "input_snapshot_hash": "<gerçek giriş/kaynak setinin SHA256 hex'i>"
-  },
-  "evidence": "<0..100 kanıt girdisi>"
-}
-```
+1. Receive only the neutral ANALYST→NEWS routing fields; no A score or SXF evidence may influence NEWS research.
+2. Complete unchanged NEWS MATCH IMPACT v1.6 eight areas, original H# sources, seven signed market scores, and independent N ordinal /100 support. Data insufficient must be explicit.
+3. Open `?agent=news`, find the same match/`run_id`, click **Edit NEWS — News report**; fill the true NEWS research AS_OF, N score (or leave blank if source insufficient), brief summary, **complete original NEWS report**, 1–3 sourced English news findings, and original H# news source lines.
+4. Click **Save NEWS to Software**, verify `SAVED & VERIFIED` ID/version. Then provide the short N list and real `run_id` to FINAL. Never edit other roles.
 
-Bu bir **alan sözleşmesi gösterimi**dir, çalıştırılabilir hazır örnek JSON değildir. `role` dış zarfta yalnız CLI tutarlılık kontrolüne yarar; sunucu rolü gizli server kimliğiyle belirler. `as_of` yalnız gerçek raporun veri kesitidir ve kickoff'tan önce olmalıdır. SXF'nin T-6/T-8 karar kesitiyle ANALYST/NEWS'in bağımsız rapor AS_OF değerlerinin aynı olması gerekmez. Tüm raporlar `FINAL` karar anından önceki kanıta dayanmalı ve maç sonrası haber/görüş ile eski karar değiştirilmemelidir. `source_count` ve `input_snapshot_hash` uydurulmaz.
+## FINAL browser steps
 
-## 5. FINAL — sitedeki üç gerçek raporu okur ve sentezler
+1. Open `?agent=final`, select the exact same match and `run_id`. On the page review the full original **SXF + ANALYST + NEWS** reports and their evidence. This FINAL editor is **disabled until all 3 full original reports are actually present**. Do not assume the machine-produced SXF summary equals the specialist's original full report.
+2. Cross-check fixture/market/selection identity, evidence sources/AS_OF, pre-match integrity and conflicting evidence. POLY is optional and absent POLY means `NO_EVIDENCE`.
+3. Produce the full FINAL v0.2 synthesis and one A/B/C or `NO_RECOMMENDATION` outcome. Open **Edit FINAL — Decision**; enter the outcome, true decision summary and **full original FINAL report**; click **Save FINAL decision**.
+4. Claim site publication ONLY when the webpage shows **FINAL SAVED & VERIFIED** with final decision ID/version and the saved category and report are visible on readback.
 
-- Kullanıcı FINAL'e yalnız son NEWS listesini ve gerçek `run_id` verir. FINAL, Commander aracılığıyla `python3 /opt/capitale-site-report-reader.py --run-id <UUID> --require-all --out /tmp/capitale-final-source-<UUID>.json` komutunu çalıştırıp **sitedeki** SXF, ANALYST ve NEWS tam kaynak raporlarını alır; özgeçmiş Commander devir arşivinden alması zorunlu değildir.
-- CLI `ready_for_final:true` olmadan, aynı maç+market+seçim, kaynak kesitleri, pre-match ve rapor bütünlüğü eşleşmeden FINAL kararını siteye yazmaz. Yalnız `sxf` mevcutsa ANALYST/NEWS'i var saymaz.
-- FINAL v0.2 **A/B/C/NO_RECOMMENDATION** sentezi; sadece diğer departmanların tam raporlarını kullanır. POLY raporu varsa bağımsız ek kanıt olarak sunulabilir; yoksa `NO_EVIDENCE`, sahte %5–15 POLY oyu üretme.
-- Tam FINAL raporu sonunda kısa `SON KARAR / SITE DEVİR LİSTESİ` yazılır.
-- **FINAL yazma bağlantısı henüz ayrıca tamamlanıp canlı test edilmedi** (GitHub issue #8). Gerçek son kayıt ID/version + authenticated admin readback görülmediyse `SİTEYE KAYDEDİLEMEDİ — FINAL YAZMA HEDEFİ HAZIR DEĞİL`. Başka rolün alanını veya tokenless endpoint'i taklit ederek FINAL yükleme YASAK.
+## Browser report form fields — exact UX
 
-## 6. Güvenlik ve durumlar
+Each SXF/ANALYST/NEWS form accepts:
+- `Verified report AS_OF (UTC, ISO 8601)`: real source research timestamp, e.g. `2026-11-20T13:45:00Z`. SXF AS_OF must match its original T-6/T-8 decision cutoff. Analyst/NEWS use their own independent research cut and must be before kickoff.
+- `A/N support score /100`: only ANALYST or NEWS; leave blank when unverified.
+- `Short executive summary`: genuine brief summary.
+- `Complete original report`: **entire original full report**, 100+ characters, no other role's conclusions.
+- `1–3 verified English findings`: at least ONE, no fictional details.
+- `Evidence sources`: **one source per line** formatted as `Source name | URL (or -) | Claim supported by the source`. E.g. `SmartXFlow checkpoint | - | Original T-6 engine event supports this SXF finding`. Real citations only; dates and claims must be true.
+- `Save [ROLE] to Software`: returns immutable report_id/version after role/run/content hash readback. Missing source citation, false AS_OF, identity mismatch and unauthenticated requests are rejected.
 
-- SXF, ANALYST ve NEWS sadece kendi rol kayıtlarının **yeni sürümünü** ekler; eski rapor/diğer departman kaydı değiştirilmez. FINAL ayrı karar alanına yazar.
-- Sunucu eski `/api/capitale/agent-bridge/reports/:department` tokenless **internet** yolunu Nginx'te 403 ile kapatır. Yetkili localhost Commander backend ve server-only DB credentials işler. Chat veya browser hiçbir gizli anahtar almaz.
-- `KAYDEDİLDİ` ancak gerçek `report_id`, `report_version` ve aynı rol/`run_id`/`input_snapshot_hash` tekrar okunup doğrulanınca kullanılır. Bir rapor yoksa sitede `RAPOR BEKLENİYOR`/eksik statüsü olur.
-- Çok seçimli tek fikstürde mevcut arayüz yalnız bir ayrı `display` seçimini bir `run_id` için göstermektedir; otomatik import bu durumları **sessizce elemez/uydurmaz**, `multiple_picks_require_expanded_board` olarak işaretler. Tüm seçimleri ayrı satır gösteren genişletme ayrıca doğrulanmalıdır.
-- Geçmiş `tools/manual_report_inbox.py` ve üç tam raporu FINAL'de toplayan arşiv yolu sadece **bağlantı yoksa manuel yedek**; günlük varsayılan akış DEĞİL.
-- Motor eşikleri, ANALYST üç faktörü, NEWS H# ve source-policy ayrımı, SXF tarihsel snapshot/arşivleri veya FINAL karar metodolojisi değiştirilmez.
+FINAL form is separate: `A/B/C/NO_RECOMMENDATION`, `Decision summary`, `Complete FINAL synthesis and evidence trace`, `Save FINAL decision`.
+
+## Implementation and boundaries (as of 2026-11-20)
+
+Live frontend: `/admin/software` includes role-specific browser forms, input validation and FINAL decision panel. Backend: admin-session + same-origin protected `/api/admin/capitale/software/role-report/:runId/:role` (role-scoped append-only) and `/api/admin/capitale/software/final/:runId` (read/append FINAL); server controls role identity and validates true source-run selection/AS_OF, with readback after write. FINAL decision RPC executes only for service_role and rejects missing 3 full reports, wrong selections and kickoff-passed runs. Web save does not rely on the deprecated public tokenless connector; it stays nginx-blocked 403.
+
+**Verified so far:** live website responds 200; unauthenticated browser POSTs 401; old public endpoint 403; site TypeScript and production builds passed. Real GUI saves under a logged-in admin session require an actual full specialist report; **not yet validated end-to-end with real four-agent work**. No fake sample bets/NEWS/ANALYST reports were saved.
+
+The previously built server CLI scripts (`tools/capitale_sxf_software_sync.py`, `tools/capitale_report_uploader.py`, `tools/capitale_site_report_reader.py`) remain technical backup/automatic verified source plumbing; **never instruct ordinary specialist agents to use those to replace webpage navigation, clicking and saving**, unless the owner expressly switches to API mode.
+
+Canonical engine methodology, source isolation, 1–3 SXF findings requirement, three ANALYST factors, eight NEWS areas and FINAL v0.2 scoring rules remain unchanged.
