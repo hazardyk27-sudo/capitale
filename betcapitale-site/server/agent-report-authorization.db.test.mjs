@@ -82,6 +82,8 @@ test("CAPITALE database authorization enforces role isolation, append-only histo
 
     const migration = await readFile(resolve(here, "../supabase/migrations/20261120000000_capitale_agent_report_authorization.sql"), "utf8");
     await client.query(migration);
+    await client.query("grant usage on schema capitale to authenticated");
+    await client.query("grant select, insert on capitale.agent_reports to authenticated");
 
     const runId = "10000000-0000-4000-8000-000000000001";
     const fixtureUid = "20000000-0000-4000-8000-000000000002";
@@ -141,6 +143,8 @@ test("CAPITALE database authorization enforces role isolation, append-only histo
     assert.equal(analyst.report_version, 1);
     assert.equal(news.report_version, 1);
     assert.equal(sxf.report_version, 1);
+    assert.equal((await client.query("select count(*)::int as count from capitale.agent_reports where role = 'poly'")).rows[0].count, 0);
+    await assert.rejects(client.query("insert into capitale.agent_reports(run_id,role) values ($1, 'poly')", [runId]));
 
     const duplicate = await submit(tokens.analyst, "analyst-write-000001");
     assert.equal(duplicate.duplicate, true);
@@ -195,6 +199,7 @@ test("CAPITALE database authorization enforces role isolation, append-only histo
     await assert.rejects(
       client.query("update capitale.agent_reports set summary='mutated' where id=$1", [analyst.report_id]),
     );
+    await assert.rejects(client.query("delete from capitale.agent_reports where id=$1", [analyst.report_id]));
     const denialCount = await client.query(
       "select count(*)::int as count from capitale.audit_log where event_type='agent_report_denied'",
     );
