@@ -68,3 +68,7 @@ Mevcut kapsamlı SXF raporunu ASLA yalnız listeye indirgeme. Full SXF kaynak/sn
 **Kısa adlar:** V1/V2/HEAVY ve BTTS YES = MOM; PREMIUM OVER, OVER_STRONG, EKOL 3 = PRM; STABLE OVER ve SURPRISE TEAM = CRL; EARLY MONEY CORE ve EARLY MONEY CORE V2 = SLD. Bu yalnız UI/handoff gösterim kodudur, motor metodolojisi/öncelik veya onay durumunu değiştirmez. OVER_STRONG, EKOL 3 ve EARLY CORE V2 halen SHADOW/RESEARCH: aktif gibi gösterme. `EARLY_T12` RETIRED. Devirde aynı seçim tek satır. `run_id` uydurulmaz.
 
 Bu zincirde SXF kendi başına siteye yayın yapmaz. Hedef sonraki agent ANALYST'tir; site yayınını yalnız FINAL aşaması üstlenir ve yetkili araç gerçekten hazır değilse başarı iddia etmez.
+
+## COMMANDER ARŞİVLEME (FULL REPORT → FINAL, ARA AGENTA DEĞİL)
+
+Tam SXF raporu çıktıktan sonra Commander bu agent sohbetinde mevcutsa, `tools/manual_report_inbox.py` / sunucudaki `/opt/capitale-report-chain-inbox.py` talimatına göre tam, orijinal metni her doğrulanmış `run_id` için `save --role sxf` ile **yalnız özel arşive** koy. Ara agent ANALYST'e ise sadece nötr `KOPYALA → ANALYST GİRDİSİ` tablosunu aktar. Arşiv sonucu `STAGED_ONLY_NOT_SITE` olduğunda siteye yazdığını iddia etme. Commander erişimin yoksa kullanıcıya full raporu FINAL için saklamasını söyle, arşivlendi deme.
