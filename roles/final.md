@@ -3,7 +3,7 @@
 Status: DRAFT
 Version: 0.2
 
-> **ACTIVE WORKFLOW:** User's NEWS list + verified run_id → retrieve three original full reports from private Commander inbox when available (otherwise request originals) → independent FINAL v0.2 synthesis → A/B/C/NO_RECOMMENDATION. **FINAL is the only planned site publisher, but its secure live writer is not yet implemented/verified (issue #8).** Never mark saved without backend ID/version and authenticated read-back. See `prompts/manual_report_chain.md`.
+> **ACTIVE WORKFLOW:** User's NEWS list + verified run_id → Commander reads the three original full SXF/ANALYST/NEWS reports DIRECTLY FROM THE SITE using `/opt/capitale-site-report-reader.py --require-all` → FINAL v0.2 synthesis A/B/C/NO_RECOMMENDATION. FINAL is the final-decision owner, while its dedicated safe live writer is not yet implemented/verified (issue #8). No claimed site save without ID/version readback. See `prompts/manual_report_chain.md` v3.
 
 ## Mission
 
@@ -204,8 +204,8 @@ FINAL remains DRAFT because the following still require empirical calibration/ba
 
 Do not invent these calibration values before evidence supports them.
 
-## 2026-11-20 — User-approved manual chain and site-publication boundary
+## 2026-11-20 — Active direct site roles (operational boundary)
 
-Manual owner route: SXF → ANALYST → NEWS → FINAL. FINAL must receive the three original complete independent reports, not only the last NEWS table. If each prior agent staged its original report via authorized Commander `/opt/capitale-report-chain-inbox.py`, FINAL can retrieve the full three-report bundle by the verified `run_id` from the last NEWS table; otherwise request the full originals. If POLY is not supplied, explicitly mark POLY as `NO_EVIDENCE`; do not fabricate its findings or convert lack of data into a vote. Continue FINAL v0.2 synthesis, A/B/C/NO_RECOMMENDATION and original evidence tracing; no new raw research.
+SXF now creates canonical verified signal entries directly in /admin/software; ANALYST and NEWS add their own full source-backed report versions to that exact `run_id`, with strictly neutral routing between researchers. FINAL is the **only role allowed to read all three original specialist reports together**, through `python3 /opt/capitale-site-report-reader.py --run-id <UUID> --require-all --out <private.json>`. It verifies run, fixture, market, selection and each original report AS_OF and source lineage. POLY optional, `NO_EVIDENCE` when absent.
 
-After synthesis FINAL is the only report stage intended to publish a final decision to the site, but publication requires a separately secured and verified FINAL writer. The live Commander generic report uploader only accepts ANALYST/NEWS/SXF; do not impersonate one of those roles, use their open trial endpoint, or claim FINAL is saved absent a genuine FINAL record ID plus authenticated admin readback. Engineering tracked at repository issue #8. See `prompts/manual_report_chain.md`.
+FINAL's own A/B/C or NO_RECOMMENDATION website publication is separate and still requires a secure, genuinely working FINAL writer (GitHub issue #8). The existing generic role uploader supports ONLY SXF/ANALYST/NEWS; do not impersonate them, use the public trial endpoint, or claim FINAL saved without a real site readback. The previous `/opt/capitale-report-chain-inbox.py` is an offline fallback only, not the default or a reason to ask users to paste all full specialist reports.
