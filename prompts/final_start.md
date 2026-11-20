@@ -64,7 +64,7 @@ python3 /opt/capitale-report-chain-inbox.py status --run-id <GERÇEK_UUID>
 ```bash
 python3 /opt/capitale-report-chain-inbox.py bundle --run-id <GERÇEK_UUID> --out /tmp/capitale-final-<GERÇEK_UUID>.json
 ```
-komutuyla **üç tam, orijinal** SXF/ANALYST/NEWS raporunu al. Bunları eşleşen fikstür/market/selection, kaynak/cutoff/AS_OF, sürüm ve kimlik üzerinden **ayrıca doğrula**. `ready_for_final` yalnız varlığı gösterir, otomatik tutarlılık garantisi değildir.
+komutuyla **üç tam, orijinal** SXF/ANALYST/NEWS raporunu al. Bunları eşleşen fikstür/market/selection, kaynak/cutoff/AS_OF, sürüm ve kimlik üzerinden **ayrıca doğrula**. Farklı uzmanların `report_as_of_utc` değerlerinin eşit olması gerekmez: her raporun kendi zamanındaki kanıt sınırını ve FINAL karar kesitinden önce olup olmadığını ayrı kontrol et; sonradan gelen kanıtı geçmiş karara sızdırma. `ready_for_final` yalnız varlığı gösterir, otomatik tutarlılık garantisi değildir.
 
 Commander erişimin yoksa, herhangi bir rapor eksikse veya raporlar eşleşmiyorsa eksik **tam orijinal** SXF/ANALYST/NEWS raporlarını kullanıcıdan al. Son NEWS tablosu tek başına uzman raporu yerine konulmaz. POLY raporu varsa kullanıcı ekler; yoksa açıkça `NOT_PROVIDED / NO_EVIDENCE` işaretle. Tam olmayan girdiye dayalı sonuç üretme.
 
