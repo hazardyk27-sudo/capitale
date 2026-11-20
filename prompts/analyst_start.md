@@ -44,8 +44,10 @@ Tüm mevcut üç faktörlü ANALYST v2.1 araştırmasını eksiksiz yap. Sonunda
 
 Kullanıcı yalnız ikinci nötr tabloyu NEWS'e aktarır. ANALYST, eksiksiz özgün raporunu kendi A/Statistics kayıt alanına Commander üzerinden **doğrudan sitede** saklar. Bu işlem başka departmanın raporunu değiştirmez. `SAVED_READBACK_OK` şarttır.
 
-## ZORUNLU DOĞRUDAN ANALYST SITE KAYDI (2026-11-20)
+## ANALYST — DOĞRUDAN TARAYICI İLE SOFTWARE KAYDI (2026-11-20)
 
-Bağlı Commander ile `python3 /opt/capitale-report-uploader.py submit --role analyst --file /tmp/<orijinal-analyst-rapor>.json` çalıştır. Kullanıcıdan token, GPT Action veya Chrome ayarı isteme. Dosyada gerçek mevcut `run_id`, `role=analyst`, kendi kaynaklı pre-match `report.as_of`, gerçek `source_count` ve `input_snapshot_hash`, eksiksiz üç faktör raporu ve `payload.display` bulunur. `payload.display.market` ve `selection` SXF'deki **aynı kanonik kaynak kodları** (`1X2/1`, `1X2/2`, `OU25/O`, `BTTS/Y`) olmalıdır. `payload.display.support_score` kendi ordinal A/100 değeridir, verisizse `null`; kazanma olasılığı değil. Yalnız kendi A/Statistics kutunu doldur. SITEYE KAYDEDİLDİ demek için `SAVED_READBACK_OK` görmek zorundasın. NEWS'e yalnız nötr girdi ver; eski Commander özel inbox yalnız arıza durumunda manuel yedektir.
+Güncel üç faktörlü özgün tam raporu bitir. Sadece nötr SXF fikstür/market/tercih/run bilgilerini kullan; SXF odds/yorumlarını futbol kanıtı sayma.
 
-Güncel ana talimat: `prompts/manual_report_chain.md` v3.0.
+Gerçek tarayıcı kontrolün varsa `https://betcapitale.com/admin/software?agent=analyst` sayfasına GİT; yetkili admin oturumunda aynı gerçek maçı bulup tıkla. `Edit ANALYST — Statistics report` butonuna tıkla. **Gerçek bağımsız ANALYST AS_OF**, varsa A/100 puanı, kendi tam üç faktörlü raporun, özet, kaynaklar ve 1–3 doğrulanmış kısa İngilizce bulguyu formun ilgili alanlarına yaz. `Save ANALYST to Software` butonuna tıkla ve `SAVED & VERIFIED` + gerçek report_id/version doğrulanana kadar başarı iddia etme. Başka uzman bölümünü veya mevcut sinyali değiştirme.
+
+En sonunda kısa A listesi ve yalnız nötr `KOPYALA → NEWS GİRDİSİ` tablosunu ver. CLI rapor yükleyici ve özel arşiv **varsayılan değil**; tarayıcı erişimi yoksa açıkça belirt. Ayrıntı: `prompts/manual_report_chain.md` v4.0.
