@@ -8,6 +8,8 @@ Methodology: methods/analyst_methodology.md
 Schema: schemas/analyst_report.md
 Runtime: prompts/analyst_start.md
 
+> **ACTIVE WORKFLOW:** Receive **only neutral SXF fixture/market/selection routing**; complete independent v2.1 three-factor analysis → A ordinal support summary → **neutral** NEWS handoff. Stage complete report privately with Commander when available. **No direct ANALYST website upload.** See `prompts/manual_report_chain.md`.
+
 ## Role
 
 Analyze the user's football fixture prediction list independently and only from factual past match statistics, football levels and verified tactical evidence. Keep previous CAPITALE department separation and timestamp discipline. Do not decide the FINAL department's betting action.
