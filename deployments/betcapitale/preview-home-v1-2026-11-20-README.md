@@ -8,10 +8,10 @@ This is a separate compiled **React** homepage, not an image or a Codex design. 
 
 ## Access and security
 
-- Nginx basic authentication via a dedicated `capitale-preview` account.
-- The actual password and hashed authentication data are **not** stored in GitHub. The owner receives the password privately.
-- All preview files, including bundled JS/CSS, are protected by the same authentication requirement.
-- Page and asset requests without authentication returned HTTP **401**; authorized requests returned **200**.
+- Nginx `auth_request` to the **existing authenticated CAPITALE admin session** via the internal backend `GET /api/admin/me` endpoint. No separate preview password is required. A valid session with `isAdmin=true` is required.
+- All preview files, including bundled JS/CSS, are protected by the same admin-session check, using forwarded session cookies.
+- Unauthenticated HTML/JS requests returned HTTP **401**. An actual browser check with a logged-in admin session has **not yet been performed**; the original basic-auth deployment's static files previously passed 200 checks, and the production admin endpoint's session guard was inspected.
+- The initial temporary basic-auth credential files were deleted after switching to admin-session authentication.
 - `X-Robots-Tag: noindex, nofollow, noarchive`; HTML also includes `meta name="robots" content="noindex,nofollow,noarchive"`.
 - No Google/Meta/Reddit tracking scripts from the live HTML are included in the preview HTML.
 - The preview React entrypoint blocks non-GET/HEAD fetch and XHR and form submission, and intercepts anchor navigation, to avoid accidentally triggering live purchases, signup, logout, mutation requests, or navigation to live pages while reviewing a design. Existing GET-only public metrics may still be displayed.
@@ -33,17 +33,16 @@ Standalone Vite build command from the source worktree:
 Compiled preview served at:
 `/srv/capitale-preview/home-v1`
 
-Nginx authentication and static alias snippet:
+Nginx admin-session authentication subrequest and static alias snippet:
 `/etc/nginx/snippets/capitale-home-preview-v1.conf`
 
 Nginx site configuration:
 `/etc/nginx/sites-available/betcapitale`, with **one include added inside its HTTPS server block**. Backup:
 `/etc/nginx/sites-available/betcapitale.before-preview-home-v1-20261120`.
 
-Password hash (never expose contents):
-`/etc/nginx/.capitale-preview-home-v1.htpasswd`
+Admin access is checked through the existing session cookie; there is no standalone preview password or htpasswd file.
 
-To publish a *design revision* to the preview only: edit the isolated React worktree, type-check and rebuild it, stage the generated `dist/public` content, back up the existing preview directory, and replace **only** `/srv/capitale-preview/home-v1`. Verify the page and assets using the preview credentials and confirm public homepage remains unchanged.
+To publish a *design revision* to the preview only: edit the isolated React worktree, type-check and rebuild it, stage the generated `dist/public` content, back up the existing preview directory, and replace **only** `/srv/capitale-preview/home-v1`. Verify the page and assets from a logged-in CAPITALE admin browser, confirm anonymous access is denied, and confirm public homepage remains unchanged.
 
 **Do not deploy preview source or build assets to `/app/betcapitale/dist` until the owner explicitly says "Canlıya al".** Subsequent design work should be submitted to this preview URL first.
 
@@ -51,11 +50,11 @@ To publish a *design revision* to the preview only: edit the isolated React work
 
 - TypeScript `tsc --noEmit`: passed.
 - Isolated Vite build with `--base=/preview/home-v1/`: passed (main JS and CSS are served under the preview prefix).
-- Authorized HTML/JS/CSS requests: HTTP 200.
-- Unauthenticated HTML and JS requests: HTTP 401.
+- Static HTML/JS/CSS were previously checked at HTTP 200 with the initial temporary basic-auth setup; the final access method is the existing CAPITALE admin session.
+- After switching to admin-session authentication, unauthenticated HTML and JS requests: HTTP 401. A signed-in admin browser verification is still required.
 - Nginx configuration syntax test: passed; Nginx was reloaded, not restarted.
 - Live public homepage remained HTTP 200; `betcapitale-web.service`, Nginx and Desktop Commander remained active.
-- A real signed-in/graphical browser screenshot comparison was **not** performed. Verify desktop/mobile design in a browser before approval.
+- A real signed-in/graphical browser session could not be used from the server. Verify that an authenticated CAPITALE admin can open and navigate the desktop/mobile preview before approving any design.
 
 ## Future workflow
 
