@@ -1,26 +1,26 @@
-# CAPITALE — Agent Başlangıç Talimatları
+# CAPITALE — Güncel Agent Başlangıçları
 
-**TEK VARSAYILAN İŞ AKIŞI:** `prompts/manual_report_chain.md` — **SXF → ANALYST → NEWS → FINAL → site**.
+**AKTİF VARSAYILAN (2026-11-20):** SXF → ANALYST → NEWS → FINAL, **her agent kendi orijinal tam raporunu doğrudan /admin/software kaydına yazar.** Kanonik açıklama: `prompts/manual_report_chain.md` **v3.0**.
 
-Her agent yeni çalışma başlangıcında `AGENTS.md`, `MILESTONE.md`, `roles/<rol>.md`, `policies/source_policy.md`, rol kaynak politikası, `methods/<rol>_methodology.md`, `schemas/<rol>_report.md` ve kendi `prompts/<rol>_start.md` dosyasını okur. Daha eski deneysel ANALYST yöntemleri **aktif değildir**, geçmiş sürümleri Git tarihinde bulunur.
+Her agent başlangıçta `AGENTS.md`, `MILESTONE.md`, ilgili `roles/<rol>.md`, `policies/source_policy.md`, rol kaynak politikası, `methods/<rol>_methodology.md`, `schemas/<rol>_report.md`, `prompts/<rol>_start.md` ve `prompts/manual_report_chain.md` okur.
 
-| Rol | Başlangıç | Metodoloji | Final öncesi kapanış |
+| Agent | Tam bağımsız araştırma | Site kaydı | Rapor sonu |
 |---|---|---|---|
-| SXF v0.4.3 DRAFT | `prompts/sxf_start.md` | DAILY T-6; uygun T-8 fallback | Gerçek sinyaller + **her maç/tercih için en az 1, en fazla 3 bulgu** + yalnız nötr ANALYST listesi |
-| ANALYST v2.1 CANONICAL | `prompts/analyst_start.md` | Üç futbol faktörü, ordinal A /100 | Tam rapor + kısa A listesi + nötr NEWS listesi |
-| NEWS v1.6 CANONICAL | `prompts/news_start.md` | 8 haber alanı, 7 etki toplamı, ordinal N /100 | Tam rapor + kısa N/100 listesi + FINAL'e arşiv durumu |
-| FINAL v0.2 DRAFT | `prompts/final_start.md` | Mevcut tam uzman raporlarının sentezi | A/B/C/NO_RECOMMENDATION + gerçek kayıt durumu |
+| SXF v0.4.3 DRAFT | SmartXFlow FINAL_SIGNAL, DAILY T-6 / geçerli T-8 fallback | Kaynak `FINAL_SIGNAL` olayları her 3 dk otomatik; gerekirse tam SXF raporu kendi alanında sürümlenir | Gerçek sinyaller + **1–3 bulgu (en az 1)** + nötr ANALYST listesi |
+| ANALYST v2.1 CANONICAL | Yalnız üç futbol faktörü; A ordinal destek /100 | Commander ile gerçek run_id'nin **yalnız A/Statistics** bölümüne tam raporu yazar | Tam rapor + A listesi + nötr NEWS listesi |
+| NEWS v1.6 CANONICAL | Yalnız bağımsız sekiz haber alanı + H# yedi piyasa etkisi; N ordinal /100 | Commander ile aynı run_id'nin **yalnız News** bölümüne tam raporu yazar | Tam rapor + N listesi + FINAL'e run_id |
+| FINAL v0.2 DRAFT | Üç tam raporu **site üzerinden** alıp bağımsız sentezler; POLY opsiyonel | FINAL'in son A/B/C yazıcısı halen geliştiriliyor (issue #8) | A/B/C veya NO_RECOMMENDATION + gerçek site kayıt durumu |
 
-POLY v1.4 `prompts/poly_start.md` ile **opsiyonel bağımsız** kanıt sağlayabilir; yoksa `NO_EVIDENCE`; FINAL POLY bulgusu uydurmaz. ENGINEER ayrı teknik roldür.
+**Nötr devir:** SXF → ANALYST ve ANALYST → NEWS arası yalnız `tarih/saat/iki takım/market/seçim/fixture_uid/run_id/SXF karar AS_OF`. Önceki uzmanların kanıt, puan, para, odds veya yorumları yeni araştırma girdisine **girmez**.
 
-### Tek geçerli devir yöntemi
+**Commander komutları (private server):**
+- Gerçek SXF final-signal otomatik import: `/opt/capitale-sxf-software-sync.py`, watcher `/opt/capitale-sxf-software-watch.py`.
+- ANALYST/NEWS kendi raporuna kayıt: `python3 /opt/capitale-report-uploader.py submit --role analyst|news --file <gerçek-rapor.json>`; `SAVED_READBACK_OK` zorunlu.
+- FINAL için siteden orijinal üç raporu okuma: `python3 /opt/capitale-site-report-reader.py --run-id <UUID> --require-all --out <private.json>`.
+- Eski `tools/manual_report_inbox.py` / `/opt/capitale-report-chain-inbox.py` **yalnız yedek devir**; artık normal rapor yayın yolu değildir.
 
-SXF → ANALYST → NEWS'e **yalnız nötr maç/tercih/kimlik tablosu** verilir. Orijinal üç tam rapor başka uzmanların kanıtı olmaz; FINAL bunları yalnız doğrulanmış `run_id` ile **özel Commander arşivinden** alır (`tools/manual_report_inbox.py` / sunucuda `/opt/capitale-report-chain-inbox.py`). Commander yok veya rapor eksikse kullanıcı üç tam raporu FINAL'e verir. **Arşiv kaydı siteye yayın değildir.**
+**Güvenlik:** İnternete açık eski tokenless `/api/capitale/agent-bridge/reports/:department` yoluna Nginx 403 döner. Site kaydı yalnız yerel yetkili Commander ve özel server DB rolüyle yapılır. Kullanıcıdan token, GPT Action veya Chrome müdahalesi istenmez. Bir rol diğer rolü taklit etmez. Gerçek `report_id`, `version`, `run_id`, role ve kaynak hash readback olmadan kayıt başarısı iddia edilmez.
 
-SXF, ANALYST ve NEWS artık **siteye ayrı ayrı yükleme yapmaz**. Sitenin son yazma adımı FINAL'e aittir, ancak **FINAL yetkili yazıcısı henüz uygulanmamış/doğrulanmamıştır (issue #8)**. Gerçek kayıt ID/versiyon + admin read-back olmadan `KAYDEDİLDİ` denemez. Kullanıcıdan GPT Action, token veya Chrome arayüz işlemi istenmez. GitHub dosyası tek başına siteye yazma izni vermez.
+**Önemli sınırlamalar:** Henüz bir araştırma run'ında farklı birden fazla market/selection varsa otomatik import bunu açıkça `multiple_picks_require_expanded_board` durumuna alır; tüm tercihleri farklı satırlar halinde gösterecek genişletme ayrıca geliştirilmelidir. FINAL'in nihai veritabanı/site yazıcısı henüz doğrulanmadı; son kararın sitede kaydedildiği söylenemez.
 
-### SXF'nin bağımsız araştırma/arşiv operasyonu
-
-Bu günlük rapor zincirinin **ayrı teknik operasyonudur** ve silinmez: `prompts/sxf_archive_scan.md`, `prompts/sxf_archive_save.md`, `prompts/sxf_archive_settle.md`; yöntem `methods/sxf_archive_methodology.md`, schema `schemas/sxf_archive_schema.md`, kurallar `archive/README.md`. Çeşitli T-72…T-1 kaynak checkpoint'leri araştırma arşivinde bulunabilir; günlük sinyal varsayılanı bunlardan farklı olarak T-6/T-8'dir. SmartXFlow kaynakları Supabase'den okunabilir, SXF araştırma arşivi GitHub'da tutulur.
-
-**Temel güvenlik:** AS_OF sonrası bilgi kullanma, çalışma kimliği/fixture/market uydurma, başka rolün puanlarını kanıt sayma, site yayını yapılmadıysa başarı iddia etme.
+Bağımsız SXF arşiv operasyonu korunur: `prompts/sxf_archive_scan.md`, `prompts/sxf_archive_save.md`, `prompts/sxf_archive_settle.md`, `methods/sxf_archive_methodology.md`, `schemas/sxf_archive_schema.md`. Supabase SXF taramasında **salt okunur kaynak** olabilir; araştırma arşivi GitHub'a yazılır. Siteye yetkili rapor yazımı ayrı bir CAPITALE karar kaydıdır, ham araştırma arşivini değiştirmez.
