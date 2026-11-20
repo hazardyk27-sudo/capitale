@@ -1,26 +1,20 @@
-# CAPITALE — Güncel Agent Başlangıçları
+# CAPITALE — Güncel dört agent başlangıçları
 
-**AKTİF VARSAYILAN (2026-11-20):** SXF → ANALYST → NEWS → FINAL, **her agent kendi orijinal tam raporunu doğrudan /admin/software kaydına yazar.** Kanonik açıklama: `prompts/manual_report_chain.md` **v3.0**.
+**AKTİF (2026-11-20):** SXF → ANALYST → NEWS → FINAL. **HER AGENT WEB SİTESİNDE KENDİ FORMUNU TARAYICIDA AÇAR, TAM RAPORUNU GİRER VE KAYDET’E TIKLAR.** API JSON/Commander CLI rapor aktarımı veya özel inbox **NORMAL AGENT AKIŞI DEĞİLDİR**. Kanonik: `prompts/manual_report_chain.md` **v4.0**.
 
-Her agent başlangıçta `AGENTS.md`, `MILESTONE.md`, ilgili `roles/<rol>.md`, `policies/source_policy.md`, rol kaynak politikası, `methods/<rol>_methodology.md`, `schemas/<rol>_report.md`, `prompts/<rol>_start.md` ve `prompts/manual_report_chain.md` okur.
+| Rol | Direkt agent sayfası | Form |
+|---|---|---|
+| SXF | `https://betcapitale.com/admin/software?agent=sxf` | Edit SXF — Market report |
+| ANALYST | `https://betcapitale.com/admin/software?agent=analyst` | Edit ANALYST — Statistics report |
+| NEWS | `https://betcapitale.com/admin/software?agent=news` | Edit NEWS — News report |
+| FINAL | `https://betcapitale.com/admin/software?agent=final` | Edit FINAL — Decision |
 
-| Agent | Tam bağımsız araştırma | Site kaydı | Rapor sonu |
-|---|---|---|---|
-| SXF v0.4.3 DRAFT | SmartXFlow FINAL_SIGNAL, DAILY T-6 / geçerli T-8 fallback | Kaynak `FINAL_SIGNAL` olayları her 3 dk otomatik; gerekirse tam SXF raporu kendi alanında sürümlenir | Gerçek sinyaller + **1–3 bulgu (en az 1)** + nötr ANALYST listesi |
-| ANALYST v2.1 CANONICAL | Yalnız üç futbol faktörü; A ordinal destek /100 | Commander ile gerçek run_id'nin **yalnız A/Statistics** bölümüne tam raporu yazar | Tam rapor + A listesi + nötr NEWS listesi |
-| NEWS v1.6 CANONICAL | Yalnız bağımsız sekiz haber alanı + H# yedi piyasa etkisi; N ordinal /100 | Commander ile aynı run_id'nin **yalnız News** bölümüne tam raporu yazar | Tam rapor + N listesi + FINAL'e run_id |
-| FINAL v0.2 DRAFT | Üç tam raporu **site üzerinden** alıp bağımsız sentezler; POLY opsiyonel | FINAL'in son A/B/C yazıcısı halen geliştiriliyor (issue #8) | A/B/C veya NO_RECOMMENDATION + gerçek site kayıt durumu |
+Başlangıçta `AGENTS.md`, `MILESTONE.md`, `roles/<rol>.md`, `policies/source_policy.md`, ilgili rol kaynak politikası, `methods/<rol>_methodology.md`, `schemas/<rol>_report.md`, `prompts/<rol>_start.md` ve `prompts/manual_report_chain.md` **okunur**.
 
-**Nötr devir:** SXF → ANALYST ve ANALYST → NEWS arası yalnız `tarih/saat/iki takım/market/seçim/fixture_uid/run_id/SXF karar AS_OF`. Önceki uzmanların kanıt, puan, para, odds veya yorumları yeni araştırma girdisine **girmez**.
+SXF gerçek `FINAL_SIGNAL` taraması ayrıca otomatik olarak kaynak senkronizasyonunu yapar; **sitenin otomatik kaynak kaydı tam uzman raporu değildir**. SXF tam raporunu siteye kendi formuyla ekler ve her seçim için zorunlu 1–3 kanıt maddesi verir. ANALYST sadece nötr girdiyle bağımsız üç faktör araştırır ve A destek/100 puanını kendi formuna kaydeder. NEWS sadece nötr girdiyle sekiz haber alanını ve H# kanıtlarını araştırır, N destek/100 ve tam raporu kendi formuna kaydeder. FINAL kendi sayfasında üç özgün tam raporu okur, kendi A/B/C/NO_RECOMMENDATION kararını ayrı FINAL formuna kaydeder; POLY isteğe bağlıdır.
 
-**Commander komutları (private server):**
-- Gerçek SXF final-signal otomatik import: `/opt/capitale-sxf-software-sync.py`, watcher `/opt/capitale-sxf-software-watch.py`.
-- ANALYST/NEWS kendi raporuna kayıt: `python3 /opt/capitale-report-uploader.py submit --role analyst|news --file <gerçek-rapor.json>`; `SAVED_READBACK_OK` zorunlu.
-- FINAL için siteden orijinal üç raporu okuma: `python3 /opt/capitale-site-report-reader.py --run-id <UUID> --require-all --out <private.json>`.
-- Eski `tools/manual_report_inbox.py` / `/opt/capitale-report-chain-inbox.py` **yalnız yedek devir**; artık normal rapor yayın yolu değildir.
+**Mutlaka gerçek admin tarayıcı oturumu gereklidir.** Kullanıcıdan ChatGPT sohbetinde şifre/token istenmez. Commander terminali tek başına web sayfasına tıklama yapmış sayılmaz; Work Cloud Browser veya yetkili gerçek tarayıcı kontrolü gerekir. Böyle bir yetki/araç yoksa ilgili agent UI işlemi yapılmadığını açıkça söyler.
 
-**Güvenlik:** İnternete açık eski tokenless `/api/capitale/agent-bridge/reports/:department` yoluna Nginx 403 döner. Site kaydı yalnız yerel yetkili Commander ve özel server DB rolüyle yapılır. Kullanıcıdan token, GPT Action veya Chrome müdahalesi istenmez. Bir rol diğer rolü taklit etmez. Gerçek `report_id`, `version`, `run_id`, role ve kaynak hash readback olmadan kayıt başarısı iddia edilmez.
+Sadece `SAVED & VERIFIED` + report_id/version (FINAL: `FINAL SAVED & VERIFIED` + decision_id/version) **sayfada gerçekten görüntülendiyse** siteye yazıldı denir. Yalnız rolün kendi kutusu güncellenir; diğerlerini değiştirme. `AS_OF` gerçektir, fikstür başlamadan önce kaynak kesitidir, rastgele saat girilmez. Tam rapor, kısa özet, 1–3 İngilizce bulgu ve kaynaklar site formuna eksiksiz girilir.
 
-**Önemli sınırlamalar:** Henüz bir araştırma run'ında farklı birden fazla market/selection varsa otomatik import bunu açıkça `multiple_picks_require_expanded_board` durumuna alır; tüm tercihleri farklı satırlar halinde gösterecek genişletme ayrıca geliştirilmelidir. FINAL'in nihai veritabanı/site yazıcısı henüz doğrulanmadı; son kararın sitede kaydedildiği söylenemez.
-
-Bağımsız SXF arşiv operasyonu korunur: `prompts/sxf_archive_scan.md`, `prompts/sxf_archive_save.md`, `prompts/sxf_archive_settle.md`, `methods/sxf_archive_methodology.md`, `schemas/sxf_archive_schema.md`. Supabase SXF taramasında **salt okunur kaynak** olabilir; araştırma arşivi GitHub'a yazılır. Siteye yetkili rapor yazımı ayrı bir CAPITALE karar kaydıdır, ham araştırma arşivini değiştirmez.
+İlgili kaynak kodlar sunucu deployment stage kaydındadır. Site ve negatif güvenlik testleri tamamlandı; **dört agentın gerçek tarayıcı üzerinden yazdığı uçtan uca test henüz yapılmadı**. Eski `tools/capitale_report_uploader.py`, `tools/manual_report_inbox.py` yalnız sistem içi yedek/otomatik kaynak altyapısı için tutulur. Günlük agent mesajlarında varsayılan olarak önerme.
