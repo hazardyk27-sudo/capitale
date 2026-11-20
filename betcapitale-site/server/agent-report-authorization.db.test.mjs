@@ -93,7 +93,7 @@ test("CAPITALE database authorization enforces role isolation, append-only histo
 
     const runId = "10000000-0000-4000-8000-000000000001";
     const fixtureUid = "20000000-0000-4000-8000-000000000002";
-    const cutoff = "2026-11-20T11:00:00.000Z";
+    const cutoff = "2026-11-19T11:00:00.000Z";
     await client.query(
       "insert into capitale.research_runs(id, fixture_uid, analysis_cutoff_at) values ($1, $2, $3)",
       [runId, fixtureUid, cutoff],
