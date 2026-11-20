@@ -180,6 +180,27 @@ export function registerAgentReportRoutes(app: Express, requireAdmin: RequestHan
     }
   });
 
+  // Run metadata is Admin-only and deliberately excludes free-form context.
+  app.get("/api/admin/capitale/research-runs", requireAdmin, async (req, res) => {
+    const config = getSupabaseConfig();
+    if (!config) return sendSafeError(res, 503, "agent_bridge_not_configured");
+    const limitValue = Number(req.query.limit ?? 50);
+    const limit = Number.isInteger(limitValue) ? Math.max(1, Math.min(limitValue, 100)) : 50;
+    try {
+      const url = new URL(`${config.url}/rest/v1/research_runs`);
+      url.searchParams.set("select", "id,fixture_uid,run_revision,status,target_markets,analysis_cutoff_at,requested_at,orchestrator_version");
+      url.searchParams.set("order", "requested_at.desc");
+      url.searchParams.set("limit", String(limit));
+      const response = await fetch(url, {
+        headers: { apikey: config.serviceKey, Authorization: `Bearer ${config.serviceKey}`, Accept: "application/json", "Accept-Profile": "capitale" },
+        signal: AbortSignal.timeout(12_000),
+      });
+      if (!response.ok) throw new Error("Run query failed");
+      return res.json({ ok: true, runs: await response.json() });
+    } catch {
+      return sendSafeError(res, 503, "research_runs_unavailable");
+    }
+  });
   // Full report and evidence payloads are visible only behind the app's DB-backed admin session.
   app.get("/api/admin/capitale/agent-reports/:runId", requireAdmin, async (req, res) => {
     const runId = z.string().uuid().safeParse(req.params.runId);
