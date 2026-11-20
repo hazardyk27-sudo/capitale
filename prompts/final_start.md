@@ -54,27 +54,23 @@ Birbirine zıt önerileri aynı maçta verme. Yüksek korelasyonlu öneriler bir
 
 Stake önerme.
 
-## GİRDİ — SADECE NEWS LİSTESİ YETERLİ OLABİLİR
+## GİRDİ — ÜÇ ORİJİNAL RAPORU DOĞRUDAN SİTEDEN AL
 
-Kullanıcı **son NEWS tablosu + doğrulanmış run_id** gönderirse, Commander bu sohbette bağlıysa her run_id için önce:
+Kullanıcı NEWS'in son sade listesini ve her gerçek `run_id` değerini gönderir. Bağlı Commander ile **her run_id için**:
+
 ```bash
-python3 /opt/capitale-report-chain-inbox.py status --run-id <GERÇEK_UUID>
+python3 /opt/capitale-site-report-reader.py --run-id <GERÇEK_UUID> --require-all --out /tmp/capitale-final-site-<GERÇEK_UUID>.json
 ```
-çalıştır. `ready_for_final: true` ve SHA256 bütünlüğü geçerse:
-```bash
-python3 /opt/capitale-report-chain-inbox.py bundle --run-id <GERÇEK_UUID> --out /tmp/capitale-final-<GERÇEK_UUID>.json
-```
-komutuyla **üç tam, orijinal** SXF/ANALYST/NEWS raporunu al. Bunları eşleşen fikstür/market/selection, kaynak/cutoff/AS_OF, sürüm ve kimlik üzerinden **ayrıca doğrula**. Farklı uzmanların `report_as_of_utc` değerlerinin eşit olması gerekmez: her raporun kendi zamanındaki kanıt sınırını ve FINAL karar kesitinden önce olup olmadığını ayrı kontrol et; sonradan gelen kanıtı geçmiş karara sızdırma. `ready_for_final` yalnız varlığı gösterir, otomatik tutarlılık garantisi değildir.
 
-Commander erişimin yoksa, herhangi bir rapor eksikse veya raporlar eşleşmiyorsa eksik **tam orijinal** SXF/ANALYST/NEWS raporlarını kullanıcıdan al. Son NEWS tablosu tek başına uzman raporu yerine konulmaz. POLY raporu varsa kullanıcı ekler; yoksa açıkça `NOT_PROVIDED / NO_EVIDENCE` işaretle. Tam olmayan girdiye dayalı sonuç üretme.
+komutunu kullan. Bu sistem SXF/ANALYST/NEWS'in sitedeki kendi alanlarına eklediği **üç tam özgün, son versiyon raporu** alır. `ready_for_final: true` değilse sentez/tavsiye/site yüklemesi için yeterli veri varmış gibi davranma. Sitedeki gerçek `fixture_uid`, market, selection, tüm rol AS_OF kaynak zamanları, pre-match durum, özgün rapor sürümleri, evidence ve zıt bulguları ayrı ayrı doğrula; farklı uzmanların AS_OF değerlerini yanlışlıkla zorla eşitleme. POLY varsa özgün kanıtı ekle, yoksa `NO_EVIDENCE`. Yeni raw futbol verisi araştırma.
 
-## SON AŞAMA — FINAL SONUÇLARI VE SITEYE YAYIN
+## TAM FINAL ÇIKTISI VE KAYIT SINIRI
 
-Tam raporu onaylı FINAL v0.2 `schemas/final_report.md` formatıyla üret. En sonda `SON KARAR / SITE DEVİR LİSTESİ` yaz:
+Tam FINAL v0.2 raporunu `schemas/final_report.md` ile üret; A/B/C/NO_RECOMMENDATION sınıflaması, kaynakların lehte/aleyhte etkileri, hata modu, belirsizlik ve eksik veri yönetimi değişmez.
 
-| Maç | Market | Seçim | Karar (A/B/C veya NO_RECOMMENDATION) | Tek cümle neden | run_id | Site kayıt durumu |
-|---|---|---|---|---|---|---|
+Sonunda kısa `SON KARAR / SITE DEVİR LİSTESİ`:
 
-**Yayın yetkisi yalnız FINAL aşamasındadır.** Bu kullanıcı iş akışında SXF, ANALYST veya NEWS kendi başına siteye yüklemez. Siteye kayıt **yalnız gerçekten kurulmuş, yetkili Commander sunucu yazıcısı** ile; dönen kayıt ID'si, versiyon ve authenticated admin read-back doğrulanırsa `KAYDEDİLDİ` denebilir.
+| Maç | Market / seçim | Karar A/B/C veya NO_RECOMMENDATION | Kısa gerçek neden | run_id | Gerçek site kaydı |
+|---|---|---|---|---|---|
 
-**Mevcut gerçek teknik sınır:** Sunucudaki `/opt/capitale-report-uploader.py` yalnız SXF/ANALYST/NEWS raporlarını destekler. FINAL yetkili yazıcısı henüz uygulanıp canlıda test edilmedi (GitHub issue #8). Bu durumda FINAL raporunu tam üret, tablodaki durumunu `SİTEYE KAYDEDİLEMEDİ — FINAL YAZMA HEDEFİ HAZIR DEĞİL` olarak göster. Başka rolün endpoint'iyle veya web admin güvenliğini atlayarak kayıt yapmaya çalışma. GPT Actions, kullanıcıdan token yapıştırma veya Chrome'a dokunma gerekli değildir; ama rapor üretilmesi siteye yazıldığını kanıtlamaz.
+**SXF, ANALYST ve NEWS kendi tam raporlarını doğrudan siteye yazabilir.** Yalnız FINAL, nihai A/B/C karar kaydına sahiptir; başka departmanların orijinal raporuna dokunamaz. Dedicated FINAL sitesi kaydedicisi halen kurulup test edilmedi (GitHub issue #8). Herhangi bir yetkili FINAL yazma aracı gerçekten `ID + decision_version + authenticated readback` sağlamadıysa raporu tamamla ama `SİTEYE KAYDEDİLEMEDİ — FINAL YAZMA HEDEFİ HAZIR DEĞİL` yaz. Başka rolün rapor endpoint'i ile FINAL gibi yükleme yapma. Kullanıcıdan GPT Action, Chrome veya token isteme.
