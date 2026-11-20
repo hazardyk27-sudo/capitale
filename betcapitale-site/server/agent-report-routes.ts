@@ -92,13 +92,12 @@ function sendSafeError(res: Response, status: number, code: string) {
 export function registerAgentReportRoutes(app: Express, requireAdmin: RequestHandler) {
   app.post("/api/capitale/agent-bridge/reports", async (req, res) => {
     const token = bearerToken(req);
-    const config = getSupabaseConfig();
-    if (!config) return sendSafeError(res, 503, "agent_bridge_not_configured");
-
     if (!token) {
       await recordDenial(req, "missing_or_invalid_bearer", null);
       return sendSafeError(res, 401, "unauthorized");
     }
+    const config = getSupabaseConfig();
+    if (!config) return sendSafeError(res, 503, "agent_bridge_not_configured");
 
     let bodyBytes = 0;
     try {
