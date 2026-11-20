@@ -8,6 +8,8 @@ Prior canonical report schema v1.1 and experimental schemas v1.2/v1.3/v1.4.x are
 
 ```yaml
 role: ANALYST
+run_id: <existing verified routing research run UUID or null; never invent>
+fixture_uid: <verified neutral fixture identity or null>
 methodology_version: analyst-v2.1-canonical
 match: <verified home vs away>
 competition: <verified league / cup>
@@ -80,3 +82,7 @@ Strict presentation: title/match timestamp, **1. Topa sahip olma oyunu**, **2. F
 For EVERY user-supplied selection, preserve the complete v2.0 three-pillar research and include "Tercih destek puanı: <puan>/100 (site A sütunu)" inside the existing three-factor conclusion, with one brief source-grounded rationale and counterargument. Score evaluates ONLY support for THAT pick, NOT the probability it wins, NOT an odds-derived forecast, and NOT a FINAL recommendation. This is not a fourth factor or the superseded v1.3 numeric engine.
 
 Ordinal anchors (not calibrated probabilities): 0-39 strong contradiction; 40-49 leaning against; 50 mixed; 51-69 conditional/limited support; 70-84 strong support; 85-100 unusually convergent evidence, rare. Use judgment based exclusively on the three approved pillars; no invented mathematical weights. Disclose missing possession, xG, venue data and contrary evidence. When insufficient credible evidence, output "Puan: veri yetersiz" (null), not a fabricated score. Do not revise archived pre-match reports or use results to change prior scores.
+
+## Manual-chain report envelope (metadata only)
+
+The additional `run_id` and `fixture_uid` metadata links the independent report to the user's neutral selection; it never authorizes ANALYST to read SXF evidence. In the owner-approved sequential workflow, append the two presentation-only tables `ANALYST — KISA SONUÇ` and `KOPYALA → NEWS GİRDİSİ` **after** the complete unchanged three-factor analysis; never count them as a fourth football factor.
