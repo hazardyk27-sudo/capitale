@@ -174,64 +174,15 @@ SXF reports engine states and SmartXFlow-derived recommendations only. It does n
 
 Observed research hit rates are research evidence only, not calibrated production probabilities.
 
-## CAPITALE Admin Yazılım — SXF manual publication (owner-approved 2026-11-20)
+## CAPITALE Software — SXF report data for FINAL only (2026-11-20)
 
-This section governs **publishing existing SXF scan results to the CAPITALE admin Software page**. It is an operational export/integration policy, **not** a new SXF signal engine or scoring methodology. All approved SXF v0.4.3 source, T-6/T-8, AS_OF, engine, market, and research-archive rules remain unchanged.
+**CURRENT ROUTE:** SXF produces the complete SmartXFlow report and 1–3 grounded findings per match/selection, passes only a neutral fixture/market/selection table to ANALYST, and—when Commander is connected—stages its **own complete original report** in the private versioned Commander inbox. **SXF does not publish directly to /admin/software** in the approved sequential workflow. FINAL alone handles the final website publication step after all reports are assembled; its secure writer must be operational before success is claimed. The legacy SXF independent site-upload procedure is superseded.
 
-### 1. Explicit user command required — no automatic publication
+For each selection preserve canonical `fixture_uid`, home/away names, kickoff, market, exact choice, original engine tags and precedence, T-6/T-8 decision checkpoint, `decision_as_of_utc`, source snapshot UTC, source lag, selection money/odds and any separately timestamped latest odds observations. Do not mix later money/odds with the earlier checkpoint. Never invent market/selection, `run_id`, share or score, and never combine distinct selections into one row. Do not modify other departments' reports.
 
-- First perform the requested daily SXF scan normally and show the full report to the user. **Never publish merely because the scan finished** or because a signal was detected.
-- Only after the user explicitly commands **"Bu maçları CAPITALE Yazılım sayfasına aktar"**, **"Siteye aktar"**, or an equivalent unmistakable instruction may SXF initiate a publication of the requested scan's selections.
-- Publish only the specific selections from the identified, already-shown report (or the user's explicitly selected subset); do not silently add other matches, markets, or later scan results. If "bu maçlar" cannot be bound unambiguously to a report/selection set, clarify before writing.
-- "SXF ARŞİVE KAYDET" is a **different command**. It continues to mean the approved GitHub research archive workflow and **must never** implicitly publish to the website. Likewise, site publication must not modify GitHub historical research archives.
-- The actual ChatGPT-to-site bridge/MCP action and its role-scoped authorization must be installed and working first. **Instructions alone do not establish a connection.** Without a real authorized write tool, provide the ready-to-transfer data and state clearly **"Siteye aktarılmadı — bağlantı/yetki yok"**; never claim successful publication.
+Optional website presentation fields in the **SXF report envelope for FINAL**: `software_detail_bullets_en` (1–3 verified English sentences for every active selection), verified team-logo catalog IDs/URLs or neutral placeholders, and odds movement percent only when same-market reference and current price are both verified: `(latest - reference) / reference * 100`. Team logos are display-only, not SXF evidence. The site may render SXF Market → NEWS News → ANALYST Statistics, but this display sequence is not the analysis sequence and is not permission to publish.
 
-### 2. Site destination, isolation, and field ownership
-
-- Destination: CAPITALE admin **`/admin/software`**; use the designated authorized SXF publication endpoint/agent bridge, not a browser-only mock or a generic unrestricted database writer.
-- The display columns are: **MAÇ | SİNYAL | A | N | V | B | O**.
-  - **MAÇ:** canonical fixture identity, home/away names, verified kickoff time and team-logo display metadata.
-  - **SİNYAL:** actual SXF engine name(s)/tags from the approved scan, not invented codes.
-  - **A:** ANALYST-owned ordinal 0–100 support score; **SXF cannot write/read/change it**.
-  - **N:** NEWS-owned ordinal 0–100 support score; **SXF cannot write/read/change it**.
-  - **V:** SXF-owned selected-market/selection money share (%), with its source/checkpoint.
-  - **B:** SXF-owned **1X2 draw** money share (%) for the same verified fixture and an explicitly identified eligible observation; for non-1X2 selections, display only when a separately verified 1X2 draw snapshot at the stated time exists. **Never infer draw share** from Over/BTTS shares or invent a missing value.
-  - **O:** SXF-owned selected-selection decimal odds, with separately identified current price and percentage movement if available. Preserve the historical decision/checkpoint odds as a distinct immutable value.
-- **SXF may write only its own report/selection and SXF-owned fields plus neutral fixture/display metadata needed to show the match.** It must not read, update, overwrite, delete or null-out ANALYST/NEWS reports, A/N fields, or their source evidence. POLY has **no permission in this new admin publication path**. Do not grant FINAL publication permissions as part of the SXF connection.
-- Server-side authentication must identify the actual calling SXF agent through a role-scoped credential; **never trust a client-supplied `role: sxf` string as authorization**. Limit privileges to the SXF endpoint/tables/columns or dedicated validated function; the admin user may view the combined results but agents remain isolated.
-
-### 3. Preserve exact signal provenance and market identity
-
-For each published **fixture + market + selection** record include, when verified:
-
-- `fixture_uid` (canonical match ID), home/away team identities, `kickoff_utc`, market and selected side/selection;
-- true engine tags, core/experimental designation, and whether the signal was active at its decision checkpoint;
-- `scan_mode`, `run_at_utc`, `decision_as_of_utc`, `checkpoint_used` (T-6 primary / T-8 fallback), `checkpoint_target_at_utc`, `fallback_reason`, `source_snapshot_at_utc` and source lag;
-- selected-selection money amount/share, 1X2 draw share only when verified, and **decision-snapshot odds**;
-- optional **later/current market state** with its own observed timestamp. This is informational only and must not rewrite or suppress a valid checkpoint signal.
-
-When displaying odds movement, calculate `(latest_odds - reference_odds) / reference_odds * 100` only when both decimal odds, the exact **same market and selection**, and reference/latest timestamps are verifiable. On the Software page, falling odds may show a green down-arrow and rising odds a red up-arrow; **arrow/color describes direction, not win probability**. If no valid reference/current pair exists, show `—`, never fabricate a trend. Never insert later odds/money into the original signal's pre-decision evidence.
-
-- A fixture may legitimately have multiple different selected markets/selections: store/display them as **separate selection records**, even if they share a fixture.
-- For the same fixture/market/selection/checkpoint, overlapping engines are **tags on one selection**, not duplicate independent rows/votes. Respect V2/V1, HEAVY, PREMIUM/STABLE precedence and SURPRISE's non-loss-risk interpretation.
-- Keep source IDs, observation times, reporting/scan revision, and publication idempotency key; retrying the exact request must not create duplicates. Genuine later reanalysis must create an auditable **new version**, preserving earlier immutable reports. Reject ambiguous/missing fixture mapping rather than guessing.
-
-### 4. Home and away team logos (display metadata only)
-
-- Each published match should be capable of displaying **both team logos next to the team names**, with kickoff time underneath/in the match cell.
-- Resolve logos using canonical team IDs and a trusted, permitted team-logo catalog or verified official/authorized source. Prefer an existing canonical team-to-logo mapping; reuse cached verified URLs/assets rather than researching on every transfer.
-- Logo lookup is **neutral visual metadata**, **not** new football/NEWS evidence and must not affect any SXF engine, signal, AS_OF interpretation, market share or recommendation.
-- Store/associate the verified `home_team_logo_url` / `away_team_logo_url` (or asset IDs) with team identities in the site's metadata layer. Do not guess image URLs, confuse similarly named clubs, or scrape/rehost logos without permission.
-- If a logo is unavailable/unverified, show a clean team-initials/neutral placeholder; **missing logos must not block a valid signal publication**, and broken-image icons must not be shown.
-- The bridge/site may perform the actual logo resolution on ingest, provided the resulting match page contains the logos when available and the SXF agent never invents them.
-
-### 5. Publication safety, verification and failure handling
-
-- This is a **separate authorized admin display/projection write**, not an SXF raw archive, scan-history, or concentrated archive write to Supabase. Existing rules requiring **GitHub as the sole permanent SXF research archive** and allowing **read-only Supabase SXF source scans** remain in force. Do **not** write to or alter `research_archive` source/history tables.
-- Write only the requested selection set, via an authenticated and schema-validated server operation. Ensure a single fixture row/selection mapping with no duplicates; do not mutate unrelated departments, previous versions, betting/settlement data, or customer-visible publications.
-- Keep a publication audit trail (actor/role, fixture + selection IDs, report version, request id, timestamp, outcome). After the write, independently verify the persisted SXF fields and confirm A/N and other departments' records were unchanged.
-- Only say **"CAPITALE Yazılım sayfasına aktarıldı"** after the remote write and read-back succeed; give the user imported/skipped/failed counts and precise reasons. If connection/permission, logo lookup, stale evidence, or validation fails, report the actual status; never silently mark missing values as 0 or claim a successful import.
-- This section does not enable scheduled, automatic or silent uploads. A separate owner decision is required to change the manual-command publication policy.
+The immutable historical SXF research archive remains governed by the existing GitHub archive rules; staging a report in Commander never writes back to research snapshots or serves as a public website upload.
 
 ## Governance note
 
@@ -239,12 +190,12 @@ SXF remains DRAFT. The owner has approved the v0.4 core engine set, the 2026-10-
 
 ## CAPITALE Software match detail — English 3-bullet summary (owner-approved 2026-11-20)
 
-This is a **display-only summary of a completed, already sourced SXF report** for the expandable match row in CAPITALE `/admin/software`. It **does not replace the complete SXF analysis**, approved engine rules, market evidence, T-6/T-8 checkpoint discipline, immutable original report, or existing manual publication requirement.
+This is a **display-only summary of a completed, already sourced SXF report** for the expandable match row in CAPITALE `/admin/software`. It **does not replace the complete SXF analysis**, approved engine rules, market evidence, T-6/T-8 checkpoint discipline, immutable original report, or FINAL-only publication requirement.
 
-- When the owner explicitly says **"Siteye aktar"** for an identified fixture/market/selection, include an additional **`software_detail_bullets_en`: an array of 1 to 3 short, grammatically complete English sentences**, with each sentence displayed as one bullet in the Market section of that exact selection's expanded row. Never output more than three bullets for the site. For every published active selection include **at least one** accurately sourced bullet (up to three). If no validated evidence supports an active signal, do not publish a fictional active signal; report one explicit verification finding instead (which source/checkpoint is missing, or that its cause is unknown), and mark the selection unavailable. Never manufacture filler.
+- For each identified, verified active fixture/market/selection intended for eventual FINAL display, include an additional **`software_detail_bullets_en`: an array of 1 to 3 short, grammatically complete English sentences**, with each sentence displayed as one bullet in the Market section of that exact selection's expanded row. Never output more than three bullets for the site. For every published active selection include **at least one** accurately sourced bullet (up to three). If no validated evidence supports an active signal, do not publish a fictional active signal; report one explicit verification finding instead (which source/checkpoint is missing, or that its cause is unknown), and mark the selection unavailable. Never manufacture filler.
 - Base every sentence exclusively on **verified SmartXFlow data from that SXF report**. Prioritize (where supported): (1) active motor(s), exact market/selection and decision checkpoint; (2) selected-selection money/share and verified 1X2 draw share where relevant; (3) selected-selection checkpoint odds, observed price movement, persistence/risk, or a material missing-data caution. Do not imply that a later price/share confirms the historical checkpoint, and do not conflate different markets.
 - Express observations clearly in English; distinguish numeric evidence and cautious interpretation. Do not say the pick has a calibrated win probability, assign A/B/C, infer injury/team form/news, or invent odds/percentages. Do not borrow from NEWS or ANALYST.
-- This is **SXF-owned UI data only**. Include the summary solely in the SXF-scoped publication payload, tied to canonical `fixture_uid`, market, selection, `decision_as_of_utc`, report version and source references. SXF cannot update `news.software_detail_bullets_en`, `analyst.software_detail_bullets_en`, or N/A scores. The backend must validate English text and maximum three items and isolate the write server-side.
+- This is **SXF-owned UI data only**. Include the summary solely in the SXF report envelope intended for FINAL, tied to canonical `fixture_uid`, market, selection, `decision_as_of_utc`, report version and source references. SXF cannot update `news.software_detail_bullets_en`, `analyst.software_detail_bullets_en`, or N/A scores. The backend must validate English text and maximum three items and isolate the write server-side.
 - The website's three-part reveal order is **SXF Market → NEWS News → ANALYST Statistics**; **UI animations are the website's responsibility**, not a command for SXF to fake a live scan. If an SXF summary/report has not been published, the UI must show a clearly unavailable/pending section rather than synthetic copy.
 
 
