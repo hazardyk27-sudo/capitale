@@ -1,0 +1,79 @@
+--- a/client/src/components/daily-profit-ticker-demo.css
++++ b/client/src/components/daily-profit-ticker-demo.css
+@@ -456,3 +456,76 @@
+   .dpt-profit.is-negative .dpt-profit-amount.dpt-raised-text { font-size: 14px; }
+   .dpt-profit-status { font-size: 6.5px; }
+ }
++
++/* CAPITALE Preview v9 — premium branded metallic orange / embossed emerald profit
++   / embossed red loss. The established black 3D rows and geometry stay intact. */
++.dpt-row .dpt-raised-text {
++  -webkit-text-stroke: .11px rgba(255, 255, 255, .055);
++  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .92))
++          drop-shadow(0 2px 1px rgba(0, 0, 0, .57));
++  text-shadow: none;
++}
++.dpt-date strong.dpt-raised-text {
++  color: #F07A18;
++  background-image: linear-gradient(180deg,
++    #FFCD95 0%, #FFA346 22%, #F07A18 45%, #AE4F0A 67%, #F28A28 85%, #8E3E07 100%);
++  -webkit-text-stroke: .15px rgba(247, 135, 40, .16);
++}
++.dpt-number strong.dpt-raised-text {
++  color: #DAE0E9;
++  background-image: linear-gradient(180deg,
++    #EDF1F8 0%, #CAD2DF 30%, #929EAF 58%, #DDE3EC 78%, #9EACBD 100%);
++  -webkit-text-stroke: .11px rgba(236, 241, 250, .06);
++}
++.dpt-profit.is-positive {
++  color: #45D48A;
++}
++.dpt-profit.is-negative {
++  color: #E65B5B;
++}
++.dpt-profit.is-positive .dpt-profit-amount.dpt-raised-text {
++  color: #48CE86;
++  background-image: linear-gradient(180deg,
++    #B5F5D1 0%, #5DDD9F 20%, #27B570 46%, #167E4B 69%, #55D99A 86%, #0F6038 100%);
++  -webkit-text-stroke: .17px rgba(93, 232, 152, .12);
++}
++.dpt-profit.is-negative .dpt-profit-amount.dpt-raised-text {
++  color: #EC6263;
++  background-image: linear-gradient(180deg,
++    #FFC6BF 0%, #F98580 20%, #DF4E52 45%, #A52D36 67%, #ED7170 85%, #82222D 100%);
++  -webkit-text-stroke: .17px rgba(249, 122, 118, .14);
++}
++.dpt-date > span {
++  color: #BB9571;
++  text-shadow: 0 1px 1px rgba(0,0,0,.42);
++}
++.dpt-example-tag { color: #8A929E; }
++.dpt-number span {
++  color: #959EAC;
++  text-shadow: 0 1px 1px rgba(0,0,0,.37);
++}
++.dpt-profit-status {
++  color: #B4BDCA;
++  text-shadow: 0 1px 1px rgba(0,0,0,.6);
++}
++.dpt-row {
++  border-color: rgba(111,122,137,.30);
++  box-shadow:
++    0 2px 3px rgba(8,12,18,.22),
++    0 7px 12px rgba(8,12,18,.17),
++    0 15px 23px -7px rgba(8,12,18,.16),
++    inset 0 1px 0 rgba(255,255,255,.075),
++    inset 0 -2px 2px rgba(0,0,0,.42);
++}
++.dpt-row:hover {
++  box-shadow:
++    0 3px 5px rgba(8,12,18,.23),
++    0 9px 15px rgba(8,12,18,.19),
++    0 17px 26px -8px rgba(8,12,18,.17),
++    inset 0 1px 0 rgba(255,255,255,.10),
++    inset 0 -2px 2px rgba(0,0,0,.43);
++}
++.dpt-row::before {
++  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.085) 25%,
++    rgba(255,255,255,.03) 75%, transparent 100%);
++}
