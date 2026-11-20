@@ -1,6 +1,6 @@
 # CAPITALE Agent Report Bridge
 
-Release procedure: apply both dated migrations, configure the three server tokens, provision their hashes, then deploy the app. Deployment status must be verified separately.
+Current deployment: tokenless department-specific transfer routes are live on Betcapitale.
 
 ## Purpose and allowed writers
 
@@ -14,9 +14,9 @@ It gives no write permission to `poly` or `final`. Agents can only resolve fixtu
 
 ## Security boundary
 
-1. Each department gets a different high-entropy bearer token. Store tokens only in the corresponding agent's secure secret store and the Hetzner environment.
-2. The browser never receives tokens. The Admin provisioning endpoint reads only server environment variables.
-3. The request cannot choose its role. The database hashes the bearer token and resolves the role from its private token map.
+1. Agents use no token or authorization header. Each department has a distinct public route; the server derives the recorded role from that route.
+2. The public route does not prove the sender identity; anyone who knows a run ID can attempt a submission. This is the owner-approved tokenless trial mode.
+3. The database still validates report structure, run binding, AS_OF, size, and idempotency, and appends versioned history.
 4. The bridge writes by calling the database RPC. It does not insert or update report tables directly.
 5. The RPC accepts only an existing `research_runs.id`; the database derives the associated `fixture_uid`. Unknown run IDs are rejected and audited.
 6. Each accepted save appends a new report version. Repeating the same idempotency key and content returns the original report; reusing that key for different content is rejected.
@@ -25,34 +25,15 @@ It gives no write permission to `poly` or `final`. Agents can only resolve fixtu
 
 ## Server-only configuration
 
-Configure these variables in the Hetzner service environment:
-
-- `CAPITALE_SUPABASE_URL`
-- `CAPITALE_SUPABASE_SERVICE_ROLE_KEY`
-- `CAPITALE_AGENT_ANALYST_TOKEN`
-- `CAPITALE_AGENT_NEWS_TOKEN`
-- `CAPITALE_AGENT_SXF_TOKEN`
-
-Use three unique random tokens of at least 32 characters. Never put them in source, GitHub Actions variables, client source code, or a report. The Supabase service-role key is server-only.
-
-After the database migration is applied and the server is running with those variables, an authenticated Admin calls:
-
-`POST /api/admin/capitale/agent-bridge/provision`
-
-The endpoint reads tokens from the server environment, stores only SHA-256 hashes in the private database schema, and returns configured role names only. It accepts no token values from the browser.
+Hetzner keeps Supabase service credentials server-side. Agents do not receive those credentials or any agent token.
 
 ## Agent write contract
 
-An authorized agent calls:
+Use the role-specific public route with JSON content type and no Authorization header:
 
-`POST /api/capitale/agent-bridge/reports`
-
-Headers:
-
-```http
-Authorization: Bearer <the secret for this agent only>
-Content-Type: application/json
-```
+- ANALYST: `POST /api/capitale/agent-bridge/reports/analyst`
+- NEWS: `POST /api/capitale/agent-bridge/reports/news`
+- SXF: `POST /api/capitale/agent-bridge/reports/sxf`
 
 Body:
 
@@ -89,7 +70,7 @@ Body:
 }
 ```
 
-`role`, `agent_role`, `actor_role`, and `department` are forbidden in the request. The report must be complete, have a reproducibility hash and prompt version, and use the run's exact analysis cutoff when one is present. Evidence is capped at 100 items and the request at 512 KiB.
+`role`, `agent_role`, `actor_role`, and `department` should be omitted from the request; the route assigns the department. The report must be complete, have a reproducibility hash and prompt version, and use the run's exact analysis cutoff when one is present. Evidence is capped at 100 items and the request at 512 KiB.
 
 The caller must resolve the exact existing run before submitting. The bridge does not create a run from free-form team names. It rejects an unknown run instead of guessing a match.
 
@@ -101,17 +82,15 @@ The caller must resolve the exact existing run before submitting. The bridge doe
 
 ## Rollout order
 
-1. Review and merge the pull request.
-2. Apply `supabase/migrations/20261120000000_capitale_agent_report_authorization.sql` to the intended Supabase project after a backup and schema review.
-3. Add the server-only environment variables in Hetzner.
-4. Deploy the app and call the Admin provisioning endpoint.
-5. Connect each agent to the write endpoint using only that agent's token. Send `Siteye aktar` only after the report is complete and run ID is verified.
+1. Confirm the exact match and existing run in Admin > Software.
+2. Send the completed existing report to the matching department URL above.
+3. Confirm the response is 201 or an idempotent 200 and verify the report appears in Admin > Software.
 
 This change does not deploy or apply the migration by itself. The current Supabase inspection found the four target tables empty, RLS enabled, and no policies. The database already allowed `poly` in the report-role check; the migration narrows that constraint to ANALYST, NEWS, and SXF.
 
 
 ## Existing-report transfer and Admin integration
-Agents only transfer existing reports, never research, invent missing values or change conclusions. Admin prepares the canonical fixture and original AS_OF at `/admin/software`. `POST /api/capitale/agent-bridge/resolve` accepts `{ "query": "team name", "day": "YYYY-MM-DD" }` with the department bearer token and returns fixture/run metadata only. If several matches or cutoffs remain possible, ask rather than guessing. No run means Admin must prepare it first.
+Agents only transfer existing reports, never research, invent missing values or change conclusions. Admin prepares the canonical fixture and original AS_OF at `/admin/software`. `POST /api/capitale/agent-bridge/resolve` accepts `{ "query": "team name", "day": "YYYY-MM-DD" }` without a token and returns fixture/run metadata only. If several matches or cutoffs remain possible, ask rather than guessing. No run means Admin must prepare it first.
 
 The report's full original structured data remains in `payload`. An optional `payload.display` projection may copy **existing** values for the table. Do not generate absent fields:
 - All roles: `market`, `selection` identify exactly the same selection (e.g. `1X2`, `1`).
@@ -122,4 +101,4 @@ A/N appear only when their market and selection match SXF. Wrong-owner values ar
 The second migration `20261120010000_capitale_bridge_integration.sql` adds safe fixture resolution and Admin preparation/feed. Fixture metadata is captured when a run is prepared so retention does not erase the match name. Report response bodies are excluded from HTTP logs.
 
 ## Connection boundary
-Publishing the API does not install a tool into an existing ChatGPT conversation. Configure a supported API client/custom action with the published OpenAPI schema and **only its department bearer credential** in its secret authentication setting. Never paste the server service-role key or agent tokens into report prompts. A live end-to-end transfer is complete only when the API returns an accepted report ID and the Admin page shows that same report.
+Publishing the API does not install a tool into an existing ChatGPT conversation. Configure a supported API client/custom action with the published OpenAPI schema. No API credential is needed in the agent connector. Never expose the server-side Supabase service-role key. A live end-to-end transfer is complete only when the API returns an accepted report ID and the Admin page shows that same report.
