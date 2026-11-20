@@ -28,6 +28,8 @@ test("CAPITALE database authorization enforces role isolation, append-only histo
       drop function if exists public.capitale_submit_agent_report(text, uuid, text, jsonb, jsonb);
       drop function if exists public.capitale_record_agent_denial(text, text, text);
       drop function if exists public.capitale_provision_agent_tokens(jsonb);
+      drop function if exists public.capitale_admin_list_runs(integer);
+      drop function if exists public.capitale_admin_get_agent_reports(uuid);
       drop schema if exists capitale_private cascade;
       drop schema if exists capitale cascade;
       create schema capitale;
