@@ -1,0 +1,32 @@
+name: CAPITALE Gemini Persona Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'founder/italy_male_personas_100.json'
+      - 'founder/italy_male_personas_100.csv'
+      - 'scripts/gemini_italy_panel.py'
+      - 'tests/test_gemini_italy_panel.py'
+      - '.github/workflows/capitale_persona_validation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate frozen 100 adult Italian male profiles and mock calls
+        run: python -m unittest discover -s tests -p 'test_gemini_italy_panel.py' -v
+      - name: Generate frozen cohort dry run without Gemini API
+        run: python scripts/gemini_italy_panel.py --n 100 --dry-run --out founder/gemini_runs/ci-validation
+      - name: Check manifest shows 100 prepared and zero real API calls
+        run: |
+          python -c "import json; x=json.load(open('founder/gemini_runs/ci-validation/manifest.json')); assert x['requested']==100 and x['completed']==0 and x['dry_run'] is True; print('100 profiles prepared; no paid API requests')"
