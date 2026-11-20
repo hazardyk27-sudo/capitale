@@ -143,8 +143,6 @@ test("CAPITALE database authorization enforces role isolation, append-only histo
     assert.equal(analyst.report_version, 1);
     assert.equal(news.report_version, 1);
     assert.equal(sxf.report_version, 1);
-    assert.equal((await client.query("select count(*)::int as count from capitale.agent_reports where role = 'poly'")).rows[0].count, 0);
-    await assert.rejects(client.query("insert into capitale.agent_reports(run_id,role) values ($1, 'poly')", [runId]));
 
     const duplicate = await submit(tokens.analyst, "analyst-write-000001");
     assert.equal(duplicate.duplicate, true);
@@ -161,7 +159,18 @@ test("CAPITALE database authorization enforces role isolation, append-only histo
 
     const newer = await submit(tokens.analyst, "analyst-write-000002", { ...baseReport, summary: "version two" });
     assert.equal(newer.report_version, 2);
+
+    const adminRuns = await client.query("select public.capitale_admin_list_runs(10) as value");
+    assert.equal(adminRuns.rows[0].value.runs.length, 1);
+    assert.equal(adminRuns.rows[0].value.runs[0].fixture_uid, fixtureUid);
+    const adminReports = await client.query("select public.capitale_admin_get_agent_reports($1::uuid) as value", [runId]);
+    assert.equal(adminReports.rows[0].value.reports.length, 4);
+    assert.equal(adminReports.rows[0].value.evidence.length, 4);
+    await assert.rejects(client.query("select * from capitale.agent_reports"));
     await client.query("reset role");
+
+    assert.equal((await client.query("select count(*)::int as count from capitale.agent_reports where role = 'poly'")).rows[0].count, 0);
+    await assert.rejects(client.query("insert into capitale.agent_reports(run_id,role) values ($1, 'poly')", [runId]));
 
     const reports = await client.query(
       "select role, report_version, summary from capitale.agent_reports where run_id=$1 order by role,report_version",
