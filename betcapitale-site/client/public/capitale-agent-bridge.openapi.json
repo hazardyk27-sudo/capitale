@@ -1,1 +1,151 @@
-{"openapi":"3.1.0","info":{"title":"CAPITALE Report Transfer","version":"1.0.0","description":"Tokenless existing-report transfer. Use only completed reports; no research is performed."},"servers":[{"url":"https://betcapitale.com"}],"paths":{"/api/capitale/agent-bridge/reports/{department}":{"post":{"operationId":"transferExistingReport","summary":"Transfer an existing completed department report","parameters":[{"name":"department","in":"path","required":true,"schema":{"type":"string","enum":["analyst","news","sxf"]}}],"requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["run_id","idempotency_key","report"],"properties":{"run_id":{"type":"string","format":"uuid"},"idempotency_key":{"type":"string","minLength":16,"maxLength":128},"report":{"type":"object","required":["status","as_of","source_count","payload","prompt_version","input_snapshot_hash"],"properties":{"status":{"const":"complete"},"as_of":{"type":"string","format":"date-time"},"source_count":{"type":"integer","minimum":0},"payload":{"type":"object"},"prompt_version":{"type":"string"},"input_snapshot_hash":{"type":"string","pattern":"^[a-fA-F0-9]{64}$"}},"additionalProperties":true}},"additionalProperties":false}}}},"responses":{"201":{"description":"Report stored"},"200":{"description":"Duplicate report request"},"400":{"description":"Invalid report"},"404":{"description":"Run not found"}}}}}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "CAPITALE Report Transfer",
+    "version": "1.0.0",
+    "description": "Tokenless existing-report transfer. Use only completed reports; no research is performed."
+  },
+  "servers": [
+    {
+      "url": "https://betcapitale.com"
+    }
+  ],
+  "paths": {
+    "/api/capitale/agent-bridge/reports/{department}": {
+      "post": {
+        "operationId": "transferExistingReport",
+        "summary": "Transfer an existing completed department report",
+        "parameters": [
+          {
+            "name": "department",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "analyst",
+                "news",
+                "sxf"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "run_id",
+                  "idempotency_key",
+                  "report"
+                ],
+                "properties": {
+                  "run_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "idempotency_key": {
+                    "type": "string",
+                    "minLength": 16,
+                    "maxLength": 128
+                  },
+                  "report": {
+                    "type": "object",
+                    "required": [
+                      "status",
+                      "as_of",
+                      "source_count",
+                      "payload",
+                      "prompt_version",
+                      "input_snapshot_hash"
+                    ],
+                    "properties": {
+                      "status": {
+                        "const": "complete"
+                      },
+                      "as_of": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "source_count": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "payload": {
+                        "type": "object"
+                      },
+                      "prompt_version": {
+                        "type": "string"
+                      },
+                      "input_snapshot_hash": {
+                        "type": "string",
+                        "pattern": "^[a-fA-F0-9]{64}$"
+                      }
+                    },
+                    "additionalProperties": true
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Report stored"
+          },
+          "200": {
+            "description": "Duplicate report request"
+          },
+          "400": {
+            "description": "Invalid report"
+          },
+          "404": {
+            "description": "Run not found"
+          }
+        }
+      }
+    },
+    "/api/capitale/agent-bridge/resolve-match": {
+      "post": {
+        "operationId": "resolveMatchRun",
+        "summary": "Find canonical fixture and existing report run",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 160
+                  },
+                  "day": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Fixture and existing run IDs only"
+          },
+          "400": {
+            "description": "Invalid query"
+          }
+        }
+      }
+    }
+  }
+}

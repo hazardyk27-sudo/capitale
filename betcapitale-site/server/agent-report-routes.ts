@@ -103,6 +103,14 @@ export function registerAgentReportRoutes(app: Express, requireAdmin: RequestHan
       return res.status(result.ok?200:result.error==="unauthorized"?401:422).json(result);
     } catch {return sendSafeError(res,503,"resolver_unavailable");}
   });
+  // Tokenless lookup returns fixture metadata and existing run IDs only; no report payloads.
+  app.post("/api/capitale/agent-bridge/resolve-match",async(req,res)=>{
+    const parsed=z.object({query:z.string().trim().min(2).max(160),day:z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional()}).strict().safeParse(req.body);
+    if(!parsed.success)return sendSafeError(res,400,"invalid_query");
+    const config=getSupabaseConfig();if(!config)return sendSafeError(res,503,"agent_bridge_not_configured");
+    try{return res.json(await rpc(config,"capitale_admin_fixture_runs",{p_query:parsed.data.query,p_day:parsed.data.day??null}));}
+    catch{return sendSafeError(res,503,"fixtures_unavailable");}
+  });
   app.get("/api/admin/software",requireAdmin,async (_req,res)=>{
     const config=getSupabaseConfig();
     if(!config) return sendSafeError(res,503,"agent_bridge_not_configured");

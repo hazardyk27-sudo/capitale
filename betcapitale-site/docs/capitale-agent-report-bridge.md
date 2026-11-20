@@ -90,7 +90,7 @@ This change does not deploy or apply the migration by itself. The current Supaba
 
 
 ## Existing-report transfer and Admin integration
-Agents only transfer existing reports, never research, invent missing values or change conclusions. Admin prepares the canonical fixture and original AS_OF at `/admin/software`. `POST /api/capitale/agent-bridge/resolve` accepts `{ "query": "team name", "day": "YYYY-MM-DD" }` without a token and returns fixture/run metadata only. If several matches or cutoffs remain possible, ask rather than guessing. No run means Admin must prepare it first.
+Agents only transfer existing reports, never research, invent missing values or change conclusions. Admin prepares the canonical fixture and original AS_OF at `/admin/software`. `POST /api/capitale/agent-bridge/resolve-match` accepts `{ "query": "team name", "day": "YYYY-MM-DD" }` without a token and returns fixture/run metadata only. If several matches or cutoffs remain possible, ask rather than guessing. No run means Admin must prepare it first.
 
 The report's full original structured data remains in `payload`. An optional `payload.display` projection may copy **existing** values for the table. Do not generate absent fields:
 - All roles: `market`, `selection` identify exactly the same selection (e.g. `1X2`, `1`).
