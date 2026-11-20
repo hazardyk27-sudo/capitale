@@ -1,0 +1,238 @@
+--- a/client/src/components/daily-profit-ticker-demo.css
++++ b/client/src/components/daily-profit-ticker-demo.css
+@@ -1,10 +1,11 @@
+-/* CAPITALE homepage hero: free-floating premium orange results, SAMPLE data only. */
++/* CAPITALE preview: original black results cards restored.
++   The surrounding panel stays removed; at least five complete days visible. */
+ .dpt-rows-only {
+   width: 100%;
+   min-width: 0;
+   height: 480px;
++  overflow: hidden;
+   position: relative;
+-  overflow: hidden;
+   background: transparent;
+   border: 0;
+   border-radius: 0;
+@@ -13,20 +14,20 @@
+ }
+ .dpt-viewport {
+   position: relative;
++  box-sizing: border-box;
+   width: 100%;
+   height: 100%;
+   overflow: hidden;
+   padding: 0 4px;
+-  box-sizing: border-box;
+ }
+ .dpt-scroll-track {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   will-change: transform;
+-  animation: dpt-orange-flow-down 38s linear infinite;
++  animation: dpt-original-black-scroll-down 38s linear infinite;
+ }
+-@keyframes dpt-orange-flow-down {
++@keyframes dpt-original-black-scroll-down {
+   from { transform: translateY(-50%); }
+   to { transform: translateY(0); }
+ }
+@@ -42,43 +43,21 @@
+   padding-bottom: 10px;
+ }
+ .dpt-row {
++  box-sizing: border-box;
+   width: 100%;
+   height: 68px;
+   min-height: 68px;
+   display: grid;
+-  grid-template-columns: minmax(70px, 1fr) minmax(54px, .8fr) minmax(54px, .8fr) minmax(92px, 1.25fr);
++  grid-template-columns: minmax(70px,1fr) minmax(54px,.8fr) minmax(54px,.8fr) minmax(92px,1.25fr);
+   align-items: center;
+   gap: 6px;
+   padding: 9px 14px;
+-  box-sizing: border-box;
+-  position: relative;
+-  overflow: hidden;
+-  border-radius: 12px;
+-  border: 1px solid rgba(255, 206, 145, .70);
+-  background: linear-gradient(112deg, #b75217 0%, #d46a19 48%, #ed852b 100%);
+-  box-shadow: 0 6px 16px rgba(124, 58, 15, .18), 0 1px 3px rgba(115,51,12,.10);
+-  color: #fff;
++  border: 1px solid #292f39;
++  border-radius: 11px;
++  background: #1b2028;
++  box-shadow: 0 2px 5px rgba(10,16,24,.10);
++  color: #f5f7fa;
+ }
+-.dpt-row::before {
+-  content: "";
+-  position: absolute;
+-  inset: 0;
+-  pointer-events: none;
+-  background: linear-gradient(180deg, rgba(255,255,255,.16), transparent 45%, rgba(96,35,6,.07) 100%);
+-}
+-.dpt-row::after {
+-  content: "";
+-  position: absolute;
+-  left: 0;
+-  top: 11px;
+-  bottom: 11px;
+-  width: 3px;
+-  border-radius: 0 3px 3px 0;
+-  background: rgba(255, 222, 172, .85);
+-}
+-.dpt-date,
+-.dpt-number,
+-.dpt-profit { position: relative; z-index: 1; }
+ .dpt-date {
+   display: flex;
+   flex-direction: column;
+@@ -87,47 +66,44 @@
+   min-width: 0;
+ }
+ .dpt-date strong {
++  color: #eff3f9;
+   font-size: 12px;
+-  font-weight: 900;
+-  color: #fffaf3;
++  font-weight: 850;
+   line-height: 1;
+   white-space: nowrap;
+-  letter-spacing: .005em;
+ }
+ .dpt-date > span {
+-  font-size: 8px;
+-  line-height: 1.15;
+-  color: rgba(255,244,228,.83);
+-  letter-spacing: .02em;
+-  font-weight: 750;
++  color: #929cac;
++  font-size: 9px;
++  font-weight: 700;
++  line-height: 1.1;
+   white-space: nowrap;
+ }
+ .dpt-example-tag {
+-  color: rgba(255,245,227,.88);
++  color: #929cac;
+   font-size: 7px;
+-  font-weight: 800;
+-  letter-spacing: .045em;
++  font-weight: 700;
++  letter-spacing: .02em;
+ }
+ .dpt-number {
+   display: flex;
+   flex-direction: column;
++  align-items: center;
+   gap: 5px;
+-  justify-content: center;
+-  align-items: center;
+   min-width: 0;
+ }
+ .dpt-number strong {
+-  color: #fff;
+-  font-size: 18px;
+-  font-weight: 900;
++  color: #f3f5f9;
++  font-size: 17px;
++  font-weight: 850;
++  font-variant-numeric: tabular-nums;
+   line-height: 1;
+-  font-variant-numeric: tabular-nums;
+ }
+ .dpt-number span {
+-  font-size: 7.5px;
+-  color: rgba(255,246,235,.82);
+-  font-weight: 800;
+-  letter-spacing: .05em;
++  color: #8a94a5;
++  font-size: 8px;
++  font-weight: 700;
++  letter-spacing: .04em;
+   line-height: 1;
+ }
+ .dpt-profit {
+@@ -135,34 +111,32 @@
+   align-items: center;
+   justify-content: flex-end;
+   justify-self: end;
+-  gap: 4px;
++  gap: 3px;
+   white-space: nowrap;
+-  padding: 7px 7px;
+-  border-radius: 8px;
+-  background: rgba(83,32,7,.20);
+-  border: 1px solid rgba(255,237,206,.14);
+   font-size: 15px;
+-  font-weight: 900;
++  font-weight: 850;
++  letter-spacing: -.015em;
+   line-height: 1;
+   font-variant-numeric: tabular-nums;
+-  letter-spacing: -.025em;
++  background: none;
++  border: 0;
++  padding: 0;
+ }
+ .dpt-profit svg { flex-shrink: 0; }
+-.dpt-profit.is-positive { color: #e1ffe8; }
+-.dpt-profit.is-negative { color: #ffe5e1; }
++.dpt-profit.is-positive { color: #69d9a0; }
++.dpt-profit.is-negative { color: #fa8d83; }
+ .dpt-visually-hidden {
+   position: absolute;
++  height: 1px;
+   width: 1px;
+-  height: 1px;
+   overflow: hidden;
+   clip-path: inset(50%);
+   white-space: nowrap;
+ }
+-
+-/* Preserve the existing side-by-side hero and membership strip below. */
++/* Keep the ticker beside the desktop hero and the member count underneath. */
+ .desktopHome .hero-grid.capitale-preview-hero.capitale-with-daily-ticker {
+   display: grid;
+-  grid-template-columns: minmax(0, 660px) minmax(0, 1fr);
++  grid-template-columns: minmax(0,660px) minmax(0,1fr);
+   gap: 40px;
+   align-items: center;
+   max-width: 1160px !important;
+@@ -182,10 +156,7 @@
+   .dpt-rows-only { max-width: 580px; }
+ }
+ @media (max-width: 767px) {
+-  .dpt-rows-only {
+-    height: 438px;
+-    max-width: none;
+-  }
++  .dpt-rows-only { height: 438px; max-width: none; }
+   .dpt-viewport { padding: 0 2px; }
+   .dpt-row-group { gap: 9px; padding-bottom: 9px; }
+   .dpt-row {
+@@ -199,9 +170,9 @@
+   .dpt-date strong { font-size: 11px; }
+   .dpt-date > span { font-size: 8px; }
+   .dpt-example-tag { font-size: 7px; }
+-  .dpt-number strong { font-size: 17px; }
++  .dpt-number strong { font-size: 16px; }
+   .dpt-number span { font-size: 7px; }
+-  .dpt-profit { padding: 6px 6px; font-size: 14px; gap: 3px; }
++  .dpt-profit { font-size: 14px; }
+   .dpt-profit svg { width: 12px; height: 12px; }
+ }
+ @media (max-width: 355px) {
+@@ -211,8 +182,8 @@
+     padding: 7px 8px;
+   }
+   .dpt-date strong { font-size: 10px; }
+-  .dpt-number strong { font-size: 16px; }
+-  .dpt-profit { font-size: 13px; padding: 6px 4px; }
++  .dpt-number strong { font-size: 15px; }
++  .dpt-profit { font-size: 13px; }
+ }
+ @media (prefers-reduced-motion: reduce) {
+   .dpt-scroll-track {
