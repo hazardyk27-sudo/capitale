@@ -179,8 +179,8 @@ begin
     return jsonb_build_object('ok', false, 'error', 'invalid_report');
   end if;
   if p_report ?| array['role', 'agent_role', 'actor_role', 'department']
-     or exists (select 1 from jsonb_object_keys(p_report) k where not (k = any(v_allowed_keys)))
-     or jsonb_typeof(p_report->'payload') <> 'object'
+     or exists (select 1 from jsonb_object_keys(p_report) as keys(key) where not (key = any(v_allowed_keys)))
+     or coalesce(jsonb_typeof(p_report->'payload'), '') <> 'object'
      or coalesce(p_report->>'status', '') <> 'complete'
      or nullif(p_report->>'as_of', '') is null
      or nullif(p_report->>'prompt_version', '') is null
@@ -197,7 +197,7 @@ begin
   if exists (
     select 1 from jsonb_array_elements(p_evidence) item(e)
     where case when jsonb_typeof(e) <> 'object' then true
-      else exists (select 1 from jsonb_object_keys(e) k where not (k = any(v_evidence_keys)))
+      else exists (select 1 from jsonb_object_keys(e) as keys(key) where not (key = any(v_evidence_keys)))
         or nullif(e->>'source_kind', '') is null
         or nullif(e->>'claim_text', '') is null
       end
