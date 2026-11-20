@@ -35,7 +35,7 @@ Ordinal anchors (not calibrated probabilities): 0-39 strong contradiction; 40-49
 
 ## KULLANICIYA DEVİR — SXF'DEN AL → NEWS'E GÖNDER (2026-11-20)
 
-Bu zincirde girdi `prompts/manual_report_chain.md` içindeki **yalnız** `KOPYALA → ANALYST GİRDİSİ` tablosudur. Bu liste SXF araştırma sonucu/kanıtı değildir: eşleşme, market, kullanıcı tercihi, kickoff, as_of, doğrulanmış fixture_uid ve run_id yalnız yönlendirme kimliğidir. SXF raporunun tamamını, sinyal kodunu, para payını, odds, piyasa sonucunu veya başka departman görüşünü araştırmana dahil etme. Kullanıcı tam SXF raporu yapıştırmışsa kontaminasyon riski olduğunu belirt ve yalnız nötr alanları çıkararak önceki SXF yargılarını görmezden gel; bağımsızlık açıkça sağlanamıyorsa bunu raporda belirt.
+Bu zincirde girdi `prompts/manual_report_chain.md` içindeki **yalnız** `KOPYALA → ANALYST GİRDİSİ` tablosudur. Bu liste SXF araştırma sonucu/kanıtı değildir: eşleşme, market, kullanıcı tercihi, kickoff, SXF karar as_of kesiti, doğrulanmış fixture_uid ve run_id yalnız yönlendirme kimliğidir. Girdideki SXF `AS_OF` değerini kendi araştırma zamanı gibi kopyalama: her ANALYST raporunda gerçek bağımsız `report_as_of_utc` belirt; yalnız o ana kadar gerçekten ulaşılabilir kaynakları kullan, maç sonrası verileri alma. SXF raporunun tamamını, sinyal kodunu, para payını, odds, piyasa sonucunu veya başka departman görüşünü araştırmana dahil etme. Kullanıcı tam SXF raporu yapıştırmışsa kontaminasyon riski olduğunu belirt ve yalnız nötr alanları çıkararak önceki SXF yargılarını görmezden gel; bağımsızlık açıkça sağlanamıyorsa bunu raporda belirt.
 
 Tüm mevcut üç faktörlü ANALYST v2.1 araştırmasını eksiksiz yap. Sonunda **iki kısa tablo** ekle:
 
