@@ -1,0 +1,121 @@
+--- a/client/src/components/intelligence-flow-hero-demo.css
++++ b/client/src/components/intelligence-flow-hero-demo.css
+@@ -476,3 +476,118 @@
+     padding-right:13px!important;
+   }
+ }
++
++/* CAPITALE Preview v14 — Desktop Commander–scale HERO typography and geometry.
++   User constraint: do NOT alter font families, text, palette, or workflow artwork.
++   Update ONLY hero title/paragraph/buttons dimensions and their positioning. */
++@media (min-width:1180px) {
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow {
++    width:calc(100% - 48px);
++    max-width:1540px!important;
++    grid-template-columns:minmax(525px,1fr) minmax(0,1fr);
++    column-gap:clamp(28px,3.4vw,56px);
++    min-height:585px;
++    align-items:center;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow > div:first-child {
++    width:100%;
++    min-width:0;
++    max-width:none!important;
++    transform:translateY(20px);
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .hero-headline {
++    font-size:clamp(63px,4.66vw,74px);
++    line-height:1.035;
++    max-width:100%;
++    margin:0;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow > div:first-child > p {
++    font-size:clamp(18px,1.24vw,21px)!important;
++    line-height:1.52!important;
++    max-width:520px!important;
++    margin-top:28px!important;
++    margin-bottom:38px!important;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions {
++    gap:10px!important;
++    flex-wrap:nowrap!important;
++    align-items:center;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions button,
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions > a {
++    height:64px!important;
++    padding-left:17px!important;
++    padding-right:17px!important;
++    font-size:16px!important;
++    border-radius:14px!important;
++    white-space:nowrap;
++  }
++  .desktopHome .cif-stage {max-width:none;align-self:center;}
++  .desktopHome .capitale-members-strip {
++    max-width:1540px!important;
++    width:calc(100% - 48px);
++    margin-top:26px;
++  }
++}
++@media (min-width:1550px){
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow > div:first-child {
++    transform:translateY(25px);
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions button,
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions > a{
++    height:68px!important;
++    padding-left:20px!important;
++    padding-right:20px!important;
++    font-size:17px!important;
++  }
++}
++@media (min-width:1180px) and (max-width:1359px){
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow > div:first-child {
++    transform:translateY(12px);
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .hero-headline {
++    font-size:clamp(57px,5.15vw,64px);
++    line-height:1.02;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow > div:first-child > p {
++    font-size:18px!important;
++    margin-top:24px!important;
++    margin-bottom:31px!important;
++    max-width:490px!important;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions{
++    gap:7px!important;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions button,
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions > a {
++    height:60px!important;
++    font-size:14px!important;
++    padding-left:12px!important;
++    padding-right:12px!important;
++    border-radius:12px!important;
++  }
++}
++/* Between 768 and 1179px the existing stacked layout is retained. */
++@media (min-width:768px) and (max-width:1179px){
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .hero-headline {
++    font-size:clamp(53px,5.7vw,68px);
++    line-height:1.035;
++    max-width:660px;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow > div:first-child {
++    max-width:700px!important;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow > div:first-child > p {
++    font-size:19px!important;
++    margin-top:24px!important;
++    margin-bottom:33px!important;
++    max-width:540px!important;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions button,
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions > a{
++    height:62px!important;
++    font-size:16px!important;
++    border-radius:14px!important;
++  }
++}
++/* Keep CAPITALE's mobile headline, button layout, colors and fonts untouched. */
