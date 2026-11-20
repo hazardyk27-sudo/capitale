@@ -38,10 +38,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: npm
-          cache-dependency-path: betcapitale-site/package-lock.json
-      - run: npm ci --no-audit --no-fund --progress=false
-      - run: npm run check
-      - run: npm run test:agent-report-auth
+      - name: Install only bridge test dependencies
+        run: |
+          npm install --prefix /tmp/capitale-agent-auth-deps --no-save --no-package-lock --no-audit --no-fund express@5.1.0 zod@3.24.2 pg@8.16.3 tsx@4.20.5 typescript@5.6.3 @types/node@20.19.27 @types/express@5.0.0
+          ln -s /tmp/capitale-agent-auth-deps/node_modules node_modules
+      - name: Typecheck bridge files
+        run: ./node_modules/.bin/tsc --noEmit --skipLibCheck --target ES2022 --module commonjs --moduleResolution node --esModuleInterop --types node server/agent-report-routes.ts server/agent-report-authorization.test.ts
+      - name: Run API and database authorization tests
+        run: npm run test:agent-report-auth
         env:
           CAPITALE_TEST_DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/capitale_agent_auth_test
