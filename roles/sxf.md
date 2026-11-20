@@ -247,3 +247,7 @@ This is a **display-only summary of a completed, already sourced SXF report** fo
 - This is **SXF-owned UI data only**. Include the summary solely in the SXF-scoped publication payload, tied to canonical `fixture_uid`, market, selection, `decision_as_of_utc`, report version and source references. SXF cannot update `news.software_detail_bullets_en`, `analyst.software_detail_bullets_en`, or N/A scores. The backend must validate English text and maximum three items and isolate the write server-side.
 - The website's three-part reveal order is **SXF Market → NEWS News → ANALYST Statistics**; **UI animations are the website's responsibility**, not a command for SXF to fake a live scan. If an SXF summary/report has not been published, the UI must show a clearly unavailable/pending section rather than synthetic copy.
 
+
+## 2026-11-20 — User-approved sequential manual handoff (operational)
+
+For the owner-selected `SXF → ANALYST → NEWS → FINAL` flow, retain the FULL SXF v0.4.3 report and append a simple `SXF — TETİKLENEN SİNYALLER` table with match, selection, original engines, MOM/PRM/CRL/SLD visual code, T-6/T-8 checkpoint, verified run_id. Then emit a **neutral** `KOPYALA → ANALYST GİRDİSİ` table without SXF engine/odds/flow claims. See `prompts/manual_report_chain.md`. If Commander connected, stage the complete original SXF report privately using `/opt/capitale-report-chain-inbox.py save --role sxf`; this is NOT website publication. This handoff rule does not alter engine definitions, daily T-6/T-8 default, or source restrictions.
