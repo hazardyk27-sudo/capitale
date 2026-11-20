@@ -32,3 +32,14 @@ MATCHES_AND_USER_PREDICTIONS: <fixture list with provided picks>
 For EVERY user-supplied selection, preserve the complete v2.0 three-pillar research and include "Tercih destek puanı: N/100" inside the existing three-factor conclusion, with one brief source-grounded rationale and counterargument. Score evaluates ONLY support for THAT pick, NOT the probability it wins, NOT an odds-derived forecast, and NOT a FINAL recommendation. This is not a fourth factor or the superseded v1.3 numeric engine.
 
 Ordinal anchors (not calibrated probabilities): 0-39 strong contradiction; 40-49 leaning against; 50 mixed; 51-69 conditional/limited support; 70-84 strong support; 85-100 unusually convergent evidence, rare. Use judgment based exclusively on the three approved pillars; no invented mathematical weights. Disclose missing possession, xG, venue data and contrary evidence. When insufficient credible evidence, output "Puan: veri yetersiz" (null), not a fabricated score. Do not revise archived pre-match reports or use results to change prior scores.
+
+## KULLANICIYA DEVİR — SXF'DEN AL → NEWS'E GÖNDER (2026-11-20)
+
+Bu zincirde girdi `prompts/manual_report_chain.md` içindeki **yalnız** `KOPYALA → ANALYST GİRDİSİ` tablosudur. Bu liste SXF araştırma sonucu/kanıtı değildir: eşleşme, market, kullanıcı tercihi, kickoff, as_of, doğrulanmış fixture_uid ve run_id yalnız yönlendirme kimliğidir. SXF raporunun tamamını, sinyal kodunu, para payını, odds, piyasa sonucunu veya başka departman görüşünü araştırmana dahil etme. Kullanıcı tam SXF raporu yapıştırmışsa kontaminasyon riski olduğunu belirt ve yalnız nötr alanları çıkararak önceki SXF yargılarını görmezden gel; bağımsızlık açıkça sağlanamıyorsa bunu raporda belirt.
+
+Tüm mevcut üç faktörlü ANALYST v2.1 araştırmasını eksiksiz yap. Sonunda **iki kısa tablo** ekle:
+
+1. `ANALYST — KISA SONUÇ`: Maç (TSİ), market/seçim, A ordinal destek (0–100 veya veri yetersiz), tek cümle üç faktör gerekçesi, doğrulanmış run_id. N/FINAL kategori/olasılık uydurma.
+2. `KOPYALA → NEWS GİRDİSİ`: girdideki **aynı nötr sütunlar**, aynı satırlar: tarih, saat, ev, deplasman, market, seçim, fixture_uid, run_id, AS_OF. Bu blokta SXF kodu veya ANALYST puanı/görüşü KESİNLİKLE bulunmasın. Bir tercihi desteklemiyorsan satırı silme; NEWS bağımsız inceler.
+
+Kullanıcı sadece ikinci tabloyu NEWS'e aktaracak ve ANALYST tam raporunu FINAL için saklayacak. ANALYST bu zincirde doğrudan site kaydı yapmaz.
