@@ -243,6 +243,29 @@ def aggregate(meta, results):
                      and x["believes_software_works"] == "yes"]
         lines.append("- Both excited AND thinks software works: %s of %s FICTIONAL replies" %
                      (len(congruent), len(entries)))
+    lines += ["", "## People who were excited AND felt the software really works (FICTIONAL)", ""]
+    pairs = [x for x in results if x["answer"]["felt_excited"] == "yes" and
+             x["answer"]["believes_software_works"] == "yes"]
+    if not pairs:
+        lines.append("- No matching fictional respondents among validated API answers.")
+    else:
+        for x in pairs:
+            p, a = x["persona"], x["answer"]
+            lines.append("- **%s · %s · %s** (%s, %s): excitement %s/10; trust %s/10. "
+                         "Excited because: %s Believed because: %s" %
+                         (p["id"], p["name"], x["provider"], p["age"], p["city"],
+                          a["excitement_0_10"], a["trust_0_10"], a["excitement_reason"],
+                          a["trust_reason"]))
+    lines += ["", "## Excited but not convinced (FICTIONAL)", ""]
+    excited_skeptics = [x for x in results if x["answer"]["felt_excited"] == "yes" and
+                        x["answer"]["believes_software_works"] != "yes"]
+    if not excited_skeptics:
+        lines.append("- None among validated answers.")
+    else:
+        for x in excited_skeptics:
+            p, a = x["persona"], x["answer"]
+            lines.append("- %s · %s (%s): %s" %
+                         (p["id"], p["name"], x["provider"], a["trust_reason"]))
     lines += ["", "## Detailed persona-by-persona results", ""]
     for x in results:
         p, a = x["persona"], x["answer"]
