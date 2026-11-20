@@ -11,6 +11,7 @@
     "test:free-bet": "tsx --test client/src/utils/freeBetCalculations.test.ts",
     "test:tier-override": "tsx --test server/tier-override.test.ts",
     "test:whop-migration": "node --test server/whop-migration.test.js",
+    "test:agent-report-auth": "tsx --test server/agent-report-authorization.test.ts && node --test server/agent-report-authorization.db.test.mjs",
     "db:push": "drizzle-kit push"
   },
   "dependencies": {

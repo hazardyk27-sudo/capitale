@@ -143,3 +143,17 @@ ENGINEER: active governance/implementation role
 POLY v1.4 replaces the SXF POLY-only bettor source rule with direct primary-source independent discovery. Its purpose is verified profitable football bettor identification and follow-up; no betting-edge claim or source substitution is permitted without independently collected evidence. See MILESTONE.md.
 
 See MILESTONE.md for current implementation state, superseded rules, and technical backlog.
+
+
+## Report transfer to Betcapitale (2026-11-20)
+
+After completing an ANALYST, NEWS, or SXF report, transfer that existing report to the CAPITALE admin site. Transfer only; do not perform new research for this action, alter findings, or invent missing fields. POLY and FINAL must not use these transfer endpoints.
+
+No agent token or authorization header is required. Use the fixed department route that matches your own role:
+- ANALYST: `POST https://betcapitale.com/api/capitale/agent-bridge/reports/analyst`
+- NEWS: `POST https://betcapitale.com/api/capitale/agent-bridge/reports/news`
+- SXF: `POST https://betcapitale.com/api/capitale/agent-bridge/reports/sxf`
+
+Before transfer, identify the exact canonical match and existing `run_id` in Admin > Software. Preserve the report's original `AS_OF` timestamp. Never guess a fixture or run. If no run exists, tell the Admin operator to prepare the verified fixture/run; do not create one from a team name. Send JSON with `run_id`, a stable unique `idempotency_key` (16–128 characters), and `report`. `report` requires `status: "complete"`, exact `as_of`, integer `source_count`, original structured `payload`, `prompt_version`, and a 64-character hexadecimal `input_snapshot_hash`. Add `evidence` only from the completed report. Do not include role/department fields in the body; the route determines the displayed department. Missing report values stay missing; never fabricate them.
+
+A `201` means stored; `200` means the same idempotent report was already stored. Treat other responses as failure and report the status/error to the operator; never claim the transfer succeeded without an accepted response. Confirm the match and department appear in Admin > Software. The tokenless endpoints are public and do not prove who sent a report: use them only for this owner-approved trial; the server still validates schema, existing run binding, AS_OF, idempotency, and append-only history.

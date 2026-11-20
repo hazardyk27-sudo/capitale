@@ -1,4 +1,5 @@
 import type { Express } from "express";
+import { registerAgentReportRoutes } from "./agent-report-routes";
 import { createServer, type Server } from "http";
 import { createHash } from "crypto";
 import { storage } from "./storage";
@@ -1233,9 +1234,7 @@ function promotionAssessment(input: {
   });
 
   // CAPITALE software analysis feed. It deliberately returns no sample data until a trusted source is connected.
-  app.get("/api/admin/software", requireAdmin, (_req, res) => {
-    res.json({ items: [], dataSource: "not_connected" });
-  });
+  // Software feed is registered by registerAgentReportRoutes.
 
   // Registered site users (distinct from Whop paying-member records) — for the
   // admin "Kullanıcılar" tab: who signed up, when, and their member tier.
@@ -2184,6 +2183,8 @@ function promotionAssessment(input: {
       res.status(500).json({ error: "Events could not be loaded." });
     }
   });
+
+  registerAgentReportRoutes(app, requireAdmin);
 
   // ── Background interval: apply increments every 60s without needing traffic ─
   setInterval(async () => {

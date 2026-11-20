@@ -82,7 +82,7 @@ app.use((req, res, next) => {
     const duration = Date.now() - start;
     if (path.startsWith("/api")) {
       let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
-      if (capturedJsonResponse) {
+      if (capturedJsonResponse && !path.startsWith("/api/admin/capitale") && !path.startsWith("/api/capitale/agent-bridge") && path !== "/api/admin/software") {
         logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
       }
 
