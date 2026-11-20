@@ -1,0 +1,101 @@
+--- a/client/src/components/daily-profit-ticker-demo.css
++++ b/client/src/components/daily-profit-ticker-demo.css
+@@ -249,3 +249,98 @@
+   .dpt-scroll-track { animation: none; transform: translateY(0); will-change: auto; }
+   .dpt-row { transition: none; }
+ }
++
++/* CAPITALE Preview v6 — genuinely raised, soft-edge black cards.
++   Requested: slightly narrower, oval corners, neutral black & realistic 3D depth.
++   No glow, tilt, neon color borders, extra panel or position changes. */
++.dpt-viewport {
++  padding-left: 2px;
++  padding-right: 2px;
++  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 1.2%, #000 98.8%, transparent 100%);
++  mask-image: linear-gradient(to bottom, transparent 0%, #000 1.2%, #000 98.8%, transparent 100%);
++}
++.dpt-row {
++  width: calc(100% - 26px);
++  margin-inline: auto;
++  height: 63px;
++  min-height: 63px;
++  padding: 8px 15px;
++  border-radius: 18px;
++  border: 1px solid rgba(111, 122, 137, .37);
++  background:
++    radial-gradient(ellipse 118% 120% at 13% -40%, rgba(255,255,255,.065) 0%, transparent 58%),
++    linear-gradient(163deg, #1b1e24 0%, #12151b 37%, #0b0e13 72%, #080a0d 100%);
++  box-shadow:
++    0 2px 3px rgba(8, 12, 18, .23),
++    0 7px 12px rgba(8, 12, 18, .17),
++    0 15px 23px -7px rgba(8, 12, 18, .16),
++    inset 0 1px 0 rgba(255,255,255,.19),
++    inset 0 -2px 2px rgba(0,0,0,.42);
++  transition: box-shadow .2s ease, border-color .2s ease;
++}
++.dpt-row::before {
++  content: "";
++  position: absolute;
++  top: 0;
++  left: 15px;
++  right: 15px;
++  bottom: auto;
++  height: 1px;
++  width: auto;
++  opacity: 1;
++  border-radius: 0;
++  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.23) 25%, rgba(255,255,255,.09) 75%, transparent 100%);
++  box-shadow: none;
++}
++.dpt-row::after {
++  content: "";
++  position: absolute;
++  z-index: 0;
++  top: auto;
++  bottom: 0;
++  left: 20px;
++  right: 20px;
++  height: 1px;
++  border-radius: 0;
++  background: linear-gradient(90deg, transparent, rgba(0,0,0,.52) 25%, rgba(0,0,0,.3) 65%, transparent);
++  pointer-events: none;
++}
++.dpt-row:hover {
++  border-color: rgba(150, 158, 170, .44);
++  box-shadow:
++    0 3px 5px rgba(8, 12, 18, .24),
++    0 9px 15px rgba(8, 12, 18, .19),
++    0 17px 26px -8px rgba(8, 12, 18, .17),
++    inset 0 1px 0 rgba(255,255,255,.21),
++    inset 0 -2px 2px rgba(0,0,0,.43);
++}
++.dpt-date strong { color: #f6f6f7; }
++.dpt-number strong { color: #f9f9fa; font-size: 17px; }
++.dpt-date > span, .dpt-number span { color: #949aa6; }
++.dpt-profit-amount { font-size: 16px; }
++.dpt-profit-status { color: #a7acb7; }
++@media (max-width: 767px) {
++  .dpt-row {
++    width: calc(100% - 16px);
++    height: 59px;
++    min-height: 59px;
++    padding: 7px 12px;
++    gap: 3px;
++    border-radius: 16px;
++    grid-template-columns: minmax(62px,1fr) minmax(39px,.66fr) minmax(39px,.66fr) minmax(84px,1.14fr);
++  }
++  .dpt-number strong { font-size: 16px; }
++  .dpt-profit-amount { font-size: 15px; }
++}
++@media (max-width: 355px) {
++  .dpt-row {
++    width: calc(100% - 12px);
++    padding: 7px 8px;
++    grid-template-columns: minmax(56px,1fr) 33px 33px minmax(74px,1.08fr);
++    gap: 2px;
++    border-radius: 15px;
++  }
++  .dpt-profit-amount { font-size: 13px; }
++  .dpt-date strong { font-size: 10px; }
++  .dpt-number strong { font-size: 15px; }
++}
