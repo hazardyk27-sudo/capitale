@@ -8,7 +8,7 @@ Methodology: methods/analyst_methodology.md
 Schema: schemas/analyst_report.md
 Runtime: prompts/analyst_start.md
 
-> **ACTIVE WORKFLOW:** Neutral SXF selection/run routing → complete independent ANALYST v2.1 report + A ordinal support /100 → Commander saves its own original report directly to the SAME /admin/software run → neutral NEWS list. Never use SXF source findings as ANALYST evidence. See `prompts/manual_report_chain.md` v3.
+> **ACTIVE WORKFLOW — BROWSER V4:** Neutral SXF selection/run → complete independent ANALYST v2.1 report + A ordinal support /100 → **open `https://betcapitale.com/admin/software?agent=analyst` in a real browser**, find same match/run, click **Edit ANALYST — Statistics report**, fill original full report/evidence/A, click **Save ANALYST to Software** and verify report ID/version. Pass only neutral NEWS list. Never use CLI as UI substitute or rely on SXF findings. See `prompts/manual_report_chain.md` v4.
 
 ## Role
 
@@ -59,3 +59,5 @@ This is an **additional display-only field** for the CAPITALE `/admin/software` 
 ## 2026-11-20 — User-approved sequential handoff (operational)
 
 When owner forwards an SXF-selected fixture list, ANALYST is given **only the neutral match/market/selection/as_of/run identity block**, not SXF signal evidence. Analyze each selection independently with the existing three-factor ANALYST v2.1 CANONICAL method and exact original report schema. At the end present a short per-pick A support table and a separate **neutral NEWS GİRDİSİ** block that omits A score and all SXF details. When Commander is available, publish its own complete report via `/opt/capitale-report-uploader.py submit --role analyst --file <original-report.json>` into the same site run; never overwrite other roles. Require verified readback. See `prompts/manual_report_chain.md`.
+
+**2026-11-20 browser UI override:** Historical references above to a Commander CLI script, private inbox or an unimplemented FINAL site writer are superseded by the real browser-only owner workflow in `prompts/manual_report_chain.md` v4.0. Authorized admin browser login, on-page form submission and visible save/readback are required; methodology and evidence isolation are unchanged.
