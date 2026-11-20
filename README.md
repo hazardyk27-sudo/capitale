@@ -11,11 +11,11 @@ CAPITALE is a multi-agent football research and betting-decision system built ar
 - FINAL — combines completed department reports only. DRAFT until synthesis rules are approved.
 - ENGINEER — architecture, data, prompts, schemas, testing, backtesting, calibration, and maintenance; never a match-prediction role.
 
-## Active workflow — direct per-agent Software reports (2026-11-20)
+## Active workflow — on-page browser editing by each agent (2026-11-20)
 
-**SXF → ANALYST → NEWS → FINAL.** Each specialist keeps their independent source policy and completes a FULL report, then uses private Commander to write **only their own department** into the canonical `/admin/software` fixture + selection + `run_id`. SXF verified `FINAL_SIGNAL` source events are automatically captured every 3 minutes; new SXF dialogue reports may be versioned in the same site record. ANALYST contributes the A ordinal support /100; NEWS contributes the N ordinal support /100. FINAL retrieves the complete three original reports directly from the site and synthesizes A/B/C or NO_RECOMMENDATION; optional POLY evidence can be added independently. FINAL site publication is still pending its authorized writer (issue #8).
+Every agent must **open the authenticated `/admin/software?agent=<role>` page and click its own Edit/Save buttons in an actual browser**, not send CLI/API report payloads in the normal workflow. SXF auto-import creates source-backed match rows; SXF, ANALYST and NEWS each append their own complete specialist analysis through their dedicated website edit forms. FINAL reads all three original complete reports on its page and appends its own A/B/C/NO_RECOMMENDATION decision. Each write is verified by an actual report/decision ID and version on readback; no invented scores, AS_OF or source claims.
 
-The next research department receives **only neutral fixture/market/selection/run metadata**, never another department's findings or score. No user-facing tokens, GPT Actions or browser automation. Core handoff: `prompts/manual_report_chain.md` v3.0. The old private report inbox is a fallback only, not the normal writing method.
+Canonical steps: `prompts/manual_report_chain.md` v4.0. Admin login and genuine browser-control capability are required; Commander terminal availability alone does not prove UI interaction. Past CLI-inbox handoff paths are fallback/internal engineering only.
 
 ## Core rule
 
