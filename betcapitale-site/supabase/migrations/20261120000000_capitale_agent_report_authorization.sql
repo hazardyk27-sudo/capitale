@@ -387,7 +387,7 @@ revoke all on capitale.research_runs, capitale.agent_reports, capitale.evidence_
 
 alter table capitale.agent_reports drop constraint if exists agent_reports_role_check;
 alter table capitale.agent_reports add constraint agent_reports_role_check
-  check (role = any (array['analyst'::text, 'news'::text, 'sxf'::text));
+  check (role = any (array['analyst'::text, 'news'::text, 'sxf'::text]));
 
 create or replace function capitale_private.deny_immutable_change()
 returns trigger
