@@ -37,10 +37,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
           cache-dependency-path: betcapitale-site/package-lock.json
-      - run: npm ci --no-audit --no-fund
+      - run: npm ci --no-audit --no-fund --progress=false
       - run: npm run check
       - run: npm run test:agent-report-auth
         env:
