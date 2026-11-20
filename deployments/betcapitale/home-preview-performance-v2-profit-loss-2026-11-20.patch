@@ -1,0 +1,153 @@
+--- a/client/src/components/DailyProfitTickerDemo.tsx
++++ b/client/src/components/DailyProfitTickerDemo.tsx
+@@ -37,8 +37,9 @@
+         <span>MATCHES</span>
+       </div>
+       <div className={`dpt-profit ${positive ? "is-positive" : "is-negative"}`}>
+-        {positive ? <ArrowUpRight size={13} /> : <ArrowDownRight size={13} />}
+-        <strong>{formatProfit(item.profit)}</strong>
++        {positive ? <ArrowUpRight size={12} aria-hidden="true" /> : <ArrowDownRight size={12} aria-hidden="true" />}
++        <strong className="dpt-profit-amount">{formatProfit(item.profit)}</strong>
++        <span className="dpt-profit-status">{positive ? "Profit" : "Loss"}</span>
+       </div>
+     </div>
+   );
+--- a/client/src/components/daily-profit-ticker-demo.css
++++ b/client/src/components/daily-profit-ticker-demo.css
+@@ -192,3 +192,136 @@
+     will-change: auto;
+   }
+ }
++
++/* Performance v2 — refined finance-led styling.
++   Deliberately retain the original floating black rows, not an outer panel. */
++.dpt-scroll-track {
++  animation-duration: 49s;
++}
++.dpt-viewport {
++  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 3%, #000 97%, transparent 100%);
++  mask-image: linear-gradient(to bottom, transparent 0%, #000 3%, #000 97%, transparent 100%);
++}
++.dpt-row {
++  position: relative;
++  overflow: hidden;
++  padding: 9px 12px 9px 14px;
++  background: linear-gradient(105deg, #202630 0%, #1c222b 62%, #1b212a 100%);
++  border: 1px solid #333b48;
++  border-radius: 11px;
++  box-shadow: 0 2px 6px rgba(17,25,37,.11), inset 0 1px rgba(255,255,255,.025);
++}
++.dpt-row::before {
++  position: absolute;
++  left: 0;
++  top: 17px;
++  bottom: 17px;
++  width: 2px;
++  background: #e8771f;
++  opacity: .88;
++  border-radius: 0 3px 3px 0;
++  content: "";
++}
++.dpt-date,
++.dpt-number,
++.dpt-profit { position: relative; z-index: 1; }
++.dpt-date { gap: 5px; }
++.dpt-date strong {
++  color: #f6f7fa;
++  font-size: 12px;
++  font-weight: 850;
++  letter-spacing: .005em;
++}
++.dpt-date > span {
++  color: #8c98ab;
++  font-size: 8px;
++  font-weight: 750;
++  letter-spacing: .03em;
++}
++.dpt-example-tag { color: #828d9d; font-weight: 700; font-size: 7px; }
++.dpt-number strong {
++  color: #f6f7fa;
++  font-weight: 850;
++  font-size: 17px;
++  letter-spacing: -.025em;
++}
++.dpt-number span {
++  color: #8693a5;
++  font-weight: 800;
++  font-size: 7.5px;
++  letter-spacing: .055em;
++}
++.dpt-profit {
++  justify-self: end;
++  justify-content: flex-end;
++  display: inline-flex;
++  align-items: center;
++  gap: 4px;
++  padding: 8px 7px;
++  min-height: 30px;
++  border-radius: 8px;
++  white-space: nowrap;
++  font-size: 14px;
++  font-weight: 850;
++  line-height: 1;
++  letter-spacing: -.01em;
++  border: 1px solid transparent;
++}
++.dpt-profit svg { width: 12px; height: 12px; }
++.dpt-profit.is-positive {
++  color: #87e4af;
++  background: #20382f;
++  border-color: #2e5341;
++}
++.dpt-profit.is-negative {
++  color: #ffa4a0;
++  background: #3a2b31;
++  border-color: #594047;
++}
++.dpt-profit-amount {
++  font-size: 14px;
++  font-weight: 850;
++  letter-spacing: -.035em;
++  font-variant-numeric: tabular-nums;
++}
++.dpt-profit-status {
++  display: inline-block;
++  padding-left: 5px;
++  margin-left: 1px;
++  border-left: 1px solid currentColor;
++  opacity: .84;
++  color: inherit;
++  font-size: 8px;
++  font-weight: 800;
++  letter-spacing: .035em;
++  text-transform: uppercase;
++}
++@media (max-width: 767px) {
++  .dpt-row {
++    padding: 7px 9px 7px 11px;
++    grid-template-columns: minmax(63px,1fr) minmax(40px,.66fr) minmax(40px,.66fr) minmax(109px,1.3fr);
++    gap: 3px;
++  }
++  .dpt-row::before { top: 16px; bottom: 16px; }
++  .dpt-profit {
++    gap: 3px;
++    padding: 7px 5px;
++    min-height: 28px;
++  }
++  .dpt-profit-amount { font-size: 13px; }
++  .dpt-profit-status { font-size: 7px; padding-left: 4px; margin-left: 0; }
++  .dpt-date strong { font-size: 11px; }
++  .dpt-number strong { font-size: 16px; }
++}
++@media (max-width: 355px) {
++  .dpt-row {
++    grid-template-columns: minmax(61px,1fr) 36px 36px minmax(105px,1.3fr);
++    gap: 2px;
++    padding: 7px 8px 7px 9px;
++  }
++  .dpt-date strong { font-size: 10px; }
++  .dpt-number strong { font-size: 15px; }
++  .dpt-profit { padding: 6px 4px; gap: 2px; }
++  .dpt-profit-amount { font-size: 12px; }
++  .dpt-profit-status { font-size: 6.5px; padding-left: 3px; }
++}
