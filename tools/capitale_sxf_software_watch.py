@@ -41,7 +41,10 @@ def snapshot(m):
         "kickoff_utc": "gt." + m.iso(now),
         "order": "event_id.desc", "limit": "1",
     }
-    _, rows = m.rest(url, key, "GET", "sxf_base_signal_events", params=path)
+    params = list(path.items()) + [
+        ("kickoff_utc", "lt." + m.iso(now + timedelta(hours=18)))
+    ]
+    _, rows = m.rest(url, key, "GET", "sxf_base_signal_events", params=params)
     return int(rows[0]["event_id"]) if rows else 0
 
 
