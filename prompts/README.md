@@ -1,24 +1,34 @@
 # CAPITALE Runtime Prompts
 
-Repository methodology files are source-of-truth documentation; they do not automatically become an agent's runtime instruction.
+**GÜNCEL KULLANICI ÇALIŞMA ŞEKLİ (2026-11-20):** `prompts/manual_report_chain.md` — **SXF → ANALYST → NEWS → FINAL → siteye kayıt**. Bu zincir önceki paralel çalışma yönteminin yanında, kullanıcı tarafından onaylanan manuel aktarım modudur; araştırma metodolojilerini değiştirmez.
 
-**ANALYST v2.0 CANONICAL active routing (owner-approved 2026-10-23):** `prompts/analyst_start.md` routes new analyses ONLY to `methods/analyst_methodology.md` and `schemas/analyst_report.md` v2.0. Older analyst v1.1, v1.2, v1.3 and v1.4.x methods and report templates are SUPERSEDED/INACTIVE for new runs, retained for auditing old match reports. Every new run uses exactly three factors (possession, form momentum, opponent logic with mandatory home/away analysis for BOTH clubs). The prompt source-of-truth is now live in this repository, not an unimplemented external agent deployment.
+Bir agentın GitHub talimatlarını okuması tek başına onun siteye yazabildiği anlamına gelmez. Yalnız gerçek yetkili Commander/yükleyici başarılı kayıt ID'si döndürür ve read-back doğrulaması geçerse "kaydedildi" denebilir. Mevcut yerel yükleyici ANALYST, NEWS ve SXF kabul ediyor; FINAL desteği hazır değil ve ayrıca uygulanmalıdır.
 
-For every new role run, use the matching bootstrap prompt first:
+**Aktif roller ve sürümler:**
+- SXF v0.4.3 DRAFT — günlük varsayılan per-fixture T-6, gerektiğinde geçerli T-8 fallback. Dynamic as-of ancak kullanıcı isterse.
+- ANALYST v2.1 CANONICAL — yalnız üç faktör, kullanıcı tercihine ordinal A destek /100.
+- NEWS v1.6 CANONICAL — 8 haber alanı, materyal H# hikâyeleri, 7 etki toplamı + kullanıcı tercihine ordinal N destek /100.
+- POLY v1.4 CANONICAL — bağımsız direct Polymarket; manuel üç uzmanlı zincirde opsiyoneldir, yoksa FINAL için NO_EVIDENCE.
+- FINAL v0.2 DRAFT — yalnız uzman raporlarının sentezi; A/B/C/NO_RECOMMENDATION. FINAL'in kalıcı site yazıcısı henüz kurulmamıştır.
+
+**Manuel rapor zinciri (kullanıcı kopyala-yapıştır):**
+1. SXF tam analiz → en sonda kısa sinyal tablosu + **KOPYALA → ANALYST GİRDİSİ**.
+2. Kullanıcı yalnız nötr son girdi bloğunu ANALYST'e gönderir (önceki uzman raporunu değil).
+3. ANALYST kendi tam üç faktör raporu → en sonda A skorlu kısa özet + **KOPYALA → NEWS GİRDİSİ**.
+4. Kullanıcı yalnız nötr girdi bloğunu NEWS'e gönderir.
+5. NEWS tam rapor ve kısa N/100 tablosunu üretir.
+6. Kullanıcı FINAL'e **üç özgün tam raporu** ve POLY varsa POLY raporunu iletir; FINAL sentezler ve yayın ancak gerçek yetkili FINAL bağlantısı çalışırsa gerçekleşir.
+
+Bu `prompts/manual_report_chain.md` modu dışında, bağımsız paralel çalışmada SXF, ANALYST, NEWS ve POLY raporları yine FINAL öncesi paylaşılmaz. Rol kaynak ayrımı ve zaman kesiti politikası değişmez.
+
+Her yeni bağımsız role çalışmasında ilgili bootstrap:
+- `prompts/sxf_start.md`
 - `prompts/analyst_start.md`
 - `prompts/news_start.md`
 - `prompts/poly_start.md`
-- `prompts/sxf_start.md`
 - `prompts/final_start.md`
 
-Runtime order:
-1. Start ANALYST, NEWS, POLY, and SXF independently with the same intended decision AS_OF and match list.
-2. Do not expose one evidence department's report to another evidence department.
-3. Wait until all four reports are complete.
-4. Start FINAL with `prompts/final_start.md` and provide only the four completed department reports.
-5. Preserve timestamps and versions; later information requires a new run/version rather than rewriting the old decision.
-
-A role must not silently improvise if it cannot access a required source or repository file. Missing access/data must be reported explicitly.
+Çalışamayan/verisi olmayan/kaynağına erişemeyen agent bunu açıkça belirtir; eksik satır/tercih/kimlik veya site yazma yetkisi uydurulmaz.
 
 ## SXF daily archive prompts (GitHub-only)
 
