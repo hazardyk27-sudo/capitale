@@ -12,8 +12,9 @@
 
 ## How it works
 
-- Reuses the original unchanged Founder Skill persona-dealing code from \`.claude/skills/founder-consumer/panel.py\` plus the CAPITALE target assumptions in \`founder/customer.json\`.
-- Every synthetic persona sees the **same** text from \`founder/pitch.md\` and has a fresh independent Gemini API *request*. Responses share model bias; they are **not** separate humans or 100 different AIs.
+- Reads the **frozen 100 synthetic adult Italian male profiles** from `founder/italy_male_personas_100.json` (see `founder/ITALY_MALE_PANEL_100.md`), not the original mixed-gender random Founder Skill generator. The 100-person run uses every record; 10/20 use deterministic subsets of the same identities.
+- Each fictional profile has city/region, age, occupation, personal EUR resources, essential costs, savings, discretionary budget, football interest, online habits, Telegram usage, and non-betting/betting history. These values are invented and **not** statistically representative.
+- Every synthetic persona sees the **same** text from `founder/pitch.md` and has a fresh independent Gemini API *request*. Responses share model bias; they are **not** separate humans or 100 different AIs.
 - Gemini is asked for follow and Telegram interest on a three-level **fictional** scale with a short explanation and a categorized objection.
 - JSON responses are checked against the expected unique persona ID and required fields before saving.
 - Any missing, invalid or rate-limited answer is explicitly marked incomplete. No missing response is made up or counted.
@@ -21,16 +22,16 @@
 
 ## Results
 
-On the completed GitHub Actions run, open **Artifacts** and download \`capitale-gemini-panel-...\`.
+On the completed GitHub Actions run, open **Artifacts** and download `capitale-gemini-panel-...`.
 
 The archive contains:
 
-- \`personas.json\` — reproducibly assigned synthetic Italian profiles
-- \`answers/P001.json\` and so on — one validated model response file per successfully completed call
-- \`manifest.json\` — requested vs actually completed, attempts, model, seed and source hash
-- \`errors.json\` — failures, without inventing substitute opinions
-- \`responses.csv\` — tabular answers
-- \`report.md\` — aggregate summaries with prominent simulation limitations
+- `personas.json` — the recorded subset of fixed synthetic Italian male profiles
+- `answers/P001.json` and so on — one validated model response file per successfully completed call
+- `manifest.json` — requested vs actually completed, attempts, model, seed and source hash
+- `errors.json` — failures, without inventing substitute opinions
+- `responses.csv` — tabular answers
+- `report.md` — aggregate summaries with prominent simulation limitations
 
 Artifacts expire after **30 days**. They are not automatically committed to the GitHub source tree. Archive only verified reports after reviewing them.
 
@@ -38,11 +39,11 @@ Artifacts expire after **30 days**. They are not automatically committed to the 
 
 ## Costs / quotas
 
-The default model is \`gemini-3.5-flash-lite\`, which currently has a Gemini Developer API Free tier. Model availability, per-minute/day quotas and terms can change. 100 successful API calls on free tier are **not guaranteed**. See https://ai.google.dev/gemini-api/docs/pricing and https://ai.google.dev/gemini-api/docs/rate-limits.
+The default model is `gemini-3.5-flash-lite`, which currently has a Gemini Developer API Free tier. Model availability, per-minute/day quotas and terms can change. 100 successful API calls on free tier are **not guaranteed**. See https://ai.google.dev/gemini-api/docs/pricing and https://ai.google.dev/gemini-api/docs/rate-limits.
 
 The workflow pauses between requests and retries transient failures. A persistent 429 may result in a **partial** run; consult the manifest rather than describing 100 calls as completed.
 
-Google's Gemini free-tier inputs may be used for product improvement under its terms. Do not send private user/customer data or unpublished business secrets in \`founder/pitch.md\`.
+Google's Gemini free-tier inputs may be used for product improvement under its terms. Do not send private user/customer data or unpublished business secrets in `founder/pitch.md`.
 
 ## Important legal and interpretation safeguards
 
@@ -54,9 +55,9 @@ Do not use synthetic quotes as genuine Italian customer testimonials. Counts of 
 
 Python 3.11+, standard library only:
 
-\`\`\`sh
+```sh
 python -m unittest discover -s tests -p 'test_gemini_italy_panel.py' -v
 python scripts/gemini_italy_panel.py --n 10 --dry-run
-\`\`\`
+```
 
-To run with real API calls locally, set \`GEMINI_API_KEY\` privately in the shell and remove \`--dry-run\`.
+To run with real API calls locally, set `GEMINI_API_KEY` privately in the shell and remove `--dry-run`.
