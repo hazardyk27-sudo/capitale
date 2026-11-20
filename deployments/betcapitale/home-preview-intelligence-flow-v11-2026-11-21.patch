@@ -1,0 +1,406 @@
+--- a/client/src/pages/landing.tsx
++++ b/client/src/pages/landing.tsx
+@@ -8,7 +8,7 @@
+ import SiteHeader from "@/components/SiteHeader";
+ import CommunityVoicesSection from "@/components/CommunityVoicesSection";
+ import HorizontalMemberStrip from "@/components/HorizontalMemberStrip";
+-import DailyProfitTickerDemo from "@/components/DailyProfitTickerDemo";
++import IntelligenceFlowHeroDemo from "@/components/IntelligenceFlowHeroDemo";
+ import { ArrowRight, MessageSquare, Calendar, BarChart2, Users, CircleDollarSign } from "lucide-react";
+ import MobileHomePage from "@/components/MobileHomePage";
+ 
+@@ -201,7 +201,7 @@
+       {/* ═══ HERO ════════════════════════════════════════════════ */}
+       <section style={{ background: "#FFFFFF", padding: "38px 24px 100px" }}>
+ 
+-        <div className="hero-grid capitale-preview-hero capitale-with-daily-ticker mx-auto" style={{ maxWidth: "1160px" }}>
++        <div className="hero-grid capitale-preview-hero capitale-with-intelligence-flow mx-auto" style={{ maxWidth: "1160px" }}>
+ 
+           {/* ── Left: copy ──────────────────────────────────────── */}
+           <div style={{ maxWidth: "500px" }}>
+@@ -322,8 +322,8 @@
+             </div>
+           </div>
+ 
+-          {/* Daily performance preview on the previously empty right side */}
+-          <DailyProfitTickerDemo />
++          {/* Animated intelligence workflow: illustrative, not live analysis */}
++          <IntelligenceFlowHeroDemo />
+         </div>
+ 
+         {/* ── Horizontal member counter: below the hero, never beside it ── */}
+--- a/client/src/components/MobileHomePage.tsx
++++ b/client/src/components/MobileHomePage.tsx
+@@ -12,7 +12,7 @@
+ import * as FlagIcons from "country-flag-icons/react/3x2";
+ import { MobileHeader, MobileActionPanel } from "./MobileSharedLayout";
+ import HorizontalMemberStrip from "./HorizontalMemberStrip";
+-import DailyProfitTickerDemo from "./DailyProfitTickerDemo";
++import IntelligenceFlowHeroDemo from "./IntelligenceFlowHeroDemo";
+ import {
+   communityReviews, COUNTRY_FILTERS, FEATURED_IDS,
+   type CommunityReview,
+@@ -941,9 +941,9 @@
+           </p>
+         </div>
+ 
+-        {/* Example daily profit ticker after the mobile hero */}
++        {/* Animated software workflow after the mobile hero: illustrative concept */}
+         <div style={{ padding: "0 16px 22px", width: "100%", boxSizing: "border-box" }}>
+-          <DailyProfitTickerDemo />
++          <IntelligenceFlowHeroDemo />
+         </div>
+ 
+         {/* Membership counter continues beneath the hero preview */}
+--- /dev/null
++++ b/client/src/components/IntelligenceFlowHeroDemo.tsx
+@@ -0,0 +1,114 @@
++import { Activity, ArrowRight, BarChart3, BrainCircuit, CheckCircle2, Layers3, Newspaper, TicketCheck } from "lucide-react";
++import "./intelligence-flow-hero-demo.css";
++
++/**
++ * Landing-page concept visual ONLY.
++ * This diagram is an illustrative workflow, not a live processing monitor.
++ * SXF, NEWS and ANALYST are shown as independent inputs. No API calls or
++ * success/profit claims are made. Keep its clear "SIMULATION" status label.
++ */
++const inputs = [
++  { id: "sxf", title: "SXF", subtitle: "MARKET FLOW", Icon: Activity },
++  { id: "news", title: "NEWS", subtitle: "MATCH CONTEXT", Icon: Newspaper },
++  { id: "analyst", title: "ANALYST", subtitle: "TEAM ANALYSIS", Icon: BrainCircuit },
++] as const;
++
++const outputs = [
++  { step: "01", title: "MATCHES", subtitle: "Select fixtures", Icon: CheckCircle2 },
++  { step: "02", title: "COUPONS", subtitle: "Equal stakes", Icon: TicketCheck },
++  { step: "03", title: "RESULTS", subtitle: "Profit / Loss", Icon: BarChart3 },
++] as const;
++
++export default function IntelligenceFlowHeroDemo() {
++  return (
++    <section
++      className="cif-stage"
++      aria-label="Illustrative CAPITALE software workflow: SXF, NEWS and ANALYST analysis feeds the CAPITALE engine, leading to selected matches, equal-stake coupons and tracked results"
++      data-testid="capitale-intelligence-flow-v11"
++    >
++      <div className="cif-orbit cif-orbit-one" aria-hidden="true" />
++      <div className="cif-orbit cif-orbit-two" aria-hidden="true" />
++
++      <div className="cif-topline">
++        <span className="cif-eyebrow"><span className="cif-eyebrow-dot" /> HOW CAPITALE WORKS</span>
++        <span className="cif-concept-mark">SIMULATION</span>
++      </div>
++
++      <div className="cif-sources" aria-label="Three independent intelligence sources">
++        {inputs.map(({ id, title, subtitle, Icon }) => (
++          <div className={`cif-source cif-source-${id}`} key={id}>
++            <span className="cif-source-icon"><Icon size={17} strokeWidth={1.8} aria-hidden="true" /></span>
++            <strong>{title}</strong>
++            <small>{subtitle}</small>
++          </div>
++        ))}
++      </div>
++
++      <svg className="cif-incoming-wires" viewBox="0 0 420 56" preserveAspectRatio="none" aria-hidden="true">
++        <defs>
++          <linearGradient id="cif-wire-v11" x1="0" x2="1" y1="0" y2="1">
++            <stop offset="0%" stopColor="#768AAB" stopOpacity=".55"/>
++            <stop offset="65%" stopColor="#E8771F" stopOpacity=".8"/>
++            <stop offset="100%" stopColor="#E8771F"/>
++          </linearGradient>
++        </defs>
++        <path d="M70 0 V16 Q70 24 81 24 H196 Q210 24 210 38 V54" className="cif-wire-base" />
++        <path d="M210 0 V54" className="cif-wire-base" />
++        <path d="M350 0 V16 Q350 24 339 24 H224 Q210 24 210 38 V54" className="cif-wire-base" />
++        <path d="M70 0 V16 Q70 24 81 24 H196 Q210 24 210 38 V54" className="cif-wire-current" />
++        <path d="M210 0 V54" className="cif-wire-current cif-wire-current-delay" />
++        <path d="M350 0 V16 Q350 24 339 24 H224 Q210 24 210 38 V54" className="cif-wire-current cif-wire-current-delay-two" />
++        <circle className="cif-moving-dot" r="3.1"><animateMotion dur="4.8s" repeatCount="indefinite" path="M70 0 V16 Q70 24 81 24 H196 Q210 24 210 38 V54"/></circle>
++        <circle className="cif-moving-dot" r="2.7"><animateMotion dur="3.6s" repeatCount="indefinite" path="M210 0 V54"/></circle>
++        <circle className="cif-moving-dot" r="3"><animateMotion dur="5.5s" repeatCount="indefinite" path="M350 0 V16 Q350 24 339 24 H224 Q210 24 210 38 V54"/></circle>
++        <circle cx="210" cy="52" r="3.5" className="cif-junction"/>
++      </svg>
++
++      <div className="cif-engine">
++        <div className="cif-engine-emblem">
++          <div className="cif-engine-emblem-halo" />
++          <img src="/capitale-premium-symbol.svg" alt="" aria-hidden="true" />
++        </div>
++        <div className="cif-engine-copy">
++          <span className="cif-engine-meta">THE INTELLIGENCE ENGINE</span>
++          <strong>CAPITALE</strong>
++          <span className="cif-engine-tagline">Turning insights into a plan.</span>
++        </div>
++        <div className="cif-engine-pulse" aria-hidden="true">
++          <span /><span /><span /><span /><span />
++        </div>
++      </div>
++
++      <svg className="cif-outgoing-wires" viewBox="0 0 420 48" preserveAspectRatio="none" aria-hidden="true">
++        <path d="M210 0 V16 Q210 23 199 23 H69 Q63 23 63 33 V47" className="cif-wire-base"/>
++        <path d="M210 0 V16 Q210 23 199 23 H69 Q63 23 63 33 V47" className="cif-wire-current"/>
++        <circle r="3" className="cif-moving-dot cif-dot-out"><animateMotion dur="4.1s" repeatCount="indefinite" path="M210 0 V16 Q210 23 199 23 H69 Q63 23 63 33 V47"/></circle>
++        <circle cx="210" cy="0" r="3.2" className="cif-junction"/>
++      </svg>
++
++      <div className="cif-outcomes" aria-label="From selected matches to coupons and tracked results">
++        {outputs.map(({ step, title, subtitle, Icon }, i) => (
++          <div className="cif-outcome-group" key={title}>
++            {i > 0 && <div className="cif-step-arrow" aria-hidden="true"><ArrowRight size={15} strokeWidth={2.2}/></div>}
++            <div className={`cif-outcome cif-outcome-${i + 1}`}>
++              <div className="cif-outcome-top">
++                <span className="cif-step-number">{step}</span>
++                <Icon size={18} strokeWidth={1.8} aria-hidden="true" />
++              </div>
++              <strong>{title}</strong>
++              <small>{subtitle}</small>
++            </div>
++          </div>
++        ))}
++      </div>
++
++      <div className="cif-footline">
++        <Layers3 size={12} aria-hidden="true" />
++        <span>ANALYSE</span><ArrowRight size={10} aria-hidden="true" />
++        <span>SELECT</span><ArrowRight size={10} aria-hidden="true" />
++        <span>TRACK</span>
++        <span className="cif-footline-note">CONCEPT ONLY</span>
++      </div>
++    </section>
++  );
++}
+--- /dev/null
++++ b/client/src/components/intelligence-flow-hero-demo.css
+@@ -0,0 +1,232 @@
++/* CAPITALE Intelligence Flow v11
++   Stage design simulates the workflow; it does not show live data or actual results. */
++.cif-stage {
++  position: relative;
++  isolation: isolate;
++  overflow: hidden;
++  box-sizing: border-box;
++  width: 100%;
++  max-width: 540px;
++  height: 505px;
++  padding: 21px 19px 17px;
++  border-radius: 24px;
++  border: 1px solid rgba(64,78,98,.9);
++  color: #F4F7FB;
++  background:
++    radial-gradient(ellipse 95% 58% at 50% 44%, rgba(30,71,118,.25) 0%, transparent 71%),
++    radial-gradient(ellipse 72% 35% at 83% 92%, rgba(234,116,25,.12) 0%, transparent 75%),
++    linear-gradient(151deg,#111824 0%,#10151e 49%,#090e16 100%);
++  box-shadow:
++    0 2px 3px rgba(5,13,27,.13),
++    0 14px 27px rgba(5,13,27,.15),
++    0 25px 48px -12px rgba(5,13,27,.13),
++    inset 0 1px rgba(255,255,255,.075);
++  font-family: "Manrope", Arial, sans-serif;
++}
++.cif-stage::before {
++  content:"";
++  position:absolute;
++  left:12%;
++  right:12%;
++  top:0;
++  height:1px;
++  background:linear-gradient(90deg,transparent,rgba(245,151,73,.73),rgba(255,255,255,.13),transparent);
++  z-index:5;
++}
++.cif-stage::after {
++  content:"";
++  position:absolute;
++  inset:0;
++  pointer-events:none;
++  opacity:.22;
++  background-image:radial-gradient(rgba(152,175,210,.27) .55px,transparent .55px);
++  background-size:22px 22px;
++  mask-image:linear-gradient(to bottom,transparent 10%,#000 48%,transparent 95%);
++  z-index:-1;
++}
++.cif-orbit {
++  position:absolute;
++  border-radius:50%;
++  pointer-events:none;
++  filter:blur(30px);
++  opacity:.27;
++  z-index:-1;
++}
++.cif-orbit-one {width:185px;height:155px;top:155px;left:20%;background:#234775;animation:cif-orbit-sway 9s ease-in-out infinite alternate;}
++.cif-orbit-two {width:165px;height:155px;top:265px;right:4%;background:#753a11;animation:cif-orbit-sway 11s ease-in-out infinite alternate-reverse;}
++@keyframes cif-orbit-sway {from{transform:translate(-10px,-8px) scale(.94)}to{transform:translate(8px,9px) scale(1.08)}}
++.cif-topline{height:19px;display:flex;align-items:center;justify-content:space-between;gap:8px;position:relative;z-index:2;}
++.cif-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:9px;font-weight:850;letter-spacing:.13em;color:#CED8E8;white-space:nowrap;}
++.cif-eyebrow-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#F08026;box-shadow:0 0 12px rgba(242,119,29,.65);}
++.cif-concept-mark{font-size:8px;font-weight:800;letter-spacing:.12em;color:#DBA270;border:1px solid rgba(232,119,31,.3);border-radius:6px;padding:5px 7px;background:rgba(232,119,31,.08);white-space:nowrap;}
++.cif-sources {position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:17px;}
++.cif-source {
++  display:flex;
++  flex-direction:column;
++  align-items:center;
++  justify-content:center;
++  gap:5px;
++  box-sizing:border-box;
++  min-width:0;
++  height:85px;
++  padding:8px 3px;
++  border:1px solid #343F50;
++  border-radius:13px;
++  background:linear-gradient(155deg,rgba(43,57,77,.97),rgba(20,29,43,.97) 65%,rgba(15,22,33,.99));
++  box-shadow:0 5px 11px rgba(0,0,0,.23),inset 0 1px rgba(255,255,255,.12),inset 0 -1px rgba(0,0,0,.26);
++  animation:cif-input-focus 9s ease-in-out infinite;
++}
++.cif-source-news{animation-delay:3s;}
++.cif-source-analyst{animation-delay:6s;}
++@keyframes cif-input-focus {
++  0%,19%,100%{border-color:#343F50;box-shadow:0 5px 11px rgba(0,0,0,.23),inset 0 1px rgba(255,255,255,.12)}
++  8%{border-color:#9A643D;box-shadow:0 4px 13px rgba(0,0,0,.23),0 0 14px rgba(232,119,31,.15),inset 0 1px rgba(255,255,255,.15)}
++}
++.cif-source-icon {display:grid;place-items:center;color:#B4C9E4;}
++.cif-source-news .cif-source-icon{color:#D9BC98;}
++.cif-source-analyst .cif-source-icon{color:#B5C7DF;}
++.cif-source strong{color:#F5F6FA;font-size:12px;font-weight:900;letter-spacing:.045em;line-height:1;}
++.cif-source small{color:#9FABBE;font-size:7.4px;font-weight:750;letter-spacing:.02em;white-space:nowrap;line-height:1.3;}
++.cif-incoming-wires,.cif-outgoing-wires{position:relative;z-index:1;display:block;width:100%;overflow:visible;}
++.cif-incoming-wires{height:54px;}
++.cif-outgoing-wires{height:43px;}
++.cif-wire-base{stroke:#546B88;stroke-opacity:.65;stroke-width:1.35;fill:none;}
++.cif-wire-current{stroke:#F08A35;stroke-opacity:.78;stroke-width:1.55;fill:none;stroke-linecap:round;stroke-dasharray:4 16;animation:cif-wire-travel 2.5s linear infinite;}
++.cif-wire-current-delay{animation-delay:-.9s;}
++.cif-wire-current-delay-two{animation-delay:-1.6s;}
++@keyframes cif-wire-travel {from{stroke-dashoffset:0}to{stroke-dashoffset:-60}}
++.cif-moving-dot{fill:#FFAD6B;filter:drop-shadow(0 0 4px rgba(255,135,40,.95));}
++.cif-junction{fill:#E8771F;stroke:#FFD3B0;stroke-width:.6;filter:drop-shadow(0 0 4px rgba(244,119,33,.7));}
++.cif-engine {
++  display:flex;
++  position:relative;
++  z-index:2;
++  align-items:center;
++  gap:13px;
++  width:100%;
++  box-sizing:border-box;
++  height:119px;
++  padding:18px 16px;
++  border:1px solid rgba(232,119,31,.53);
++  border-radius:17px;
++  background:
++    radial-gradient(ellipse 70% 110% at 24% 45%,rgba(232,119,31,.14),transparent 85%),
++    linear-gradient(122deg,#24303e 0%,#192535 54%,#121b29 100%);
++  box-shadow:0 9px 22px rgba(0,0,0,.28),0 0 17px rgba(232,119,31,.065),inset 0 1px rgba(255,231,206,.16),inset 0 -1px rgba(0,0,0,.3);
++  animation:cif-engine-breathe 9s ease-in-out infinite;
++}
++@keyframes cif-engine-breathe{0%,100%{border-color:rgba(232,119,31,.46)}48%{border-color:rgba(255,155,75,.84)}}
++.cif-engine::before {
++  content:"";
++  position:absolute;
++  left:16px;right:16px;top:0;
++  height:1px;
++  background:linear-gradient(90deg,transparent,rgba(255,177,113,.48),transparent);
++}
++.cif-engine-emblem {
++  position:relative;display:grid;place-items:center;flex:0 0 68px;
++  width:68px;height:68px;border-radius:15px;
++  background:linear-gradient(150deg,rgba(232,119,31,.18),rgba(232,119,31,.05));
++  border:1px solid rgba(247,146,59,.26);
++  box-shadow:inset 0 1px rgba(255,218,176,.11),0 5px 14px rgba(0,0,0,.18);
++}
++.cif-engine-emblem-halo {position:absolute;inset:-8px;border:1px solid rgba(237,121,37,.18);border-radius:20px;animation:cif-halo 3s ease-in-out infinite;}
++@keyframes cif-halo {0%,100%{opacity:.3;transform:scale(.98)}50%{opacity:.8;transform:scale(1.035)}}
++.cif-engine-emblem img{height:48px;width:48px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(232,119,31,.3));}
++.cif-engine-copy{display:flex;flex:1;min-width:0;flex-direction:column;gap:5px;}
++.cif-engine-meta{font-size:8px;letter-spacing:.12em;color:#E8A46B;font-weight:850;white-space:nowrap;}
++.cif-engine-copy strong{font-family:Georgia,"Times New Roman",serif;font-size:23px;letter-spacing:.095em;font-weight:750;color:#F9FAFC;line-height:1.08;text-shadow:0 2px 6px rgba(0,0,0,.35);white-space:nowrap;}
++.cif-engine-tagline{font-size:10px;color:#B8C5D7;line-height:1.4;font-weight:550;}
++.cif-engine-pulse{align-self:flex-end;display:flex;gap:3px;align-items:flex-end;height:21px;flex:0 0 auto;}
++.cif-engine-pulse span{width:3px;height:7px;background:#E98A3F;border-radius:2px;animation:cif-equalizer 1.2s ease-in-out infinite alternate;}
++.cif-engine-pulse span:nth-child(2){animation-delay:-.5s;}
++.cif-engine-pulse span:nth-child(3){animation-delay:-.9s;}
++.cif-engine-pulse span:nth-child(4){animation-delay:-.3s;}
++.cif-engine-pulse span:nth-child(5){animation-delay:-.7s;}
++@keyframes cif-equalizer{from{height:5px;opacity:.55}to{height:19px;opacity:1}}
++.cif-outcomes{position:relative;z-index:2;display:flex;align-items:stretch;width:100%;height:100px;}
++.cif-outcome-group{flex:1;display:flex;min-width:0;align-items:stretch;}
++.cif-step-arrow{display:grid;place-items:center;flex:0 0 19px;color:#F18A36;filter:drop-shadow(0 0 4px rgba(232,119,31,.18));animation:cif-arrow-nudge 2.4s ease-in-out infinite;}
++@keyframes cif-arrow-nudge{50%{transform:translateX(2px);opacity:.6}}
++.cif-outcome {
++  box-sizing:border-box;flex:1;min-width:0;
++  display:flex;flex-direction:column;justify-content:center;gap:7px;
++  padding:10px 10px;
++  background:linear-gradient(158deg,#253043 0%,#1a2434 58%,#121a28 100%);
++  border:1px solid #414C60;border-radius:13px;
++  box-shadow:0 6px 12px rgba(0,0,0,.21),inset 0 1px rgba(255,255,255,.09);
++}
++.cif-outcome-top{display:flex;align-items:center;justify-content:space-between;gap:4px;}
++.cif-step-number{font-size:9px;font-weight:900;letter-spacing:.07em;color:#F39A4C;}
++.cif-outcome-top svg{color:#C6D7ED;}
++.cif-outcome strong{font-size:10px;font-weight:900;letter-spacing:.015em;color:#F7F9FB;white-space:nowrap;line-height:1.1;}
++.cif-outcome small{font-size:8px;color:#A9B6C9;font-weight:600;line-height:1.3;white-space:nowrap;}
++.cif-outcome-1{animation:cif-output-focus 9s ease-in-out infinite;}
++.cif-outcome-2{animation:cif-output-focus 9s ease-in-out 3s infinite;}
++.cif-outcome-3{animation:cif-output-focus 9s ease-in-out 6s infinite;}
++@keyframes cif-output-focus{0%,18%,100%{border-color:#414C60}8%{border-color:#E68A3A;box-shadow:0 6px 12px rgba(0,0,0,.21),0 0 14px rgba(232,119,31,.17),inset 0 1px rgba(255,255,255,.13)}}
++.cif-footline{position:relative;z-index:2;display:flex;align-items:center;gap:6px;min-width:0;margin-top:15px;color:#8696AE;font-size:7px;font-weight:800;letter-spacing:.04em;white-space:nowrap;}
++.cif-footline svg{flex-shrink:0;color:#B28D73;}
++.cif-footline-note{margin-left:auto;color:#D1976C;font-size:7px;letter-spacing:.095em;}
++
++/* Desktop hero is unchanged on the left; only the right-hand visualization changes. */
++.desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow{
++  display:grid;
++  grid-template-columns:minmax(0,660px) minmax(0,1fr);
++  gap:40px;
++  align-items:center;
++  max-width:1160px !important;
++}
++.desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow > div:first-child{max-width:660px !important;}
++@media(max-width:1160px){
++ .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow{
++  grid-template-columns:minmax(0,1fr);
++  gap:26px;
++  max-width:820px !important;
++ }
++ .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow > div:first-child{max-width:700px !important;}
++ .cif-stage{max-width:540px;}
++}
++@media(max-width:767px){
++ .cif-stage{height:475px;max-width:none;border-radius:20px;padding:16px 12px 14px;}
++ .cif-eyebrow{font-size:8px;letter-spacing:.09em;}
++ .cif-concept-mark{font-size:7px;padding:4px 6px;}
++ .cif-sources{margin-top:14px;gap:6px;}
++ .cif-source{height:79px;border-radius:12px;gap:4px;padding:6px 2px;}
++ .cif-source strong{font-size:11px;}
++ .cif-source small{font-size:6.7px;}
++ .cif-incoming-wires{height:49px;}
++ .cif-engine{height:107px;padding:12px 11px;gap:10px;border-radius:15px;}
++ .cif-engine-emblem{flex-basis:57px;width:57px;height:57px;border-radius:12px;}
++ .cif-engine-emblem img{height:40px;width:40px;}
++ .cif-engine-meta{font-size:7px;}
++ .cif-engine-copy strong{font-size:19px;}
++ .cif-engine-tagline{font-size:9px;}
++ .cif-outgoing-wires{height:40px;}
++ .cif-outcomes{height:97px;}
++ .cif-outcome{padding:8px 7px;border-radius:11px;gap:6px;}
++ .cif-outcome strong{font-size:9px;}
++ .cif-outcome small{font-size:7px;}
++ .cif-outcome-top svg{height:16px;width:16px;}
++ .cif-step-arrow{flex-basis:14px;}
++ .cif-step-arrow svg{width:12px;}
++ .cif-footline{margin-top:14px;gap:4px;font-size:6.6px;}
++ .cif-footline-note{font-size:6.5px;}
++}
++@media(max-width:355px){
++ .cif-stage{padding-left:9px;padding-right:9px;height:460px;}
++ .cif-source small{font-size:5.9px;}
++ .cif-source strong{font-size:10px;}
++ .cif-outcome{padding:8px 5px;}
++ .cif-outcome strong{font-size:8px;}
++ .cif-outcome small{font-size:6.4px;}
++ .cif-step-arrow{flex-basis:10px;}
++ .cif-engine-copy strong{font-size:17px;}
++ .cif-engine-meta{font-size:6.5px;}
++ .cif-engine-pulse{gap:2px;}
++ .cif-footline{font-size:6px;}
++}
++@media(prefers-reduced-motion:reduce){
++ .cif-stage *, .cif-stage::before, .cif-stage::after{animation:none!important;transition:none!important;}
++ .cif-moving-dot{display:none;}
++}
