@@ -1,0 +1,375 @@
+--- a/client/src/pages/landing.tsx
++++ b/client/src/pages/landing.tsx
+@@ -8,6 +8,7 @@
+ import SiteHeader from "@/components/SiteHeader";
+ import CommunityVoicesSection from "@/components/CommunityVoicesSection";
+ import HorizontalMemberStrip from "@/components/HorizontalMemberStrip";
++import DailyProfitTickerDemo from "@/components/DailyProfitTickerDemo";
+ import { ArrowRight, MessageSquare, Calendar, BarChart2, Users, CircleDollarSign } from "lucide-react";
+ import MobileHomePage from "@/components/MobileHomePage";
+ 
+@@ -200,7 +201,7 @@
+       {/* ═══ HERO ════════════════════════════════════════════════ */}
+       <section style={{ background: "#FFFFFF", padding: "38px 24px 100px" }}>
+ 
+-        <div className="hero-grid capitale-preview-hero mx-auto" style={{ maxWidth: "1160px" }}>
++        <div className="hero-grid capitale-preview-hero capitale-with-daily-ticker mx-auto" style={{ maxWidth: "1160px" }}>
+ 
+           {/* ── Left: copy ──────────────────────────────────────── */}
+           <div style={{ maxWidth: "500px" }}>
+@@ -321,6 +322,8 @@
+             </div>
+           </div>
+ 
++          {/* Daily performance preview on the previously empty right side */}
++          <DailyProfitTickerDemo />
+         </div>
+ 
+         {/* ── Horizontal member counter: below the hero, never beside it ── */}
+--- a/client/src/components/MobileHomePage.tsx
++++ b/client/src/components/MobileHomePage.tsx
+@@ -12,6 +12,7 @@
+ import * as FlagIcons from "country-flag-icons/react/3x2";
+ import { MobileHeader, MobileActionPanel } from "./MobileSharedLayout";
+ import HorizontalMemberStrip from "./HorizontalMemberStrip";
++import DailyProfitTickerDemo from "./DailyProfitTickerDemo";
+ import {
+   communityReviews, COUNTRY_FILTERS, FEATURED_IDS,
+   type CommunityReview,
+@@ -940,7 +941,12 @@
+           </p>
+         </div>
+ 
+-        {/* ── Wide responsive member strip directly under mobile hero ── */}
++        {/* Example daily profit ticker after the mobile hero */}
++        <div style={{ padding: "0 16px 22px", width: "100%", boxSizing: "border-box" }}>
++          <DailyProfitTickerDemo />
++        </div>
++
++        {/* Membership counter continues beneath the hero preview */}
+         <div style={{ padding: "0 16px 26px", width: "100%", boxSizing: "border-box" }}>
+           <HorizontalMemberStrip />
+         </div>
+--- /dev/null
++++ b/client/src/components/DailyProfitTickerDemo.tsx
+@@ -0,0 +1,94 @@
++import { ArrowDownRight, ArrowUpRight, BarChart3, CalendarDays } from "lucide-react";
++import "./daily-profit-ticker-demo.css";
++
++/**
++ * Visual-only homepage concept.
++ * IMPORTANT: All figures below are synthetic examples, NOT actual CAPITALE profits.
++ * Do not remove the visible DEMO DATA label before connecting to verified records.
++ */
++const sampleDays = [
++  { date: "19 NOV", day: "THU", coupons: 3, matches: 8, profit: 146 },
++  { date: "18 NOV", day: "WED", coupons: 2, matches: 6, profit: 84 },
++  { date: "17 NOV", day: "TUE", coupons: 4, matches: 11, profit: -36 },
++  { date: "16 NOV", day: "MON", coupons: 3, matches: 9, profit: 202 },
++  { date: "15 NOV", day: "SUN", coupons: 2, matches: 5, profit: 68 },
++  { date: "14 NOV", day: "SAT", coupons: 4, matches: 10, profit: -54 },
++  { date: "13 NOV", day: "FRI", coupons: 3, matches: 7, profit: 118 },
++  { date: "12 NOV", day: "THU", coupons: 2, matches: 6, profit: 92 },
++] as const;
++
++const formatProfit = (value: number) =>
++  `${value >= 0 ? "+" : "−"}€${Math.abs(value).toLocaleString("en-GB")}`;
++
++function DailyRow({ item }: { item: (typeof sampleDays)[number] }) {
++  const positive = item.profit >= 0;
++  return (
++    <div className="dpt-row" role="presentation">
++      <div className="dpt-date">
++        <strong>{item.date}</strong>
++        <span>{item.day}</span>
++      </div>
++      <div className="dpt-number">
++        <strong>{item.coupons}</strong>
++        <span>COUPONS</span>
++      </div>
++      <div className="dpt-number">
++        <strong>{item.matches}</strong>
++        <span>MATCHES</span>
++      </div>
++      <div className={`dpt-profit ${positive ? "is-positive" : "is-negative"}`}>
++        {positive ? <ArrowUpRight size={12} /> : <ArrowDownRight size={12} />}
++        <strong>{formatProfit(item.profit)}</strong>
++      </div>
++    </div>
++  );
++}
++
++export default function DailyProfitTickerDemo() {
++  return (
++    <section className="dpt-panel" aria-label="Example daily results animation">
++      <div className="dpt-heading">
++        <div className="dpt-heading-left">
++          <span className="dpt-symbol" aria-hidden="true">
++            <BarChart3 size={18} strokeWidth={1.9} />
++          </span>
++          <div className="dpt-heading-copy">
++            <span className="dpt-kicker">CAPITALE / PERFORMANCE</span>
++            <h2>Daily Results</h2>
++          </div>
++        </div>
++        <span className="dpt-demo-badge">DEMO DATA</span>
++      </div>
++
++      <div className="dpt-column-heading" aria-hidden="true">
++        <span><CalendarDays size={10} /> DATE</span>
++        <span>COUPONS</span>
++        <span>MATCHES</span>
++        <span>NET PROFIT</span>
++      </div>
++
++      <div className="dpt-viewport">
++        <div className="dpt-scroll-track" aria-hidden="true">
++          {[0, 1].map((copyIndex) => (
++            <div key={copyIndex} className="dpt-row-group">
++              {sampleDays.map((day) => (
++                <DailyRow key={`${copyIndex}-${day.date}`} item={day} />
++              ))}
++            </div>
++          ))}
++        </div>
++      </div>
++
++      <div className="dpt-footer">
++        <span className="dpt-footer-dot" aria-hidden="true" />
++        <span>Example daily performance</span>
++        <span className="dpt-footer-divider" aria-hidden="true" />
++        <span>Illustrative figures · Not actual results</span>
++      </div>
++      <p className="dpt-visually-hidden">
++        This panel displays sample, fictional daily results to demonstrate the design.
++        These are not historical or verified CAPITALE returns.
++      </p>
++    </section>
++  );
++}
+--- /dev/null
++++ b/client/src/components/daily-profit-ticker-demo.css
+@@ -0,0 +1,223 @@
++/* CAPITALE / Daily Results — synthetic animated sample for homepage preview only */
++.dpt-panel {
++  width: 100%;
++  height: 392px;
++  min-width: 0;
++  display: flex;
++  flex-direction: column;
++  overflow: hidden;
++  position: relative;
++  background: #111419;
++  color: #f7f8fb;
++  border: 1px solid #292d36;
++  border-radius: 19px;
++  box-shadow: 0 18px 42px rgba(14,23,38,.18), 0 4px 12px rgba(14,23,38,.08);
++  font-family: "Manrope", Arial, sans-serif;
++}
++.dpt-panel::before {
++  position: absolute;
++  content: "";
++  height: 3px;
++  left: 0;
++  right: 0;
++  top: 0;
++  background: linear-gradient(90deg, #e8771f, #ffac68 60%, rgba(232,119,31,0));
++  z-index: 3;
++}
++.dpt-heading {
++  min-height: 87px;
++  display: flex;
++  align-items: center;
++  justify-content: space-between;
++  gap: 10px;
++  padding: 20px 21px 16px;
++}
++.dpt-heading-left {
++  display: flex;
++  align-items: center;
++  gap: 11px;
++  min-width: 0;
++}
++.dpt-symbol {
++  width: 35px;
++  height: 35px;
++  flex-shrink: 0;
++  display: grid;
++  place-items: center;
++  border-radius: 10px;
++  background: rgba(232,119,31,.14);
++  color: #fa8d3b;
++}
++.dpt-kicker {
++  display: block;
++  color: #d68f57;
++  font-size: 8.5px;
++  font-weight: 800;
++  letter-spacing: .14em;
++  line-height: 1.3;
++  white-space: nowrap;
++}
++.dpt-heading-copy h2 {
++  font-family: "Manrope", Arial, sans-serif;
++  margin: 4px 0 0;
++  font-size: 20px;
++  line-height: 1.15;
++  font-weight: 800;
++  letter-spacing: -.045em;
++  color: #fff;
++}
++.dpt-demo-badge {
++  align-self: flex-start;
++  flex-shrink: 0;
++  border-radius: 5px;
++  border: 1px solid rgba(255,173,93,.45);
++  background: rgba(232,119,31,.11);
++  padding: 5px 7px;
++  color: #ffbd80;
++  font-size: 9px;
++  font-weight: 800;
++  letter-spacing: .05em;
++  white-space: nowrap;
++}
++.dpt-column-heading {
++  display: grid;
++  grid-template-columns: minmax(65px, 1fr) 1fr 1fr minmax(88px, 1.15fr);
++  gap: 5px;
++  padding: 8px 16px 9px;
++  color: #8892a2;
++  border-top: 1px solid #282c34;
++  border-bottom: 1px solid #282c34;
++  font-size: 8px;
++  font-weight: 800;
++  letter-spacing: .075em;
++}
++.dpt-column-heading span {
++  display: flex;
++  align-items: center;
++  gap: 5px;
++  justify-content: center;
++}
++.dpt-column-heading span:first-child { justify-content: flex-start; }
++.dpt-column-heading span:last-child { justify-content: flex-end; }
++.dpt-viewport {
++  flex: 1;
++  min-height: 0;
++  position: relative;
++  overflow: hidden;
++  padding: 0 11px;
++  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
++  mask-image: linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
++}
++.dpt-scroll-track {
++  width: 100%;
++  display: flex;
++  flex-direction: column;
++  will-change: transform;
++  animation: dpt-flow-down 29s linear infinite;
++}
++@keyframes dpt-flow-down {
++  from { transform: translateY(-50%); }
++  to   { transform: translateY(0); }
++}
++.dpt-panel:hover .dpt-scroll-track,
++.dpt-panel:focus-within .dpt-scroll-track { animation-play-state: paused; }
++.dpt-row-group {
++  flex: 0 0 auto;
++  display: flex;
++  flex-direction: column;
++  gap: 7px;
++  padding-bottom: 7px;
++}
++.dpt-row {
++  min-height: 60px;
++  width: 100%;
++  display: grid;
++  grid-template-columns: minmax(65px, 1fr) 1fr 1fr minmax(88px, 1.15fr);
++  align-items: center;
++  gap: 5px;
++  padding: 8px 12px;
++  border: 1px solid #292f39;
++  border-radius: 10px;
++  background: #1b2028;
++  box-shadow: 0 1px 2px rgba(0,0,0,.12);
++}
++.dpt-date { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
++.dpt-date strong { color: #eff3f9; font-size: 11px; font-weight: 800; white-space: nowrap; }
++.dpt-date span { color: #929cac; font-size: 9px; font-weight: 650; }
++.dpt-number { display: flex; flex-direction: column; gap: 4px; align-items: center; }
++.dpt-number strong { color: #f3f5f9; font-size: 15px; line-height: 1; font-weight: 850; font-variant-numeric: tabular-nums; }
++.dpt-number span { color: #8a94a5; font-size: 7.5px; font-weight: 700; letter-spacing: .04em; }
++.dpt-profit { display: flex; align-items: center; justify-content: flex-end; gap: 3px; font-size: 14px; font-weight: 850; font-variant-numeric: tabular-nums; white-space: nowrap; }
++.dpt-profit svg { flex-shrink: 0; }
++.dpt-profit.is-positive { color: #69d9a0; }
++.dpt-profit.is-negative { color: #fa8d83; }
++.dpt-footer {
++  min-height: 41px;
++  display: flex;
++  align-items: center;
++  justify-content: center;
++  gap: 7px;
++  padding: 8px 9px;
++  border-top: 1px solid #282d36;
++  background: #12161b;
++  color: #929cac;
++  font-size: 8.5px;
++  font-weight: 650;
++  line-height: 1.4;
++  text-align: center;
++  white-space: nowrap;
++}
++.dpt-footer-dot { width: 6px; height: 6px; flex-shrink: 0; border-radius: 50%; background: #e8771f; }
++.dpt-footer-divider { width: 1px; height: 12px; background: #414651; }
++.dpt-visually-hidden {
++  position: absolute; width: 1px; height: 1px; overflow: hidden;
++  clip-path: inset(50%); white-space: nowrap;
++}
++
++/* Header left, ticker right; member counter remains directly underneath. */
++.desktopHome .hero-grid.capitale-preview-hero.capitale-with-daily-ticker {
++  display: grid;
++  grid-template-columns: minmax(0, 660px) minmax(0, 1fr);
++  gap: 40px;
++  align-items: center;
++  max-width: 1160px !important;
++}
++.desktopHome .hero-grid.capitale-preview-hero.capitale-with-daily-ticker > div:first-child {
++  max-width: 660px !important;
++}
++@media (max-width: 1160px) {
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-daily-ticker {
++    grid-template-columns: minmax(0, 1fr);
++    gap: 26px;
++    max-width: 820px !important;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-daily-ticker > div:first-child {
++    max-width: 700px !important;
++  }
++  .dpt-panel { max-width: 580px; }
++}
++@media (max-width: 767px) {
++  .dpt-panel { max-width: none; height: 360px; border-radius: 16px; }
++  .dpt-heading { min-height: 74px; padding: 15px 14px 12px; }
++  .dpt-heading-copy h2 { font-size: 18px; }
++  .dpt-heading-left { gap: 9px; }
++  .dpt-symbol { width: 32px; height: 32px; }
++  .dpt-demo-badge { font-size: 8px; padding: 5px 6px; }
++  .dpt-column-heading { padding: 8px 13px 9px; grid-template-columns: minmax(62px, 1fr) .75fr .75fr minmax(86px, 1.15fr); }
++  .dpt-row { grid-template-columns: minmax(62px, 1fr) .75fr .75fr minmax(86px, 1.15fr); padding: 8px 10px; min-height: 56px; }
++  .dpt-date strong { font-size: 10px; }
++  .dpt-number strong { font-size: 14px; }
++  .dpt-profit { font-size: 13px; }
++  .dpt-footer { min-height: 42px; font-size: 8px; white-space: normal; }
++}
++@media (max-width: 360px) {
++  .dpt-column-heading { gap: 2px; padding-left: 10px; padding-right: 10px; }
++  .dpt-row { gap: 2px; padding-left: 8px; padding-right: 8px; }
++  .dpt-date strong { font-size: 9px; }
++  .dpt-profit { font-size: 12px; gap: 1px; }
++  .dpt-number span { font-size: 7px; }
++  .dpt-kicker { font-size: 7.5px; }
++}
++@media (prefers-reduced-motion: reduce) {
++  .dpt-scroll-track { animation: none; transform: translateY(0); will-change: auto; }
++}
