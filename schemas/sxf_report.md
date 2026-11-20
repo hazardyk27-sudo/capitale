@@ -169,3 +169,7 @@ For every match independently:
 - BTTS YES: >= £750, share >= 60%, odds 1.60-1.90.
 
 SXF does not assign FINAL A/B/C categories. Engine hit rates are research priors and must not be converted into calibrated probabilities without explicit approval.
+
+## 2026-11-20 — Manual chain SXF closing bullets (presentation only)
+
+After the full original report, append `SXF — TETİKLENEN SİNYALLER` followed by `SXF — KISA AÇIKLAMALAR` before the neutral `KOPYALA → ANALYST GİRDİSİ`. The second section contains **1–3 distinct concise source-grounded bullets for every active fixture + market + selection** when evidence exists; select three if independently supported, otherwise two or one. When none is supportable write `NO_EVIDENCE — Doğrulanmış SXF açıklaması yok` instead of inventing bullets. Each bullet references an existing engine/checkpoint, money/share, odds trend/retention or a documented risk, with as-of integrity. This changes only report presentation; it never creates a missing engine or validates an unsupported bet. `software_detail_bullets_en` for the website remains a separately scoped up-to-three English bullet rendering of sourced SXF evidence and may be empty only with a clear unavailable state. Do **not** carry SXF bullets into the source-isolated ANALYST / NEWS neutral routing table. Canonical report schema fields remain unchanged.
