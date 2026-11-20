@@ -244,6 +244,7 @@ def summarize(meta, entries):
         f"- Same video sent independently to {meta['completed']} requests; requested {meta['requested']}.",
         f"- Missing/failed: {meta['requested'] - meta['completed']}",
         f"- Model: {meta['model']}; dry run: {meta['dry_run']}",
+        f"- Hybrid Gemini shard: {meta.get('hybrid_gemini', False)}",
         f"- Persona file SHA256: {meta['persona_sha256']}",
         "", "## First 3 seconds", "",
         "- " + freq("first_three_seconds", ATTENTION),
@@ -308,7 +309,20 @@ def run(args, client=video_request, uploader=upload_video, deleter=delete_video,
         raise ValueError("GEMINI_API_KEY missing; no Gemini API calls were made")
     if args.delay < 0:
         raise ValueError("Delay must be non-negative")
-    cards = personas({}, args.n, args.seed)
+    if getattr(args, "hybrid_gemini", False):
+        frozen = personas({}, 100, args.seed)
+        mapping = json.loads((ROOT / "founder/hybrid_panel_assignments.json").read_text(encoding="utf-8"))
+        selected = {x["persona_id"] for x in mapping["assignments"] if x["provider"] == "gemini"}
+        if len(selected) != 50 or len(mapping["assignments"]) != 100:
+            raise ValueError("Hybrid assignment must contain exactly 50 Gemini + 50 Codex")
+        cards = [c for c in frozen if c["id"] in selected]
+        if len(cards) != 50:
+            raise ValueError("Hybrid Gemini cohort ID mismatch")
+        if args.n not in (5, 10, 50):
+            raise ValueError("Hybrid Gemini can evaluate 5, 10 or 50 assigned personas")
+        cards = cards[:args.n]
+    else:
+        cards = personas({}, args.n, args.seed)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     save(out / "personas.json", cards)
@@ -319,6 +333,7 @@ def run(args, client=video_request, uploader=upload_video, deleter=delete_video,
         "persona_sha256": hashlib.sha256(
             (ROOT / "founder/italy_male_personas_100.json").read_bytes()).hexdigest(),
         "dry_run": args.dry_run, "seed": args.seed, "responses": [],
+        "hybrid_gemini": bool(getattr(args, "hybrid_gemini", False)),
         "github_run": os.getenv("GITHUB_RUN_ID"),
     }
     save(out / "manifest.json", meta)
@@ -373,7 +388,7 @@ def run(args, client=video_request, uploader=upload_video, deleter=delete_video,
         if remote_name:
             deleter(key, remote_name)
     meta["completed"] = len(results)
-    meta["incomplete"] = args.n - len(results)
+    meta["incomplete"] = len(cards) - len(results)
     save(out / "manifest.json", meta)
     save(out / "errors.json", errors)
     (out / "report.md").write_text(summarize(meta, results), encoding="utf-8")
@@ -389,14 +404,15 @@ def run(args, client=video_request, uploader=upload_video, deleter=delete_video,
         for r in results:
             d = {**r["persona"], **r["answer"]}
             writer.writerow({f: d.get(f, "") for f in fields})
-    print(f"Real video Gemini responses: {len(results)}/{args.n}. Output {out}", flush=True)
+    print(f"Real video Gemini responses: {len(results)}/{len(cards)}. Output {out}", flush=True)
     return meta
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--video", default="founder/videos/CAPITALE_Reels_Gemini_Test.mp4")
-    p.add_argument("--n", type=int, choices=[10, 20, 100], default=10)
+    p.add_argument("--n", type=int, choices=[5, 10, 20, 50, 100], default=10)
+    p.add_argument("--hybrid-gemini", action="store_true", help="Use only assigned Gemini half of frozen 100-person panel")
     p.add_argument("--model", default="gemini-3.5-flash-lite")
     p.add_argument("--seed", type=int, default=7)
     p.add_argument("--delay", type=float, default=7.0)
@@ -405,7 +421,7 @@ def main():
     a = p.parse_args()
     try:
         meta = run(a)
-        return 0 if meta["dry_run"] or meta["completed"] == a.n else 1
+        return 0 if meta["dry_run"] or meta["completed"] == meta["requested"] else 1
     except (ValueError, RuntimeError, OSError) as exc:
         print("Video test failed: " + str(exc), file=sys.stderr)
         return 2
