@@ -22,7 +22,8 @@ def mock_response(pid):
         if definition["type"] == "INTEGER":
             answer[field] = 5
         elif "enum" in definition:
-            answer[field] = "uncertain" if "uncertain" in definition["enum"] else "conditional"
+            answer[field] = ("uncertain" if "uncertain" in definition["enum"] else
+                             "conditional" if "conditional" in definition["enum"] else definition["enum"][0])
         else:
             answer[field] = "Visivamente il numero €89 è grande, ma non ci sono prove indipendenti."
     return answer
