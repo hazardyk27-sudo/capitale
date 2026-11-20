@@ -1,6 +1,6 @@
 # CAPITALE
 
-CAPITALE is a multi-agent football research and betting-decision system built around strict department isolation, explicit source policies, reproducible evidence, and a first-class NO BET outcome.
+CAPITALE is a multi-agent football research and betting-decision system built around strict department isolation, explicit source policies, reproducible evidence, and an explicit `NO_RECOMMENDATION` outcome.
 
 ## Departments
 
@@ -11,9 +11,15 @@ CAPITALE is a multi-agent football research and betting-decision system built ar
 - FINAL — combines completed department reports only. DRAFT until synthesis rules are approved.
 - ENGINEER — architecture, data, prompts, schemas, testing, backtesting, calibration, and maintenance; never a match-prediction role.
 
+## Active workflow — owner-approved 2026-11-20
+
+**SXF → ANALYST → NEWS → FINAL → website.** First three specialists create original full independent reports; SXF ends with actual signals and **1–3 findings per fixture/market/selection**, plus a neutral ANALYST list. ANALYST ends with its A /100 support and a neutral NEWS list. NEWS ends with its N /100 list. Only FINAL synthesizes the **three full reports**; POLY is optional, absence is `NO_EVIDENCE`.
+
+Commander inbox `tools/manual_report_inbox.py` retains original versioned reports by verified run_id; FINAL can retrieve them by the last NEWS table if all three are present, otherwise the originals must be passed manually. The inbox is **not website publication**. Separate SXF/ANALYST/NEWS website upload methods are no longer active. FINAL publishing is pending a verified authorized server writer (issue #8); do not claim it works merely because the analysis completed.
+
 ## Core rule
 
-ANALYST, NEWS, SXF, and POLY work independently and cannot see one another's reports. Only FINAL may combine them.
+ANALYST, NEWS, SXF, and optional POLY work independently and cannot use one another's reports as research evidence. Only FINAL may combine complete department reports. See `prompts/manual_report_chain.md` for canonical handoffs.
 
 ## PRATİK archive completeness
 
@@ -28,6 +34,8 @@ roles/
 policies/
 methods/
 schemas/
+prompts/
+tools/
 ```
 
 ## Startup order
@@ -41,5 +49,6 @@ Read:
 5. role-specific source policy
 6. report schema
 7. role methodology
+8. `prompts/manual_report_chain.md` and `prompts/<role>_start.md`
 
 Do not invent missing canonical thresholds for roles marked DRAFT.
