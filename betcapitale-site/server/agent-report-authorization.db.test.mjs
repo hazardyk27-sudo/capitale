@@ -36,8 +36,12 @@ test("CAPITALE database authorization enforces role isolation, append-only histo
       create table capitale.research_runs (
         id uuid primary key,
         fixture_uid uuid not null,
+        run_revision integer not null default 1,
+        status text not null default 'collecting',
+        target_markets text[] not null default '{}',
         analysis_cutoff_at timestamptz,
-        status text not null default 'collecting'
+        requested_at timestamptz not null default now(),
+        orchestrator_version text not null default 'v0.1.0'
       );
       create table capitale.agent_reports (
         id uuid primary key default gen_random_uuid(),
