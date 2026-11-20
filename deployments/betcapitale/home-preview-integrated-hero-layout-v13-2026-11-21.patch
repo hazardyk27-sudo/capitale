@@ -1,0 +1,137 @@
+--- a/client/src/components/intelligence-flow-hero-demo.css
++++ b/client/src/components/intelligence-flow-hero-demo.css
+@@ -345,3 +345,134 @@
+  .cif-script-line{opacity:0;}
+  .cif-script-1{opacity:1;transform:none;}
+ }
++
++/* CAPITALE Preview V13 — editorial-scale integrated hero.
++   Desktop proportions are 46/54 with a 28px gutter and common alignment with
++   the member strip. No enclosing panel; the entire hero is one white canvas. */
++@media(min-width:1180px){
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow{
++    position:relative;
++    isolation:isolate;
++    grid-template-columns:minmax(540px,46fr) minmax(0,54fr);
++    max-width:1294px!important;
++    min-height:580px;
++    gap:28px;
++    align-items:center;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow::before{
++    content:"";
++    position:absolute;
++    z-index:-1;
++    inset:-24px -22px;
++    border:0;
++    pointer-events:none;
++    background:
++      radial-gradient(ellipse 42% 65% at 81% 52%,rgba(235,146,65,.075),transparent 77%),
++      radial-gradient(ellipse 50% 60% at 71% 61%,rgba(139,173,225,.095),transparent 76%);
++    filter:blur(18px);
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow>div:first-child{
++    max-width:580px!important;
++    position:relative;
++    z-index:2;
++  }
++  .desktopHome .cif-stage{
++    height:575px;
++    width:100%;
++    max-width:710px;
++    margin:0;
++    align-self:center;
++  }
++  .desktopHome .cif-ambient{
++    inset:22px -25px 25px -25px;
++    opacity:.58;
++    filter:blur(28px);
++  }
++  .desktopHome .cif-topline{height:26px;}
++  .desktopHome .cif-kicker{font-size:11px;letter-spacing:.105em;}
++  .desktopHome .cif-preview-stamp{font-size:8.5px;}
++  .desktopHome .cif-prompt{
++    width:72%;
++    height:44px;
++    margin:9px auto 10px;
++    border-radius:13px;
++  }
++  .desktopHome .cif-script-line{font-size:11.5px;}
++  .desktopHome .cif-question-dot{width:24px;height:24px;font-size:12px;border-radius:8px;}
++  .desktopHome .cif-sources{height:95px;gap:13px;}
++  .desktopHome .cif-source{border-radius:16px;gap:6px;}
++  .desktopHome .cif-source-icon{height:25px;}
++  .desktopHome .cif-source-icon svg{height:22px;width:22px;}
++  .desktopHome .cif-source strong{font-size:14px;}
++  .desktopHome .cif-source small{font-size:9px;letter-spacing:.025em;}
++  .desktopHome .cif-incoming-wires{height:57px;}
++  .desktopHome .cif-engine-area{
++    height:112px;
++    grid-template-columns:minmax(0,1fr) 124px minmax(0,1fr);
++    gap:17px;
++  }
++  .desktopHome .cif-engine{width:112px;height:112px;border-radius:26px;}
++  .desktopHome .cif-engine img{width:79px;height:79px;}
++  .desktopHome .cif-side-label{gap:8px;}
++  .desktopHome .cif-side-label small{font-size:10px;}
++  .desktopHome .cif-side-label strong{font-size:13px;}
++  .desktopHome .cif-engine-activity{font-size:9px;gap:6px;}
++  .desktopHome .cif-outgoing-wires{height:43px;}
++  .desktopHome .cif-console{
++    height:168px;
++    border-radius:18px;
++    box-shadow:
++      0 3px 5px rgba(25,42,63,.07),
++      0 15px 25px rgba(25,42,63,.10),
++      0 29px 42px -22px rgba(20,33,53,.18),
++      inset 0 1px #fff;
++  }
++  .desktopHome .cif-console-heading{height:35px;padding:0 17px;}
++  .desktopHome .cif-console-title{font-size:10px;}
++  .desktopHome .cif-console-caption{font-size:8.5px;}
++  .desktopHome .cif-console-grid{height:100px;}
++  .desktopHome .cif-console-cell{padding:11px 18px;gap:5px;}
++  .desktopHome .cif-console-cell strong{font-size:12px;}
++  .desktopHome .cif-console-cell small{font-size:9px;}
++  .desktopHome .cif-console-cell-top svg{width:18px;height:18px;}
++  .desktopHome .cif-console-bottom{height:32px;padding:0 17px;gap:9px;font-size:8px;}
++  .desktopHome .cif-console-note{font-size:8px;}
++  .desktopHome .capitale-members-strip{
++    max-width:1294px!important;
++    margin-top:27px;
++  }
++}
++@media(min-width:768px) and (max-width:1179px){
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow{
++    grid-template-columns:minmax(0,1fr);
++    max-width:880px!important;
++    gap:16px;
++    justify-items:start;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow>div:first-child{max-width:700px!important;}
++  .desktopHome .cif-stage{
++    max-width:660px;
++    height:545px;
++    margin:0 auto;
++  }
++  .desktopHome .capitale-members-strip{max-width:880px!important;margin-top:25px;}
++  .desktopHome .cif-console{height:155px;}
++}
++@media(max-width:767px){
++  /* The mobile hero remains vertically stacked: preserve proven V12 layout. */
++  .cif-stage{max-width:none;}
++}
++
++/* Compact only the desktop CTA chrome at medium desktop widths.
++   Keeps the three CTAs on one line without intruding into the visual stage. */
++@media(min-width:1180px) and (max-width:1359px){
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions{
++    gap:8px!important;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions button,
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions > a {
++    font-size:14px!important;
++    padding-left:13px!important;
++    padding-right:13px!important;
++  }
++}
