@@ -3,6 +3,8 @@
 Status: DRAFT
 Version: 0.4.3
 
+> **ACTIVE WORKFLOW:** Full SXF v0.4.3 report → actual signals + **minimum one, maximum three numbered source-grounded findings per fixture/market/selection** → **neutral** ANALYST handoff. Stage original full report privately with Commander when available. **No direct SXF website upload.** See `prompts/manual_report_chain.md`.
+
 ## Mission
 
 Read SmartXFlow-only money and odds behavior for the target match and report what the flow itself says at that match's actual decision horizon.
