@@ -1,0 +1,88 @@
+--- a/client/src/components/daily-profit-ticker-demo.css
++++ b/client/src/components/daily-profit-ticker-demo.css
+@@ -529,3 +529,85 @@
+   background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.085) 25%,
+     rgba(255,255,255,.03) 75%, transparent 100%);
+ }
++
++/* CAPITALE Preview v10 — one unified premium platinum language for ALL
++   non-financial text. Money amounts + directional arrows alone stay metallic
++   emerald / red. Existing 3D black card geometry and animation preserved. */
++.dpt-date strong.dpt-raised-text,
++.dpt-number strong.dpt-raised-text {
++  color: #DCE2EB;
++  background-image: linear-gradient(180deg,
++    #F4F6FA 0%, #DFE5EF 26%, #AEB9C8 55%, #EDF1F7 78%, #A1ADBD 100%);
++  -webkit-text-stroke: .12px rgba(241,244,249,.08);
++}
++.dpt-date > span,
++.dpt-date > span .dpt-example-tag,
++.dpt-number span,
++.dpt-profit-status {
++  color: #A3ACBA;
++  text-shadow: 0 1px 1px rgba(0,0,0,.40);
++}
++.dpt-profit-status {
++  font-weight: 850;
++  font-size: 9px;
++  letter-spacing: .10em;
++  line-height: 1.1;
++  opacity: 1;
++}
++.dpt-profit.is-positive {
++  color: #45D48A;
++}
++.dpt-profit.is-negative {
++  color: #E65B5B;
++}
++/* Preserve visible, bevel-like reflective metal in the money only. */
++.dpt-profit.is-positive .dpt-profit-amount.dpt-raised-text {
++  color: #48CE86;
++  background-image: linear-gradient(180deg,
++    #B5F5D1 0%, #5DDD9F 20%, #27B570 46%, #167E4B 69%, #55D99A 86%, #0F6038 100%);
++}
++.dpt-profit.is-negative .dpt-profit-amount.dpt-raised-text {
++  color: #EC6263;
++  background-image: linear-gradient(180deg,
++    #FFC6BF 0%, #F98580 20%, #DF4E52 45%, #A52D36 67%, #ED7170 85%, #82222D 100%);
++}
++.dpt-row .dpt-raised-text {
++  filter: drop-shadow(0 1px 0 rgba(0,0,0,.84))
++          drop-shadow(0 2px 1px rgba(0,0,0,.42));
++}
++/* Soften external black drop shadow while keeping physical 3D bevel. */
++.dpt-row {
++  box-shadow:
++    0 2px 3px rgba(8,12,18,.17),
++    0 6px 10px rgba(8,12,18,.13),
++    0 12px 18px -6px rgba(8,12,18,.11),
++    inset 0 1px 0 rgba(255,255,255,.055),
++    inset 0 -2px 2px rgba(0,0,0,.38);
++}
++.dpt-row:hover {
++  box-shadow:
++    0 3px 4px rgba(8,12,18,.18),
++    0 8px 13px rgba(8,12,18,.14),
++    0 14px 22px -8px rgba(8,12,18,.12),
++    inset 0 1px 0 rgba(255,255,255,.075),
++    inset 0 -2px 2px rgba(0,0,0,.40);
++}
++/* Remove clipped white-highlight impression without hiding the scrolling data. */
++.dpt-row::before {
++  opacity: .65;
++  background: linear-gradient(90deg, transparent 0%,
++    rgba(255,255,255,.055) 25%, rgba(255,255,255,.018) 75%,
++    transparent 100%);
++}
++.dpt-viewport {
++  -webkit-mask-image: linear-gradient(to bottom,
++    transparent 0%, #000 3%, #000 97%, transparent 100%);
++  mask-image: linear-gradient(to bottom,
++    transparent 0%, #000 3%, #000 97%, transparent 100%);
++}
++@media (max-width:767px) {
++  .dpt-profit-status { font-size: 7.6px; }
++}
++@media (max-width:355px) {
++  .dpt-profit-status { font-size: 7px; }
++}
