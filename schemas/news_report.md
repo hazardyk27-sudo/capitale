@@ -6,6 +6,8 @@ Supersedes: NEWS report schema v1.3 for new runs
 
 ```yaml
 role: NEWS
+run_id: <existing verified routing research run UUID or null; never invent>
+fixture_uid: <verified neutral fixture identity or null>
 methodology_version: news-match-impact-v1.6
 match_id: <match ID or explicitly unknown>
 match: <home> vs <away>
@@ -90,5 +92,9 @@ Add an item in `user_preference_news_support_scores_100` for EACH user-supplied 
 4. `over_2_5 + under_2_5 = 0` and `btts_yes + btts_no = 0` for each story as complementary impact directions; when no credible goal-market link, each pair is 0/0. The three 1X2 columns have no forced zero-sum restriction.
 5. `NO_EVIDENCE` is not a verified neutral fact. Keep gaps explicit. If no credible scored news exists, seven totals are 0 with declared `INSUFFICIENT NEWS EVIDENCE`, not balanced prediction or 50% probability.
 6. Retain AS_OF, source policy, both-team research, verification and independent NEWS isolation. Do not use market/odds/team statistical department inputs, or later results to modify the pre-match report.
-7. Present the exact five-part human-readable output specified in `roles/news.md` and `prompts/news_start.md`; do not display raw YAML unless explicitly requested.
+7. Present the exact five-part **research** output specified in `roles/news.md` and `prompts/news_start.md`; do not display raw YAML unless explicitly requested. After the full report only, append the manual-chain NEWS summary and verified FINAL staging checklist; these are not new scored/research sections.
 8. Legacy v1.2/v1.3 numeric-confidence and three-axis-only output models are SUPERSEDED for new v1.6 runs; the only approved /100 addition is the individually judged user-selection NEWS support number documented above.
+
+## Manual-chain report envelope (metadata only)
+
+The `run_id` and `fixture_uid` fields are neutral routing metadata, not SXF/ANALYST evidence. NEWS receives only neutral fixtures/selections from ANALYST, performs a separate NEWS-AS_OF pre-match research cut, then archives its full report when Commander is available. The closing NEWS → FINAL list and archive-state checklist are presentation-only and must not alter any H# score, evidence rubric or seven market totals.
