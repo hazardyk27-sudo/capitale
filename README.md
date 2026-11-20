@@ -11,11 +11,11 @@ CAPITALE is a multi-agent football research and betting-decision system built ar
 - FINAL — combines completed department reports only. DRAFT until synthesis rules are approved.
 - ENGINEER — architecture, data, prompts, schemas, testing, backtesting, calibration, and maintenance; never a match-prediction role.
 
-## Active workflow — owner-approved 2026-11-20
+## Active workflow — direct per-agent Software reports (2026-11-20)
 
-**SXF → ANALYST → NEWS → FINAL → website.** First three specialists create original full independent reports; SXF ends with actual signals and **1–3 findings per fixture/market/selection**, plus a neutral ANALYST list. ANALYST ends with its A /100 support and a neutral NEWS list. NEWS ends with its N /100 list. Only FINAL synthesizes the **three full reports**; POLY is optional, absence is `NO_EVIDENCE`.
+**SXF → ANALYST → NEWS → FINAL.** Each specialist keeps their independent source policy and completes a FULL report, then uses private Commander to write **only their own department** into the canonical `/admin/software` fixture + selection + `run_id`. SXF verified `FINAL_SIGNAL` source events are automatically captured every 3 minutes; new SXF dialogue reports may be versioned in the same site record. ANALYST contributes the A ordinal support /100; NEWS contributes the N ordinal support /100. FINAL retrieves the complete three original reports directly from the site and synthesizes A/B/C or NO_RECOMMENDATION; optional POLY evidence can be added independently. FINAL site publication is still pending its authorized writer (issue #8).
 
-Commander inbox `tools/manual_report_inbox.py` retains original versioned reports by verified run_id; FINAL can retrieve them by the last NEWS table if all three are present, otherwise the originals must be passed manually. The inbox is **not website publication**. Separate SXF/ANALYST/NEWS website upload methods are no longer active. FINAL publishing is pending a verified authorized server writer (issue #8); do not claim it works merely because the analysis completed.
+The next research department receives **only neutral fixture/market/selection/run metadata**, never another department's findings or score. No user-facing tokens, GPT Actions or browser automation. Core handoff: `prompts/manual_report_chain.md` v3.0. The old private report inbox is a fallback only, not the normal writing method.
 
 ## Core rule
 
