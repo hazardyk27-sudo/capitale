@@ -83,16 +83,16 @@ const PREVIEW_MATCHES: SoftwareMatch[] = [
 
 DETAIL_FUNCTION = r'''function SoftwareAnalysisDetail({ row, preview }: { row: SoftwareMatch; preview: boolean }) {
   return (
-    <div id={\`software-detail-\${row.id}\`} className="software-detail-expand border-t-2 border-[#E8771F]/55 bg-[#F8F9FB] px-4 py-5 sm:px-6">
+    <div id={`software-detail-${row.id}`} className="software-detail-expand border-t-2 border-[#E8771F]/55 bg-[#F8F9FB] px-4 py-5 sm:px-6">
       <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#E8771F]">Match details</p>
           <h3 className="mt-1 text-base font-bold text-[#0E1726]">{row.homeTeam} – {row.awayTeam}</h3>
-          <p className="mt-1 text-xs text-slate-500">{row.market || "No market"}{row.selection ? \` / \${row.selection}\` : ""} · {preview ? "Illustrative dataset" : "Saved department reports"}</p>
+          <p className="mt-1 text-xs text-slate-500">{row.market || "No market"}{row.selection ? ` / ${row.selection}` : ""} · {preview ? "Illustrative dataset" : "Saved department reports"}</p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           {preview && <span className="rounded-md border border-amber-300 bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-900">DEMO · NOT REAL ANALYSIS</span>}
-          <span className={\`rounded-md border px-2.5 py-1 text-xs font-medium \${statusTone(row.reportStatus)}\`}>{STATUS_LABEL[row.reportStatus]}</span>
+          <span className={`rounded-md border px-2.5 py-1 text-xs font-medium ${statusTone(row.reportStatus)}`}>{STATUS_LABEL[row.reportStatus]}</span>
         </div>
       </div>
       <SoftwareBrainSequence reportKey={row.id} summaries={row.departmentSummaries} preview={preview} />
@@ -142,12 +142,7 @@ def main() -> None:
     src = src[:start] + PREVIEW_ROWS + src[end:]
     start = src.index("function SoftwareAnalysisDetail(")
     end = src.index("export default function AdminSoftware()", start)
-    src = src[:start] + DETAIL_FUNCTION.replace(r"\`", "\`").replace(r"\${", "\${") + src[end:]
-    # Python raw strings above escape JS template punctuation for safe construction.
-    src = src.replace(r"\`", "\`").replace(r"\${", "\${")
-    # Convert escaped JS template literal characters into their real TSX syntax.
-    src = src.replace("\\\\\`", "\`").replace("\\\\\${", "\${")
-    src = src.replace("\\\`", "\`").replace("\\\${", "\${")
+    src = src[:start] + DETAIL_FUNCTION + src[end:]
     src = swap_once(
         src,
         'const items = previewMode ? [PREVIEW_MATCH] : data?.items ?? [];',
@@ -162,8 +157,8 @@ def main() -> None:
     )
     src = swap_once(
         src,
-        '<div className="mt-0.5 text-xs text-slate-500">{row.league || "League not specified"}{clockValue(row.kickoffAt) ? \` · \${clockValue(row.kickoffAt)}\` : ""}</div>',
-        '<div className="mt-0.5 text-xs text-slate-500">{row.league || "League not specified"}{clockValue(row.kickoffAt) ? \` · \${clockValue(row.kickoffAt)}\` : ""}</div>\n                              {row.market && <p className="mt-0.5 text-[11px] font-medium text-slate-600">{row.market}{row.selection ? \` · \${row.selection}\` : ""}</p>}\n                              {previewMode && <span className="mt-1 inline-block rounded bg-amber-50 px-1.5 py-0.5 text-[10px] font-bold text-amber-800">SIMULATED DATA</span>}',
+        '<div className="mt-0.5 text-xs text-slate-500">{row.league || "League not specified"}{clockValue(row.kickoffAt) ? ` · ${clockValue(row.kickoffAt)}` : ""}</div>',
+        '<div className="mt-0.5 text-xs text-slate-500">{row.league || "League not specified"}{clockValue(row.kickoffAt) ? ` · ${clockValue(row.kickoffAt)}` : ""}</div>\n                              {row.market && <p className="mt-0.5 text-[11px] font-medium text-slate-600">{row.market}{row.selection ? ` · ${row.selection}` : ""}</p>}\n                              {previewMode && <span className="mt-1 inline-block rounded bg-amber-50 px-1.5 py-0.5 text-[10px] font-bold text-amber-800">SIMULATED DATA</span>}',
         "match subtitle",
     )
     src = src.replace("Preview animation", "Preview populated demo", 1)
