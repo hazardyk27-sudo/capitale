@@ -100,3 +100,26 @@ FINAL tam rapor sonunda:
 - Aynı fixture/market/selection ve as-of ile çapraz-devir, eksik veri açık.
 - Bağımsız araştırma ve kaynağı/kanıt sınırlama aynen sürer.
 - Varsayılan akış **SXF → ANALYST → NEWS → FINAL**; POLY varsa FINAL'e bağımsız dördüncü kanıt olarak sunulur.
+
+## 2026-11-20 — Commander özel devir arşivi (tek son NEWS paketiyle FINAL)
+
+Kullanıcının istediği basit tek-yönlü akış için sunucuya **özel rapor devir arşivi** eklendi: `/opt/capitale-report-chain-inbox.py` (GitHub kodu: `tools/manual_report_inbox.py`). Bu sadece sunucu içi özgün raporları saklar; siteye yayın YAPMAZ.
+
+**Her uzman için:** Tam rapor hazır olduğunda agent, bağlı Commander aracını kullanarak kendi orijinal rapor metnini bir geçici UTF-8 dosyasına yazar ve **her doğrulanmış run_id** için şunu çalıştırır:
+
+```bash
+python3 /opt/capitale-report-chain-inbox.py save --role sxf --run-id <UUID> --as-of <ISO8601> --input /tmp/<tam-rapor>.md
+```
+
+ANALYST için `--role analyst`; NEWS için `--role news`. Bu bir **site kaydı değildir**. Komutun `STAGED_ONLY_NOT_SITE` veya `ALREADY_STAGED` cevabını görmeden "arşivlendi" deme. Raporlar SHA256 kontrolüyle sürüm sürüm korunur; mevcut dosyalar üzerine yazılmaz. Geçici dosyanın içeriğini loglara/yanlış sohbete taşımadan işle. Gerekirse bütün maçların ortak tam raporu her ilgili `run_id` altında saklanabilir; sahte run_id üretilemez.
+
+**FINAL'e artık tek son tablo verilebilir:** Kullanıcı NEWS'in son kısa listesini ve doğrulanmış run_id(leri)ni FINAL'e iletir. FINAL bağlı Commander ile:
+
+```bash
+python3 /opt/capitale-report-chain-inbox.py status --run-id <UUID>
+python3 /opt/capitale-report-chain-inbox.py bundle --run-id <UUID> --out /tmp/capitale-final-<UUID>.json
+```
+
+komutlarını çalıştırır, yalnızca `ready_for_final: true` ise oluşturulmuş **orijinal tam SXF/ANALYST/NEWS** raporları içeren özel JSON zarfını okur. Daha sonra farklı fixture/selection/as_of uyumunu ayrıca doğrular. POLY varsa kullanıcı ayrı ekleyebilir; yoksa `NO_EVIDENCE`. Bir rapor `MISSING` ise SITEYE aktarım yapılmaz; eksik orijinal rapor kullanıcıdan istenir. `bundle` asla yeni analiz/kanıt yaratmaz.
+
+**Commander başka agent sohbetinde bağlı değilse:** Otomatik devir gerçekleşmez. Bu durumda eski güvenli yol: kullanıcı SON FINAL aşamasına 3 tam raporu bir defada verir. Hangi aktarım yöntemi kullanıldığını doğru söyle. FINAL'in site yazıcısı hâlâ ayrı bir yetkili entegrasyon gerektirir.
