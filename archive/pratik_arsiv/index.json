@@ -2093,9 +2093,9 @@
       "date": "2026-11-19",
       "fixtures": 61,
       "alarms": 75,
-      "checkpoint_bytes": 112938,
+      "checkpoint_bytes": 112953,
       "alarm_bytes": 5088,
-      "total_bytes": 118026,
+      "total_bytes": 118041,
       "uncompressed_bytes": 2029954,
       "coverage": {
         "1X2": {
@@ -2117,11 +2117,10 @@
           "missing": 1600
         }
       },
-      "market_checkpoint_slots_total": 6222,
-      "market_checkpoint_slots_present": 1458,
-      "market_checkpoint_slots_partial": 656,
-      "market_checkpoint_slots_empty": 0,
-      "market_checkpoint_slots_missing": 4108,
+      "snapshot_backfill_version": "market-history-backfill-v4-duplicate-fixture-aliases",
+      "snapshot_source_rows": 79298,
+      "snapshot_fallback_market_slots": 2114,
+      "snapshot_fallback_selection_rows": 0,
       "results_present": 45,
       "results_missing": 16,
       "results_live": 0,
@@ -2133,12 +2132,63 @@
       },
       "future": 0,
       "archive_status": "PARTIAL",
+      "source_archive_status": "PARTIAL",
+      "market_checkpoint_slots_total": 6222,
+      "market_checkpoint_slots_present": 1458,
+      "market_checkpoint_slots_partial": 656,
+      "market_checkpoint_slots_empty": 0,
+      "market_checkpoint_slots_missing": 4108
+    },
+    {
+      "date": "2026-11-20",
+      "fixtures": 190,
+      "alarms": 206,
+      "checkpoint_bytes": 389572,
+      "alarm_bytes": 14716,
+      "total_bytes": 404288,
+      "uncompressed_bytes": 7475991,
+      "coverage": {
+        "1X2": {
+          "present": 2046,
+          "partial": 1584,
+          "empty": 0,
+          "missing": 2830
+        },
+        "OU25": {
+          "present": 2140,
+          "partial": 460,
+          "empty": 0,
+          "missing": 3860
+        },
+        "BTTS": {
+          "present": 995,
+          "partial": 729,
+          "empty": 0,
+          "missing": 4736
+        }
+      },
+      "market_checkpoint_slots_total": 19380,
+      "market_checkpoint_slots_present": 5181,
+      "market_checkpoint_slots_partial": 2773,
+      "market_checkpoint_slots_empty": 0,
+      "market_checkpoint_slots_missing": 11426,
+      "results_present": 123,
+      "results_missing": 67,
+      "results_live": 0,
+      "live_score_present": 123,
+      "live_in_progress": 0,
+      "checksums": {
+        "checkpoints": "9f38f2d94318504037d4b53dd95b7725c71b87e6149d77ac43c8bdb9b7a323c7",
+        "alarms": "e85e00eb4ded7f5839ef7809fc346636655903baddb9149ebd97843c9de153fe"
+      },
+      "future": 0,
+      "archive_status": "PARTIAL",
       "source_archive_status": "PARTIAL"
     }
   ],
-  "total_fixtures": 8918,
-  "total_alarm_records": 7883,
-  "total_compressed_bytes": 24917424,
-  "total_uncompressed_bytes": 366176814,
+  "total_fixtures": 9108,
+  "total_alarm_records": 8089,
+  "total_compressed_bytes": 25321727,
+  "total_uncompressed_bytes": 373652805,
   "quality_version": "market-field-quality-v4-zero-volume"
 }
