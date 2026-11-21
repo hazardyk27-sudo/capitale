@@ -1,0 +1,167 @@
+--- a/client/src/components/intelligence-flow-hero-demo.css
++++ b/client/src/components/intelligence-flow-hero-demo.css
+@@ -591,3 +591,164 @@
+   }
+ }
+ /* Keep CAPITALE's mobile headline, button layout, colors and fonts untouched. */
++
++/* CAPITALE Preview V15 — actual shared alignment guides, not a redesign.
++   Keep current DM Serif / Manrope, all text/colors, brand, CTA styling and
++   the exact illustration. Fix the nested CTA link's unintended double padding.
++   Balance the left editorial column with the three-stage right-hand visual. */
++@media (min-width:768px){
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions{
++    margin:0!important;
++    padding:0!important;
++    display:flex;
++    align-items:center;
++    justify-content:flex-start;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions > a:first-child{
++    display:flex!important;
++    align-items:center;
++    justify-content:center;
++    padding:0!important;
++    margin:0!important;
++    line-height:normal;
++    background:transparent;
++    border:0;
++    box-shadow:none;
++    flex:0 0 auto;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions > a:first-child > button{
++    margin:0!important;
++    flex:0 0 auto;
++  }
++}
++@media (min-width:1180px){
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow{
++    width:calc(100% - 48px);
++    max-width:1540px!important;
++    grid-template-columns:minmax(525px,1fr) minmax(0,1fr);
++    column-gap:clamp(28px,3.4vw,56px);
++    min-height:585px;
++    align-items:center;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow > div:first-child{
++    display:flex;
++    flex-direction:column;
++    justify-content:center;
++    align-items:flex-start;
++    max-width:none!important;
++    width:100%;
++    min-width:0;
++    padding:0!important;
++    transform:translateY(-11px);
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .hero-headline{
++    margin:0;
++    padding:0;
++    max-width:100%;
++    text-align:left;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow > div:first-child > p{
++    margin-top:25px!important;
++    margin-bottom:31px!important;
++    line-height:1.5!important;
++    padding:0!important;
++    text-align:left;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions{
++    gap:12px!important;
++    flex-wrap:nowrap!important;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions button,
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions > a{
++    height:60px!important;
++    border-radius:14px!important;
++    white-space:nowrap;
++    box-sizing:border-box;
++  }
++  /* Make every source and workflow module read as one cohesive visual column. */
++  .desktopHome .cif-stage{
++    position:relative;
++    width:100%;
++    max-width:none;
++    height:542px;
++    align-self:center;
++    margin:0;
++    transform:none;
++  }
++  .desktopHome .cif-prompt{
++    height:42px;
++    margin-top:9px;
++    margin-bottom:10px;
++  }
++  .desktopHome .cif-sources{height:90px;}
++  .desktopHome .cif-incoming-wires{height:50px;}
++  .desktopHome .cif-engine-area{
++    height:104px;
++    grid-template-columns:minmax(0,1fr) 112px minmax(0,1fr);
++  }
++  .desktopHome .cif-engine{
++    height:104px;
++    width:104px;
++    border-radius:25px;
++  }
++  .desktopHome .cif-engine img{width:75px;height:75px;}
++  .desktopHome .cif-outgoing-wires{height:39px;}
++  .desktopHome .cif-console{height:157px;margin:0;}
++  .desktopHome .cif-console-heading{height:32px;}
++  .desktopHome .cif-console-grid{height:95px;}
++  .desktopHome .cif-console-bottom{height:29px;}
++  .desktopHome .capitale-members-strip{
++    width:calc(100% - 48px);
++    max-width:1540px!important;
++    margin-top:21px;
++  }
++}
++@media (min-width:1550px){
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow > div:first-child{
++    transform:translateY(-13px);
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions > a:not(:first-child){
++    padding-left:18px!important;
++    padding-right:18px!important;
++    font-size:16px!important;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions > a:first-child > button{
++    padding-left:18px!important;
++    padding-right:18px!important;
++    font-size:16px!important;
++  }
++}
++@media (min-width:1180px) and (max-width:1359px){
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow > div:first-child{
++    transform:translateY(-8px);
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow > div:first-child > p{
++    margin-top:22px!important;
++    margin-bottom:28px!important;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions{
++    gap:9px!important;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions button,
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions > a:not(:first-child){
++    font-size:14px!important;
++    padding-left:12px!important;
++    padding-right:12px!important;
++    height:57px!important;
++    border-radius:12px!important;
++  }
++}
++/* Tablet uses an intentionally stacked layout; preserve all existing sizes,
++   only share the exact left guide of headings, paragraph and CTAs. */
++@media (min-width:768px) and (max-width:1179px){
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow > div:first-child{
++    display:flex;
++    flex-direction:column;
++    align-items:flex-start;
++    padding:0!important;
++    width:100%;
++  }
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .desktopActions{
++    gap:10px!important;
++  }
++}
