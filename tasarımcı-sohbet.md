@@ -2,13 +2,13 @@
 
 **Sorumlu:** TASARIMCI  
 **Belge amacı:** CAPITALE tasarımcısının sohbetler arası kalıcı belleği; yapılan bütün bilinen tasarım işleri, sürümler, onaylar, uygulanmış değişiklikler, doğrulamalar, yedekler ve sıradaki görevler.  
-**Son güncelleme:** 21 Kasım 2026 · Match List v2 V4 dikey takım listesi + sağ SXF/veri paneli CANLI  
+**Son güncelleme:** 21 Kasım 2026 · Match List v2 V5 referansla birebir tek satırlı görünüm CANLI  
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
 > **SON DURUM — V33 KULLANICI ONAYIYLA CANLIYA AKTARILDI (2026-11-21). `https://betcapitale.com/` ANA SAYFASI V33 HERO İLE ÇALIŞIYOR. Outfit Light logo, 3 kaynak, merkez CAPITALE simgesi, 4 açıklama adımı, 4 demo maç/oran/kâr senaryosu ve sayaç ilk-fold düzeltmesi yayında. DİĞER ROTALARIN ORIGINAL FRONTEND PAKETİ, AUTH/ADMIN YAZILIMI, ANALYTICS/IMPORTMAP VE BACKEND DEĞİŞMEDİ. Canlı HTML rollback yedeği hazır; masaüstü/mobil/rotalar/animasyonlar test edildi. Önizleme de ayrıca V33 olarak korunuyor.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
 
-**Güncel ek bilgi — 21.11.2026:** Ana sayfa V33 LIVE korunurken **Admin / Match List v2 V4** kullanıcı geri bildirimine göre tekrar tasarlandı: kartın SOLUNDA **ev sahibi logosu + adı üstte; deplasman logosu + adı altta**, SAĞINDA **SXF sinyal/T/seçim ve V/B/ODDS/A/N**. Story 1080×1920 ve post 1080×1350 ayrı test edildi, 20/20 logo korunuyor. Diğer admin/Software modülleri, SXF motoru, Supabase raporları ve backend değiştirilmedi. V3 geri dönüş yedeği hazır; ayrıntı aşağıdaki günlükte.
+**Güncel ek bilgi — 21.11.2026:** Kullanıcı V4'ü de açıkça reddetti. **Admin / Match List v2 V5 CANLI** artık gönderilen referansın birebir sırasını izler: `01 | iki kulüp logosu | Chelsea – Leeds | MOM-6 | A | V | N | B | O | 16:00`. **Tercih/seçim, T'nin ayrı kutusu, lig ismi, SOURCE/PENDING/REVIEW ve fazladan alt açıklamalar yok.** Sinyal kodu kaynaktan, renkli badge; A/N yalnızca doğrulanmış rapordan, diğer boş alanlar `—`; 120 yerel logo kataloğu/20-20 logo korunuyor. Story 1080×1920 ve post 1080×1350 PASS. Paralel başka çalışma tarafından yükseltilmiş **Software v15** importmap eşlemeleri ve backend dokunulmadan korundu. V4 rollback yedeği hazır; ayrıntı günlükte.
 
 ---
 
@@ -16,7 +16,7 @@
 
 | Alan | Son doğrulanmış durum |
 |---|---|
-| Match List v2 (CANLI) | **V4 stacked clubs, 21.11.2026 LIVE**: `/admin` → Social Media → Match List v2. 10 maç, 1080×1920 story ve 1080×1350 post; **solda ev/deplasman takımının logo + adı üst üste, sağda SXF/T/tercih + V/B/ODDS/A/N paneli**. 20/20 takım logosu mevcut, 120 kulüplük yerel katalog korunur. Software'da 7/10 fixture kaydı; 3'ünde veri ve A/N raporları eksikse boş kalır. Diğer sayfalar/backend korunuyor. |
+| Match List v2 (CANLI) | **V5 referans tek satır, 21.11.2026 LIVE**: `/admin` → Social Media → Match List v2. Sıra no, iki takım logosu, `Chelsea – Leeds`, renkli SXF kodu, **A · V · N · B · O**, maç saati. Kullanıcının referans düzeni; tercih, seçim, ayrı T, lig ve kaynak açıklaması kaldırıldı. Story/post 1080×1920/1350 PASS, 20/20 logo. A/N raporları mevcut değilse boş; 7/10 Software fixture adı eşleşiyor. Diğer sayfalar/backend korunuyor. |
 | Tasarımcı rolü | Doğrudan iş yapan, Commander kullanan **TASARIMCI**. Codex'e yönlendirme yok |
 | Tasarım hedefi | Orijinal V18 premium kompakt workflow'u korumak; yeni animasyon mantığını ancak kullanıcı kararından sonra ve aşırı veri sıkıştırmadan geliştirmek |
 | Canlı ana site | **https://betcapitale.com/** — kullanıcının açık onayıyla V33 hero aktarıldı; diğer route'lar mevcut üretim paketlerinde |
@@ -346,6 +346,17 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **Rollback:** `/app/betcapitale/rollback-matchlist-v2-stacked-v4-20261121/index.html` (V3). Eski HTML SHA `9bb028ef51abf19ba2df9cb3c03142cf90e9c7efb393ac9e48dba0939104329b`; yeni HTML SHA `dd823863cc47f29e2aa75d4f96ec36ed4d97b774e8eda9dfe19c43513e51495f`. Backend SHA hâlâ `79b0bed37aed965979fc0d0bc6c093c4dcfe07a59934096cc65f2fb5c7ce3832`.
 - **GitHub:** `deployments/betcapitale/matchlist-v3-to-v4-stacked-clubs-20261121.patch` commit `2dbab783c2c4093227a90a22e2e050a7a4ae285f`; `deployments/betcapitale/matchlist-v4-production-importmap-20261121.patch` commit `9b7d656076cd65301c4c7c7e83066153ff332364`; `deployments/betcapitale/matchlist-v4-stacked-clubs-live-20261121.md` commit `d82e1670f4d49db7bbb30798087cb298e4faebee`.
 - **İleri adım:** Kullanıcı gerçek `/admin` oturumunda Match List v2'nin story/post görüntüsünü ve indirilen PNG'yi kontrol etsin; yeni değişiklikte önce mevcut live SHA kontrol edilsin.
+
+### 2026-11-21 — Match List v2 V5 LIVE — Referans tek satır ve A/V/N/B/O
+
+- **Talimat:** Kullanıcı V4'ün sağ veri panelini reddetti, orijinal referansta görünen ince yatay satırları istedi; **tercih, seçenek, ekstra açıklamalar ve istemediği diğer yazılar olmayacak**. Referans sırası: `01 | iki logo | Chelsea – Leeds | MOM-8 | A | V | N | B | [eklenmiş O] | 16:00`. MOM-8 sadece referans örneği; gerçek kaynak MOM-6 geliyorsa MOM-6 gösterilir, kod uydurulmaz.
+- **Yapılan:** `client/src/components/match-list-template-2.tsx` V4'ten ayrı V5 klasöründe yeniden yazıldı. 10 sütun: sıra numarası, yan yana gerçek kulüp logoları, tek satır maç adı, kaynağa uygun renkte sinyal rozeti, A, V, N, B, O, sağda saat. Artık maç başına lig satırı, SXF+T ayrı bölümü, bet seçimi (HOME WIN/BTTS), source/pending/review, büyük metrik kutuları ve açıklama yok. Sadece üst CAPITALE/Today's matches/tarih/maç sayısı ve sade footer kaldı. Uzun isimlerin story'de kırpılmaması için karakter uzunluğuna göre font küçültülüyor.
+- **Veri:** Eski deterministik Software/API ve yerel logoları eşleştiren kod değişmedi. 120 kulüp ve 20/20 görüntü. A/N 0–100 destek puanı doğrulanırsa görselde yüzde ölçeğinde gösteriliyor, bunlar olasılık tahmini değildir. Kaynaksız değer `—`; herhangi bir A/N skoru veya sinyal **random doldurulmadı**.
+- **Canlı yayın:** `smartxflow` Desktop Commander; kaynak `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-admin-matchlist-v2-reference-row-v5-20261121-work`. Eski V4 JS ve başka paketler korunarak `/assets/admin-social-media-v5-reference-row-20261121.js` eklendi. Production `/app/betcapitale/dist/public/index.html` içindeki **tek importmap aliası** `admin-social-media-BufGLmZ1.js` V4→V5 yapıldı. İlk kontrol sabit V4 SHA beklerken durdu: paralel Software agent zaten v13→v15'e geçirmişti. Yeniden kontrol edildi; **Software v15'in üç aliası** ve tüm diğer index içerikleri korundu, sadece social alias değişti. Backend/service/Supabase değişmedi.
+- **Testler:** `tasarımcı.md` ve `tasarımcı-sohbet.md` yeni sohbette tekrar okundu; `AGENTS.md`/`MILESTONE.md` kuralları kontrol edildi. TypeScript PASS, Vite PASS, 13 kaynak birim testi PASS, staging story bağlı/bağlı değil 2/2 PASS ve post 1/1 PASS. Aynı testler gerçek domain üzerinde **yalnızca test tarayıcısında mock veri** ile 2/2 story ve 1/1 post PASS; 10 satır, 20/20 logo, 1080×1920 ve 1080×1350 ölçüleri, extra yazı sızıntısı yok, fatal JS hata ve taşma yok. Guest `/`, `/admin`, `/admin/social-media`, `/admin/software`, `/today`, `/plans` HTTP 200 ve root yükleniyor. `/admin/social-media` misafir oturumunda chunk yetki kontrolünden ötürü yüklenmeyebilir; mock-admin testinde tam sayfa görüldü. Gerçek admin PNG dışa aktarma/save işlemi tetiklenmedi.
+- **Rollback/Hash:** `/app/betcapitale/rollback-matchlist-v2-reference-row-v5-20261121/index.html` (V4+Software v15), prelive `d9f99c3a610879ba6e8ff108e20de6d93bc2b27e9c7f66eacf1f7bc5c1b49db9` → V5 `02e58c35afcab7f17b9a1c82d88c7b842fd89510e9ff767227d24a4dfaa40fec`. Backend `79b0bed37aed965979fc0d0bc6c093c4dcfe07a59934096cc65f2fb5c7ce3832` aynı.
+- **GitHub:** `deployments/betcapitale/matchlist-v4-to-v5-reference-single-row-20261121.patch` commit `f2a7644ba0a36cfdb9d7b48a1328647ef2b63613`; `deployments/betcapitale/matchlist-v5-production-importmap-20261121.patch` `6294155e3ff61694a3888724ffe1fe7d5815169f`; `deployments/betcapitale/matchlist-v5-reference-single-row-live-20261121.md` `7c9ac5cc0567a0ac374311a08d0da955e5e151a8`.
+- **Bir sonraki adım:** Kullanıcı kendi yönetici oturumunda Match List v2'yi ve indirilen PNG'yi kontrol etsin. Yeni tasarım değişikliği istenirse tek tek kod/alanlardan çıkmadan V5 referans sırası korunmalı.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
