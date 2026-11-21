@@ -6,7 +6,7 @@
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
-> **SON DURUM — ÖNİZLEME V24 AKTİF: V18 KOMPAKT ÜÇ KUTU, RESULTS AŞAMASINA BAĞLI YEŞİL +€200 DEMO KÂR. V19–V21 REDDEDİLDİ. ANA SİTE DEĞİŞMEDİ.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
+> **SON DURUM — ÖNİZLEME V26 AKTİF: V18 KOMPAKT ÜÇ KUTU; MATCHES SIRASINDA ÖRNEK MAÇ/TERCİH, COUPONS SIRASINDA YÜZDESİZ 4.57/5.11 GİBİ ONDALIK ORAN, RESULTS SIRASINDA YEŞİL +€200 DEMO KÂR. V19–V21 REDDEDİLDİ. ANA SİTE DEĞİŞMEDİ.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
 
 ---
 
@@ -17,25 +17,25 @@
 | Tasarımcı rolü | Doğrudan iş yapan, Commander kullanan **TASARIMCI**. Codex'e yönlendirme yok |
 | Tasarım hedefi | Orijinal V18 premium kompakt workflow'u korumak; yeni animasyon mantığını ancak kullanıcı kararından sonra ve aşırı veri sıkıştırmadan geliştirmek |
 | Aktif örnek site | **https://betcapitale.com/preview/home-v1/** |
-| Güncel sürüm | **V24** (2026-11-21): V18 boyutlarında üç kutu; 15 sn MATCHES → COUPONS → RESULTS döngüsü; yalnızca RESULTS sırasında 4 sn görünen yeşil +€200 demo profit |
+| Güncel sürüm | **V26** (2026-11-21): V18 boyutlarında üç kutu; 15 sn MATCHES (kurgusal takım/tercih) → COUPONS (4.57, 5.11 gibi yüzdesiz örnek oran) → RESULTS (yeşil +€200) döngüsü |
 | V18 ana başlık | **Use software to achieve** / **consistent daily profits.** |
 | V18 başlık altı, 1 | **We do the planning. You enjoy the winning.** |
 | V18 başlık altı, 2 | **Built on the right strategy for consistent long-term profits.** |
 | Başlık renk/fontu | Mevcut DM Serif Display, koyu mürekkep + CAPITALE turuncusu. Alt metin Manrope |
 | Üç CTA | Today's Matches, Community Voice, Calculate Profit — hizalar, renkler ve route'lar korunuyor |
-| Sağdaki sistem | MARKET SPECIALIST / NEWS / ANALYST → CAPITALE → **V18 boyutlarında hep görünür üç kutu**; sağ RESULTS boşluğunda yeşil PROFIT +€200 (mobilde subtitle yerini alır), yalnızca RESULTS aktifken görünür |
+| Sağdaki sistem | MARKET SPECIALIST / NEWS / ANALYST → CAPITALE → **V18 boyutlarında hep görünür üç kutu**; MATCHES: rastgele örnek maç/tercih, COUPONS: örnek ondalık stake/kupon oranı (yüzde değil), RESULTS: yeşil +€200 |
 | Üst yazı ve prompt | «THE CAPITALE SYSTEM», «ILLUSTRATIVE PREVIEW» ve animasyonlu üst konuşma kutusu **V17'de silindi** |
 | Analist alt metni | **REVIEWS STATISTICS** |
 | Sahte veri uyarısı | **CONCEPT, NOT LIVE DATA** korunur; +€200 yalnızca kurgusal demo, gerçek bahis sonucu değildir; V19–V21 kupon detayları geri gelmedi |
 | Üye sayacı | Hero altında yatay mevcut biçim; kaynak mantığına dokunulmadı |
-| QA | V24 TSC/Vite PASS; HTTP 200; Puppeteer 1662/1200/768/390/320 px PASS; üç faz, 4 sn görünür €200, kart ölçüsü/taşma, reduced motion ve JS hata kontrolü PASS; canlı frontend/backend SHA sabit |
+| QA | V26 TSC/Vite PASS; HTTP 200; Puppeteer 1662/1200/768/390/320 px safhalar ve oran kontrolü PASS; üç kutu hep yerinde, demo uyarısı korunur. Yüzdelik değer kaldırıldı; canlı frontend/backend SHA sabit |
 | Yayın sınırı | **Yalnızca önizleme**. Üretim sayfası ve \`dist/index.cjs\` değiştirilmedi |
 | Üretime geçiş | **Henüz kullanıcı onayı verilmedi** — kendiliğinden yayınlama |
 | V18 yedeği | V18 geri dönüş kaynağı: `/srv/capitale-preview/home-v1.rollback-animated-workflow-v19-20261121`; reddedilen V21 için yedek: `/srv/capitale-preview/home-v1.rollback-rejected-v21-before-v18-restoration-20261121` |
 
 Önizlemenin son doğrulanmış bundle referansları (daha sonra değişebilir):
-- JS: `/preview/home-v1/assets/index-Cfi8jmk3.js`
-- CSS: `/preview/home-v1/assets/index-B8AoD4Tl.css`
+- JS: `/preview/home-v1/assets/index-CsEyJBau.js`
+- CSS: `/preview/home-v1/assets/index-CqtrfdNd.css`
 - İkisi de HTTPS 200 olarak görüldü; önizleme HTML 200, ana site HTTP 200, yetkisiz admin API 401.
 
 **İlk iş olarak bu bilgilerin hâlâ güncel olduğunu doğrula.** Başka görev/sunucu deploy'u paralel gerçekleşebilir; sabit hash'e güvenme.
@@ -47,7 +47,7 @@
 - **Canlı site:** \`https://betcapitale.com/\`
 - **Önizleme:** \`https://betcapitale.com/preview/home-v1/\`
 - **Önizleme statik dosyaları:** \`/srv/capitale-preview/home-v1\`
-- **Aktif V24 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v24-results-synced-profit-work`.
+- **Aktif V26 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v26-decimal-odds-work`. (V24 önceki sürüm olarak korunmuştur.)
 - **Önceki V18 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v18-work`.
 - **Canlı frontend:** \`/app/betcapitale/dist/public\` (**önizleme için değiştirme**).
 - **Canlı backend:** \`/app/betcapitale/dist/index.cjs\` (**asla yanlışlıkla frontend derlemesinden gelen backend ile değiştirme**).
@@ -223,6 +223,18 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **GitHub patch:** `deployments/betcapitale/home-preview-v18-to-v24-synced-profit-200-20261121.patch` — V18'den V24'e uygulanabilir; commit `637abcb057a8b44f2533915fed7ab2e74e849e8f`.
 - **Gerçek screenshot:** https://betcapitale.com/preview/home-v1/designer-v24-synced-profit-desktop.png ve https://betcapitale.com/preview/home-v1/designer-v24-synced-profit-mobile.png
 - **Sonraki adım:** Kullanıcının V24 görünüm değerlendirmesi. Açık onay olmadan canlı ana siteye taşıma.
+
+### 2026-11-21 — V26 — MATCHES örnek maç/tercih + COUPONS ondalıklı oran + RESULTS yeşil €200
+
+- **Kullanıcı talimatı:** V24'teki üç sabit kutulu 15 saniyelik döngüye MATCHES sırası geldiğinde rastgele bir örnek maç ve tercih, COUPONS sırası geldiğinde stake oranı eklensin. İlk V25 denemesi yanlışlıkla `2%` gösterdi; kullanıcı **oran 4.57 veya 5.11 gibi olmalı, yüzde olamaz** diyerek düzeltti. Son kabul için kullanıcı değerlendirmesi bekleniyor.
+- **V26 değişikliği:** V25 yüzde çıkarıldı. Kurgusal örnekler Roma–Inter / BTTS YES / 4.57, Ajax–PSV / OVER 2.5 / 5.11, Lille–Lyon / FT 1 / 4.82, Porto–Braga / OVER 2.5 / 5.06. Her 15 saniyelik döngüde farklı örnek seçiliyor; maç ve COUPONS oranı aynı veri kaydından geliyor.
+- **Akış:** 0–5sn MATCHES: maç+tercih; 5–10sn COUPONS: ondalık oran; 10–15sn RESULTS: yeşil +€200 kurgusal sonuç. Diğer kutular gizlenmiyor, kompakt V18 boyutları korunuyor. Mobil 320–390px için maç yazısı ve oran alt satıra sığıyor.
+- **Dosyalar:** `client/src/components/IntelligenceFlowHeroDemo.tsx`, `client/src/components/intelligence-flow-hero-demo.css`; V24 kaynaklarından V26 bağımsız çalışma klasörü.
+- **Yayın:** sadece https://betcapitale.com/preview/home-v1/ ; canlı frontend/backend korunur. `CONCEPT, NOT LIVE DATA` uyarısı devam eder; maçlar, oranlar ve +€200 demo verisidir.
+- **Yedek:** `/srv/capitale-preview/home-v1.rollback-before-v26-decimal-odds-20261121` (V25); V24 dahil diğer rollback'ler sunucuda korunur.
+- **Derleme ve kontroller:** TypeScript ve Vite PASS; HTML/JS/CSS HTTPS 200; Puppeteer 1662, 1200, 768, 390, 320px PASS; 2s/6.5s/12s sırasında yalnız ilgili demo alanı görünür, taşma/console hata yok. Sonraki döngüde kurgusal oran rotasyonu ayrıca test ediliyor.
+- **GitHub patch:** `deployments/betcapitale/home-preview-v24-to-v26-sample-match-decimal-odds-20261121.patch`, commit `25ef47cae31ce70a5068a4a6d4f8feb732529385`.
+- **Bir sonraki adım:** Kullanıcı önizlemeyi incelesin. Onay verilmeden canlı ana sayfaya yayınlama.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
