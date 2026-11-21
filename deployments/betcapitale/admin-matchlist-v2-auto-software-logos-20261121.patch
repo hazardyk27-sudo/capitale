@@ -1,0 +1,621 @@
+--- a/client/src/pages/admin-social-media.tsx
++++ b/client/src/pages/admin-social-media.tsx
+@@ -4,6 +4,7 @@
+ import JSZip from "jszip";
+ import { RefreshCw, Download, ChevronLeft, ChevronRight } from "lucide-react";
+ import { MatchListTemplate2, type MatchListTemplate2Metrics } from "@/components/match-list-template-2";
++import { deriveMatchList2, logoIndexFromManifest, type SoftwareMatch2 } from "@/lib/match-list-v2-auto";
+ 
+ /* ─── TYPES ─────────────────────────────────────────────────────── */
+ type AC = {
+@@ -28,44 +29,9 @@
+   post:  { w: 1080, h: 1350 },
+ };
+ const PREV_W = 270;
+-const MATCH_LIST_V2_METRICS_KEY = "betcapitale:social-media:match-list-v2:metrics:v1";
+-const EMPTY_MATCH_LIST_V2_METRICS: MatchListTemplate2Metrics = {
+-  metric1: "", metric2: "", metric3: "", metric4: "", movement: "",
+-};
+-const MATCH_LIST_V2_METRIC_FIELDS: { key: keyof MatchListTemplate2Metrics; label: string }[] = [
+-  { key: "metric1", label: "Metric 1" },
+-  { key: "metric2", label: "Metric 2" },
+-  { key: "metric3", label: "Metric 3" },
+-  { key: "metric4", label: "Metric 4" },
+-  { key: "movement", label: "Change %" },
+-];
+-
+-function loadMatchListV2Metrics(): Record<number, MatchListTemplate2Metrics> {
+-  try {
+-    const raw = window.localStorage.getItem(MATCH_LIST_V2_METRICS_KEY);
+-    if (!raw) return {};
+-    const parsed: unknown = JSON.parse(raw);
+-    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return {};
+-
+-    const result: Record<number, MatchListTemplate2Metrics> = {};
+-    Object.entries(parsed).forEach(([id, value]) => {
+-      const matchId = Number(id);
+-      if (!Number.isInteger(matchId) || matchId <= 0 || !value || typeof value !== "object" || Array.isArray(value)) return;
+-      const fields = value as Record<string, unknown>;
+-      result[matchId] = {
+-        metric1: typeof fields.metric1 === "string" ? fields.metric1 : "",
+-        metric2: typeof fields.metric2 === "string" ? fields.metric2 : "",
+-        metric3: typeof fields.metric3 === "string" ? fields.metric3 : "",
+-        metric4: typeof fields.metric4 === "string" ? fields.metric4 : "",
+-        movement: typeof fields.movement === "string" ? fields.movement : "",
+-      };
+-    });
+-    return result;
+-  } catch (error) {
+-    console.warn("[social-media] Could not load Match List v2 metrics from local storage.", error);
+-    return {};
+-  }
+-}
++// Match List v2 metrics are derived from the authenticated Software feed.
++// Never copy stale manual browser values or demo rows into live match graphics.
++const NO_MATCH_LIST_V2_DATA: Record<number,MatchListTemplate2Metrics> = {};
+ 
+ /* ─── HELPERS ────────────────────────────────────────────────────── */
+ function todayISO() {
+@@ -3727,35 +3693,9 @@
+   const [exportingAll,       setExportingAll]       = useState(false);
+   const [exportingInstagram, setExportingInstagram] = useState(false);
+   const [chartDays,          setChartDays]          = useState<7 | 14 | 30>(14);
+-  const [matchListV2Metrics, setMatchListV2Metrics] =
+-    useState<Record<number, MatchListTemplate2Metrics>>(loadMatchListV2Metrics);
+-
+   const exportRefs    = useRef<(HTMLDivElement | null)[]>([]);
+   const allExportRefs = useRef<(HTMLDivElement | null)[]>([]);
+   const refInputRef   = useRef<HTMLInputElement>(null);
+-
+-  useEffect(() => {
+-    try {
+-      window.localStorage.setItem(MATCH_LIST_V2_METRICS_KEY, JSON.stringify(matchListV2Metrics));
+-    } catch (error) {
+-      console.warn("[social-media] Could not save Match List v2 metrics to local storage.", error);
+-    }
+-  }, [matchListV2Metrics]);
+-
+-  const updateMatchListV2Metric = (
+-    matchId: number,
+-    key: keyof MatchListTemplate2Metrics,
+-    value: string,
+-  ) => {
+-    setMatchListV2Metrics((current) => ({
+-      ...current,
+-      [matchId]: {
+-        ...EMPTY_MATCH_LIST_V2_METRICS,
+-        ...current[matchId],
+-        [key]: value,
+-      },
+-    }));
+-  };
+ 
+   /* Data fetching */
+   const { data: matches = [], isLoading: lm, refetch: rm } = useQuery<TM[]>({
+@@ -3766,6 +3706,37 @@
+     queryKey: ["/api/admin/today/coupons", date],
+     queryFn: () => fetch(`/api/admin/today/coupons?date=${date}`).then(r => { if (!r.ok) throw new Error(`${r.status}`); return r.json(); }),
+   });
++
++  // Same administrator-only, real-data endpoint used by the Software screen.
++  const { data: softwareFeed, isLoading: softwareLoading, error: softwareError, refetch: refetchSoftware } = useQuery<{ items:SoftwareMatch2[]; dataSource:string }>({
++    queryKey:["/api/admin/software","match-list-v2"],
++    queryFn:async () => {
++      const response=await fetch("/api/admin/software",{credentials:"same-origin",cache:"no-store"});
++      if (!response.ok) throw new Error(`Software feed ${response.status}`);
++      const value:unknown=await response.json();
++      if (!value || typeof value!=="object") throw new Error("Invalid Software feed");
++      const data=value as {items?:unknown;dataSource?:unknown};
++      if (data.dataSource!=="connected" || !Array.isArray(data.items))
++        return {items:[],dataSource:"not_connected"};
++      return {items:data.items as SoftwareMatch2[],dataSource:"connected"};
++    },
++    enabled:tab==="match-v2",
++    staleTime:30_000,
++    refetchOnWindowFocus:true,
++    retry:false,
++  });
++  const { data: crestManifest, error: crestError } = useQuery<unknown>({
++    queryKey:["/team-logos/current-fixture-coverage.json"],
++    queryFn:async()=>{const response=await fetch("/team-logos/current-fixture-coverage.json");if(!response.ok)throw new Error(`Crest catalog ${response.status}`);return response.json()},
++    enabled:tab==="match-v2",
++    staleTime:60*60_000,
++    retry:false,
++  });
++  const matchListV2Metrics = (() => {
++    if (!matches.length) return NO_MATCH_LIST_V2_DATA;
++    return deriveMatchList2(matches,softwareFeed?.items??[],softwareFeed?.dataSource==="connected",logoIndexFromManifest(crestManifest));
++  })();
++  const metricSummary = Object.values(matchListV2Metrics).reduce((r,v)=>{r[v.status]+=1;return r}, {matched:0,missing:0,ambiguous:0,unavailable:0});
+ 
+   /* Chart data — last N days with actual data (not calendar days) */
+   const EMPTY_CHART: ChartResponse = { days: [], periodWonLegs: 0, periodTotalLegs: 0, rangeStart: null, rangeEnd: null };
+@@ -4213,53 +4184,30 @@
+           </div>
+ 
+           {tab === "match-v2" && (
+-            <div style={{ background: "#fff", border: "1px solid #E4EAEE", borderRadius: 12, padding: 16 }}>
+-              <div style={{ fontSize: 10, fontWeight: 700, color: "#94A3B8", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6, fontFamily: SANS }}>
+-                Match List v2 · Optional metrics
++            <div style={{ background:"#fff", border:"1px solid #E4EAEE", borderRadius:12, padding:16 }}>
++              <div style={{fontSize:10,fontWeight:800,color:"#94A3B8",letterSpacing:"0.1em",fontFamily:SANS}}>
++                MATCH LIST V2 · AUTOMATIC SOFTWARE DATA
+               </div>
+-              <p style={{ margin: "0 0 12px", fontSize: 11, lineHeight: 1.5, color: "#6D7685", fontFamily: SANS }}>
+-                Existing match data has no metric values. Enter only verified values; empty fields stay blank in the graphic.
++              <p style={{fontSize:11,lineHeight:1.55,color:"#5E6F7D",margin:"8px 0",fontFamily:SANS}}>
++                V · A · N · B · SIGNAL · T-6/T-8 · O Δ are read from verified Software records for the same fixture/date. Local team crests appear when available.
+               </p>
+-              {matches.length === 0 ? (
+-                <div style={{ fontSize: 11, color: "#94A3B8", fontFamily: SANS }}>No matches for this date.</div>
+-              ) : (
+-                <div style={{ display: "flex", flexDirection: "column", gap: 7, maxHeight: 460, overflowY: "auto" }}>
+-                  {matches.map((match) => {
+-                    const metrics = matchListV2Metrics[match.id] ?? EMPTY_MATCH_LIST_V2_METRICS;
+-                    return (
+-                      <details key={match.id} style={{ border: "1px solid #E4EAEE", borderRadius: 8, background: "#FCFDFD" }}>
+-                        <summary style={{
+-                          cursor: "pointer", padding: "9px 10px", color: "#263746",
+-                          fontSize: 11, fontWeight: 700, lineHeight: 1.35, fontFamily: SANS,
+-                        }}>
+-                          <span>{match.homeTeam} vs {match.awayTeam}</span>
+-                        </summary>
+-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, padding: "0 10px 10px" }}>
+-                          {MATCH_LIST_V2_METRIC_FIELDS.map(({ key, label }) => (
+-                            <label key={key} style={{ display: "flex", flexDirection: "column", gap: 4, minWidth: 0 }}>
+-                              <span style={{ fontSize: 9, fontWeight: 700, color: "#81909B", fontFamily: SANS }}>{label}</span>
+-                              <input
+-                                type="text"
+-                                value={metrics[key]}
+-                                aria-label={`${label} for ${match.homeTeam} vs ${match.awayTeam}`}
+-                                onChange={(event) => updateMatchListV2Metric(match.id, key, event.target.value)}
+-                                style={{
+-                                  width: "100%", boxSizing: "border-box", border: "1px solid #DCE4E8",
+-                                  borderRadius: 6, padding: "6px 7px", outline: "none", background: "#fff",
+-                                  color: "#142333", fontSize: 11, fontFamily: SANS,
+-                                }}
+-                              />
+-                            </label>
+-                          ))}
+-                        </div>
+-                      </details>
+-                    );
+-                  })}
+-                </div>
+-              )}
+-              <div style={{ marginTop: 10, fontSize: 10, color: "#94A3B8", fontFamily: SANS }}>
+-                Values are saved in this browser for reuse.
++              <div style={{fontSize:11,color:softwareError?"#B94F4D":"#304056",lineHeight:1.5,fontFamily:SANS}} role="status">
++                {softwareLoading ? "Connecting to Software…" : softwareError || softwareFeed?.dataSource!=="connected"
++                  ? "Software source unavailable — no values invented."
++                  : `${metricSummary.matched} matched · ${metricSummary.missing} missing · ${metricSummary.ambiguous} ambiguous`}
+               </div>
++              {crestError && <div style={{fontSize:10,color:"#8B6770",marginTop:5,fontFamily:SANS}}>Crest catalog unavailable; initials remain visible.</div>}
++              {metricSummary.ambiguous>0 && <div style={{fontSize:10,color:"#B06334",marginTop:6,fontFamily:SANS}}>Conflicting selections stay blank to prevent misleading signals.</div>}
++              <button onClick={()=>{void refetchSoftware();}} disabled={softwareLoading} style={{marginTop:10,border:"1px solid #DCE4E8",borderRadius:7,padding:"7px 11px",background:"#F8FAFC",color:"#243746",fontSize:11,fontFamily:SANS,cursor:"pointer"}}>Refresh Software values</button>
++              {matches.length>0 && <div style={{maxHeight:260,overflowY:"auto",marginTop:11,display:"grid",gap:5}}>
++                {matches.map(match=>{
++                  const m=matchListV2Metrics[match.id];
++                  return <div key={match.id} style={{border:"1px solid #E5ECEE",borderRadius:6,padding:"7px 8px",fontFamily:SANS,fontSize:10,color:"#536677"}}>
++                    <strong style={{color:"#293C4D"}}>{match.homeTeam} – {match.awayTeam}</strong>
++                    <div style={{marginTop:2}}>{m?.status==="matched" ? [m.signal,m.checkpoint,m.volume&&`V ${m.volume}`,m.analyst&&`A ${m.analyst}`,m.news&&`N ${m.news}`].filter(Boolean).join(" · ") || "No scored evidence yet" : m?.reason ?? "No Software data"}</div>
++                  </div>;
++                })}
++              </div>}
+             </div>
+           )}
+ 
+--- a/client/src/components/match-list-template-2.tsx
++++ b/client/src/components/match-list-template-2.tsx
+@@ -1,3 +1,4 @@
++import type { MatchList2AutoMetric } from "@/lib/match-list-v2-auto";
+ import type { ComponentType, CSSProperties, SVGProps } from "react";
+ import * as FlagIcons from "country-flag-icons/react/3x2";
+ 
+@@ -13,13 +14,7 @@
+   countryCode?: string | null;
+ };
+ 
+-export type MatchListTemplate2Metrics = {
+-  metric1: string;
+-  metric2: string;
+-  metric3: string;
+-  metric4: string;
+-  movement: string;
+-};
++export type MatchListTemplate2Metrics = MatchList2AutoMetric;
+ 
+ export type MatchListTemplate2Props = {
+   matches: MatchListTemplate2Match[];
+@@ -121,6 +116,18 @@
+       {initials || "?"}
+     </div>
+   );
++}
++
++function ClubCrest({name,src,size}:{name:string;src:string|null|undefined;size:number}) {
++  if (!src) return <TeamInitials name={name} size={size} />;
++  // The image is a pre-existing, same-origin curated asset. When it fails to
++  // load, initials underneath remain visible (including Instagram PNG export).
++  return <div style={{width:size,height:size,position:"relative",flexShrink:0}}>
++    <TeamInitials name={name} size={size} />
++    <img src={src} alt={`${name} club crest`} loading="eager"
++      onError={e=>{e.currentTarget.style.display="none";}}
++      style={{position:"absolute",inset:0,width:size,height:size,objectFit:"contain",background:"#FFFFFF",borderRadius:8}} />
++  </div>;
+ }
+ 
+ function formatDate(date: string) {
+@@ -293,33 +300,24 @@
+           }}
+         >
+           {matches.map((match) => {
+-            const metric = metricsByMatch[match.id] ?? {
+-              metric1: "",
+-              metric2: "",
+-              metric3: "",
+-              metric4: "",
+-              movement: "",
+-            };
+-            const values = [metric.metric1, metric.metric2, metric.metric3, metric.metric4];
+-            const movement = metric.movement ?? "";
+-            const normalizedMovement = movement.trim().replace("−", "-");
+-            const movementNumberText = normalizedMovement.replace("%", "").replace(",", ".").trim();
+-            const movementIsNumeric = movementNumberText !== "" && Number.isFinite(Number(movementNumberText));
+-            const numericMovement = movementIsNumeric ? Number(movementNumberText) : 0;
+-            const hasMovement = normalizedMovement.length > 0;
+-            const movementIsDown = movementIsNumeric && numericMovement < 0;
+-            const movementIsUp = movementIsNumeric && numericMovement > 0;
+-            const movementColor = !hasMovement
+-              ? palette.faint
+-              : movementIsDown ? palette.red : movementIsUp ? palette.teal : palette.muted;
+-            const movementBg = !hasMovement
+-              ? "#F8FAFA"
+-              : movementIsDown ? palette.redPale : movementIsUp ? palette.tealPale : "#F2F5F6";
+-            const movementLabel = !hasMovement
+-              ? ""
+-              : movementIsNumeric
+-                ? `${numericMovement > 0 ? "+" : ""}${numericMovement}%`
+-                : movement;
++            const metric = metricsByMatch[match.id];
++            const money = metric?.volume || "";
++            const scoreA = metric?.analyst || "";
++            const scoreN = metric?.news || "";
++            const draw = metric?.draw || "";
++            const mov = metric?.movement || "";
++            const movNum = Number(mov.replace("%", ""));
++            const movDown = mov!=="" && Number.isFinite(movNum) && movNum<0;
++            const movUp = mov!=="" && Number.isFinite(movNum) && movNum>0;
++            const cells = [
++              {label:"SIGNAL", value:metric?.signal||"", title:"Verified SXF signal code"},
++              {label:"T",value:metric?.checkpoint||"",title:"SXF checkpoint"},
++              {label:"V",value:money,title:"Selected-market money share"},
++              {label:"A",value:scoreA,title:"Analyst support index, not probability"},
++              {label:"N",value:scoreN,title:"News support index, not probability"},
++              {label:"B",value:draw,title:"1X2 draw-money share"},
++              {label:"O Δ",value:mov,title:"Verified odds change"},
++            ];
+             const code = match.countryCode?.trim();
+             const homeNameSize = Math.max(teamSize * 0.68, teamSize - Math.max(0, match.homeTeam.length - 15) * 0.32);
+             const awayNameSize = Math.max(teamSize * 0.68, teamSize - Math.max(0, match.awayTeam.length - 15) * 0.32);
+@@ -422,7 +420,7 @@
+                   }}
+                 >
+                   <div style={{ display: "flex", alignItems: "center", gap: dense ? 8 : 12, minWidth: 0 }}>
+-                        <TeamInitials name={match.homeTeam} size={badgeSize} />
++                        <ClubCrest name={match.homeTeam} src={metric?.homeLogoUrl} size={badgeSize} />
+                     <span
+                       style={{
+                         minWidth: 0,
+@@ -471,86 +469,32 @@
+                     >
+                       {match.awayTeam}
+                     </span>
+-                    <TeamInitials name={match.awayTeam} size={badgeSize} />
++                    <ClubCrest name={match.awayTeam} src={metric?.awayLogoUrl} size={badgeSize} />
+                   </div>
+                 </div>
+ 
+-                <div
+-                  style={{
+-                    display: "flex",
+-                    alignItems: "center",
+-                    gap: metricGap,
+-                    minHeight: Math.max(16, metricSize + 5),
+-                    minWidth: 0,
+-                  }}
+-                >
+-                  {values.map((value, index) => (
+-                    <div
+-                      key={`metric-${index + 1}`}
+-                      style={{
+-                        boxSizing: "border-box",
+-                        flex: "1 1 0",
+-                        minWidth: 0,
+-                        height: Math.max(17, metricSize + 6),
+-                        padding: `0 ${dense ? 6 : 9}px`,
+-                        borderRadius: 7,
+-                        border: "1px solid #E9EEF0",
+-                        background: "#F8FAFA",
+-                        display: "flex",
+-                        alignItems: "center",
+-                        gap: dense ? 5 : 7,
+-                        color: palette.ink,
+-                      }}
+-                    >
+-                      <span
+-                        style={{
+-                          flexShrink: 0,
+-                          color: "#8A999F",
+-                          fontSize: Math.max(7, metricSize * 0.72),
+-                          fontWeight: 800,
+-                          letterSpacing: ".02em",
+-                        }}
+-                      >
+-                        {index + 1}
++                <div style={{display:"flex",alignItems:"center",gap:dense?4:6,
++                  minHeight:Math.max(17,metricSize+6),minWidth:0}} aria-label={metric?.reason||"No Software match"}>
++                  {cells.map((cell,index)=>{
++                    const hasValue=cell.value!=="";
++                    const changeCell=index===6;
++                    const color=changeCell&&hasValue?(movDown?palette.red:movUp?palette.teal:palette.ink):palette.ink;
++                    return <div key={cell.label} title={cell.title} style={{
++                      boxSizing:"border-box",display:"flex",alignItems:"center",justifyContent:"center",gap:dense?3:5,
++                      flex:index===0?"1.3 1 0":"1 1 0",minWidth:0,height:Math.max(18,metricSize+7),
++                      border:"1px solid #E9EEF0",borderRadius:6,padding:dense?"0 3px":"0 6px",
++                      background:changeCell&&hasValue?(movDown?palette.redPale:movUp?palette.tealPale:"#F8FAFA"):"#F8FAFA",
++                      fontVariantNumeric:"tabular-nums",
++                    }}>
++                      <span style={{flexShrink:0,fontSize:Math.max(7,metricSize*.74),fontWeight:850,
++                        color:"#82939E",whiteSpace:"nowrap"}}>{cell.label}</span>
++                      <span style={{minWidth:0,fontSize:metricSize,fontWeight:800,lineHeight:1,
++                        overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",
++                        color:hasValue?color:palette.faint}}>
++                        {hasValue ? cell.value : "—"}
+                       </span>
+-                      <span
+-                        style={{
+-                          minWidth: 0,
+-                          fontSize: metricSize,
+-                          fontWeight: 750,
+-                          lineHeight: 1,
+-                        overflow: "hidden",
+-                        textOverflow: "ellipsis",
+-                        whiteSpace: "nowrap",
+-                        }}
+-                      >
+-                        {value}
+-                      </span>
+-                    </div>
+-                  ))}
+-                  <div
+-                    style={{
+-                      boxSizing: "border-box",
+-                      flex: "0 0 116px",
+-                      height: Math.max(17, metricSize + 6),
+-                      padding: `0 ${dense ? 7 : 10}px`,
+-                      borderRadius: 7,
+-                      background: movementBg,
+-                      color: movementColor,
+-                      display: "flex",
+-                      alignItems: "center",
+-                      justifyContent: "center",
+-                      fontSize: metricSize,
+-                      fontWeight: 800,
+-                      lineHeight: 1,
+-                      fontVariantNumeric: "tabular-nums",
+-                          overflow: "hidden",
+-                          textOverflow: "ellipsis",
+-                          whiteSpace: "nowrap",
+-                    }}
+-                  >
+-                    {movementIsUp ? "↑ " : movementIsDown ? "↓ " : ""}{movementLabel}
+-                  </div>
++                    </div>;
++                  })}
+                 </div>
+               </div>
+             );
+--- /dev/null
++++ b/client/src/lib/match-list-v2-auto.ts
+@@ -0,0 +1,161 @@
++/** Match List v2 reads *only* the same authorized, source-backed Software API.
++ * Fixture names are not unique globally. The merge is scoped to day, both teams
++ * and (where reliable) kickoff; conflicting market selections always fail closed.
++ * No sample, demo or localStorage numeric value is ever promoted to live data. */
++export type MatchList2TodayMatch = {
++  id: number;
++  date: string;
++  homeTeam: string;
++  awayTeam: string;
++  competition?: string;
++  kickoffAt?: string;
++};
++export type SoftwareMatch2 = {
++  id?: string;
++  date?: string;
++  kickoffAt?: string | null;
++  homeTeam?: string;
++  awayTeam?: string;
++  market?: string | null;
++  selection?: string | null;
++  signalCode?: string | null;
++  checkpointUsed?: string | null;
++  analystScore?: number | null;
++  newsScore?: number | null;
++  volumeShare?: number | null;
++  drawShare?: number | null;
++  currentOdds?: number | null;
++  referenceOdds?: number | null;
++  referenceOddsAt?: string | null;
++  currentOddsAt?: string | null;
++  reportStatus?: string | null;
++  source?: string | null;
++};
++export type AutoStatus = 'matched' | 'missing' | 'ambiguous' | 'unavailable';
++export type MatchList2AutoMetric = {
++  status: AutoStatus;
++  signal: string;
++  checkpoint: string;
++  volume: string;
++  analyst: string;
++  news: string;
++  draw: string;
++  movement: string;
++  selection: string;
++  market: string;
++  reason: string;
++  homeLogoUrl: string | null;
++  awayLogoUrl: string | null;
++};
++export type LogoIndex = Record<string, string>;
++const EMPTY = { signal:'', checkpoint:'', volume:'', analyst:'', news:'', draw:'', movement:'', selection:'', market:'', homeLogoUrl:null, awayLogoUrl:null } as const;
++
++// Strict, explicit club aliases only; no substring/fuzzy match (e.g. Sociedad vs Sociedad B).
++const KNOWN_ALIASES: Record<string,string> = {
++  'leeds united':'leeds',
++  'sheffield wednesday':'sheff wed',
++  'paris saint germain':'paris st g',
++  'paris sg':'paris st g',
++  'magdeburg':'fc magdeburg',
++};
++export function normalizeClub(value: string): string {
++  const key = (value||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
++    .toLocaleLowerCase('en').replace(/&/g,' and ').replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');
++  return KNOWN_ALIASES[key] ?? key;
++}
++export function logoIndexFromManifest(input: unknown): LogoIndex {
++  if (!input || typeof input !== 'object' || Array.isArray(input)) return {};
++  const obj = input as Record<string,unknown>;
++  if (obj.schema !== 'capitale-fixture-crest-coverage-v1' || !obj.logos || typeof obj.logos !== 'object' || Array.isArray(obj.logos)) return {};
++  const output: LogoIndex = {};
++  const collisions = new Set<string>();
++  for (const [name,src] of Object.entries(obj.logos as Record<string,unknown>)) {
++    if (typeof src !== 'string' || !/^\/team-logos\/[a-z0-9-]+\.(?:png|svg)$/.test(src)) continue;
++    const key = normalizeClub(name);
++    if (!key) continue;
++    if (output[key] && output[key] !== src) collisions.add(key);
++    else output[key] = src;
++  }
++  collisions.forEach(collision => { delete output[collision]; });
++  return output;
++}
++function validScore(v: unknown): string {
++  return typeof v==='number' && Number.isFinite(v) && v>=0 && v<=100 ? String(Number(v.toFixed(1))) : '';
++}
++function share(v: unknown): string {
++  const x=validScore(v);return x ? `${x}%` : '';
++}
++function checkpoint(row: SoftwareMatch2): string {
++  const t=row.checkpointUsed?.trim();
++  if (t && /^T-[68]$/.test(t)) return t;
++  const code=row.signalCode?.trim()||'';
++  const m=code.match(/(?:^|-)([68])$/);
++  return m ? `T-${m[1]}` : '';
++}
++function oddsMovement(row: SoftwareMatch2): string {
++  if (!row.market?.trim() || !row.selection?.trim() ||
++      !row.referenceOddsAt || !row.currentOddsAt) return '';
++  const a=Date.parse(row.referenceOddsAt),b=Date.parse(row.currentOddsAt);
++  const old=row.referenceOdds, now=row.currentOdds;
++  if (!Number.isFinite(a)||!Number.isFinite(b)||b<a||
++      typeof old!=='number'||typeof now!=='number'||!Number.isFinite(old)||!Number.isFinite(now)||old<=1||now<=1) return '';
++  const delta=(now-old)*100/old;
++  return `${delta>0?'+':''}${delta.toFixed(1)}%`;
++}
++function softwareDate(row:SoftwareMatch2): string {
++  if (row.date && /^\d{4}-\d{2}-\d{2}$/.test(row.date)) return row.date;
++  if (!row.kickoffAt) return '';
++  const ts=Date.parse(row.kickoffAt);
++  if (!Number.isFinite(ts)) return '';
++  return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Istanbul',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(ts));
++}
++// `today_matches.kickoff_at` is a display string (often CET) without a
++// timezone; Software uses ISO/UTC. Do not exclude genuine matches by comparing
++// unlabelled wall-clock hours. Duplicate fixtures/markets fail closed below.
++function utcKickoffDate(row:SoftwareMatch2): string {
++  if (!row.kickoffAt) return '';
++  const timestamp=Date.parse(row.kickoffAt);
++  return Number.isFinite(timestamp) ? new Date(timestamp).toISOString().slice(0,10) : '';
++}
++function selectionSignature(row:SoftwareMatch2): string {
++  return [row.market?.trim().toLowerCase()||'',row.selection?.trim().toLowerCase()||'',row.signalCode?.trim().toUpperCase()||''].join('|');
++}
++/** Pure deterministic read-only merge. Logos do not require Software report. */
++export function deriveMatchList2(
++  matches: MatchList2TodayMatch[],
++  software: SoftwareMatch2[],
++  connected: boolean,
++  logoIndex: LogoIndex,
++): Record<number,MatchList2AutoMetric> {
++  const output: Record<number,MatchList2AutoMetric>={};
++  for (const match of matches) {
++    const home=normalizeClub(match.homeTeam),away=normalizeClub(match.awayTeam);
++    const logos={homeLogoUrl:logoIndex[home]??null,awayLogoUrl:logoIndex[away]??null};
++    const unavailable={...EMPTY,...logos,status:'unavailable' as const,reason:'Software source unavailable'};
++    if (!connected) {output[match.id]=unavailable;continue;}
++    const candidates=software.filter(row=>
++      row && (softwareDate(row)===match.date || utcKickoffDate(row)===match.date) &&
++      normalizeClub(row.homeTeam||'')===home && normalizeClub(row.awayTeam||'')===away &&
++      // The API is authoritative: reject demo-only rows even if a browser injects them.
++      !(row.source||'').toUpperCase().includes('SYNTHETIC')
++    );
++    if (!candidates.length){output[match.id]={...EMPTY,...logos,status:'missing',reason:'No verified Software match for this fixture/date'};continue;}
++    const signatures=new Set(candidates.map(selectionSignature));
++    if(signatures.size!==1){output[match.id]={...EMPTY,...logos,status:'ambiguous',reason:'Multiple Software markets/selections; no coupon-selection key to disambiguate'};continue;}
++    // Repeated versions of the same market are only safe if their numerical
++    // values and report state also agree. No silent latest-wins policy.
++    const uniqueValues=new Set(candidates.map(row=>JSON.stringify([
++      row.signalCode,row.checkpointUsed,row.volumeShare,row.analystScore,row.newsScore,
++      row.drawShare,row.referenceOdds,row.currentOdds,row.referenceOddsAt,row.currentOddsAt,row.reportStatus
++    ])));
++    if(uniqueValues.size!==1){output[match.id]={...EMPTY,...logos,status:'ambiguous',reason:'Conflicting Software versions for this fixture/market'};continue;}
++    const row=candidates[0];
++    const code=(row.signalCode||'').trim();
++    output[match.id]={...logos,status:'matched',reason:'From verified Software feed',
++      signal:code==='—'?'':code,checkpoint:checkpoint(row),
++      volume:share(row.volumeShare),analyst:validScore(row.analystScore),news:validScore(row.newsScore),
++      draw:share(row.drawShare),movement:oddsMovement(row),
++      market:row.market||'',selection:row.selection||''};
++  }
++  return output;
++}
+--- /dev/null
++++ b/tests/match-list-v2-auto.test.ts
+@@ -0,0 +1,34 @@
++import assert from 'node:assert/strict';
++import { deriveMatchList2,logoIndexFromManifest,normalizeClub,type SoftwareMatch2 } from '../client/src/lib/match-list-v2-auto';
++const match=(id:number,homeTeam:string,awayTeam:string,date='2026-11-21',kickoffAt='20:30')=>({id,homeTeam,awayTeam,date,kickoffAt});
++const row=(fields:Partial<SoftwareMatch2>):SoftwareMatch2=>({
++  id:'run-real',date:'2026-11-21',homeTeam:'Sion',awayTeam:'Servette',
++  kickoffAt:'2026-11-21T19:30:00Z',market:'1X2',selection:'home',signalCode:'MOM-6',
++  checkpointUsed:'T-6',analystScore:null,newsScore:null,volumeShare:78.6,drawShare:12.4,
++  referenceOdds:2, currentOdds:1.92,referenceOddsAt:'2026-11-21T16:00:00Z',
++  currentOddsAt:'2026-11-21T18:00:00Z',reportStatus:'partial',source:'verified',...fields
++});
++const logos=logoIndexFromManifest({schema:'capitale-fixture-crest-coverage-v1',logos:{'Sion':'/team-logos/sion.png','Servette':'/team-logos/servette.png','Chelsea':'https://evil.example/x.png'}});
++assert.equal(logos.sion,'/team-logos/sion.png');
++assert.equal(logos.chelsea,undefined,'forbid untrusted external image URLs');
++const output=deriveMatchList2([match(10,'Sion','Servette')],[row({})],true,logos)[10];
++assert.equal(output.status,'matched');
++assert.equal(output.signal,'MOM-6');
++assert.equal(output.volume,'78.6%');
++assert.equal(output.checkpoint,'T-6');
++assert.equal(output.draw,'12.4%');
++assert.equal(output.movement,'-4.0%');
++assert.equal(output.news,'');assert.equal(output.analyst,'');
++assert.equal(output.homeLogoUrl,'/team-logos/sion.png');
++assert.equal(deriveMatchList2([match(10,'Sion','Servette')],[row({})],false,logos)[10].status,'unavailable');
++assert.equal(deriveMatchList2([match(10,'Sion','Servette','2026-11-20')],[row({})],true,logos)[10].status,'missing');
++assert.equal(deriveMatchList2([match(10,'Sion','Servette')],[row({signalCode:'SLD-8',selection:'home'}),row({signalCode:'MOM-6',selection:'away'})],true,logos)[10].status,'ambiguous');
++assert.equal(deriveMatchList2([match(10,'Sion','Servette')],[row({volumeShare:67}),row({volumeShare:78})],true,logos)[10].status,'ambiguous');
++assert.equal(deriveMatchList2([match(10,'Sion','Servette')],[row({source:'SYNTHETIC DESIGN DEMO'})],true,logos)[10].status,'missing');
++assert.equal(deriveMatchList2([match(10,'Sion','Servette')],[row({analystScore:0,newsScore:100,volumeShare:0,drawShare:0})],true,logos)[10].analyst,'0');
++assert.equal(normalizeClub('Leeds United'),normalizeClub('Leeds'));
++assert.equal(normalizeClub('Paris Saint-Germain'),normalizeClub('Paris St-G'));
++assert.notEqual(normalizeClub('Sociedad'),normalizeClub('Sociedad B'));
++const late=row({id:'late',date:'2026-11-22',kickoffAt:'2026-11-21T21:00:00Z',homeTeam:'Motherwell',awayTeam:'Rangers'});
++assert.equal(deriveMatchList2([match(21,'Motherwell','Rangers','2026-11-21','21:00')],[late],true,{} )[21].status,'matched','UTC day boundary');
++console.log('PASS: 13 assertion groups, no demo leaks, timezone-safe, conflict-safe, crest allowlist');
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
