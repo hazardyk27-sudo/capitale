@@ -1,0 +1,96 @@
+--- a/client/src/pages/landing.tsx
++++ b/client/src/pages/landing.tsx
+@@ -209,8 +209,8 @@
+ 
+             {/* Headline — serif, 6 controlled lines */}
+             <h1 className="hero-headline" data-testid="text-hero-headline">
+-              <span className="line dark">We do the planning.</span>
+-              <span className="line orange">You enjoy the winning.</span>
++              <span className="line dark">Use software to achieve</span>
++              <span className="line orange">consistent daily profits.</span>
+             </h1>
+ 
+             {/* Subtitle */}
+@@ -219,7 +219,8 @@
+               marginTop: "28px", marginBottom: "34px", maxWidth: "440px",
+               fontFamily: "'Manrope', sans-serif",
+             }}>
+-              Built on the right strategy for consistent long-term profits.
++              <span className="capitale-hero-tagline">We do the planning. You enjoy the winning.</span>
++              <span className="capitale-hero-support">Built on the right strategy for consistent long-term profits.</span>
+             </p>
+ 
+             {/* Desktop CTA buttons */}
+--- a/client/src/components/MobileHomePage.tsx
++++ b/client/src/components/MobileHomePage.tsx
+@@ -933,11 +933,12 @@
+         {/* ── Hero content ──────────────────────────────────────── */}
+         <div style={{ paddingLeft: "24px", paddingRight: "24px", paddingTop: "16px", paddingBottom: "28px", width: "100%", boxSizing: "border-box" }}>
+           <h1 className="bc-mobile-title">
+-            We do the planning.{" "}
+-            <span className="t-orange">You enjoy the winning.</span>
++            Use software to achieve{" "}
++            <span className="t-orange">consistent daily profits.</span>
+           </h1>
+           <p style={{ marginTop: "16px", fontSize: "17px", lineHeight: 1.55, color: "#5F6673", fontFamily: FONT, marginBottom: 0 }}>
+-            Built on the right strategy for consistent long-term profits.
++            <span className="capitale-hero-tagline">We do the planning. You enjoy the winning.</span>
++            <span className="capitale-hero-support">Built on the right strategy for consistent long-term profits.</span>
+           </p>
+         </div>
+ 
+--- a/client/src/components/intelligence-flow-hero-demo.css
++++ b/client/src/components/intelligence-flow-hero-demo.css
+@@ -959,3 +959,52 @@
+   .cif-stage{height:402px;}
+   .cif-source-1 strong{font-size:9.3px;}
+ }
++
++/* CAPITALE Preview v18 — user-approved new English marketing headline.
++   Keep the existing serif family, orange/ink palette, CTA alignment, animated
++   software scene and counter. Responsively fit the longer English headline. */
++.capitale-hero-tagline {
++  display:block;
++  font-family:inherit;
++  font-weight:700;
++  line-height:1.45;
++  color:#0E1726;
++}
++.capitale-hero-support {
++  display:block;
++  font-family:inherit;
++  margin-top:8px;
++  line-height:1.48;
++  color:#5F6673;
++}
++@media(min-width:1360px){
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .hero-headline {
++    font-size:clamp(58px,4.0vw,68px);
++    line-height:1.05;
++    letter-spacing:-.024em;
++  }
++}
++@media(min-width:1180px) and (max-width:1359px){
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .hero-headline {
++    font-size:clamp(49px,4vw,54px);
++    line-height:1.05;
++    letter-spacing:-.024em;
++  }
++}
++@media(min-width:768px) and (max-width:1179px){
++  .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow .hero-headline{
++    font-size:clamp(48px,4.8vw,60px);
++    line-height:1.05;
++  }
++}
++@media(max-width:767px){
++  .bc-mobile-title{
++    font-size:clamp(28px,8vw,34px);
++    line-height:1.08;
++  }
++  .capitale-hero-tagline {font-weight:700;}
++  .capitale-hero-support {margin-top:7px;}
++}
++@media(max-width:359px){
++  .bc-mobile-title{font-size:28px!important;}
++}
