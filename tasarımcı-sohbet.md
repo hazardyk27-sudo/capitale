@@ -6,7 +6,7 @@
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
-> **SON DURUM — V33 ÖNİZLEME AKTİF: CAPITALE SİYAH HEADER WORDMARK SOURCE SERIF 4 500 YERİNE OUTFIT LIGHT 300 İLE YENİLENDİ (Masaüstü 22px, mobil 20px); DAHA İNCE, FERAH VE MODERN. SOFTWARE INTELLIGENCE MANROPE ALT SATIR 600'E HAFİFLETİLDİ. V32 SAYACIN İLK EKRANDA GÖRÜNMEMESİ, SEMBOLÜN SOLU/SAĞI, MATCHES/COUPONS/RESULTS VE DEMO DÖNGÜSÜ KORUNDU. ANA SİTE DEĞİŞMEDİ.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
+> **SON DURUM — V33 KULLANICI ONAYIYLA CANLIYA AKTARILDI (2026-11-21). `https://betcapitale.com/` ANA SAYFASI V33 HERO İLE ÇALIŞIYOR. Outfit Light logo, 3 kaynak, merkez CAPITALE simgesi, 4 açıklama adımı, 4 demo maç/oran/kâr senaryosu ve sayaç ilk-fold düzeltmesi yayında. DİĞER ROTALARIN ORIGINAL FRONTEND PAKETİ, AUTH/ADMIN YAZILIMI, ANALYTICS/IMPORTMAP VE BACKEND DEĞİŞMEDİ. Canlı HTML rollback yedeği hazır; masaüstü/mobil/rotalar/animasyonlar test edildi. Önizleme de ayrıca V33 olarak korunuyor.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
 
 ---
 
@@ -16,8 +16,9 @@
 |---|---|
 | Tasarımcı rolü | Doğrudan iş yapan, Commander kullanan **TASARIMCI**. Codex'e yönlendirme yok |
 | Tasarım hedefi | Orijinal V18 premium kompakt workflow'u korumak; yeni animasyon mantığını ancak kullanıcı kararından sonra ve aşırı veri sıkıştırmadan geliştirmek |
-| Aktif örnek site | **https://betcapitale.com/preview/home-v1/** |
-| Güncel sürüm | **V33** (2026-11-21): Dört font gerçek logo üzerinde karşılaştırıldı (Manrope 400, Outfit 300, Plus Jakarta Sans 400, Montserrat 300); seçilen Outfit Light 300 (masaüstü 22px, mobil 20px, ferah tracking). Alt SOFTWARE INTELLIGENCE Manrope 600. V32 ilk-fold mesafeleri, animasyonlar, dört örnek senaryo korundu |
+| Canlı ana site | **https://betcapitale.com/** — kullanıcının açık onayıyla V33 hero aktarıldı; diğer route'lar mevcut üretim paketlerinde |
+| Aktif örnek site | **https://betcapitale.com/preview/home-v1/** (V33 tasarım önizlemesi korunuyor) |
+| Güncel sürüm | **V33 LIVE** (2026-11-21): 4 font arasından seçilen Outfit Light 300 wordmark, V18 kompakt 3 sütunlu workflow + 4 demo senaryo ve 15sn döngü, hero sol/sağ akış ve sayaç ilk fold altında; canlı `betcapitale.com/` ana sayfasında. Önizleme V33 aynen duruyor |
 | V18 ana başlık | **Use software to achieve** / **consistent daily profits.** |
 | V18 başlık altı, 1 | **We do the planning. You enjoy the winning.** |
 | V18 başlık altı, 2 | **Built on the right strategy for consistent long-term profits.** |
@@ -28,9 +29,9 @@
 | Analist alt metni | **REVIEWS STATISTICS** |
 | Sahte veri uyarısı | **CONCEPT, NOT LIVE DATA** korunur; +€200 yalnızca kurgusal demo, gerçek bahis sonucu değildir; V19–V21 kupon detayları geri gelmedi |
 | Üye sayacı | Hero altında yatay mevcut biçim; kaynak mantığına dokunulmadı |
-| QA | V33 TSC/Vite PASS, preview HTML/JS/CSS HTTP 200; Puppeteer 1825×864, 1440×900, 1200×800, 1024×768, 768×900, 430×932, 390×844, 320×640 PASS; Outfit 300 tarayıcıda gerçekten loaded, mobil menü/header çakışması yok, sayaç ilk ekranın altında, 3 kutu ve 4 işlem adımı korundu, yatay taşma/JS hata yok; üretim SHA sabit |
-| Yayın sınırı | **Yalnızca önizleme**. Üretim sayfası ve \`dist/index.cjs\` değiştirilmedi |
-| Üretime geçiş | **Henüz kullanıcı onayı verilmedi** — kendiliğinden yayınlama |
+| QA | V33 LIVE: production-safe TSC/Vite PASS; canlı farklı ekranlarda 1825/1440/1200/1024/768/430/390/320px PASS; 4 demo senaryo ve tam döngü iki ekranda, reduced motion, Today/History/Plans/Free Bet/How It Works/Login/Admin Software GET ve gerçek menü tıklaması PASS; JS fatal hata/taşma yok; **backend SHA değişmedi** |
+| Yayın sınırı | **Kullanıcı 2026-11-21'de canlı ana sayfaya açık onay verdi**; yalnızca production `dist/public/index.html` atomik değişti ve 55 yeni hashed statik dosya eklendi. Önceki paketlerin üzerine yazılmadı; `dist/index.cjs` backend değişmedi |
+| Üretime geçiş | **TAMAMLANDI:** V33 hero `https://betcapitale.com/` canlı. Sonraki tasarım değişiklikleri ayrıca izin verilmedikçe varsayılan olarak yalnızca preview'a uygulanır |
 | V18 yedeği | V18 geri dönüş kaynağı: `/srv/capitale-preview/home-v1.rollback-animated-workflow-v19-20261121`; reddedilen V21 için yedek: `/srv/capitale-preview/home-v1.rollback-rejected-v21-before-v18-restoration-20261121` |
 
 Önizlemenin son doğrulanmış bundle referansları (daha sonra değişebilir):
@@ -294,6 +295,19 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **GitHub patch:** `deployments/betcapitale/home-preview-v32-to-v33-outfit-light-wordmark-20261121.patch`, commit `6e515f4f092e5a54d7d7527b1db022c4d04416ab`.
 - **Ekran görüntüleri:** https://betcapitale.com/preview/home-v1/designer-v33-wordmark-desktop.png, https://betcapitale.com/preview/home-v1/designer-v33-wordmark-mobile.png ve ilk fold ekran görüntüleri.
 - **Sonraki adım:** Kullanıcı V33 fontunu değerlendirir. Açık talimat olmadan ana siteye deploy edilmez.
+
+### 2026-11-21 — V33 canlı ana sayfa aktarımı (kullanıcı onaylı)
+
+- **Talimat:** Kullanıcı V33 hero tasarımını *hatasız ve birebir* gerçek `betcapitale.com` ana sayfasına aktar dedi. Bu, önceki preview-only sınırına verilen açık canlı yayın onayıdır.
+- **Üretim-safe entegrasyon:** Önizlemenin React root içindeki GET-only read-only davranışı *canlıya alınmadı*. Gerçek `App` girişi ile V33 home üretim derlemesi yapıldı; önizlemedeki 35px uyarı bandı canlıda olmadığından sayaç fold offsetleri üretim için 35px uyarlandı.
+- **Yayın yöntemi:** Production `index.html` içindeki analytics, SEO, Meta/Reddit pixel, ikonlar, admin software scroll bootstrap ve importmap korunarak yalnızca root bundle seçimi eklendi. `/` = V33 ana sayfa paketi `/assets/index-DFn7x5WA.js` + `/assets/index-DEhu_p5g.css`. Diğer rotalar = önceki production `/assets/index-Bg9uIRfV.js` + `/assets/index-DCOG0Mgo.css`. Ana sayfa sınırını geçen SPA navigasyonları tam sayfa geçişi ile izole, farklı React sürümleri karışmıyor. Admin patched `admin-software-logo-layout-v6-20261121.js` aynı kaldı. **55 adet yeni hashed statik asset eklendi; eski paketler, backend ve servis restartı yok.**
+- **İşlemi gerçekleştiren yetkili sunucu:** Desktop Commander/smartxflow. Production: `/app/betcapitale/dist/public/index.html`. Production-safe kaynak: `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-live-hero-v33-production-safe-20261121-work`. V33 preview kaynakları ve önizleme bağımsız şekilde korunuyor.
+- **Düzeltme:** Önizleme banner'ından kaynaklanan ilk-fold farkı production CSS'de düzeltildi; sayaç ilk ekrandan kayboldu, aşağı kaydırınca görünüyor.
+- **Canlı testler:** TypeScript ve Vite build PASS. Ana sayfa HTTPS 200, 320–1825px aralığında responsive/Outfit fontu/4 adım/3 kutu/sayaç PASS. 1.8s MATCHES, 6.5s COUPONS, 12s RESULTS animasyon PASS; 4 senaryonun tamamı ve başa dönüş 1440/390px PASS: Roma–Inter / BTTS YES / 4.57 / +€200; Ajax–PSV / OVER 2.5 / 5.11 / +€356; Lille–Lyon / FT 1 / 4.82 / +€148; Porto–Braga / OVER 2.5 / 5.06 / +€427. Reduced motion PASS. Real-link `/`→`/today`→`/` 1440/390px PASS. `/today`, `/free-bet`, `/history`, `/plans`, `/how-it-works`, `/login`, `/admin/software` guest smoke PASS. `admin/software` patch v6 kaynak JS HTTP 200. Tarayıcı fatal JS hata/taşma yok. **Kimliği doğrulanmış admin yazma eylemleri veya ödeme akışları otomatik test edilmedi**; backend değişmedi.
+- **Backend hash değişmedi:** `79b0bed37aed965979fc0d0bc6c093c4dcfe07a59934096cc65f2fb5c7ce3832`. Orijinal live HTML SHA `fb22c27e5c24d225bb720b7bfdf0c56c9b9bb60a451ced1917cc763c10dab61a`; yeni HTML SHA `b042ef7dcabb050277d11b5bb45ac1ca2925f71c9312fe5455cb9d59a67eeec7`.
+- **Rollback:** `/app/betcapitale/rollback-hero-v33-prod-20261121/index.html`; dosya listesi `added-asset-names.txt`; eski dosyalar hash adlarıyla yerinde. Backend rollback gerekmez.
+- **GitHub:** `deployments/betcapitale/home-v33-preview-to-production-safe-20261121.patch` (commit `7ebf0e0058775f4f04a0cd41dfa86ff0c0a34fd8`), `deployments/betcapitale/home-v33-production-index-router-20261121.patch` (`7d6bbd05a4893ba10e53bbcfb8cc965bdd092be3`), `deployments/betcapitale/home-v33-production-deploy-report-20261121.md` (`a4db278430e59b61525c5595efca24503f7e841c`).
+- **Bir sonraki adım:** Canlı hero'ya yeni değişiklik talebi gelirse önce preview üzerinde ayrı sürüm; açık kullanıcı emri olmadan yönetim sayfası ve backend'e müdahale etme.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
