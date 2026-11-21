@@ -1,0 +1,367 @@
+--- a/client/src/components/IntelligenceFlowHeroDemo.tsx
++++ b/client/src/components/IntelligenceFlowHeroDemo.tsx
+@@ -37,7 +37,7 @@
+   }, [phase]);
+ 
+   return (
+-    <section className="cif-stage" data-testid="capitale-intelligence-flow-v19"
++    <section className="cif-stage" data-testid="capitale-intelligence-flow-v20"
+       aria-label="Illustrative CAPITALE process: MARKET SPECIALIST market signals, NEWS match context and ANALYST reviewing statistics contribute to CAPITALE intelligence, then matches are selected, coupons structured and results tracked. Not live data.">
+       <div className="cif-ambient" aria-hidden="true" />
+ 
+@@ -93,108 +93,92 @@
+         <circle className="cif-data-point" r="3"><animateMotion dur="4.8s" repeatCount="indefinite" path="M240 0 V19 Q240 27 252 27 H399 Q404 27 404 38 V53"/></circle>
+       </svg>
+ 
+-      <div className="cif-console cif-console-v19"
++      <div className="cif-console cif-console-v20"
+         data-flow-phase={stages[phase].title.toLowerCase()}
+-        aria-label="Illustrative workflow showing sample match picks, example coupons and fictional settlement results">
++        aria-label="Illustrative CAPITALE process: example matches, coupons and fictional results all remain visible">
+         <div className="cif-console-heading">
+           <span className="cif-console-title"><span className="cif-console-indicator" /> THE WORKFLOW</span>
+           <span className="cif-console-caption">SAMPLE DATA · NOT LIVE BETS</span>
+         </div>
+ 
+-        <div className="cif-flow-tabs" role="group" aria-label="Example workflow stages">
+-          {stages.map(({ step, title, Icon }, index) => (
+-            <button
+-              key={step}
+-              type="button"
+-              className={`cif-flow-tab ${phase === index ? "is-active" : ""}`}
+-              aria-pressed={phase === index}
+-              onClick={() => setPhase(index as FlowPhase)}
+-              data-testid={`workflow-tab-${title.toLowerCase()}`}
+-            >
+-              <span className="cif-flow-tab-number">{step}</span>
+-              <span className="cif-flow-tab-title">{title}</span>
+-              <Icon size={15} strokeWidth={1.8} aria-hidden="true" />
+-              <span className="cif-flow-tab-progress" aria-hidden="true" />
++        <div className="cif-v20-grid" role="group" aria-label="Three example workflow stages; all sample details are always visible">
++          <div className={"cif-v20-column cif-v20-matches " + (phase === 0 ? "is-active" : "")}
++               data-testid="workflow-matches-panel">
++            <button type="button" className="cif-v20-head" onClick={() => setPhase(0)}
++              aria-pressed={phase === 0} data-testid="workflow-tab-matches">
++              <span className="cif-v20-step">01</span>
++              <span className="cif-v20-title">MATCHES</span>
++              <CircleCheck size={14} strokeWidth={1.8} aria-hidden="true"/>
+             </button>
+-          ))}
+-        </div>
+-
+-        <div className="cif-flow-panel" key={phase} role="region"
+-          aria-label={`Example ${stages[phase].title.toLowerCase()} stage`}>
+-          {phase === 0 && (
+-            <div className="cif-flow-list cif-flow-matches" data-testid="workflow-matches-panel">
++            <div className="cif-v20-body cif-v20-match-list">
+               {demoMatches.map((match) => (
+-                <div className="cif-flow-row cif-flow-match-row" key={match.id}>
+-                  <span className="cif-row-id">{match.id}</span>
+-                  <span className="cif-row-details">
++                <div className="cif-v20-match" key={match.id}
++                  title={match.fixture + " • " + match.pick}>
++                  <span className="cif-v20-id">{match.id}</span>
++                  <span className="cif-v20-entry">
+                     <strong>{match.fixture}</strong>
+-                    <small>SOFTWARE SELECTION</small>
++                    <small>{match.pick}</small>
+                   </span>
+-                  <span className="cif-row-selection">{match.pick}</span>
+                 </div>
+               ))}
+             </div>
+-          )}
++            <div className="cif-v20-progress" aria-hidden="true"><span/></div>
++          </div>
+ 
+-          {phase === 1 && (
+-            <div className="cif-flow-list cif-flow-coupons" data-testid="workflow-coupons-panel">
++          <div className={"cif-v20-column cif-v20-coupons " + (phase === 1 ? "is-active" : "")}
++               data-testid="workflow-coupons-panel">
++            <button type="button" className="cif-v20-head" onClick={() => setPhase(1)}
++              aria-pressed={phase === 1} data-testid="workflow-tab-coupons">
++              <span className="cif-v20-step">02</span>
++              <span className="cif-v20-title">COUPONS</span>
++              <TicketCheck size={14} strokeWidth={1.8} aria-hidden="true"/>
++            </button>
++            <div className="cif-v20-body cif-v20-coupon-list">
+               {demoCoupons.map((coupon) => (
+-                <div className="cif-flow-row cif-flow-coupon-row" key={coupon.id}>
+-                  <span className="cif-row-ticket"><TicketCheck size={15} strokeWidth={1.9} aria-hidden="true" /></span>
+-                  <span className="cif-row-details">
+-                    <strong>COUPON {coupon.id}</strong>
+-                    <small>{coupon.matchIds.map((id) => demoMatchLookup[id]?.fixture.split(" — ")[0]).join(" + ")}</small>
+-                  </span>
+-                  <span className="cif-row-amount">
+-                    <strong>€{coupon.stake}</strong>
+-                    <small>EQUAL STAKE</small>
++                <div className="cif-v20-coupon" key={coupon.id}
++                  title={coupon.matchIds.map(id => demoMatchLookup[id]?.fixture).join(" + ")}>
++                  <span className="cif-v20-entry">
++                    <strong>COUPON {coupon.id} <em>€{coupon.stake}</em></strong>
++                    <small>{coupon.matchIds.join(" + ")}</small>
+                   </span>
+                 </div>
+               ))}
+-              <div className="cif-flow-inline-note">
+-                <CheckCheck size={12} aria-hidden="true" />
+-                Example picks distributed into three coupons
++              <div className="cif-v20-stake-note">3 COUPONS · EQUAL €20 STAKE</div>
++            </div>
++            <div className="cif-v20-progress" aria-hidden="true"><span/></div>
++          </div>
++
++          <div className={"cif-v20-column cif-v20-results " + (phase === 2 ? "is-active" : "")}
++               data-testid="workflow-results-panel">
++            <button type="button" className="cif-v20-head" onClick={() => setPhase(2)}
++              aria-pressed={phase === 2} data-testid="workflow-tab-results">
++              <span className="cif-v20-step">03</span>
++              <span className="cif-v20-title">RESULTS</span>
++              <BarChart3 size={14} strokeWidth={1.8} aria-hidden="true"/>
++            </button>
++            <div className="cif-v20-body cif-v20-results-list">
++              {demoCoupons.map((coupon) => (
++                <div className="cif-v20-result" key={coupon.id}>
++                  <span>COUPON {coupon.id}</span>
++                  <strong className={coupon.returned > 0 ? "cif-v20-win" : "cif-v20-loss"}>
++                    {formatEuro(coupon.returned - coupon.stake)}
++                  </strong>
++                </div>
++              ))}
++              <div className="cif-v20-totals">
++                <small>€{demoTotals.staked} STAKED · €{demoTotals.returned} RETURNED</small>
++                <strong>NET <span>{formatEuro(demoNet)}</span></strong>
+               </div>
+             </div>
+-          )}
+-
+-          {phase === 2 && (
+-            <div className="cif-flow-results" data-testid="workflow-results-panel">
+-              {demoCoupons.map((coupon) => {
+-                const delta = coupon.returned - coupon.stake;
+-                const won = coupon.returned > 0;
+-                return (
+-                  <div className="cif-flow-result-row" key={coupon.id}>
+-                    <span className="cif-flow-result-title">
+-                      <strong>COUPON {coupon.id}</strong>
+-                      <small className={won ? "cif-result-won" : "cif-result-lost"}>
+-                        {won ? "WON" : "LOST"}
+-                      </small>
+-                    </span>
+-                    <span className="cif-flow-result-money">
+-                      <strong className={won ? "cif-result-won" : "cif-result-lost"}>{formatEuro(delta)}</strong>
+-                      <small>€{coupon.returned} RETURNED</small>
+-                    </span>
+-                  </div>
+-                );
+-              })}
+-              <div className="cif-flow-totals">
+-                <span><small>STAKED</small><strong>€{demoTotals.staked}</strong></span>
+-                <span><small>RETURNED</small><strong>€{demoTotals.returned}</strong></span>
+-                <span className="cif-flow-net"><small>NET RESULT</small><strong>{formatEuro(demoNet)}</strong></span>
+-              </div>
+-            </div>
+-          )}
++            <div className="cif-v20-progress" aria-hidden="true"><span/></div>
++          </div>
+         </div>
+ 
+-        <div className="cif-flow-footer">
+-          <span className="cif-flow-footer-step">
+-            <CheckCheck size={12} aria-hidden="true" />
+-            {phase === 0 ? "4 SAMPLE PICKS" : phase === 1 ? "3 COUPONS · €20 EACH" : "2 WON · 1 LOST"}
+-          </span>
+-          <span className="cif-flow-footer-next">
+-            {phase === 0 ? "NEXT · BUILD COUPONS" : phase === 1 ? "NEXT · SETTLE RESULTS" : "RESTARTING WORKFLOW"}
+-            <ArrowRight size={12} strokeWidth={2} aria-hidden="true" />
++        <div className="cif-v20-footer">
++          <span><CheckCheck size={12} aria-hidden="true"/> 4 PICKS → 3 COUPONS → 2 WON · 1 LOST</span>
++          <span className="cif-v20-status">
++            {phase === 0 ? "SELECTING MATCHES" : phase === 1 ? "BUILDING COUPONS" : "NET RESULT: +€46"}
++            <ArrowRight size={12} aria-hidden="true"/>
+           </span>
+         </div>
+       </div>
+--- a/client/src/components/intelligence-flow-hero-demo.css
++++ b/client/src/components/intelligence-flow-hero-demo.css
+@@ -1194,3 +1194,180 @@
+  .cif-flow-tab.is-active .cif-flow-tab-progress{animation:none;transform:scaleX(1);}
+  .cif-flow-panel{animation:none;}
+ }
++
++/* V20 — original 3-column premium console, all contents present in every phase.
++   Active emphasis ONLY; never conditional-hide adjacent cards. */
++.cif-console.cif-console-v20 {
++  height:195px;
++  display:flex;
++  flex-direction:column;
++  min-height:0;
++  box-sizing:border-box;
++  overflow:hidden;
++  border-radius:17px;
++}
++.cif-console-v20 .cif-console-heading{
++  height:29px;
++  flex:0 0 29px;
++  box-sizing:border-box;
++  padding:0 13px;
++}
++.cif-console-v20 .cif-console-caption{font-size:7.5px;white-space:nowrap;}
++.cif-v20-grid{
++  box-sizing:border-box;
++  display:grid;
++  grid-template-columns:repeat(3,minmax(0,1fr));
++  min-height:0;
++  flex:1 1 auto;
++  background:linear-gradient(180deg,#FAFCFF,#F3F7FC);
++}
++.cif-v20-column{
++  box-sizing:border-box;
++  display:flex;flex-direction:column;position:relative;min-width:0;min-height:0;
++  background:linear-gradient(165deg,rgba(255,255,255,.96),rgba(246,249,253,.92));
++  transition:background .28s,box-shadow .28s;
++}
++.cif-v20-column+.cif-v20-column{border-left:1px solid #DEE6F0;}
++.cif-v20-column.is-active{
++  background:linear-gradient(145deg,#FFFFFF 0%,#FFFBF7 62%,#FAF5F0 100%);
++  box-shadow:inset 0 2px rgba(232,119,31,.26);
++}
++.cif-v20-head{
++  all:unset; box-sizing:border-box;cursor:pointer;
++  width:100%;min-height:31px;flex:0 0 31px;
++  display:flex;align-items:center;justify-content:space-between;gap:5px;
++  padding:0 10px;
++  font:900 10px "Manrope",Arial,sans-serif;
++  color:#23344C;
++  border-bottom:1px solid #E4EAF2;
++  -webkit-tap-highlight-color:transparent;
++}
++.cif-v20-head:focus-visible{outline:2px solid #E8771F;outline-offset:-3px;}
++.cif-v20-head svg{margin-left:auto;flex:0 0 auto;color:#7E91AB;}
++.cif-v20-step{font-weight:950;font-size:9px;color:#E8771F;}
++.cif-v20-title{font-size:10.5px;font-weight:950;letter-spacing:.02em;}
++.cif-v20-column.is-active .cif-v20-title{color:#101E30;}
++.cif-v20-body{
++  min-height:0;display:flex;flex-direction:column;box-sizing:border-box;
++  flex:1 1 auto;padding:2px 10px 5px;overflow:hidden;
++}
++.cif-v20-match{
++  box-sizing:border-box;display:flex;align-items:center;gap:6px;min-width:0;
++  flex:1 1 0;border-bottom:1px solid #EAEFF5;
++}
++.cif-v20-match:last-child{border-bottom:0;}
++.cif-v20-id{
++  flex:0 0 auto;padding:3px 2px;border-radius:4px;
++  font-size:7px;font-weight:850;letter-spacing:-.02em;color:#96A3B6;background:#F3F6FA;
++}
++.cif-v20-entry{min-width:0;display:flex;flex-direction:column;justify-content:center;gap:1px;}
++.cif-v20-entry strong{
++  display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
++  font-size:9.3px;line-height:1.2;font-weight:850;color:#2B3A50;
++}
++.cif-v20-entry small{
++  display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
++  font-size:8.2px;line-height:1.25;font-weight:750;color:#BA753E;
++}
++.cif-v20-coupon{
++  display:flex;min-height:0;min-width:0;align-items:center;
++  flex:1 1 0;border-bottom:1px solid #EAEFF5;
++}
++.cif-v20-coupon .cif-v20-entry{width:100%;}
++.cif-v20-coupon .cif-v20-entry strong{display:flex;align-items:center;gap:3px;justify-content:space-between;}
++.cif-v20-coupon .cif-v20-entry em{font-size:9.2px;color:#24364E;font-style:normal;}
++.cif-v20-coupon .cif-v20-entry small{font-size:8px;color:#8494A9;}
++.cif-v20-stake-note{
++  flex:0 0 auto;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
++  color:#A27656;font-size:7.6px;font-weight:800;letter-spacing:.016em;
++}
++.cif-v20-results-list{padding-left:10px;padding-right:10px;}
++.cif-v20-result{
++  display:flex;align-items:center;justify-content:space-between;gap:3px;min-width:0;
++  flex:1 1 0;border-bottom:1px solid #EAEFF5;
++}
++.cif-v20-result span{color:#596B84;font-size:8.7px;font-weight:850;white-space:nowrap;}
++.cif-v20-result strong{font-size:11.2px;font-weight:950;white-space:nowrap;font-variant-numeric:tabular-nums;}
++.cif-v20-win{color:#1A9A72;}
++.cif-v20-loss{color:#CC665E;}
++.cif-v20-totals{
++  flex:0 0 auto;box-sizing:border-box;margin-top:3px;
++  padding:5px 6px 4px;border-radius:6px;
++  background:linear-gradient(165deg,#FFFDFC,#FFF4EA);
++  border:1px solid rgba(232,119,31,.14);
++  display:flex;flex-direction:column;gap:1px;
++}
++.cif-v20-totals small{font-size:7.2px;font-weight:800;color:#8B99AB;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
++.cif-v20-totals strong{font-size:10.5px;line-height:1.14;font-weight:950;color:#25374D;white-space:nowrap;}
++.cif-v20-totals strong span{color:#1A9A72;}
++.cif-v20-progress{
++  height:2px;position:absolute;left:0;right:0;bottom:0;
++  background:#E3EAF4;overflow:hidden;
++}
++.cif-v20-progress span{position:absolute;inset:0;background:linear-gradient(90deg,#E8771F,#FFAB6D);transform:scaleX(0);transform-origin:left;}
++.cif-v20-column.is-active .cif-v20-progress span{animation:cif-v20-progress-fill 6.6s linear forwards;}
++.cif-console-v20[data-flow-phase="results"] .cif-v20-column.is-active .cif-v20-progress span{animation-duration:7.8s;}
++@keyframes cif-v20-progress-fill{to{transform:scaleX(1)}}
++.cif-v20-footer{
++  box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;gap:8px;
++  flex:0 0 24px;height:24px;min-height:0;padding:0 12px;
++  border-top:1px solid #DEE6F0;
++  background:linear-gradient(180deg,#FAFCFF,#F1F5FA);
++  font-size:7.6px;color:#8494AA;font-weight:800;white-space:nowrap;
++}
++.cif-v20-footer>span{display:inline-flex;align-items:center;gap:5px;}
++.cif-v20-footer svg{color:#E8771F;flex:0 0 auto;}
++.cif-v20-status{color:#B87948;}
++@media(min-width:1180px){
++ .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow{min-height:555px;}
++ .desktopHome .cif-stage{height:498px;transform:translateY(4px);}
++ .desktopHome .cif-console.cif-console-v20{height:195px;}
++}
++@media(min-width:768px) and (max-width:1179px){
++ .desktopHome .cif-stage{height:498px;}
++ .desktopHome .cif-console.cif-console-v20{height:195px;}
++}
++@media(max-width:767px){
++ .cif-stage{height:480px;}
++ .cif-console.cif-console-v20{height:195px;border-radius:14px;}
++ .cif-console-v20 .cif-console-heading{height:27px;flex-basis:27px;padding:0 8px;}
++ .cif-console-v20 .cif-console-title{font-size:8.5px;}
++ .cif-console-v20 .cif-console-caption{font-size:6.7px;}
++ .cif-v20-head{height:27px;min-height:27px;flex-basis:27px;padding:0 5px;gap:3px;}
++ .cif-v20-title{font-size:8.7px;}
++ .cif-v20-step{font-size:8px;}
++ .cif-v20-head svg{width:11px;height:11px;}
++ .cif-v20-body{padding:2px 5px 4px;}
++ .cif-v20-match{gap:3px;}
++ .cif-v20-id{font-size:6.4px;padding:2px;}
++ .cif-v20-entry strong{font-size:7.8px;}
++ .cif-v20-entry small{font-size:7px;}
++ .cif-v20-coupon .cif-v20-entry em{font-size:7.8px;}
++ .cif-v20-coupon .cif-v20-entry small{font-size:7px;}
++ .cif-v20-stake-note{font-size:6.2px;}
++ .cif-v20-result span{font-size:7.2px;}
++ .cif-v20-result strong{font-size:9px;}
++ .cif-v20-totals{padding:5px 3px 3px;}
++ .cif-v20-totals small{font-size:6px;}
++ .cif-v20-totals strong{font-size:9px;}
++ .cif-v20-footer{height:23px;flex-basis:23px;padding:0 6px;font-size:6.3px;gap:4px;}
++}
++@media(max-width:355px){
++ .cif-stage{height:478px;}
++ .cif-v20-head{padding:0 3px;gap:2px;}
++ .cif-v20-title{font-size:7.5px;}
++ .cif-v20-step{font-size:7px;}
++ .cif-v20-body{padding:2px 3px 4px;}
++ .cif-v20-id{font-size:5.5px;}
++ .cif-v20-entry strong{font-size:6.7px;}
++ .cif-v20-entry small{font-size:6.2px;}
++ .cif-v20-result span{font-size:6.5px;}
++ .cif-v20-result strong{font-size:7.9px;}
++ .cif-v20-totals small{font-size:5.4px;}
++ .cif-v20-totals strong{font-size:8px;}
++ .cif-v20-stake-note{font-size:5.4px;}
++ .cif-v20-footer{font-size:5.7px;}
++}
++@media(prefers-reduced-motion:reduce){
++ .cif-v20-column.is-active .cif-v20-progress span{animation:none;transform:scaleX(1);}
++}
