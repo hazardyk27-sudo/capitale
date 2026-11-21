@@ -1,0 +1,39 @@
+--- a/client/src/components/IntelligenceFlowHeroDemo.tsx
++++ b/client/src/components/IntelligenceFlowHeroDemo.tsx
+@@ -21,18 +21,19 @@
+ 
+ // Fictional rotating illustrations only: never presented as live picks or prices.
+ const exampleMatches = [
+-  { fixture: "Roma – Inter", pick: "BTTS YES", odds: "4.57" },
+-  { fixture: "Ajax – PSV", pick: "OVER 2.5", odds: "5.11" },
+-  { fixture: "Lille – Lyon", pick: "FT 1", odds: "4.82" },
+-  { fixture: "Porto – Braga", pick: "OVER 2.5", odds: "5.06" },
++  { fixture: "Roma – Inter", pick: "BTTS YES", odds: "4.57", profit: "+€200" },
++  { fixture: "Ajax – PSV", pick: "OVER 2.5", odds: "5.11", profit: "+€356" },
++  { fixture: "Lille – Lyon", pick: "FT 1", odds: "4.82", profit: "+€148" },
++  { fixture: "Porto – Braga", pick: "OVER 2.5", odds: "5.06", profit: "+€427" },
+ ] as const;
+ 
+ export default function IntelligenceFlowHeroDemo() {
+   const [exampleIndex, setExampleIndex] = useState(0);
+   useEffect(() => {
+     const interval = window.setInterval(() => {
+-      // Change only once per complete 15s workflow cycle; never repeat adjacent matches.
+-      setExampleIndex((index) => (index + 1 + Math.floor(Math.random() * (exampleMatches.length - 1))) % exampleMatches.length);
++      // Change only at the end of each complete 15s cycle. Show all four
++      // fictional scenarios in order so none can be indefinitely skipped.
++      setExampleIndex((index) => (index + 1) % exampleMatches.length);
+     }, 15000);
+     return () => window.clearInterval(interval);
+   }, []);
+@@ -128,7 +129,7 @@
+                   <small className="cif-results-subtitle">{subtitle}</small>
+                   <span className="cif-profit-reveal" aria-hidden="true">
+                     <span className="cif-profit-reveal-label">PROFIT</span>
+-                    <strong className="cif-profit-reveal-amount">+€200</strong>
++                    <strong className="cif-profit-reveal-amount">{example.profit}</strong>
+                   </span>
+                 </>
+               ) : (
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
