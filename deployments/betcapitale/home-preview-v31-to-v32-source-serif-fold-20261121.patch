@@ -1,0 +1,49 @@
+--- a/client/src/components/CapitaleHeaderBrand.tsx
++++ b/client/src/components/CapitaleHeaderBrand.tsx
+@@ -31,11 +31,11 @@
+           style={{
+             display: "block",
+             color: "#FFFFFF",
+-            fontFamily: '"Playfair Display", "DM Serif Display", Georgia, serif',
+-            fontSize: compact ? "20px" : "23px",
+-            letterSpacing: compact ? "0.075em" : "0.095em",
++            fontFamily: '"Source Serif 4", Georgia, serif',
++            fontSize: compact ? "19px" : "22px",
++            letterSpacing: compact ? "0.055em" : "0.06em",
+             lineHeight: 1.1,
+-            fontWeight: 600,
++            fontWeight: 500,
+             whiteSpace: "nowrap",
+           }}
+         >
+--- a/client/src/components/intelligence-flow-hero-demo.css
++++ b/client/src/components/intelligence-flow-hero-demo.css
+@@ -1397,3 +1397,26 @@
+ @keyframes cif-engine-step-four-v29{
+   0%,69%{opacity:0} 73%,96%{opacity:1} 100%{opacity:0}
+ }
++
++
++/* V32 — preserve hero composition; start the member counter below the initial
++   viewport so no part of the card peeks into the first fold. It remains
++   fully accessible with normal scrolling; never hidden or clipped. */
++@media (min-width: 1100px) {
++  .desktopHome .capitale-members-strip {
++    margin-top: max(21px, calc(100vh - 700px));
++    margin-top: max(21px, calc(100svh - 700px));
++  }
++}
++@media (min-width: 768px) and (max-width: 1099px) {
++  .desktopHome .capitale-members-strip {
++    margin-top: max(25px, calc(100vh - 860px));
++    margin-top: max(25px, calc(100svh - 860px));
++  }
++}
++@media (max-width: 767px) {
++  .mobileHome .capitale-members-strip {
++    margin-top: max(0px, calc(100vh - 740px));
++    margin-top: max(0px, calc(100svh - 740px));
++  }
++}
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
