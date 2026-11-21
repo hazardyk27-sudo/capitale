@@ -6,7 +6,7 @@
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
-> **SON DURUM — ÖNİZLEME V27 AKTİF: V18 KOMPAKT ÜÇ KUTU; 4 EŞLEŞTİRİLMİŞ ÖRNEK SENARYO (MAÇ+TERCİH, ONDALIK KUPON ORANI, KÂR). 15 SN DÖNGÜ, HER TAM DÖNGÜ SONRASI SIRADAKİ SENARYO, 4. SENARYODAN SONRA 1.'YE DÖNÜŞ. V19–V21 REDDEDİLDİ. ANA SİTE DEĞİŞMEDİ.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
+> **SON DURUM — V30 ÖNİZLEME AKTİF: SEMBOLÜN SOLUNDAKİ 3 INDEPENDENT / DATA STREAMS YAZISI KORUNDU/GERİ GETİRİLDİ. SEMBOLÜN SAĞINDAKİ ESKİ CAPITALE / INTELLIGENCE / PROCESSING KALDIRILDI; YERİNE 4 AŞAMALI BÜYÜTÜLMÜŞ VE ORTALANMIŞ ANİMASYON EKLENDİ. V27'NİN 3 KUTUSU, 4 ÖRNEK MAÇ/ORAN/KÂR DÖNGÜSÜ DEĞİŞMEDİ. ANA SİTE DEĞİŞMEDİ.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
 
 ---
 
@@ -17,25 +17,25 @@
 | Tasarımcı rolü | Doğrudan iş yapan, Commander kullanan **TASARIMCI**. Codex'e yönlendirme yok |
 | Tasarım hedefi | Orijinal V18 premium kompakt workflow'u korumak; yeni animasyon mantığını ancak kullanıcı kararından sonra ve aşırı veri sıkıştırmadan geliştirmek |
 | Aktif örnek site | **https://betcapitale.com/preview/home-v1/** |
-| Güncel sürüm | **V27** (2026-11-21): V18 boyutlarında üç kutu; 4 örnek senaryo. 15 sn MATCHES → COUPONS → RESULTS; her tam döngü sonunda 4'lü örnek dizisi ilerler. Kârlar +€200, +€356, +€148, +€427 |
+| Güncel sürüm | **V30** (2026-11-21): Sol tarafta 3 INDEPENDENT / DATA STREAMS geri alındı; sağda eski statik CAPITALE / INTELLIGENCE / PROCESSING yerine merkezde 4 animasyonlu işlem adımı. V27'nin MATCHES/COUPONS/RESULTS kartları, örnek senaryoları ve 15 sn akışı korundu |
 | V18 ana başlık | **Use software to achieve** / **consistent daily profits.** |
 | V18 başlık altı, 1 | **We do the planning. You enjoy the winning.** |
 | V18 başlık altı, 2 | **Built on the right strategy for consistent long-term profits.** |
 | Başlık renk/fontu | Mevcut DM Serif Display, koyu mürekkep + CAPITALE turuncusu. Alt metin Manrope |
 | Üç CTA | Today's Matches, Community Voice, Calculate Profit — hizalar, renkler ve route'lar korunuyor |
-| Sağdaki sistem | MARKET SPECIALIST / NEWS / ANALYST → CAPITALE → **V18 boyutlarında hep görünür üç kutu**; dört eşleştirilmiş örnek MATCHES/COUPONS/RESULTS senaryosu: Roma–Inter/BTTS YES/4.57/+€200; Ajax–PSV/OVER 2.5/5.11/+€356; Lille–Lyon/FT 1/4.82/+€148; Porto–Braga/OVER 2.5/5.06/+€427 |
+| Sağdaki sistem | Üst üç kaynak kartı → solda **3 INDEPENDENT / DATA STREAMS**, ortada CAPITALE sembolü, sağda büyük ve merkezlenmiş dört adımlı metin animasyonu → V18 boyutlarında 3 sabit MATCHES / COUPONS / RESULTS kartı. V27'nin 4 örnek maç/oran/kâr senaryosu korunuyor |
 | Üst yazı ve prompt | «THE CAPITALE SYSTEM», «ILLUSTRATIVE PREVIEW» ve animasyonlu üst konuşma kutusu **V17'de silindi** |
 | Analist alt metni | **REVIEWS STATISTICS** |
 | Sahte veri uyarısı | **CONCEPT, NOT LIVE DATA** korunur; +€200 yalnızca kurgusal demo, gerçek bahis sonucu değildir; V19–V21 kupon detayları geri gelmedi |
 | Üye sayacı | Hero altında yatay mevcut biçim; kaynak mantığına dokunulmadı |
-| QA | V27 TSC/Vite PASS; HTTP 200; Puppeteer 1662/1200/768/390/320 px; her ekran genişliğinde dört ayrı senaryonun tamamı ve 1. senaryoya dönüş PASS; üç fazın görünürlüğü ve boyut sabitliği PASS; konsol JS hatası/taşma yok; ana site SHA sabit |
+| QA | V30 TSC/Vite PASS; HTTP 200; Puppeteer 1662/1200/768/390/320px sol yazının varlığı, sağ eski metinlerin yokluğu, 4 animasyon fazı, merkezleme, 3 kutu sabitliği, sayfa taşması/JS hata kontrolü PASS. Üretim SHA sabit |
 | Yayın sınırı | **Yalnızca önizleme**. Üretim sayfası ve \`dist/index.cjs\` değiştirilmedi |
 | Üretime geçiş | **Henüz kullanıcı onayı verilmedi** — kendiliğinden yayınlama |
 | V18 yedeği | V18 geri dönüş kaynağı: `/srv/capitale-preview/home-v1.rollback-animated-workflow-v19-20261121`; reddedilen V21 için yedek: `/srv/capitale-preview/home-v1.rollback-rejected-v21-before-v18-restoration-20261121` |
 
 Önizlemenin son doğrulanmış bundle referansları (daha sonra değişebilir):
-- JS: `/preview/home-v1/assets/index-glUkLKvs.js`
-- CSS: `/preview/home-v1/assets/index-CqtrfdNd.css`
+- JS: `/preview/home-v1/assets/index-BvXiv2KM.js`
+- CSS: `/preview/home-v1/assets/index-CD-GA2aZ.css`
 - İkisi de HTTPS 200 olarak görüldü; önizleme HTML 200, ana site HTTP 200, yetkisiz admin API 401.
 
 **İlk iş olarak bu bilgilerin hâlâ güncel olduğunu doğrula.** Başka görev/sunucu deploy'u paralel gerçekleşebilir; sabit hash'e güvenme.
@@ -47,7 +47,7 @@
 - **Canlı site:** \`https://betcapitale.com/\`
 - **Önizleme:** \`https://betcapitale.com/preview/home-v1/\`
 - **Önizleme statik dosyaları:** \`/srv/capitale-preview/home-v1\`
-- **Aktif V27 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v27-four-scenarios-work`. (V26 ve daha eski sürümler korunmuştur.)
+- **Aktif V30 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v30-restore-left-data-streams-work`. (V27 ve daha eski sürümler korunmuştur.)
 - **Önceki V18 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v18-work`.
 - **Canlı frontend:** \`/app/betcapitale/dist/public\` (**önizleme için değiştirme**).
 - **Canlı backend:** \`/app/betcapitale/dist/index.cjs\` (**asla yanlışlıkla frontend derlemesinden gelen backend ile değiştirme**).
@@ -248,6 +248,18 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **GitHub patch:** `deployments/betcapitale/home-preview-v26-to-v27-four-rotating-scenarios-20261121.patch`; commit `9a6a64457decbebdd58018ff2051333d51a565e3`.
 - **Gerçek screenshotlar:** https://betcapitale.com/preview/home-v1/designer-v27-four-scenarios-matches.png , https://betcapitale.com/preview/home-v1/designer-v27-four-scenarios-coupons.png ve https://betcapitale.com/preview/home-v1/designer-v27-four-scenarios-results.png .
 - **Sonraki adım:** Kullanıcının V27 önizleme değerlendirmesi. Ana siteye açık emir gelmeden yayınlama.
+
+### 2026-11-21 — V30 — Sol DATA STREAMS geri geldi, sağ dört adımlı açıklama merkezlendi
+
+- **Kullanıcı talimatı ve düzeltme:** Sembolün sağındaki eski CAPITALE / INTELLIGENCE / PROCESSING yazıları kaldırılıp yeni dört adımlı açıklama büyütülerek sembolün sağında ortaya yerleştirilecek. V29'da sol `3 INDEPENDENT / DATA STREAMS` yanlışlıkla kaldırıldı. Kullanıcı bu yanlış müdahaleyi bildirdi ve V30'da sol blok orijinal yerleşimiyle GERİ GETİRİLDİ.
+- **V30 onay bekleyen önizleme:** Sol tarafta `3 INDEPENDENT / DATA STREAMS` korunuyor; ortada CAPITALE sembolü sabit; sağda sırayla `Software selects matches`, `Matches are grouped into coupons`, `Coupons placed with equal stakes`, `Day-end returns are calculated` yazıları büyütülmüş, iki eksende ortalanmış, fade geçişli. Sağ eski sabit metinler yok. MATCHES / COUPONS / RESULTS ve dört kurgusal senaryo aynen devam ediyor.
+- **Kaynak dosyalar:** `client/src/components/IntelligenceFlowHeroDemo.tsx`, `client/src/components/intelligence-flow-hero-demo.css`.
+- **Sunucu çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v30-restore-left-data-streams-work`.
+- **Yayın ve yedek:** Yalnızca https://betcapitale.com/preview/home-v1/ . `/srv/capitale-preview/home-v1.rollback-before-v30-restore-left-20261121` geri dönüş yedeği; önceki V27/V28/V29 kaynakları korunmuştur. Üretim frontend/backend SHA değişmedi.
+- **Doğrulama:** TypeScript PASS; Vite PASS; HTML/JS/CSS HTTP 200; Puppeteer 1662/1200/768/390/320 px tümünde sol yazılar görünüyor, sağ eski metinler yok, yeni dört aşama doğru sırada, sembolle çakışma/yatay taşma/JS hatası yok; üç alt kutu aynı boyutta.
+- **GitHub patch:** `deployments/betcapitale/home-preview-v27-to-v30-centered-copy-restore-left-20261121.patch` — V27 kaynaklarına uygulanabilir, commit `bcddb92e6e24ab6419abd501811456a5ff33f93d`.
+- **Gerçek görüntüler:** https://betcapitale.com/preview/home-v1/designer-v30-restore-left-desktop.png ve https://betcapitale.com/preview/home-v1/designer-v30-restore-left-mobile.png.
+- **Sonraki adım:** Kullanıcının önizleme değerlendirmesi; açık talimat verilmeden canlıya geçme.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
