@@ -6,7 +6,7 @@
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
-> **SON DURUM — V19 ÖNİZLEME AKTİF / ANA SİTEYE HENÜZ AKTARILMADI.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
+> **SON DURUM — ÖNİZLEME V18 ORİJİNAL KOMPAKT WORKFLOW'A GERİ DÖNDÜ. V19, V20, V21 KULLANICI TARAFINDAN REDDEDİLDİ. ANA SİTE DEĞİŞMEDİ.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
 
 ---
 
@@ -15,27 +15,27 @@
 | Alan | Son doğrulanmış durum |
 |---|---|
 | Tasarımcı rolü | Doğrudan iş yapan, Commander kullanan **TASARIMCI**. Codex'e yönlendirme yok |
-| Tasarım hedefi | Beyaz CAPITALE hero, sağda animasyonlu örnek maç / kupon / net bilanço süreci |
+| Tasarım hedefi | Orijinal V18 premium kompakt workflow'u korumak; yeni animasyon mantığını ancak kullanıcı kararından sonra ve aşırı veri sıkıştırmadan geliştirmek |
 | Aktif örnek site | **https://betcapitale.com/preview/home-v1/** |
-| Güncel sürüm | **V19 — Animated MATCHES → COUPONS → RESULTS**, 2026-11-21 |
+| Güncel sürüm | **V18 restore edildi** — orijinal 3 sütunlu küçük MATCHES / COUPONS / RESULTS; V19/V20/V21 reddedildi. Tarih 2026-11-21 |
 | V18 ana başlık | **Use software to achieve** / **consistent daily profits.** |
 | V18 başlık altı, 1 | **We do the planning. You enjoy the winning.** |
 | V18 başlık altı, 2 | **Built on the right strategy for consistent long-term profits.** |
 | Başlık renk/fontu | Mevcut DM Serif Display, koyu mürekkep + CAPITALE turuncusu. Alt metin Manrope |
 | Üç CTA | Today's Matches, Community Voice, Calculate Profit — hizalar, renkler ve route'lar korunuyor |
-| Sağdaki sistem | MARKET SPECIALIST / NEWS / ANALYST → CAPITALE → 4 MATCHES → 3 COUPONS → 2 WON / 1 LOST, net +€46 demo |
+| Sağdaki sistem | MARKET SPECIALIST / NEWS / ANALYST → CAPITALE → **V18 eski üç sütunlu MATCHES / COUPONS / RESULTS**. Şu anda satır içi canlı örnek seçim/kupon/bilanço yok |
 | Üst yazı ve prompt | «THE CAPITALE SYSTEM», «ILLUSTRATIVE PREVIEW» ve animasyonlu üst konuşma kutusu **V17'de silindi** |
 | Analist alt metni | **REVIEWS STATISTICS** |
-| Sahte veri uyarısı | **SAMPLE DATA · NOT LIVE BETS**; 4 maç/3 kupon ve bütün euro tutarları kurgusal, gerçek sonuç değil |
+| Sahte veri uyarısı | V18 özgün **CONCEPT, NOT LIVE DATA** uyarısı; reddedilen V19–V21 gösterimlerinin örnek verisi artık aktif önizlemede yok |
 | Üye sayacı | Hero altında yatay mevcut biçim; kaynak mantığına dokunulmadı |
-| QA | V19 TypeScript ve Vite build geçti; 3/3 örnek muhasebe testi, 15 viewport (320–1880px), her 3 panel, otomatik tam döngü ve reduced-motion manuel kullanım doğrulandı |
+| QA | Geri dönüş HTTP 200 HTML/JS/CSS; Puppeteer 1662/1200/390px doğrulandı: orijinal üç kolon, başlık, yatay taşma yok, JS hata yok; canlı frontend/backend SHA sabit |
 | Yayın sınırı | **Yalnızca önizleme**. Üretim sayfası ve \`dist/index.cjs\` değiştirilmedi |
 | Üretime geçiş | **Henüz kullanıcı onayı verilmedi** — kendiliğinden yayınlama |
-| V18 yedeği | `/srv/capitale-preview/home-v1.rollback-animated-workflow-v19-20261121` |
+| V18 yedeği | V18 geri dönüş kaynağı: `/srv/capitale-preview/home-v1.rollback-animated-workflow-v19-20261121`; reddedilen V21 için yedek: `/srv/capitale-preview/home-v1.rollback-rejected-v21-before-v18-restoration-20261121` |
 
 Önizlemenin son doğrulanmış bundle referansları (daha sonra değişebilir):
-- JS: `/preview/home-v1/assets/index-BGFb9wo_.js`
-- CSS: `/preview/home-v1/assets/index-Bljs8-h1.css`
+- JS: `/preview/home-v1/assets/index-st17SHV_.js`
+- CSS: `/preview/home-v1/assets/index-CcUymKZ4.css`
 - İkisi de HTTPS 200 olarak görüldü; önizleme HTML 200, ana site HTTP 200, yetkisiz admin API 401.
 
 **İlk iş olarak bu bilgilerin hâlâ güncel olduğunu doğrula.** Başka görev/sunucu deploy'u paralel gerçekleşebilir; sabit hash'e güvenme.
@@ -47,7 +47,7 @@
 - **Canlı site:** \`https://betcapitale.com/\`
 - **Önizleme:** \`https://betcapitale.com/preview/home-v1/\`
 - **Önizleme statik dosyaları:** \`/srv/capitale-preview/home-v1\`
-- **Aktif V19 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-animated-workflow-v19-work`.
+- **Aktif geri dönülen V18 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v18-work`.
 - **Önceki V18 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v18-work`.
 - **Canlı frontend:** \`/app/betcapitale/dist/public\` (**önizleme için değiştirme**).
 - **Canlı backend:** \`/app/betcapitale/dist/index.cjs\` (**asla yanlışlıkla frontend derlemesinden gelen backend ile değiştirme**).
@@ -83,6 +83,17 @@
 - Önizleme: https://betcapitale.com/preview/home-v1/?v=animated-workflow-v19
 - Görseller: [Masaüstü Matches](https://betcapitale.com/preview/home-v1/workflow-v19-desktop-matches.png), [Coupons](https://betcapitale.com/preview/home-v1/workflow-v19-desktop-coupons.png), [Results](https://betcapitale.com/preview/home-v1/workflow-v19-desktop-results.png), [Mobil Matches](https://betcapitale.com/preview/home-v1/workflow-v19-mobile-matches.png), [Coupons](https://betcapitale.com/preview/home-v1/workflow-v19-mobile-coupons.png), [Results](https://betcapitale.com/preview/home-v1/workflow-v19-mobile-results.png).
 - 15 ekran genişliği ve her 3 tab içeriği kontrol edildi; otomatik MATCHES→COUPONS→RESULTS→MATCHES döngüsü gerçek tarayıcıda geçti. 3/3 unit test başarılı. Ana siteye/backend'e dokunulmadı.
+
+### Kritik tasarım geri dönüşü — 21 Kasım 2026
+
+- Kullanıcı V19 geniş sekmeli paneli, V20 sürekli görünen sıkışık üç sütunu ve V21 yatay üç katman tasarımını açık biçimde **reddetti**: "yine olmadı hatta gittikçe kötüye gidiyoruz".
+- **Yeni bir tasarım otomatik başlatma.** Önce kullanıcının onayladığı sade orijinal üç sütunlu eski workflow'u **V18** olarak geri yükledik.
+- Aktif HTML V18 bundle: `index-st17SHV_.js`, `index-CcUymKZ4.css`, `/srv/capitale-preview/home-v1/index.html`. Önizlemede React hero'da V18 uzun başlık metni korunur.
+- Geri dönüş **V19 yayını öncesi alınan gerçek V18 klasör yedeğinden**, atomik `index.html` değişimiyle yapıldı; üretim frontend/backend'e dokunulmadı. RESTORE QA: 1662, 1200, 390 px, üç klasik MATCHES/COUPONS/RESULTS kartı, yaklaşık 157px masaüstü yükseklik, taşma/hata yok.
+- Yedekler: V18 kaynak klasörü `/srv/capitale-preview/home-v1.rollback-animated-workflow-v19-20261121`; geri dönüşten önce reddedilmiş V21 dosyaları da `/srv/capitale-preview/home-v1.rollback-rejected-v21-before-v18-restoration-20261121` klasöründe saklandı.
+- V20 ile V21 değişiklikleri GitHub'da arşivlenebilir ancak **onaylanmış sürüm olarak kullanılmamalı**. Aktif siteden kaldırıldılar.
+- Kullanıcıya sunulan alternatif yalnızca **tasarım önerisidir, uygulanmadı**: V18 panelin aynı küçük ölçülerini koruyarak üç kutu da daima ekranda durur; her kutunun *yalnızca kendi kısa satırları* zamana bağlı dönüşümlü değişir ve net günlük bakiye görünür kalır. Bunun da onaylanması gerekir.
+- **Sıradaki adım:** Kullanıcı görünümü tekrar tarif etmeden V22 üretme veya ana siteye dokunma.
 
 ## 3. Bu sohbet ve önceki tasarım turlarında yapılan işler
 
@@ -188,14 +199,15 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - [x] «Codex yerine doğrudan tasarımcı uygulasın» talimatı rol kurallarına işlendi.
 - [x] Tasarımcının GitHub rol ve sohbet dosyaları açıldı.
 - [x] V18'in üstünde V19 iş akışı geliştirmesi tamamlandı.
-- [ ] **Kullanıcının V19 animasyonunu değerlendirmesini al**; gerekirse V20 worktree'de iyileştir.
+- [x] Kullanıcı V19/V20/V21'i reddetti; V18 workflow önizlemesi geri yüklendi.
+- [ ] Kullanıcının V18 tabanı üzerinde **yeni sade içerik geçişi konseptine açık onayını** bekle; onay yoksa tasarım üretme.
 - [ ] **Ana siteye geçiş için açık kullanıcı talimatı bekle.** Preview beğenilmeden canlı \`/\` yolunu değiştirme.
 - [ ] Sonraki her tasarım tamamlandığında **önizleme + kod patch + bu günlük** aynı turda güncellensin. Tarih/sürüm/commit/test/yedek alanlarını kaydet.
 - [ ] Gelecekte gerçek sistem metrikleri veya günlük sonuçlar bağlanacaksa işleme başlamadan kaynak, güvenilirlik ve statik demo ayrımını doğrula; onaysız veya sahte kâr verisini gerçek gibi sunma.
 
 ### Sonraki tasarımcı için tek paragraf başlangıç komutu
 
-> Ben CAPITALE'nin **TASARIMCI** ajanıyım. Önce \`AGENTS.md\`, \`MILESTONE.md\`, \`tasarımcı.md\` ve \`tasarımcı-sohbet.md\` dosyalarını GitHub'dan güncel olarak okuyacağım. Desktop Commander'da \`smartxflow\` cihazını bulup \`https://betcapitale.com/preview/home-v1/\` önizlemesinin gerçekte hangi sürüm olduğunu doğrulayacağım. Son onaylanmayı bekleyen tasarım V19'dur. Kullanıcının bir sonraki görsel düzenleme talebini ayrı V20 worktree'de bizzat uygulayıp yalnızca preview'ya derleyip deploy edeceğim; 320–1880px QA, rollback ve GitHub patch kaydından sonra **bu aynı sohbet günlüğünü güncelleyeceğim**. Codex promptu vermeyeceğim ve kullanıcı onayı olmadan ana siteyi değiştirmeyeceğim.
+> Ben CAPITALE'nin **TASARIMCI** ajanıyım. Önce \`AGENTS.md\`, \`MILESTONE.md\`, \`tasarımcı.md\` ve \`tasarımcı-sohbet.md\` dosyalarını GitHub'dan güncel olarak okuyacağım. Desktop Commander'da \`smartxflow\` cihazını bulup \`https://betcapitale.com/preview/home-v1/\` önizlemesinin gerçekte hangi sürüm olduğunu doğrulayacağım. V19/V20/V21 reddedildi; aktif önizleme V18 restorasyonudur. Kullanıcının bir sonraki görsel düzenleme talebini yeni bağımsız bir worktree'de bizzat uygulayıp yalnızca preview'ya derleyip deploy edeceğim; 320–1880px QA, rollback ve GitHub patch kaydından sonra **bu aynı sohbet günlüğünü güncelleyeceğim**. Codex promptu vermeyeceğim ve kullanıcı onayı olmadan ana siteyi değiştirmeyeceğim.
 
 ---
 
