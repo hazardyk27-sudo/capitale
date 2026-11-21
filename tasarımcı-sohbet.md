@@ -6,7 +6,7 @@
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
-> **SON DURUM — V32 ÖNİZLEME AKTİF: ÜST HEADER CAPITALE YAZISI PLAYFAIR DISPLAY 600 YERİNE DAHA İNCE SOURCE SERIF 4 MEDIUM 500 (DESKTOP 22PX / MOBİL 19PX). SAYFA İLK AÇILDIĞINDA ALTTAKİ ÜYE SAYACININ ÜSTÜ GÖRÜNMÜYOR; SAYACI KAYDIRARAK GÖRMEK MÜMKÜN. V31'İN SOL DATA STREAMS, SAĞ DÖRTLÜ AÇIKLAMA, ÜÇ WORKFLOW KUTUSU VE SADELEŞTİRMELERİ KORUNDU. ANA SİTE DEĞİŞMEDİ.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
+> **SON DURUM — V33 ÖNİZLEME AKTİF: CAPITALE SİYAH HEADER WORDMARK SOURCE SERIF 4 500 YERİNE OUTFIT LIGHT 300 İLE YENİLENDİ (Masaüstü 22px, mobil 20px); DAHA İNCE, FERAH VE MODERN. SOFTWARE INTELLIGENCE MANROPE ALT SATIR 600'E HAFİFLETİLDİ. V32 SAYACIN İLK EKRANDA GÖRÜNMEMESİ, SEMBOLÜN SOLU/SAĞI, MATCHES/COUPONS/RESULTS VE DEMO DÖNGÜSÜ KORUNDU. ANA SİTE DEĞİŞMEDİ.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
 
 ---
 
@@ -17,7 +17,7 @@
 | Tasarımcı rolü | Doğrudan iş yapan, Commander kullanan **TASARIMCI**. Codex'e yönlendirme yok |
 | Tasarım hedefi | Orijinal V18 premium kompakt workflow'u korumak; yeni animasyon mantığını ancak kullanıcı kararından sonra ve aşırı veri sıkıştırmadan geliştirmek |
 | Aktif örnek site | **https://betcapitale.com/preview/home-v1/** |
-| Güncel sürüm | **V32** (2026-11-21): Header CAPITALE wordmark Source Serif 4 Medium 500 (masaüstü 22px, mobil 19px), zarif harf aralığı; üye sayacı ekran yüksekliğine uyumlu mesafeyle ilk fold altına alındı. Dört açıklama, dört kurgusal senaryo, 15sn döngü korundu |
+| Güncel sürüm | **V33** (2026-11-21): Dört font gerçek logo üzerinde karşılaştırıldı (Manrope 400, Outfit 300, Plus Jakarta Sans 400, Montserrat 300); seçilen Outfit Light 300 (masaüstü 22px, mobil 20px, ferah tracking). Alt SOFTWARE INTELLIGENCE Manrope 600. V32 ilk-fold mesafeleri, animasyonlar, dört örnek senaryo korundu |
 | V18 ana başlık | **Use software to achieve** / **consistent daily profits.** |
 | V18 başlık altı, 1 | **We do the planning. You enjoy the winning.** |
 | V18 başlık altı, 2 | **Built on the right strategy for consistent long-term profits.** |
@@ -28,13 +28,13 @@
 | Analist alt metni | **REVIEWS STATISTICS** |
 | Sahte veri uyarısı | **CONCEPT, NOT LIVE DATA** korunur; +€200 yalnızca kurgusal demo, gerçek bahis sonucu değildir; V19–V21 kupon detayları geri gelmedi |
 | Üye sayacı | Hero altında yatay mevcut biçim; kaynak mantığına dokunulmadı |
-| QA | V32 TSC/Vite PASS, preview HTML/JS/CSS HTTP 200; Puppeteer masaüstü 1825×864, 1440×900, 1200×800/1080, 1024×768/1080, 768×900/1200 ve mobil 430×932, 390×844, 375×812, 320×640 kontrol edildi. Sayaç ilk ekranda görünmüyor (16px+ güvenli boşluk); kaydırınca görülüyor, menü/font yükleme ve içerik/taşma kontrolleri PASS; üretim SHA sabit |
+| QA | V33 TSC/Vite PASS, preview HTML/JS/CSS HTTP 200; Puppeteer 1825×864, 1440×900, 1200×800, 1024×768, 768×900, 430×932, 390×844, 320×640 PASS; Outfit 300 tarayıcıda gerçekten loaded, mobil menü/header çakışması yok, sayaç ilk ekranın altında, 3 kutu ve 4 işlem adımı korundu, yatay taşma/JS hata yok; üretim SHA sabit |
 | Yayın sınırı | **Yalnızca önizleme**. Üretim sayfası ve \`dist/index.cjs\` değiştirilmedi |
 | Üretime geçiş | **Henüz kullanıcı onayı verilmedi** — kendiliğinden yayınlama |
 | V18 yedeği | V18 geri dönüş kaynağı: `/srv/capitale-preview/home-v1.rollback-animated-workflow-v19-20261121`; reddedilen V21 için yedek: `/srv/capitale-preview/home-v1.rollback-rejected-v21-before-v18-restoration-20261121` |
 
 Önizlemenin son doğrulanmış bundle referansları (daha sonra değişebilir):
-- JS: `/preview/home-v1/assets/index-DVMpNyf6.js`
+- JS: `/preview/home-v1/assets/index-DjgT6X1N.js`
 - CSS: `/preview/home-v1/assets/index-C3LZv0fH.css`
 - İkisi de HTTPS 200 olarak görüldü; önizleme HTML 200, ana site HTTP 200, yetkisiz admin API 401.
 
@@ -47,7 +47,7 @@
 - **Canlı site:** \`https://betcapitale.com/\`
 - **Önizleme:** \`https://betcapitale.com/preview/home-v1/\`
 - **Önizleme statik dosyaları:** \`/srv/capitale-preview/home-v1\`
-- **Aktif V32 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v32-refined-wordmark-fold-work`. (V31 ve daha eski sürümler korunmuştur.)
+- **Aktif V33 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v33-outfit-light-wordmark-work`. (V32 ve daha eski sürümler korunmuştur.)
 - **Önceki V18 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v18-work`.
 - **Canlı frontend:** \`/app/betcapitale/dist/public\` (**önizleme için değiştirme**).
 - **Canlı backend:** \`/app/betcapitale/dist/index.cjs\` (**asla yanlışlıkla frontend derlemesinden gelen backend ile değiştirme**).
@@ -282,6 +282,18 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **GitHub patch:** `deployments/betcapitale/home-preview-v31-to-v32-source-serif-fold-20261121.patch`; commit `76236b8ae4c1f1ddffa97528040c5e340361f4e8`.
 - **Gerçek screenshot:** https://betcapitale.com/preview/home-v1/designer-v32-firstfold-desktop.png ve https://betcapitale.com/preview/home-v1/designer-v32-firstfold-mobile.png; wordmark crop görüntüleri de preview dizininde.
 - **Bir sonraki adım:** Kullanıcı font ve first-fold sonucunu değerlendirsin. Açık talimat olmadan ana siteye yayınlama.
+
+### 2026-11-21 — V33 — CAPITALE üst wordmark Outfit Light 300
+
+- **Kullanıcı geri bildirimi:** V32 Source Serif 4 Medium hâlâ kaba; daha ince, narin, okunaklı ve CAPITALE'nin yazılım temasına uyan kurumsal font seçilsin ve uygulansın.
+- **Tasarım karşılaştırması:** Aynı gerçek header logoda Manrope 400, Outfit 300, Plus Jakarta Sans 400, Montserrat 300 gerçek Google Font web yüklenerek test edildi. Daha ince ama okunur, modern ve premium denge nedeniyle **Outfit Light (300)** seçildi.
+- **Yapılan değişiklik:** `client/src/components/CapitaleHeaderBrand.tsx` içinde CAPITALE yazısı `Outfit, Manrope, sans-serif` weight 300, desktop 22px letter spacing .145em, compact 20px .115em. `SOFTWARE INTELLIGENCE` alt satırı Manrope 600'e inceltildi, tracking desktop .15em. Turuncu sembol, header boyutu ve siyah arka plan korunuyor. Başka bileşen değiştirilmedi.
+- **Yayın:** https://betcapitale.com/preview/home-v1/?v=33 — sadece preview. Canlı üretim frontend/backend SHA sabit; canlı siteye dokunulmadı.
+- **QA:** TypeScript PASS, Vite PASS, preview HTML/JS/CSS HTTPS 200; Puppeteer 1825×864, 1440×900, 1200×800, 1024×768, 768×900, 430×932, 390×844, 320×640 testleri PASS. Outfit gerçek font-face loaded; mobil menüyle örtüşme, yatay taşma ya da JS hatası yok. Sayaç ilk fold altında, solda DATA STREAMS, dört anlatım metni, 3 workflow kutusu ve uyarı korundu.
+- **Yedek:** `/srv/capitale-preview/home-v1.rollback-before-v33-outfit-light-20261121` (V32).
+- **GitHub patch:** `deployments/betcapitale/home-preview-v32-to-v33-outfit-light-wordmark-20261121.patch`, commit `6e515f4f092e5a54d7d7527b1db022c4d04416ab`.
+- **Ekran görüntüleri:** https://betcapitale.com/preview/home-v1/designer-v33-wordmark-desktop.png, https://betcapitale.com/preview/home-v1/designer-v33-wordmark-mobile.png ve ilk fold ekran görüntüleri.
+- **Sonraki adım:** Kullanıcı V33 fontunu değerlendirir. Açık talimat olmadan ana siteye deploy edilmez.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
