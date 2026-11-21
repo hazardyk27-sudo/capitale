@@ -2,13 +2,13 @@
 
 **Sorumlu:** TASARIMCI  
 **Belge amacı:** CAPITALE tasarımcısının sohbetler arası kalıcı belleği; yapılan bütün bilinen tasarım işleri, sürümler, onaylar, uygulanmış değişiklikler, doğrulamalar, yedekler ve sıradaki görevler.  
-**Son güncelleme:** 21 Kasım 2026 · Match List v2 V6 premium koyu lacivert skor panosu CANLI  
+**Son güncelleme:** 21 Kasım 2026 · Match List v2 V7 orijinal beyaz/turuncu CAPITALE renklerine geri dönüldü  
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
 > **SON DURUM — V33 KULLANICI ONAYIYLA CANLIYA AKTARILDI (2026-11-21). `https://betcapitale.com/` ANA SAYFASI V33 HERO İLE ÇALIŞIYOR. Outfit Light logo, 3 kaynak, merkez CAPITALE simgesi, 4 açıklama adımı, 4 demo maç/oran/kâr senaryosu ve sayaç ilk-fold düzeltmesi yayında. DİĞER ROTALARIN ORIGINAL FRONTEND PAKETİ, AUTH/ADMIN YAZILIMI, ANALYTICS/IMPORTMAP VE BACKEND DEĞİŞMEDİ. Canlı HTML rollback yedeği hazır; masaüstü/mobil/rotalar/animasyonlar test edildi. Önizleme de ayrıca V33 olarak korunuyor.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
 
-**Güncel ek bilgi — 21.11.2026:** **Admin / Match List v2 V6 premium CANLI**. Kullanıcı V5'teki büyük beyaz boşluğu, küçük metrikleri ve cansız listeyi reddedip araştırılmış premium spor paneli istedi. FotMob bilgi hiyerarşisi ve Dribbble koyu maç panolarından esinlenen, CAPITALE turuncu-siyah kimliğinde **lacivert hero + 10 dolu koyu maç kartı + renkli SXF + A/V/N/B/O yüksek kontrastlı kutular + turuncu saat** tasarlandı. Her satırda yalnızca sıra no, iki kulüp logosu, tam maç adı, sinyal, A/V/N/B/O, saat bulunur; tercih/T/kaynak açıklaması yok. 1080×1920 story ve 1080×1350 post testlerinde 10/10 kart, 20/20 logo, uzun isimler eksiksiz, kaynaksız veriler `—`. **Software v16** üç importmap aliası ve backend korundu; V5 rollback hazır.
+**Güncel ek bilgi — 21.11.2026:** **Admin / Match List v2 V7 CANLI.** Kullanıcı V6 lacivert/koyu kartları CAPITALE temasına uygun bulmadı; **sadece eski beyaz/açık gri ve turuncu marka renklerinin geri gelmesini**, tasarımın bundan sonra ayrıca değerlendirilmesini istedi. V7'de beyaz başlık ve maç kartları, koyu lacivert takım isimleri, açık gri A/V/N/B/O değer kutuları, turuncu vurgu ve saat, artış yeşil/azalış kırmızı geri getirildi. **V6 grid, isim yerleşimi, boyutlar, logolar, otomatik kaynak eşleştirme ve veri içeriği değiştirilmedi.** Story 1080×1920 ve post 1080×1350 PASS, 20/20 logo. **Software v16** ve backend korundu; V6 rollback hazır.
 
 ---
 
@@ -16,7 +16,7 @@
 
 | Alan | Son doğrulanmış durum |
 |---|---|
-| Match List v2 (CANLI) | **V6 premium scoreboard, 21.11.2026 LIVE**: `/admin` → Social Media → Match List v2. Koyu lacivert/turuncu CAPITALE premium başlık ve büyük, kontrastlı 10 maç kartı. 2 tam boy logo, tam maç ismi, renkli SXF, **A · V · N · B · O** için koyu veri kutuları, turuncu saat; eksik alan `—`. Tercih, seçim, ayrı T ve fazladan bilgi yok. Story 1080×1920, post 1080×1350 PASS; 20/20 logo ve uzun maç adları okunur. Source/backend/Software v16 korunuyor. |
+| Match List v2 (CANLI) | **V7 COLOR-ONLY, 21.11.2026 LIVE**: `/admin` → Social Media → Match List v2. V6'daki lacivert zemin kaldırıldı. CAPITALE orijinal **beyaz/açık gri + koyu mürekkep + turuncu** tema geri geldi. Maç başına 2 logo, tam isim, renkli SXF, **A · V · N · B · O** değerleri açık gri kutuda, turuncu saat. Yerleşim/boyut/sinyal/veri **değişmedi**. Story ve post QA PASS, 20/20 logo; Software v16/backend korundu. Kullanıcının sonraki tasarım değerlendirmesi bekleniyor. |
 | Tasarımcı rolü | Doğrudan iş yapan, Commander kullanan **TASARIMCI**. Codex'e yönlendirme yok |
 | Tasarım hedefi | Orijinal V18 premium kompakt workflow'u korumak; yeni animasyon mantığını ancak kullanıcı kararından sonra ve aşırı veri sıkıştırmadan geliştirmek |
 | Canlı ana site | **https://betcapitale.com/** — kullanıcının açık onayıyla V33 hero aktarıldı; diğer route'lar mevcut üretim paketlerinde |
@@ -370,6 +370,16 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **Rollback:** `/app/betcapitale/rollback-matchlist-v2-premium-scoreboard-v6-20261121/index.html` (V5 + Software v16). Önceki index SHA `8aed4fcac7b3d7a9a9e96c957aa2d1532ae7ff2cb215f36036b1a6800df545a4`, yeni index SHA `63e314da4a90ed94d35340d845b54b6abfb279bcb9d679f17602025bcbf95db4`; backend SHA `79b0bed37aed965979fc0d0bc6c093c4dcfe07a59934096cc65f2fb5c7ce3832` değişmedi.
 - **GitHub:** Kaynak patch `deployments/betcapitale/matchlist-v5-to-v6-premium-scoreboard-20261121.patch` commit `43393d28e314f4a26a9e421a99dd46e9bb74ca7f`; yalnızca HTML importmap farkı `deployments/betcapitale/matchlist-v6-premium-production-importmap-20261121.patch` `afe67236efafb50bce6cd96c515439f11adcb45a`; tam rapor `deployments/betcapitale/matchlist-v6-premium-scoreboard-live-20261121.md` `54445fa2591f71fa4aa7d7cdeec887c5fb0ad79d`.
 - **Devam:** Kullanıcı gerçek yönetici oturumunda export görüntüsünü gözden geçirsin; kullanıcı yeni revizyon istemedikçe V6 kaynağı ve Software v16 korunmalı.
+
+### 2026-11-21 — Match List v2 V7 — Eski CAPITALE renkleri geri döndü (CANLI)
+
+- **Kullanıcı kararı:** V6 koyu lacivert tasarım CAPITALE renk kimliğine uymuyor. Kullanıcı **önce sadece renkleri eski beyaz/açık gri/turuncu hale getir; sonra tasarımı tekrar bakalım** dedi. Bu aşamada yeni tasarım fikirleri veya yapısal değişiklikler uygulanmayacak.
+- **Tam uygulama:** V6 çalışma klasörünün izolasyon kopyası `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-admin-matchlist-v2-original-colors-v7-20261121-work`. **Sadece** `client/src/components/match-list-template-2.tsx` üzerinde 21 kontrollü renk paleti değişimi: koyu hero → beyaz sıcak tonlu başlık, koyu kart → beyaz ince gri kenarlı kart, koyu yazı, turuncu CAPITALE vurgusu ve saat, veri kutuları açık gri; O artı yeşil/eksi kırmızı. SXF sinyal renkleri aynen kaldı. Maç listesi kolonları, boyutlar, tam isim, logolar, kaynak ve otomatik eşleştirme değiştirilmedi; bahis tercihi ve ek bilgi eklenmedi.
+- **Testler:** TypeScript PASS, Vite PASS, 13 kaynak birim test grubu PASS. Staging ve canlı domain mock-only test tarayıcısında story bağlı/bağlı değil 2/2 ve post 1/1 PASS; 10 maç, 20/20 logo, uzun isimler kesilmedi, 1080×1920/1350 tam görsellerde taşma/hata yok. Public route smoke `/`, `/admin`, `/admin/social-media`, `/admin/software`, `/today`, `/plans` PASS. Canlı gerçek admin PNG download/save ayrıca test edilmedi; üretim raporlarına test verisi yazılmadı.
+- **Deploy:** Yeni immutable `/assets/admin-social-media-v7-restored-colors-20261121.js`; production `index.html` importmap'inde **yalnızca tek social module V6→V7** yönlendirmesi. Başka agentın güncel **Software v16** üç aliası, V33 ana sayfa, backend, Supabase, gerçek raporlar ve diğer rotalar aynı kaldı.
+- **Rollback/hash:** `/app/betcapitale/rollback-matchlist-v2-restored-colors-v7-20261121/index.html` (V6 + Software v16) önceki HTML SHA `63e314da4a90ed94d35340d845b54b6abfb279bcb9d679f17602025bcbf95db4`, V7 canlı HTML SHA `5eecb46a5b43611eaba57af1e6cadded18199d28096108aee140f9cc1a07221f`, backend değişmedi `79b0bed37aed965979fc0d0bc6c093c4dcfe07a59934096cc65f2fb5c7ce3832`.
+- **GitHub:** `deployments/betcapitale/matchlist-v6-to-v7-restored-colors-20261121.patch` commit `3daece59b7e3ef6cc5dad521496ee7886bf2459b`; `deployments/betcapitale/matchlist-v7-production-importmap-20261121.patch` `849261777136235d98a6082e0c7c1ff69dad5f23`; `deployments/betcapitale/matchlist-v7-original-colors-live-20261121.md` `f8ce4c324d8597e31ceba339f1d156e078571942`.
+- **Sonraki adım:** Kullanıcının V7 renklerini ve kalan yerleşimi değerlendirmesi. Kullanıcı istemeden V6 gibi yeniden koyu tema veya yeni düzen yapılmayacak.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
