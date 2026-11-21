@@ -1,0 +1,172 @@
+--- a/client/src/components/IntelligenceFlowHeroDemo.tsx
++++ b/client/src/components/IntelligenceFlowHeroDemo.tsx
+@@ -1,3 +1,4 @@
++import { useEffect, useState } from "react";
+ import { Activity, ArrowRight, BarChart3, BrainCircuit, CheckCheck, CircleCheck, Newspaper, TicketCheck } from "lucide-react";
+ import "./intelligence-flow-hero-demo.css";
+ 
+@@ -18,7 +19,24 @@
+   { step: "03", title: "RESULTS", subtitle: "Profit & loss", Icon: BarChart3 },
+ ] as const;
+ 
++// Fictional rotating illustrations only: never presented as live picks or prices.
++const exampleMatches = [
++  { fixture: "Roma – Inter", pick: "BTTS YES", odds: "4.57" },
++  { fixture: "Ajax – PSV", pick: "OVER 2.5", odds: "5.11" },
++  { fixture: "Lille – Lyon", pick: "FT 1", odds: "4.82" },
++  { fixture: "Porto – Braga", pick: "OVER 2.5", odds: "5.06" },
++] as const;
++
+ export default function IntelligenceFlowHeroDemo() {
++  const [exampleIndex, setExampleIndex] = useState(0);
++  useEffect(() => {
++    const interval = window.setInterval(() => {
++      // Change only once per complete 15s workflow cycle; never repeat adjacent matches.
++      setExampleIndex((index) => (index + 1 + Math.floor(Math.random() * (exampleMatches.length - 1))) % exampleMatches.length);
++    }, 15000);
++    return () => window.clearInterval(interval);
++  }, []);
++  const example = exampleMatches[exampleIndex];
+   return (
+     <section className="cif-stage" data-testid="capitale-intelligence-flow-v12"
+       aria-label="Illustrative CAPITALE process: MARKET SPECIALIST market signals, NEWS match context and ANALYST reviewing statistics contribute to CAPITALE intelligence, then matches are selected, coupons structured and results tracked. Not live data.">
+@@ -89,7 +107,23 @@
+                 <Icon size={16} strokeWidth={1.8} aria-hidden="true"/>
+               </div>
+               <strong>{title}</strong>
+-              {title === "RESULTS" ? (
++              {title === "MATCHES" ? (
++                <>
++                  <small className="cif-matches-subtitle">{subtitle}</small>
++                  <span className="cif-match-reveal" aria-hidden="true">
++                    <span className="cif-match-reveal-fixture">{example.fixture}</span>
++                    <strong className="cif-match-reveal-pick">{example.pick}</strong>
++                  </span>
++                </>
++              ) : title === "COUPONS" ? (
++                <>
++                  <small className="cif-coupons-subtitle">{subtitle}</small>
++                  <span className="cif-stake-reveal" aria-hidden="true">
++                    <span className="cif-stake-reveal-label">STAKE</span>
++                    <strong className="cif-stake-reveal-value">{example.odds}</strong>
++                  </span>
++                </>
++              ) : title === "RESULTS" ? (
+                 <>
+                   <small className="cif-results-subtitle">{subtitle}</small>
+                   <span className="cif-profit-reveal" aria-hidden="true">
+--- a/client/src/components/intelligence-flow-hero-demo.css
++++ b/client/src/components/intelligence-flow-hero-demo.css
+@@ -1134,3 +1134,110 @@
+   .cif-console-cell-2 .cif-console-progress span,
+   .cif-console-cell-3 .cif-console-progress span{animation:none;}
+ }
++
++
++/* V25 — MATCHES and COUPONS share the fixed V18 workflow card geometry.
++   Sample fixture/pick only during MATCHES, sample decimal coupon odds only during
++   COUPONS, and existing green +€200 only during RESULTS (15s total).
++   Demo-only: CONCEPT, NOT LIVE DATA remains visible on the console. */
++.cif-match-reveal,
++.cif-stake-reveal {
++  position:absolute;
++  z-index:2;
++  top:42px;
++  right:12px;
++  display:flex;
++  flex-direction:column;
++  align-items:flex-end;
++  gap:1px;
++  line-height:1.12;
++  white-space:nowrap;
++  pointer-events:none;
++  opacity:0;
++}
++.cif-match-reveal { animation:cif-show-match-v25 15s linear infinite; }
++.cif-stake-reveal { animation:cif-show-stake-v25 15s linear infinite; }
++.cif-match-reveal-fixture {
++  color:#24344C;
++  font-size:10px;
++  font-weight:850;
++  letter-spacing:-.02em;
++}
++.cif-console-cell .cif-match-reveal-pick {
++  color:#D36C19;
++  font-size:11px;
++  font-weight:900;
++  letter-spacing:.015em;
++}
++.cif-stake-reveal-label {
++  color:#8F6E53;
++  font-size:8.6px;
++  font-weight:900;
++  letter-spacing:.055em;
++}
++.cif-console-cell .cif-stake-reveal-value {
++  color:#D66D1B;
++  font-size:22px;
++  font-weight:900;
++  line-height:1.14;
++  font-variant-numeric:tabular-nums;
++}
++.desktopHome .cif-console-cell .cif-match-reveal-pick{font-size:11px;}
++.desktopHome .cif-console-cell .cif-stake-reveal-value{font-size:22px;}
++@keyframes cif-show-match-v25 {
++  0%,3%{opacity:0;transform:translateY(3px)}
++  7%,29%{opacity:1;transform:translateY(0)}
++  33%,100%{opacity:0;transform:translateY(-2px)}
++}
++@keyframes cif-show-stake-v25 {
++  0%,34%{opacity:0;transform:translateY(3px)}
++  40%,62%{opacity:1;transform:translateY(0)}
++  66%,100%{opacity:0;transform:translateY(-2px)}
++}
++@keyframes cif-match-subtitle-v25 {
++  0%,3%{opacity:1}
++  7%,29%{opacity:0}
++  33%,100%{opacity:1}
++}
++@keyframes cif-stake-subtitle-v25 {
++  0%,34%{opacity:1}
++  40%,62%{opacity:0}
++  66%,100%{opacity:1}
++}
++/* Medium desktop: keep a full team matchup clear of the left card title. */
++@media(min-width:768px) and (max-width:1280px){
++  .cif-match-reveal-fixture{font-size:9px;}
++  .cif-console-cell .cif-match-reveal-pick,
++  .desktopHome .cif-console-cell .cif-match-reveal-pick{font-size:10px;}
++}
++/* Phones: show the fixture and pick on two compact lines in the subtitle area,
++   instead of squeezing a second column into the 93-116px card. */
++@media(max-width:767px){
++  .cif-match-reveal{
++    top:50px;left:9px;right:7px;
++    align-items:flex-start;gap:0;
++  }
++  .cif-match-reveal-fixture{font-size:8.2px;line-height:1;}
++  .cif-console-cell .cif-match-reveal-pick{font-size:8.2px;line-height:1;}
++  .cif-matches-subtitle{animation:cif-match-subtitle-v25 15s linear infinite;}
++  .cif-stake-reveal{
++    top:49px;left:9px;right:auto;
++    align-items:flex-start;
++  }
++  .cif-stake-reveal-label{display:none;}
++  .cif-console-cell .cif-stake-reveal-value{font-size:14px;line-height:1.14;}
++  .cif-coupons-subtitle{animation:cif-stake-subtitle-v25 15s linear infinite;}
++}
++@media(max-width:355px){
++  .cif-match-reveal{left:7px;right:5px;}
++  .cif-match-reveal-fixture{font-size:7.2px;}
++  .cif-console-cell .cif-match-reveal-pick{font-size:7.5px;}
++  .cif-stake-reveal{left:7px;}
++}
++@media(prefers-reduced-motion:reduce){
++  .cif-match-reveal,.cif-stake-reveal{animation:none;opacity:1;transform:none;}
++  .cif-matches-subtitle,.cif-coupons-subtitle{animation:none;}
++}
++@media(max-width:767px) and (prefers-reduced-motion:reduce){
++  .cif-matches-subtitle,.cif-coupons-subtitle{opacity:0;}
++}
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
