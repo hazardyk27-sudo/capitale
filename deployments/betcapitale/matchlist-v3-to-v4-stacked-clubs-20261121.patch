@@ -1,0 +1,200 @@
+--- a/client/src/components/match-list-template-2.tsx
++++ b/client/src/components/match-list-template-2.tsx
+@@ -181,15 +181,15 @@
+   const gap = Math.max(isStory ? 7 : 6, (isStory ? 19 : 15) - count * (isStory ? 0.7 : 0.55));
+   const roomForCards =
+     dimensions.height - padTop - headerReserve - footerReserve - padBottom - listTop;
+-  const cardHeight = count > 0 ? Math.max(36, (roomForCards - gap * Math.max(0, count - 1)) / count) : 0;
+-  const dense = cardHeight < 122;
++  const naturalCard = count > 0 ? (roomForCards - gap * Math.max(0,count-1)) / count : 0;
++  const cardHeight = count > 0 ? Math.min(isStory ? 170 : 154, Math.max(isStory ? 88 : 75,naturalCard)) : 0;
++  const dense = cardHeight < 113;
+   const titleSize = isStory ? 66 : 58;
+   const headerColor = isResult ? palette.teal : "#C66A38";
+-  const rowPad = dense ? 7 : (count>=9 ? 11 : 14);
+-  const topLineSize = dense ? 10 : (isStory ? 12.5 : 11);
+-  const teamSize = dense ? 15 : (isStory ? 23 : 21);
+-  const metricSize = dense ? 10 : 12;
+-  const badgeSize = dense ? 28 : (isStory ? 42 : 38);
++  const rowPad = dense ? 6 : (cardHeight < 136 ? 8 : 10);
++  const topLineSize = dense ? 9 : 11.5;
++  const teamSize = dense ? 15.5 : 21;
++  const badgeSize = dense ? 24 : 34;
+   const title = isResult ? "Match results" : "Today's matches";
+   const base: CSSProperties = {
+     boxSizing: "border-box",
+@@ -318,88 +318,96 @@
+             const badMatch = metric?.status==="ambiguous";
+             const signal = verified && metric?.signal ? metric.signal : (badMatch?"REVIEW":"PENDING");
+             const pick = verified ? displayMarketPick(metric?.market,metric?.selection) : "";
+-            const homeNameSize = Math.max(teamSize * .76, teamSize - Math.max(0,match.homeTeam.length-16)*.35);
+-            const awayNameSize = Math.max(teamSize * .76, teamSize - Math.max(0,match.awayTeam.length-16)*.35);
+-            const competitionSize = Math.max(9.5,topLineSize - Math.max(0,match.competition.length-27)*.06);
++            const teamFont = (n:number)=>Math.max(dense?12.5:16,teamSize-Math.max(0,n-15)*(dense?.22:.31));
++            const competitionSize = Math.max(9,topLineSize - Math.max(0,match.competition.length-27)*.05);
+             const statItems = [
+-              {label:"FLOW · V",value:verified ? metric?.volume || "" : "",title:"Verified selected-market money share"},
+-              {label:"DRAW · B",value:verified ? metric?.draw || "" : "",title:"Draw money share"},
+-              {label:"ODDS Δ",value:verified ? mov : "",title:"Valid historic odds movement"},
++              {label:"V · FLOW",value:verified ? metric?.volume || "" : "",title:"Verified market money share"},
++              {label:"B · DRAW",value:verified ? metric?.draw || "" : "",title:"Verified draw-money share"},
++              {label:"ODDS Δ",value:verified ? mov : "",title:"Verified odds movement"},
+             ];
++            // Portrait posts have less vertical space: give A/N their own compact
++            // cells instead of cramming a low-contrast third line into the panel.
++            const visibleStats = dense ? [
++              ...statItems,
++              {label:"A",value:verified?metric?.analyst || "":"",title:"Verified Analyst score"},
++              {label:"N",value:verified?metric?.news || "":"",title:"Verified News score"},
++            ] : statItems;
+             return (
+-              <div
+-                key={match.id}
+-                style={{
+-                  boxSizing:"border-box",height:cardHeight,minHeight:0,flexShrink:0,
+-                  display:"flex",flexDirection:"column",justifyContent:"space-between",
+-                  padding:`${rowPad}px ${dense ? 12 : 18}px`,
+-                  border:`1px solid ${verified ? "#DEE7E6" : "#E6EBED"}`,
+-                  borderRadius:dense?13:16,
+-                  background:palette.card,
+-                  boxShadow:"0 2px 9px rgba(22,36,49,.025)",
+-                  position:"relative",overflow:"hidden",
+-                }}
+-              >
+-                <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,
+-                    minHeight:topLineSize+4,fontSize:competitionSize,fontWeight:800,letterSpacing:".085em",color:palette.muted}}>
+-                  <span style={{overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{match.competition}</span>
+-                  <span style={{fontVariantNumeric:"tabular-nums",fontSize:dense?11:13,fontWeight:900,color:headerColor,
+-                    letterSpacing:".025em",flexShrink:0}}>{match.kickoffAt}</span>
++              <div key={match.id} data-match-card={match.id}
++                style={{boxSizing:"border-box",height:cardHeight,minHeight:0,flexShrink:0,
++                  display:"flex",flexDirection:"column",gap:dense?3:5,
++                  padding:`${rowPad}px ${dense?11:14}px`,border:"1px solid #E4E9EA",
++                  borderLeft:`3px solid ${verified?"#D47B3B":"#D8DFE3"}`,
++                  borderRadius:12,background:palette.card,
++                  boxShadow:"0 2px 10px rgba(14,32,48,.032)",overflow:"hidden"}}>
++                <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:12,
++                  height:dense?13:16,flexShrink:0,fontSize:competitionSize,fontWeight:850,
++                  color:palette.muted,letterSpacing:".065em"}}>
++                  <span style={{minWidth:0,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{match.competition}</span>
++                  <span style={{flexShrink:0,fontSize:dense?11:13,fontWeight:900,fontVariantNumeric:"tabular-nums",color:headerColor}}>{match.kickoffAt}</span>
+                 </div>
+-                <div style={{display:"grid",gridTemplateColumns:`minmax(0,1fr) ${dense ? 44 : 56}px minmax(0,1fr)`,
+-                    alignItems:"center",gap:dense?5:9,minHeight:badgeSize}}>
+-                  <div style={{display:"flex",alignItems:"center",gap:dense?7:12,minWidth:0}}>
+-                    <ClubCrest name={match.homeTeam} src={metric?.homeLogoUrl} size={badgeSize}/>
+-                    <span style={{fontSize:homeNameSize,fontWeight:750,letterSpacing:"-.032em",lineHeight:1.04,
+-                      overflow:"hidden",whiteSpace:"nowrap",textOverflow:"ellipsis",color:palette.ink}}>{match.homeTeam}</span>
++                <div style={{display:"grid",gridTemplateColumns:"minmax(0, 44%) minmax(0, 56%)",
++                  gap:dense?8:12,flex:"1 1 0",minHeight:0,alignItems:"stretch"}}>
++                  <div style={{display:"flex",flexDirection:"column",justifyContent:"center",gap:dense?3:5,minWidth:0,
++                    borderRight:"1px solid #EDF1F2",paddingRight:dense?6:10}}>
++                    <div style={{display:"flex",alignItems:"center",gap:dense?8:10,minWidth:0,minHeight:badgeSize}}>
++                      <ClubCrest name={match.homeTeam} src={metric?.homeLogoUrl} size={badgeSize}/>
++                      <span style={{fontSize:teamFont(match.homeTeam.length),fontWeight:790,lineHeight:1.05,
++                        color:palette.ink,letterSpacing:"-.022em",minWidth:0,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
++                        {match.homeTeam}
++                      </span>
++                    </div>
++                    <div style={{display:"flex",alignItems:"center",gap:dense?8:10,minWidth:0,minHeight:badgeSize}}>
++                      <ClubCrest name={match.awayTeam} src={metric?.awayLogoUrl} size={badgeSize}/>
++                      <span style={{fontSize:teamFont(match.awayTeam.length),fontWeight:790,lineHeight:1.05,
++                        color:palette.ink,letterSpacing:"-.022em",minWidth:0,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
++                        {match.awayTeam}
++                      </span>
++                    </div>
+                   </div>
+-                  <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:4}}>
+-                    <span style={{width:8,height:1,background:"#D5DEE1"}}/>
+-                    <span style={{fontSize:10,fontWeight:800,letterSpacing:".09em",color:palette.faint}}>VS</span>
+-                    <span style={{width:8,height:1,background:"#D5DEE1"}}/>
++                  <div style={{display:"flex",flexDirection:"column",justifyContent:"space-between",gap:dense?1:4,
++                    minHeight:0,minWidth:0,background:"#F7F9F9",border:"1px solid #EDF1F0",borderRadius:9,
++                    padding:dense?"3px 6px":"7px 9px"}}>
++                    <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:5,minWidth:0,
++                      borderBottom:"1px solid #E9EEEE",paddingBottom:dense?1:5}}>
++                      <div style={{display:"flex",alignItems:"center",gap:dense?5:7,minWidth:0}}>
++                        <span style={{flexShrink:0,fontSize:dense?8:9,fontWeight:900,letterSpacing:".035em",color:"#C06D32"}}>SXF</span>
++                        <strong style={{fontSize:dense?12:15.5,fontWeight:900,color:verified?palette.ink:palette.faint,
++                          whiteSpace:"nowrap",lineHeight:1.1}}>{signal}</strong>
++                        {verified&&metric?.checkpoint&&<span style={{border:"1px solid #E3E9E9",background:"#FFF",borderRadius:4,
++                          padding:dense?"1px 3px":"2px 5px",fontSize:dense?9:10,fontWeight:800,color:palette.muted,whiteSpace:"nowrap"}}>{metric.checkpoint}</span>}
++                      </div>
++                      {verified&&pick&&<span title={pick} style={{fontSize:dense?9:11,fontWeight:800,color:"#8B5E48",minWidth:0,
++                        whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",textAlign:"right"}}>{pick}</span>}
++                    </div>
++                    <div style={{display:"grid",gridTemplateColumns:`repeat(${dense?5:3},minmax(0,1fr))`,gap:dense?3:6,minWidth:0}}>
++                      {visibleStats.map((stat,i)=>{
++                        const present=!!stat.value;
++                        const movement=i===2 && present;
++                        const tone=movement&&movNum!==0?(movDown?palette.red:palette.teal):palette.ink;
++                        return <div key={stat.label} title={stat.title} style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",
++                          minWidth:0,gap:dense?0:2,padding:dense?"1px 1px":"3px 2px",borderRadius:6,
++                          background:movement&&movNum!==0?(movDown?palette.redPale:palette.tealPale):"#FFFFFF",
++                          border:"1px solid #E8EDED",fontVariantNumeric:"tabular-nums"}}>
++                          <span style={{fontSize:dense?7.5:8.5,fontWeight:850,letterSpacing:".02em",color:palette.muted,
++                            whiteSpace:"nowrap"}}>{stat.label}</span>
++                          <strong style={{fontSize:dense?11:16,fontWeight:900,color:present?tone:palette.faint,
++                            whiteSpace:"nowrap",lineHeight:1.1}}>{present?stat.value:"—"}</strong>
++                        </div>;
++                      })}
++                    </div>
++                    {!dense && <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:5,minWidth:0,
++                      fontSize:10,color:palette.faint,lineHeight:1}}>
++                      <span style={{minWidth:0,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",fontSize:dense?8:9}}>
++                        {!verified?(badMatch?"MARKET REVIEW NEEDED":"SOURCE NOT AVAILABLE"):"SOFTWARE SOURCE"}
++                      </span>
++                      <span style={{whiteSpace:"nowrap",flexShrink:0,fontVariantNumeric:"tabular-nums"}}>
++                        A <b style={{color:metric?.analyst&&verified?palette.ink:palette.faint}}>{verified&&metric?.analyst?metric.analyst:"—"}</b>
++                        <span style={{margin:"0 6px",color:"#CFD8DB"}}>/</span>
++                        N <b style={{color:metric?.news&&verified?palette.ink:palette.faint}}>{verified&&metric?.news?metric.news:"—"}</b>
++                      </span>
++                    </div>}
+                   </div>
+-                  <div style={{display:"flex",alignItems:"center",justifyContent:"flex-end",gap:dense?7:12,minWidth:0}}>
+-                    <span style={{fontSize:awayNameSize,fontWeight:750,letterSpacing:"-.032em",lineHeight:1.04,
+-                      overflow:"hidden",whiteSpace:"nowrap",textOverflow:"ellipsis",textAlign:"right",color:palette.ink}}>{match.awayTeam}</span>
+-                    <ClubCrest name={match.awayTeam} src={metric?.awayLogoUrl} size={badgeSize}/>
+-                  </div>
+-                </div>
+-                <div style={{display:"flex",alignItems:"center",gap:dense?6:10,minWidth:0,
+-                    fontSize:dense?10:11,borderTop:"1px solid #EFF2F2",paddingTop:dense?3:5}}>
+-                  <span style={{fontWeight:850,color:verified?"#B35E36":"#9EABB0",flexShrink:0}}>SXF</span>
+-                  <span style={{fontWeight:850,color:verified?palette.ink:palette.faint,flexShrink:0}}>{signal}</span>
+-                  {verified && metric?.checkpoint && <span style={{color:palette.muted,fontWeight:750,flexShrink:0}}>
+-                    {metric.checkpoint}
+-                  </span>}
+-                  {verified && pick && <span style={{fontSize:dense?10:12,color:palette.muted,overflow:"hidden",
+-                    textOverflow:"ellipsis",whiteSpace:"nowrap",flex:"1 1 auto",minWidth:0}}>· {pick}</span>}
+-                  {!verified && <span style={{color:badMatch?"#B16E44":palette.faint,
+-                    overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",flex:1,minWidth:0}}>
+-                      {badMatch?"MULTIPLE MARKETS — VERIFY PICK":"NO VERIFIED SOFTWARE RECORD"}</span>}
+-                  <span style={{marginLeft:"auto",display:"flex",alignItems:"center",gap:dense?6:12,flexShrink:0,
+-                     color:palette.faint,fontSize:dense?10:13,fontVariantNumeric:"tabular-nums"}}>
+-                    <span>A <strong style={{fontWeight:800,color:metric?.analyst?palette.ink:palette.faint}}>{verified && metric?.analyst ? metric.analyst : "—"}</strong></span>
+-                    <span>N <strong style={{fontWeight:800,color:metric?.news?palette.ink:palette.faint}}>{verified && metric?.news ? metric.news : "—"}</strong></span>
+-                  </span>
+-                </div>
+-                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:dense?5:9}} aria-label={metric?.reason||"No Software record"}>
+-                  {statItems.map((stat,i)=>{
+-                    const present=!!stat.value;
+-                    const tint=i===2 && present && movNum!==0;
+-                    const tone=i===2 && tint?(movDown?palette.red:palette.teal):palette.ink;
+-                    return <div key={stat.label} title={stat.title} style={{
+-                      boxSizing:"border-box",minWidth:0,height:dense?22:30,
+-                      padding:dense?"0 6px":"0 11px",borderRadius:7,
+-                      display:"flex",alignItems:"center",justifyContent:"space-between",gap:6,
+-                      background:tint?(movDown?palette.redPale:palette.tealPale):"#F5F8F8",
+-                      border:"1px solid #EDF1F0",fontVariantNumeric:"tabular-nums",
+-                    }}>
+-                      <span style={{fontSize:dense?8:10,fontWeight:800,whiteSpace:"nowrap",letterSpacing:".045em",color:palette.muted}}>{stat.label}</span>
+-                      <strong style={{fontSize:dense?11:15.5,fontWeight:900,color:present?tone:palette.faint,whiteSpace:"nowrap"}}>
+-                        {present?stat.value:"—"}
+-                      </strong>
+-                    </div>;
+-                  })}
+                 </div>
+               </div>
+             );
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
