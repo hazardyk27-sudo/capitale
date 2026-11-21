@@ -1,0 +1,84 @@
+--- a/client/src/components/match-list-template-2.tsx
++++ b/client/src/components/match-list-template-2.tsx
+@@ -128,13 +128,18 @@
+   const headerHeight=story?232:183;
+   const footerHeight=story?37:31;
+   const listTop=story?20:16;
+-  const gap=story?10:8;
++  const compact=matches.length>=13;
++  const spacious=matches.length<=6;
++  const gap=compact?(story?7:5):(story?10:8);
+   const available=height-top-bottom-headerHeight-footerHeight-listTop;
+   const natural=matches.length?(available-gap*Math.max(0,matches.length-1))/matches.length:0;
+-  const rowHeight=matches.length?Math.min(story?146:96,Math.max(story?78:65,natural)):0;
+-  const crest=story?44:36;
++  // Reserve a little air before the footer, including for dense 15-row posts.
++  // Also grow cards when only 6 fixtures are present, without losing consistency.
++  const rowHeight=matches.length?Math.min(spacious?(story?210:139):(story?146:96),
++    Math.max(story?67:52,Math.floor(natural)-2)):0;
++  const crest=compact?(story?39:32):spacious?(story?52:43):(story?44:36);
+   const numberSize=story?14:12;
+-  const metricHeight=story?74:58;
++  const metricHeight=compact?(story?64:50):spacious?(story?91:70):(story?74:58);
+   const grid=story
+     ? "28px 94px minmax(0,1fr) 82px repeat(5,63px) 68px"
+     : "26px 77px minmax(0,1fr) 78px repeat(5,63px) 66px";
+@@ -152,10 +157,12 @@
+       <div style={{position:"absolute",top:0,right:0,width:story?145:114,height:4,
+         background:"linear-gradient(90deg,transparent,#F17B23)"}}/>
+       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:12}}>
+-        <div style={{display:"flex",alignItems:"center",gap:11,minWidth:0}}>
+-          <span style={{width:5,height:story?27:22,background:"#F08129",borderRadius:5,flexShrink:0}}/>
+-          <span style={{fontFamily:"'Outfit','Manrope',system-ui,sans-serif",fontSize:story?25:21,
+-            fontWeight:350,letterSpacing:".19em",color:"#1B2A39",lineHeight:1}}>CAPITALE</span>
++        <div style={{display:"flex",alignItems:"center",gap:story?12:9,minWidth:0}}>
++          <img src="/capitale-premium-symbol.svg" alt="" aria-hidden="true"
++            style={{display:"block",width:story?43:35,height:story?43:35,
++              flexShrink:0,objectFit:"contain"}} />
++          <span style={{fontFamily:"Georgia,'Times New Roman',serif",fontSize:story?37:31,
++            fontWeight:400,letterSpacing:".085em",color:"#111111",lineHeight:1}}>CAPITALE</span>
+         </div>
+         <div style={{display:"inline-flex",alignItems:"center",justifyContent:"center",gap:8,
+           background:"#FFF5EC",border:"1px solid #F6DDC6",
+@@ -169,7 +176,7 @@
+         <div style={{height:story?76:59,width:5,background:"#EF7926",borderRadius:6,flexShrink:0}}/>
+         <span style={{fontFamily:"Georgia,'Times New Roman',serif",fontSize:story?72:57,
+           fontWeight:700,letterSpacing:"-.056em",lineHeight:1.01,color:"#142333",whiteSpace:"nowrap"}}>
+-          {result?"Match results":"Today's matches"}
++          {result?"Today's Results":"Today's matches"}
+         </span>
+       </div>
+       <div style={{fontSize:story?17:14.5,color:"#687A8A",fontWeight:650,letterSpacing:".02em"}}>
+@@ -184,6 +191,12 @@
+         const verified=m?.status==="matched";
+         const signal=verified?(m.signal?.trim()??""):"";
+         const tone=signalColor(signal);
++        // Match List v1 uses the very same today_matches.result field:
++        // prematch shows kickoff, results shows WON / LOST / VOID / PENDING.
++        const resultValue=typeof match.result==="string"?match.result.trim().toLowerCase():"";
++        const resultLabel=resultValue==="won"?"WON":resultValue==="lost"?"LOST":resultValue==="void"?"VOID":"PENDING";
++        const resultColor=resultValue==="won"?"#159B65":resultValue==="lost"?"#D94B51":"#718091";
++        const resultBackground=resultValue==="won"?"#E9F7EF":resultValue==="lost"?"#FEF0F0":"#EFF3F6";
+         const label=`${match.homeTeam} – ${match.awayTeam}`;
+         const fontSize=story
+           ? label.length>31?18:label.length>27?19:label.length>23?21:23
+@@ -243,10 +256,13 @@
+                 color:present?tint:"#9DAAB4",lineHeight:1.05}}>{display}</strong>
+             </div>;
+           })}
+-          <span style={{display:"flex",alignItems:"center",justifyContent:"center",height:story?44:38,
+-            borderRadius:8,background:"#FFF3E9",border:"1px solid #F7E0D0",
+-            color:"#C96B24",fontSize:story?17:15,fontWeight:900,fontVariantNumeric:"tabular-nums",whiteSpace:"nowrap"}}>
+-            {match.kickoffAt||"—"}
++          <span data-match-final={result?"result":"prematch"}
++            style={{display:"flex",alignItems:"center",justifyContent:"center",height:story?44:38,
++              borderRadius:8,background:result?resultBackground:"#FFF3E9",
++              border:result?"1px solid #E7ECEF":"1px solid #F7E0D0",
++              color:result?resultColor:"#C96B24",fontSize:result?(story?13.5:11):(story?17:15),
++              fontWeight:900,fontVariantNumeric:"tabular-nums",whiteSpace:"nowrap",letterSpacing:result?".01em":0}}>
++            {result?resultLabel:(match.kickoffAt||"—")}
+           </span>
+         </div>;
+       })}
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
