@@ -1,0 +1,77 @@
+--- a/client/src/components/IntelligenceFlowHeroDemo.tsx
++++ b/client/src/components/IntelligenceFlowHeroDemo.tsx
+@@ -7,9 +7,9 @@
+  * Preserve the visible concept disclosure when changing the design.
+  */
+ const sources = [
+-  { name: "SXF", detail: "MARKET SIGNALS", Icon: Activity },
++  { name: "MARKET SPECIALIST", detail: "MARKET SIGNALS", Icon: Activity },
+   { name: "NEWS", detail: "MATCH CONTEXT", Icon: Newspaper },
+-  { name: "ANALYST", detail: "TEAM ANALYSIS", Icon: BrainCircuit },
++  { name: "ANALYST", detail: "REVIEWS STATISTICS", Icon: BrainCircuit },
+ ] as const;
+ 
+ const stages = [
+@@ -21,24 +21,8 @@
+ export default function IntelligenceFlowHeroDemo() {
+   return (
+     <section className="cif-stage" data-testid="capitale-intelligence-flow-v12"
+-      aria-label="Illustrative CAPITALE process: SXF market signals, NEWS match context and ANALYST team analysis contribute to CAPITALE intelligence, then matches are selected, coupons structured and results tracked. Not live data.">
++      aria-label="Illustrative CAPITALE process: MARKET SPECIALIST market signals, NEWS match context and ANALYST reviewing statistics contribute to CAPITALE intelligence, then matches are selected, coupons structured and results tracked. Not live data.">
+       <div className="cif-ambient" aria-hidden="true" />
+-
+-      <div className="cif-topline">
+-        <span className="cif-kicker"><span className="cif-kicker-dot" /> THE CAPITALE SYSTEM</span>
+-        <span className="cif-preview-stamp">ILLUSTRATIVE PREVIEW</span>
+-      </div>
+-
+-      <div className="cif-prompt" aria-label="Animated example of how CAPITALE works">
+-        <div className="cif-question-dot" aria-hidden="true">?</div>
+-        <div className="cif-script">
+-          <span className="cif-script-line cif-script-1">Reviewing market signals...</span>
+-          <span className="cif-script-line cif-script-2">Checking match context...</span>
+-          <span className="cif-script-line cif-script-3">Evaluating team analysis...</span>
+-          <span className="cif-script-line cif-script-4">Building the coupon workflow...</span>
+-        </div>
+-        <span className="cif-prompt-pulse" aria-hidden="true"><i/><i/><i/></span>
+-      </div>
+ 
+       <div className="cif-sources" aria-label="Independent analysis inputs">
+         {sources.map(({ name, detail, Icon }, i) => (
+--- a/client/src/components/intelligence-flow-hero-demo.css
++++ b/client/src/components/intelligence-flow-hero-demo.css
+@@ -928,3 +928,34 @@
+   .cif-engine{animation:none;}
+   .cif-console-cell{animation:none;}
+ }
++
++/* CAPITALE Preview v17 — remove the entire upper headline/prompt zone.
++   Keep the existing 3D modules, white background and V15/V16 typography.
++   Rebalance the now-shorter diagram without modifying the main headline. */
++.cif-source-1 strong{
++  max-width:96%;
++  text-align:center;
++  white-space:normal;
++  overflow-wrap:normal;
++  line-height:1.13;
++}
++@media(min-width:1180px){
++  .desktopHome .cif-stage{
++    height:455px;
++    transform:translateY(22px);
++  }
++}
++@media(min-width:768px) and (max-width:1179px){
++  .desktopHome .cif-stage{
++    height:460px;
++    transform:none;
++  }
++}
++@media(max-width:767px){
++  .cif-stage{height:410px;}
++  .cif-source-1 strong{font-size:10px;line-height:1.08;}
++}
++@media(max-width:355px){
++  .cif-stage{height:402px;}
++  .cif-source-1 strong{font-size:9.3px;}
++}
