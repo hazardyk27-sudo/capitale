@@ -1,0 +1,428 @@
+--- a/client/src/components/IntelligenceFlowHeroDemo.tsx
++++ b/client/src/components/IntelligenceFlowHeroDemo.tsx
+@@ -1,4 +1,6 @@
++import { useEffect, useState } from "react";
+ import { Activity, ArrowRight, BarChart3, BrainCircuit, CheckCheck, CircleCheck, Newspaper, TicketCheck } from "lucide-react";
++import { demoCoupons, demoMatchLookup, demoMatches, demoNet, demoTotals } from "./intelligence-flow-sample";
+ import "./intelligence-flow-hero-demo.css";
+ 
+ /**
+@@ -13,14 +15,29 @@
+ ] as const;
+ 
+ const stages = [
+-  { step: "01", title: "MATCHES", subtitle: "Software selection", Icon: CircleCheck },
+-  { step: "02", title: "COUPONS", subtitle: "Equal stake plan", Icon: TicketCheck },
+-  { step: "03", title: "RESULTS", subtitle: "Profit & loss", Icon: BarChart3 },
++  { step: "01", title: "MATCHES", Icon: CircleCheck },
++  { step: "02", title: "COUPONS", Icon: TicketCheck },
++  { step: "03", title: "RESULTS", Icon: BarChart3 },
+ ] as const;
++type FlowPhase = 0 | 1 | 2;
++
++const formatEuro = (value: number) => `${value >= 0 ? "+" : "−"}€${Math.abs(value)}`;
+ 
+ export default function IntelligenceFlowHeroDemo() {
++  const [phase, setPhase] = useState<FlowPhase>(0);
++
++  // A demonstrative, looped UI sequence; no APIs, real betting or settlements.
++  // Reduced-motion users can still switch steps manually using the buttons.
++  useEffect(() => {
++    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
++    const timer = window.setTimeout(() => {
++      setPhase((current) => ((current + 1) % stages.length) as FlowPhase);
++    }, phase === 2 ? 7800 : 6600);
++    return () => window.clearTimeout(timer);
++  }, [phase]);
++
+   return (
+-    <section className="cif-stage" data-testid="capitale-intelligence-flow-v12"
++    <section className="cif-stage" data-testid="capitale-intelligence-flow-v19"
+       aria-label="Illustrative CAPITALE process: MARKET SPECIALIST market signals, NEWS match context and ANALYST reviewing statistics contribute to CAPITALE intelligence, then matches are selected, coupons structured and results tracked. Not live data.">
+       <div className="cif-ambient" aria-hidden="true" />
+ 
+@@ -76,31 +93,109 @@
+         <circle className="cif-data-point" r="3"><animateMotion dur="4.8s" repeatCount="indefinite" path="M240 0 V19 Q240 27 252 27 H399 Q404 27 404 38 V53"/></circle>
+       </svg>
+ 
+-      <div className="cif-console" aria-label="How CAPITALE progresses from match selection to tracked results">
++      <div className="cif-console cif-console-v19"
++        data-flow-phase={stages[phase].title.toLowerCase()}
++        aria-label="Illustrative workflow showing sample match picks, example coupons and fictional settlement results">
+         <div className="cif-console-heading">
+-          <span className="cif-console-title"><span className="cif-console-indicator"/> THE WORKFLOW</span>
+-          <span className="cif-console-caption">CONCEPT, NOT LIVE DATA</span>
+-        </div>
+-        <div className="cif-console-grid">
+-          {stages.map(({ step, title, subtitle, Icon }, i) => (
+-            <div key={step} className={`cif-console-cell cif-console-cell-${i+1}`}>
+-              <div className="cif-console-cell-top">
+-                <span>{step}</span>
+-                <Icon size={16} strokeWidth={1.8} aria-hidden="true"/>
++          <span className="cif-console-title"><span className="cif-console-indicator" /> THE WORKFLOW</span>
++          <span className="cif-console-caption">SAMPLE DATA · NOT LIVE BETS</span>
++        </div>
++
++        <div className="cif-flow-tabs" role="group" aria-label="Example workflow stages">
++          {stages.map(({ step, title, Icon }, index) => (
++            <button
++              key={step}
++              type="button"
++              className={`cif-flow-tab ${phase === index ? "is-active" : ""}`}
++              aria-pressed={phase === index}
++              onClick={() => setPhase(index as FlowPhase)}
++              data-testid={`workflow-tab-${title.toLowerCase()}`}
++            >
++              <span className="cif-flow-tab-number">{step}</span>
++              <span className="cif-flow-tab-title">{title}</span>
++              <Icon size={15} strokeWidth={1.8} aria-hidden="true" />
++              <span className="cif-flow-tab-progress" aria-hidden="true" />
++            </button>
++          ))}
++        </div>
++
++        <div className="cif-flow-panel" key={phase} role="region"
++          aria-label={`Example ${stages[phase].title.toLowerCase()} stage`}>
++          {phase === 0 && (
++            <div className="cif-flow-list cif-flow-matches" data-testid="workflow-matches-panel">
++              {demoMatches.map((match) => (
++                <div className="cif-flow-row cif-flow-match-row" key={match.id}>
++                  <span className="cif-row-id">{match.id}</span>
++                  <span className="cif-row-details">
++                    <strong>{match.fixture}</strong>
++                    <small>SOFTWARE SELECTION</small>
++                  </span>
++                  <span className="cif-row-selection">{match.pick}</span>
++                </div>
++              ))}
++            </div>
++          )}
++
++          {phase === 1 && (
++            <div className="cif-flow-list cif-flow-coupons" data-testid="workflow-coupons-panel">
++              {demoCoupons.map((coupon) => (
++                <div className="cif-flow-row cif-flow-coupon-row" key={coupon.id}>
++                  <span className="cif-row-ticket"><TicketCheck size={15} strokeWidth={1.9} aria-hidden="true" /></span>
++                  <span className="cif-row-details">
++                    <strong>COUPON {coupon.id}</strong>
++                    <small>{coupon.matchIds.map((id) => demoMatchLookup[id]?.fixture.split(" — ")[0]).join(" + ")}</small>
++                  </span>
++                  <span className="cif-row-amount">
++                    <strong>€{coupon.stake}</strong>
++                    <small>EQUAL STAKE</small>
++                  </span>
++                </div>
++              ))}
++              <div className="cif-flow-inline-note">
++                <CheckCheck size={12} aria-hidden="true" />
++                Example picks distributed into three coupons
+               </div>
+-              <strong>{title}</strong>
+-              <small>{subtitle}</small>
+-              <span className="cif-console-progress" aria-hidden="true"><span/></span>
+             </div>
+-          ))}
+-        </div>
+-        <div className="cif-console-bottom">
+-          <span><CheckCheck size={12} aria-hidden="true"/> ANALYSE</span>
+-          <ArrowRight size={11} aria-hidden="true"/>
+-          <span>SELECT</span>
+-          <ArrowRight size={11} aria-hidden="true"/>
+-          <span>TRACK</span>
+-          <span className="cif-console-note">WORKFLOW DEMO</span>
++          )}
++
++          {phase === 2 && (
++            <div className="cif-flow-results" data-testid="workflow-results-panel">
++              {demoCoupons.map((coupon) => {
++                const delta = coupon.returned - coupon.stake;
++                const won = coupon.returned > 0;
++                return (
++                  <div className="cif-flow-result-row" key={coupon.id}>
++                    <span className="cif-flow-result-title">
++                      <strong>COUPON {coupon.id}</strong>
++                      <small className={won ? "cif-result-won" : "cif-result-lost"}>
++                        {won ? "WON" : "LOST"}
++                      </small>
++                    </span>
++                    <span className="cif-flow-result-money">
++                      <strong className={won ? "cif-result-won" : "cif-result-lost"}>{formatEuro(delta)}</strong>
++                      <small>€{coupon.returned} RETURNED</small>
++                    </span>
++                  </div>
++                );
++              })}
++              <div className="cif-flow-totals">
++                <span><small>STAKED</small><strong>€{demoTotals.staked}</strong></span>
++                <span><small>RETURNED</small><strong>€{demoTotals.returned}</strong></span>
++                <span className="cif-flow-net"><small>NET RESULT</small><strong>{formatEuro(demoNet)}</strong></span>
++              </div>
++            </div>
++          )}
++        </div>
++
++        <div className="cif-flow-footer">
++          <span className="cif-flow-footer-step">
++            <CheckCheck size={12} aria-hidden="true" />
++            {phase === 0 ? "4 SAMPLE PICKS" : phase === 1 ? "3 COUPONS · €20 EACH" : "2 WON · 1 LOST"}
++          </span>
++          <span className="cif-flow-footer-next">
++            {phase === 0 ? "NEXT · BUILD COUPONS" : phase === 1 ? "NEXT · SETTLE RESULTS" : "RESTARTING WORKFLOW"}
++            <ArrowRight size={12} strokeWidth={2} aria-hidden="true" />
++          </span>
+         </div>
+       </div>
+     </section>
+--- a/client/src/components/intelligence-flow-hero-demo.css
++++ b/client/src/components/intelligence-flow-hero-demo.css
+@@ -1008,3 +1008,189 @@
+ @media(max-width:359px){
+   .bc-mobile-title{font-size:28px!important;}
+ }
++
++/* CAPITALE Preview V19: real UI state cycle, entirely fictional selections/coupons/results. */
++.cif-console.cif-console-v19 {
++  box-sizing:border-box; display:flex; flex-direction:column; min-height:0;
++  height:287px; overflow:hidden; border-radius:18px; border-color:#D6DFEA;
++}
++.cif-console-v19 .cif-console-heading { box-sizing:border-box; flex:0 0 31px; height:31px; padding:0 14px; }
++.cif-console-v19 .cif-console-title {font-size:10px;}
++.cif-console-v19 .cif-console-caption {color:#9A8290;font-size:8px;letter-spacing:.055em;white-space:nowrap;}
++.cif-flow-tabs {
++  flex:0 0 43px; height:43px; display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
++  border-bottom:1px solid #E2E8F0;
++  background:linear-gradient(180deg,#FAFCFF,#F1F5FA);
++}
++.cif-flow-tab {
++  all:unset;box-sizing:border-box; position:relative; min-width:0;
++  display:flex;justify-content:center;align-items:center;gap:6px;padding:0 5px;
++  color:#68798F;font:850 11px "Manrope",Arial,sans-serif;
++  cursor:pointer;transition:color .2s ease,background .2s ease;
++}
++.cif-flow-tab+.cif-flow-tab{border-left:1px solid #E0E7F1;}
++.cif-flow-tab.is-active{color:#162439;background:linear-gradient(180deg,#FFFFFF,#FDF9F5);box-shadow:inset 0 2px rgba(232,119,31,.42);}
++.cif-flow-tab:focus-visible{outline:2px solid #E8771F;outline-offset:-3px;z-index:3;}
++.cif-flow-tab-number{font-size:9px;color:#E8771F;letter-spacing:.02em;}
++.cif-flow-tab-title{font-size:11px;font-weight:950;letter-spacing:.035em;}
++.cif-flow-tab svg{width:14px;height:14px;flex-shrink:0;opacity:.75;}
++.cif-flow-tab-progress {
++  position:absolute;bottom:0;left:0;right:0;height:2px;
++  background:linear-gradient(90deg,#E8771F,#FFA65C);
++  transform:scaleX(0);transform-origin:left;pointer-events:none;
++}
++.cif-flow-tab.is-active .cif-flow-tab-progress{animation:cif-flow-timer 6.6s linear forwards;}
++.cif-console-v19[data-flow-phase="results"] .cif-flow-tab.is-active .cif-flow-tab-progress{animation-duration:7.8s;}
++@keyframes cif-flow-timer{from{transform:scaleX(0)}to{transform:scaleX(1)}}
++.cif-flow-panel{
++  box-sizing:border-box;display:flex;flex:1 1 auto;min-height:0;flex-direction:column;
++  overflow:hidden;padding:7px 14px;
++  background:linear-gradient(175deg,rgba(255,255,255,.96),rgba(247,250,254,.72));
++  animation:cif-flow-content-in .32s ease-out both;
++}
++@keyframes cif-flow-content-in{from{opacity:.3;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
++.cif-flow-list{display:flex;flex-direction:column;min-height:0;width:100%;}
++.cif-flow-row{
++  box-sizing:border-box;display:grid;align-items:center;
++  grid-template-columns:34px minmax(0,1fr) auto;gap:10px;min-width:0;
++  height:39px;flex:0 0 auto;border-bottom:1px solid #E8EDF4;
++}
++.cif-flow-row:last-child{border-bottom:0;}
++.cif-row-id{
++  box-sizing:border-box;justify-self:center;padding:4px 5px;border-radius:6px;
++  background:#F2F5F9;border:1px solid #E5EAF1;color:#8D9BB0;
++  font-size:8px;letter-spacing:-.025em;font-weight:850;
++}
++.cif-row-details{display:flex;flex-direction:column;justify-content:center;min-width:0;gap:2px;}
++.cif-row-details strong{
++  color:#253448;font-weight:850;font-size:11px;letter-spacing:-.014em;line-height:1.26;
++  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
++}
++.cif-row-details small{
++  color:#9EABBA;font-size:7.6px;font-weight:800;letter-spacing:.045em;line-height:1.2;
++  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
++}
++.cif-row-selection{
++  box-sizing:border-box;max-width:145px;justify-self:end;
++  color:#B9692A;background:#FFF7F0;border:1px solid rgba(232,119,31,.17);
++  border-radius:7px;padding:5px 8px;font-size:9px;font-weight:850;
++  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
++}
++.cif-flow-coupon-row{height:45px;}
++.cif-row-ticket{
++  display:grid;place-items:center;justify-self:center;width:27px;height:27px;
++  border-radius:8px;color:#E8771F;background:#FFF4EB;border:1px solid rgba(232,119,31,.18);
++}
++.cif-row-amount{display:flex;flex-direction:column;align-items:flex-end;gap:1px;min-width:70px;}
++.cif-row-amount strong{font-size:14px;color:#1B2B40;font-weight:950;font-variant-numeric:tabular-nums;}
++.cif-row-amount small{font-size:7.5px;color:#97A2B3;font-weight:850;white-space:nowrap;}
++.cif-flow-inline-note{
++  display:flex;align-items:center;gap:5px;padding:8px 5px 0;
++  font-size:9px;color:#8897AB;font-weight:750;white-space:nowrap;
++}
++.cif-flow-inline-note svg{color:#E8771F;flex-shrink:0;}
++
++.cif-flow-results{display:flex;flex-direction:column;justify-content:flex-start;min-height:0;}
++.cif-flow-result-row{
++ display:flex;align-items:center;justify-content:space-between;
++ box-sizing:border-box;min-height:35px;padding:1px 4px;border-bottom:1px solid #EBEFF5;
++}
++.cif-flow-result-title{display:flex;align-items:center;gap:10px;min-width:0;}
++.cif-flow-result-title strong{font-size:10.5px;font-weight:900;color:#2A3950;letter-spacing:.025em;}
++.cif-flow-result-title small{font-size:8px;font-weight:900;letter-spacing:.055em;}
++.cif-flow-result-money{display:flex;flex-direction:column;align-items:flex-end;gap:1px;}
++.cif-flow-result-money strong{
++ font-size:14px;font-weight:950;line-height:1;letter-spacing:-.015em;
++ font-variant-numeric:tabular-nums;text-shadow:0 1px rgba(255,255,255,.75);
++}
++.cif-flow-result-money small{color:#95A2B1;font-size:7.2px;font-weight:850;}
++.cif-result-won{color:#1E9B72;}
++.cif-result-lost{color:#CE665F;}
++.cif-flow-totals{
++ display:grid;grid-template-columns:1fr 1fr 1.12fr;
++ min-height:46px;margin-top:5px;overflow:hidden;
++ background:linear-gradient(180deg,#F5F8FC,#EDF3F9);
++ border:1px solid #DDE5F0;border-radius:9px;
++}
++.cif-flow-totals span{
++ box-sizing:border-box;display:flex;min-width:0;flex-direction:column;
++ justify-content:center;align-items:center;gap:2px;
++}
++.cif-flow-totals span+span{border-left:1px solid #DBE3EE;}
++.cif-flow-totals small{font-size:7.8px;font-weight:900;color:#8A99AB;letter-spacing:.055em;}
++.cif-flow-totals strong{font-size:14px;font-weight:950;color:#1E2D42;font-variant-numeric:tabular-nums;}
++.cif-flow-totals .cif-flow-net{background:linear-gradient(175deg,#FFFBF6,#FFF5EB);}
++.cif-flow-totals .cif-flow-net small{color:#BB753F;}
++.cif-flow-totals .cif-flow-net strong{color:#168F69;}
++.cif-flow-footer{
++ box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:7px;
++ flex:0 0 28px;padding:0 13px;border-top:1px solid #E2E8F0;
++ background:linear-gradient(180deg,#F9FAFD,#EFF3F8);
++ color:#8796AB;font-size:8.3px;font-weight:850;letter-spacing:.035em;white-space:nowrap;
++}
++.cif-flow-footer-step,.cif-flow-footer-next{display:inline-flex;align-items:center;gap:6px;}
++.cif-flow-footer-step svg,.cif-flow-footer-next svg{color:#E8771F;flex-shrink:0;}
++.cif-flow-footer-next{color:#B47545;}
++@media(min-width:1180px){
++ .desktopHome .hero-grid.capitale-preview-hero.capitale-with-intelligence-flow{min-height:655px;}
++ .desktopHome .cif-stage{height:590px;transform:none;}
++ .desktopHome .cif-console.cif-console-v19{height:287px;}
++ .desktopHome .cif-console-v19 .cif-console-heading{height:31px;}
++}
++@media(min-width:768px) and (max-width:1179px){
++ .desktopHome .cif-stage{height:590px;}
++ .desktopHome .cif-console.cif-console-v19{height:287px;}
++}
++@media(max-width:767px){
++ .cif-stage{height:569px;}
++ .cif-console.cif-console-v19{height:279px;border-radius:15px;}
++ .cif-console-v19 .cif-console-heading{height:30px;flex-basis:30px;padding:0 10px;}
++ .cif-console-v19 .cif-console-caption{font-size:6.9px;letter-spacing:.025em;}
++ .cif-console-v19 .cif-console-title{font-size:9px;}
++ .cif-flow-tabs{height:42px;flex-basis:42px;}
++ .cif-flow-tab{gap:4px;padding:0 3px;}
++ .cif-flow-tab-title{font-size:9.3px;}
++ .cif-flow-tab-number{font-size:8px;}
++ .cif-flow-tab svg{width:12px;height:12px;}
++ .cif-flow-panel{padding:6px 8px;}
++ .cif-flow-row{height:39px;gap:5px;grid-template-columns:29px minmax(0,1fr) auto;}
++ .cif-row-details strong{font-size:9.6px;}
++ .cif-row-details small{font-size:6.9px;}
++ .cif-row-id{font-size:7px;padding:4px 3px;}
++ .cif-row-selection{max-width:110px;font-size:8px;padding:5px;}
++ .cif-flow-coupon-row{height:44px;}
++ .cif-row-ticket{width:24px;height:24px;}
++ .cif-row-ticket svg{width:14px;height:14px;}
++ .cif-row-amount{min-width:58px;}
++ .cif-row-amount strong{font-size:12.5px;}
++ .cif-row-amount small{font-size:7px;}
++ .cif-flow-inline-note{font-size:7.8px;}
++ .cif-flow-result-row{min-height:34px;}
++ .cif-flow-result-title strong{font-size:9.5px;}
++ .cif-flow-result-money strong{font-size:12.5px;}
++ .cif-flow-totals{min-height:47px;}
++ .cif-flow-totals strong{font-size:12px;}
++ .cif-flow-totals small{font-size:7px;}
++ .cif-flow-footer{height:27px;flex-basis:27px;padding:0 9px;font-size:7.1px;}
++}
++@media(max-width:355px){
++ .cif-stage{height:565px;}
++ .cif-console.cif-console-v19{height:278px;}
++ .cif-flow-tab{gap:3px;}
++ .cif-flow-tab-title{font-size:8.5px;}
++ .cif-flow-tab-number{font-size:7.2px;}
++ .cif-console-v19 .cif-console-caption{font-size:6.2px;}
++ .cif-flow-panel{padding:6px 6px;}
++ .cif-flow-row{gap:3px;grid-template-columns:26px minmax(0,1fr) auto;}
++ .cif-row-details strong{font-size:8.6px;}
++ .cif-row-details small{font-size:6.5px;}
++ .cif-row-selection{max-width:100px;font-size:7.4px;padding:4px;}
++ .cif-flow-inline-note{font-size:7px;}
++ .cif-flow-result-money small{font-size:6.5px;}
++ .cif-flow-totals small{font-size:6.6px;}
++ .cif-flow-footer{font-size:6.3px;padding:0 7px;gap:4px;}
++}
++@media(prefers-reduced-motion:reduce){
++ .cif-flow-tab.is-active .cif-flow-tab-progress{animation:none;transform:scaleX(1);}
++ .cif-flow-panel{animation:none;}
++}
+--- /dev/null
++++ b/client/src/components/intelligence-flow-sample.ts
+@@ -0,0 +1,27 @@
++/**
++ * DEMO ONLY: wholly fictional fixtures, selections and ticket returns.
++ * NEVER use as actual match predictions, bookmaker odds, settlements, or P&L.
++ */
++export const demoMatches = [
++  { id: "M01", fixture: "Chelsea — Arsenal", pick: "Full Time 1", won: true },
++  { id: "M02", fixture: "Barcelona — Elche", pick: "Over 3.5 Goals", won: true },
++  { id: "M03", fixture: "Roma — Inter", pick: "BTTS Yes", won: false },
++  { id: "M04", fixture: "Bayern — Mainz", pick: "Over 2.5 Goals", won: true },
++] as const;
++
++export const demoCoupons = [
++  { id: "A", matchIds: ["M01", "M02"], stake: 20, returned: 58 },
++  { id: "B", matchIds: ["M02", "M04"], stake: 20, returned: 48 },
++  { id: "C", matchIds: ["M01", "M03"], stake: 20, returned: 0 },
++] as const;
++
++export const demoTotals = {
++  staked: demoCoupons.reduce((sum, coupon) => sum + coupon.stake, 0),
++  returned: demoCoupons.reduce((sum, coupon) => sum + coupon.returned, 0),
++  won: demoCoupons.filter((coupon) => coupon.returned > 0).length,
++  lost: demoCoupons.filter((coupon) => coupon.returned === 0).length,
++};
++export const demoNet = demoTotals.returned - demoTotals.staked;
++
++export const demoMatchLookup: Record<string, (typeof demoMatches)[number]> =
++  Object.fromEntries(demoMatches.map((match) => [match.id, match]));
+--- /dev/null
++++ b/client/src/components/intelligence-flow-sample.test.ts
+@@ -0,0 +1,28 @@
++import assert from "node:assert/strict";
++import test from "node:test";
++import { demoCoupons, demoMatchLookup, demoMatches, demoNet, demoTotals } from "./intelligence-flow-sample";
++
++test("sample coupon settlement is arithmetically consistent", () => {
++  assert.equal(demoTotals.staked, 60);
++  assert.equal(demoTotals.returned, 106);
++  assert.equal(demoNet, 46);
++  assert.equal(demoTotals.won, 2);
++  assert.equal(demoTotals.lost, 1);
++  assert.equal(demoMatches.length, 4);
++});
++
++test("each coupon references actual example selections", () => {
++  for (const coupon of demoCoupons) {
++    assert.equal(coupon.matchIds.length, 2);
++    assert.ok(coupon.matchIds.every((id) => Boolean(demoMatchLookup[id])));
++    const ticketWon = coupon.matchIds.every((id) => demoMatchLookup[id]?.won);
++    assert.equal(coupon.returned > 0, ticketWon);
++  }
++});
++
++test("example three illustrates losing combo and correct negative net per coupon", () => {
++  const lostCoupon = demoCoupons.find((c) => c.id === "C");
++  assert.ok(lostCoupon);
++  assert.equal(lostCoupon.returned - lostCoupon.stake, -20);
++  assert.equal(demoCoupons.reduce((sum, c) => sum + (c.returned - c.stake), 0), demoNet);
++});
