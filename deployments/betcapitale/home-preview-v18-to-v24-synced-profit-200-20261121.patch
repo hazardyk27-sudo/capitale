@@ -1,0 +1,155 @@
+--- a/client/src/components/IntelligenceFlowHeroDemo.tsx
++++ b/client/src/components/IntelligenceFlowHeroDemo.tsx
+@@ -89,7 +89,17 @@
+                 <Icon size={16} strokeWidth={1.8} aria-hidden="true"/>
+               </div>
+               <strong>{title}</strong>
+-              <small>{subtitle}</small>
++              {title === "RESULTS" ? (
++                <>
++                  <small className="cif-results-subtitle">{subtitle}</small>
++                  <span className="cif-profit-reveal" aria-hidden="true">
++                    <span className="cif-profit-reveal-label">PROFIT</span>
++                    <strong className="cif-profit-reveal-amount">+€200</strong>
++                  </span>
++                </>
++              ) : (
++                <small>{subtitle}</small>
++              )}
+               <span className="cif-console-progress" aria-hidden="true"><span/></span>
+             </div>
+           ))}
+--- a/client/src/components/intelligence-flow-hero-demo.css
++++ b/client/src/components/intelligence-flow-hero-demo.css
+@@ -1008,3 +1008,129 @@
+ @media(max-width:359px){
+   .bc-mobile-title{font-size:28px!important;}
+ }
++
++
++/* CAPITALE Preview V23 — compact V18 card, larger green illustrative profit.
++   Text is positioned in the unused right side of RESULTS, without changing
++   any of the three card dimensions or concealing the other panels. */
++.cif-profit-reveal {
++  position:absolute;
++  top:42px;
++  right:12px;
++  z-index:2;
++  display:flex;
++  flex-direction:column;
++  align-items:flex-end;
++  gap:1px;
++  line-height:1.05;
++  white-space:nowrap;
++  pointer-events:none;
++  opacity:0;
++  animation:cif-results-profit-v24 15s ease-in-out infinite;
++}
++.cif-profit-reveal-label {
++  font-size:8.6px;
++  font-weight:900;
++  letter-spacing:.07em;
++  color:#287A58;
++}
++.cif-console-cell .cif-profit-reveal-amount {
++  color:#098957;
++  font-size:22px;
++  font-weight:900;
++  letter-spacing:-.045em;
++  font-variant-numeric:tabular-nums;
++  line-height:1.14;
++}
++/* Existing desktop typography has a more specific strong selector.
++   Give the profit amount an explicit larger desktop size as intended. */
++.desktopHome .cif-console-cell .cif-profit-reveal-amount {
++  font-size:22px;
++  letter-spacing:-.045em;
++}
++@keyframes cif-profit-reveal-v23 {
++  0%,42%{opacity:0;transform:translateY(4px)}
++  49%,92%{opacity:1;transform:translateY(0)}
++  98%,100%{opacity:0;transform:translateY(-3px)}
++}
++/* On narrow screens a three-column cell has less free horizontal room:
++   use the existing subtitle row while keeping V18's column layout fixed. */
++@media(max-width:767px){
++  .cif-profit-reveal {
++    top:49px;
++    left:12px;
++    right:auto;
++    align-items:flex-start;
++  }
++  .cif-profit-reveal-label{display:none;}
++  .cif-console-cell .cif-profit-reveal-amount {font-size:14px;letter-spacing:-.035em;}
++  .cif-results-subtitle{animation:cif-profit-subtitle-v24 15s linear infinite;}
++}
++@keyframes cif-profit-subtitle-v23{
++  0%,42%{opacity:1}
++  49%,94%{opacity:0}
++  100%{opacity:1}
++}
++@media(prefers-reduced-motion:reduce){
++  .cif-profit-reveal{animation:none;opacity:1;transform:none;}
++  .cif-results-subtitle{animation:none;}
++}
++@media(max-width:767px) and (prefers-reduced-motion:reduce){
++  .cif-results-subtitle{opacity:0;}
++}
++
++
++/* V24: synchronized, unhurried MATCHES -> COUPONS -> RESULTS loop.
++   Every card stays visible and unchanged in size. The +€200 demo profit
++   only appears with RESULTS focus; never appears during the other two stages. */
++.cif-console-cell-1 {animation:cif-flow-focus-matches-v24 15s linear infinite;}
++.cif-console-cell-2 {animation:cif-flow-focus-coupons-v24 15s linear infinite;}
++.cif-console-cell-3 {animation:cif-flow-focus-results-v24 15s linear infinite;}
++@keyframes cif-flow-focus-matches-v24 {
++  0%,29%{background:linear-gradient(150deg,rgba(255,249,242,.91),rgba(244,247,252,.84));box-shadow:inset 0 2px 0 rgba(232,119,31,.40),inset 0 -2px 0 rgba(232,119,31,.10);}
++  33%,100%{background:transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,.75);}
++}
++@keyframes cif-flow-focus-coupons-v24 {
++  0%,32%{background:transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,.75);}
++  37%,62%{background:linear-gradient(150deg,rgba(255,249,242,.91),rgba(244,247,252,.84));box-shadow:inset 0 2px 0 rgba(232,119,31,.40),inset 0 -2px 0 rgba(232,119,31,.10);}
++  67%,100%{background:transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,.75);}
++}
++@keyframes cif-flow-focus-results-v24 {
++  0%,65%{background:transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,.75);}
++  70%,96%{background:linear-gradient(150deg,rgba(255,249,242,.91),rgba(244,247,252,.84));box-shadow:inset 0 2px 0 rgba(232,119,31,.40),inset 0 -2px 0 rgba(232,119,31,.10);}
++  100%{background:transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,.75);}
++}
++.cif-console-cell-1 .cif-console-progress span {animation:cif-flow-progress-matches-v24 15s linear infinite;}
++.cif-console-cell-2 .cif-console-progress span {animation:cif-flow-progress-coupons-v24 15s linear infinite;}
++.cif-console-cell-3 .cif-console-progress span {animation:cif-flow-progress-results-v24 15s linear infinite;}
++@keyframes cif-flow-progress-matches-v24 {
++  0%{transform:translateX(-100%)}
++  30%{transform:translateX(0)}
++  33%,100%{transform:translateX(100%)}
++}
++@keyframes cif-flow-progress-coupons-v24 {
++  0%,33%{transform:translateX(-100%)}
++  63%{transform:translateX(0)}
++  66%,100%{transform:translateX(100%)}
++}
++@keyframes cif-flow-progress-results-v24 {
++  0%,66%{transform:translateX(-100%)}
++  96%{transform:translateX(0)}
++  100%{transform:translateX(100%)}
++}
++@keyframes cif-results-profit-v24 {
++  0%,66%{opacity:0;transform:translateY(4px)}
++  71%,96%{opacity:1;transform:translateY(0)}
++  100%{opacity:0;transform:translateY(-3px)}
++}
++@keyframes cif-profit-subtitle-v24 {
++  0%,66%{opacity:1}
++  71%,96%{opacity:0}
++  100%{opacity:1}
++}
++@media(prefers-reduced-motion:reduce){
++  .cif-console-cell-1,.cif-console-cell-2,.cif-console-cell-3,
++  .cif-console-cell-1 .cif-console-progress span,
++  .cif-console-cell-2 .cif-console-progress span,
++  .cif-console-cell-3 .cif-console-progress span{animation:none;}
++}
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
