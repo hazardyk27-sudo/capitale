@@ -1,0 +1,194 @@
+--- a/client/src/components/IntelligenceFlowHeroDemo.tsx
++++ b/client/src/components/IntelligenceFlowHeroDemo.tsx
+@@ -68,19 +68,18 @@
+       </svg>
+ 
+       <div className="cif-engine-area">
+-        <div className="cif-side-label cif-side-left">
+-          <small>3 INDEPENDENT</small>
+-          <strong>DATA STREAMS</strong>
+-          <span className="cif-side-line"/>
+-        </div>
++        <div className="cif-engine-spacer" aria-hidden="true" />
+         <div className="cif-engine">
+           <div className="cif-engine-aurora" aria-hidden="true" />
+           <img src="/capitale-premium-symbol.svg" alt="" aria-hidden="true"/>
+         </div>
+-        <div className="cif-side-label cif-side-right">
+-          <small>CAPITALE</small>
+-          <strong>INTELLIGENCE</strong>
+-          <span className="cif-engine-activity"><span/> PROCESSING</span>
++        <div className="cif-engine-copy" aria-label="Four-step illustrative software workflow">
++          <span className="cif-engine-steps">
++            <span className="cif-engine-step cif-engine-step-1">Software selects matches</span>
++            <span className="cif-engine-step cif-engine-step-2">Matches are grouped into coupons</span>
++            <span className="cif-engine-step cif-engine-step-3">Coupons placed with equal stakes</span>
++            <span className="cif-engine-step cif-engine-step-4">Day-end returns are calculated</span>
++          </span>
+         </div>
+       </div>
+ 
+--- a/client/src/components/intelligence-flow-hero-demo.css
++++ b/client/src/components/intelligence-flow-hero-demo.css
+@@ -1241,3 +1241,159 @@
+ @media(max-width:767px) and (prefers-reduced-motion:reduce){
+   .cif-matches-subtitle,.cif-coupons-subtitle{opacity:0;}
+ }
++
++
++/* V28 — Four explanatory steps beside the CAPITALE chip.
++   Reuses the fixed 15s V18/V27 flow, without restoring the old prompt box,
++   expanding the hero or displacing the three workflow columns. */
++.cif-engine-steps {
++  position:relative;
++  display:block;
++  width:100%;
++  height:24px;
++  min-height:24px;
++  flex:none;
++  overflow:hidden;
++  text-align:left;
++}
++.cif-engine-step {
++  position:absolute;
++  top:0;
++  left:0;
++  width:100%;
++  max-height:24px;
++  box-sizing:border-box;
++  padding-left:8px;
++  border-left:2px solid #E8771F;
++  color:#4D5C70;
++  font-family:inherit;
++  font-size:10px;
++  font-weight:800;
++  line-height:1.2;
++  letter-spacing:0;
++  overflow:hidden;
++  opacity:0;
++  transform:translateY(3px);
++  pointer-events:none;
++  animation-duration:15s;
++  animation-timing-function:linear;
++  animation-iteration-count:infinite;
++}
++.cif-engine-step-1{animation-name:cif-engine-step-one-v28;}
++.cif-engine-step-2{animation-name:cif-engine-step-two-v28;}
++.cif-engine-step-3{animation-name:cif-engine-step-three-v28;}
++.cif-engine-step-4{animation-name:cif-engine-step-four-v28;}
++@keyframes cif-engine-step-one-v28 {
++  0%,20%{opacity:1;transform:translateY(0)}
++  25%,100%{opacity:0;transform:translateY(-3px)}
++}
++@keyframes cif-engine-step-two-v28 {
++  0%,23%{opacity:0;transform:translateY(3px)}
++  27%,47%{opacity:1;transform:translateY(0)}
++  52%,100%{opacity:0;transform:translateY(-3px)}
++}
++@keyframes cif-engine-step-three-v28 {
++  0%,49%{opacity:0;transform:translateY(3px)}
++  53%,67%{opacity:1;transform:translateY(0)}
++  72%,100%{opacity:0;transform:translateY(-3px)}
++}
++@keyframes cif-engine-step-four-v28 {
++  0%,69%{opacity:0;transform:translateY(3px)}
++  73%,96%{opacity:1;transform:translateY(0)}
++  100%{opacity:0;transform:translateY(-3px)}
++}
++@media (min-width:1180px) {
++  .desktopHome .cif-engine-step{font-size:10px;}
++}
++@media (max-width:767px) {
++  .cif-engine-steps{height:20px;min-height:20px;}
++  .cif-engine-step{font-size:7.7px;line-height:1.16;max-height:20px;padding-left:5px;border-left-width:1.5px;}
++}
++@media (max-width:355px) {
++  .cif-engine-step{font-size:7px;line-height:1.15;}
++}
++@media (prefers-reduced-motion:reduce) {
++  .cif-engine-step{animation:none;opacity:0;transform:none;}
++  .cif-engine-step-1{opacity:1;}
++}
++
++
++/* V29 — remove both old side captions. The only copy beside the CAPITALE
++   symbol is the four-step animated explanation, larger and centered. */
++.cif-engine-spacer { min-width:0; height:100%; }
++.cif-engine-copy {
++  box-sizing:border-box;
++  min-width:0;
++  width:100%;
++  height:100%;
++  padding:0 3px;
++  display:flex;
++  justify-content:center;
++  align-items:center;
++}
++.cif-engine-copy .cif-engine-steps {
++  display:block;
++  position:relative;
++  height:78px;
++  min-height:0;
++  max-height:100%;
++  width:100%;
++  overflow:hidden;
++}
++.cif-engine-copy .cif-engine-step {
++  position:absolute;
++  inset:0;
++  width:100%;
++  height:100%;
++  max-height:none;
++  box-sizing:border-box;
++  padding:0;
++  border:none;
++  display:flex;
++  justify-content:center;
++  align-items:center;
++  text-align:center;
++  color:#304056;
++  font-size:14px;
++  font-weight:850;
++  letter-spacing:-.01em;
++  line-height:1.2;
++  text-wrap:balance;
++  overflow-wrap:break-word;
++}
++@media(min-width:1400px){
++  .desktopHome .cif-engine-copy .cif-engine-step{font-size:16px;line-height:1.25;}
++}
++@media(min-width:1180px) and (max-width:1399px){
++  .desktopHome .cif-engine-copy .cif-engine-step{font-size:13.5px;line-height:1.2;}
++}
++@media(max-width:767px){
++  .cif-engine-copy{padding:0 2px;}
++  .cif-engine-copy .cif-engine-steps{height:66px;min-height:0;}
++  .cif-engine-copy .cif-engine-step{font-size:10.5px;line-height:1.17;}
++}
++@media(max-width:355px){
++  .cif-engine-copy .cif-engine-steps{height:66px;}
++  .cif-engine-copy .cif-engine-step{font-size:9.5px;line-height:1.17;letter-spacing:-.02em;}
++}
++
++
++/* V29 polish: fade text only; no vertical movement from old V28 keyframes,
++   keeping the text perfectly centered even during transition frames. */
++.cif-engine-copy .cif-engine-step{transform:none;}
++.cif-engine-copy .cif-engine-step-1{animation-name:cif-engine-step-one-v29;}
++.cif-engine-copy .cif-engine-step-2{animation-name:cif-engine-step-two-v29;}
++.cif-engine-copy .cif-engine-step-3{animation-name:cif-engine-step-three-v29;}
++.cif-engine-copy .cif-engine-step-4{animation-name:cif-engine-step-four-v29;}
++@keyframes cif-engine-step-one-v29{
++  0%,20%{opacity:1} 25%,100%{opacity:0}
++}
++@keyframes cif-engine-step-two-v29{
++  0%,23%{opacity:0} 27%,47%{opacity:1} 52%,100%{opacity:0}
++}
++@keyframes cif-engine-step-three-v29{
++  0%,49%{opacity:0} 53%,67%{opacity:1} 72%,100%{opacity:0}
++}
++@keyframes cif-engine-step-four-v29{
++  0%,69%{opacity:0} 73%,96%{opacity:1} 100%{opacity:0}
++}
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
