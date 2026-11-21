@@ -1,0 +1,455 @@
+--- a/client/src/pages/admin-social-media.tsx
++++ b/client/src/pages/admin-social-media.tsx
+@@ -3726,8 +3726,8 @@
+     retry:false,
+   });
+   const { data: crestManifest, error: crestError } = useQuery<unknown>({
+-    queryKey:["/team-logos/current-fixture-coverage.json"],
+-    queryFn:async()=>{const response=await fetch("/team-logos/current-fixture-coverage.json");if(!response.ok)throw new Error(`Crest catalog ${response.status}`);return response.json()},
++    queryKey:["/team-logos/current-fixture-coverage-v2.json"],
++    queryFn:async()=>{const response=await fetch("/team-logos/current-fixture-coverage-v2.json",{cache:"no-cache"});if(!response.ok)throw new Error(`Crest catalog ${response.status}`);return response.json()},
+     enabled:tab==="match-v2",
+     staleTime:60*60_000,
+     retry:false,
+@@ -3737,6 +3737,7 @@
+     return deriveMatchList2(matches,softwareFeed?.items??[],softwareFeed?.dataSource==="connected",logoIndexFromManifest(crestManifest));
+   })();
+   const metricSummary = Object.values(matchListV2Metrics).reduce((r,v)=>{r[v.status]+=1;return r}, {matched:0,missing:0,ambiguous:0,unavailable:0});
++  const logoSummary = Object.values(matchListV2Metrics).reduce((r,v)=> r + Number(!!v.homeLogoUrl)+Number(!!v.awayLogoUrl),0);
+ 
+   /* Chart data — last N days with actual data (not calendar days) */
+   const EMPTY_CHART: ChartResponse = { days: [], periodWonLegs: 0, periodTotalLegs: 0, rangeStart: null, rangeEnd: null };
+@@ -4194,9 +4195,10 @@
+               <div style={{fontSize:11,color:softwareError?"#B94F4D":"#304056",lineHeight:1.5,fontFamily:SANS}} role="status">
+                 {softwareLoading ? "Connecting to Software…" : softwareError || softwareFeed?.dataSource!=="connected"
+                   ? "Software source unavailable — no values invented."
+-                  : `${metricSummary.matched} matched · ${metricSummary.missing} missing · ${metricSummary.ambiguous} ambiguous`}
++                  : `${metricSummary.matched}/${matches.length} matched · ${metricSummary.missing} missing · ${metricSummary.ambiguous} ambiguous · ${logoSummary}/${matches.length*2} crests`}
+               </div>
+               {crestError && <div style={{fontSize:10,color:"#8B6770",marginTop:5,fontFamily:SANS}}>Crest catalog unavailable; initials remain visible.</div>}
++              {!softwareError && softwareFeed?.dataSource==="connected" && softwareFeed.items.every(row=>row.analystScore==null && row.newsScore==null) && <div style={{fontSize:10,color:"#758695",marginTop:4,fontFamily:SANS}}>A/N reports pending; unsupported values are never fabricated.</div>}
+               {metricSummary.ambiguous>0 && <div style={{fontSize:10,color:"#B06334",marginTop:6,fontFamily:SANS}}>Conflicting selections stay blank to prevent misleading signals.</div>}
+               <button onClick={()=>{void refetchSoftware();}} disabled={softwareLoading} style={{marginTop:10,border:"1px solid #DCE4E8",borderRadius:7,padding:"7px 11px",background:"#F8FAFC",color:"#243746",fontSize:11,fontFamily:SANS,cursor:"pointer"}}>Refresh Software values</button>
+               {matches.length>0 && <div style={{maxHeight:260,overflowY:"auto",marginTop:11,display:"grid",gap:5}}>
+--- a/client/src/components/match-list-template-2.tsx
++++ b/client/src/components/match-list-template-2.tsx
+@@ -130,6 +130,22 @@
+   </div>;
+ }
+ 
++function displayMarketPick(market:string|undefined,selection:string|undefined):string {
++  if (!market && !selection) return "";
++  const m=(market||"").trim().toUpperCase();
++  const p=(selection||"").trim().toUpperCase();
++  if (m==="1X2" || m==="FULL TIME" || m==="FULL TIME RESULT") {
++    if (p==="HOME" || p==="1") return "HOME WIN";
++    if (p==="AWAY" || p==="2") return "AWAY WIN";
++    if (p==="DRAW" || p==="X") return "DRAW";
++  }
++  if (m==="BTTS" || m==="BOTH TEAMS TO SCORE") {
++    if (p==="YES" || p==="NO") return `BTTS ${p}`;
++  }
++  if (m.includes("OVER") && /\d+(?:\.\d+)?/.test(m)) return m;
++  return [market,selection].filter(Boolean).join(" · ");
++}
++
+ function formatDate(date: string) {
+   if (!date) return "";
+   const parsed = new Date(`${date.slice(0, 10)}T12:00:00`);
+@@ -159,22 +175,21 @@
+   const padX = isStory ? 64 : 52;
+   const padTop = isStory ? 58 : 42;
+   const padBottom = isStory ? 38 : 28;
+-  const headerReserve = isStory ? 270 : 198;
++  const headerReserve = isStory ? 224 : 194;
+   const footerReserve = isStory ? 48 : 42;
+-  const listTop = isStory ? 18 : 14;
+-  const gap = Math.max(isStory ? 5 : 4, (isStory ? 15 : 11) - count * (isStory ? 0.55 : 0.42));
++  const listTop = isStory ? 16 : 12;
++  const gap = Math.max(isStory ? 7 : 6, (isStory ? 19 : 15) - count * (isStory ? 0.7 : 0.55));
+   const roomForCards =
+     dimensions.height - padTop - headerReserve - footerReserve - padBottom - listTop;
+   const cardHeight = count > 0 ? Math.max(36, (roomForCards - gap * Math.max(0, count - 1)) / count) : 0;
+-  const dense = cardHeight < 82;
+-  const titleSize = isStory ? 74 : 62;
++  const dense = cardHeight < 122;
++  const titleSize = isStory ? 66 : 58;
+   const headerColor = isResult ? palette.teal : "#C66A38";
+-  const rowPad = Math.max(2, Math.min(9, cardHeight * 0.04));
+-  const topLineSize = Math.max(9, Math.min(isStory ? 15 : 13, cardHeight * 0.185));
+-  const teamSize = Math.max(12, Math.min(isStory ? 24 : 21, cardHeight * 0.31));
+-  const metricSize = Math.max(8, Math.min(isStory ? 13 : 11.5, cardHeight * 0.17));
+-  const badgeSize = Math.max(20, Math.min(38, cardHeight * 0.38));
+-  const metricGap = dense ? 5 : 8;
++  const rowPad = dense ? 7 : (count>=9 ? 11 : 14);
++  const topLineSize = dense ? 10 : (isStory ? 12.5 : 11);
++  const teamSize = dense ? 15 : (isStory ? 23 : 21);
++  const metricSize = dense ? 10 : 12;
++  const badgeSize = dense ? 28 : (isStory ? 42 : 38);
+   const title = isResult ? "Match results" : "Today's matches";
+   const base: CSSProperties = {
+     boxSizing: "border-box",
+@@ -207,36 +222,30 @@
+           position: "relative",
+         }}
+       >
+-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+-            <img
+-              src="/bet-capitale-logo.png"
+-              alt="BetCapitale"
+-              style={{
+-                display: "block",
+-                width: isStory ? 184 : 154,
+-                height: isStory ? 32 : 27,
+-                objectFit: "contain",
+-                objectPosition: "left center",
+-              }}
+-            />
++        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
++          <div style={{display:"flex",alignItems:"center",gap:13}}>
++            <span style={{width:6,height:26,background:headerColor,borderRadius:8}} />
++            <div style={{display:"flex",flexDirection:"column",gap:3}}>
++              <span style={{fontFamily:"'Outfit','Manrope',system-ui,sans-serif",fontSize:isStory?22:19,
++                fontWeight:500,letterSpacing:".22em",color:palette.ink,lineHeight:1}}>CAPITALE</span>
++              <span style={{fontSize:isStory?9:8,color:palette.faint,letterSpacing:".18em",fontWeight:800}}>
++                SOFTWARE INTELLIGENCE
++              </span>
++            </div>
+           </div>
+-          <span
+-            style={{
+-              color: palette.faint,
+-              fontSize: isStory ? 13 : 11,
+-              fontWeight: 800,
+-              letterSpacing: ".17em",
+-              textTransform: "uppercase",
+-            }}
+-          >
+-            {isResult ? "FULL TIME" : "MATCHDAY"}
+-          </span>
++          <div style={{display:"flex",flexDirection:"column",gap:5,alignItems:"flex-end"}}>
++            <span style={{fontSize:isStory?13:11,fontWeight:900,letterSpacing:".16em",color:palette.ink}}>
++              {isResult?"FULL TIME":"MATCHDAY BRIEF"}
++            </span>
++            <span style={{fontSize:10,fontWeight:650,letterSpacing:".07em",color:palette.faint}}>
++              SOURCE-BASED DATA
++            </span>
++          </div>
+         </div>
+ 
+         <div
+           style={{
+-            marginTop: isStory ? 28 : 20,
++            marginTop: isStory ? 23 : 16,
+             display: "flex",
+             alignItems: "center",
+             gap: 14,
+@@ -262,7 +271,7 @@
+ 
+         <div
+           style={{
+-            marginTop: isStory ? 20 : 14,
++            marginTop: isStory ? 15 : 12,
+             display: "flex",
+             justifyContent: "space-between",
+             alignItems: "center",
+@@ -270,13 +279,13 @@
+             color: palette.muted,
+           }}
+         >
+-          <span style={{ fontSize: isStory ? 18 : 15, fontWeight: 600 }}>{formatDate(date)}</span>
++          <span style={{ fontSize: isStory ? 16 : 14, fontWeight: 600 }}>{formatDate(date)}</span>
+           <span
+             style={{
+               display: "inline-flex",
+               alignItems: "center",
+               gap: 8,
+-              fontSize: isStory ? 15 : 13,
++              fontSize: isStory ? 14 : 12,
+               fontWeight: 700,
+               whiteSpace: "nowrap",
+             }}
+@@ -301,198 +310,94 @@
+         >
+           {matches.map((match) => {
+             const metric = metricsByMatch[match.id];
+-            const money = metric?.volume || "";
+-            const scoreA = metric?.analyst || "";
+-            const scoreN = metric?.news || "";
+-            const draw = metric?.draw || "";
+             const mov = metric?.movement || "";
+             const movNum = Number(mov.replace("%", ""));
+             const movDown = mov!=="" && Number.isFinite(movNum) && movNum<0;
+             const movUp = mov!=="" && Number.isFinite(movNum) && movNum>0;
+-            const cells = [
+-              {label:"SIGNAL", value:metric?.signal||"", title:"Verified SXF signal code"},
+-              {label:"T",value:metric?.checkpoint||"",title:"SXF checkpoint"},
+-              {label:"V",value:money,title:"Selected-market money share"},
+-              {label:"A",value:scoreA,title:"Analyst support index, not probability"},
+-              {label:"N",value:scoreN,title:"News support index, not probability"},
+-              {label:"B",value:draw,title:"1X2 draw-money share"},
+-              {label:"O Δ",value:mov,title:"Verified odds change"},
++            const verified = metric?.status==="matched";
++            const badMatch = metric?.status==="ambiguous";
++            const signal = verified && metric?.signal ? metric.signal : (badMatch?"REVIEW":"PENDING");
++            const pick = verified ? displayMarketPick(metric?.market,metric?.selection) : "";
++            const homeNameSize = Math.max(teamSize * .76, teamSize - Math.max(0,match.homeTeam.length-16)*.35);
++            const awayNameSize = Math.max(teamSize * .76, teamSize - Math.max(0,match.awayTeam.length-16)*.35);
++            const competitionSize = Math.max(9.5,topLineSize - Math.max(0,match.competition.length-27)*.06);
++            const statItems = [
++              {label:"FLOW · V",value:verified ? metric?.volume || "" : "",title:"Verified selected-market money share"},
++              {label:"DRAW · B",value:verified ? metric?.draw || "" : "",title:"Draw money share"},
++              {label:"ODDS Δ",value:verified ? mov : "",title:"Valid historic odds movement"},
+             ];
+-            const code = match.countryCode?.trim();
+-            const homeNameSize = Math.max(teamSize * 0.68, teamSize - Math.max(0, match.homeTeam.length - 15) * 0.32);
+-            const awayNameSize = Math.max(teamSize * 0.68, teamSize - Math.max(0, match.awayTeam.length - 15) * 0.32);
+-            const competitionSize = Math.max(8, topLineSize - Math.max(0, match.competition.length - 26) * 0.12);
+-
+             return (
+               <div
+                 key={match.id}
+                 style={{
+-                  boxSizing: "border-box",
+-                  height: cardHeight,
+-                  minHeight: 0,
+-                  flexShrink: 0,
+-                  display: "flex",
+-                  flexDirection: "column",
+-                  justifyContent: "center",
+-                    gap: dense ? 2 : 6,
+-                  padding: `${rowPad}px ${dense ? 11 : 16}px`,
+-                  border: "1px solid #E4EAED",
+-                  borderRadius: dense ? 14 : 18,
+-                  background: palette.card,
+-                  boxShadow: "0 3px 12px rgba(26,49,61,.045)",
+-                  position: "relative",
+-                  overflow: "hidden",
++                  boxSizing:"border-box",height:cardHeight,minHeight:0,flexShrink:0,
++                  display:"flex",flexDirection:"column",justifyContent:"space-between",
++                  padding:`${rowPad}px ${dense ? 12 : 18}px`,
++                  border:`1px solid ${verified ? "#DEE7E6" : "#E6EBED"}`,
++                  borderRadius:dense?13:16,
++                  background:palette.card,
++                  boxShadow:"0 2px 9px rgba(22,36,49,.025)",
++                  position:"relative",overflow:"hidden",
+                 }}
+               >
+-                <div
+-                  style={{
+-                    display: "flex",
+-                    alignItems: "center",
+-                    justifyContent: "space-between",
+-                    gap: 12,
+-                    minHeight: topLineSize + 2,
+-                    color: palette.muted,
+-                        fontSize: competitionSize,
+-                    fontWeight: 700,
+-                    lineHeight: 1.1,
+-                    letterSpacing: ".06em",
+-                    textTransform: "uppercase",
+-                  }}
+-                >
+-                  <div style={{ display: "flex", alignItems: "center", gap: 8, minWidth: 0, flex: 1 }}>
+-                    {code ? (
+-                      <Flag code={code} />
+-                    ) : (
+-                      <span
+-                        aria-label="Country unavailable"
+-                        title={match.country || "Country unavailable"}
+-                        style={{
+-                          width: 25,
+-                          height: 17,
+-                          flexShrink: 0,
+-                          borderRadius: 4,
+-                          border: `1px solid ${palette.line}`,
+-                          background: "#F5F7F8",
+-                          color: "#9AA6AE",
+-                          display: "inline-flex",
+-                          alignItems: "center",
+-                          justifyContent: "center",
+-                          fontSize: 10,
+-                          fontWeight: 700,
+-                        }}
+-                      >
+-                        —
+-                      </span>
+-                    )}
+-                    <span
+-                      style={{
+-                        overflow: "hidden",
+-                        textOverflow: "ellipsis",
+-                        whiteSpace: "nowrap",
+-                        lineHeight: 1.05,
+-                        color: "#657681",
+-                      }}
+-                    >
+-                      {match.competition}
+-                    </span>
++                <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,
++                    minHeight:topLineSize+4,fontSize:competitionSize,fontWeight:800,letterSpacing:".085em",color:palette.muted}}>
++                  <span style={{overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{match.competition}</span>
++                  <span style={{fontVariantNumeric:"tabular-nums",fontSize:dense?11:13,fontWeight:900,color:headerColor,
++                    letterSpacing:".025em",flexShrink:0}}>{match.kickoffAt}</span>
++                </div>
++                <div style={{display:"grid",gridTemplateColumns:`minmax(0,1fr) ${dense ? 44 : 56}px minmax(0,1fr)`,
++                    alignItems:"center",gap:dense?5:9,minHeight:badgeSize}}>
++                  <div style={{display:"flex",alignItems:"center",gap:dense?7:12,minWidth:0}}>
++                    <ClubCrest name={match.homeTeam} src={metric?.homeLogoUrl} size={badgeSize}/>
++                    <span style={{fontSize:homeNameSize,fontWeight:750,letterSpacing:"-.032em",lineHeight:1.04,
++                      overflow:"hidden",whiteSpace:"nowrap",textOverflow:"ellipsis",color:palette.ink}}>{match.homeTeam}</span>
+                   </div>
+-                  <span
+-                    style={{
+-                      flexShrink: 0,
+-                      fontVariantNumeric: "tabular-nums",
+-                      letterSpacing: ".02em",
+-                      color: isResult ? palette.teal : "#B96335",
+-                      fontWeight: 800,
+-                      textTransform: "none",
+-                    }}
+-                  >
+-                    {match.kickoffAt}
++                  <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:4}}>
++                    <span style={{width:8,height:1,background:"#D5DEE1"}}/>
++                    <span style={{fontSize:10,fontWeight:800,letterSpacing:".09em",color:palette.faint}}>VS</span>
++                    <span style={{width:8,height:1,background:"#D5DEE1"}}/>
++                  </div>
++                  <div style={{display:"flex",alignItems:"center",justifyContent:"flex-end",gap:dense?7:12,minWidth:0}}>
++                    <span style={{fontSize:awayNameSize,fontWeight:750,letterSpacing:"-.032em",lineHeight:1.04,
++                      overflow:"hidden",whiteSpace:"nowrap",textOverflow:"ellipsis",textAlign:"right",color:palette.ink}}>{match.awayTeam}</span>
++                    <ClubCrest name={match.awayTeam} src={metric?.awayLogoUrl} size={badgeSize}/>
++                  </div>
++                </div>
++                <div style={{display:"flex",alignItems:"center",gap:dense?6:10,minWidth:0,
++                    fontSize:dense?10:11,borderTop:"1px solid #EFF2F2",paddingTop:dense?3:5}}>
++                  <span style={{fontWeight:850,color:verified?"#B35E36":"#9EABB0",flexShrink:0}}>SXF</span>
++                  <span style={{fontWeight:850,color:verified?palette.ink:palette.faint,flexShrink:0}}>{signal}</span>
++                  {verified && metric?.checkpoint && <span style={{color:palette.muted,fontWeight:750,flexShrink:0}}>
++                    {metric.checkpoint}
++                  </span>}
++                  {verified && pick && <span style={{fontSize:dense?10:12,color:palette.muted,overflow:"hidden",
++                    textOverflow:"ellipsis",whiteSpace:"nowrap",flex:"1 1 auto",minWidth:0}}>· {pick}</span>}
++                  {!verified && <span style={{color:badMatch?"#B16E44":palette.faint,
++                    overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",flex:1,minWidth:0}}>
++                      {badMatch?"MULTIPLE MARKETS — VERIFY PICK":"NO VERIFIED SOFTWARE RECORD"}</span>}
++                  <span style={{marginLeft:"auto",display:"flex",alignItems:"center",gap:dense?6:12,flexShrink:0,
++                     color:palette.faint,fontSize:dense?10:13,fontVariantNumeric:"tabular-nums"}}>
++                    <span>A <strong style={{fontWeight:800,color:metric?.analyst?palette.ink:palette.faint}}>{verified && metric?.analyst ? metric.analyst : "—"}</strong></span>
++                    <span>N <strong style={{fontWeight:800,color:metric?.news?palette.ink:palette.faint}}>{verified && metric?.news ? metric.news : "—"}</strong></span>
+                   </span>
+                 </div>
+-
+-                <div
+-                  style={{
+-                    display: "grid",
+-                    gridTemplateColumns: `minmax(0, 1fr) ${dense ? 48 : 64}px minmax(0, 1fr)`,
+-                    alignItems: "center",
+-                    minHeight: badgeSize,
+-                    gap: dense ? 6 : 10,
+-                  }}
+-                >
+-                  <div style={{ display: "flex", alignItems: "center", gap: dense ? 8 : 12, minWidth: 0 }}>
+-                        <ClubCrest name={match.homeTeam} src={metric?.homeLogoUrl} size={badgeSize} />
+-                    <span
+-                      style={{
+-                        minWidth: 0,
+-                        color: palette.ink,
+-                        fontSize: homeNameSize,
+-                        lineHeight: 1.05,
+-                        fontWeight: 750,
+-                        letterSpacing: "-.025em",
+-                        overflow: "hidden",
+-                        textOverflow: "ellipsis",
+-                        whiteSpace: "nowrap",
+-                      }}
+-                    >
+-                      {match.homeTeam}
+-                    </span>
+-                  </div>
+-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 5 }}>
+-                    <span style={{ height: 1, width: dense ? 8 : 12, background: "#D9E1E4" }} />
+-                    <span
+-                      style={{
+-                        color: "#8C9BA3",
+-                        fontSize: dense ? 8 : 9,
+-                        lineHeight: 1,
+-                        fontWeight: 900,
+-                        letterSpacing: ".1em",
+-                      }}
+-                    >
+-                      VS
+-                    </span>
+-                    <span style={{ height: 1, width: dense ? 8 : 12, background: "#D9E1E4" }} />
+-                  </div>
+-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: dense ? 8 : 12, minWidth: 0 }}>
+-                    <span
+-                      style={{
+-                        minWidth: 0,
+-                        textAlign: "right",
+-                        color: palette.ink,
+-                        fontSize: awayNameSize,
+-                        lineHeight: 1.05,
+-                        fontWeight: 750,
+-                        letterSpacing: "-.025em",
+-                        overflow: "hidden",
+-                        textOverflow: "ellipsis",
+-                        whiteSpace: "nowrap",
+-                      }}
+-                    >
+-                      {match.awayTeam}
+-                    </span>
+-                    <ClubCrest name={match.awayTeam} src={metric?.awayLogoUrl} size={badgeSize} />
+-                  </div>
+-                </div>
+-
+-                <div style={{display:"flex",alignItems:"center",gap:dense?4:6,
+-                  minHeight:Math.max(17,metricSize+6),minWidth:0}} aria-label={metric?.reason||"No Software match"}>
+-                  {cells.map((cell,index)=>{
+-                    const hasValue=cell.value!=="";
+-                    const changeCell=index===6;
+-                    const color=changeCell&&hasValue?(movDown?palette.red:movUp?palette.teal:palette.ink):palette.ink;
+-                    return <div key={cell.label} title={cell.title} style={{
+-                      boxSizing:"border-box",display:"flex",alignItems:"center",justifyContent:"center",gap:dense?3:5,
+-                      flex:index===0?"1.3 1 0":"1 1 0",minWidth:0,height:Math.max(18,metricSize+7),
+-                      border:"1px solid #E9EEF0",borderRadius:6,padding:dense?"0 3px":"0 6px",
+-                      background:changeCell&&hasValue?(movDown?palette.redPale:movUp?palette.tealPale:"#F8FAFA"):"#F8FAFA",
+-                      fontVariantNumeric:"tabular-nums",
++                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:dense?5:9}} aria-label={metric?.reason||"No Software record"}>
++                  {statItems.map((stat,i)=>{
++                    const present=!!stat.value;
++                    const tint=i===2 && present && movNum!==0;
++                    const tone=i===2 && tint?(movDown?palette.red:palette.teal):palette.ink;
++                    return <div key={stat.label} title={stat.title} style={{
++                      boxSizing:"border-box",minWidth:0,height:dense?22:30,
++                      padding:dense?"0 6px":"0 11px",borderRadius:7,
++                      display:"flex",alignItems:"center",justifyContent:"space-between",gap:6,
++                      background:tint?(movDown?palette.redPale:palette.tealPale):"#F5F8F8",
++                      border:"1px solid #EDF1F0",fontVariantNumeric:"tabular-nums",
+                     }}>
+-                      <span style={{flexShrink:0,fontSize:Math.max(7,metricSize*.74),fontWeight:850,
+-                        color:"#82939E",whiteSpace:"nowrap"}}>{cell.label}</span>
+-                      <span style={{minWidth:0,fontSize:metricSize,fontWeight:800,lineHeight:1,
+-                        overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",
+-                        color:hasValue?color:palette.faint}}>
+-                        {hasValue ? cell.value : "—"}
+-                      </span>
++                      <span style={{fontSize:dense?8:10,fontWeight:800,whiteSpace:"nowrap",letterSpacing:".045em",color:palette.muted}}>{stat.label}</span>
++                      <strong style={{fontSize:dense?11:15.5,fontWeight:900,color:present?tone:palette.faint,whiteSpace:"nowrap"}}>
++                        {present?stat.value:"—"}
++                      </strong>
+                     </div>;
+                   })}
+                 </div>
+@@ -532,7 +437,7 @@
+           textTransform: "uppercase",
+         }}
+       >
+-        <span>BETCAPITALE · FOOTBALL, IN FOCUS</span>
++        <span>CAPITALE · SOFTWARE INTELLIGENCE</span>
+         <span>
+           {pageCount > 1 ? `PAGE ${pageNumber} / ${pageCount} · ` : ""}
+           {isStory ? "STORY" : "MATCHDAY POST"}
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
