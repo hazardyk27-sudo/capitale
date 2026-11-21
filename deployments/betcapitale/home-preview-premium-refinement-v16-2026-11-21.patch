@@ -1,0 +1,182 @@
+--- a/client/src/components/intelligence-flow-hero-demo.css
++++ b/client/src/components/intelligence-flow-hero-demo.css
+@@ -752,3 +752,179 @@
+     gap:10px!important;
+   }
+ }
++
++/* CAPITALE PREVIEW v16 — premium, restrained finishing.
++   Only tune legibility, processor depth, console depth and micro-interaction.
++   Preserve V15 headline, CTA geometry, brand colors, content and page layout. */
++
++/* 1 — Small interface typography: increase 10–15% without changing fonts. */
++.cif-source small { font-size:8.5px; }
++.cif-side-label small { font-size:8.9px; }
++.cif-engine-activity { font-size:8.7px; }
++.cif-console-title { font-size:10px; }
++.cif-console-caption { font-size:8.5px; }
++.cif-console-cell-top span { font-size:10px; }
++.cif-console-cell strong { font-size:11px; letter-spacing:.014em; }
++.cif-console-cell small { font-size:8.8px; }
++.cif-console-bottom { font-size:7.7px; }
++.cif-console-note { font-size:7.7px; }
++@media (min-width:1180px) {
++  .desktopHome .cif-source small { font-size:10.2px; }
++  .desktopHome .cif-side-label small { font-size:11.2px; }
++  .desktopHome .cif-engine-activity { font-size:10.1px; }
++  .desktopHome .cif-console-title { font-size:11.2px; }
++  .desktopHome .cif-console-caption { font-size:9.5px; }
++  .desktopHome .cif-console-cell-top span { font-size:10.3px; }
++  .desktopHome .cif-console-cell strong { font-size:13.2px; }
++  .desktopHome .cif-console-cell small { font-size:10px; }
++  .desktopHome .cif-console-bottom { font-size:8.9px; }
++  .desktopHome .cif-console-note { font-size:8.7px; }
++}
++
++/* 2 — Raised, physical processor chip with a very controlled orange halo. */
++.cif-engine {
++  background:linear-gradient(146deg,#303947 0%,#1D2633 19%,#111824 58%,#0A1119 100%);
++  animation:cif-processor-refined 12s ease-in-out infinite;
++}
++@keyframes cif-processor-refined {
++  0%,46%,100% {
++    border-color:#444F5D;
++    box-shadow:
++      0 2px 1px rgba(255,255,255,.18),
++      0 5px 9px rgba(13,22,34,.19),
++      0 16px 25px -5px rgba(13,22,34,.27),
++      0 25px 34px -14px rgba(13,22,34,.21),
++      inset 0 2px 1px rgba(255,255,255,.19),
++      inset 2px 0 1px rgba(255,255,255,.06),
++      inset 0 -3px 3px rgba(0,0,0,.43);
++  }
++  68%,85% {
++    border-color:#EB914D;
++    box-shadow:
++      0 2px 1px rgba(255,255,255,.16),
++      0 6px 11px rgba(13,22,34,.20),
++      0 17px 25px -5px rgba(13,22,34,.27),
++      0 0 0 3px rgba(232,119,31,.12),
++      0 0 23px rgba(232,119,31,.13),
++      inset 0 2px 1px rgba(255,233,214,.22),
++      inset 2px 0 1px rgba(255,255,255,.07),
++      inset 0 -3px 3px rgba(0,0,0,.43);
++  }
++}
++.cif-engine::before {
++  content:"";
++  position:absolute;
++  inset:4px;
++  z-index:1;
++  pointer-events:none;
++  border:1px solid rgba(255,255,255,.10);
++  border-radius:inherit;
++  box-shadow:inset 0 1px 0 rgba(255,255,255,.09);
++}
++.cif-engine::after {
++  content:"";
++  position:absolute;
++  z-index:1;
++  pointer-events:none;
++  top:0;left:18%;right:18%;
++  height:1px;
++  background:linear-gradient(90deg,transparent,rgba(255,216,181,.53),transparent);
++}
++.cif-engine img{
++  filter:drop-shadow(0 2px 1px rgba(0,0,0,.53))
++         drop-shadow(0 3px 5px rgba(232,119,31,.25));
++}
++.cif-engine-aurora{
++  inset:-21px;
++  background:radial-gradient(ellipse,rgba(238,136,55,.15) 0%,rgba(238,136,55,.07) 38%,transparent 71%);
++}
++
++/* 3 — Dimensional white console, clear hierarchy, no colored profit/loss boxes. */
++.cif-console{
++  border-color:#D6DFEB;
++  background:linear-gradient(145deg,#FFFFFF 0%,#FAFBFE 50%,#F1F5FA 100%);
++  box-shadow:
++    0 2px 2px rgba(27,43,63,.035),
++    0 7px 11px rgba(27,43,63,.065),
++    0 16px 30px rgba(27,43,63,.12),
++    0 26px 38px -19px rgba(15,28,46,.20),
++    inset 0 2px 0 rgba(255,255,255,.98),
++    inset 0 -1px 0 rgba(122,141,167,.16);
++}
++.cif-console::before{
++  content:"";
++  position:absolute;
++  z-index:1;
++  pointer-events:none;
++  top:0;left:15%;right:15%;
++  height:1px;
++  background:linear-gradient(90deg,transparent,rgba(255,255,255,.98),transparent);
++}
++.cif-console-heading{
++  position:relative;
++  background:linear-gradient(180deg,rgba(255,255,255,.88),rgba(246,249,253,.70));
++  border-bottom-color:#DFE6F0;
++}
++.cif-console-title{font-weight:900;color:#35465F;}
++.cif-console-grid{
++  background:linear-gradient(180deg,rgba(255,255,255,.97),rgba(245,248,253,.73));
++}
++.cif-console-cell{
++  animation:cif-console-premium-focus 12s ease-in-out infinite;
++  box-shadow:inset 0 1px 0 rgba(255,255,255,.75);
++}
++.cif-console-cell-1{animation-delay:-3s;}
++.cif-console-cell-2{animation-delay:-2s;}
++.cif-console-cell-3{animation-delay:-1s;}
++@keyframes cif-console-premium-focus{
++  0%,12%{
++    background:linear-gradient(150deg,rgba(255,249,242,.91),rgba(244,247,252,.84));
++    box-shadow:inset 0 2px 0 rgba(232,119,31,.40),
++               inset 0 -2px 0 rgba(232,119,31,.10);
++  }
++  15%,100%{
++    background:transparent;
++    box-shadow:inset 0 1px 0 rgba(255,255,255,.75);
++  }
++}
++.cif-console-cell+.cif-console-cell{border-left-color:#DEE6F0;}
++.cif-console-cell strong{color:#15243B;font-weight:950;}
++.cif-console-cell-top svg{filter:drop-shadow(0 1px 0 rgba(255,255,255,.85));}
++.cif-console-progress{
++  background:#E0E7F1;
++  box-shadow:inset 0 1px 1px rgba(42,58,82,.08);
++}
++.cif-console-bottom{
++  background:linear-gradient(180deg,rgba(250,252,255,.86),rgba(240,244,250,.75));
++  border-top-color:#E0E6F0;
++}
++
++/* Smartphone: preserve measured 320–390px behavior and prevent small text
++   from growing into adjacent cards. Font families and colors are unchanged. */
++@media(max-width:767px){
++  .cif-source small{font-size:7.25px;}
++  .cif-side-label small{font-size:7.45px;}
++  .cif-engine-activity{font-size:7.25px;}
++  .cif-console-title{font-size:9.9px;}
++  .cif-console-caption{font-size:8.0px;}
++  .cif-console-cell-top span{font-size:9.4px;}
++  .cif-console-cell strong{font-size:9.85px;}
++  .cif-console-cell small{font-size:7.65px;}
++  .cif-console-bottom{font-size:7.0px;}
++  .cif-console-note{font-size:7.0px;}
++}
++@media(max-width:355px){
++  .cif-source small{font-size:6.55px;}
++  .cif-side-label small{font-size:6.75px;}
++  .cif-engine-activity{font-size:7.0px;}
++  .cif-console-title{font-size:9.1px;}
++  .cif-console-caption{font-size:6.7px;}
++  .cif-console-cell strong{font-size:8.65px;}
++  .cif-console-cell small{font-size:6.9px;}
++  .cif-console-bottom{font-size:6.55px;}
++  .cif-console-note{font-size:6.2px;}
++}
++@media(prefers-reduced-motion:reduce){
++  .cif-engine{animation:none;}
++  .cif-console-cell{animation:none;}
++}
