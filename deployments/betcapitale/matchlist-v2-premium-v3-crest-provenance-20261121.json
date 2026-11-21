@@ -1,0 +1,112 @@
+[
+  {
+    "team": "Aston Villa",
+    "path": "/team-logos/aston-villa.png",
+    "src": "https://r2.thesportsdb.com/images/media/team/badge/uwzw561787679026.png",
+    "source": "TheSportsDB Soccer England English Premier League",
+    "bytes": 98273,
+    "sha256": "7fbd249ade5e509ae04a176adc0a80ec90ecde8da49a2762704913bebf94eedf",
+    "ok": true
+  },
+  {
+    "team": "Sunderland",
+    "path": "/team-logos/sunderland.png",
+    "src": "https://r2.thesportsdb.com/images/media/team/badge/tprtus1448813498.png",
+    "source": "TheSportsDB Soccer England English Premier League",
+    "bytes": 156428,
+    "sha256": "e47086ad12bc2fee9837261ddc8dedd3ef137f5b1c4ae6267e8d425036311d83",
+    "ok": true
+  },
+  {
+    "team": "Tottenham",
+    "path": "/team-logos/tottenham.png",
+    "src": "https://a.espncdn.com/i/teamlogos/soccer/500/367.png",
+    "source": "ESPN England Tottenham Hotspur",
+    "bytes": 26224,
+    "sha256": "f66f956414b0fd99df6a7e29bed0bd8a849f11d41bd749a1e08ff8d032570d35",
+    "ok": true
+  },
+  {
+    "team": "Ipswich",
+    "path": "/team-logos/ipswich.png",
+    "src": "https://a.espncdn.com/i/teamlogos/soccer/500/373.png",
+    "source": "ESPN England Ipswich Town",
+    "bytes": 22565,
+    "sha256": "e253aeaf39ff7c9d19f91ce78464de947b275fdbea4bf595e602d42367cea1b7",
+    "ok": true
+  },
+  {
+    "team": "Grazer AK",
+    "path": "/team-logos/grazer-ak.png",
+    "src": "https://r2.thesportsdb.com/images/media/team/badge/43rocv1750352978.png",
+    "source": "TheSportsDB Soccer Austria Austrian Bundesliga",
+    "bytes": 140933,
+    "sha256": "0486db4989ecd14ee98f4829e4731e65b0e6d3ab5ce3f67bdd2847f57da51e45",
+    "ok": true
+  },
+  {
+    "team": "Rapid Vienna",
+    "path": "/team-logos/rapid-vienna.png",
+    "src": "https://r2.thesportsdb.com/images/media/team/badge/87y8id1779342351.png",
+    "source": "TheSportsDB Soccer Austria Austrian Bundesliga",
+    "bytes": 91975,
+    "sha256": "0728cb1f94b2ae0f8ed73cc381af80d117362f11c03ace0ec8b4700eb10ba25b",
+    "ok": true
+  },
+  {
+    "team": "Sion",
+    "path": "/team-logos/sion.png",
+    "src": "https://r2.thesportsdb.com/images/media/team/badge/gzpfmv1689085319.png",
+    "source": "TheSportsDB Soccer Switzerland Swiss Super League",
+    "bytes": 76169,
+    "sha256": "eca75f3014480d9aec3b643b17f92a7b7f1bc43c413c1cc2f60d13afee5b23c7",
+    "ok": true
+  },
+  {
+    "team": "Servette",
+    "path": "/team-logos/servette.png",
+    "src": "https://r2.thesportsdb.com/images/media/team/badge/440wv71692206330.png",
+    "source": "TheSportsDB Soccer Switzerland Swiss Super League",
+    "bytes": 143157,
+    "sha256": "b9737300fa7554cbe4364f7196eb041ae894d1656f4cf396560b9341fd6a43d0",
+    "ok": true
+  },
+  {
+    "team": "Motherwell",
+    "path": "/team-logos/motherwell.png",
+    "src": "https://r2.thesportsdb.com/images/media/team/badge/3e1dtj1785820999.png",
+    "source": "TheSportsDB Soccer Scotland Scottish Premier League",
+    "bytes": 139936,
+    "sha256": "8f870c93bc35956c9092ea6e9316b4c4390b3f0a51d4653dce69283bbabc44c0",
+    "ok": true
+  },
+  {
+    "team": "Rangers",
+    "path": "/team-logos/rangers.png",
+    "src": "https://r2.thesportsdb.com/images/media/team/badge/zgrbl21788969413.png",
+    "source": "TheSportsDB Soccer Scotland Scottish Premier League",
+    "bytes": 129539,
+    "sha256": "29c05618de8245fdb537afab27b81ab4c5554166d13c016679730ea252b60c27",
+    "ok": true
+  },
+  {
+    "team": "FC Groningen",
+    "path": "/team-logos/fc-groningen.png",
+    "src": "https://a.espncdn.com/i/teamlogos/soccer/500/145.png",
+    "source": "ESPN Netherlands FC Groningen",
+    "bytes": 34740,
+    "sha256": "2c64202333f9384e23073a2bf99d33fb3a25d0ef32ae24873faec7980f5d2aab",
+    "ok": true
+  },
+  {
+    "team": "Heerenveen",
+    "path": "/team-logos/heerenveen.png",
+    "src": "https://r2.thesportsdb.com/images/media/team/badge/surtsx1473534841.png",
+    "source": "TheSportsDB Soccer Netherlands Dutch Eredivisie",
+    "bytes": 146449,
+    "sha256": "8783256a437c5ee7e7abc7371605b9c941a98d6b4fc72800760de6a581fd2293",
+    "ok": true
+  }
+]
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
