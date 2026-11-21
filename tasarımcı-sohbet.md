@@ -6,7 +6,7 @@
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
-> **SON DURUM — V30 ÖNİZLEME AKTİF: SEMBOLÜN SOLUNDAKİ 3 INDEPENDENT / DATA STREAMS YAZISI KORUNDU/GERİ GETİRİLDİ. SEMBOLÜN SAĞINDAKİ ESKİ CAPITALE / INTELLIGENCE / PROCESSING KALDIRILDI; YERİNE 4 AŞAMALI BÜYÜTÜLMÜŞ VE ORTALANMIŞ ANİMASYON EKLENDİ. V27'NİN 3 KUTUSU, 4 ÖRNEK MAÇ/ORAN/KÂR DÖNGÜSÜ DEĞİŞMEDİ. ANA SİTE DEĞİŞMEDİ.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
+> **SON DURUM — V31 ÖNİZLEME AKTİF: WORKFLOW KUTUSUNUN SAĞ ALTINDAKİ `WORKFLOW DEMO` YAZISI KALDIRILDI. SİYAH ÜST HEADER'DAKİ CAPITALE WORDMARK GEORGIA'DAN PLAYFAIR DISPLAY 600'E GEÇİRİLDİ, HARF ARALIKLARI DENGELENDİ; SOFTWARE INTELLIGENCE ALT YAZISI VE TURUNCU SEMBOL KORUNDU. V30'UN SOL DATA STREAMS, SAĞ DÖRTLÜ AÇIKLAMA VE ALT ÜÇ WORKFLOW KUTUSU KORUNDU. ANA SİTE DEĞİŞMEDİ.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
 
 ---
 
@@ -17,7 +17,7 @@
 | Tasarımcı rolü | Doğrudan iş yapan, Commander kullanan **TASARIMCI**. Codex'e yönlendirme yok |
 | Tasarım hedefi | Orijinal V18 premium kompakt workflow'u korumak; yeni animasyon mantığını ancak kullanıcı kararından sonra ve aşırı veri sıkıştırmadan geliştirmek |
 | Aktif örnek site | **https://betcapitale.com/preview/home-v1/** |
-| Güncel sürüm | **V30** (2026-11-21): Sol tarafta 3 INDEPENDENT / DATA STREAMS geri alındı; sağda eski statik CAPITALE / INTELLIGENCE / PROCESSING yerine merkezde 4 animasyonlu işlem adımı. V27'nin MATCHES/COUPONS/RESULTS kartları, örnek senaryoları ve 15 sn akışı korundu |
+| Güncel sürüm | **V31** (2026-11-21): V30 yerleşimi korunup `WORKFLOW DEMO` kaldırıldı; header wordmark fontu Playfair Display SemiBold 600 ile güncellendi (desktop 23px, mobil 20px, dar tracking). Dört açıklama, dört örnek senaryo ve 15sn döngü korundu |
 | V18 ana başlık | **Use software to achieve** / **consistent daily profits.** |
 | V18 başlık altı, 1 | **We do the planning. You enjoy the winning.** |
 | V18 başlık altı, 2 | **Built on the right strategy for consistent long-term profits.** |
@@ -28,13 +28,13 @@
 | Analist alt metni | **REVIEWS STATISTICS** |
 | Sahte veri uyarısı | **CONCEPT, NOT LIVE DATA** korunur; +€200 yalnızca kurgusal demo, gerçek bahis sonucu değildir; V19–V21 kupon detayları geri gelmedi |
 | Üye sayacı | Hero altında yatay mevcut biçim; kaynak mantığına dokunulmadı |
-| QA | V30 TSC/Vite PASS; HTTP 200; Puppeteer 1662/1200/768/390/320px sol yazının varlığı, sağ eski metinlerin yokluğu, 4 animasyon fazı, merkezleme, 3 kutu sabitliği, sayfa taşması/JS hata kontrolü PASS. Üretim SHA sabit |
+| QA | V31 TSC/Vite PASS, preview HTML/JS/CSS HTTP 200; Puppeteer 1662/1200/768/390/320px PASS; yeni Playfair fontu yüklendi, logo/header taşma veya mobil menü çakışması yok, WORKFLOW DEMO kayboldu, soldaki DATA STREAMS / sağ dört adım / altta 3 kutu korundu; üretim SHA sabit |
 | Yayın sınırı | **Yalnızca önizleme**. Üretim sayfası ve \`dist/index.cjs\` değiştirilmedi |
 | Üretime geçiş | **Henüz kullanıcı onayı verilmedi** — kendiliğinden yayınlama |
 | V18 yedeği | V18 geri dönüş kaynağı: `/srv/capitale-preview/home-v1.rollback-animated-workflow-v19-20261121`; reddedilen V21 için yedek: `/srv/capitale-preview/home-v1.rollback-rejected-v21-before-v18-restoration-20261121` |
 
 Önizlemenin son doğrulanmış bundle referansları (daha sonra değişebilir):
-- JS: `/preview/home-v1/assets/index-BvXiv2KM.js`
+- JS: `/preview/home-v1/assets/index-Ddam9msd.js`
 - CSS: `/preview/home-v1/assets/index-CD-GA2aZ.css`
 - İkisi de HTTPS 200 olarak görüldü; önizleme HTML 200, ana site HTTP 200, yetkisiz admin API 401.
 
@@ -47,7 +47,7 @@
 - **Canlı site:** \`https://betcapitale.com/\`
 - **Önizleme:** \`https://betcapitale.com/preview/home-v1/\`
 - **Önizleme statik dosyaları:** \`/srv/capitale-preview/home-v1\`
-- **Aktif V30 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v30-restore-left-data-streams-work`. (V27 ve daha eski sürümler korunmuştur.)
+- **Aktif V31 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v31-header-type-work`. (V30 ve daha eski sürümler korunmuştur.)
 - **Önceki V18 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v18-work`.
 - **Canlı frontend:** \`/app/betcapitale/dist/public\` (**önizleme için değiştirme**).
 - **Canlı backend:** \`/app/betcapitale/dist/index.cjs\` (**asla yanlışlıkla frontend derlemesinden gelen backend ile değiştirme**).
@@ -260,6 +260,17 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **GitHub patch:** `deployments/betcapitale/home-preview-v27-to-v30-centered-copy-restore-left-20261121.patch` — V27 kaynaklarına uygulanabilir, commit `bcddb92e6e24ab6419abd501811456a5ff33f93d`.
 - **Gerçek görüntüler:** https://betcapitale.com/preview/home-v1/designer-v30-restore-left-desktop.png ve https://betcapitale.com/preview/home-v1/designer-v30-restore-left-mobile.png.
 - **Sonraki adım:** Kullanıcının önizleme değerlendirmesi; açık talimat verilmeden canlıya geçme.
+
+### 2026-11-21 — V31 — WORKFLOW DEMO kaldırıldı, CAPITALE header wordmark premium serif
+
+- **Kullanıcı isteği:** Alttaki `WORKFLOW DEMO` yazısı silinsin; siyah header şeridindeki `CAPITALE` yazısı daha estetik, kurumsal, premium font ve düzenle sunulsun. Eski V30 onaylı diğer alanlara dokunma.
+- **Kod:** `client/src/components/IntelligenceFlowHeroDemo.tsx` içinden yalnızca sağ alt `WORKFLOW DEMO` span'i kaldırıldı. Ortak üst logo bileşeni `client/src/components/CapitaleHeaderBrand.tsx` içindeki Georgia başlık fontu mevcut yüklü `Playfair Display` (weight 600) ailesine geçirildi; desktop font 23px, mobil kompakt 20px, letter spacing sırasıyla .095em / .075em. Alt `SOFTWARE INTELLIGENCE` Manrope sans-serif kaldı, rengi/harf aralığı rafine edildi. Turuncu CAPITALE sembolü ve siyah bandın yeri/boyutu değişmedi.
+- **Önizleme:** https://betcapitale.com/preview/home-v1/?v=31 — yalnızca önizlemeye deploy; ana site ve backend değiştirilmedi.
+- **QA:** TSC/Vite PASS; HTTP 200; Puppeteer 1662, 1200, 768, 390, 320px PASS. Google font browser'da gerçek loaded olarak doğrulandı; header mobil menüyle çakışmıyor. `WORKFLOW DEMO` yok. `3 INDEPENDENT / DATA STREAMS`, dört animasyon metni, üç workflow kartı, demo uyarısı ve mobil scroll sınırları korunmuş. JS console hatası yok. Ana site SHA korunuyor.
+- **Rollback:** `/srv/capitale-preview/home-v1.rollback-before-v31-header-wordmark-20261121` (V30).
+- **GitHub patch:** `deployments/betcapitale/home-preview-v30-to-v31-header-wordmark-20261121.patch`, commit `27a52d7bb6893e9377440701c60b8777ff17fd16`.
+- **Görüntüler:** https://betcapitale.com/preview/home-v1/designer-v31-brand-desktop.png ve https://betcapitale.com/preview/home-v1/designer-v31-brand-mobile.png; workflow screenshotları da preview dosyalarında saklandı.
+- **Sonraki adım:** Kullanıcı tipografiyi değerlendirir. Açık emir gelmeden canlı ana siteye yayınlama.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
