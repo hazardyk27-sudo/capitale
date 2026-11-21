@@ -1,0 +1,31 @@
+--- a/client/src/components/CapitaleHeaderBrand.tsx
++++ b/client/src/components/CapitaleHeaderBrand.tsx
+@@ -31,11 +31,11 @@
+           style={{
+             display: "block",
+             color: "#FFFFFF",
+-            fontFamily: '"Source Serif 4", Georgia, serif',
+-            fontSize: compact ? "19px" : "22px",
+-            letterSpacing: compact ? "0.055em" : "0.06em",
++            fontFamily: '"Outfit", "Manrope", sans-serif',
++            fontSize: compact ? "20px" : "22px",
++            letterSpacing: compact ? "0.115em" : "0.145em",
+             lineHeight: 1.1,
+-            fontWeight: 500,
++            fontWeight: 300,
+             whiteSpace: "nowrap",
+           }}
+         >
+@@ -48,8 +48,8 @@
+             color: "#BFC6D0",
+             fontFamily: '"Manrope", Arial, sans-serif',
+             fontSize: compact ? "7.2px" : "8px",
+-            fontWeight: 700,
+-            letterSpacing: compact ? "0.13em" : "0.16em",
++            fontWeight: 600,
++            letterSpacing: compact ? "0.13em" : "0.15em",
+             lineHeight: 1.25,
+             whiteSpace: "nowrap",
+           }}
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
