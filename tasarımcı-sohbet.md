@@ -2,11 +2,13 @@
 
 **Sorumlu:** TASARIMCI  
 **Belge amacı:** CAPITALE tasarımcısının sohbetler arası kalıcı belleği; yapılan bütün bilinen tasarım işleri, sürümler, onaylar, uygulanmış değişiklikler, doğrulamalar, yedekler ve sıradaki görevler.  
-**Son güncelleme:** 21 Kasım 2026  
+**Son güncelleme:** 21 Kasım 2026 · Match List v2 canlı otomatik Software / logo entegrasyonu  
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
 > **SON DURUM — V33 KULLANICI ONAYIYLA CANLIYA AKTARILDI (2026-11-21). `https://betcapitale.com/` ANA SAYFASI V33 HERO İLE ÇALIŞIYOR. Outfit Light logo, 3 kaynak, merkez CAPITALE simgesi, 4 açıklama adımı, 4 demo maç/oran/kâr senaryosu ve sayaç ilk-fold düzeltmesi yayında. DİĞER ROTALARIN ORIGINAL FRONTEND PAKETİ, AUTH/ADMIN YAZILIMI, ANALYTICS/IMPORTMAP VE BACKEND DEĞİŞMEDİ. Canlı HTML rollback yedeği hazır; masaüstü/mobil/rotalar/animasyonlar test edildi. Önizleme de ayrıca V33 olarak korunuyor.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
+
+**Güncel ek bilgi — 21.11.2026:** Ana sayfa V33 LIVE olduğu gibi korunurken **Admin / Match List v2** için ayrı canlı frontend modülü yayınlandı. Bu modül doğrulanmış Software raporlarını aynı maçın listesine bağlar ve mevcut takım logolarını kullanır. Diğer admin/Software modülleri, SXF motoru, Supabase raporları ve backend değiştirilmedi. Ayrıntı ve rollback aşağıdaki oturum günlüğündedir.
 
 ---
 
@@ -14,6 +16,7 @@
 
 | Alan | Son doğrulanmış durum |
 |---|---|
+| Match List v2 (CANLI) | **2026-11-21 LIVE**: `/admin` → Social Media → Match List v2, Software API verilerinden SIGNAL/T/V/A/N/B/O Δ otomatik; eşleşmeyen veya çakışan değer boş; yerel `team-logos` arşivindeki logolar varsa kullanılır, aksi halde harfli simge. Manuel localStorage metrik editörü kaldırıldı. |
 | Tasarımcı rolü | Doğrudan iş yapan, Commander kullanan **TASARIMCI**. Codex'e yönlendirme yok |
 | Tasarım hedefi | Orijinal V18 premium kompakt workflow'u korumak; yeni animasyon mantığını ancak kullanıcı kararından sonra ve aşırı veri sıkıştırmadan geliştirmek |
 | Canlı ana site | **https://betcapitale.com/** — kullanıcının açık onayıyla V33 hero aktarıldı; diğer route'lar mevcut üretim paketlerinde |
@@ -308,6 +311,18 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **Rollback:** `/app/betcapitale/rollback-hero-v33-prod-20261121/index.html`; dosya listesi `added-asset-names.txt`; eski dosyalar hash adlarıyla yerinde. Backend rollback gerekmez.
 - **GitHub:** `deployments/betcapitale/home-v33-preview-to-production-safe-20261121.patch` (commit `7ebf0e0058775f4f04a0cd41dfa86ff0c0a34fd8`), `deployments/betcapitale/home-v33-production-index-router-20261121.patch` (`7d6bbd05a4893ba10e53bbcfb8cc965bdd092be3`), `deployments/betcapitale/home-v33-production-deploy-report-20261121.md` (`a4db278430e59b61525c5595efca24503f7e841c`).
 - **Bir sonraki adım:** Canlı hero'ya yeni değişiklik talebi gelirse önce preview üzerinde ayrı sürüm; açık kullanıcı emri olmadan yönetim sayfası ve backend'e müdahale etme.
+
+### 2026-11-21 — Match List v2 canlı otomatik Software metrikleri ve takım logoları
+
+- **Kullanıcı talimatı:** `/admin` → Social Media → Match List v2 maçları kuponlardan geliyor. Her maçın Software'daki gerçek `SIGNAL`, `T-6/T-8`, `V`, `A`, `N`, `B`, `O Δ` değerleri manuel girişsiz otomatik dolsun; varsa takım logoları da eklensin.
+- **Uygulama:** `client/src/pages/admin-social-media.tsx` yenilendi: aynı yönetici oturumuyla Software `/api/admin/software` kaynak-backed yanıtı okunuyor, tarih ve iki takım adına göre deterministik eşleşme yapılıyor. `client/src/lib/match-list-v2-auto.ts` eklendi. Saat dilimi belirsiz `today_matches.kickoff_at` alanı, UTC Software saatini haksız yere elemek için kullanılmıyor. Çoklu market veya çelişen rapor eşleşmeleri fail-closed `ambiguous` kalıyor; hiçbir sentetik/demo veya tarayıcı localStorage metriği gerçek değere dönüştürülmüyor.
+- **Tasarım:** `client/src/components/match-list-template-2.tsx` güncellendi. Maç altına `SIGNAL`, `T`, `V`, `A`, `N`, `B`, `O Δ` etiketli 7 kompakt veri hücresi, kaynağı doğrulanan değerler ve kaynak yoksa `—`; takımlarda `/team-logos/current-fixture-coverage.json` manifestinden güvenilir yerel logo varsa gösteriliyor, aksi durumda önceki harfli simge. Mevcut 108 logo kapsamı. Admin sol panelindeki beş manuel metrik inputu yerine otomatik kaynak durumu, eşleşen/eksik/belirsiz sayıları ve `Refresh Software values` butonu.
+- **Veri gerçeği:** 21.11.2026 tarihinde Software kaynağında 60 run, 60 SXF sinyali / V; NEWS ve ANALYST raporu henüz 0 olduğu için A/N gerçek veri gelinceye kadar boş. Site `today_matches` tablosunda aynı gün 10 maç, Software feedinde bu isimlerden 7'si var; bu 7'sinin otomatik gösterimi market/versiyon benzersizliği şartına bağlıdır. Sonuç uydurulmaz.
+- **Canlı deploy izolasyonu:** Eski production `/assets/admin-social-media-BufGLmZ1.js` dosyası silinmedi/değiştirilmedi. Sadece yeni `/assets/admin-social-media-v2-auto-20261121.js` eklendi ve production `index.html` importmap'ine tek alias girildi; mevcut Software v13 üç aliası korunuyor. Ana sayfa V33, `/admin/software`, kuponlar, Today, backend `dist/index.cjs` veya Supabase tabloları değiştirilmedi.
+- **Rollback:** `/app/betcapitale/rollback-matchlist-v2-software-auto-logos-20261121/index.html` eski HTML; tek atomik dosya geri dönüşü yeterli. HTML SHA önce `a2156310d4a9d0f59c7fb7431ed06568ab57e593ca37d63ab97df4ce1ed93ad0`, sonra `87409c6ce727a54803a9ef488ffd82050740be708608d1fc7b9e6ee16523ed01`. Backend SHA sabit: `79b0bed37aed965979fc0d0bc6c093c4dcfe07a59934096cc65f2fb5c7ce3832`.
+- **QA:** `tsc --noEmit` PASS, Vite PASS, 13 birim doğrulama grubu PASS. Staging ve gerçek alan adında *yalnızca test tarayıcısı içinde mocklanan* Software/today API cevaplarıyla 2 matched/1 ambiguous senaryosu, logo yükleme (Chelsea/Leeds), A/N görünürlük, kaynak kapalıyken boş metrikler, 1080px grafik, fatal JS hatasız PASS. Guest smoke `/`, `/admin`, `/admin/social-media`, `/admin/software`, `/today`, `/plans` PASS. Üretim kullanıcı oturumuyla admin export/save testi yapılmadı; gerçek raporlara veya kuponlara hiçbir test yazımı yapılmadı.
+- **GitHub kaynak ve raporlar:** `deployments/betcapitale/admin-matchlist-v2-auto-software-logos-20261121.patch` (commit `98a148d27917ca55ae2c272a1b5d4246067c0c26`), `deployments/betcapitale/admin-matchlist-v2-live-importmap-20261121.patch` (`5acf2f8d577e3c451a1aa46e3c0dff895f69792b`), `deployments/betcapitale/admin-matchlist-v2-auto-live-20261121-report.md` (`7648904896bde6f329f1388a08faf085237210c2`).
+- **Gelecek adım:** Kullanıcı gerçek oturumunda Match List v2'yi ve Instagram dışa aktarma sonuçlarını kontrol etsin. Sonraki değişiklikler için mevcut live SHA ve başka agent deploy'ları tekrar karşılaştırılsın.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
