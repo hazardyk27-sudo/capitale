@@ -2,13 +2,13 @@
 
 **Sorumlu:** TASARIMCI  
 **Belge amacı:** CAPITALE tasarımcısının sohbetler arası kalıcı belleği; yapılan bütün bilinen tasarım işleri, sürümler, onaylar, uygulanmış değişiklikler, doğrulamalar, yedekler ve sıradaki görevler.  
-**Son güncelleme:** 21 Kasım 2026 · Match List v2 V3 premium tasarım + 20/20 takım logosu CANLI  
+**Son güncelleme:** 21 Kasım 2026 · Match List v2 V4 dikey takım listesi + sağ SXF/veri paneli CANLI  
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
 > **SON DURUM — V33 KULLANICI ONAYIYLA CANLIYA AKTARILDI (2026-11-21). `https://betcapitale.com/` ANA SAYFASI V33 HERO İLE ÇALIŞIYOR. Outfit Light logo, 3 kaynak, merkez CAPITALE simgesi, 4 açıklama adımı, 4 demo maç/oran/kâr senaryosu ve sayaç ilk-fold düzeltmesi yayında. DİĞER ROTALARIN ORIGINAL FRONTEND PAKETİ, AUTH/ADMIN YAZILIMI, ANALYTICS/IMPORTMAP VE BACKEND DEĞİŞMEDİ. Canlı HTML rollback yedeği hazır; masaüstü/mobil/rotalar/animasyonlar test edildi. Önizleme de ayrıca V33 olarak korunuyor.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
 
-**Güncel ek bilgi — 21.11.2026:** Ana sayfa V33 LIVE olduğu gibi korunurken **Admin / Match List v2** için ayrı canlı frontend modülü yayınlandı. Bu modül doğrulanmış Software raporlarını aynı maçın listesine bağlar ve mevcut takım logolarını kullanır. Diğer admin/Software modülleri, SXF motoru, Supabase raporları ve backend değiştirilmedi. Ayrıntı ve rollback aşağıdaki oturum günlüğündedir.
+**Güncel ek bilgi — 21.11.2026:** Ana sayfa V33 LIVE korunurken **Admin / Match List v2 V4** kullanıcı geri bildirimine göre tekrar tasarlandı: kartın SOLUNDA **ev sahibi logosu + adı üstte; deplasman logosu + adı altta**, SAĞINDA **SXF sinyal/T/seçim ve V/B/ODDS/A/N**. Story 1080×1920 ve post 1080×1350 ayrı test edildi, 20/20 logo korunuyor. Diğer admin/Software modülleri, SXF motoru, Supabase raporları ve backend değiştirilmedi. V3 geri dönüş yedeği hazır; ayrıntı aşağıdaki günlükte.
 
 ---
 
@@ -16,7 +16,7 @@
 
 | Alan | Son doğrulanmış durum |
 |---|---|
-| Match List v2 (CANLI) | **V3 premium, 21.11.2026 LIVE**: `/admin` → Social Media → Match List v2. Yeniden tasarlanmış 1080×1920 / 10 maç kartı; daha büyük logolar ve tipografi; SXF/T + okunur V/B/ODDS Δ; A/N yalnızca doğrulanmış raporla gelir. 120 takımın yerel logo manifesti, 21.11 listesindeki **20/20 logo** mevcut. 7/10 fixture Software kaydı; 3 eksik ve A/N raporları boş kalır, uydurma yok. Diğer sayfalar/backend değişmedi. |
+| Match List v2 (CANLI) | **V4 stacked clubs, 21.11.2026 LIVE**: `/admin` → Social Media → Match List v2. 10 maç, 1080×1920 story ve 1080×1350 post; **solda ev/deplasman takımının logo + adı üst üste, sağda SXF/T/tercih + V/B/ODDS/A/N paneli**. 20/20 takım logosu mevcut, 120 kulüplük yerel katalog korunur. Software'da 7/10 fixture kaydı; 3'ünde veri ve A/N raporları eksikse boş kalır. Diğer sayfalar/backend korunuyor. |
 | Tasarımcı rolü | Doğrudan iş yapan, Commander kullanan **TASARIMCI**. Codex'e yönlendirme yok |
 | Tasarım hedefi | Orijinal V18 premium kompakt workflow'u korumak; yeni animasyon mantığını ancak kullanıcı kararından sonra ve aşırı veri sıkıştırmadan geliştirmek |
 | Canlı ana site | **https://betcapitale.com/** — kullanıcının açık onayıyla V33 hero aktarıldı; diğer route'lar mevcut üretim paketlerinde |
@@ -335,6 +335,17 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **Rollback:** `/app/betcapitale/rollback-matchlist-v2-premium-20261121/index.html`; canlı indeks atomik geri döndürülebilir. Eski index SHA `87409c6ce727a54803a9ef488ffd82050740be708608d1fc7b9e6ee16523ed01`; V3 index SHA `9bb028ef51abf19ba2df9cb3c03142cf90e9c7efb393ac9e48dba0939104329b`. Backend SHA değişmedi: `79b0bed37aed965979fc0d0bc6c093c4dcfe07a59934096cc65f2fb5c7ce3832`.
 - **GitHub versiyon kaydı:** `deployments/betcapitale/matchlist-v2-premium-visual-and-crest-fix-20261121.patch` (`5a967da4f80a47c23ff4536b9c1c889c9e8e264a`), `deployments/betcapitale/matchlist-v2-premium-v3-importmap-20261121.patch` (`eecae4a4f8be91d643c057fe30f0014e3f12ee5e`), `deployments/betcapitale/matchlist-v2-premium-v3-crest-catalog-20261121.json` (`f00557189dbf8a491ef3f46799fd0baa18f0683d`), `deployments/betcapitale/matchlist-v2-premium-v3-crest-provenance-20261121.json` (`c199fa41286e11fc88f7066e3d2685817f87c959`), `deployments/betcapitale/matchlist-v2-premium-v3-live-report-20261121.md` (`b964c041591652435901b57d900d1cd67c6ea2a5`).
 - **Sonraki adım:** Kullanıcı gerçek yönetici oturumunda JPG/PNG indirme ve görünümü kontrol etsin. Yeni A/N raporları kaydedildikçe yazılım tarafından otomatik taşınır. Doğrulanmış veri olmayan maçlar boş kalır; gerekirse önce SXF veri kaynağı tamamlanır.
+
+### 2026-11-21 — Match List v2 V4 LIVE — Dikey logo/isimler ve sağda SXF veri paneli
+
+- **Kullanıcı referansı ve talebi:** V3'te takım isimleri/logoları birbirinden uzak kaldı. Ev sahibi logo+isim **üstte**, deplasman logo+isim **hemen altında** olmalı; **sağ tarafta** Software'dan gelen sinyal kodu, T ve veriler bulunmalı. Daha ilgi çekici ama CAPITALE kurumsal/minimal teması korunmalı.
+- **Tasarım:** `client/src/components/match-list-template-2.tsx` kartı iki kolonlu yapıya geçirildi: %44 sol dikey iki takım, %56 sağ açık gri entegre veri paneli. Üst satırda lig/kickoff, sağ üst SXF sinyal/T-6/T-8 ve insan-okur seçim (`HOME WIN`), alt metriklerde `V · FLOW`, `B · DRAW`, `ODDS Δ`. Geniş story panelinde gerçek kaynaktan gelirse A/N bilgi satırı; dar post panelinde üçüncü satır sıkışmasın diye aynı 5 metrik tek sırada (`V/B/ODDS/A/N`). Doğrulanmış maçlarda hafif turuncu sol vurgusu, veri olmayanlarda gri çizgi ve PENDING. Eski iki uca dağılmış isimler, gereksiz ortadaki VS boşluğu kaldırıldı.
+- **Veri:** V2/V3'teki gerçek Software eşleştirme kuralları, 120 yerel kulüp logolu manifest ve tüm kaynak güvenlik kontrolleri aynen korundu. 21.11'de Software kaydına eşleşen 7/10 fixture için mevcut veriler; diğer 3 fixture ve NEWS/ANALYST puanları kaynakta yoksa **boş**. Demo/random gerçekmiş gibi gösterilmedi, veritabanına müdahale edilmedi.
+- **Derleme/test:** TypeScript `tsc --noEmit` PASS; Vite PASS; 13 saf eşleştirme birim testi PASS. İzole tarayıcıyla 1080×1920 story'de 10 kart/20 sağlam logo; kaynak bağlı/bağlı değil senaryoları 2/2 PASS. 1080×1350 post 10 kart + 5 metriklik kompakt panel PASS. Aynı testler canlı betcapitale.com üzerinde **yalnızca QA tarayıcısında mock veri** ile story 2/2 ve post 1/1 PASS; canlı veri değiştirilmedi. Guest `/`, `/admin`, `/admin/social-media`, `/admin/software`, `/today`, `/plans` smoke PASS (auth olmadan admin sosyal chunk'ı bazen yüklenmez; mocked-auth testi modülü gerçekten yükleyip ekranı doğruladı). Fatal JS hata veya tam sayfa taşması yok. Gerçek admin PNG indirme kullanıcı oturumunda ayrıca yapılmadı.
+- **Canlı yayın/izolasyon:** Sunucu `smartxflow`, izole kaynak kopyası: `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-admin-matchlist-v2-stacked-clubs-v4-20261121-work`. Yeni JS `/assets/admin-social-media-v4-stacked-clubs-20261121.js` olarak eklendi; eski V3 ve diğer dosyalar yerinde kaldı. Production `index.html` içindeki tek importmap hedefi V3→V4 değiştirildi. Ana site V33, Software v13, Today, Plans, backend ve Supabase tabloları değiştirilmedi.
+- **Rollback:** `/app/betcapitale/rollback-matchlist-v2-stacked-v4-20261121/index.html` (V3). Eski HTML SHA `9bb028ef51abf19ba2df9cb3c03142cf90e9c7efb393ac9e48dba0939104329b`; yeni HTML SHA `dd823863cc47f29e2aa75d4f96ec36ed4d97b774e8eda9dfe19c43513e51495f`. Backend SHA hâlâ `79b0bed37aed965979fc0d0bc6c093c4dcfe07a59934096cc65f2fb5c7ce3832`.
+- **GitHub:** `deployments/betcapitale/matchlist-v3-to-v4-stacked-clubs-20261121.patch` commit `2dbab783c2c4093227a90a22e2e050a7a4ae285f`; `deployments/betcapitale/matchlist-v4-production-importmap-20261121.patch` commit `9b7d656076cd65301c4c7c7e83066153ff332364`; `deployments/betcapitale/matchlist-v4-stacked-clubs-live-20261121.md` commit `d82e1670f4d49db7bbb30798087cb298e4faebee`.
+- **İleri adım:** Kullanıcı gerçek `/admin` oturumunda Match List v2'nin story/post görüntüsünü ve indirilen PNG'yi kontrol etsin; yeni değişiklikte önce mevcut live SHA kontrol edilsin.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
