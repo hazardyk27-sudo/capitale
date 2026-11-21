@@ -1,0 +1,130 @@
+--- a/client/src/components/match-list-template-2.tsx
++++ b/client/src/components/match-list-template-2.tsx
+@@ -143,11 +143,11 @@
+ 
+   return <div data-template="match-list-2" style={{...base,width,height,overflow:"hidden",position:"relative",
+     display:"flex",flexDirection:"column",padding:`${top}px ${px}px ${bottom}px`,
+-    color:"#142333",background:"linear-gradient(180deg,#F2F4F7 0%,#FBFBFA 58%,#F2F5F6 100%)"}}>
++    color:"#142333",background:"linear-gradient(180deg,#FAFBFC 0%,#FFFFFF 55%,#FAFBFC 100%)"}}>
+     <div style={{height:headerHeight,minHeight:headerHeight,position:"relative",boxSizing:"border-box",
+       overflow:"hidden",borderRadius:story?20:16,padding:story?"26px 32px":"21px 27px",
+-      background:"radial-gradient(ellipse at 93% 2%,rgba(242,128,35,.21),transparent 36%),linear-gradient(118deg,#0C1523 8%,#14243A 74%,#1D293A 100%)",
+-      boxShadow:"0 16px 25px rgba(11,26,43,.15)",border:"1px solid rgba(240,245,249,.12)",
++      background:"radial-gradient(ellipse at 100% 0%,rgba(240,125,36,.09),transparent 35%),linear-gradient(118deg,#FFFFFF 0%,#FBFCFD 100%)",
++      boxShadow:"0 6px 20px rgba(20,35,51,.06)",border:"1px solid #E4E9ED",
+       display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
+       <div style={{position:"absolute",top:0,right:0,width:story?145:114,height:4,
+         background:"linear-gradient(90deg,transparent,#F17B23)"}}/>
+@@ -155,12 +155,12 @@
+         <div style={{display:"flex",alignItems:"center",gap:11,minWidth:0}}>
+           <span style={{width:5,height:story?27:22,background:"#F08129",borderRadius:5,flexShrink:0}}/>
+           <span style={{fontFamily:"'Outfit','Manrope',system-ui,sans-serif",fontSize:story?25:21,
+-            fontWeight:350,letterSpacing:".19em",color:"#F7F9FB",lineHeight:1}}>CAPITALE</span>
++            fontWeight:350,letterSpacing:".19em",color:"#1B2A39",lineHeight:1}}>CAPITALE</span>
+         </div>
+         <div style={{display:"inline-flex",alignItems:"center",justifyContent:"center",gap:8,
+-          background:"rgba(255,255,255,.09)",border:"1px solid rgba(255,255,255,.13)",
++          background:"#FFF5EC",border:"1px solid #F6DDC6",
+           borderRadius:100,padding:story?"9px 15px":"7px 12px",fontSize:story?15:13,
+-          fontWeight:800,color:"#FFFFFF",fontVariantNumeric:"tabular-nums"}}>
++          fontWeight:800,color:"#B65B1B",fontVariantNumeric:"tabular-nums"}}>
+           <span style={{width:7,height:7,borderRadius:"50%",background:"#FF8A2C",boxShadow:"0 0 0 3px rgba(255,138,44,.11)"}}/>
+           {totalMatches} {totalMatches===1?"fixture":"fixtures"}
+         </div>
+@@ -168,11 +168,11 @@
+       <div style={{display:"flex",alignItems:"center",gap:16,marginTop:story?8:5}}>
+         <div style={{height:story?76:59,width:5,background:"#EF7926",borderRadius:6,flexShrink:0}}/>
+         <span style={{fontFamily:"Georgia,'Times New Roman',serif",fontSize:story?72:57,
+-          fontWeight:700,letterSpacing:"-.056em",lineHeight:1.01,color:"#FFFFFF",whiteSpace:"nowrap"}}>
++          fontWeight:700,letterSpacing:"-.056em",lineHeight:1.01,color:"#142333",whiteSpace:"nowrap"}}>
+           {result?"Match results":"Today's matches"}
+         </span>
+       </div>
+-      <div style={{fontSize:story?17:14.5,color:"#AEC0D2",fontWeight:650,letterSpacing:".02em"}}>
++      <div style={{fontSize:story?17:14.5,color:"#687A8A",fontWeight:650,letterSpacing:".02em"}}>
+         {formatDate(date)}
+       </div>
+     </div>
+@@ -199,53 +199,53 @@
+           boxSizing:"border-box",height:rowHeight,minHeight:0,flexShrink:0,width:"100%",
+           display:"grid",gridTemplateColumns:grid,alignItems:"center",gap:story?7:6,
+           padding:story?"0 16px":"0 12px",position:"relative",overflow:"hidden",
+-          borderRadius:story?14:12,border:"1px solid #304156",
++          borderRadius:story?14:12,border:"1px solid #E3E9ED",
+           background:index%2===0
+-            ? "linear-gradient(112deg,#121E2E 0%,#17273A 60%,#192C42 100%)"
+-            : "linear-gradient(112deg,#182437 0%,#1C2B40 60%,#1D3046 100%)",
+-          boxShadow:"0 7px 15px rgba(14,34,54,.15)"}}>
++            ? "linear-gradient(112deg,#FFFFFF 0%,#FDFEFE 100%)"
++            : "linear-gradient(112deg,#FFFFFF 0%,#FAFBFC 100%)",
++          boxShadow:"0 4px 11px rgba(22,39,55,.055)"}}>
+           <span style={{position:"absolute",left:0,top:0,bottom:0,width:4,
+-            background:signal?"#F4832E":"#52677C"}}/>
+-          <span style={{color:signal?"#FFAE66":"#8FA2B5",fontSize:numberSize,fontWeight:900,
++            background:signal?"#EF7B26":"#DBE2E7"}}/>
++          <span style={{color:signal?"#D26924":"#80909B",fontSize:numberSize,fontWeight:900,
+             fontVariantNumeric:"tabular-nums",textAlign:"center",letterSpacing:".03em"}}>
+             {String((pageNumber-1)*matches.length+index+1).padStart(2,"0")}
+           </span>
+           <div style={{display:"flex",alignItems:"center",gap:story?4:3,minWidth:0,justifyContent:"center"}}>
+             {([['homeTeam','homeLogoUrl'],['awayTeam','awayLogoUrl']] as const).map(([team,logo])=><div key={team}
+               style={{width:crest+5,height:crest+5,display:"flex",alignItems:"center",justifyContent:"center",
+-                background:"#F9FBFD",border:"1px solid rgba(255,255,255,.14)",borderRadius:story?11:9,
+-                boxShadow:"0 2px 5px rgba(0,0,0,.14)",flexShrink:0}}>
++                background:"#FFFFFF",border:"1px solid #E8ECF0",borderRadius:story?11:9,
++                boxShadow:"0 2px 5px rgba(18,35,51,.055)",flexShrink:0}}>
+               <ClubCrest name={match[team]} src={m?.[logo]} size={crest}/>
+             </div>)}
+           </div>
+-          <span title={label} style={{color:"#F8FAFD",fontSize,fontWeight:850,letterSpacing:"-.035em",
++          <span title={label} style={{color:"#142333",fontSize,fontWeight:850,letterSpacing:"-.035em",
+             lineHeight:1.14,minWidth:0,overflow:"hidden",overflowWrap:"break-word",
+             whiteSpace:"normal",display:"-webkit-box",WebkitBoxOrient:"vertical",WebkitLineClamp:2}}>{label}</span>
+           <div title={signal?`SXF ${signal}`:"SXF value unavailable"} style={{height:story?48:42,
+             borderRadius:story?9:7,display:"flex",alignItems:"center",justifyContent:"center",
+-            background:signal?tone.bg:"#35465A",color:signal?"#FFFFFF":"#A4B2BE",
++            background:signal?tone.bg:"#EEF2F5",color:signal?"#FFFFFF":"#8C9AA4",
+             fontSize:story?17:15.5,fontWeight:900,whiteSpace:"nowrap",fontVariantNumeric:"tabular-nums",
+-            boxShadow:signal?"0 3px 8px rgba(0,0,0,.16)":"none"}}>{signal||"—"}</div>
++            boxShadow:signal?"0 3px 8px rgba(25,35,50,.085)":"none"}}>{signal||"—"}</div>
+           {stats.map(({name,value})=>{
+             const present=typeof value==="string"&&value.trim()!=="";
+             const display=present&&(['A','N'].includes(name))&&!value.includes("%")?`${value}%`:present?value:"—";
+             const change=name==="O";
+             const positive=change&&present&&display.startsWith('+');
+             const negative=change&&present&&display.startsWith('-');
+-            const tint=positive?"#68E3C8":negative?"#FF9A9C":"#F8FAFC";
++            const tint=positive?"#008F72":negative?"#C84B47":"#15283A";
+             return <div key={name} data-metric={name} title={name} style={{height:metricHeight,
+               display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
+               gap:story?7:4,minWidth:0,borderRadius:story?9:7,
+-              background:present&&change?"#294156":"rgba(244,249,253,.075)",
+-              border:"1px solid rgba(195,214,230,.11)",fontVariantNumeric:"tabular-nums"}}>
+-              <span style={{fontWeight:900,fontSize:story?12:10,color:"#8EA4BB",letterSpacing:".08em"}}>{name}</span>
++              background:present&&change?(positive?"#EAF8F3":negative?"#FCEEEE":"#F2F5F6"):"#F2F5F7",
++              border:"1px solid #E7ECF0",fontVariantNumeric:"tabular-nums"}}>
++              <span style={{fontWeight:900,fontSize:story?12:10,color:"#798C9B",letterSpacing:".08em"}}>{name}</span>
+               <strong style={{fontWeight:900,fontSize:story?17:14.5,letterSpacing:"-.04em",whiteSpace:"nowrap",
+-                color:present?tint:"#6F849A",lineHeight:1.05}}>{display}</strong>
++                color:present?tint:"#9DAAB4",lineHeight:1.05}}>{display}</strong>
+             </div>;
+           })}
+           <span style={{display:"flex",alignItems:"center",justifyContent:"center",height:story?44:38,
+-            borderRadius:8,background:"rgba(238,119,41,.12)",border:"1px solid rgba(238,119,41,.19)",
+-            color:"#FF9B4A",fontSize:story?17:15,fontWeight:900,fontVariantNumeric:"tabular-nums",whiteSpace:"nowrap"}}>
++            borderRadius:8,background:"#FFF3E9",border:"1px solid #F7E0D0",
++            color:"#C96B24",fontSize:story?17:15,fontWeight:900,fontVariantNumeric:"tabular-nums",whiteSpace:"nowrap"}}>
+             {match.kickoffAt||"—"}
+           </span>
+         </div>;
+@@ -255,7 +255,7 @@
+ 
+     <div style={{marginTop:"auto",height:footerHeight,paddingTop:story?12:9,
+       display:"flex",alignItems:"center",justifyContent:"space-between",
+-      color:"#7E8A97",fontSize:story?12:10,fontWeight:750,letterSpacing:".13em"}}>
++      color:"#8998A4",fontSize:story?12:10,fontWeight:750,letterSpacing:".13em"}}>
+       <span>CAPITALE</span><span>{footer}</span>
+     </div>
+   </div>;
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
