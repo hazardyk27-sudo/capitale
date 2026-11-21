@@ -38,7 +38,7 @@ Sırayla güncel sürümlerini oku:
 - 21.11.2026 itibarıyla üstteki «THE CAPITALE SYSTEM / ILLUSTRATIVE PREVIEW» ve görev konuşma balonu **kaldırılmıştır**; kullanıcı tekrar istemedikçe geri getirme.
 - Kullanıcı, sahte yeşil/kırmızı dolgu kutularını ve aşırı beyaz glow'u sevmiyor. Materyal, gölge ve 3D efekt **ölçülü, okunaklı, gerçekçi** olmalı.
 - Demo/simülasyon verisi, gerçek işlenmiş veri veya garantili kazanç gibi gösterilmez. \`CONCEPT, NOT LIVE DATA\` benzeri doğru açıklama, gerçek işlem olmadığı sürece korunur.
-- Şu an önizleme **Version 19**: kullanıcı isterse V20 ayrı worktree. Başlık V18'deki İngilizce pazarlama metnidir; sağdaki MATCHES→COUPONS→RESULTS animasyonu V19'dur.
+- Önizleme **V18 eski kompakt üç sütunlu workflow'a geri döndü (21.11.2026)**. V19, V20 ve V21 kullanıcı tarafından açıkça reddedildi; bunlar onaylı tasarım değildir. Yeni tasarım denemesini kullanıcıyla kararlaştırmadan başlatma.
 
 ## 4. Doğrudan uygulama ve dağıtım prosedürü
 
@@ -71,10 +71,10 @@ Sırayla güncel sürümlerini oku:
 
 ## 6. Güncel başlangıç noktası
 
-- **Aktif önizleme:** Version 19, `https://betcapitale.com/preview/home-v1/`
-- **v19 derleme kaynak klasörü:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-animated-workflow-v19-work`
-- **v19 GitHub patch:** `deployments/betcapitale/home-preview-animated-match-coupon-results-v19-2026-11-21.patch`
-- **v18 geri dönüş yedeği:** `/srv/capitale-preview/home-v1.rollback-animated-workflow-v19-20261121`
+- **Aktif önizleme:** V18 (orijinal üç sütunlu compact workflow), `https://betcapitale.com/preview/home-v1/`
+- **Aktif V18 kaynak klasörü:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v18-work`
+- **Aktif V18 GitHub patch:** `deployments/betcapitale/home-preview-designer-hero-english-copy-v18-2026-11-21.patch`
+- **V18 restore kaynağı:** `/srv/capitale-preview/home-v1.rollback-animated-workflow-v19-20261121`; **reddedilmiş V21'in backup'ı:** `/srv/capitale-preview/home-v1.rollback-rejected-v21-before-v18-restoration-20261121`
 - **Sıradaki işler ve bütün tasarım geçmişi:** [tasarımcı-sohbet.md](tasarımcı-sohbet.md)
 
 **Bu rol dokümanını sadece kurallar değişirse güncelle.** Her tasarım oturumunun ayrıntılı ilerlemesi için esas kalıcı belge **\`tasarımcı-sohbet.md\`** olacaktır.
