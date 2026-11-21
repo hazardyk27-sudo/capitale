@@ -6,7 +6,7 @@
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
-> **SON DURUM — V31 ÖNİZLEME AKTİF: WORKFLOW KUTUSUNUN SAĞ ALTINDAKİ `WORKFLOW DEMO` YAZISI KALDIRILDI. SİYAH ÜST HEADER'DAKİ CAPITALE WORDMARK GEORGIA'DAN PLAYFAIR DISPLAY 600'E GEÇİRİLDİ, HARF ARALIKLARI DENGELENDİ; SOFTWARE INTELLIGENCE ALT YAZISI VE TURUNCU SEMBOL KORUNDU. V30'UN SOL DATA STREAMS, SAĞ DÖRTLÜ AÇIKLAMA VE ALT ÜÇ WORKFLOW KUTUSU KORUNDU. ANA SİTE DEĞİŞMEDİ.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
+> **SON DURUM — V32 ÖNİZLEME AKTİF: ÜST HEADER CAPITALE YAZISI PLAYFAIR DISPLAY 600 YERİNE DAHA İNCE SOURCE SERIF 4 MEDIUM 500 (DESKTOP 22PX / MOBİL 19PX). SAYFA İLK AÇILDIĞINDA ALTTAKİ ÜYE SAYACININ ÜSTÜ GÖRÜNMÜYOR; SAYACI KAYDIRARAK GÖRMEK MÜMKÜN. V31'İN SOL DATA STREAMS, SAĞ DÖRTLÜ AÇIKLAMA, ÜÇ WORKFLOW KUTUSU VE SADELEŞTİRMELERİ KORUNDU. ANA SİTE DEĞİŞMEDİ.** Devam eden her tasarımda gerçek sunucu durumunu tekrar kontrol et. Bu belge geçmişi ve son devir durumunu taşır.
 
 ---
 
@@ -17,7 +17,7 @@
 | Tasarımcı rolü | Doğrudan iş yapan, Commander kullanan **TASARIMCI**. Codex'e yönlendirme yok |
 | Tasarım hedefi | Orijinal V18 premium kompakt workflow'u korumak; yeni animasyon mantığını ancak kullanıcı kararından sonra ve aşırı veri sıkıştırmadan geliştirmek |
 | Aktif örnek site | **https://betcapitale.com/preview/home-v1/** |
-| Güncel sürüm | **V31** (2026-11-21): V30 yerleşimi korunup `WORKFLOW DEMO` kaldırıldı; header wordmark fontu Playfair Display SemiBold 600 ile güncellendi (desktop 23px, mobil 20px, dar tracking). Dört açıklama, dört örnek senaryo ve 15sn döngü korundu |
+| Güncel sürüm | **V32** (2026-11-21): Header CAPITALE wordmark Source Serif 4 Medium 500 (masaüstü 22px, mobil 19px), zarif harf aralığı; üye sayacı ekran yüksekliğine uyumlu mesafeyle ilk fold altına alındı. Dört açıklama, dört kurgusal senaryo, 15sn döngü korundu |
 | V18 ana başlık | **Use software to achieve** / **consistent daily profits.** |
 | V18 başlık altı, 1 | **We do the planning. You enjoy the winning.** |
 | V18 başlık altı, 2 | **Built on the right strategy for consistent long-term profits.** |
@@ -28,14 +28,14 @@
 | Analist alt metni | **REVIEWS STATISTICS** |
 | Sahte veri uyarısı | **CONCEPT, NOT LIVE DATA** korunur; +€200 yalnızca kurgusal demo, gerçek bahis sonucu değildir; V19–V21 kupon detayları geri gelmedi |
 | Üye sayacı | Hero altında yatay mevcut biçim; kaynak mantığına dokunulmadı |
-| QA | V31 TSC/Vite PASS, preview HTML/JS/CSS HTTP 200; Puppeteer 1662/1200/768/390/320px PASS; yeni Playfair fontu yüklendi, logo/header taşma veya mobil menü çakışması yok, WORKFLOW DEMO kayboldu, soldaki DATA STREAMS / sağ dört adım / altta 3 kutu korundu; üretim SHA sabit |
+| QA | V32 TSC/Vite PASS, preview HTML/JS/CSS HTTP 200; Puppeteer masaüstü 1825×864, 1440×900, 1200×800/1080, 1024×768/1080, 768×900/1200 ve mobil 430×932, 390×844, 375×812, 320×640 kontrol edildi. Sayaç ilk ekranda görünmüyor (16px+ güvenli boşluk); kaydırınca görülüyor, menü/font yükleme ve içerik/taşma kontrolleri PASS; üretim SHA sabit |
 | Yayın sınırı | **Yalnızca önizleme**. Üretim sayfası ve \`dist/index.cjs\` değiştirilmedi |
 | Üretime geçiş | **Henüz kullanıcı onayı verilmedi** — kendiliğinden yayınlama |
 | V18 yedeği | V18 geri dönüş kaynağı: `/srv/capitale-preview/home-v1.rollback-animated-workflow-v19-20261121`; reddedilen V21 için yedek: `/srv/capitale-preview/home-v1.rollback-rejected-v21-before-v18-restoration-20261121` |
 
 Önizlemenin son doğrulanmış bundle referansları (daha sonra değişebilir):
-- JS: `/preview/home-v1/assets/index-Ddam9msd.js`
-- CSS: `/preview/home-v1/assets/index-CD-GA2aZ.css`
+- JS: `/preview/home-v1/assets/index-DVMpNyf6.js`
+- CSS: `/preview/home-v1/assets/index-C3LZv0fH.css`
 - İkisi de HTTPS 200 olarak görüldü; önizleme HTML 200, ana site HTTP 200, yetkisiz admin API 401.
 
 **İlk iş olarak bu bilgilerin hâlâ güncel olduğunu doğrula.** Başka görev/sunucu deploy'u paralel gerçekleşebilir; sabit hash'e güvenme.
@@ -47,7 +47,7 @@
 - **Canlı site:** \`https://betcapitale.com/\`
 - **Önizleme:** \`https://betcapitale.com/preview/home-v1/\`
 - **Önizleme statik dosyaları:** \`/srv/capitale-preview/home-v1\`
-- **Aktif V31 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v31-header-type-work`. (V30 ve daha eski sürümler korunmuştur.)
+- **Aktif V32 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v32-refined-wordmark-fold-work`. (V31 ve daha eski sürümler korunmuştur.)
 - **Önceki V18 çalışma kopyası:** `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-home-preview-copy-designer-v18-work`.
 - **Canlı frontend:** \`/app/betcapitale/dist/public\` (**önizleme için değiştirme**).
 - **Canlı backend:** \`/app/betcapitale/dist/index.cjs\` (**asla yanlışlıkla frontend derlemesinden gelen backend ile değiştirme**).
@@ -271,6 +271,17 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **GitHub patch:** `deployments/betcapitale/home-preview-v30-to-v31-header-wordmark-20261121.patch`, commit `27a52d7bb6893e9377440701c60b8777ff17fd16`.
 - **Görüntüler:** https://betcapitale.com/preview/home-v1/designer-v31-brand-desktop.png ve https://betcapitale.com/preview/home-v1/designer-v31-brand-mobile.png; workflow screenshotları da preview dosyalarında saklandı.
 - **Sonraki adım:** Kullanıcı tipografiyi değerlendirir. Açık emir gelmeden canlı ana siteye yayınlama.
+
+### 2026-11-21 — V32 — İnce Source Serif 4 wordmark ve ilk fold altında sayaç
+
+- **Kullanıcı isteği:** V31 Playfair CAPITALE yazısı çok ağır; daha ince, zarif, net okunur kurumsal font. İlk açılışta alttaki üye sayacının üst kenarı görünmesin; aşağı kaydırılınca gelsin.
+- **Değişen kod:** `client/src/components/CapitaleHeaderBrand.tsx` içindeki wordmark Playfair Display 600 → `Source Serif 4` 500; desktop 22px, kompakt mobil 19px, dar ve dengeli harf aralığı. `client/src/components/intelligence-flow-hero-demo.css` sonuna viewport yüksekliğine bağlı ilk-fold mesafesi: desktop ≥1100px `max(21px,100svh - 700px)`, tablet 768–1099px `max(25px,100svh - 860px)`, mobil ≤767px `max(0px,100svh - 740px)`; `100vh` fallback ile. Sayaç gizlenmedi, yalnızca doğal scroll akışında aşağı taşındı.
+- **Yayın:** Yalnızca https://betcapitale.com/preview/home-v1/?v=32 ; üretim sitesi ve backend değiştirilmedi. `CONCEPT, NOT LIVE DATA`, üç sabit MATCHES/COUPONS/RESULTS kartı, 4 demo senaryo, dört üst açıklama adımı, sol DATA STREAMS yazısı aynen kaldı.
+- **Derleme/QA:** TypeScript PASS; Vite PASS; HTML/JS/CSS HTTP 200; Puppeteer 1825×864, 1440×900, 1200×800, 1200×1080, 1024×768, 1024×1080, 768×900, 768×1200, 430×932, 390×844, 375×812, 320×640 test edildi. İlk viewport'ta sayaç görünmez (min 31px masaüstü, min 43px mobil), scrollIntoView ile görünür ve /plans linki çalışır. Font tarayıcıda gerçekten loaded, menüyle çakışma ve yatay taşma yok; JS hata yok. Üretim SHA sabit.
+- **Yedekler:** `/srv/capitale-preview/home-v1.rollback-before-v32-refined-wordmark-fold-20261121` (V31), `/srv/capitale-preview/home-v1.rollback-before-v32-mobile-clearance-20261121` (erken V32).
+- **GitHub patch:** `deployments/betcapitale/home-preview-v31-to-v32-source-serif-fold-20261121.patch`; commit `76236b8ae4c1f1ddffa97528040c5e340361f4e8`.
+- **Gerçek screenshot:** https://betcapitale.com/preview/home-v1/designer-v32-firstfold-desktop.png ve https://betcapitale.com/preview/home-v1/designer-v32-firstfold-mobile.png; wordmark crop görüntüleri de preview dizininde.
+- **Bir sonraki adım:** Kullanıcı font ve first-fold sonucunu değerlendirsin. Açık talimat olmadan ana siteye yayınlama.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
