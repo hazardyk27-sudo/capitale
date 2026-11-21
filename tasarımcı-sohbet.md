@@ -2,7 +2,7 @@
 
 **Sorumlu:** TASARIMCI  
 **Belge amacı:** CAPITALE tasarımcısının sohbetler arası kalıcı belleği; yapılan bütün bilinen tasarım işleri, sürümler, onaylar, uygulanmış değişiklikler, doğrulamalar, yedekler ve sıradaki görevler.  
-**Son güncelleme:** 21 Kasım 2026 · Match List v2 canlı otomatik Software / logo entegrasyonu  
+**Son güncelleme:** 21 Kasım 2026 · Match List v2 V3 premium tasarım + 20/20 takım logosu CANLI  
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
@@ -16,7 +16,7 @@
 
 | Alan | Son doğrulanmış durum |
 |---|---|
-| Match List v2 (CANLI) | **2026-11-21 LIVE**: `/admin` → Social Media → Match List v2, Software API verilerinden SIGNAL/T/V/A/N/B/O Δ otomatik; eşleşmeyen veya çakışan değer boş; yerel `team-logos` arşivindeki logolar varsa kullanılır, aksi halde harfli simge. Manuel localStorage metrik editörü kaldırıldı. |
+| Match List v2 (CANLI) | **V3 premium, 21.11.2026 LIVE**: `/admin` → Social Media → Match List v2. Yeniden tasarlanmış 1080×1920 / 10 maç kartı; daha büyük logolar ve tipografi; SXF/T + okunur V/B/ODDS Δ; A/N yalnızca doğrulanmış raporla gelir. 120 takımın yerel logo manifesti, 21.11 listesindeki **20/20 logo** mevcut. 7/10 fixture Software kaydı; 3 eksik ve A/N raporları boş kalır, uydurma yok. Diğer sayfalar/backend değişmedi. |
 | Tasarımcı rolü | Doğrudan iş yapan, Commander kullanan **TASARIMCI**. Codex'e yönlendirme yok |
 | Tasarım hedefi | Orijinal V18 premium kompakt workflow'u korumak; yeni animasyon mantığını ancak kullanıcı kararından sonra ve aşırı veri sıkıştırmadan geliştirmek |
 | Canlı ana site | **https://betcapitale.com/** — kullanıcının açık onayıyla V33 hero aktarıldı; diğer route'lar mevcut üretim paketlerinde |
@@ -323,6 +323,18 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **QA:** `tsc --noEmit` PASS, Vite PASS, 13 birim doğrulama grubu PASS. Staging ve gerçek alan adında *yalnızca test tarayıcısı içinde mocklanan* Software/today API cevaplarıyla 2 matched/1 ambiguous senaryosu, logo yükleme (Chelsea/Leeds), A/N görünürlük, kaynak kapalıyken boş metrikler, 1080px grafik, fatal JS hatasız PASS. Guest smoke `/`, `/admin`, `/admin/social-media`, `/admin/software`, `/today`, `/plans` PASS. Üretim kullanıcı oturumuyla admin export/save testi yapılmadı; gerçek raporlara veya kuponlara hiçbir test yazımı yapılmadı.
 - **GitHub kaynak ve raporlar:** `deployments/betcapitale/admin-matchlist-v2-auto-software-logos-20261121.patch` (commit `98a148d27917ca55ae2c272a1b5d4246067c0c26`), `deployments/betcapitale/admin-matchlist-v2-live-importmap-20261121.patch` (`5acf2f8d577e3c451a1aa46e3c0dff895f69792b`), `deployments/betcapitale/admin-matchlist-v2-auto-live-20261121-report.md` (`7648904896bde6f329f1388a08faf085237210c2`).
 - **Gelecek adım:** Kullanıcı gerçek oturumunda Match List v2'yi ve Instagram dışa aktarma sonuçlarını kontrol etsin. Sonraki değişiklikler için mevcut live SHA ve başka agent deploy'ları tekrar karşılaştırılsın.
+
+### 2026-11-21 — Match List v2 V3 premium görsel düzeltmesi + 20 takım logosu (CANLI)
+
+- **Geri bildirim:** Kullanıcı 1080×1920 story görselinin gereksiz boşluklu, okunaksız ve eksik logolu olduğunu belirtti; değerlerin de eksik görünmesini istedi. Önceki 7/10 SXF kaydı vardı; A/N yok ve bazı takım logoları örtüşmüyordu.
+- **Yapılan tasarım:** Match List v2 kartları 10 maçlık story akışına göre yeniden yerleştirildi. `CAPITALE · SOFTWARE INTELLIGENCE` üst imzası, daha temiz başlık/hiyerarşi, büyük kulüp logoları + takım isimleri, belirgin SXF kodu/T-6/T-8 ve insan-okur seçimi (`1X2 home` → `HOME WIN`), daha büyük üç sayı grubu `FLOW · V`, `DRAW · B`, `ODDS Δ`, A/N sadece gerçek rapor varsa, veri yoksa `PENDING/NO VERIFIED SOFTWARE RECORD` olarak dürüst gösterim.
+- **Logolar:** Eksik 12 gerçek kulüp logosu TheSportsDB ve ESPN futbol takım verisiyle isim/lig eşleştirmesi yapılarak indirildi ve üretim `team-logos/` altına eklendi: Aston Villa, Sunderland, Tottenham, Ipswich, Grazer AK, Rapid Vienna, Sion, Servette, Motherwell, Rangers, FC Groningen, Heerenveen. Versioned yeni manifest `/team-logos/current-fixture-coverage-v2.json`; katalog **108 → 120 takım**. 21.11.2026 tarihli 10 maçta 20/20 logo, Puppeteer PNG export önizlemesinde `naturalWidth>0` ile doğrulandı.
+- **Asıl veri açıklaması:** Supabase Software feed kaynağında 60 SXF run/sinyal/V mevcut; A ve N için sıfır tamamlanmış rapor; Today 10 maçın 7'si Software fixture adlarıyla eşleşir. 3 mevcut kaynak eşleşmeyen maçın sinyalleri, A/N ve raporlar **rastgele üretilmedi**. Çoklu seçim eşleşmeleri hâlâ fail-closed.
+- **Kapsam/yayın:** Önceki tasarım çalışma klasörünün kopyası: `/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-admin-matchlist-v2-premium-fix-20261121-work`. Yalnızca yeni `/assets/admin-social-media-v3-premium-20261121.js` ve 12 PNG + tek v2 JSON eklendi; production HTML `importmap` yalnızca V2 → V3 social-media aliasını değiştirdi. Ana sayfa V33, Software v13, TODAY/Coupon/CSS/analiz motorları ve `dist/index.cjs` aynı kaldı.
+- **QA:** `tsc --noEmit` PASS, Vite PASS, 13 birim test grubu PASS; test tarayıcısı üzerinde 1080×1920 10 maç / 20 logo + kaynak yokken boş değer / overflow 2/2 PASS; canlı domain üzerinde API yanıtları yalnızca test tarayıcısında mocklanarak aynı test tekrar 2/2 PASS. `/`, `/admin`, `/admin/social-media`, `/admin/software`, `/today`, `/plans` HTTP 200 ve sayfa smoke PASS. Gerçek admin login altında PNG save/download ayrı manuel test edilmedi; veri/bahis kayıtlarına test yazımı olmadı.
+- **Rollback:** `/app/betcapitale/rollback-matchlist-v2-premium-20261121/index.html`; canlı indeks atomik geri döndürülebilir. Eski index SHA `87409c6ce727a54803a9ef488ffd82050740be708608d1fc7b9e6ee16523ed01`; V3 index SHA `9bb028ef51abf19ba2df9cb3c03142cf90e9c7efb393ac9e48dba0939104329b`. Backend SHA değişmedi: `79b0bed37aed965979fc0d0bc6c093c4dcfe07a59934096cc65f2fb5c7ce3832`.
+- **GitHub versiyon kaydı:** `deployments/betcapitale/matchlist-v2-premium-visual-and-crest-fix-20261121.patch` (`5a967da4f80a47c23ff4536b9c1c889c9e8e264a`), `deployments/betcapitale/matchlist-v2-premium-v3-importmap-20261121.patch` (`eecae4a4f8be91d643c057fe30f0014e3f12ee5e`), `deployments/betcapitale/matchlist-v2-premium-v3-crest-catalog-20261121.json` (`f00557189dbf8a491ef3f46799fd0baa18f0683d`), `deployments/betcapitale/matchlist-v2-premium-v3-crest-provenance-20261121.json` (`c199fa41286e11fc88f7066e3d2685817f87c959`), `deployments/betcapitale/matchlist-v2-premium-v3-live-report-20261121.md` (`b964c041591652435901b57d900d1cd67c6ea2a5`).
+- **Sonraki adım:** Kullanıcı gerçek yönetici oturumunda JPG/PNG indirme ve görünümü kontrol etsin. Yeni A/N raporları kaydedildikçe yazılım tarafından otomatik taşınır. Doğrulanmış veri olmayan maçlar boş kalır; gerekirse önce SXF veri kaynağı tamamlanır.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
