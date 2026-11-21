@@ -1,0 +1,48 @@
+--- a/client/src/components/IntelligenceFlowHeroDemo.tsx
++++ b/client/src/components/IntelligenceFlowHeroDemo.tsx
+@@ -148,7 +148,7 @@
+           <span>SELECT</span>
+           <ArrowRight size={11} aria-hidden="true"/>
+           <span>TRACK</span>
+-          <span className="cif-console-note">WORKFLOW DEMO</span>
++
+         </div>
+       </div>
+     </section>
+--- a/client/src/components/CapitaleHeaderBrand.tsx
++++ b/client/src/components/CapitaleHeaderBrand.tsx
+@@ -31,10 +31,10 @@
+           style={{
+             display: "block",
+             color: "#FFFFFF",
+-            fontFamily: 'Georgia, "Times New Roman", serif',
+-            fontSize: compact ? "17px" : "19px",
+-            letterSpacing: compact ? "0.15em" : "0.18em",
+-            lineHeight: 1.15,
++            fontFamily: '"Playfair Display", "DM Serif Display", Georgia, serif',
++            fontSize: compact ? "20px" : "23px",
++            letterSpacing: compact ? "0.075em" : "0.095em",
++            lineHeight: 1.1,
+             fontWeight: 600,
+             whiteSpace: "nowrap",
+           }}
+@@ -44,12 +44,12 @@
+         <small
+           style={{
+             display: "block",
+-            marginTop: compact ? "5px" : "6px",
+-            color: "#C9CED7",
++            marginTop: compact ? "4px" : "5px",
++            color: "#BFC6D0",
+             fontFamily: '"Manrope", Arial, sans-serif',
+-            fontSize: compact ? "7px" : "8px",
+-            fontWeight: 750,
+-            letterSpacing: compact ? "0.14em" : "0.20em",
++            fontSize: compact ? "7.2px" : "8px",
++            fontWeight: 700,
++            letterSpacing: compact ? "0.13em" : "0.16em",
+             lineHeight: 1.25,
+             whiteSpace: "nowrap",
+           }}
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
