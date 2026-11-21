@@ -1,0 +1,119 @@
+--- a/client/src/main.tsx
++++ b/client/src/main.tsx
+@@ -1,82 +1,5 @@
+ import { createRoot } from "react-dom/client";
+-import { type FormEvent, type MouseEvent } from "react";
+-import { QueryClientProvider } from "@tanstack/react-query";
+-import { queryClient } from "./lib/queryClient";
+-import Landing from "./pages/landing";
++import App from "./App";
+ import "./index.css";
+ 
+-// Isolated design review: never allow the preview to make a modifying API request.
+-const nativeFetch = window.fetch.bind(window);
+-window.fetch = (input: RequestInfo | URL, init?: RequestInit) => {
+-  const method = (init?.method || (input instanceof Request ? input.method : "GET")).toUpperCase();
+-  if (method !== "GET" && method !== "HEAD") {
+-    return Promise.reject(new Error("Preview is read-only; modifying requests are disabled."));
+-  }
+-  return nativeFetch(input, init);
+-};
+-
+-// Guard any legacy XHR-based write requests as well.
+-const xhrOpen = XMLHttpRequest.prototype.open;
+-XMLHttpRequest.prototype.open = function (method: string, url: string | URL, ...args: any[]) {
+-  if (!["GET", "HEAD"].includes(method.toUpperCase())) {
+-    throw new Error("Preview is read-only; modifying requests are disabled.");
+-  }
+-  return (xhrOpen as any).call(this, method, url, ...args);
+-};
+-
+-function PreviewHome() {
+-  function keepPreview(event: MouseEvent<HTMLDivElement>) {
+-    const target = event.target;
+-    if (!(target instanceof Element)) return;
+-    const link = target.closest("a");
+-    if (!link) return;
+-    const href = link.getAttribute("href") || "";
+-    if (href.startsWith("#") && href.length > 1) {
+-      event.preventDefault();
+-      event.stopPropagation();
+-      document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth" });
+-      return;
+-    }
+-    event.preventDefault();
+-    event.stopPropagation();
+-  }
+-
+-  function disableForm(event: FormEvent<HTMLDivElement>) {
+-    event.preventDefault();
+-    event.stopPropagation();
+-  }
+-
+-  return (
+-    <QueryClientProvider client={queryClient}>
+-      <div onClickCapture={keepPreview} onSubmitCapture={disableForm}>
+-        <div
+-          role="status"
+-          style={{
+-            display: "flex",
+-            flexWrap: "wrap",
+-            justifyContent: "center",
+-            gap: "10px",
+-            alignItems: "center",
+-            background: "#111827",
+-            color: "#eef1f5",
+-            minHeight: "35px",
+-            padding: "6px 12px",
+-            fontFamily: "'Manrope', sans-serif",
+-            fontSize: "11px",
+-            lineHeight: 1.4,
+-            textAlign: "center",
+-            borderBottom: "1px solid rgba(232,119,31,.4)",
+-            position: "relative",
+-            zIndex: 999,
+-          }}
+-        >
+-          <strong style={{ color: "#FF8A34", letterSpacing: ".1em" }}>CAPITALE · DESIGN PREVIEW</strong>
+-          <span>Home v1 — private, read-only review · not the live homepage</span>
+-        </div>
+-        <Landing />
+-      </div>
+-    </QueryClientProvider>
+-  );
+-}
+-
+-createRoot(document.getElementById("root")!).render(<PreviewHome />);
++createRoot(document.getElementById("root")!).render(<App />);
+--- a/client/src/components/intelligence-flow-hero-demo.css
++++ b/client/src/components/intelligence-flow-hero-demo.css
+@@ -1404,19 +1404,19 @@
+    fully accessible with normal scrolling; never hidden or clipped. */
+ @media (min-width: 1100px) {
+   .desktopHome .capitale-members-strip {
+-    margin-top: max(21px, calc(100vh - 700px));
+-    margin-top: max(21px, calc(100svh - 700px));
++    margin-top: max(21px, calc(100vh - 665px));
++    margin-top: max(21px, calc(100svh - 665px));
+   }
+ }
+ @media (min-width: 768px) and (max-width: 1099px) {
+   .desktopHome .capitale-members-strip {
+-    margin-top: max(25px, calc(100vh - 860px));
+-    margin-top: max(25px, calc(100svh - 860px));
++    margin-top: max(25px, calc(100vh - 825px));
++    margin-top: max(25px, calc(100svh - 825px));
+   }
+ }
+ @media (max-width: 767px) {
+   .mobileHome .capitale-members-strip {
+-    margin-top: max(0px, calc(100vh - 740px));
+-    margin-top: max(0px, calc(100svh - 740px));
+-  }
+-}
++    margin-top: max(0px, calc(100vh - 705px));
++    margin-top: max(0px, calc(100svh - 705px));
++  }
++}
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
