@@ -1,0 +1,15 @@
+/* Exact hover lift and shadow from the authenticated admin Match List V2.
+   Public list uses article.public-match > div.capitale-v2-card instead of
+   admin tr.capitale-v2-row > td .capitale-v2-card.
+ Hover is scoped to the desktop card layout; mobile touch untouched. */
+@media (min-width: 851px) {
+  .capitale-software-page .public-match:hover > .capitale-v2-card {
+    box-shadow: 0 4px 5px rgba(24,40,59,.055),0 13px 22px rgba(27,43,63,.15),0 18px 30px -16px rgba(24,41,65,.26);
+    transform: translateY(-1px);
+  }
+}
+/* Mirror native admin focus-visible affordance for keyboard users. */
+.capitale-software-page .public-match > .capitale-v2-card:focus-visible {
+  box-shadow: 0 4px 5px rgba(24,40,59,.055),0 13px 22px rgba(27,43,63,.15),0 18px 30px -16px rgba(24,41,65,.26);
+  transform: translateY(-1px);
+}
