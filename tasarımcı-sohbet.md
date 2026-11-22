@@ -2,7 +2,7 @@
 
 **Sorumlu:** TASARIMCI  
 **Belge amacı:** CAPITALE tasarımcısının sohbetler arası kalıcı belleği; yapılan bütün bilinen tasarım işleri, sürümler, onaylar, uygulanmış değişiklikler, doğrulamalar, yedekler ve sıradaki görevler.  
-**Son güncelleme:** 23 Kasım 2026 · 3 UEFA kupası için 28 yeni SXF takım logosu + Lask Linz mevcut logo alias, 109/109 kapsam; canlı katalog 629→658; Software önceki ayarlar korunuyor
+**Son güncelleme:** 23 Kasım 2026 · How It Works V2 tasarımı izole önizlemede yayınlandı, 4/4 responsive Chromium QA PASS; canlı How It Works sayfası değişmedi
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
@@ -568,6 +568,17 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **Rollback:** `/app/betcapitale/rollback-sxf-uefa-3cups-logo-library-20261123/current-fixture-coverage-auto.json`. Önceki katalog SHA `35919d2a7ba35069e875bebfc4a91330fbcd51f175570057d92fbd8efdcffec9`, yeni SHA `479da929a8ee782f9fda88be31a1589b715b492efc425f8bb31de4141df114af`.
 - **GitHub:** Tam katalog `deployments/betcapitale/sxf-uefa-3cups-logo-catalog-20261123.csv` (`9bc3e0c`); kaynak/ID/SHA `deployments/betcapitale/sxf-uefa-3cups-logo-provenance-20261123.json` (`bf53e53`); doğrulama raporu `deployments/betcapitale/sxf-uefa-3cups-crest-expansion-live-20261123.md` (`78fd0a4`).
 - **Sonraki adım:** Sezon fikstürüne yeni takım girerse mevcut roster ile karşılaştırarak sadece yeni SXF isimlerini eşleştir; mevcut logolara ve diğer bölümlere dokunma.
+
+### 2026-11-23 — How It Works V2 bağımsız önizleme (CANLI ÖNİZLEME, ÜRETİME AKTARILMADI)
+
+- **Kullanıcı isteği:** How It Works mevcut sayfasına önerilen sade, ürün odaklı yeni düzeni yapıp nasıl olacağını göster; canlı değişiklik onayı henüz verilmedi.
+- **Uygulama:** Canlı kodu ve `/how-it-works` rotası değiştirilmeden, Nginx'in mevcut onaylı `/preview/home-v1/` alanında izole yeni statik tasarım oluşturuldu. Önizleme: **https://betcapitale.com/preview/home-v1/how-it-works-v2/**. Sunucu dosyaları: `/srv/capitale-preview/home-v1/how-it-works-v2/index.html`, `styles.css`, `app.js`; QA betiği `qa-check.cjs`; ekran görüntüleri `qa/` dizininde.
+- **Görsel tasarım:** CAPITALE mevcut light/serif/Outfit Light/turuncu/siyah tema; hero'nun sağında MARKET + NEWS + ANALYST → CAPITALE engine → MATCHES/COUPONS/RESULTS şeması. Dört tıklanabilir erişilebilir Software/Matches/Coupons/Results sekmesi, gerçek local takım logolarıyla **açıkça demo** maçlar, kupon dağıtımı, DEMO-042 aynı kuponun maç öncesi/sonrası karşılaştırması, 4 × €50 toplam €200 için +€70 ve −€105 matematiği doğru iki örnek, Today’s Bet / History / Plans bağlantıları, sade FAQ ve mobil menü. Hiçbir demo gerçek sinyal/kazanç/garanti diye sunulmuyor.
+- **QA:** Nginx preview, HTML/CSS/JS ayrı ayrı **HTTP 200**; noindex/noarchive ve analytics/pixel yok. Node --check PASS, HTML parser 21 benzersiz ID, 11/11 yerel image PASS; Puppeteer Chromium masaüstü 1440×900, tablet 820×1180, mobil 390×844 ve dar mobil 320×720 **4/4 PASS**: yatay overflow 0, broken image 0, JS errors 0, tab değişimi ve mobil menü/ESC çalışıyor. Masaüstü ve mobil gerçek ekran görüntüleri incelendi.
+- **Görüntüler:** `https://betcapitale.com/preview/home-v1/how-it-works-v2/qa/desktop-full.png` ve `https://betcapitale.com/preview/home-v1/how-it-works-v2/qa/mobile-full.png` (iki fold PNG de aynı `qa/` altında).
+- **GitHub:** `deployments/betcapitale/how-it-works-v2-preview-20261123/{index.html,styles.css,app.js}` (`a7f4f300`, `cf466a0a`, `96cd8953`); tam QA/rollback `deployments/betcapitale/how-it-works-v2-isolated-preview-qa-20261123.md` (`5912c825`).
+- **Değişmeyenler:** Production `/app/betcapitale/dist/public/index.html`, `dist/index.cjs`, canlı `/how-it-works`, SXF, Software, Match List, home ve tüm diğer sayfalar. Üretim index SHA başka eşzamanlı agent nedeniyle önceden değişmiş olabilir; **bu görev hiçbir production dosyasını değiştirmedi**.
+- **Onay / sonraki adım:** Kullanıcının önizlemeye bakarak beğendiği/değiştirmek istediği yerleri söylemesi beklenir. Açık canlı yayın onayı olmadan orijinal React `how-it-works-BgnH6UdZ.js` ve gerçek site index importlarına dokunma. Önizlemeyi kaldırmak gerekirse yalnızca izole `how-it-works-v2/` klasörünü geri al.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
