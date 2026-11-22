@@ -1,0 +1,120 @@
+--- a/client/src/pages/admin-social-media.tsx
++++ b/client/src/pages/admin-social-media.tsx
+@@ -32,34 +32,6 @@
+ // Match List v2 metrics are derived from the authenticated Software feed.
+ // Never copy stale manual browser values or demo rows into live match graphics.
+ const NO_MATCH_LIST_V2_DATA: Record<number,MatchListTemplate2Metrics> = {};
+-
+-// Visual DEMO ONLY: deterministic sample values for story/post mockups.
+-// They never enter Software API, DB, research records, or verified summaries.
+-// Fixture names, kickoff times and actual result statuses remain untouched.
+-function sampleMatchList2Metric(match:TM, real:MatchListTemplate2Metrics | undefined):MatchListTemplate2Metrics {
+-  const text=`${match.date}|${match.homeTeam}|${match.awayTeam}`;
+-  let hash=2166136261;
+-  for (const c of text) {hash=Math.imul(hash^c.charCodeAt(0),16777619)>>>0;}
+-  const sample=(salt:number,lo:number,hi:number)=>{
+-    let n=(hash^Math.imul(salt,2654435761))>>>0;
+-    n=Math.imul(n^(n>>>16),2246822507)>>>0;
+-    n=Math.imul(n^(n>>>13),3266489909)>>>0;
+-    return lo+n%(hi-lo+1);
+-  };
+-  const code=['PRM-6','MOM-8','STR-6','SLD-8','CRL-6','CNI-6','PRM-8'][sample(1,0,6)];
+-  const direction=sample(2,0,1)===0?'-':'+';
+-  return {
+-    status:'missing',reason:'DEMO SAMPLE ONLY — no Software verification',
+-    signal:code,checkpoint:code.endsWith('-8')?'T-8':'T-6',
+-    analyst:String(sample(3,61,92)),
+-    volume:`${(sample(4,670,975)/10).toFixed(1)}%`,
+-    news:String(sample(5,55,88)),
+-    draw:`${(sample(6,30,215)/10).toFixed(1)}%`,
+-    movement:`${direction}${(sample(7,2,69)/10).toFixed(1)}%`,
+-    market:'',selection:'',
+-    homeLogoUrl:real?.homeLogoUrl??null,awayLogoUrl:real?.awayLogoUrl??null,
+-  };
+-}
+ 
+ /* ─── HELPERS ────────────────────────────────────────────────────── */
+ function todayISO() {
+@@ -3702,7 +3674,6 @@
+   const [date,          setDate]          = useState(todayISO);
+   const [tab,           setTab]           = useState<ContentTab>("coupon");
+   const [variant,       setVariant]       = useState<Variant>("prematch");
+-  const [matchV2Sample, setMatchV2Sample] = useState(true); // Default on for design proof; one-click real-data return.
+   const [fmt,           setFmt]           = useState<Fmt>("story");
+   const [previewPage,   setPreviewPage]   = useState(0);
+   const [exporting,     setExporting]     = useState(false);
+@@ -3753,7 +3724,9 @@
+     },
+     enabled:tab==="match-v2",
+     staleTime:30_000,
++    refetchInterval:tab==="match-v2"?90_000:false,
+     refetchOnWindowFocus:true,
++    refetchOnMount:"always",
+     retry:false,
+   });
+   // Preloaded local crest library: keys are exact SXF team names.
+@@ -3779,10 +3752,9 @@
+     if (!matches.length) return NO_MATCH_LIST_V2_DATA;
+     return deriveMatchList2(matches,softwareFeed?.items??[],softwareFeed?.dataSource==="connected",logoIndexFromManifest(crestManifest));
+   })();
+-  // Artwork sample overlay: retain real team logos, never mutate the verified feed.
+-  const matchListV2Metrics = matchV2Sample
+-    ? Object.fromEntries(matches.map((m)=>[m.id,sampleMatchList2Metric(m,verifiedMatchListV2Metrics[m.id])])) as Record<number,MatchListTemplate2Metrics>
+-    : verifiedMatchListV2Metrics;
++  // Strictly source-backed: the same Software records and values shown in Software.
++  // Never synthesize missing A/V/N/B/O or signals in public/export graphics.
++  const matchListV2Metrics = verifiedMatchListV2Metrics;
+   const metricSummary = Object.values(verifiedMatchListV2Metrics).reduce((r,v)=>{r[v.status]+=1;return r}, {matched:0,missing:0,ambiguous:0,unavailable:0});
+   const logoSummary = Object.values(matchListV2Metrics).reduce((r,v)=> r + Number(!!v.homeLogoUrl)+Number(!!v.awayLogoUrl),0);
+ 
+@@ -3838,7 +3810,6 @@
+           fmt={fmt}
+           variant={variant}
+           metricsByMatch={matchListV2Metrics}
+-          demoMode={matchV2Sample}
+           totalMatches={matches.length}
+           pageNumber={i + 1}
+           pageCount={chunks.length}
+@@ -4235,33 +4206,29 @@
+           {tab === "match-v2" && (
+             <div style={{ background:"#fff", border:"1px solid #E4EAEE", borderRadius:12, padding:16 }}>
+               <div style={{fontSize:10,fontWeight:800,color:"#94A3B8",letterSpacing:"0.1em",fontFamily:SANS}}>
+-                MATCH LIST V2 · {matchV2Sample?'ILLUSTRATIVE SAMPLE':'AUTOMATIC SOFTWARE DATA'}
++                MATCH LIST V2 · VERIFIED SOFTWARE DATA
+               </div>
+-              <label style={{display:'flex',alignItems:'center',gap:8,marginTop:9,padding:'9px 10px',background:matchV2Sample?'#FFF5E9':'#F3F7F9',border:'1px solid #EDE3D6',borderRadius:8,color:'#324355',fontSize:11,fontWeight:800,cursor:'pointer',fontFamily:SANS}}>
+-                <input type="checkbox" checked={matchV2Sample} onChange={e=>setMatchV2Sample(e.target.checked)} />
+-                Fill with demo values (not verified SXF data)
+-              </label>
+               <div style={{marginTop:7,fontFamily:SANS,fontSize:10.5,color:'#607D94',lineHeight:1.5}}>
+                 LOCAL SXF CRESTS · Instant team-name match · No external logo lookup
+               </div>
+               <p style={{fontSize:11,lineHeight:1.55,color:"#5E6F7D",margin:"8px 0",fontFamily:SANS}}>
+-                {matchV2Sample?'Sample SXF codes and A/V/N/B/O values for visual demonstration only. Turn the switch off for actual Software records. Team logos and fixture times remain authentic.':'V · A · N · B · SIGNAL · T-6/T-8 · O Δ are read from verified Software records for the same fixture/date. Team crests appear where available.'}
++                V · A · N · B · SIGNAL · T-6/T-8 · O Δ use the exact verified Software source for this fixture/date. Missing or conflicting data remains —; no automatic sample values are inserted.
+               </p>
+               <div style={{fontSize:11,color:softwareError?"#B94F4D":"#304056",lineHeight:1.5,fontFamily:SANS}} role="status">
+-                {matchV2Sample ? `DEMO: ${matches.length} sample-filled fixtures · ${logoSummary}/${matches.length*2} genuine crests` : softwareLoading ? "Connecting to Software…" : softwareError || softwareFeed?.dataSource!=="connected"
+-                  ? "Software source unavailable — no values invented."
+-                  : `${metricSummary.matched}/${matches.length} matched · ${metricSummary.missing} missing · ${metricSummary.ambiguous} ambiguous · ${logoSummary}/${matches.length*2} crests`}
++                {softwareLoading ? "Connecting to Software…" : softwareError || softwareFeed?.dataSource!=="connected"
++                  ? "Software source unavailable — values remain blank; crests stay available."
++                  : `${metricSummary.matched}/${matches.length} verified matches · ${metricSummary.missing} missing · ${metricSummary.ambiguous} ambiguous · ${logoSummary}/${matches.length*2} crests`}
+               </div>
+               {crestError && <div style={{fontSize:10,color:"#8B6770",marginTop:5,fontFamily:SANS}}>Crest catalog unavailable; initials remain visible.</div>}
+-              {!matchV2Sample && !softwareError && softwareFeed?.dataSource==="connected" && softwareFeed.items.every(row=>row.analystScore==null && row.newsScore==null) && <div style={{fontSize:10,color:"#758695",marginTop:4,fontFamily:SANS}}>A/N reports pending; unsupported values are never fabricated.</div>}
+-              {!matchV2Sample && metricSummary.ambiguous>0 && <div style={{fontSize:10,color:"#B06334",marginTop:6,fontFamily:SANS}}>Conflicting selections stay blank to prevent misleading signals.</div>}
+-              {!matchV2Sample && <button onClick={()=>{void refetchSoftware();}} disabled={softwareLoading} style={{marginTop:10,border:"1px solid #DCE4E8",borderRadius:7,padding:"7px 11px",background:"#F8FAFC",color:"#243746",fontSize:11,fontFamily:SANS,cursor:"pointer"}}>Refresh Software values</button>}
++              {!softwareError && softwareFeed?.dataSource==="connected" && softwareFeed.items.every(row=>row.analystScore==null && row.newsScore==null) && <div style={{fontSize:10,color:"#758695",marginTop:4,fontFamily:SANS}}>A/N reports pending; unsupported values are never fabricated.</div>}
++              {metricSummary.ambiguous>0 && <div style={{fontSize:10,color:"#B06334",marginTop:6,fontFamily:SANS}}>Conflicting selections stay blank to prevent misleading signals.</div>}
++              {<button onClick={()=>{void refetchSoftware();}} disabled={softwareLoading} style={{marginTop:10,border:"1px solid #DCE4E8",borderRadius:7,padding:"7px 11px",background:"#F8FAFC",color:"#243746",fontSize:11,fontFamily:SANS,cursor:"pointer"}}>Refresh Software values</button>}
+               {matches.length>0 && <div style={{maxHeight:260,overflowY:"auto",marginTop:11,display:"grid",gap:5}}>
+                 {matches.map(match=>{
+                   const m=matchListV2Metrics[match.id];
+                   return <div key={match.id} style={{border:"1px solid #E5ECEE",borderRadius:6,padding:"7px 8px",fontFamily:SANS,fontSize:10,color:"#536677"}}>
+                     <strong style={{color:"#293C4D"}}>{match.homeTeam} – {match.awayTeam}</strong>
+-                    <div style={{marginTop:2}}>{matchV2Sample ? [m?.signal,m?.checkpoint,m?.volume&&`V ${m.volume}`,m?.analyst&&`A ${m.analyst}`,m?.news&&`N ${m.news}`].filter(Boolean).join(' · '):m?.status==="matched" ? [m.signal,m.checkpoint,m.volume&&`V ${m.volume}`,m.analyst&&`A ${m.analyst}`,m.news&&`N ${m.news}`].filter(Boolean).join(" · ") || "No scored evidence yet" : m?.reason ?? "No Software data"}</div>
++                    <div style={{marginTop:2}}>{m?.status==="matched" ? [m.signal,m.checkpoint,m.volume&&`V ${m.volume}`,m.analyst&&`A ${m.analyst}`,m.news&&`N ${m.news}`].filter(Boolean).join(" · ") || "No scored evidence yet" : m?.reason ?? "No Software data"}</div>
+                   </div>;
+                 })}
+               </div>}
