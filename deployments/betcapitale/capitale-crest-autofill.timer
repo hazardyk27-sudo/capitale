@@ -1,0 +1,11 @@
+[Unit]
+Description=Auto-refresh CAPITALE club crests from upcoming fixtures
+
+[Timer]
+OnCalendar=*:0/3
+Persistent=true
+AccuracySec=20s
+Unit=capitale-crest-autofill.service
+
+[Install]
+WantedBy=timers.target
