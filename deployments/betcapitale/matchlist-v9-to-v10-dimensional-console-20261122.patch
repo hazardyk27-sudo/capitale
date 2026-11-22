@@ -1,0 +1,145 @@
+--- a/client/src/components/match-list-template-2.tsx
++++ b/client/src/components/match-list-template-2.tsx
+@@ -139,22 +139,22 @@
+     Math.max(story?67:52,Math.floor(natural)-2)):0;
+   const crest=compact?(story?39:32):spacious?(story?52:43):(story?44:36);
+   const numberSize=story?14:12;
+-  const metricHeight=compact?(story?64:50):spacious?(story?91:70):(story?74:58);
++  const metricHeight=compact?(story?62:48):spacious?(story?105:75):(story?77:59);
+   // Give the final outcome full legibility without compressing the fixture name.
+   // O lives in a blue data cell; WON/LOST remain the only green/red statuses.
+   const grid=story
+-    ? "28px 94px minmax(0,1fr) 83px repeat(5,65px) 79px"
+-    : "26px 77px minmax(0,1fr) 78px repeat(5,65px) 77px";
++    ? "28px 94px minmax(0,1fr) 83px 346px 80px"
++    : "26px 77px minmax(0,1fr) 78px 346px 79px";
+   const base:CSSProperties={boxSizing:"border-box",fontFamily:"'Manrope','Aptos',system-ui,sans-serif"};
+   const footer=(pageCount>1)?`PAGE ${pageNumber} / ${pageCount}`:"";
+ 
+   return <div data-template="match-list-2" style={{...base,width,height,overflow:"hidden",position:"relative",
+     display:"flex",flexDirection:"column",padding:`${top}px ${px}px ${bottom}px`,
+-    color:"#142333",background:"linear-gradient(180deg,#FAFBFC 0%,#FFFFFF 55%,#FAFBFC 100%)"}}>
++    color:"#142333",background:"radial-gradient(ellipse 80% 34% at 16% 13%,rgba(243,166,102,.07),transparent 75%),linear-gradient(175deg,#F6F8FB 0%,#FFFFFF 40%,#F7F9FB 100%)"}}>
+     <div style={{height:headerHeight,minHeight:headerHeight,position:"relative",boxSizing:"border-box",
+       overflow:"hidden",borderRadius:story?20:16,padding:story?"26px 32px":"21px 27px",
+-      background:"radial-gradient(ellipse at 100% 0%,rgba(240,125,36,.09),transparent 35%),linear-gradient(118deg,#FFFFFF 0%,#FBFCFD 100%)",
+-      boxShadow:"0 6px 21px rgba(20,35,51,.045)",border:"1px solid #E7ECF0",
++      background:"radial-gradient(ellipse at 90% 1%,rgba(241,146,65,.095),transparent 44%),linear-gradient(154deg,#FFFFFF 0%,#F9FBFD 53%,#F0F4F9 100%)",
++      boxShadow:"0 2px 3px rgba(24,40,59,.035),0 13px 21px rgba(27,43,63,.085),0 27px 40px -23px rgba(24,41,65,.18),inset 0 2px 0 #FFFFFF,inset 0 -1px 0 rgba(108,131,161,.12)",border:"1px solid #D6DFE9",
+       display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
+       <div style={{position:"absolute",top:0,right:0,width:story?145:114,height:4,
+         background:"linear-gradient(90deg,transparent,#F17B23)"}}/>
+@@ -215,10 +215,13 @@
+           display:"grid",gridTemplateColumns:grid,alignItems:"center",gap:story?6:5,
+           padding:story?"0 15px":"0 11px",position:"relative",overflow:"hidden",
+           borderRadius:story?13:11,border:"1px solid #E5EAEE",
+-          background:"linear-gradient(90deg,#FFFFFF 0%,#FFFFFF 45%,#FBFCFD 100%)",
+-          boxShadow:"0 4px 13px rgba(22,39,55,.048)"}}>
+-          <span style={{position:"absolute",left:0,top:"27%",bottom:"27%",width:3,borderRadius:4,
+-            background:signal?"#EB7A2A":"#D6DFE6"}}/>
++          background:"radial-gradient(ellipse 20% 100% at 3% 2%,rgba(251,222,193,.24),transparent 95%),linear-gradient(156deg,#FFFFFF 0%,#FAFBFD 52%,#F0F4F8 100%)",
++          boxShadow:"0 2px 3px rgba(24,40,59,.035),0 7px 13px rgba(27,43,63,.075),0 16px 27px -16px rgba(24,41,65,.21),inset 0 2px 0 rgba(255,255,255,.98),inset 0 -2px 0 rgba(112,134,161,.12)"}}>
++          <span style={{position:"absolute",top:0,left:"12%",right:"12%",height:1,
++            background:"linear-gradient(90deg,transparent,rgba(255,255,255,.99),transparent)",pointerEvents:"none"}}/>
++          <span style={{position:"absolute",left:0,top:"24%",bottom:"24%",width:3,borderRadius:4,
++            background:signal?"linear-gradient(180deg,#F9AF69,#E8771F,#D96A1D)":"#D6DFE6",
++            boxShadow:signal?"0 0 9px rgba(232,119,31,.18)":"none"}}/>
+           <span style={{color:signal?"#C96B27":"#82909C",fontSize:numberSize,fontWeight:850,
+             fontVariantNumeric:"tabular-nums",textAlign:"center",letterSpacing:".02em"}}>
+             {String((pageNumber-1)*matches.length+index+1).padStart(2,"0")}
+@@ -226,42 +229,67 @@
+           <div style={{display:"flex",alignItems:"center",gap:story?4:3,minWidth:0,justifyContent:"center"}}>
+             {([['homeTeam','homeLogoUrl'],['awayTeam','awayLogoUrl']] as const).map(([team,logo])=><div key={team}
+               style={{width:crest+5,height:crest+5,display:"flex",alignItems:"center",justifyContent:"center",
+-                background:"#FFFFFF",border:"1px solid #E8ECF0",borderRadius:story?11:9,
+-                boxShadow:"0 2px 5px rgba(18,35,51,.055)",flexShrink:0}}>
++                background:"linear-gradient(152deg,#FFFFFF 0%,#FAFCFE 53%,#EDF2F7 100%)",border:"1px solid #D8E1EB",borderRadius:story?11:9,
++                boxShadow:"0 2px 2px rgba(25,42,63,.045),0 5px 9px rgba(25,42,63,.12),0 11px 15px -10px rgba(19,34,57,.16),inset 0 2px 0 #FFFFFF,inset 0 -1px 0 rgba(113,135,166,.12)",flexShrink:0}}>
+               <ClubCrest name={match[team]} src={m?.[logo]} size={crest}/>
+             </div>)}
+           </div>
+           <span title={label} style={{color:"#142333",fontSize,fontWeight:780,letterSpacing:"-.027em",
+             lineHeight:1.14,minWidth:0,overflow:"hidden",overflowWrap:"break-word",
+             whiteSpace:"normal",display:"-webkit-box",WebkitBoxOrient:"vertical",WebkitLineClamp:2}}>{label}</span>
+-          <div title={signal?`SXF ${signal}`:"SXF value unavailable"} style={{height:story?47:40,
+-            borderRadius:7,display:"flex",alignItems:"center",justifyContent:"center",
+-            background:signal?tone.bg:"#EEF2F5",color:signal?"#FFFFFF":"#8C9AA4",
++          <div title={signal?`SXF ${signal}`:"SXF value unavailable"} style={{height:story?48:40,
++            borderRadius:story?10:8,display:"flex",alignItems:"center",justifyContent:"center",
++            background:signal?`linear-gradient(154deg,rgba(255,255,255,.26),transparent 41%),${tone.bg}`:"linear-gradient(150deg,#F6F8FA,#E8EEF3)",
++            border:signal?"1px solid rgba(86,65,40,.12)":"1px solid #DDE5EB",
++            color:signal?"#FFFFFF":"#8C9AA4",
+             fontSize:story?17:15.5,fontWeight:900,whiteSpace:"nowrap",fontVariantNumeric:"tabular-nums",
+-            boxShadow:signal?"0 3px 8px rgba(25,35,50,.085)":"none"}}>{signal||"—"}</div>
+-          {stats.map(({name,value})=>{
+-            const present=typeof value==="string"&&value.trim()!=="";
+-            const display=present&&(['A','N'].includes(name))&&!value.includes("%")?`${value}%`:present?value:"—";
+-            const change=name==="O";
+-            // Odds movement is context, NOT a win/loss result. Never use the
+-            // result green/red palette here; direction is already in the sign.
+-            const tint=change?"#345C81":"#182B3D";
+-            return <div key={name} data-metric={name} title={name} style={{height:metricHeight,
+-              display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
+-              gap:story?6:4,minWidth:0,borderRadius:7,
+-              background:change?"#EEF3F9":"#F5F7F9",
+-              border:change?"1px solid #DDE7F1":"1px solid #EBEFF2",fontVariantNumeric:"tabular-nums"}}>
+-              <span style={{fontWeight:850,fontSize:story?12:10.5,color:change?"#547799":"#7B8997",letterSpacing:".085em"}}>{name}</span>
+-              <strong style={{fontWeight:850,fontSize:story?18:15.5,letterSpacing:"-.035em",whiteSpace:"nowrap",
+-                color:present?tint:"#9DAAB4",lineHeight:1.08}}>{display}</strong>
+-            </div>;
+-          })}
++            textShadow:signal?"0 1px 1px rgba(30,24,20,.23)":"none",
++            boxShadow:signal?"0 2px 1px rgba(255,255,255,.82),0 5px 8px rgba(29,42,59,.17),inset 0 2px 0 rgba(255,255,255,.34),inset 0 -2px 0 rgba(32,32,32,.13)":"inset 0 2px 4px rgba(50,68,91,.085),inset 0 1px 0 #FFF"}}>{signal||"—"}</div>
++          {/* Raised outer bezel / inset instrument console, borrowed from the V33 hero materials. */}
++          <div data-metric-console="true" style={{height:metricHeight,minWidth:0,boxSizing:"border-box",
++            display:"grid",gridTemplateColumns:"repeat(5,minmax(0,1fr))",alignItems:"stretch",
++            padding:"3px 4px",overflow:"hidden",borderRadius:story?11:9,
++            background:"linear-gradient(180deg,#E8EDF3 0%,#F2F5F9 17%,#F8FAFC 100%)",
++            border:"1px solid #D6DFEA",
++            boxShadow:"inset 0 2px 4px rgba(36,53,77,.12),inset 0 -1px 0 rgba(255,255,255,.97),0 2px 2px rgba(255,255,255,.94)"}}>
++            {stats.map(({name,value},index)=>{
++              const present=typeof value==="string"&&value.trim()!=="";
++              const display=present&&(['A','N'].includes(name))&&!value.includes("%")?`${value}%`:present?value:"—";
++              const change=name==="O";
++              const parsedPercent=present&&!change?Number.parseFloat(display.replace("%","")):NaN;
++              const scaled=Number.isFinite(parsedPercent)&&parsedPercent>=0&&parsedPercent<=100?parsedPercent:null;
++              return <div key={name} data-metric={name} title={name}
++                style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
++                  gap:compact?(story?2:2):(story?7:5),minWidth:0,position:"relative",
++                  borderLeft:index?"1px solid rgba(120,142,168,.20)":"none",
++                  boxShadow:index?"inset 1px 0 0 rgba(255,255,255,.78)":"none",
++                  background:change?"linear-gradient(180deg,rgba(219,230,244,.45),rgba(231,240,250,.16))":"transparent"}}>
++                <span style={{fontWeight:900,fontSize:compact?(story?10:9):(story?11.5:10),
++                  color:change?"#617F9E":"#8493A5",letterSpacing:".08em",lineHeight:1.1}}>{name}</span>
++                <strong style={{fontWeight:900,fontSize:compact?(story?15.5:13.4):(story?18.5:16),
++                  letterSpacing:"-.035em",whiteSpace:"nowrap",lineHeight:1.08,
++                  color:present?(change?"#345C81":"#17283F"):"#A7B2BE"}}>{display}</strong>
++                <span data-scale={name} style={{width:compact?"62%":"69%",height:compact?2:3,
++                  background:change?"rgba(84,123,162,.15)":"#DEE5EE",
++                  boxShadow:"inset 0 1px 1px rgba(29,49,78,.12)",borderRadius:8,overflow:"hidden"}}>
++                  <span style={{display:"block",height:"100%",borderRadius:8,
++                    width:scaled===null?"0%":`${scaled}%`,
++                    background:name==="V"?"linear-gradient(90deg,#DC8136,#F4B16E)":
++                      name==="A"||name==="N"?"linear-gradient(90deg,#9DB0C6,#6F879F)":
++                      "linear-gradient(90deg,#9EADBD,#7B91A7)"}} />
++                </span>
++              </div>;
++            })}
++          </div>
+           <span data-match-final={result?"result":"prematch"}
+             style={{display:"flex",alignItems:"center",justifyContent:"center",height:story?44:38,
+-              borderRadius:8,background:result?resultBackground:"#FFF3E9",
+-              border:result?"1px solid #E7ECEF":"1px solid #F7E0D0",
++              borderRadius:story?10:8,
++              background:result?(resultValue==="won"?"linear-gradient(152deg,#F9FFFC,#E8F6EE 78%,#D9EFE2)":resultValue==="lost"?"linear-gradient(152deg,#FFFDFD,#FCEDED 78%,#F5DEDE)":"linear-gradient(152deg,#FAFCFD,#EBF0F5)")
++                :"linear-gradient(152deg,#FFFDFC,#FFF0E2)",
++              border:result?"1px solid #DFE7E7":"1px solid #F2D9BF",
++              boxShadow:"0 3px 7px rgba(24,43,64,.07),inset 0 2px 0 rgba(255,255,255,.97),inset 0 -1px 0 rgba(96,119,146,.09)",
+               color:result?resultColor:"#C96B24",fontSize:result?(story?13.5:11):(story?17:15),
+-              fontWeight:850,fontVariantNumeric:"tabular-nums",whiteSpace:"nowrap",letterSpacing:result?".015em":0}}>
++              fontWeight:900,fontVariantNumeric:"tabular-nums",whiteSpace:"nowrap",letterSpacing:result?".015em":0}}>
+             {result?resultLabel:(match.kickoffAt||"—")}
+           </span>
+         </div>;
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
