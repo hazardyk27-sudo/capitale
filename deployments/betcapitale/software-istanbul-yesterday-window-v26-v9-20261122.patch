@@ -1,0 +1,32 @@
+--- a/dist/public/assets/admin-software-v25-hide-sample-labels-20261122.js
++++ b/dist/public/assets/admin-software-v26-istanbul-date-window-20261122.js
+@@ -241,7 +241,7 @@
+ function capitaleV2MovementVerified(row){if(!row?.market?.trim()||!row?.selection?.trim()||!row.referenceOddsAt||!row.currentOddsAt)return"—";const a=Date.parse(row.referenceOddsAt),b=Date.parse(row.currentOddsAt),old=row.referenceOdds,now=row.currentOdds;if(!Number.isFinite(a)||!Number.isFinite(b)||b<a||typeof old!=="number"||typeof now!=="number"||!Number.isFinite(old)||!Number.isFinite(now)||old<=1||now<=1)return"—";const delta=(now-old)*100/old;return(delta>0?"+":"")+delta.toFixed(1)+"%"}
+ 
+ function capitaleV2Movement(row){const actual=capitaleV2MovementVerified(row);return actual!=="—"?actual:capitaleSampleVisual(row).movement}
+-function be(){const{data:s,error:a,isLoading:l,isFetching:c,refetch:g}=K({queryKey:["admin-software"],queryFn:me,retry:!1,staleTime:3e4,refetchInterval:9e4,refetchOnWindowFocus:!0}),[u,v]=r.useState(""),[S,h]=r.useState(""),[x,o]=r.useState("all"),[p,k]=r.useState(""),[j,y]=r.useState(""),[n,m]=r.useState("all"),[f,D]=r.useState("matchName"),[F,O]=r.useState("asc"),[A,R]=r.useState(0),[$,d]=r.useState(null),N=20,b=s?.items??[];r.useEffect(()=>{R(0),d(null)},[u,S,x,p,j,n]);const _=r.useMemo(()=>Array.from(new Set(b.map(t=>t.signalCode).filter(Boolean))).sort(),[b]),L=r.useMemo(()=>{const t=S.trim().toLocaleLowerCase("en-GB");return b.filter(w=>{const C=`${w.homeTeam} ${w.awayTeam} ${w.league??""} ${w.signalCode}`.toLocaleLowerCase("en-GB"),E=q(w.kickoffAt);return(!u||w.date===u)&&(!t||C.includes(t))&&(x==="all"||w.signalCode===x)&&(!p||E!==""&&E>=p)&&(!j||E!==""&&E<=j)&&(n==="all"||w.reportStatus===n)})},[b,u,S,x,p,j,n]),I=r.useMemo(()=>[...L].sort((t,w)=>{const C=H(t,f),E=H(w,f),Z=typeof C=="number"&&typeof E=="number"?C-E:String(C).localeCompare(String(E),"en");return F==="asc"?Z:-Z}),[L,f,F]),M=Math.ceil(I.length/N),W=I.slice(A*N,(A+1)*N),i=b.find(t=>t.id===$)??null,ee=a?.status===401||a?.status===403,G=new URLSearchParams(window.location.search).get("agent"),B=G==="analyst"||G==="news";function te(t){f===t?O(w=>w==="asc"?"desc":"asc"):(D(t),O(t==="matchName"||t==="signalCode"?"asc":"desc"))}return e.jsxs("div",{className:"min-h-screen bg-[#F5F6F8] text-[#172235]"+(B?" capitale-agent-isolated":""),children:[!G&&e.jsx("style",{children:capitaleV2CSS}),B&&e.jsx("style",{children:`
++function capitaleIstanbulYesterday(){const parts=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Istanbul",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());const read=k=>Number(parts.find(p=>p.type===k)?.value);return new Date(Date.UTC(read("year"),read("month")-1,read("day")-1)).toISOString().slice(0,10)}function be(){const{data:s,error:a,isLoading:l,isFetching:c,refetch:g}=K({queryKey:["admin-software"],queryFn:me,retry:!1,staleTime:3e4,refetchInterval:9e4,refetchOnWindowFocus:!0}),[u,v]=r.useState(""),[S,h]=r.useState(""),[x,o]=r.useState("all"),[p,k]=r.useState(""),[j,y]=r.useState(""),[n,m]=r.useState("all"),[f,D]=r.useState("matchName"),[F,O]=r.useState("asc"),[A,R]=r.useState(0),[$,d]=r.useState(null),N=20,b=(s?.items??[]).filter(t=>typeof t.date==="string"&&t.date>=capitaleIstanbulYesterday());r.useEffect(()=>{R(0),d(null)},[u,S,x,p,j,n]);const _=r.useMemo(()=>Array.from(new Set(b.map(t=>t.signalCode).filter(Boolean))).sort(),[b]),L=r.useMemo(()=>{const t=S.trim().toLocaleLowerCase("en-GB");return b.filter(w=>{const C=`${w.homeTeam} ${w.awayTeam} ${w.league??""} ${w.signalCode}`.toLocaleLowerCase("en-GB"),E=q(w.kickoffAt);return(!u||w.date===u)&&(!t||C.includes(t))&&(x==="all"||w.signalCode===x)&&(!p||E!==""&&E>=p)&&(!j||E!==""&&E<=j)&&(n==="all"||w.reportStatus===n)})},[b,u,S,x,p,j,n]),I=r.useMemo(()=>[...L].sort((t,w)=>{const C=H(t,f),E=H(w,f),Z=typeof C=="number"&&typeof E=="number"?C-E:String(C).localeCompare(String(E),"en");return F==="asc"?Z:-Z}),[L,f,F]),M=Math.ceil(I.length/N),W=I.slice(A*N,(A+1)*N),i=b.find(t=>t.id===$)??null,ee=a?.status===401||a?.status===403,G=new URLSearchParams(window.location.search).get("agent"),B=G==="analyst"||G==="news";function te(t){f===t?O(w=>w==="asc"?"desc":"asc"):(D(t),O(t==="matchName"||t==="signalCode"?"asc":"desc"))}return e.jsxs("div",{className:"min-h-screen bg-[#F5F6F8] text-[#172235]"+(B?" capitale-agent-isolated":""),children:[!G&&e.jsx("style",{children:capitaleV2CSS}),B&&e.jsx("style",{children:`
+         .capitale-agent-isolated main table thead th:not(:first-child),
+         .capitale-agent-isolated main table tbody td:not(:first-child) {display:none!important}
+         .capitale-agent-isolated main table {min-width:0!important}
+
+--- a/dist/public/assets/capitale-software-widget-v8-no-report-button-20261122.js
++++ b/dist/public/assets/capitale-software-widget-v9-istanbul-date-window-20261122.js
+@@ -240,6 +240,8 @@
+     return wrapper;
+   }
+ 
++  function capitaleIstanbulYesterday(){const parts=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Istanbul",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());const read=k=>Number(parts.find(p=>p.type===k)?.value);return new Date(Date.UTC(read("year"),read("month")-1,read("day")-1)).toISOString().slice(0,10)}
++
+   function filtered() {
+     const search=state.search.toLocaleLowerCase('en-GB');
+     return state.items
+@@ -314,7 +316,7 @@
+           typeof row.homeTeam!=='string'||typeof row.awayTeam!=='string'||typeof row.signalCode!=='string'||keys.has(row.key))return false;
+         keys.add(row.key);return true;
+       });
+-      state.items=safe;
++      state.items=safe.filter(row=>typeof row.date==='string'&&row.date>=capitaleIstanbulYesterday());
+       state.fetchedAt=new Date(result.generatedAt);
+       state.status='ready';
+       if(state.expanded&&!safe.some(r=>r.key===state.expanded))state.expanded=null;
