@@ -1,0 +1,102 @@
+--- a/client/src/pages/admin-social-media.tsx
++++ b/client/src/pages/admin-social-media.tsx
+@@ -6,6 +6,7 @@
+ import { MatchListTemplate2, type MatchListTemplate2Metrics } from "@/components/match-list-template-2";
+ import { deriveMatchList2, logoIndexFromManifest, type SoftwareMatch2 } from "@/lib/match-list-v2-auto";
+ import { capitaleVisualOverlay } from "@/lib/capitale-visual-overlay";
++import { mergePublishedSoftwareVisual, type PublishedSoftwareVisual } from "@/lib/capitale-software-visual-bridge";
+ 
+ /* ─── TYPES ─────────────────────────────────────────────────────── */
+ type AC = {
+@@ -3730,6 +3731,23 @@
+     refetchOnMount:"always",
+     retry:false,
+   });
++  // Materialized visual rows from the recurring Software export. The export
++  // persists each fixture's illustrative values once when it enters Software.
++  const { data: persistedVisuals } = useQuery<{status:string;items:PublishedSoftwareVisual[]}>({
++    queryKey:["/software/matches.json","match-list-v2-visual"],
++    queryFn:async()=>{
++      const response=await fetch("/software/matches.json",{cache:"no-store"});
++      if(!response.ok)throw new Error(`Software visual snapshot ${response.status}`);
++      const json=await response.json();
++      if(json?.status!=="connected"||!Array.isArray(json?.items))throw new Error("Invalid Software visual snapshot");
++      return json as {status:string;items:PublishedSoftwareVisual[]};
++    },
++    enabled:tab==="match-v2",
++    staleTime:15_000,
++    refetchInterval:60_000,
++    refetchOnWindowFocus:true,
++    retry:false,
++  });
+   // Preloaded local crest library: keys are exact SXF team names.
+   // Never fetch external logos during a match render; missing clubs retain initials.
+   // This same-origin JSON can be rebuilt explicitly after seasonal promotions.
+@@ -3756,7 +3774,11 @@
+   // Real data first; deterministic, visibly labelled illustrative fallback for each missing field.
+   // This is display-only and never writes signals, metrics, reports or fixtures.
+   const matchListV2Metrics = Object.fromEntries(matches.map(match => [
+-    match.id, capitaleVisualOverlay(match, verifiedMatchListV2Metrics[match.id])
++    match.id, mergePublishedSoftwareVisual(
++      match, verifiedMatchListV2Metrics[match.id],
++      capitaleVisualOverlay(match, verifiedMatchListV2Metrics[match.id]),
++      persistedVisuals?.items,
++    )
+   ])) as Record<number, MatchListTemplate2Metrics>;
+   const sampleMatchCount = Object.values(matchListV2Metrics).filter(metric=>metric.isIllustrative).length;
+   const metricSummary = Object.values(verifiedMatchListV2Metrics).reduce((r,v)=>{r[v.status]+=1;return r}, {matched:0,missing:0,ambiguous:0,unavailable:0});
+--- a/client/src/components/match-list-template-2.tsx
++++ b/client/src/components/match-list-template-2.tsx
+@@ -222,7 +222,6 @@
+           borderRadius:story?13:11,border:"1px solid #E5EAEE",
+           background:"#FFFFFF",
+           boxShadow:"0 2px 3px rgba(24,40,59,.035),0 7px 13px rgba(27,43,63,.075),0 16px 27px -16px rgba(24,41,65,.21),inset 0 2px 0 rgba(255,255,255,.98),inset 0 -2px 0 rgba(112,134,161,.12)"}}>
+-          {m?.isIllustrative && <span data-illustrative-row="true" title={`Illustrative only: ${m.sampleFields?.join(', ')}`} style={{position:"absolute",top:1,right:9,fontSize:story?9:7,letterSpacing:".06em",fontWeight:900,color:"#A16A3E",zIndex:2,pointerEvents:"none"}}>SAMPLE</span>}
+           <span style={{position:"absolute",top:0,left:"12%",right:"12%",height:1,
+             background:"linear-gradient(90deg,transparent,rgba(255,255,255,.99),transparent)",pointerEvents:"none"}}/>
+           <span style={{position:"absolute",left:0,top:"24%",bottom:"24%",width:3,borderRadius:4,
+--- /dev/null
++++ b/client/src/lib/capitale-software-visual-bridge.ts
+@@ -0,0 +1,42 @@
++import {normalizeClub, type MatchList2AutoMetric, type MatchList2TodayMatch} from './match-list-v2-auto';
++export type PublishedVisual = {
++ signal:string;checkpoint:string;analyst:string;volume:string;news:string;draw:string;movement:string;
++ fieldSource:Record<string,'software'|'illustrative'>;
++};
++export type PublishedSoftwareVisual = {date:string;homeTeam:string;awayTeam:string;market:string|null;selection:string|null;signalCode:string|null;visual:PublishedVisual};
++const KEYS=['signal','analyst','volume','news','draw','movement'] as const;
++/** Exact published Software visual source overrides ONLY fields that were missing
++ * from the live authenticated Software source. Valid real evidence always wins.
++ * Ambiguous or stale public rows never override authenticated data. */
++export function mergePublishedSoftwareVisual(
++ match: MatchList2TodayMatch, verified: MatchList2AutoMetric, fallback: MatchList2AutoMetric,
++ items: PublishedSoftwareVisual[]|undefined,
++):MatchList2AutoMetric {
++ if(verified.status!=='matched'||!Array.isArray(items))return fallback;
++ const matches=items.filter(item => item&&item.date===match.date&&
++   normalizeClub(item.homeTeam)===normalizeClub(match.homeTeam)&&
++   normalizeClub(item.awayTeam)===normalizeClub(match.awayTeam)&&
++   (item.market||'').trim().toLowerCase()===(verified.market||'').trim().toLowerCase()&&
++   (item.selection||'').trim().toLowerCase()===(verified.selection||'').trim().toLowerCase()&&
++   (!verified.signal || verified.signal===item.signalCode));
++ if(matches.length!==1)return fallback;
++ const snapshot=matches[0].visual;
++ if(!snapshot||!snapshot.fieldSource)return fallback;
++ const out:MatchList2AutoMetric={...fallback};
++ const uncertain=new Set<string>(fallback.sampleFields??[]);
++ for(const key of KEYS){
++   const persisted=snapshot[key];
++   if(!uncertain.has(key))continue;
++   // Malformed or incomplete snapshot is never promoted to the UI.
++   if(typeof persisted!=='string'||!persisted.trim()||persisted.length>48)continue;
++   if(!['software','illustrative'].includes(snapshot.fieldSource[key]))continue;
++   out[key]=persisted;
++   if(snapshot.fieldSource[key]==='software')uncertain.delete(key);
++ }
++ if(uncertain.has('checkpoint')&&typeof snapshot.checkpoint==='string'&&/^T-[68]$/.test(snapshot.checkpoint)){
++   out.checkpoint=snapshot.checkpoint;
++   uncertain.delete('checkpoint');
++ }
++ out.sampleFields=Array.from(uncertain);out.isIllustrative=uncertain.size>0;
++ return out;
++}
