@@ -1,0 +1,70 @@
+--- a/deployments/betcapitale/crest-autofill-v1.cjs
++++ b/deployments/betcapitale/crest-autofill-v1.cjs
+@@ -8,7 +8,11 @@
+ const BASE=path.join(DIR,'current-fixture-coverage-v3.json');
+ const AUTO=path.join(DIR,'current-fixture-coverage-auto.json');
+ const CACHE='/var/lib/capitale-crest-autofill/retry-cache.json';
+-const ALIAS={'leeds united':'leeds','paris saint germain':'paris st g','sheffield wednesday':'sheff wed','man utd':'manchester united','man united':'manchester united','inter milan':'inter','internazionale':'inter','nordsjaelland':'fc nordsjaelland','union st gilloise':'union saint gilloise','fc kobenhavn':'fc copenhagen','ac milan':'milan'};
++const SXF_CACHE='/var/lib/capitale-crest-autofill/sxf-canonical-team-names.json';
++const SXF_SOURCE='SXF public.fixtures.home_team / away_team';
++// Provider queries can differ from SXF display names. Never use provider name as a catalog key.
++const PROVIDER_QUERY=Object.freeze({'Paris St-G':'Paris Saint Germain','Man Utd':'Manchester United','Union St Gilloise':'Union Saint-Gilloise','Inter':'Inter Milan','Bodo Glimt':'Bodo/Glimt','FC Copenhagen':'FC Copenhagen','Atletico Madrid':'Atletico Madrid','Sociedad B':'Real Sociedad B','FC Nordsjaelland':'FC Nordsjaelland'});
++const ALIAS={'leeds united':'leeds','paris saint germain':'paris st g','sheffield wednesday':'sheff wed','man utd':'manchester united','man united':'manchester united','inter milan':'inter','internazionale':'inter','nordsjaelland':'fc nordsjaelland','union st gilloise':'union saint gilloise','fc kobenhavn':'fc copenhagen','ac milan':'milan','psg':'paris st g','paris saint germain':'paris st g','paris saint germain fc':'paris st g','union saint gilloise':'union st gilloise','union sg':'union st gilloise','bodo glimt':'bodo glimt','real sociedad b':'sociedad b'};
+ const norm=s=>{const n=String(s||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');return ALIAS[n]||n};
+ const safeName=n=>typeof n==='string'&&n.length>=2&&n.length<=90&&/^[\p{L}\p{N} .&'()\-/]+$/u.test(n)&&!!norm(n);
+ const date=(offset=0)=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Istanbul',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(Date.now()+offset*86400000));
+@@ -19,10 +23,46 @@
+ function imageOK(bytes){return bytes.length>=32&&bytes.length<1800000&&bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))&&Math.min(bytes.readUInt32BE(16),bytes.readUInt32BE(20))>=64&&Math.max(bytes.readUInt32BE(16),bytes.readUInt32BE(20))<=2500}
+ function index(logos){const m=new Map(),amb=new Set();for(const [team,src] of Object.entries(logos)){if(typeof src!=='string'||!/^\/team-logos\/[a-z0-9-]+\.png$/.test(src))continue;const n=norm(team);if(m.has(n)&&m.get(n)!==src)amb.add(n);else m.set(n,src)}amb.forEach(x=>m.delete(x));return {m,amb}}
+ async function teamsFromDB(){if(!process.env.DATABASE_URL)throw Error('DATABASE_URL not set');const db=new Client({connectionString:process.env.DATABASE_URL,connectionTimeoutMillis:8000,statement_timeout:8000,application_name:'capitale_crest_resolver_readonly'});try{await db.connect();await db.query('BEGIN READ ONLY');const {rows}=await db.query('SELECT home_team,away_team FROM today_matches WHERE date BETWEEN $1::date AND $2::date ORDER BY ABS(date - $3::date),date DESC LIMIT 250',[date(-3),date(14),date()]);await db.query('ROLLBACK');return rows.flatMap(row=>[row.home_team,row.away_team]).filter(safeName)}finally{await db.end()}}
+-async function get(url){const r=await fetch(url,{signal:AbortSignal.timeout(8500),redirect:'error',headers:{'User-Agent':'CapitaleCrestResolver/1.0','Accept':'application/json,image/png'}});if(!r.ok)throw Error('provider HTTP '+r.status);return r}
+-async function retrieve(name){const url=new URL('https://www.thesportsdb.com/api/v1/json/123/searchteams.php');url.searchParams.set('t',name);const data=await(await get(url)).json();const selected=choose(name,data.teams);if(!selected)return null;const bytes=Buffer.from(await(await get(selected.strBadge)).arrayBuffer());return imageOK(bytes)?{bytes,provider:selected.strTeam}:null}
+-async function main(){const dry=process.argv.includes('--dry-run');const base=read(BASE,null);if(base?.schema!=='capitale-fixture-crest-coverage-v1')throw Error('base crest manifest invalid');const previous=read(AUTO,null);if(previous&&previous.schema!==base.schema)throw Error('auto manifest invalid');const logos={...base.logos,...(previous?.logos||{})};const {m,amb}=index(logos);const list=await teamsFromDB();const unique=new Map(list.map(x=>[norm(x),x]));const needed=[...unique.values()].filter(x=>!m.has(norm(x))&&!amb.has(norm(x)));
+- fs.mkdirSync(path.dirname(CACHE),{recursive:true,mode:0o750});const retry=read(CACHE,{});const selected=(retry.__provider_backoff_until>Date.now())?[]:needed.filter(x=>!retry[norm(x)]||retry[norm(x)]<=Date.now()).slice(0,5);if(dry){console.log(JSON.stringify({type:'DRY_RUN',fixtures:list.length/2,distinct:unique.size,missing:needed,willSearch:selected,ambiguous:[...amb]}));return}
++async function get(url){const r=await fetch(url,{signal:AbortSignal.timeout(8500),redirect:'error',headers:{'User-Agent':'CapitaleCrestResolver/2.0','Accept':'application/json,image/png'}});if(!r.ok)throw Error('provider HTTP '+r.status);return r}
++// Refresh the canonical team vocabulary from actual SXF fixtures once a day.
++// 7,132 fixtures / ~8 small pages, then local cache for all 3-minute runs.
++async function sxfCanonicalNames(){
++ const saved=read(SXF_CACHE,null);
++ if(saved?.source===SXF_SOURCE&&Array.isArray(saved.names)&&saved.names.length>=4000&&Date.now()-Date.parse(saved.updated_at)<86400000){return saved.names;}
++ const base=process.env.CAPITALE_SUPABASE_URL?.replace(/\/$/,'');
++ const key=process.env.CAPITALE_SUPABASE_SERVICE_ROLE_KEY;
++ if(!base||!key)throw Error('SXF read-only source configuration missing');
++ const all=new Set();let fetched=0;
++ for(let offset=0;offset<12000;offset+=1000){
++  const u=new URL(base+'/rest/v1/fixtures');
++  u.searchParams.set('select','home_team,away_team');u.searchParams.set('order','internal_id.asc');
++  u.searchParams.set('limit','1000');u.searchParams.set('offset',String(offset));
++  const response=await fetch(u,{signal:AbortSignal.timeout(12000),redirect:'error',headers:{apikey:key,Authorization:'Bearer '+key,Accept:'application/json'}});
++  if(!response.ok)throw Error('SXF canonical query HTTP '+response.status);
++  const rows=await response.json();if(!Array.isArray(rows))throw Error('SXF canonical query returned invalid rows');
++  for(const row of rows){if(safeName(row.home_team))all.add(row.home_team);if(safeName(row.away_team))all.add(row.away_team);}
++  fetched+=rows.length;if(rows.length<1000)break;
++ }
++ if(all.size<4000||fetched<5000)throw Error('SXF canonical snapshot implausibly small, refusing partial update');
++ const names=[...all].sort();atomic(SXF_CACHE,{source:SXF_SOURCE,updated_at:new Date().toISOString(),fixture_count:fetched,names});
++ console.log('SXF_CANONICAL_REFRESH',JSON.stringify({fixtures:fetched,distinct:names.length}));
++ return names;
++}
++function sxfIndex(names){const exact=new Set(names),normalized=new Map(),collision=new Set();
++ for(const name of names){const key=norm(name);if(normalized.has(key)&&normalized.get(key)!==name)collision.add(key);else normalized.set(key,name)}
++ collision.forEach(k=>normalized.delete(k));return {exact,normalized,collision};
++}
++function sxName(name,sxf){if(sxf.exact.has(name))return name;return sxf.normalized.get(norm(name))||null;}
++
++async function retrieve(name){const requested=PROVIDER_QUERY[name]||name;const url=new URL('https://www.thesportsdb.com/api/v1/json/123/searchteams.php');url.searchParams.set('t',requested);const data=await(await get(url)).json();const selected=choose(requested,data.teams);if(!selected)return null;const bytes=Buffer.from(await(await get(selected.strBadge)).arrayBuffer());return imageOK(bytes)?{bytes,provider:selected.strTeam}:null}
++async function main(){const dry=process.argv.includes('--dry-run');const base=read(BASE,null);if(base?.schema!=='capitale-fixture-crest-coverage-v1')throw Error('base crest manifest invalid');const previous=read(AUTO,null);if(previous&&previous.schema!==base.schema)throw Error('auto manifest invalid');const logos={...base.logos,...(previous?.logos||{})};const {m,amb}=index(logos);const sxf=sxfIndex(await sxfCanonicalNames());
++ const noncanonical=Object.keys(logos).filter(k=>!sxf.exact.has(k));
++ if(noncanonical.length)console.warn('PREEXISTING_NON_SXF_KEYS',JSON.stringify(noncanonical.slice(0,20)));
++ const list=await teamsFromDB();const unique=new Map(),unknownNames=[];
++ for(const raw of list){const canonical=sxName(raw,sxf);if(!canonical){unknownNames.push(raw);continue;}unique.set(canonical,canonical);if(canonical!==raw)console.log('SXF_CANONICAL_ALIAS',JSON.stringify({sourceName:raw,sxfName:canonical}));}
++ const needed=[...unique.values()].filter(x=>!m.has(norm(x))&&!amb.has(norm(x)));
++ if(unknownNames.length)console.warn('NOT_IN_SXF',JSON.stringify([...new Set(unknownNames)].slice(0,12)));
++ fs.mkdirSync(path.dirname(CACHE),{recursive:true,mode:0o750});const retry=read(CACHE,{});const selected=(retry.__provider_backoff_until>Date.now())?[]:needed.filter(x=>!retry[norm(x)]||retry[norm(x)]<=Date.now()).slice(0,5);if(dry){console.log(JSON.stringify({type:'DRY_RUN',fixtures:list.length/2,distinctSxf:unique.size,canonicalDictionary:sxf.exact.size,unknownNames:[...new Set(unknownNames)],missing:needed,willSearch:selected,ambiguous:[...amb],preexistingNoncanonical:noncanonical}));return}
+  let added=0,notFound=0,failures=0;for(const name of selected){let hit=null;try{hit=await retrieve(name)}catch(e){failures++;retry[norm(name)]=Date.now()+2*60*60*1000;console.log('PROVIDER_ERROR',JSON.stringify({name,reason:String(e.message).slice(0,40)}));if(String(e.message).includes('429')){retry.__provider_backoff_until=Date.now()+30*60*1000;console.log('PROVIDER_COOLDOWN_30_MIN');break}continue}if(!hit){notFound++;retry[norm(name)]=Date.now()+24*60*60*1000;console.log('UNVERIFIED',JSON.stringify({name}));continue}const digest=crypto.createHash('sha256').update(hit.bytes).digest('hex').slice(0,12);const basename=`auto-${norm(name).replace(/ /g,'-').slice(0,60)}-${digest}.png`;const file=path.join(DIR,basename);if(!fs.existsSync(file))fs.writeFileSync(file,hit.bytes,{flag:'wx',mode:0o644});logos[name]='/team-logos/'+basename;m.set(norm(name),logos[name]);delete retry[norm(name)];added++;console.log('VERIFIED',JSON.stringify({team:name,provider:hit.provider,asset:basename}))}
+- if(added||!previous)atomic(AUTO,{schema:base.schema,version:'crest-auto-v1',updated_at:new Date().toISOString(),logos});atomic(CACHE,retry);console.log('RUN_OK',JSON.stringify({distinct:unique.size,available:unique.size-needed.length,unknown:needed.length,attempted:selected.length,added,notFound,failures,logoCount:Object.keys(logos).length}))}
+-if(process.argv.includes('--self-test')){const example='https://r2.thesportsdb.com/images/media/team/badge/abc123.png';const results={strictAliases:norm('Man Utd')===norm('Manchester United'),preserveReserve:norm('Celta Vigo B')!==norm('Celta Vigo'),safeHosts:badgeUrl(example)&&!badgeUrl('https://other.example/a.png'),rejectAmbiguous:choose('Liverpool',[{strTeam:'Liverpool',strSport:'Soccer',strBadge:example},{strTeam:'Liverpool',strSport:'Soccer',strBadge:example}])===null,validUnicode:safeName('Nordsjælland')};console.log('SELF_TEST',JSON.stringify(results));if(Object.values(results).some(x=>!x))process.exitCode=2}else main().catch(e=>{console.error('AUTOFILL_FAILED',e.code||e.message);process.exitCode=1});
++ if(added||!previous||previous.canonical_source!==SXF_SOURCE)atomic(AUTO,{schema:base.schema,version:'crest-auto-sxf-v2',canonical_source:SXF_SOURCE,updated_at:new Date().toISOString(),logos});atomic(CACHE,retry);console.log('RUN_OK',JSON.stringify({sxfTeams:sxf.exact.size,fixtureTeams:unique.size,available:unique.size-needed.length,unknown:needed.length,notInSxf:unknownNames.length,existingNoncanonical:noncanonical.length,attempted:selected.length,added,notFound,failures,logoCount:Object.keys(logos).length}))}
++if(process.argv.includes('--self-test')){const example='https://r2.thesportsdb.com/images/media/team/badge/abc123.png';const results={strictAliases:norm('Man Utd')===norm('Manchester United'),preserveReserve:norm('Celta Vigo B')!==norm('Celta Vigo'),safeHosts:badgeUrl(example)&&!badgeUrl('https://other.example/a.png'),rejectAmbiguous:choose('Liverpool',[{strTeam:'Liverpool',strSport:'Soccer',strBadge:example},{strTeam:'Liverpool',strSport:'Soccer',strBadge:example}])===null,validUnicode:safeName('Nordsjælland'),sxfCanonical:sxName('PSG',sxfIndex(['Paris St-G','Paris St-G (W)','Paris St-G U19','Paris FC']))==='Paris St-G',sxfYouthNotMislinked:sxName('PSG U21',sxfIndex(['Paris St-G','Paris St-G U19']))===null,providerAlias:PROVIDER_QUERY['Paris St-G']==='Paris Saint Germain'};console.log('SELF_TEST',JSON.stringify(results));if(Object.values(results).some(x=>!x))process.exitCode=2}else main().catch(e=>{console.error('AUTOFILL_FAILED',e.code||e.message);process.exitCode=1});
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
