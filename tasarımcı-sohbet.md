@@ -2,7 +2,7 @@
 
 **Sorumlu:** TASARIMCI  
 **Belge amacı:** CAPITALE tasarımcısının sohbetler arası kalıcı belleği; yapılan bütün bilinen tasarım işleri, sürümler, onaylar, uygulanmış değişiklikler, doğrulamalar, yedekler ve sıradaki görevler.  
-**Son güncelleme:** 23 Kasım 2026 · How It Works V2 tasarımı izole önizlemede yayınlandı, 4/4 responsive Chromium QA PASS; canlı How It Works sayfası değişmedi
+**Son güncelleme:** 23 Kasım 2026 · How It Works V3 mockupsız/minimal önizleme yayınlandı, Chromium 4/4 PASS, canlı How It Works değişmedi
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
@@ -579,6 +579,16 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **GitHub:** `deployments/betcapitale/how-it-works-v2-preview-20261123/{index.html,styles.css,app.js}` (`a7f4f300`, `cf466a0a`, `96cd8953`); tam QA/rollback `deployments/betcapitale/how-it-works-v2-isolated-preview-qa-20261123.md` (`5912c825`).
 - **Değişmeyenler:** Production `/app/betcapitale/dist/public/index.html`, `dist/index.cjs`, canlı `/how-it-works`, SXF, Software, Match List, home ve tüm diğer sayfalar. Üretim index SHA başka eşzamanlı agent nedeniyle önceden değişmiş olabilir; **bu görev hiçbir production dosyasını değiştirmedi**.
 - **Onay / sonraki adım:** Kullanıcının önizlemeye bakarak beğendiği/değiştirmek istediği yerleri söylemesi beklenir. Açık canlı yayın onayı olmadan orijinal React `how-it-works-BgnH6UdZ.js` ve gerçek site index importlarına dokunma. Önizlemeyi kaldırmak gerekirse yalnızca izole `how-it-works-v2/` klasörünü geri al.
+
+### 2026-11-23 — How It Works V3 — minimal, mockupsız metin odaklı önizleme (CANLIYA AKTARILMADI)
+
+- **Kullanıcı geribildirimi:** V2 yönü iyi ama hâlâ çok karışık; mockup ve tablolar beğenilmedi, daha minimal ve net açıklama istendi.
+- **Uygulama:** Ayrı ve V2'yi bozmayan önizleme **https://betcapitale.com/preview/home-v1/how-it-works-v3/**; sadece `/srv/capitale-preview/home-v1/how-it-works-v3/index.html` ve `styles.css` yazıldı. Var olan Nginx preview alias kullanıldı; canlı sitede herhangi bir JS/HTML/backend/importmap/route değişikliği yapılmadı.
+- **V3 farkı:** V2'nin tüm sahte software/match/coupon ekranları, tablolar, kazanılan tutar örnekleri, kupon kimliği, kartlar, tab animasyonları ve gereksiz metinler kaldırıldı. Editoryal serif hero `From analysis to results.`, 4 basit aşama `Software → Matches → Coupons → Results`, her aşama için kısa net açıklama ve girdi/çıktı, düz günlük net formülü `Total returns − coupon stakes = daily net`, maç öncesi/sonrası şeffaflık anlatımı ve /today /history /plans yönlendirmesi. CAPITALE turuncu sembolü, Outfit Light wordmark, beyaz minimal tema korundu; sahte performans/garantili kâr iddiası yok.
+- **Test:** Statik parser PASS, canlı önizleme ve CSS HTTP 200, dört ekran görüntüsü HTTP 200, canlı `/how-it-works` 200. Gerçek Chromium/Puppeteer **1440×900, 820×1180, 390×844, 320×720** 4/4 PASS: yatay taşma 0, kırık image 0, JS/console hatası 0, 4 adım, mockup 0, mobil native menü aç/kapa çalışıyor. Masaüstü ve mobil screenshot incelendi; üç satıra dönen hero başlığı iki satıra sadeleştirilip yeniden test edildi.
+- **Ekran görüntüsü:** `https://betcapitale.com/preview/home-v1/how-it-works-v3/qa/desktop-full.png`, `https://betcapitale.com/preview/home-v1/how-it-works-v3/qa/mobile-full.png`.
+- **GitHub:** `deployments/betcapitale/how-it-works-v3-minimal-preview-20261123/index.html` (`3bc31ce8`), `styles.css` (`06714a13`); QA raporu `deployments/betcapitale/how-it-works-v3-minimal-preview-qa-20261123.md` (`81bba0a5`).
+- **Onay:** Henüz kullanıcı tarafından onaylanmadı, bu yüzden canlı How It Works hâlâ eski React sayfasıdır. Canlıya geçiş ayrı açık talimat gerektirir. V2 ve V3 önizlemeleri birlikte korunuyor.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
