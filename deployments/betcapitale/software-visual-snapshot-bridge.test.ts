@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { mergePublishedSoftwareVisual,type PublishedSoftwareVisual } from '../client/src/lib/capitale-software-visual-bridge';
+import { deriveMatchList2 } from '../client/src/lib/match-list-v2-auto';
+import {capitaleVisualOverlay} from '../client/src/lib/capitale-visual-overlay';
+const file='/opt/capitale-software-on-entry-visual-v1-20261122/sandbox-output/matches.json';
+const published=JSON.parse(fs.readFileSync(file,'utf8'));
+assert.ok(published.items.length>=90);
+let samples=0;for(const r of published.items){assert.equal(typeof r.visual.signal,'string');assert.equal(typeof r.visual.analyst,'string');assert.equal(typeof r.visual.volume,'string');assert.ok(r.visual.fieldSource);if(Object.values(r.visual.fieldSource).includes('illustrative'))samples++}
+assert.ok(samples>50);
+const p=published.items.find((r:any)=>r.homeTeam==='Celta Vigo B'&&r.awayTeam==='Valladolid');assert.ok(p,'Celta actual Software snapshot exists');
+const fixture={id:1,date:p.date,homeTeam:p.homeTeam,awayTeam:p.awayTeam,kickoffAt:'18:30'};
+const raw={id:'run-celta',date:p.date,homeTeam:p.homeTeam,awayTeam:p.awayTeam,market:p.market,selection:p.selection,signalCode:p.signalCode,analystScore:p.analystScore,newsScore:p.newsScore,volumeShare:p.volumeShare,drawShare:p.drawShare,referenceOdds:1.90,currentOdds:1.95,referenceOddsAt:null,currentOddsAt:null};
+const verified=deriveMatchList2([fixture],[raw],true,{})[fixture.id];assert.equal(verified.status,'matched');
+const fallback=capitaleVisualOverlay(fixture,verified);
+const custom={...p,visual:{...p.visual,analyst:'91',news:'73',movement:'+9.9%',fieldSource:{...p.visual.fieldSource,analyst:'illustrative',news:'illustrative',movement:'illustrative'}}};
+const combined=mergePublishedSoftwareVisual(fixture,verified,fallback,[custom] as PublishedSoftwareVisual[]);
+assert.equal(combined.analyst,'91','must copy Software persistent A rather than recompute fallback');
+assert.equal(combined.news,'73');assert.equal(combined.movement,'+9.9%');
+assert.equal(combined.volume,verified.volume,'must preserve real source V');
+assert.equal(combined.draw,verified.draw,'must preserve real source B');
+assert.equal(combined.signal,verified.signal,'must preserve real SXF signal');
+assert.deepEqual(mergePublishedSoftwareVisual(fixture,verified,fallback,[custom,custom] as PublishedSoftwareVisual[]),fallback,'ambiguous snapshot must fail closed');
+assert.deepEqual(mergePublishedSoftwareVisual(fixture,{...verified,status:'missing'},fallback,[custom] as PublishedSoftwareVisual[]),fallback,'missing Software row must use local samples');
+assert.deepEqual(mergePublishedSoftwareVisual(fixture,verified,fallback,[{...custom,market:'OU25'}] as PublishedSoftwareVisual[]),fallback,'wrong bet market must never leak');
+const realOnly={...verified,signal:'CRL-6',analyst:'91'};const noSample=capitaleVisualOverlay(fixture,realOnly);const noOverride=mergePublishedSoftwareVisual(fixture,realOnly,noSample,[{...custom,visual:{...custom.visual,analyst:'12'}}] as PublishedSoftwareVisual[]);
+assert.equal(noOverride.analyst,'91','real Software Analyst must always win');
+console.log('PASS: 93 materialized Software rows, persisted example wins over computed sample, real source never overwritten, 3 collision/missing guards');
