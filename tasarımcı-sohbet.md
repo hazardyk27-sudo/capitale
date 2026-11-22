@@ -2,7 +2,7 @@
 
 **Sorumlu:** TASARIMCI  
 **Belge amacı:** CAPITALE tasarımcısının sohbetler arası kalıcı belleği; yapılan bütün bilinen tasarım işleri, sürümler, onaylar, uygulanmış değişiklikler, doğrulamalar, yedekler ve sıradaki görevler.  
-**Son güncelleme:** 22 Kasım 2026 · Software yalnızca kendi alanında gelecek EARLY sinyal önizlemeleri V4 publisher / public V12 / admin V27 CANLI; 24 Kasım 3, 25 Kasım 4 kaynak maç artık görünür; eski maç V3 retention korunuyor  
+**Son güncelleme:** 23 Kasım 2026 · 3 UEFA kupası için 28 yeni SXF takım logosu + Lask Linz mevcut logo alias, 109/109 kapsam; canlı katalog 629→658; Software önceki ayarlar korunuyor
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
@@ -557,6 +557,17 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **Versiyonlar / yedek:** Public V12 widget/page/SPA, admin V27, exporter V4; HTML `/app/betcapitale/rollback-software-future-early-preview-20261122/index.html`, service `/opt/capitale-software-retention-only-v3-20261122/rollback-code-only/20-materialized-visual-before-v4.conf`.
 - **GitHub raporu:** `deployments/betcapitale/software-early-future-coverage-v4-v12-v27-20261122.md`, commit `30f721f1fac7f814ef3f25b88d4fbbee71b184d8`.
 - **Sonraki adım:** Yeni SXF future EARLY event ortaya çıktığında canlı ilk doğru render'ı browser ile gözlemle; kaynaktaki T-72 / SLD-6 aşama adlandırmasını ayrı kontrollü iş olarak ele al.
+
+### 2026-11-23 — 3 UEFA kupası takım logoları: 28 yeni PNG, 109/109 SXF isim kapsamı (CANLI)
+
+- **Kullanıcı isteği:** Şampiyonlar Ligi, Avrupa Ligi, Konferans Ligi takımlarının logolarını mevcut yerel katalogda tamamla; zaten olan takım logolarını ikinci kez indirme; başka alanı değiştirme.
+- **SXF kaynak taraması:** 2026/27 fikstürlerinde UEFA Champions League **37**, UEFA Europa League **36**, UEFA Conference League **36** takım adı; toplam **109 ayrı SXF isim**. Canlı 629-entry manifestte **80** tanesi mevcut, **29 SXF isim eksik**. `Lask Linz` ismi mevcut `LASK Linz` logo dosyasına alias olarak bağlandı; 28 gerçekten yeni takım.
+- **İndirme ve kayıt:** ESPN'in 2026 UEFA üç yarışma resmî takım dizinlerinden kaynak kimliği ve logo URL doğrulanmış **28 ayrı 500×500 PNG**, toplam **2.352.636 bayt**, 28 farklı SHA256; tümü aynı-origin `/team-logos/sxf-espn-ID-hash.png`. Mevcut 629 mapping değişmeden, kataloğa 29 isim eklendi: **658** mapping, 37 lig. Üç kupanın 109/109 SXF takım adı yerel dosyaya bağlı.
+- **Yayın:** Canlı yalnız `/app/betcapitale/dist/public/team-logos/current-fixture-coverage-auto.json` atomik güncellendi ve 28 yeni immutable PNG dosyası eklendi. 3 dakikalık eski dış sağlayıcı indirme zamanlayıcısı kapalı kaldı. Site JS/HTML/backend, Admin Software, SXF, Match List tasarım kodu, DB ve diğer bölümler değişmedi.
+- **QA:** 28/28 yeni logo HTTPS 200 `image/png`; canlı katalog HTTPS 200, 658 satır; Şampiyonlar 37/37, Avrupa 36/36, Konferans 36/36, normalize-key collision 0; eski 629/629 mapping birebir korunmuş; `Lask Linz` ve `LASK Linz` aynı mevcut PNG; beş ana route 200; canlı HTML/backend SHA değişmedi. Gerçek oturumlu browser poster screenshot bu işlemde yapılmadı.
+- **Rollback:** `/app/betcapitale/rollback-sxf-uefa-3cups-logo-library-20261123/current-fixture-coverage-auto.json`. Önceki katalog SHA `35919d2a7ba35069e875bebfc4a91330fbcd51f175570057d92fbd8efdcffec9`, yeni SHA `479da929a8ee782f9fda88be31a1589b715b492efc425f8bb31de4141df114af`.
+- **GitHub:** Tam katalog `deployments/betcapitale/sxf-uefa-3cups-logo-catalog-20261123.csv` (`9bc3e0c`); kaynak/ID/SHA `deployments/betcapitale/sxf-uefa-3cups-logo-provenance-20261123.json` (`bf53e53`); doğrulama raporu `deployments/betcapitale/sxf-uefa-3cups-crest-expansion-live-20261123.md` (`78fd0a4`).
+- **Sonraki adım:** Sezon fikstürüne yeni takım girerse mevcut roster ile karşılaştırarak sadece yeni SXF isimlerini eşleştir; mevcut logolara ve diğer bölümlere dokunma.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
