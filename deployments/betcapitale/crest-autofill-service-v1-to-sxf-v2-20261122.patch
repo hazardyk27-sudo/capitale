@@ -1,0 +1,13 @@
+--- a/deployments/betcapitale/capitale-crest-autofill.service
++++ b/deployments/betcapitale/capitale-crest-autofill.service
+@@ -7,7 +7,7 @@
+ Type=oneshot
+ EnvironmentFile=/app/betcapitale/.env
+ WorkingDirectory=/opt/capitale-crest-autofill-v1
+-ExecStart=/usr/bin/node /opt/capitale-crest-autofill-v1/crest-autofill.cjs
++ExecStart=/usr/bin/node /opt/capitale-crest-autofill-v2/crest-autofill-sxf.cjs
+ TimeoutStartSec=360
+ UMask=0022
+ NoNewPrivileges=yes
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
