@@ -1,0 +1,11 @@
+--- a/dist/public/index.html
++++ b/dist/public/index.html
+@@ -62,7 +62,7 @@
+         } } catch (e) {}
+       }
+     </script>
+-    <script type="importmap">{"imports":{"/assets/admin-software-B_RQbAaY.js":"/assets/admin-software-v25-hide-sample-labels-20261122.js","/assets/admin-software-delta-only-20261121.js":"/assets/admin-software-v25-hide-sample-labels-20261122.js","/assets/admin-software-crests-delta-only-20261121.js":"/assets/admin-software-v25-hide-sample-labels-20261122.js","/assets/admin-social-media-BufGLmZ1.js":"/assets/admin-social-media-v20-software-snapshot-20261122.js","/assets/index-Bg9uIRfV.js":"/assets/index-capitale-software-spa-v8-no-report-button-20261122.js","/assets/capitale-software-widget-v5-admin-animation-parity-20261122.js":"/assets/capitale-software-widget-v6-materialized-anim-20261122.js"}}</script>
++    <script type="importmap">{"imports":{"/assets/admin-software-B_RQbAaY.js":"/assets/admin-software-v26-istanbul-date-window-20261122.js","/assets/admin-software-delta-only-20261121.js":"/assets/admin-software-v26-istanbul-date-window-20261122.js","/assets/admin-software-crests-delta-only-20261121.js":"/assets/admin-software-v26-istanbul-date-window-20261122.js","/assets/admin-social-media-BufGLmZ1.js":"/assets/admin-social-media-v20-software-snapshot-20261122.js","/assets/index-Bg9uIRfV.js":"/assets/index-capitale-software-spa-v8-no-report-button-20261122.js","/assets/capitale-software-widget-v5-admin-animation-parity-20261122.js":"/assets/capitale-software-widget-v6-materialized-anim-20261122.js","/assets/capitale-software-widget-v8-no-report-button-20261122.js":"/assets/capitale-software-widget-v9-istanbul-date-window-20261122.js"}}</script>
+     <script defer src="/capitale-public-software-nav-v2-active.js"></script>
+     <!-- V33 homepage design: load approved hero only on /; preserve the
+          original production application and all admin chunks on other routes. -->
