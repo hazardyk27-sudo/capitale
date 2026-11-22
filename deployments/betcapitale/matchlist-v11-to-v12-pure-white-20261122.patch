@@ -1,0 +1,20 @@
+--- a/client/src/components/match-list-template-2.tsx
++++ b/client/src/components/match-list-template-2.tsx
+@@ -218,13 +218,13 @@
+           display:"grid",gridTemplateColumns:grid,alignItems:"center",gap:story?6:5,
+           padding:story?"0 14px":"0 11px",position:"relative",overflow:"hidden",
+           borderRadius:story?13:11,border:"1px solid #E5EAEE",
+-          background:"radial-gradient(ellipse 24% 110% at 0% 0%,rgba(255,192,124,.29),transparent 90%),linear-gradient(156deg,#FFFFFF 0%,#FAFBFD 52%,#EFF3F9 100%)",
++          background:"#FFFFFF",
+           boxShadow:"0 2px 3px rgba(24,40,59,.035),0 7px 13px rgba(27,43,63,.075),0 16px 27px -16px rgba(24,41,65,.21),inset 0 2px 0 rgba(255,255,255,.98),inset 0 -2px 0 rgba(112,134,161,.12)"}}>
+           <span style={{position:"absolute",top:0,left:"12%",right:"12%",height:1,
+             background:"linear-gradient(90deg,transparent,rgba(255,255,255,.99),transparent)",pointerEvents:"none"}}/>
+           <span style={{position:"absolute",left:0,top:"24%",bottom:"24%",width:3,borderRadius:4,
+             background:signal?"linear-gradient(180deg,#FFC385,#F27B19,#DB5F14)":"#D6DFE6",
+-            boxShadow:signal?"0 0 10px rgba(244,120,20,.29)":"none"}}/>
++            boxShadow:"none"}}/>
+           <span style={{color:signal?"#C96B27":"#82909C",fontSize:numberSize,fontWeight:850,
+             fontVariantNumeric:"tabular-nums",textAlign:"center",letterSpacing:".02em"}}>
+             {String((pageNumber-1)*matches.length+index+1).padStart(2,"0")}
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
