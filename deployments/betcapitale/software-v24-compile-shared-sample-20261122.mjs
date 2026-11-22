@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import {createRequire} from 'node:module';
+const require=createRequire(import.meta.url);
+const esbuild=require('/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/node_modules/esbuild');
+const ts='/opt/capitale-software-en-60048de8ba8f9736466a0d5ca13594d6b9023d87/betcapitale-admin-matchlist-v2-real-first-sample-fallback-v18-20261122-work/client/src/lib/capitale-visual-fallback.ts';
+const compiled=esbuild.transformSync(fs.readFileSync(ts,'utf8'),{loader:'ts',target:'es2020',format:'esm',minify:false}).code;
+const shared=compiled.replace(/export\s*\{[^}]+\};\s*$/,'').trim();
+if(shared.includes('export')||!shared.includes('function capitaleSampleVisual('))throw Error('Shared TS compilation failed');
+fs.writeFileSync('/opt/capitale-shared-real-first-fallback-v24-20261122/shared-sample-engine-runtime.js',shared+'\n');
+console.log('SAMPLE_ENGINE_SAME_AS_TS',shared.length, 'codes:',shared.match(/\["PRM-6"[^\]]+/)?.[0]);
