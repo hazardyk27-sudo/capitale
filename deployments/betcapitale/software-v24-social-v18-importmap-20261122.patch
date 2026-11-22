@@ -1,0 +1,11 @@
+--- a/dist/public/index.html
++++ b/dist/public/index.html
+@@ -62,7 +62,7 @@
+         } } catch (e) {}
+       }
+     </script>
+-    <script type="importmap">{"imports":{"/assets/admin-software-B_RQbAaY.js":"/assets/admin-software-v23-verified-parity-20261122.js","/assets/admin-software-delta-only-20261121.js":"/assets/admin-software-v23-verified-parity-20261122.js","/assets/admin-software-crests-delta-only-20261121.js":"/assets/admin-software-v23-verified-parity-20261122.js","/assets/admin-social-media-BufGLmZ1.js":"/assets/admin-social-media-v17-verified-parity-20261122.js"}}</script>
++    <script type="importmap">{"imports":{"/assets/admin-software-B_RQbAaY.js":"/assets/admin-software-v24-real-first-visual-fallback-20261122.js","/assets/admin-software-delta-only-20261121.js":"/assets/admin-software-v24-real-first-visual-fallback-20261122.js","/assets/admin-software-crests-delta-only-20261121.js":"/assets/admin-software-v24-real-first-visual-fallback-20261122.js","/assets/admin-social-media-BufGLmZ1.js":"/assets/admin-social-media-v18-real-first-samples-20261122.js"}}</script>
+     <!-- V33 homepage design: load approved hero only on /; preserve the
+          original production application and all admin chunks on other routes. -->
+     <script id="capitale-home-v33-route-loader">
