@@ -1,0 +1,24 @@
+--- a/client/src/pages/admin-social-media.tsx
++++ b/client/src/pages/admin-social-media.tsx
+@@ -3756,9 +3756,9 @@
+     refetchOnWindowFocus:true,
+     retry:false,
+   });
+-  // Live logo registry is updated atomically by the read-only server-side
+-  // crest-resolver timer. Missing clubs retain initials; no speculative matches.
+-  // Dynamic JSON refreshes without a frontend rebuild or manual cache clearing.
++  // Preloaded local crest library: keys are exact SXF team names.
++  // Never fetch external logos during a match render; missing clubs retain initials.
++  // This same-origin JSON can be rebuilt explicitly after seasonal promotions.
+   const { data: crestManifest, error: crestError } = useQuery<unknown>({
+     queryKey:["/team-logos/current-fixture-coverage-auto.json",date],
+     queryFn:async()=>{
+@@ -4242,7 +4242,7 @@
+                 Fill with demo values (not verified SXF data)
+               </label>
+               <div style={{marginTop:7,fontFamily:SANS,fontSize:10.5,color:'#607D94',lineHeight:1.5}}>
+-                AUTO LOGOS · New fixtures scanned every 3 min · This view refreshes every 90 sec
++                LOCAL SXF CRESTS · Instant team-name match · No external logo lookup
+               </div>
+               <p style={{fontSize:11,lineHeight:1.55,color:"#5E6F7D",margin:"8px 0",fontFamily:SANS}}>
+                 {matchV2Sample?'Sample SXF codes and A/V/N/B/O values for visual demonstration only. Turn the switch off for actual Software records. Team logos and fixture times remain authentic.':'V · A · N · B · SIGNAL · T-6/T-8 · O Δ are read from verified Software records for the same fixture/date. Team crests appear where available.'}
