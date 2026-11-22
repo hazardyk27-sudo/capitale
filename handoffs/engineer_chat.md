@@ -218,3 +218,10 @@
 - V19 adds only a scoped, higher-specificity override for `html.capitale-live-premium #root .capitale-v2-table tbody tr.capitale-v2-row>td`: `padding-top:17.5px!important; padding-bottom:17.5px!important`. Card itself is unchanged. Chrome live measured **36 px** between cards and still **121 px** card height, a 49.3% reduction (rounded 1px border).
 - Published immutable module: `/app/betcapitale/dist/public/assets/admin-software-v19-half-card-gap-20261122.js` with only 3 Software importmap aliases changed. Route: `https://betcapitale.com/admin/software?v=19`. Other routes including social media preserved. Rollback HTML: `/app/betcapitale/dist/public/index.html.before-software-v19-half-gap-20261122.bak`.
 - Chrome preflight and live verified padding 17.5px per side, card gap 36px, card height 121px; HTTP 200. No report/backend/SXF sync/metric/logo changes.
+
+### 2026-11-22 — Software V20: kartlar arasındaki mesafe tam 30 px
+- Kullanıcı tek değişiklik istedi: Match List V2 Software maç kartları arasındaki dikey boşluğu önceki 36px yerine 30px yap; kart içindeki bütün elemanlar aynı kalsın.
+- Kaynak live V19 chunk'ından `/app/betcapitale/dist/public/assets/admin-software-v20-30px-card-gap-20261122.js` oluşturuldu; yalnızca scoped CSS `html.capitale-live-premium #root .capitale-v2-table tbody tr.capitale-v2-row>td` üst ve alt padding `17.5px` → `14.5px` değişti.
+- Üç Software importmap alias'ı V20 sürümlü dosyaya yönlendirildi; diğer route importları, homepage V33, agent raporları, logolar, A/V/N/B/O paneli ve SXF aktarımı değiştirilmedi.
+- Gerçek Chrome ile `https://betcapitale.com/admin/software?v=20`: kartların arasındaki mesafe **30px**, kart yüksekliği aynı **121px**, padding üst/alt **14.5px**; PASS. `/`, `/giris`, `/admin/software` canlı smoke HTTP 200 / JS errors 0, PASS.
+- Rollback: `/app/betcapitale/dist/public/index.html.before-software-v20-30px-card-gap-20261122.bak`.
