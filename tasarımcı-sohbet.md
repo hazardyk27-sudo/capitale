@@ -2,7 +2,7 @@
 
 **Sorumlu:** TASARIMCI  
 **Belge amacı:** CAPITALE tasarımcısının sohbetler arası kalıcı belleği; yapılan bütün bilinen tasarım işleri, sürümler, onaylar, uygulanmış değişiklikler, doğrulamalar, yedekler ve sıradaki görevler.  
-**Son güncelleme:** 23 Kasım 2026 · How It Works V3 mockupsız/minimal önizleme yayınlandı, Chromium 4/4 PASS, canlı How It Works değişmedi
+**Son güncelleme:** 23 Kasım 2026 · How It Works V4 ürün görselleri yeniden tasarlandı; Software→Matches→Coupons→Results bağlantılı demo; gerçek Chromium 5/5 PASS; V2/V3 ve canlı sayfa korunuyor
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
@@ -589,6 +589,16 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **Ekran görüntüsü:** `https://betcapitale.com/preview/home-v1/how-it-works-v3/qa/desktop-full.png`, `https://betcapitale.com/preview/home-v1/how-it-works-v3/qa/mobile-full.png`.
 - **GitHub:** `deployments/betcapitale/how-it-works-v3-minimal-preview-20261123/index.html` (`3bc31ce8`), `styles.css` (`06714a13`); QA raporu `deployments/betcapitale/how-it-works-v3-minimal-preview-qa-20261123.md` (`81bba0a5`).
 - **Onay:** Henüz kullanıcı tarafından onaylanmadı, bu yüzden canlı How It Works hâlâ eski React sayfasıdır. Canlıya geçiş ayrı açık talimat gerektirir. V2 ve V3 önizlemeleri birlikte korunuyor.
+
+### 2026-11-23 — How It Works V4 — kullanıcı geri bildirimiyle görseller iyileştirildi (AYRI ÖNİZLEME / ÜRETİM DEĞİŞMEDİ)
+
+- **Düzeltici kullanıcı geribildirimi:** “Daha kötü olmuş, mockupları sevmedim dedim bunu daha iyi yap diye demiştim kaldır diye değil.” V3'te mockupların tamamen kaldırılması hatalı yorumlandı. V4, görselleri silmek yerine **sade, daha gerçekçi, görsel olarak tutarlı ve iş akışını gerçekten anlatan ürün mockuplarına** dönüştürdü.
+- **Canlı önizleme:** https://betcapitale.com/preview/home-v1/how-it-works-v4/ ; dosyalar yalnız `/srv/capitale-preview/home-v1/how-it-works-v4/{index.html,styles.css,app.js}`. V2 ve V3 ayrı yerlerinde duruyor; canlı `/how-it-works` sayfası değişmedi.
+- **Yeni tasarım:** DM Serif Display + Outfit Light CAPITALE wordmark + beyaz/siyah/turuncu. Hero'da tek gerçekçi software selection fişi ve Chelsea–Arsenal logosu/market örneği. Büyük merkez bölümde SOFTWARE (MARKET/NEWS/ANALYST) → MATCHES (logo, takım, tercih, sinyal) → COUPONS (4×€50 eşit bahis fişi, C03 içinde **Barcelona win + Roma–Inter BTTS Yes** tam olarak görülebilir) → RESULTS (C01/C02/C04 kayıp, C03 €270 dönmüş, net +€70) birbirine bağlı ve **tümü aynı anda görünür**; mobilde sıralı görünüme uyumlu. Kâr formülü ve maç öncesi/sonrası yayın açıklaması kısa metin + minimal timeline ile destekli. /today, /history, /plans bağlantıları var. **Bütün örnekler açıkça ILLUSTRATIVE**, gerçek SXF sinyali veya doğrulanmış kâr diye sunulmuyor; net €270-€200=€70 doğru.
+- **Görsel kontrol / gerçek Chromium QA:** 1440×900, 1200×900, 820×1180, 390×844, 320×720 olmak üzere **5/5 PASS**; 0 yatay taşma, 0 kırık PNG (10/10 local), 0 JS/console hata, üç maç/dört kupon/dört sonuç aynı ekranda, mobil menü aç/kapa ve ESC çalışıyor. Sunum görselleri incelenip C03 kuponu bağlantısını gösteren ekstra satırlar eklendikten sonra test tekrarı PASS. HTML/CSS/JS ve screenshotlar HTTPS 200, noindex/noarchive.
+- **Ekran görüntüleri:** `https://betcapitale.com/preview/home-v1/how-it-works-v4/qa/desktop-full.png` ve `https://betcapitale.com/preview/home-v1/how-it-works-v4/qa/mobile-full.png`; süreç yakın çekim `qa/desktop-workflow.png`.
+- **GitHub kaynak:** `deployments/betcapitale/how-it-works-v4-refined-mockups-20261123/index.html` (`47a0f8d3`), `styles.css` (`b3676154`), `app.js` (`28042f43`); tam kanıt `deployments/betcapitale/how-it-works-v4-refined-mockups-qa-20261123.md` (`103690a9`).
+- **Sınır/sonraki:** Kullanıcı tasarım görüşü bekleniyor; **üretimdeki How It Works React dosyası, index.html, backend, SXF, Software, Match List, diğer sayfalar ve GitHub agent kuralları değiştirilmedi**. Açık onay olmadan canlıya aktarma. Rollback yalnız V4 preview alt klasörünü kaldırmak.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
