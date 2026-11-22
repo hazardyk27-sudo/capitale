@@ -1,0 +1,8 @@
+--- a/etc/systemd/system/capitale-public-software-feed.service.d/20-materialized-visual.conf
++++ b/etc/systemd/system/capitale-public-software-feed.service.d/20-materialized-visual.conf
+@@ -1,4 +1,4 @@
+ [Service]
+ # Only the allowlisted public visual snapshot changes; real SXF/Analyst/News reports are untouched.
+ ExecStart=
+-ExecStart=/usr/bin/flock -n /run/lock/capitale-public-software-feed.lock /usr/bin/python3 /opt/capitale-software-on-entry-visual-v1-20261122/capitale-public-software-export-v2.py
++ExecStart=/usr/bin/flock -n /run/lock/capitale-public-software-feed.lock /usr/bin/python3 /opt/capitale-software-retention-only-v3-20261122/capitale-public-software-export-v3.py
