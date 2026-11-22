@@ -1,0 +1,74 @@
+--- a/dist/public/assets/capitale-software-widget-v5-admin-animation-parity-20261122.js
++++ b/dist/public/assets/capitale-software-widget-v6-materialized-anim-20261122.js
+@@ -68,6 +68,16 @@
+     return box;
+   }
+ 
++  // Public Software uses the persisted visual snapshot, not another random draw.
++  // Verified source fields in the feed remain separate from illustrative values.
++  const displaySignal = row => typeof row.visual?.signal==='string' && row.visual.signal
++    ? row.visual.signal : (row.signalCode||'—');
++  const displayMetric = (row,key,original) => {
++    const value=row.visual?.[key];
++    if(typeof value!=='string'||!value.trim()||value.length>48)return original;
++    return key==='analyst'||key==='news'?value+'%':value;
++  };
++  const displayPercent = value => {const n=Number.parseFloat(value);return Number.isFinite(n)&&n>=0&&n<=100?n:null};
+   function metric(name, value, percent) {
+     const wrapper = node('div', 'capitale-v2-metric');
+     wrapper.dataset.metric = name;
+@@ -220,18 +230,18 @@
+     const names=node('span','capitale-v2-name',row.homeTeam+' – '+row.awayTeam);
+     names.title=row.homeTeam+' – '+row.awayTeam;
+     append(clubs,logos,names);
+-    const signal=node('span','capitale-v2-signal',row.signalCode||'—');
+-    const family=String(row.signalCode||'').split('-')[0];
++    const signal=node('span','capitale-v2-signal',displaySignal(row));
++    const family=String(displaySignal(row)).split('-')[0];
+     signal.dataset.family=['PRM','CRL','MOM','SLD'].includes(family)?family:'SLD';
+     if (row.watchOnly)signal.title='Watch-only market signal';
+     const consoleBox=node('div','capitale-v2-console');
+     consoleBox.dataset.metricConsole='true';
+     append(consoleBox,
+-      metric('A',fmt(row.analystScore),row.analystScore),
+-      metric('V',fmt(row.volumeShare),row.volumeShare),
+-      metric('N',fmt(row.newsScore),row.newsScore),
+-      metric('B',fmt(row.drawShare),row.drawShare),
+-      metric('O',movement(row.oddsDeltaPct),null)
++      metric('A',displayMetric(row,'analyst',fmt(row.analystScore)),displayPercent(displayMetric(row,'analyst',fmt(row.analystScore)))),
++      metric('V',displayMetric(row,'volume',fmt(row.volumeShare)),displayPercent(displayMetric(row,'volume',fmt(row.volumeShare)))),
++      metric('N',displayMetric(row,'news',fmt(row.newsScore)),displayPercent(displayMetric(row,'news',fmt(row.newsScore)))),
++      metric('B',displayMetric(row,'draw',fmt(row.drawShare)),displayPercent(displayMetric(row,'draw',fmt(row.drawShare)))),
++      metric('O',displayMetric(row,'movement',movement(row.oddsDeltaPct)),null)
+     );
+     const kickoff=node('span','capitale-v2-time',time(row.kickoffAt));
+     append(card,number,clubs,signal,consoleBox,kickoff);
+@@ -251,8 +261,8 @@
+     const search=state.search.toLocaleLowerCase('en-GB');
+     return state.items
+       .filter(row=>
+-        (!search||[row.homeTeam,row.awayTeam,row.league||'',row.signalCode].join(' ').toLocaleLowerCase('en-GB').includes(search)) &&
+-        (!state.signal||row.signalCode===state.signal) &&
++        (!search||[row.homeTeam,row.awayTeam,row.league||'',displaySignal(row)].join(' ').toLocaleLowerCase('en-GB').includes(search)) &&
++        (!state.signal||displaySignal(row)===state.signal) &&
+         (!state.date||row.date===state.date))
+       .sort((a,b)=>{
+         const nameA=(a.homeTeam+' – '+a.awayTeam),nameB=(b.homeTeam+' – '+b.awayTeam);
+@@ -318,7 +328,7 @@
+       const keys=new Set();
+       const safe=result.items.filter(row=>{
+         if(!row||typeof row.key!=='string'||!/^[a-f0-9]{20}$/.test(row.key)||
+-          typeof row.homeTeam!=='string'||typeof row.awayTeam!=='string'||typeof row.signalCode!=='string'||keys.has(row.key))return false;
++          typeof row.homeTeam!=='string'||typeof row.awayTeam!=='string'||!(typeof row.signalCode==='string'||row.signalCode===null)||keys.has(row.key))return false;
+         keys.add(row.key);return true;
+       });
+       state.items=safe;
+@@ -326,7 +336,7 @@
+       state.status='ready';
+       if(state.expanded&&!safe.some(r=>r.key===state.expanded))state.expanded=null;
+       const selector=el('signal'),old=selector.value;
+-      const codes=[...new Set(safe.map(x=>x.signalCode).filter(Boolean))].sort();
++      const codes=[...new Set(safe.map(displaySignal).filter(Boolean))].sort();
+       selector.replaceChildren(new Option('All signals',''));
+       for(const c of codes)selector.add(new Option(c,c));
+       selector.value=codes.includes(old)?old:'';
