@@ -1,0 +1,69 @@
+--- a/deployments/betcapitale/software-on-entry-visual-exporter-v2.py
++++ b/deployments/betcapitale/software-on-entry-visual-exporter-v3.py
+@@ -7,7 +7,7 @@
+ """
+ from __future__ import annotations
+ 
+-from datetime import datetime, timezone
++from datetime import date, datetime, timedelta, timezone
+ from importlib.util import module_from_spec, spec_from_file_location
+ from pathlib import Path
+ from zoneinfo import ZoneInfo
+@@ -22,6 +22,20 @@
+ LEDGER_PATH=Path(os.environ.get('CAPITALE_VISUAL_LEDGER_PATH','/var/lib/capitale-software-visual-ledger/ledger-v1.json'))
+ SOURCE='/opt/capitale-sxf-software-sync.py'
+ TRT=ZoneInfo('Europe/Istanbul')
++
++# Software-only retention: today, yesterday, and future Istanbul match dates.
++def earliest_software_date(now=None):
++    local_today=(now or datetime.now(timezone.utc)).astimezone(TRT).date()
++    return local_today-timedelta(days=1)
++
++def keep_software_fixture(row, cutoff):
++    return date.fromisoformat(row['date'])>=cutoff
++
++def keep_software_ledger_key(key,cutoff):
++    parts=key.split('|',3)
++    if len(parts)!=4 or parts[0]!='capitale-sample-v1':
++        raise ValueError('Unrecognized Software-only sample key; refusing to prune')
++    return date.fromisoformat(parts[1])>=cutoff
+ 
+ def iso_time(v):
+     if not isinstance(v,str) or not v.strip(): return None
+@@ -176,10 +190,15 @@
+     if status!=200 or feed.get('ok') is not True:raise RuntimeError('Verified Software RPC not ready')
+     runs=feed.get('runs')
+     if not isinstance(runs,list):raise RuntimeError('Software runs are not an array')
+-    rows=[(row,p) for row in runs if (p:=project(row)) is not None]
++    projected=[(row,p) for row in runs if (p:=project(row)) is not None]
++    if not projected and runs:raise RuntimeError('Software returned rows but public projection had none')
++    cutoff=earliest_software_date()
++    rows=[(row,p) for row,p in projected if keep_software_fixture(p,cutoff)]
+     data=[p for _,p in rows]
+-    if not data and runs:raise RuntimeError('Software returned rows but public projection had none')
+-    ledger=read_ledger(LEDGER_PATH)
++    historical_skipped=len(projected)-len(rows)
++    previous_ledger=read_ledger(LEDGER_PATH)
++    ledger={k:v for k,v in previous_ledger.items() if keep_software_ledger_key(k,cutoff)}
++    historical_pruned=len(previous_ledger)-len(ledger)
+     new_count=0
+     for run,public in rows:
+         key=sample_key(public)
+@@ -191,7 +210,7 @@
+         if set(sample)!=required:raise RuntimeError('Persistent sample ledger does not match required schema')
+         public['visual']=visible_values(public,sample)
+         # Source ID is intentionally never included in the public JSON.
+-    if new_count:
++    if new_count or historical_pruned:
+         atomic_json(LEDGER_PATH,{'schema':'capitale-visual-ledger-v1','samples':ledger},mode=0o600)
+     # Strict allowlist is the entire public JSON surface.
+     payload={
+@@ -208,7 +227,7 @@
+     temp.write_text(blob+'\n',encoding='utf-8')
+     temp.chmod(0o644)
+     os.replace(temp,final)
+-    print(json.dumps({'result':'ok','published_matches':len(data),'source_runs':len(runs),'new_sampled_fixtures':new_count,'stored_fixture_samples':len(ledger),'bytes':len(blob),'path':str(final)},separators=(',',':')))
++    print(json.dumps({'result':'ok','published_matches':len(data),'source_runs':len(runs),'new_sampled_fixtures':new_count,'stored_fixture_samples':len(ledger),'discarded_historical_rows':historical_skipped,'pruned_historical_samples':historical_pruned,'earliest_local_date':cutoff.isoformat(),'bytes':len(blob),'path':str(final)},separators=(',',':')))
+ 
+ if __name__=='__main__':
+     try:run()
