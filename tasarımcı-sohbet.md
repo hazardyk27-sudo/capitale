@@ -2,7 +2,7 @@
 
 **Sorumlu:** TASARIMCI  
 **Belge amacı:** CAPITALE tasarımcısının sohbetler arası kalıcı belleği; yapılan bütün bilinen tasarım işleri, sürümler, onaylar, uygulanmış değişiklikler, doğrulamalar, yedekler ve sıradaki görevler.  
-**Son güncelleme:** 22 Kasım 2026 · Software materyalize eski maçları fiziken temizleyen V3 otomasyonu CANLI (14 eski Software dosyası kaydı ve 14 örnek cache silindi); değiştirilemez SXF/agent arşivi korundu  
+**Son güncelleme:** 22 Kasım 2026 · Software yalnızca kendi alanında gelecek EARLY sinyal önizlemeleri V4 publisher / public V12 / admin V27 CANLI; 24 Kasım 3, 25 Kasım 4 kaynak maç artık görünür; eski maç V3 retention korunuyor  
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
@@ -546,6 +546,17 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **QA:** Dry-run in temp Software ledger/data 14 eski azaltma PASS, cutoff 4 Istanbul midnight/year sınırı PASS, 22 Nov 20:59:59 UTC filter cutoff 21 Nov: 79 canlı kayıt; 22 Nov 21:00 UTC (23 Nov 00:00 TRT) cutoff 22 Nov: 33 kayıt PASS. Production service output `published_matches=79,source_runs=93,discarded_historical_rows=14,pruned_historical_samples=14`, retry `pruned_historical_samples=0`. Canlı `/software/` SPA fetch bir güncel 79 JSON getirip 20 kart render ediyor, `79 / 79 matches`, sıfır page error. Backend SHA sabit `79b0bed37aed965979fc0d0bc6c093c4dcfe07a59934096cc65f2fb5c7ce3832`; frontend V26/V9 ve MatchList V20'ye kod/versiyon yaması yapılmadı. Doğrulanmış SFX source, admin raporları ve SXF loglarına dokunulmadı.
 - **GitHub kaynakları:** V3 exporter `deployments/betcapitale/software-retention-v3-20261122.py` commit `21d3d54ebc658445272506f85acfdecef4fac7b2`; V2→V3 isolated diff `deployments/betcapitale/software-retention-v2-to-v3-20261122.patch` commit `52db236076b1d5f69d59c08e3154404e13a84b7d`; existing systemd service change `deployments/betcapitale/software-retention-service-v3-20261122.patch` commit `0642ee375c96a5c37633f01a9ba8fc73e426e3b6`; complete QA/security boundary `deployments/betcapitale/software-retention-only-live-20261122.md` commit `a8deb146a4c2d5f7efdb352b1d9df8c972d3def8`.
 - **Mutlak sınır / kullanıcıyla açıklık:** Software dosyalarında geçmiş 14 maçın kayıtları **yok**, ancak append-only ana agent/SXF veritabanında **var**. O alandan da silmek için korumayı değiştirmek gerekli olurdu; kullanıcı buna izin vermedi. 'Hiçbir yerde hiçbir kayıt kalmadı' iddiasında bulunma. Yeni tarih sınırı ve otomatik Software dosya temizliği istenen şekilde çalışıyor.
+
+### 2026-11-22 — Gelecek SXF EARLY sinyalleri: Software V4 / public V12 / admin V27 CANLI
+
+- **İstek:** 24 Kasım gelecek SXF sinyalleri Software'da görünmüyordu; geçmiş maç temizliği devam edecek, başka bölüme dokunulmayacak.
+- **Teşhis:** İlk canlı Software snapshot'ında 79 kayıt ve 24 Kasım 0 iken SXF kaynakta 24 Kasım T-72 `EARLY_SIGNAL` 3 maç / 5 olay vardı. Otomatik FINAL_SYNC yalnız T-6/T-8 ve 18 saat penceresi destekliyordu. Kontrol sırasında **bu işlemimiz dışında** Software source güncellenerek yeni kayıtlar geldi; sonra public Software snapshot 100 maça yükseldi, 24 Kasım 3 ve 25 Kasım 4 maç görünür oldu.
+- **Uygulama:** Eski 1 dakikalık Software V3 worker V4'e sürümlendi ve `earlyPreviews` allowlisted kaynak doğrulamalı, ayrı ve kesinlikle `PRELIMINARY_NOT_FINAL` metaverisi eklendi. Software'a source run'ı zaten geçmişse önizleme tekrarlanmaz. Admin V27 default/SXF-only ayrı EARLY paneli; public V12 ayrı EARLY paneli. Rapor editörleri, mevcut maç kartları, verified/fallback değerleri, source DB, SXF motorları, Match List, diğer route ve backend değişmedi.
+- **Doğrulama:** Testte Software'a hiç girmemiş 8 future EARLY aday, canlı source ile 0 duplicate; mevcut 100 `items` alanı birebir aynı; 0 expired, 1dk timer active/enabled, HTTPS feed 200, 4 JS 200 ve node --check PASS, 5 route HTTP 200, admin API auth'suz 401. Production HTML farkı yalnız 5 Software alias. **Gerçek tarayıcıya giriş ile UI E2E yapılmadı.**
+- **Önemli sınır:** Önceden girilmiş T-72 EARLY kaynak satırlarının ham badge alanı `SLD-6`, checkpoint alanı `T-72`; source uyuşmazlığı giderilmedi / erken sinyal FINAL'a yükseltilmedi. Yeni eksik future EARLY önizlemeleri `EARLY T-xx · NOT FINAL` diye ayrı gösterilir.
+- **Versiyonlar / yedek:** Public V12 widget/page/SPA, admin V27, exporter V4; HTML `/app/betcapitale/rollback-software-future-early-preview-20261122/index.html`, service `/opt/capitale-software-retention-only-v3-20261122/rollback-code-only/20-materialized-visual-before-v4.conf`.
+- **GitHub raporu:** `deployments/betcapitale/software-early-future-coverage-v4-v12-v27-20261122.md`, commit `30f721f1fac7f814ef3f25b88d4fbbee71b184d8`.
+- **Sonraki adım:** Yeni SXF future EARLY event ortaya çıktığında canlı ilk doğru render'ı browser ile gözlemle; kaynaktaki T-72 / SLD-6 aşama adlandırmasını ayrı kontrollü iş olarak ele al.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
