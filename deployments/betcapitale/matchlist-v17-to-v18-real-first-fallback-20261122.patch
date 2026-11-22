@@ -1,0 +1,166 @@
+--- a/client/src/lib/match-list-v2-auto.ts
++++ b/client/src/lib/match-list-v2-auto.ts
+@@ -34,6 +34,8 @@
+ export type AutoStatus = 'matched' | 'missing' | 'ambiguous' | 'unavailable';
+ export type MatchList2AutoMetric = {
+   status: AutoStatus;
++  isIllustrative?: boolean;
++  sampleFields?: string[];
+   signal: string;
+   checkpoint: string;
+   volume: string;
+--- a/client/src/pages/admin-social-media.tsx
++++ b/client/src/pages/admin-social-media.tsx
+@@ -5,6 +5,7 @@
+ import { RefreshCw, Download, ChevronLeft, ChevronRight } from "lucide-react";
+ import { MatchListTemplate2, type MatchListTemplate2Metrics } from "@/components/match-list-template-2";
+ import { deriveMatchList2, logoIndexFromManifest, type SoftwareMatch2 } from "@/lib/match-list-v2-auto";
++import { capitaleVisualOverlay } from "@/lib/capitale-visual-overlay";
+ 
+ /* ─── TYPES ─────────────────────────────────────────────────────── */
+ type AC = {
+@@ -3752,9 +3753,12 @@
+     if (!matches.length) return NO_MATCH_LIST_V2_DATA;
+     return deriveMatchList2(matches,softwareFeed?.items??[],softwareFeed?.dataSource==="connected",logoIndexFromManifest(crestManifest));
+   })();
+-  // Strictly source-backed: the same Software records and values shown in Software.
+-  // Never synthesize missing A/V/N/B/O or signals in public/export graphics.
+-  const matchListV2Metrics = verifiedMatchListV2Metrics;
++  // Real data first; deterministic, visibly labelled illustrative fallback for each missing field.
++  // This is display-only and never writes signals, metrics, reports or fixtures.
++  const matchListV2Metrics = Object.fromEntries(matches.map(match => [
++    match.id, capitaleVisualOverlay(match, verifiedMatchListV2Metrics[match.id])
++  ])) as Record<number, MatchListTemplate2Metrics>;
++  const sampleMatchCount = Object.values(matchListV2Metrics).filter(metric=>metric.isIllustrative).length;
+   const metricSummary = Object.values(verifiedMatchListV2Metrics).reduce((r,v)=>{r[v.status]+=1;return r}, {matched:0,missing:0,ambiguous:0,unavailable:0});
+   const logoSummary = Object.values(matchListV2Metrics).reduce((r,v)=> r + Number(!!v.homeLogoUrl)+Number(!!v.awayLogoUrl),0);
+ 
+@@ -3810,6 +3814,7 @@
+           fmt={fmt}
+           variant={variant}
+           metricsByMatch={matchListV2Metrics}
++          demoMode={ms.some(m=>!!matchListV2Metrics[m.id]?.isIllustrative)}
+           totalMatches={matches.length}
+           pageNumber={i + 1}
+           pageCount={chunks.length}
+@@ -4206,29 +4211,29 @@
+           {tab === "match-v2" && (
+             <div style={{ background:"#fff", border:"1px solid #E4EAEE", borderRadius:12, padding:16 }}>
+               <div style={{fontSize:10,fontWeight:800,color:"#94A3B8",letterSpacing:"0.1em",fontFamily:SANS}}>
+-                MATCH LIST V2 · VERIFIED SOFTWARE DATA
++                MATCH LIST V2 · REAL FIRST · ILLUSTRATIVE FALLBACK
+               </div>
+               <div style={{marginTop:7,fontFamily:SANS,fontSize:10.5,color:'#607D94',lineHeight:1.5}}>
+                 LOCAL SXF CRESTS · Instant team-name match · No external logo lookup
+               </div>
+               <p style={{fontSize:11,lineHeight:1.55,color:"#5E6F7D",margin:"8px 0",fontFamily:SANS}}>
+-                V · A · N · B · SIGNAL · T-6/T-8 · O Δ use the exact verified Software source for this fixture/date. Missing or conflicting data remains —; no automatic sample values are inserted.
++                Real Software values are preserved. Missing SXF signal or A/V/N/B/O values are filled with stable illustrative samples from our existing SXF code family. Sample-filled rows are labelled; no example is saved as a real analysis.
+               </p>
+               <div style={{fontSize:11,color:softwareError?"#B94F4D":"#304056",lineHeight:1.5,fontFamily:SANS}} role="status">
+                 {softwareLoading ? "Connecting to Software…" : softwareError || softwareFeed?.dataSource!=="connected"
+-                  ? "Software source unavailable — values remain blank; crests stay available."
+-                  : `${metricSummary.matched}/${matches.length} verified matches · ${metricSummary.missing} missing · ${metricSummary.ambiguous} ambiguous · ${logoSummary}/${matches.length*2} crests`}
++                  ? `Software unavailable · ${sampleMatchCount} illustrative rows · ${logoSummary}/${matches.length*2} crests`
++                  : `${metricSummary.matched}/${matches.length} verified source matches · ${sampleMatchCount} illustrative rows · ${logoSummary}/${matches.length*2} crests`}
+               </div>
+               {crestError && <div style={{fontSize:10,color:"#8B6770",marginTop:5,fontFamily:SANS}}>Crest catalog unavailable; initials remain visible.</div>}
+-              {!softwareError && softwareFeed?.dataSource==="connected" && softwareFeed.items.every(row=>row.analystScore==null && row.newsScore==null) && <div style={{fontSize:10,color:"#758695",marginTop:4,fontFamily:SANS}}>A/N reports pending; unsupported values are never fabricated.</div>}
+-              {metricSummary.ambiguous>0 && <div style={{fontSize:10,color:"#B06334",marginTop:6,fontFamily:SANS}}>Conflicting selections stay blank to prevent misleading signals.</div>}
++              {!softwareError && softwareFeed?.dataSource==="connected" && softwareFeed.items.every(row=>row.analystScore==null && row.newsScore==null) && <div style={{fontSize:10,color:"#758695",marginTop:4,fontFamily:SANS}}>A/N reports pending: any displayed fallback percentages are illustrative, not ANALYST/NEWS reports.</div>}
++              {metricSummary.ambiguous>0 && <div style={{fontSize:10,color:"#B06334",marginTop:6,fontFamily:SANS}}>Conflicting real selections are never chosen arbitrarily; illustrative values are clearly marked.</div>}
+               {<button onClick={()=>{void refetchSoftware();}} disabled={softwareLoading} style={{marginTop:10,border:"1px solid #DCE4E8",borderRadius:7,padding:"7px 11px",background:"#F8FAFC",color:"#243746",fontSize:11,fontFamily:SANS,cursor:"pointer"}}>Refresh Software values</button>}
+               {matches.length>0 && <div style={{maxHeight:260,overflowY:"auto",marginTop:11,display:"grid",gap:5}}>
+                 {matches.map(match=>{
+                   const m=matchListV2Metrics[match.id];
+                   return <div key={match.id} style={{border:"1px solid #E5ECEE",borderRadius:6,padding:"7px 8px",fontFamily:SANS,fontSize:10,color:"#536677"}}>
+                     <strong style={{color:"#293C4D"}}>{match.homeTeam} – {match.awayTeam}</strong>
+-                    <div style={{marginTop:2}}>{m?.status==="matched" ? [m.signal,m.checkpoint,m.volume&&`V ${m.volume}`,m.analyst&&`A ${m.analyst}`,m.news&&`N ${m.news}`].filter(Boolean).join(" · ") || "No scored evidence yet" : m?.reason ?? "No Software data"}</div>
++                    <div style={{marginTop:2}}>{[m?.signal,m?.checkpoint,m?.volume&&`V ${m.volume}`,m?.analyst&&`A ${m.analyst}`,m?.news&&`N ${m.news}`].filter(Boolean).join(" · ") || "No metrics yet"}{m?.isIllustrative?` · SAMPLE (${m.sampleFields?.join(', ')})`:" · VERIFIED"}</div>
+                   </div>;
+                 })}
+               </div>}
+--- a/client/src/components/match-list-template-2.tsx
++++ b/client/src/components/match-list-template-2.tsx
+@@ -222,6 +222,7 @@
+           borderRadius:story?13:11,border:"1px solid #E5EAEE",
+           background:"#FFFFFF",
+           boxShadow:"0 2px 3px rgba(24,40,59,.035),0 7px 13px rgba(27,43,63,.075),0 16px 27px -16px rgba(24,41,65,.21),inset 0 2px 0 rgba(255,255,255,.98),inset 0 -2px 0 rgba(112,134,161,.12)"}}>
++          {m?.isIllustrative && <span data-illustrative-row="true" title={`Illustrative only: ${m.sampleFields?.join(', ')}`} style={{position:"absolute",top:1,right:9,fontSize:story?9:7,letterSpacing:".06em",fontWeight:900,color:"#A16A3E",zIndex:2,pointerEvents:"none"}}>SAMPLE</span>}
+           <span style={{position:"absolute",top:0,left:"12%",right:"12%",height:1,
+             background:"linear-gradient(90deg,transparent,rgba(255,255,255,.99),transparent)",pointerEvents:"none"}}/>
+           <span style={{position:"absolute",left:0,top:"24%",bottom:"24%",width:3,borderRadius:4,
+@@ -242,7 +243,7 @@
+           <span title={label} style={{color:"#142333",fontSize,fontWeight:780,letterSpacing:"-.027em",
+             lineHeight:1.14,minWidth:0,overflow:"hidden",overflowWrap:"break-word",
+             whiteSpace:"normal",display:"-webkit-box",WebkitBoxOrient:"vertical",WebkitLineClamp:2}}>{label}</span>
+-          <div title={signal?`SXF ${signal}`:"SXF value unavailable"} style={{height:story?48:40,
++          <div title={m?.sampleFields?.includes('signal')?`ILLUSTRATIVE SAMPLE SXF ${signal}`:signal?`SXF ${signal}`:"SXF value unavailable"} style={{height:story?48:40,
+             borderRadius:story?10:8,display:"flex",alignItems:"center",justifyContent:"center",
+             background:signal?`linear-gradient(154deg,rgba(255,255,255,.26),transparent 41%),${tone.bg}`:"linear-gradient(150deg,#F6F8FA,#E8EEF3)",
+             border:signal?"1px solid rgba(86,65,40,.12)":"1px solid #DDE5EB",
+@@ -263,7 +264,7 @@
+               const change=name==="O";
+               const parsedPercent=present&&!change?Number.parseFloat(display.replace("%","")):NaN;
+               const scaled=Number.isFinite(parsedPercent)&&parsedPercent>=0&&parsedPercent<=100?parsedPercent:null;
+-              return <div key={name} data-metric={name} title={name}
++              return <div key={name} data-metric={name} data-illustrative={m?.sampleFields?.includes(({A:'analyst',V:'volume',N:'news',B:'draw',O:'movement'} as Record<string,string>)[name])?'true':'false'} title={`${name}${m?.sampleFields?.includes(({A:'analyst',V:'volume',N:'news',B:'draw',O:'movement'} as Record<string,string>)[name])?' · ILLUSTRATIVE SAMPLE':' · VERIFIED SOURCE'}`}
+                 style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",
+                   gap:compact?(story?2:2):(story?7:5),minWidth:0,position:"relative",
+                   borderLeft:index?"1px solid rgba(120,142,168,.20)":"none",
+--- /dev/null
++++ b/client/src/lib/capitale-visual-fallback.ts
+@@ -0,0 +1,27 @@
++/** Offline deterministic illustrative fallback, NEVER an SXF metric or decision.
++ * Only display components may call this helper. It makes no API / DB writes.
++ * Both Software and Social use this SAME algorithm compiled from this file. */
++export type SampleFixture = {date?: string | null, homeTeam?: string | null, awayTeam?: string | null};
++export type SampleVisual = {signal:string, checkpoint:string, analyst:string, volume:string, news:string, draw:string, movement:string};
++export const CAPITALE_SAMPLE_SIGNALS = ['PRM-6','MOM-8','STR-6','SLD-8','CRL-6','CNI-6','PRM-8'] as const;
++export function capitaleSampleVisual(match:SampleFixture):SampleVisual {
++  const normalize=(s:string)=>s.normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');
++  const text='capitale-sample-v1|'+(match.date||'')+'|'+normalize(match.homeTeam||'')+'|'+normalize(match.awayTeam||'');
++  let hash=2166136261;
++  for(let i=0;i<text.length;i++)hash=Math.imul(hash^text.charCodeAt(i),16777619)>>>0;
++  const pick=(salt:number,lo:number,hi:number)=>{
++    let n=(hash^Math.imul(salt,2654435761))>>>0;
++    n=Math.imul(n^(n>>>16),2246822507)>>>0;
++    n=Math.imul(n^(n>>>13),3266489909)>>>0;
++    return lo+n%(hi-lo+1);
++  };
++  const signal=CAPITALE_SAMPLE_SIGNALS[pick(1,0,CAPITALE_SAMPLE_SIGNALS.length-1)];
++  return {
++    signal, checkpoint:signal.endsWith('-8')?'T-8':'T-6',
++    analyst:String(pick(3,61,92)),
++    volume:(pick(4,670,975)/10).toFixed(1)+'%',
++    news:String(pick(5,55,88)),
++    draw:(pick(6,30,215)/10).toFixed(1)+'%',
++    movement:(pick(2,0,1)===0?'-':'+')+(pick(7,2,69)/10).toFixed(1)+'%'
++  };
++}
+--- /dev/null
++++ b/client/src/lib/capitale-visual-overlay.ts
+@@ -0,0 +1,23 @@
++import {capitaleSampleVisual} from './capitale-visual-fallback';
++import type {MatchList2AutoMetric,MatchList2TodayMatch} from './match-list-v2-auto';
++/** Preserve real Software fields; fill only missing display values; never alter upstream. */
++export function capitaleVisualOverlay(match:MatchList2TodayMatch,verified:MatchList2AutoMetric):MatchList2AutoMetric {
++  const sample=capitaleSampleVisual(match);
++  const sampleFields:string[]=[];
++  const get=(key:keyof typeof sample)=>{
++    const original=verified[key];
++    if(typeof original==='string' && original.trim() && original!=='—')return original;
++    sampleFields.push(key);
++    return sample[key];
++  };
++  const signal=get('signal');
++  const checkpoint=verified.checkpoint?.trim() && verified.signal?.trim()?verified.checkpoint:get('checkpoint');
++  const output={...verified,
++    status:'matched' as const,
++    signal,checkpoint,
++    analyst:get('analyst'),volume:get('volume'),news:get('news'),draw:get('draw'),movement:get('movement'),
++    isIllustrative:sampleFields.length>0,sampleFields,
++    reason:sampleFields.length?`ILLUSTRATIVE SAMPLE: ${sampleFields.join(', ')}`:verified.reason
++  };
++  return output;
++}
