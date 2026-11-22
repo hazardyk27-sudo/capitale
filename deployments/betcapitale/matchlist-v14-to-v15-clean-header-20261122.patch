@@ -1,0 +1,23 @@
+--- a/client/src/components/match-list-template-2.tsx
++++ b/client/src/components/match-list-template-2.tsx
+@@ -187,7 +187,6 @@
+       <div style={{fontSize:story?17:14.5,color:"#687A8A",fontWeight:650,letterSpacing:".02em"}}>
+         {formatDate(date)}
+       </div>
+-      {demoMode && <span data-demo-label="header" style={{position:'absolute',right:story?35:27,bottom:story?24:18,fontSize:story?12:10,color:'#B46D3A',fontWeight:850,letterSpacing:'.08em'}}>SAMPLE DATA · DEMO</span>}
+     </div>
+ 
+     {matches.length? <div style={{paddingTop:listTop,display:"flex",flexDirection:"column",gap,
+@@ -309,7 +308,9 @@
+     <div style={{marginTop:"auto",height:footerHeight,paddingTop:story?12:9,
+       display:"flex",alignItems:"center",justifyContent:"space-between",
+       color:"#8998A4",fontSize:story?12:10,fontWeight:750,letterSpacing:".13em"}}>
+-      <span>CAPITALE</span><span>{footer}</span>
++      <span>CAPITALE</span>
++      {demoMode && <span data-demo-label="footer" style={{fontSize:story?10:8.5,letterSpacing:'.075em',fontWeight:700,color:'#8998A4'}}>ILLUSTRATIVE VALUES</span>}
++      <span>{footer}</span>
+     </div>
+   </div>;
+ }
+
+[executed on device: smartxflow (72356617-e1b7-486f-af4e-02cc4f4b23bf)]
