@@ -57,16 +57,16 @@
   "archive_status": "PARTIAL",
   "source_archive_status": "PARTIAL",
   "market_coverage_complete": false,
-  "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; archive is COMPLETE only when every fixture/checkpoint/market slot is PRESENT; latest observation at or before target only; no interpolation or future substitution.",
+  "missing_policy": "MISSING means no source row; EMPTY means a source row has no valid odds or money values; PARTIAL means some required values are absent; PRESENT requires every outcome odds, share and amount; latest observation at or before target only; no interpolation or future substitution.",
   "source_row_counts": {
     "1X2": 214169,
     "OU25": 151850,
     "BTTS": 81027
   },
-  "snapshot_backfill_version": "snapshot-field-fill-v2-asof-t72",
+  "snapshot_backfill_version": "market-history-backfill-v4-duplicate-fixture-aliases",
   "snapshot_source_rows": 920481,
   "snapshot_fallback_market_slots": 19994,
-  "snapshot_fallback_selection_rows": 8287,
+  "snapshot_fallback_selection_rows": 0,
   "coverage_by_market": {
     "1X2": {
       "present": 5961,
@@ -93,7 +93,7 @@
       "records": 385,
       "uncompressed_sha256": "0b717ecc1bf9ccece2bc02b8d8552cc33abe9322fc6b63b5f44a578218990dde",
       "uncompressed_bytes": 17884381,
-      "compressed_bytes": 942866
+      "compressed_bytes": 942881
     },
     "alarms": {
       "name": "alarms.jsonl.gz",
