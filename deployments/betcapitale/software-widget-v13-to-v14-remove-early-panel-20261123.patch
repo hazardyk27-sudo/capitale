@@ -1,0 +1,30 @@
+--- a/public/assets/capitale-software-widget-v13-fixed-utc-plus1-20261123.js
++++ b/public/assets/capitale-software-widget-v14-hide-early-panel-20261123.js
+@@ -282,27 +282,6 @@
+     const visible=all.slice(start,start+PER_PAGE);
+     const list=el('match-list');
+     list.replaceChildren();
+-    const previews=state.earlyPreviews.filter(row=>
+-      (!state.date||row.date===state.date) &&
+-      (!state.search||[row.homeTeam,row.awayTeam,row.league||''].join(' ').toLowerCase().includes(state.search.toLowerCase())) &&
+-      (!state.signal||state.signal==='EARLY'));
+-    if(previews.length){
+-      const panel=node('section','capitale-early-preview');
+-      const styles=node('style');
+-      styles.textContent='.capitale-early-preview{border:1px solid #f1c7a1;border-radius:14px;background:#fff9f3;margin:0 0 14px;padding:14px 16px}.capitale-early-preview h3{font-size:15px;font-weight:700;color:#172235;margin:0 0 4px}.capitale-early-preview p{font-size:12px;color:#705640;margin:0 0 10px}.capitale-early-preview-item{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;padding:9px 0;border-top:1px solid #f3e1d4;font-size:13px;color:#172235}.capitale-early-preview-item strong{font-weight:650}.capitale-early-preview-tag{font-size:11px;font-weight:700;color:#b84f0a;white-space:nowrap}';
+-      const heading=node('h3',null,'Upcoming SXF early signals · '+previews.length);
+-      const note=node('p',null,'Source-confirmed EARLY checkpoint only · Not a FINAL signal or completed specialist report.');
+-      append(panel,styles,heading,note);
+-      for(const row of previews){
+-        const item=node('div','capitale-early-preview-item');
+-        const dateLabel=row.date.split('-').reverse().join('.');
+-        append(item,node('strong',null,row.homeTeam+' – '+row.awayTeam),
+-          node('span',null,dateLabel+' · '+time(row.kickoffAt)+' · '+row.market+' / '+row.selection),
+-          node('span','capitale-early-preview-tag','EARLY '+row.checkpoint+' · NOT FINAL'));
+-        panel.appendChild(item);
+-      }
+-      list.appendChild(panel);
+-    }
+     if(state.status==='error' && !state.items.length){
+       list.appendChild(node('div','empty','Verified signal data is temporarily unavailable.'));
+     }else if(!all.length){
