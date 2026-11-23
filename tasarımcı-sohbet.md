@@ -2,7 +2,7 @@
 
 **Sorumlu:** TASARIMCI  
 **Belge amacı:** CAPITALE tasarımcısının sohbetler arası kalıcı belleği; yapılan bütün bilinen tasarım işleri, sürümler, onaylar, uygulanmış değişiklikler, doğrulamalar, yedekler ve sıradaki görevler.  
-**Son güncelleme:** 23 Kasım 2026 · How It Works V4 ürün görselleri yeniden tasarlandı; Software→Matches→Coupons→Results bağlantılı demo; gerçek Chromium 5/5 PASS; V2/V3 ve canlı sayfa korunuyor
+**Son güncelleme:** 23 Kasım 2026 · Software'daki Upcoming SXF early signals turuncu panel kaldırıldı (public widget V14), 14/55 maç filtresi ve kartlar sağlam; SXF verisi silinmedi; How It Works V4 önizlemesi korunuyor
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
@@ -599,6 +599,16 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **Ekran görüntüleri:** `https://betcapitale.com/preview/home-v1/how-it-works-v4/qa/desktop-full.png` ve `https://betcapitale.com/preview/home-v1/how-it-works-v4/qa/mobile-full.png`; süreç yakın çekim `qa/desktop-workflow.png`.
 - **GitHub kaynak:** `deployments/betcapitale/how-it-works-v4-refined-mockups-20261123/index.html` (`47a0f8d3`), `styles.css` (`b3676154`), `app.js` (`28042f43`); tam kanıt `deployments/betcapitale/how-it-works-v4-refined-mockups-qa-20261123.md` (`103690a9`).
 - **Sınır/sonraki:** Kullanıcı tasarım görüşü bekleniyor; **üretimdeki How It Works React dosyası, index.html, backend, SXF, Software, Match List, diğer sayfalar ve GitHub agent kuralları değiştirilmedi**. Açık onay olmadan canlıya aktarma. Rollback yalnız V4 preview alt klasörünü kaldırmak.
+
+### 2026-11-23 — Software EARLY turuncu panel kaldırıldı (CANLI)
+
+- **Kullanıcı isteği:** Software match list ekranındaki büyük turuncu `Upcoming SXF early signals` panelini kaldır; başka şeyi değiştirme.
+- **Uygulama:** Hâlen aktif public Software V13 widget'ının **yalnız 21 satırlık panel render bloğu** çıkarılıp V14 sürüm dosyası `/app/betcapitale/dist/public/assets/capitale-software-widget-v14-hide-early-panel-20261123.js` oluşturuldu. `/app/betcapitale/dist/public/index.html` import map'e **tek alias** eklendi (V13 widget → V14). Diğer modüllere/alanlara dokunulmadı; V13 dosyası olduğu gibi duruyor.
+- **Korunanlar:** 55 mevcut public normal Software maç satırı, `/software/matches.json` kaynak JSON'u, mevcut EARLY sinyal kaydı, kart görünümü/verileri, tarih/filtre/saat işlemleri, SXF, Supabase, admin Software, Match List v2 ve diğer sayfalar. **EARLY verisi silinmedi, yalnız ayrı turuncu panel görünmüyor**; adminin ayrı EARLY paneli bu ekran isteğinin dışında ve değiştirilmedi.
+- **Gerçek test:** Node JS --check PASS; Chrome/Puppeteer 1440px/390px HTTP 200, yeni V14 modülü yüklendi, 20 normal kart görünür, `Upcoming SXF early signals` yazısı ve `.capitale-early-preview` elementi 0, yatay taşma/JS error 0. Kullanıcının 23.11.2026 filtresinde **14/55 normal maç, panel 0**; kart açma davranışı tekrar render edilen DOM'da false→true PASS. `/software/`, `/`, `/admin/software` 200.
+- **Yedek:** `/app/betcapitale/rollback-software-hide-early-panel-20261123/index.html`. Canlı HTML önce SHA `17be5d965b283c27be9c5cd7b205c09388ac015fa0f52d9acb266bcf434a9b84`, sonra `bda3f319c4bf7f99cd7d99194f91adeab3cbf9f0e222ef6ede4ae32ee95828f2`. Backend hiç değişmedi.
+- **GitHub:** V14 kaynağı `deployments/betcapitale/software-widget-v14-hide-early-panel-20261123.js` (`7ae2cfe`), V13→V14 diff `deployments/betcapitale/software-widget-v13-to-v14-remove-early-panel-20261123.patch` (`8231c185`), QA/rollback raporu `deployments/betcapitale/software-early-preview-panel-removed-live-20261123.md` (`a67ba2bd`).
+- **Sınır:** Kullanıcıdan başka talimat gelmeden erken sinyaller başka listeye taşınmayacak, silinmeyecek veya yeniden tasarlanmayacak.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
