@@ -2,7 +2,7 @@
 
 **Sorumlu:** TASARIMCI  
 **Belge amacı:** CAPITALE tasarımcısının sohbetler arası kalıcı belleği; yapılan bütün bilinen tasarım işleri, sürümler, onaylar, uygulanmış değişiklikler, doğrulamalar, yedekler ve sıradaki görevler.  
-**Son güncelleme:** 23 Kasım 2026 · Software'daki Upcoming SXF early signals turuncu panel kaldırıldı (public widget V14), 14/55 maç filtresi ve kartlar sağlam; SXF verisi silinmedi; How It Works V4 önizlemesi korunuyor
+**Son güncelleme:** 23 Kasım 2026 · Match List V2 kupon saatini aynen gösterecek şekilde iki saat kaydırma ve Software saati override kaldırıldı; test 18:00→18:00; diğer sayfalar korundu
 **Rol ve çalışma kuralları:** [tasarımcı.md](tasarımcı.md)  
 **Anayasa:** [AGENTS.md](AGENTS.md) · [MILESTONE.md](MILESTONE.md)
 
@@ -609,6 +609,16 @@ Aşağıda **tarih/sürüm hatırlatmaları** birleştirilmiştir. V8–V18'in G
 - **Yedek:** `/app/betcapitale/rollback-software-hide-early-panel-20261123/index.html`. Canlı HTML önce SHA `17be5d965b283c27be9c5cd7b205c09388ac015fa0f52d9acb266bcf434a9b84`, sonra `bda3f319c4bf7f99cd7d99194f91adeab3cbf9f0e222ef6ede4ae32ee95828f2`. Backend hiç değişmedi.
 - **GitHub:** V14 kaynağı `deployments/betcapitale/software-widget-v14-hide-early-panel-20261123.js` (`7ae2cfe`), V13→V14 diff `deployments/betcapitale/software-widget-v13-to-v14-remove-early-panel-20261123.patch` (`8231c185`), QA/rollback raporu `deployments/betcapitale/software-early-preview-panel-removed-live-20261123.md` (`a67ba2bd`).
 - **Sınır:** Kullanıcıdan başka talimat gelmeden erken sinyaller başka listeye taşınmayacak, silinmeyecek veya yeniden tasarlanmayacak.
+
+### 2026-11-23 — Match List V2 kupondaki saat aynen görünüyor (CANLI)
+
+- **Kullanıcı isteği:** Kuponun içine zaten doğru yerel maç saati giriliyor; Match List V2 aynı saati göstermeli, 2 saat geriye almamalı (örnek: Başakşehir kupon 18:00 → ML V2 18:00). Diğer alanlara dokunma.
+- **Hatanın sebebi:** Aktif Admin Social Media V22 içinde Match List V2 için `capitaleMatchListFixedUtcPlusOne(M?.kickoffUtc||D.kickoffAt)` çağrısı vardı. İşlev düz `HH:mm` metnine `(h+22)%24` uygulayarak 2 saat geri alıyor; ayrıca Software UTC saatini kuponun kaydına tercih ediyordu. Backend kaynak senkronu kupon `coupon_selections.kickoff_time` → `today_matches.kickoff_at` ham saatini saklıyor.
+- **Canlı çözüm:** `/app/betcapitale/dist/public/assets/admin-social-media-v23-matchlist-coupon-exact-clock-20261123.js` immutable V22 kopyasında yalnız iki ilgili yer değiştirildi: time helper saat-dakika metnini **sıfır saat kaydırmasıyla** okuyor ve V2 saat alanı sadece `D.kickoffAt` kullanıyor. Üretim `/app/betcapitale/dist/public/index.html` import mapte **tek alias hedefi** V22→V23 güncellendi. V22 ve tüm diğer rota/alan kodları korunuyor.
+- **Doğrulama:** Gerçek çalışan V22/V23 helper'ları VM ile karşılaştırıldı: `18:00→16:00` eskiden, **`18:00→18:00` şimdi**; 21:30→21:30, 00:15→00:15; ayrıca saniyeli ve ISO metinleri kaydırmasız. Node --check PASS, index importmap JSON geçerli ve yalnız bir alias diff, yeni JS HTTPS 200, /, /admin/software, /admin/social-media, /software/, /today 200. **Loginli tarayıcı ekran görüntüsü testi yapılmadı**; kaynak/helper testleri yapıldı.
+- **Rollback:** `/app/betcapitale/rollback-matchlist-v2-coupon-clock-20261123/index.html`. Index SHA önce `bda3f319c4bf7f99cd7d99194f91adeab3cbf9f0e222ef6ede4ae32ee95828f2`, sonra `c0fad85719636fce7a5c8c3c63bd4cddb3d52c0c6b0c9063baec3566780320ae`.
+- **GitHub:** Source `deployments/betcapitale/admin-social-media-v23-matchlist-coupon-exact-clock-20261123.js` (`4b32a901`), kapsamlı rapor `deployments/betcapitale/match-list-v2-coupon-exact-clock-live-20261123.md` (`f11922e6`).
+- **Sınır:** Kupon editörüne, zaman dilimleri global ayarlarına, Software / SXF / Match List v1'e ve başka sayfalara dokunma.
 
 ## 7. Bundan sonra günlük kayıt formatı
 
