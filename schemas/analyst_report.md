@@ -1,88 +1,35 @@
-# CAPITALE ANALYST — Active Report Schema
-
+# CAPITALE ANALYST — Evidence Report and Audit Contract
 Status: CANONICAL
-Version: 2.1
-Method: methods/analyst_methodology.md v2.1
-Effective: 2026-11-06
-Prior canonical report schema v1.1 and experimental schemas v1.2/v1.3/v1.4.x are SUPERSEDED for NEW analyses, retained in git history.
+Version: 3.0
+Effective: 2026-11-24
+Method: methods/analyst_methodology.md
+Previous schemas including v2.1 are SUPERSEDED for new reports only.
 
-```yaml
-role: ANALYST
-run_id: <existing verified routing research run UUID or null; never invent>
-fixture_uid: <verified neutral fixture identity or null>
-methodology_version: analyst-v2.1-canonical
-match: <verified home vs away>
-competition: <verified league / cup>
-kickoff_utc: <timestamp or unknown>
-as_of_utc: <timestamp>
-user_selection: <exact user pick or null>
-provenance:
-  league_season: <season>
-  sources: [] # URLs per claim/match, with pregame temporal cutoff
-  pregame_habitual_possession_verified: <true|false>
-  pregame_opponent_strength_verified: <true|false>
-  stats_coverage_by_fixture: []
-  half_level_coverage: <complete|partial|unavailable>
-  not_allowed_inputs_used: false
-  missing_inputs: []
-pillar_1_possession_game:
-  home_team:
-    habitual_possession_pct: <number or null>
-    league_all_matches: [] # chronological, NO omission: {date, venue, opponent, opponent_habitual_possession_pct, group, score, result, xg, xga, shots, shots_on_target, strength_quality_context, source}
-    groups:
-      high: {n: <int>, wdl: <string>, mean_xg: <number|null>, mean_xga: <number|null>, mean_xgd: <number|null>}
-      balanced: <same>
-      low: <same>
-      unknown: <list>
-    first_half_summary: <sourced comparisons or null>
-    second_half_summary: <sourced comparisons or null>
-  away_team: <same structure>
-  upcoming_opponent_type_relevance: <comparison with group WDL and source limitations>
-pillar_2_form_momentum:
-  home_team:
-    season_aggregate: <w-d-l, points, goals, xg/xga/xgd, shots/sot where sourced>
-    last_three_league_chronological: [] # each {opponent, date, venue, quality, score, points, xg, xga, xgd, shots, sot, 1h_and_2h_when_sourced}
-    latest_league_game: <match details>
-    latest_vs_preceding_two_score_momentum: <description>
-    latest_vs_preceding_two_stat_momentum: <description>
-    scored_results_vs_stats_divergence: <description>
-  away_team: <same structure>
-  graph_A_result_points: <REAL chronological points for each team or missing-data>
-  graph_B_underlying_xgd: <REAL chronological xGD for each team or missing-data>
-  half_specific_form_when_sourced: <description or null>
-pillar_3_opponent_logic:
-  home_team_perspective: <current opponent level versus past opponents, transferable form, realistic tactical routes>
-  away_team_perspective: <same>
-  mandatory_home_away_subsection:
-    home_team_ALL_home_league_matches: [] # each {date, opponent, opponent_quality, possession_style_if_known, score, result, xg, xga, shots, sot}
-    home_team_ALL_away_league_matches: [] # all away opponents/scores/stats, not only aggregates
-    away_team_ALL_home_league_matches: [] # all home opponents/scores/stats, not only aggregates
-    away_team_ALL_away_league_matches: [] # same detailed records
-    home_at_home_vs_away_away: <direct strength-, style-, venue-aware qualitative comparison>
-    venue_small_sample_and_missing_data: []
-  likely_match_dynamics: <football reading with grounded caveats>
-  credible_win_draw_loss_paths: <plausible paths or unsupported>
-conclusion:
-  three_factor_comparison_table: <ONLY three rows: possession, form momentum, opponent logic including home/away>
-  supporting_and_opposing_evidence_for_user_pick: <when user selection supplied>
-  most_important_failure_mode: <specific football mechanism>
-  analyst_lean: <HOME|AWAY|DRAWISH|1X|X2|TOTALS_UP|TOTALS_DOWN|MIXED|NO_CLEAR_LEAN>
-  evidence_confidence: <LOW|MEDIUM|HIGH>
-  selection_support_score_0_100: <integer 0..100 or null if insufficient evidence>
-  score_type: ordinal_support_not_win_probability
-  score_rationale: <source-grounded three-factor pro/con explanation>
-  score_missing_data: <limitations or null>
-  short_rationale: <grounded readable Turkish>
-```
+## Human-readable report (Turkish)
+1. Fixture, competition, kickoff, AS_OF, method and status.
+2. Independent DATA baseline: both teams, comparable samples, relevant statistics, source IDs and limitations.
+3. Material findings: observations vs interpretations, source evidence, opposing evidence, hypothesis status; include autonomous research findings, not only data tables.
+4. HUMAN: isolated source discovery status, additional tested claims, discarded/unresolved claims, baseline changes. No raw predictions or news.
+5. Conditional football scenarios and uncertainties, considering all seven outcomes without preference/score/probability.
+6. Research audit and source ledger (structured JSON below), actual quality gate result; short 1–3 verified English display findings. No score field.
 
-Strict presentation: title/match timestamp, **1. Topa sahip olma oyunu**, **2. Form ivmesi — son 3 ve son maç**, **3. Rakip mantığı** with clearly labeled **Ev sahibi/deplasman formu** within #3, **Üç faktörün birleşik sonucu**. This is exactly the prior Torino–Monza layout with mandatory venue comparison; do not add/remove numbered factors, calibrated win-probability score, stochastic prediction or market/news inputs. Show only the owner-approved v2.1 ordinal user-selection support score in the conclusion, or null when data is insufficient. Graph source values must be authentic. Do not claim fully covered league matches, possession histories or half-time statistics when unavailable.
+## Structured audit (JSON; actual values, not placeholders)
+Required top-level fields:
+- role: "ANALYST"; methodology_version: "analyst-v3.0-canonical"; status: "READY" | "PARTIAL" | "BLOCKED".
+- fixture_uid, match, competition, kickoff_utc, as_of_utc; home_team, away_team.
+- startup_verified, isolation_verified, no_prohibited_inputs, no_predictions: booleans; blocked_reasons: array of strings.
+- sources: array of {id, url, observed_at, retrieved_at, provider, scope, claim}, with actual provenance; unique IDs. observed_at is the time information was available (<= AS_OF), not the retrieval time for a valid historical snapshot.
+- baseline: {frozen_at, snapshot_id, home_evidence_ids:[], away_evidence_ids:[], summary, limitations:[]}; frozen_at <= HUMAN extraction start.
+- human: {isolation_verified, extractor_id, started_at, applicable_sources:[], attempts:[{source,status,reason,article_url?,author?,published_at?}], claims:[{id,source,claim,status,evidence_ids:[],countertest_id}], no_coverage_reason}; statuses FOUND / NOT_FOUND / INACCESSIBLE / EXCLUDED. Applicable names match registry exactly: four international always, local by competition or both clubs' countries for cross-border competitions. FOUND means usable sanitized claim material, not just a page; otherwise EXCLUDED with reason.
+- inquiries: array of {id,trigger,question,hypothesis,alternative,actions:[],evidence_ids:[],result,uncertainty,countertest_id}; if empty, no_inquiry_reason with actual screening justification.
+- countertests: array of {id,actions:[],support_ids:[],oppose_ids:[],result,limitations}; actual search/comparison, not planned actions.
+- findings: array of {id,fact,interpretation,evidence_ids:[],countertest_id,status}; status VERIFIED / PARTIAL / REFUTED / UNRESOLVED.
+- baseline_changes: array of documented changes or explicit no-change reason; limitations: array of strings; stop_reason.
+- scenarios: array of conditional, non-ranked football scenarios; outcome_coverage: ["1","X","2","OVER_2_5","UNDER_2_5","BTTS_YES","BTTS_NO"] (coverage only, never evaluation scores).
+- software_detail_bullets_en: 1–3 factual English statements, no forecasts. 
+- routing metadata (run_id/market/selection) may exist only in a separate delivery envelope after report freeze, never in this research audit.
 
-## v2.1 OWNER-APPROVED SELECTION SUPPORT SCORE (2026-11-06)
+Each source ID referenced must exist in sources; every material HUMAN claim, inquiry and finding needs a counter-test ID. VERIFIED claims need actual supporting evidence; unsupported claims remain PARTIAL/REFUTED/UNRESOLVED and cannot be presented as verified. Preserve actual opposing evidence. Missing metrics are explicit. READY must pass the structural gate `node tools/validate_analyst_v3.mjs audit.json` and factual/semantic review; do not claim PASS without actual execution. Record gate result outside the audit in report. PARTIAL/BLOCKED may describe missing prerequisites only, never be saved as complete. Historical reports stay unchanged.
 
-For EVERY user-supplied selection, preserve the complete v2.0 three-pillar research and include "Tercih destek puanı: <puan>/100 (site A sütunu)" inside the existing three-factor conclusion, with one brief source-grounded rationale and counterargument. Score evaluates ONLY support for THAT pick, NOT the probability it wins, NOT an odds-derived forecast, and NOT a FINAL recommendation. This is not a fourth factor or the superseded v1.3 numeric engine.
-
-Ordinal anchors (not calibrated probabilities): 0-39 strong contradiction; 40-49 leaning against; 50 mixed; 51-69 conditional/limited support; 70-84 strong support; 85-100 unusually convergent evidence, rare. Use judgment based exclusively on the three approved pillars; no invented mathematical weights. Disclose missing possession, xG, venue data and contrary evidence. When insufficient credible evidence, output "Puan: veri yetersiz" (null), not a fabricated score. Do not revise archived pre-match reports or use results to change prior scores.
-
-## Manual-chain report envelope (metadata only)
-
-The additional `run_id` and `fixture_uid` metadata links the independent report to the user's neutral selection; it never authorizes ANALYST to read SXF evidence. In the owner-approved sequential workflow, append the two presentation-only tables `ANALYST — KISA SONUÇ` and `KOPYALA → NEWS GİRDİSİ` **after** the complete unchanged three-factor analysis; never count them as a fourth football factor.
+## Website compatibility
+Same verified run_id in separate routing envelope. Legacy A input MUST remain blank/null; it is retired, not zero, neutral or missing-data penalty for v3.0. The complete original report (including audit) is the evidence payload; no market-directed research or numeric support. If the current site cannot accept this contract, report the incompatibility, do not force a save. FINAL interprets evidence and not legacy score; no new FINAL scoring formula is authorized.
