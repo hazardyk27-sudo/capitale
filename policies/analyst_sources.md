@@ -24,3 +24,7 @@ Do not use current injury/news reporting, bookmaker odds, betting-market comment
 ## Comparability
 
 Default to same-season official matches. When a manager/system/competition context makes older matches structurally incomparable, split the sample rather than averaging across the break.
+
+## Registered human editorial sources — reference only (2026-11-24)
+
+The owner-selected 14-source registry (4 international + 10 country-specific sources) is `policies/analyst_human_sources.md`. Read that file during startup to locate the source list and draft anti-anchoring protocol. Registration is not live authorization: the current CANONICAL A1–A4 rules and prohibitions remain unchanged until the owner approves and ENGINEER implements the isolated claim-only workflow. Do not directly read betting forecasts, odds or current news under the ANALYST role.
