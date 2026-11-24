@@ -74,5 +74,8 @@ These routing rows describe where to find data, not new mandatory analytical fac
 - Record unavailable data as missing, never invent numbers, force a neutral value, or infer unsupported tactical characteristics. Do not consult all 18 sites mechanically; use relevant sources, then alternatives to fill actual gaps.
 - This file is a source directory, not a new prediction model, empirical validation, or license approval. AGENTS.md, policies/source_policy.md, policies/analyst_sources.md and methods/analyst_methodology.md remain controlling.
 
-## v3.0.3 — DATA completeness
+## v3.0.4 — DATA completeness
 For each justified material data scope record actual covered and missing units, especially the complete comparable match series where some xG/underlying data are available. Try permitted alternative retrieval (including individual match pages if aggregates omit data), record actual search outcomes and provenance, distinguish NOT_SEARCHED from NOT_FOUND/INACCESSIBLE/UNAVAILABLE, and justify any remaining gaps. Do not force all providers or advanced metrics; critical unresolved data or material unsearched units prevent READY. See methods/analyst_methodology.md and schemas/analyst_report.md.
+
+## Efficient retrieval (v3.0.4)
+Batch compatible allowed queries and match-level retrievals when supported. Reuse verified fixture-scoped pre-cutoff source records by ID across checks; one actual retrieval can cover multiple units. Reopen only for specific material gaps, conflicts, definition/freshness/provenance issues or independent verification. No source-count quota, no loss of full relevant match-series coverage and no mixing provider definitions.
