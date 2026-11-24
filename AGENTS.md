@@ -1,7 +1,7 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.26
+Version: 1.27
 Last updated: 2026-11-24
 
 > **CURRENT DEFAULT — REAL BROWSER UI 2026-11-20:** SXF → ANALYST → NEWS → FINAL; each specialist **opens its own authenticated /admin/software?agent=<role> page, enters its COMPLETE report in its OWN on-page editor and clicks Save**. FINAL reads the three full original reports visually on the site and saves its final decision in a separate FINAL box. The old CLI report uploader, JSON API and private inbox are NOT the default agent workflow. Live SXF FINAL_SIGNAL source sync still runs automatically. At least 1–3 verified SXF findings per match/selection; source isolation intact. Login and real browser-control capability are mandatory; never claim clicks/verified site save if browser interaction was unavailable. See `prompts/manual_report_chain.md` v4.10.
@@ -142,7 +142,7 @@ NEWS: v2.1 CANONICAL — closed-source scan, actual per-outlet attempts, relevan
 POLY: v1.4 CANONICAL — independent public Polymarket v2 + Gamma/CLOB + Polygon bettor discovery/verification; all CAPITALE Supabase and SXF POLY sources prohibited; candidate skill thresholds uncalibrated
 SXF: v0.4.3 DRAFT — owner-approved EARLY CORE T-72/T-60/T-40/T-24 checkpoint decision odds <=2.35 (2026-10-27); **EARLY_T12 RETIRED** (2026-10-28); **daily scan T-6 primary / T-8 fallback now DEFAULT by owner decision (2026-10-28)**; DYNAMIC_AS_OF_V04 still available only by explicit request. V1/V2/HEAVY/SURPRISE/Over/BTTS thresholds unchanged; EARLY CORE v2, OVER_STRONG and EKOL 3 shadow experiments NOT canonical; live runtime implementation verification pending.
 FINAL: v0.2 DRAFT — synthesis architecture approved; numerical calibration pending
-ENGINEER: active governance/implementation role
+ENGINEER: v1.1 active governance/implementation role
 
 POLY v1.4 replaces the SXF POLY-only bettor source rule with direct primary-source independent discovery. Its purpose is verified profitable football bettor identification and follow-up; no betting-edge claim or source substitution is permitted without independently collected evidence. See MILESTONE.md.
 
@@ -193,3 +193,6 @@ Use report_format ledger-v1 and protocol_revision 3.0.9. Shared DATA unit/retrie
 
 ## ANALYST v3.0.9 — binding work control (ACTIVE)
 The single operational instruction is prompts/analyst_start.md, read once per session. One active fixture per ANALYST instance; all other assigned fixtures QUEUED, no work/validation on them. Recoverable gaps/validator errors must be corrected on the active fixture. A real unresolvable research/validation blocker pauses the queue; only explicit owner skip permission advances it. READY with a delivery-only blocker retains READY, original Markdown and separate delivery status, and may advance. The owner-approved HUMAN registry membership changes to 21 sources; v3.0.7 startup/queue rules, substantive research, source-content permissions, ledger-v1, quality gates and other roles remain unchanged. Older contradictory queue/startup instructions are SUPERSEDED.
+
+## ENGINEER v1.1 — mandatory MILESTONE continuity (ACTIVE, 2026-11-24)
+Before completing every substantive ENGINEER work/discussion turn with a material decision, change, investigation, review, experiment, blocker or actionable proposal, update MILESTONE.md, even without code edits. Record dated scope/version, actual outcome, approval/implementation status, verification/limits and next action. Preserve history and identify superseded rules. Read current main before writing, commit with related changes when practical, verify readback and disclose any unsaved entry. Read MILESTONE at session startup. No trivial or duplicate logs. See roles/engineer.md v1.1. No other-role changes or background automation.
