@@ -64,3 +64,6 @@ Artık FINAL raporu Commander CLI okuyucusuyla veya özel arşivde arayarak **no
 
 ## ANALYST v3.0 intake (2026-11-24)
 Yeni ANALYST raporu yalnız READY + gerçek yapısal doğrulama PASS ve tam araştırma izi ile kabul edilir. A/100 kaldırıldı; boş A değeri eksik kanıt veya nötr oy değildir. Puan üretme/yerine koyma; doğrudan bulguları ve karşı kanıtları değerlendir. Eksik/uyumsuz yeni raporla tamamlanmış zincir iddia etme. Tarihsel v2.1 kayıtlar değişmez. FINAL v0.2 yöntemi ve NEWS/SXF kuralları değişmedi.
+
+## Owner-supplied ANALYST report file (2026-11-24)
+Accept the original downloaded ANALYST Markdown report as a full input, not its short bullets alone. Verify fixture/run ID, report ID/version, AS_OF, READY audit and actual gate evidence against the corresponding site report where accessible. If mismatch/unverified, flag it and do not claim complete chain. No other department can use this file as research evidence. FINAL still needs the other required reports and its existing synthesis rules; no scoring or weighting change.
