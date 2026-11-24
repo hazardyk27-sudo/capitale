@@ -1,7 +1,7 @@
 # CAPITALE — BROWSER-DIRECT AGENT WORKFLOW
 
 **Status:** OWNER-APPROVED ACTIVE DEFAULT
-**Version:** 4.0 — 2026-11-20
+**Version:** 4.1 — 2026-11-24
 
 **THE RULE:** Every ChatGPT research agent must **open the actual `https://betcapitale.com/admin/software` webpage in a browser**, find the correct match + market + selection, **fill ONLY its own on-page edit form**, click **Save**, and verify the actual report ID/version shown. **Do not use the Commander CLI report uploader, JSON API submission, or manual private inbox as the default user workflow.** Commander may be used to open/operate a browser if browser GUI automation is genuinely available; ordinary terminal/file access alone is not proof of a click. ChatGPT Work browser or another authorized browser-control capability can operate the UI. If no browser control or admin login exists, report that limitation; don't fabricate a save.
 
@@ -22,12 +22,12 @@ Each page requires an existing logged-in **CAPITALE administrator browser sessio
 4. Verify the site displays `SAVED & VERIFIED`, exact report_id/version and the new SXF report version. Auto-sourced SXF data can already exist, but the full original specialist report is **not automatically created by that source-only import**. Do not say a full SXF report was uploaded until this UI save is verified.
 5. Hand ANALYST only the neutral fixture/time/market/choice/`fixture_uid`/`run_id`/SXF checkpoint AS_OF list, not SXF evidence, scores or opinions.
 
-## ANALYST browser steps
+## ANALYST browser steps — v3.0
 
-1. Receive the **neutral fixture/selection/run data only**, not SXF market evidence.
-2. Complete the unchanged ANALYST v2.1 CANONICAL three-factor real football analysis and ordinal A support score /100. An unsupported score is `null`, never a fabricated winning probability.
-3. Open `?agent=analyst`, find the same match and `run_id`, click **Edit ANALYST — Statistics report**; fill the ANALYST research AS_OF, A score (if supported), brief summary, **the entire original three-factor report**, 1–3 genuinely supported English facts and independently researched source evidence.
-4. Click **Save ANALYST to Software**. Require `SAVED & VERIFIED` with actual report ID/version. Do not access or change SXF, NEWS or FINAL boxes. At the end of the full report give the A summary and the **neutral NEWS handoff table**.
+1. Receive fixture identity/time only in the clean research context; preserve market/selection/run routing separately until report freeze. No SXF evidence, recommendation or other specialist report. If selection was exposed, restart clean or BLOCKED.
+2. Execute all v3.0 stages: DATA baseline, separate isolated HUMAN claim discovery, autonomous questions/iteration, counter-tests and full evidence report with structured audit. Run the repository validator; only READY with actual PASS and source/semantic review can proceed. PARTIAL/BLOCKED cannot be saved as completed. No A score, prediction or lean.
+3. Only after freeze, attach verified run_id/market/selection metadata and open the authenticated `?agent=analyst` browser editor; enter actual AS_OF, brief factual summary, full original report including audit and gate result, 1–3 verified English findings and genuine source evidence. Leave legacy A score blank/null. If site demands a score or cannot accept the report, BLOCKED; do not invent one.
+4. Click Save and require SAVED & VERIFIED plus actual report ID/version. Only neutral NEWS routing may follow; no report, hypothesis or score. No other role edits. The production server's v3.0 enforcement and isolated extractor require separate engineering verification.
 
 ## NEWS browser steps
 
@@ -39,7 +39,7 @@ Each page requires an existing logged-in **CAPITALE administrator browser sessio
 ## FINAL browser steps
 
 1. Open `?agent=final`, select the exact same match and `run_id`. On the page review the full original **SXF + ANALYST + NEWS** reports and their evidence. This FINAL editor is **disabled until all 3 full original reports are actually present**. Do not assume the machine-produced SXF summary equals the specialist's original full report.
-2. Cross-check fixture/market/selection identity, evidence sources/AS_OF, pre-match integrity and conflicting evidence. POLY is optional and absent POLY means `NO_EVIDENCE`.
+2. Cross-check fixture/market/selection routing, evidence sources/AS_OF, pre-match integrity and conflicting evidence. For new ANALYST v3.0 reports require READY, genuine gate PASS and full audit; no legacy A score or fake neutral replacement. POLY is optional and absent POLY means `NO_EVIDENCE`.
 3. Produce the full FINAL v0.2 synthesis and one A/B/C or `NO_RECOMMENDATION` outcome. Open **Edit FINAL — Decision**; enter the outcome, true decision summary and **full original FINAL report**; click **Save FINAL decision**.
 4. Claim site publication ONLY when the webpage shows **FINAL SAVED & VERIFIED** with final decision ID/version and the saved category and report are visible on readback.
 
@@ -47,7 +47,7 @@ Each page requires an existing logged-in **CAPITALE administrator browser sessio
 
 Each SXF/ANALYST/NEWS form accepts:
 - `Verified report AS_OF (UTC, ISO 8601)`: real source research timestamp, e.g. `2026-11-20T13:45:00Z`. SXF AS_OF must match its original T-6/T-8 decision cutoff. Analyst/NEWS use their own independent research cut and must be before kickoff.
-- `A/N support score /100`: only ANALYST or NEWS; leave blank when unverified.
+- `A/N support score /100`: NEWS only under its current method; ANALYST v3.0 MUST leave A blank/null (retired).
 - `Short executive summary`: genuine brief summary.
 - `Complete original report`: **entire original full report**, 100+ characters, no other role's conclusions.
 - `1–3 verified English findings`: at least ONE, no fictional details.
@@ -64,4 +64,4 @@ Live frontend: `/admin/software` includes role-specific browser forms, input val
 
 The previously built server CLI scripts (`tools/capitale_sxf_software_sync.py`, `tools/capitale_report_uploader.py`, `tools/capitale_site_report_reader.py`) remain technical backup/automatic verified source plumbing; **never instruct ordinary specialist agents to use those to replace webpage navigation, clicking and saving**, unless the owner expressly switches to API mode.
 
-Canonical engine methodology, source isolation, 1–3 SXF findings requirement, three ANALYST factors, eight NEWS areas and FINAL v0.2 scoring rules remain unchanged.
+Canonical engine methodology, source isolation, 1–3 SXF findings requirement, ANALYST v3.0 evidence-only research, eight NEWS areas and FINAL v0.2 scoring rules remain unchanged.
