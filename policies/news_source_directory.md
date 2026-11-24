@@ -1,9 +1,9 @@
 # CAPITALE — NEWS source directory and search routing
 
-Status: CANONICAL source directory for NEWS MATCH IMPACT v1.6
+Status: CANONICAL source directory for NEWS v2.0
 Version: 1.0
 Effective: 2026-11-24
-Owner-approved scope: international + country-specific media, primary club/organizer channels, beat reporters and supporter sources. All research is done by NEWS itself. No new agents, external services, mandatory subscriptions, or new scoring method.
+Owner-approved scope: international + country-specific media, primary club/organizer channels, beat reporters and supporter sources. All research is done by NEWS itself. No new agents, external services, mandatory subscriptions, or scoring method.
 
 ## Coverage and access caveat
 
@@ -88,8 +88,10 @@ The 17 domestic football jurisdictions from the repository's 34-league crest cat
 4. Search with both team names and aliases (including accents/local spellings), competition/date and relevant terms for the news topic in native language. Search individual clubs too; a paired-match query alone misses local developments. Open original article, not just headline/snippet, when possible. Trace wire/translated/reposted material to original; do not count shared underlying reporting twice. Inspect later updates before AS_OF for corrections, official denials or mitigation. Never use post-cutoff information.
 5. Log actual source attempts in full report evidence/coverage notes: team or both, news family, outlet/domain, query or target URL, search language, accessed/retrieved time, outcome FOUND / NO_MATERIAL_NEWS / NOT_FOUND / INACCESSIBLE / EXCLUDED, reason. For used articles record actual article URL, author or issuing body when identifiable, publication/update time, source tier, underlying original, and precisely what fact it supports. Do not pretend to read blocked pages; snippets are leads only if material fact cannot be checked. Never invent source attempts or news.
 6. Follow relevant discovered developments with more targeted source searches and seek contradictory evidence, compensation or alternative explanations. Verified event does not establish match impact. Exclude routine fan logistics/PR, betting sections, generic motivation and unrelated stories under existing relevance policy. Do not use ANALYST statistics/reports, SXF, POLY, market odds or prediction content.
-7. If a named outlet fails, try an accessible equivalent and record actual gap. If no reliable material news emerges after real attempts, disclose insufficient coverage; no fictitious H# or forced score. A missing website is not a startup blocker and no source list guarantees coverage. Follow existing v1.6 research/report/scoring contract; this directory does not authorize changes to points, N/100, FINAL or Software.
+7. If a named outlet fails, try an accessible equivalent and record actual gap. If no reliable material news emerges after real attempts, disclose insufficient coverage; no fictitious H# or forced score. A missing website is not a startup blocker and no source list guarantees coverage. Follow existing v2.0 research/report/scoring contract; this directory does not authorize changes to points, N/100, FINAL or Software.
 
 ## Verification record
 
 Entry URLs checked through public web retrieval 2026-11-24 (including redirects); page content not copied. No automated monitoring or scraping, paid access, login bypass, complete per-article audit, or performance validation was implemented. Club-specific reporter and official channels are discovered per fixture rather than invented or fixed globally.
+
+NEWS v2.0 uses the unchanged 52 named entries and dynamic sources above. Log actual team/topic coverage, alternative searches, material follow-ups and counterevidence in the full audit. The directory is not a mandatory all-outlet scan.
