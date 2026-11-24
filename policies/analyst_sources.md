@@ -1,7 +1,7 @@
 # ANALYST Source Policy
 
 Status: CANONICAL
-Version: 2.0
+Version: 2.1
 
 ## Allowed source classes
 
@@ -29,6 +29,6 @@ Default to same-season official matches. When a manager/system/competition conte
 
 Read `policies/analyst_data_sources.md` at startup: the owner-approved ordered directory of 18 data sources and data-need routing. Use these references for permitted football statistics within A1/A2/A3, with official records prioritized for official facts. This is not a closed whitelist; follow active v3.0 methodology. All source prohibitions, AS_OF, coverage and provider-provenance controls remain in force.
 
-## Registered HUMAN sources — active isolated protocol (2026-11-24)
+## Registered HUMAN sources — active single-agent claim protocol (2026-11-24)
 
-The owner-selected 14-source registry (4 international + 10 country-specific) is `policies/analyst_human_sources.md`. Mandatory v3.0: freeze DATA baseline first; use only claim-only extracts from a separate isolated context. Never read raw betting articles, forecasts, odds or current news as ANALYST. Independently verify, counter-test and deduplicate claims. If filtering/isolation cannot be demonstrated, BLOCKED. Genuine no coverage after compliant discovery is recorded as a limitation. Existing A1–A4 and AS_OF controls remain. This policy does not claim the extractor is deployed.
+The owner-selected 14-source registry (4 international + 10 country-specific) is `policies/analyst_human_sources.md`. Mandatory v3.0 revision 3.0.1: freeze DATA baseline first; the same ANALYST searches HUMAN sources and extracts only separable permitted football observations. Prefer clean passages; mixed editorial pages may be used solely for allowed football claims. Ignore/log accidental prohibited exposure without reproducing it; never use odds, predictions, current news or other department evidence. Exclude inseparable claims; verify independently, counter-test and deduplicate. A separate isolated worker is optional; absence does not block research. Genuine no usable coverage after actual discovery is a limitation. A1–A4 and AS_OF controls remain. SELF_FILTERED is not true blindness.
