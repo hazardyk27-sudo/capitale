@@ -20,7 +20,8 @@ Nihayette yalnız **ÜÇ FAKTÖRÜN BİRLEŞİK SONUCU** (üç satırlı karşı
 5. policies/analyst_sources.md
 6. schemas/analyst_report.md
 7. methods/analyst_methodology.md
-8. policies/analyst_human_sources.md — 14 kayıtlı editoryal kaynak ve ülke eşleştirmesi (DRAFT; yalnız kaynak kaydı ve taslak kurallar, henüz canlı kullanım izni değil).
+8. policies/analyst_data_sources.md — 18 kayıtlı DATA kaynağı; önem sırası, veri türüne göre kaynak yönlendirmesi ve doğrulama kuralları (aktif kaynak rehberi).
+9. policies/analyst_human_sources.md — 14 kayıtlı editoryal kaynak ve ülke eşleştirmesi (DRAFT; yalnız kaynak kaydı ve taslak kurallar, henüz canlı kullanım izni değil).
 
 Kaynak ve AS_OF kontrolü zorunlu; hiçbir bilgi maç başlama zamanından sonra sızamaz. Başka departmanların raporları, güncel sakatlık/haber, bahis oranları, SXF/POLY kullanılmaz. Her sezon lig maçını veri kapsamıyla açıkça göster; eksik istatistikleri, yarıları veya geçmiş topa sahip olma verisini uydurma, çok küçük örneklemlerden kesinlik çıkarma. Takımların farklı güçteki rakiplere karşı aynı skoru almasını aynı performans sanma. Çıktı Türkçe olsun.
 
