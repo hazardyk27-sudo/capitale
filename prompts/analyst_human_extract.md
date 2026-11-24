@@ -1,5 +1,5 @@
 # CAPITALE — ANALYST HUMAN source research procedure
-Status: CANONICAL ANALYST v3.0.2
+Status: CANONICAL ANALYST v3.0.3
 Version: 1.2
 Effective: 2026-11-24
 
@@ -12,3 +12,6 @@ HUMAN means the registered human-authored editorial sources, not a separate depa
 5. Independently verify claims using allowed DATA; seek counterevidence and document changes from the frozen baseline. If no usable HUMAN articles are found after actual attempts, continue DATA-driven autonomous research with explicit limitations. Never invent coverage or verification.
 
 HUMAN is a research input, not a predictive authority. ANALYST generates its own questions and evidence-only report. No recommendations or score forecasts.
+
+## v3.0.3 — editorial contribution review
+For every applicable source record NOVEL_LEAD, DUPLICATE_ONLY, NO_USABLE_CONTENT or EXCLUDED relative to the frozen DATA baseline; explain what was examined and link genuinely novel useful leads to actual inquiries. Seek original football mechanisms and questions, not merely repeated results. No novelty quota; when none exists, report limited contribution honestly. Preserve independent verification and counterevidence. See the quality audit schema.
