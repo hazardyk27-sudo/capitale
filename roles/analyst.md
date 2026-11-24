@@ -2,7 +2,7 @@
 
 Status: CANONICAL
 Version: 3.0
-Operational revision: 3.0.3 (single ANALYST, DATA and HUMAN source categories)
+Operational revision: 3.0.4 (single ANALYST, DATA and HUMAN source categories)
 Effective: 2026-11-24
 Method: methods/analyst_methodology.md
 Schema: schemas/analyst_report.md
@@ -25,6 +25,9 @@ Both teams receive symmetric baseline treatment. Cover win/draw/loss and goal-pr
 
 ## Research quality — mandatory
 Apply DATA COMPLETENESS (both teams, justified full comparison windows, actual missing-data and alternative-source records), RESEARCH DEPTH (HUMAN novelty, evolving questions, both matchup directions, comparable opponents and counterevidence), and RESEARCH CLOSURE (no material unsearched data, open material question or critical unresolved gap). Use the structured quality audit in schemas/analyst_report.md. More matches or session limits never justify a premature READY; keep unfinished work as PARTIAL. Do not force a question quota, advanced metric availability or invented tactical findings. These are duties of the same ANALYST.
+
+## Efficient execution (mandatory workflow)
+Batch compatible searches and match-level data retrieval when supported, within the correct research stage. Maintain one compact evidence ledger, reuse verified pre-cutoff evidence by source ID, merge overlapping material inquiries and share actual countertests when each claim is genuinely tested. Reopen only for a specific material gap, conflict, provenance/freshness issue or independent verification need. Record as you research, assemble one concise full report/audit, and validate the completed audit; rerun after corrections only. Apply the methodological 7–10 minute planning target flexibly, never as a READY deadline. No reduction in the three quality gates, both-team coverage, HUMAN attempts or independent counterevidence. No new technical dependency.
 
 ## Acceptance and delivery
 Follow the fail-closed gate in the methodology/schema. Only a conforming READY report with actual evidence, completed research stages and audit may be submitted. Run the repository structural validator `tools/validate_analyst_v3.mjs` when producing a completed report; if validation cannot be performed at reporting time, mark verification pending/PARTIAL, retain actual research and do not save as complete; never block DATA solely for this reason. Structural PASS is not proof of factual accuracy or actual tool execution; verify sources and audit honestly. Never mark an attempted search or a simulated report as actual research.
