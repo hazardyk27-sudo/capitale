@@ -48,7 +48,7 @@ MATCHES: <match list>
 
 ## KULLANICIYA DEVİR — ANALYST'TEN AL → FINAL'E HAZIRLA (2026-11-20)
 
-Bu zincirde girdi **yalnız** `prompts/manual_report_chain.md` içindeki `KOPYALA → NEWS GİRDİSİ` nötr tablosudur. Bu satırlar sadece maç/tercih/kimlik yönlendirmesidir; nötr tablodaki `AS_OF` SXF'nin kaynak sinyal kesitidir, NEWS araştırmasının otomatik AS_OF değeri değildir. Her NEWS raporu kendi gerçek `report_as_of_utc` zamanını ve kaynak yayın zamanlarını gösterir (maç sonrası veya FINAL kararından sonraki bilgi kullanılmaz). Önceki ANALYST v2.1 raporu, A puanı, SXF kodu/sinyali/para/oranı veya yorumları NEWS için kanıt DEĞİLDİR. Sadece kendi izin verilen NEWS kaynaklarına dayanarak mevcut v1.6'nın tüm H#, 7 etki sütunu ve ordinal N/100 yöntemini eksiksiz uygula.
+Bu zincirde girdi **yalnız** `prompts/manual_report_chain.md` içindeki `KOPYALA → NEWS GİRDİSİ` nötr tablosudur. Bu satırlar sadece maç/tercih/kimlik yönlendirmesidir; nötr tablodaki `AS_OF` SXF'nin kaynak sinyal kesitidir, NEWS araştırmasının otomatik AS_OF değeri değildir. Her NEWS raporu kendi gerçek `report_as_of_utc` zamanını ve kaynak yayın zamanlarını gösterir (maç sonrası veya FINAL kararından sonraki bilgi kullanılmaz). Önceki ANALYST raporu, tarihsel A puanı, SXF kodu/sinyali/para/oranı veya yorumları NEWS için kanıt DEĞİLDİR. Sadece kendi izin verilen NEWS kaynaklarına dayanarak mevcut v1.6'nın tüm H#, 7 etki sütunu ve ordinal N/100 yöntemini eksiksiz uygula.
 
 Tam NEWS raporunun **en sonunda** kısa tablo yaz: `NEWS — KISA SONUÇ / FINAL'E GİDECEK LİSTE` sütunları maç (TSİ), market/seçim, N destek/100 (ya da v1.6'nın "50 — veri yetersiz" etiketi), ilgili yön ham NEWS toplamı, tek cümle materyal haber/kanıt açığı, doğrulanmış run_id. Tam yedi market sonuç tablosunu atlama.
 
@@ -60,4 +60,4 @@ NEWS MATCH IMPACT v1.6'nın sekiz alanını, materyal H# haberlerini, yedi marke
 
 Gerçek tarayıcı erişiminle `https://betcapitale.com/admin/software?agent=news` sayfasına GİT; admin oturumuyla doğru `run_id` maçını seç, `Edit NEWS — News report` formunu aç. Kendi gerçek NEWS AS_OF zamanını, N/100 (kanıt yoksa boş), tam rapor, özet, 1–3 kaynaklı İngilizce haber bulgusu ve H# haber kaynaklarını forma yaz. `Save NEWS to Software` butonuna tıkla. `SAVED & VERIFIED` ve gerçek report_id/version olmadan site kaydı başarılı deme. SXF ve ANALYST kutularını değiştirme.
 
-Tam rapordan sonra kısa NEWS listesi + `run_id` FINAL'e ver. FINAL siteyi kendisi açıp üç raporu oradan okuyacak. CLI/özel arşiv normal yol değildir; tarayıcı kontrolün yoksa açıkça bildir. Ayrıntı: `prompts/manual_report_chain.md` v4.0.
+Tam rapordan sonra kısa NEWS listesi + `run_id` FINAL'e ver. FINAL siteyi kendisi açıp üç raporu oradan okuyacak. CLI/özel arşiv normal yol değildir; tarayıcı kontrolün yoksa açıkça bildir. Ayrıntı: `prompts/manual_report_chain.md` v4.1.
