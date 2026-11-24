@@ -1,7 +1,7 @@
 # ANALYST Source Policy
 
 Status: CANONICAL
-Version: 1.1
+Version: 2.0
 
 ## Allowed source classes
 
@@ -27,8 +27,8 @@ Default to same-season official matches. When a manager/system/competition conte
 
 ## Registered DATA sources — active reference (2026-11-24)
 
-Read `policies/analyst_data_sources.md` at startup: the owner-approved ordered directory of 18 data sources and data-need routing. Use these references for permitted football statistics within A1/A2/A3, with official records prioritized for official facts. This is not a closed whitelist or a new analytical methodology. All source prohibitions, AS_OF, coverage and provider-provenance controls remain in force.
+Read `policies/analyst_data_sources.md` at startup: the owner-approved ordered directory of 18 data sources and data-need routing. Use these references for permitted football statistics within A1/A2/A3, with official records prioritized for official facts. This is not a closed whitelist; follow active v3.0 methodology. All source prohibitions, AS_OF, coverage and provider-provenance controls remain in force.
 
-## Registered human editorial sources — reference only (2026-11-24)
+## Registered HUMAN sources — active isolated protocol (2026-11-24)
 
-The owner-selected 14-source registry (4 international + 10 country-specific sources) is `policies/analyst_human_sources.md`. Read that file during startup to locate the source list and draft anti-anchoring protocol. Registration is not live authorization: the current CANONICAL A1–A4 rules and prohibitions remain unchanged until the owner approves and ENGINEER implements the isolated claim-only workflow. Do not directly read betting forecasts, odds or current news under the ANALYST role.
+The owner-selected 14-source registry (4 international + 10 country-specific) is `policies/analyst_human_sources.md`. Mandatory v3.0: freeze DATA baseline first; use only claim-only extracts from a separate isolated context. Never read raw betting articles, forecasts, odds or current news as ANALYST. Independently verify, counter-test and deduplicate claims. If filtering/isolation cannot be demonstrated, BLOCKED. Genuine no coverage after compliant discovery is recorded as a limitation. Existing A1–A4 and AS_OF controls remain. This policy does not claim the extractor is deployed.
