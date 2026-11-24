@@ -69,6 +69,15 @@ totals:
   btts_yes: <sum of stories[*].impact.btts_yes>
   btts_no: <sum of stories[*].impact.btts_no>
 
+source_search_log:
+  - team: <HOME|AWAY|BOTH>
+    news_family: <existing news family>
+    outlet_or_domain: <actual source>
+    query_or_target_url: <actual query or URL>
+    search_language: <actual language>
+    retrieved_at: <actual timestamp>
+    status: <FOUND|NO_MATERIAL_NEWS|NOT_FOUND|INACCESSIBLE|EXCLUDED>
+    reason: <actual result or limitation>
 evidence_gaps: [<relevant uncovered or limited topics>]
 user_preference_news_assessment: <short comparison to totals; no win probability>
 scoring_status: UNCALIBRATED_ORDINAL_NEWS_IMPACT
@@ -98,3 +107,6 @@ Add an item in `user_preference_news_support_scores_100` for EACH user-supplied 
 ## Manual-chain report envelope (metadata only)
 
 The `run_id` and `fixture_uid` fields are neutral routing metadata, not SXF/ANALYST evidence. NEWS receives only neutral fixtures/selections from ANALYST, performs a separate NEWS-AS_OF pre-match research cut, then archives its full report when Commander is available. The closing NEWS → FINAL list and archive-state checklist are presentation-only and must not alter any H# score, evidence rubric or seven market totals.
+
+## Source directory evidence notes (2026-11-24)
+Apply `policies/news_source_directory.md`. Include actual search/coverage log and original article attribution in the full report's evidence and coverage notes, not an additional scored research section. For material sources record article URL, author/issuing body where identifiable, publication/update time, provenance and precise supported fact. Unavailable outlets or no relevant news after actual searches are disclosed gaps, not invented H# stories. No changes to scores or five-part report layout.
