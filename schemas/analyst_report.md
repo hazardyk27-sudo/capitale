@@ -16,13 +16,13 @@ Previous schemas including v2.1 are SUPERSEDED for new reports only.
 ## Structured audit (JSON; actual values, not placeholders)
 Required top-level fields:
 - role: "ANALYST"; methodology_version: "analyst-v3.0-canonical"; status: "READY" | "PARTIAL" | "BLOCKED".
-- fixture_uid, match, competition, kickoff_utc, as_of_utc; home_team, away_team.
+- fixture_uid, match, competition, kickoff_utc, as_of_utc; home_team, away_team; competition_country, home_country, away_country (English country names used in the HUMAN registry), cross_border (boolean). For cross-border tournaments use both club countries for source routing.
 - startup_verified, isolation_verified, no_prohibited_inputs, no_predictions: booleans; blocked_reasons: array of strings.
 - sources: array of {id, url, observed_at, retrieved_at, provider, scope, claim}, with actual provenance; unique IDs. observed_at is the time information was available (<= AS_OF), not the retrieval time for a valid historical snapshot.
 - baseline: {frozen_at, snapshot_id, home_evidence_ids:[], away_evidence_ids:[], summary, limitations:[]}; frozen_at <= HUMAN extraction start.
 - human: {isolation_verified, extractor_id, started_at, applicable_sources:[], attempts:[{source,status,reason,article_url?,author?,published_at?}], claims:[{id,source,claim,status,evidence_ids:[],countertest_id}], no_coverage_reason}; statuses FOUND / NOT_FOUND / INACCESSIBLE / EXCLUDED. Applicable names match registry exactly: four international always, local by competition or both clubs' countries for cross-border competitions. FOUND means usable sanitized claim material, not just a page; otherwise EXCLUDED with reason.
 - inquiries: array of {id,trigger,question,hypothesis,alternative,actions:[],evidence_ids:[],result,uncertainty,countertest_id}; if empty, no_inquiry_reason with actual screening justification.
-- countertests: array of {id,actions:[],support_ids:[],oppose_ids:[],result,limitations}; actual search/comparison, not planned actions.
+- countertests: array of {id,actions:[],support_ids:[],oppose_ids:[],result,limitations}; result and limitations are non-empty strings (use an explicit no-known-limitations statement if appropriate); actual search/comparison, not planned actions.
 - findings: array of {id,fact,interpretation,evidence_ids:[],countertest_id,status}; status VERIFIED / PARTIAL / REFUTED / UNRESOLVED.
 - baseline_changes: array of documented changes or explicit no-change reason; limitations: array of strings; stop_reason.
 - scenarios: array of conditional, non-ranked football scenarios; outcome_coverage: ["1","X","2","OVER_2_5","UNDER_2_5","BTTS_YES","BTTS_NO"] (coverage only, never evaluation scores).
