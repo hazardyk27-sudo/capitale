@@ -4,7 +4,7 @@ CAPITALE is a multi-agent football research and betting-decision system built ar
 
 ## Departments
 
-- ANALYST — historical/current-season football performance and tactical matchup analysis.
+- ANALYST — v3.0 autonomous whole-fixture DATA/HUMAN evidence research, critical review, no prediction or support score.
 - NEWS — current availability, manager, motivation, schedule, travel, weather, pitch, and relevant off-field context.
 - SXF — SmartXFlow-only market-flow analysis. DRAFT until methodology is approved.
 - POLY — direct Polymarket wallet-intelligence analysis.
@@ -15,7 +15,7 @@ CAPITALE is a multi-agent football research and betting-decision system built ar
 
 Every agent must **open the authenticated `/admin/software?agent=<role>` page and click its own Edit/Save buttons in an actual browser**, not send CLI/API report payloads in the normal workflow. SXF auto-import creates source-backed match rows; SXF, ANALYST and NEWS each append their own complete specialist analysis through their dedicated website edit forms. FINAL reads all three original complete reports on its page and appends its own A/B/C/NO_RECOMMENDATION decision. Each write is verified by an actual report/decision ID and version on readback; no invented scores, AS_OF or source claims.
 
-Canonical steps: `prompts/manual_report_chain.md` v4.0. Admin login and genuine browser-control capability are required; Commander terminal availability alone does not prove UI interaction. Past CLI-inbox handoff paths are fallback/internal engineering only.
+Canonical steps: `prompts/manual_report_chain.md` v4.1. Admin login and genuine browser-control capability are required; Commander terminal availability alone does not prove UI interaction. Past CLI-inbox handoff paths are fallback/internal engineering only.
 
 ## Core rule
 
