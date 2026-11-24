@@ -25,6 +25,10 @@ End with a three-row factor summary and football interpretation / qualified dire
 
 **The immediately preceding Torino–Monza response is the presentation reference.** Do not add a fourth factor, calibrated win-probability score, Monte Carlo, odds/news, or old v1.1-v1.4.x scoring engines. Only the owner-approved v2.1 ordinal 0-100 support score for each user pick is permitted in the unchanged three-factor conclusion. The old methodologies are SUPERSEDED for future use, not deleted from git history; previous runs stay unchanged.
 
+## DATA source registry — active reference (2026-11-24)
+
+Read `policies/analyst_data_sources.md` at startup. It contains the 18 owner-approved prioritized data sources, entry URLs, data-need routing and verification controls. Use the appropriate sources rather than visiting all 18 mechanically. The existing v2.1 methodology and source prohibitions remain unchanged.
+
 ## Human editorial source registry — reference only (2026-11-24)
 
 The single owner-selected list of 14 editorial sources, country routing and anti-anchoring design is `policies/analyst_human_sources.md`. Read it at startup alongside the source policy; it is DRAFT and does not authorize raw betting-preview access or change the active v2.1 method. Preserve the source separation and independent evidence rules.
