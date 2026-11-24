@@ -15,7 +15,7 @@ CAPITALE is a multi-agent football research and betting-decision system built ar
 
 Every agent must **open the authenticated `/admin/software?agent=<role>` page and click its own Edit/Save buttons in an actual browser**, not send CLI/API report payloads in the normal workflow. SXF auto-import creates source-backed match rows; SXF, ANALYST and NEWS each append their own complete specialist analysis through their dedicated website edit forms. FINAL reads all three original complete reports on its page and appends its own A/B/C/NO_RECOMMENDATION decision. Each write is verified by an actual report/decision ID and version on readback; no invented scores, AS_OF or source claims.
 
-Canonical steps: `prompts/manual_report_chain.md` v4.3. Admin login and genuine browser-control capability are required; Commander terminal availability alone does not prove UI interaction. Past CLI-inbox handoff paths are fallback/internal engineering only.
+Canonical steps: `prompts/manual_report_chain.md` v4.4. Admin login and genuine browser-control capability are required; Commander terminal availability alone does not prove UI interaction. Past CLI-inbox handoff paths are fallback/internal engineering only.
 
 ## Core rule
 
@@ -53,4 +53,4 @@ Read:
 
 Do not invent missing canonical thresholds for roles marked DRAFT.
 
-ANALYST v3.0.1 operational correction: one ANALYST performs all research stages; optional isolated HUMAN worker is not a prerequisite. DATA starts before delivery/validator availability checks; all actual source attempts, independent counter-tests and structural validation before READY remain mandatory.
+ANALYST v3.0.2 operational correction: one ANALYST performs all research stages; HUMAN is the 14-source human-authored editorial category, not an agent. DATA starts before delivery/validator availability checks; all actual source attempts, independent counter-tests and structural validation before READY remain mandatory.
