@@ -1,7 +1,7 @@
 # CAPITALE — BROWSER-DIRECT AGENT WORKFLOW
 
 **Status:** OWNER-APPROVED ACTIVE DEFAULT
-**Version:** 4.5 — 2026-11-24
+**Version:** 4.6 — 2026-11-24
 
 **THE RULE:** Every ChatGPT research agent must **open the actual `https://betcapitale.com/admin/software` webpage in a browser**, find the correct match + market + selection, **fill ONLY its own on-page edit form**, click **Save**, and verify the actual report ID/version shown. **Do not use the Commander CLI report uploader, JSON API submission, or manual private inbox as the default user workflow.** Commander may be used to open/operate a browser if browser GUI automation is genuinely available; ordinary terminal/file access alone is not proof of a click. ChatGPT Work browser or another authorized browser-control capability can operate the UI. If no browser control or admin login exists, report that limitation; don't fabricate a save.
 
@@ -29,16 +29,15 @@ Each page requires an existing logged-in **CAPITALE administrator browser sessio
 3. Only after freeze, attach verified run_id/market/selection metadata and open the authenticated `?agent=analyst` browser editor; enter actual AS_OF, brief factual summary, full original report including audit and gate result, 1–3 verified English findings and genuine source evidence. Leave legacy A score blank/null. If site demands a score or cannot accept the report, BLOCKED; do not invent one.
 4. Click Save and require SAVED & VERIFIED plus actual report ID/version. The same immutable full report (with all audit/verification records) must be downloadable as .md from the corresponding match; use the admin download button and verify identity/version and contents. The 1–3 saved findings are shown in the existing match analysis. Only neutral NEWS routing may follow; no report, hypothesis or score. No other role edits. Complete each fixture sequentially before advancing; record any genuine blocked/partial fixture and proceed to the next. At batch end provide only short per-match status and verified IDs. Server-side enforcement is not yet verified.
 
-## NEWS browser steps
-
-1. Receive only the neutral ANALYST→NEWS routing fields; no A score or SXF evidence may influence NEWS research.
-2. Complete unchanged NEWS MATCH IMPACT v1.6 eight areas, original H# sources, seven signed market scores, and independent N ordinal /100 support. Data insufficient must be explicit.
-3. Open `?agent=news`, find the same match/`run_id`, click **Edit NEWS — News report**; fill the true NEWS research AS_OF, N score (or leave blank if source insufficient), brief summary, **complete original NEWS report**, 1–3 sourced English news findings, and original H# news source lines.
-4. Click **Save NEWS to Software**, verify `SAVED & VERIFIED` ID/version. Then provide the short N list and real `run_id` to FINAL. Never edit other roles.
+## NEWS browser steps — v2.0
+1. Research input is neutral fixture identity, competition, kickoff and club countries only; hold run_id/market/selection separately until research freeze. No prior role evidence.
+2. Execute both-team eight-family scan, material discovery, autonomous follow-up, verification, opposing evidence, conditional mechanisms and three quality gates. Run tools/validate_news_v2.mjs on actual audit. Only READY with actual PASS plus factual/semantic review; no scores, no N/100. No material news after sufficient actual coverage is valid with explicit evidence status. PARTIAL/BLOCKED must retain actual work and next actions.
+3. Freeze research then same NEWS attaches verified run_id and opens authenticated ?agent=news editor. Enter true NEWS AS_OF, full original Markdown including all evidence/audit, summary, 1–3 factual English findings or truthful coverage statement, genuine sources. N null.
+4. Save NEWS to Software, verify SAVED & VERIFIED ID/version, download full NEWS .md and verify identity and complete contents. Short status table and real run IDs to FINAL; no other role edits. Each match sequentially. Research and delivery status separate.
 
 ## FINAL browser steps
 
-1. Open `?agent=final`, select the exact same match and `run_id`. On the page review the full original **SXF + ANALYST + NEWS** reports and their evidence. Owner may also provide the downloaded ANALYST .md; verify its fixture/run/report ID/version/AS_OF matches the saved original, and read its full audit. A supplied file is not a substitute for missing required other reports or site save verification. This FINAL editor is **disabled until all 3 full original reports are actually present**. Do not assume the machine-produced SXF summary equals the specialist's original full report.
+1. Open `?agent=final`, select the exact same match and `run_id`. On the page review the full original **SXF + ANALYST + NEWS** reports and their evidence. Owner may also provide the downloaded ANALYST and NEWS .md files; verify its fixture/run/report ID/version/AS_OF matches the saved original, and read its full audit. A supplied file is not a substitute for missing required other reports or site save verification. This FINAL editor is **disabled until all 3 full original reports are actually present**. Do not assume the machine-produced SXF summary equals the specialist's original full report.
 2. Cross-check fixture/market/selection routing, evidence sources/AS_OF, pre-match integrity and conflicting evidence. For new ANALYST v3.0 reports require protocol_revision 3.0.3, READY, genuine gate PASS and full audit; no legacy A score or fake neutral replacement. POLY is optional and absent POLY means `NO_EVIDENCE`.
 3. Produce the full FINAL v0.2 synthesis and one A/B/C or `NO_RECOMMENDATION` outcome. Open **Edit FINAL — Decision**; enter the outcome, true decision summary and **full original FINAL report**; click **Save FINAL decision**.
 4. Claim site publication ONLY when the webpage shows **FINAL SAVED & VERIFIED** with final decision ID/version and the saved category and report are visible on readback.
@@ -47,7 +46,7 @@ Each page requires an existing logged-in **CAPITALE administrator browser sessio
 
 Each SXF/ANALYST/NEWS form accepts:
 - `Verified report AS_OF (UTC, ISO 8601)`: real source research timestamp, e.g. `2026-11-20T13:45:00Z`. SXF AS_OF must match its original T-6/T-8 decision cutoff. Analyst/NEWS use their own independent research cut and must be before kickoff.
-- `A/N support score /100`: NEWS only under its current method; ANALYST v3.0 MUST leave A blank/null (retired).
+- `A/N support score /100`: both retired for new ANALYST v3.0 and NEWS v2.0 reports; always null.
 - `Short executive summary`: genuine brief summary.
 - `Complete original report`: **entire original full report**, 100+ characters, no other role's conclusions.
 - `1–3 verified English findings`: at least ONE, no fictional details.
@@ -64,4 +63,6 @@ Live frontend: `/admin/software` includes role-specific browser forms, input val
 
 The previously built server CLI scripts (`tools/capitale_sxf_software_sync.py`, `tools/capitale_report_uploader.py`, `tools/capitale_site_report_reader.py`) remain technical backup/automatic verified source plumbing; **never instruct ordinary specialist agents to use those to replace webpage navigation, clicking and saving**, unless the owner expressly switches to API mode.
 
-Canonical engine methodology, source isolation, 1–3 SXF findings requirement, ANALYST v3.0 evidence-only research, eight NEWS areas and FINAL v0.2 scoring rules remain unchanged.
+Canonical engine methodology, source isolation, 1–3 SXF findings requirement, ANALYST v3.0 evidence-only research, NEWS v2.0 evidence-only research and FINAL v0.2 decision rules apply.
+
+For new NEWS inputs FINAL requires news-v2.0-canonical READY, actual PASS and full evidence audit. No N score or placeholder; absence of retired N is not missing evidence. Distinguish NO_MATERIAL_NEWS from incomplete coverage. No FINAL decision-method change.
