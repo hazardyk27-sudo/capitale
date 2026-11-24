@@ -1,7 +1,7 @@
 # CAPITALE — ANALYST Human Editorial Source Registry
 
-Status: CANONICAL — v3.0.4 operational anti-anchoring protocol; single ANALYST, source category only.
-Version: 1.2
+Status: CANONICAL — v3.0.5 operational anti-anchoring protocol; single ANALYST, source category only.
+Version: 1.3
 Scope: supplementary human-authored prematch research, not a predictive authority.
 
 ## Saved source shortlist — 14 sources (4 international + 10 local)
@@ -15,7 +15,7 @@ Scope: supplementary human-authored prematch research, not a predictive authorit
 | SportyTrader | https://www.sportytrader.com/en/betting-tips/football/ | Match previews and explanatory historical statistics |
 | Betfair Blog | https://betting.betfair.com/football/ | Named editorial contributors and contextual reasoning |
 
-### Local — 10 sources, mapped by domestic competition country
+### Regional editorial sources — 10 (language/coverage hints only, all fixtures eligible)
 
 | Country | Language | Source | Public entry | Candidate coverage and research value |
 | --- | --- | --- | --- | --- |
@@ -32,9 +32,9 @@ Scope: supplementary human-authored prematch research, not a predictive authorit
 
 ## Mandatory discovery and routing
 
-- This is the single registry for the 14 owner-selected editorial sources. The four international sources apply to any fixture; choose local sources by the domestic competition country (for cross-border cups, both teams' domestic countries). Greece has two registered local sources. Other countries have no registered local source in this shortlist.
-- Search the registered site's domain with both team names (including local spellings), competition and fixture date in its native language. Locate the specific pre-match article, not just the home page. Record FOUND / NOT_FOUND / INACCESSIBLE / EXCLUDED with article URL, author, publication timestamp and reasons. Use public material only; no paywall bypass.
-- First freeze the independent statistical baseline, then the same ANALYST searches the four international and applicable local sources. Prefer filtered/clean football sections. Mixed pages may be consulted only for separable permitted football observations; ignore and log accidental exposure without reproducing forecasts or using them. Exclude inseparable claims. Missing coverage is not evidence against a team. HUMAN is not a department or agent.
+- This is the single registry for the 14 owner-selected editorial sources. All 14 sources are applicable to EVERY fixture, irrespective of country, league or tournament. Country/language and listed domestic coverage are discovery hints only, never exclusion rules. A German, Greek, Italian or other editorial outlet may cover a match involving unrelated countries.
+- After DATA freeze, search across all 14 registered domains for the exact fixture using both team names, aliases/local spellings, competition and date. Batch domain-targeted queries in supported tools to minimize latency. A batch must actually cover each registered source; a broad search that returns only a few domains is not evidence of searching the others. Open only relevant candidate articles, not every site's homepage or unrelated matches. If a relevant article is found, inspect its permitted substantive text; if discovery is ambiguous, refine the targeted search. Locate the specific pre-match article, not just the home page. Record FOUND / NOT_FOUND / INACCESSIBLE / EXCLUDED with article URL, author, publication timestamp and reasons. Use public material only; no paywall bypass.
+- First freeze the independent statistical baseline, then the same ANALYST searches all 14 registered sources for fixture-specific coverage. Prefer filtered/clean football sections. Mixed pages may be consulted only for separable permitted football observations; ignore and log accidental exposure without reproducing forecasts or using them. Exclude inseparable claims. Missing coverage is not evidence against a team. HUMAN is not a department or agent.
 - No source ranking is a reliability score; verify each claim. Exclude AI-generated predictions and unverified human authorship from the human-editorial category. Editorial material supplements rather than replaces A1/A2 primary statistical evidence.
 
 Access, authorship, original provenance, publication time, coverage, and usage terms must be checked per article. Inclusion here is not an assertion of universal free access, accuracy, independence or predictive skill.
@@ -51,9 +51,9 @@ Access, authorship, original provenance, publication time, coverage, and usage t
 8. FINAL receives verified findings, clearly marked interpretations, limitations and contradictions, not third-party picks or scores. ANALYST v3.0 emits no score, pick or forecast; NEWS and FINAL methods otherwise unchanged.
 9. Test baseline-only versus blinded editorial augmentation on timestamped historical matches, with frozen outputs and separate settlement; measure incremental value, contamination, coverage and reproducibility as prospective evaluation; do not claim a performance gain before validation.
 
-This registry operates under AGENTS.md, policies/analyst_sources.md and v3.0.4 methodology. Claim-extraction protocol: prompts/analyst_human_extract.md. HUMAN is a source registry only. Record every actual applicable source attempt; exclude contaminated/unsupported claims and continue, with explicit limitations. No claim of complete immunity to editorial bias.
+This registry operates under AGENTS.md, policies/analyst_sources.md and v3.0.5 methodology. Claim-extraction protocol: prompts/analyst_human_extract.md. HUMAN is a source registry only. Record every actual registered source attempt; exclude contaminated/unsupported claims and continue, with explicit limitations. No claim of complete immunity to editorial bias.
 
-## v3.0.4 — editorial contribution review
-For every applicable source record NOVEL_LEAD, DUPLICATE_ONLY, NO_USABLE_CONTENT or EXCLUDED relative to the frozen DATA baseline; explain what was examined and link genuinely novel useful leads to actual inquiries. Seek original football mechanisms and questions, not merely repeated results. No novelty quota; when none exists, report limited contribution honestly. Preserve independent verification and counterevidence. See the quality audit schema.
+## v3.0.5 — editorial contribution review
+For every registered source record NOVEL_LEAD, DUPLICATE_ONLY, NO_USABLE_CONTENT or EXCLUDED relative to the frozen DATA baseline; explain what was examined and link genuinely novel useful leads to actual inquiries. Seek original football mechanisms and questions, not merely repeated results. No novelty quota; when none exists, report limited contribution honestly. Preserve independent verification and counterevidence. See the quality audit schema.
 
-v3.0.4: after DATA freeze, batch applicable independent editorial searches if supported; reuse clean permitted extracted claims and original attribution rather than repeatedly opening mixed pages. All applicable attempts, novelty review, independent verification, exposure rules and counterevidence remain required. No new worker.
+v3.0.5: after DATA freeze, batch independent editorial discovery queries across all 14 sources if supported; reuse clean permitted extracted claims and original attribution rather than repeatedly opening mixed pages. All 14-source discovery attempts, novelty review, independent verification, exposure rules and counterevidence remain required. No new worker.
