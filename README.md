@@ -53,4 +53,5 @@ Read:
 
 Do not invent missing canonical thresholds for roles marked DRAFT.
 
-ANALYST v3.0.2 operational correction: one ANALYST performs all research stages; HUMAN is the 14-source human-authored editorial category, not an agent. DATA starts before delivery/validator availability checks; all actual source attempts, independent counter-tests and structural validation before READY remain mandatory.
+ANALYST v3.0.3 operational correction: one ANALYST performs all research stages; HUMAN is the 14-source human-authored editorial category, not an agent. DATA starts before delivery/validator availability checks; all actual source attempts, independent counter-tests and structural validation before READY remain mandatory.
+ANALYST v3.0.3 adds three research-quality gates and an evidence-linked audit. Existing source categories and per-fixture Markdown/Software delivery unchanged.
