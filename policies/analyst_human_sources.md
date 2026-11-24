@@ -1,6 +1,6 @@
 # CAPITALE — ANALYST Human Editorial Source Registry
 
-Status: CANONICAL — v3.0.2 operational anti-anchoring protocol; single ANALYST, source category only.
+Status: CANONICAL — v3.0.3 operational anti-anchoring protocol; single ANALYST, source category only.
 Version: 1.2
 Scope: supplementary human-authored prematch research, not a predictive authority.
 
@@ -51,4 +51,7 @@ Access, authorship, original provenance, publication time, coverage, and usage t
 8. FINAL receives verified findings, clearly marked interpretations, limitations and contradictions, not third-party picks or scores. ANALYST v3.0 emits no score, pick or forecast; NEWS and FINAL methods otherwise unchanged.
 9. Test baseline-only versus blinded editorial augmentation on timestamped historical matches, with frozen outputs and separate settlement; measure incremental value, contamination, coverage and reproducibility as prospective evaluation; do not claim a performance gain before validation.
 
-This registry operates under AGENTS.md, policies/analyst_sources.md and v3.0.2 methodology. Claim-extraction protocol: prompts/analyst_human_extract.md. HUMAN is a source registry only. Record every actual applicable source attempt; exclude contaminated/unsupported claims and continue, with explicit limitations. No claim of complete immunity to editorial bias.
+This registry operates under AGENTS.md, policies/analyst_sources.md and v3.0.3 methodology. Claim-extraction protocol: prompts/analyst_human_extract.md. HUMAN is a source registry only. Record every actual applicable source attempt; exclude contaminated/unsupported claims and continue, with explicit limitations. No claim of complete immunity to editorial bias.
+
+## v3.0.3 — editorial contribution review
+For every applicable source record NOVEL_LEAD, DUPLICATE_ONLY, NO_USABLE_CONTENT or EXCLUDED relative to the frozen DATA baseline; explain what was examined and link genuinely novel useful leads to actual inquiries. Seek original football mechanisms and questions, not merely repeated results. No novelty quota; when none exists, report limited contribution honestly. Preserve independent verification and counterevidence. See the quality audit schema.
