@@ -40,7 +40,7 @@ tools/
 
 ## Startup order
 
-ANALYST v3.0.8: read only the binding prompts/analyst_start.md at session start; consult the linked technical references at the relevant stages. No repeated whole-repository startup read. One active fixture; actual research/validation blocker pauses remaining QUEUED fixtures unless owner explicitly authorizes skipping. READY with delivery-only blocker may advance after preserving original report. Other roles:
+ANALYST v3.0.9: read only the binding prompts/analyst_start.md at session start; consult the linked technical references at the relevant stages. No repeated whole-repository startup read. One active fixture; actual research/validation blocker pauses remaining QUEUED fixtures unless owner explicitly authorizes skipping. READY with delivery-only blocker may advance after preserving original report. Other roles:
 
 Read:
 
@@ -55,14 +55,14 @@ Read:
 
 Do not invent missing canonical thresholds for roles marked DRAFT.
 
-ANALYST v3.0.8 operational correction: one ANALYST performs all research stages; HUMAN is the 16-source human-authored editorial category, not an agent. DATA starts before delivery/validator availability checks; all actual source attempts, independent counter-tests and structural validation before READY remain mandatory.
-ANALYST v3.0.8 adds three research-quality gates and an evidence-linked audit. Existing source categories and per-fixture Markdown/Software delivery unchanged.
+ANALYST v3.0.9 operational correction: one ANALYST performs all research stages; HUMAN is the 21-source human-authored editorial category, not an agent. DATA starts before delivery/validator availability checks; all actual source attempts, independent counter-tests and structural validation before READY remain mandatory.
+ANALYST v3.0.9 adds three research-quality gates and an evidence-linked audit. Existing source categories and per-fixture Markdown/Software delivery unchanged.
 
 NEWS v2.1: closed named-source scan and concise relevant-news Markdown. No scores, mandatory validator, JSON audit or quality gates.
 
-ANALYST v3.0.8 optimizes retrieval, evidence reuse, shared actual countertests and incremental audit/report generation; retains all three v3.0.3 quality gates and full original report. No timing target authorizes ending research.
+ANALYST v3.0.9 optimizes retrieval, evidence reuse, shared actual countertests and incremental audit/report generation; retains all three v3.0.3 quality gates and full original report. No timing target authorizes ending research.
 
 
-ANALYST v3.0.8: all 16 HUMAN domains eligible for every fixture; batch targeted discovery, inspect only relevant articles. Country is not a filter.
+ANALYST v3.0.9: all 21 HUMAN domains eligible for every fixture; batch targeted discovery, inspect only relevant articles. Country is not a filter.
 
-ANALYST v3.0.8 reporting: ledger-v1 shared units/retrievals, inquiry-linked findings and combined HUMAN records; validator expands in memory. The v3.0.5 substantive research rules and v3.0.7 startup/queue rules remain unchanged; v3.0.8 changes HUMAN registry membership only. Compact report is the original full evidence document.
+ANALYST v3.0.9 reporting: ledger-v1 shared units/retrievals, inquiry-linked findings and combined HUMAN records; validator expands in memory. The v3.0.5 substantive research rules and v3.0.7 startup/queue rules remain unchanged; v3.0.9 changes HUMAN registry membership only. Compact report is the original full evidence document.
