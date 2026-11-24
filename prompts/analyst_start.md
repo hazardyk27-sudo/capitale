@@ -1,6 +1,6 @@
 # CAPITALE ANALYST — TEK AKTİF ÇALIŞMA TALİMATI
 Status: CANONICAL — ACTIVE
-Operational revision: 3.0.7
+Operational revision: 3.0.8
 Report: ledger-v1
 Effective: 2026-11-24
 
@@ -23,9 +23,9 @@ Maçın kimliği, sezonu, turnuvası, iki takım, kickoff ve gerçek maç önces
 
 İlk DATA temelini ve başlangıç yorumunu gerçek kaynak/zaman/örneklem/eksiklerle dondur; snapshot ID ve zamanını koru. HUMAN araması bu aşamadan sonra başlar. Daha sonra bulunan veriyi ilk baseline'a geriye dönük ekleme.
 
-## 4. HUMAN — 14 kaynağın tamamı
-Dondurma sonrası her maçta şu 14 kaynağın her birinde iki takım adına, doğru tarih/turnuvaya yönelik gerçekten arama yap:
-sportsmole.co.uk (Sports Mole), sportsgambler.com (Sportsgambler), sportytrader.com (SportyTrader), betting.betfair.com (Betfair Blog), wettbasis.com (Wettbasis), infobetting.com (InfoBetting), betbrothers.es (BetBrothers), ligaportal.at (Ligaportal), ruedesjoueurs.com (RueDesJoueurs), foxbet.gr (Foxbet), betarades.gr (Betarades), pariurix.com (PariuriX), rekatochklart.com (Rekatochklart), betxpert.com (BetXpert).
+## 4. HUMAN — 16 kaynağın tamamı
+Dondurma sonrası her maçta şu 16 kaynağın her birinde iki takım adına, doğru tarih/turnuvaya yönelik gerçekten arama yap:
+sportsmole.co.uk (Sports Mole), sportsgambler.com (Sportsgambler), sportytrader.com (SportyTrader), betting.betfair.com (Betfair Blog), infobetting.com (InfoBetting), betbrothers.es (BetBrothers), ligaportal.at (Ligaportal), foxbet.gr (Foxbet), betarades.gr (Betarades), pariurix.com (PariuriX), rekatochklart.com (Rekatochklart), betxpert.com (BetXpert), sportinglife.com (Sporting Life), racingpost.com (Racing Post), squawka.com (Squawka), betfootball.com (Bet Football).
 Ülke veya dil eleme nedeni değildir. Toplu alan-adı hedefli sorgular kullan; her alan adı gerçekten aranmış olmalı. Sadece ilgili aday yazıları aç, izinli gerçek içeriği oku. Temiz futbol bölümlerini tercih et; tahmin/oran/haber ayrıştırılamıyorsa kullanma, maruziyeti kaydet. Sorgu, sonuç, varsa yazı URL/yazar/yayın zamanı ve katkı tek HUMAN kaydında olsun. FOUND / NOT_FOUND / INACCESSIBLE / EXCLUDED; NOVEL_LEAD / DUPLICATE_ONLY / NO_USABLE_CONTENT / EXCLUDED. Gerçek arama sonrası hiç kullanılabilir yazı bulunmaması tek başına engel değildir. Özgün iddiaları bağımsız DATA ve karşı kanıtla sına; yazarın görüşü tek başına kanıt değildir. Yanlılık/çapa riskini belirt. Kaynak ayrıntısı: policies/analyst_human_sources.md, prompts/analyst_human_extract.md.
 
 ## 5. Otonom araştırma ve karşı test
@@ -38,7 +38,7 @@ Araştırırken tek çalışma defteri tut. DATA aşamasından itibaren her veri
 - RESEARCH DEPTH: özgün HUMAN katkısı, otonom sorular, iki yönlü eşleşme, gerçek karşı testler.
 - RESEARCH CLOSURE: araştırılabilir önemli iş ve kritik açık yok; gerçek sınırlamalar/alternatifler açık. Tamamlanmamış önemli iş READY değildir. Gerçekten tüketilmiş kritik olmayan eksik ve yeterli kanıt varsa gerekçeli READY olabilir.
 
-Rapor aşamasında schemas/analyst_report.md ve tools/validate_analyst_v3.mjs dosyalarını güncel sürümden al; aynı oturumda aynı sürümü yeniden indirme. ledger-v1, protocol_revision 3.0.7. data_units/data_attempts ortak katalogları, aynı kapsam grupları, HUMAN arama+katkısı tek kayıt, Q/C ve bulgu referansları. Eski genişletilmiş JSON'u üretme. Tek eksiksiz .md: özlü Türkçe futbol sentezi, gerekli istatistikler bir kez, tam kompakt audit, gerçek validator sonucu ve 1–3 somut İngilizce bulgu. 1/X/2, Üst/Alt 2.5 ve KG Var/Yok ile ilgili mekanizmaları seçmeden kapsa. Gereksiz tekrar/uzun durum mesajı yok. Zorunlu kanıtı silme.
+Rapor aşamasında schemas/analyst_report.md ve tools/validate_analyst_v3.mjs dosyalarını güncel sürümden al; aynı oturumda aynı sürümü yeniden indirme. ledger-v1, protocol_revision 3.0.8. data_units/data_attempts ortak katalogları, aynı kapsam grupları, HUMAN arama+katkısı tek kayıt, Q/C ve bulgu referansları. Eski genişletilmiş JSON'u üretme. Tek eksiksiz .md: özlü Türkçe futbol sentezi, gerekli istatistikler bir kez, tam kompakt audit, gerçek validator sonucu ve 1–3 somut İngilizce bulgu. 1/X/2, Üst/Alt 2.5 ve KG Var/Yok ile ilgili mekanizmaları seçmeden kapsa. Gereksiz tekrar/uzun durum mesajı yok. Zorunlu kanıtı silme.
 Gerçek tamamlanmış audit üzerinde validator çalıştır (Node CLI veya aynı fonksiyonun izinli JS ortamında fiilen yürütülmesi). Hataları aynı maçta düzelt, değişiklik varsa yeniden çalıştır. Gerçek PASS ve anlamsal/içerik doğruluğu ayrı ve zorunlu; yalnız yapısal PASS yetmez. Rapor şemasına uygunluk ve üç kalite kapısı değişmedi. Ayrıntılı metodoloji referansı: methods/analyst_methodology.md. Süre hedefi sonlandırma gerekçesi değildir.
 
 ## 7. Teslim ve sıradaki maç
