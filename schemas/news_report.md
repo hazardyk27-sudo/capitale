@@ -1,112 +1,23 @@
-# NEWS MATCH IMPACT — Report Schema
-
+# NEWS v2.0 — Evidence report and audit
 Status: CANONICAL
-Version: 1.6
-Supersedes: NEWS report schema v1.3 for new runs
+Version: 2.0
+New runs only; v1.6 archived reports unchanged.
 
-```yaml
-role: NEWS
-run_id: <existing verified routing research run UUID or null; never invent>
-fixture_uid: <verified neutral fixture identity or null>
-methodology_version: news-match-impact-v1.6
-match_id: <match ID or explicitly unknown>
-match: <home> vs <away>
-competition: <verified competition>
-kickoff_utc: <timestamp>
-as_of_utc: <timestamp>
-run_at_utc: <timestamp>
-user_preferences: [<zero or more user supplied selections>]
+## Turkish Markdown report
+Fixture, competition, kickoff, AS_OF, status and both-team coverage; distinct material developments H# (fact, source, certainty, relevance); autonomous questions, follow-up searches, counterevidence and corrections; conditional effects on football/preparation with mitigation and uncertainty; excluded routine content and coverage limits; research closure; complete source/search ledger and JSON audit; actual structural gate result; 1–3 English display findings. No numeric evaluation, pick or forecast. Verified event and possible impact explicitly separate. No forced minimum news count.
 
-independence:
-  odds_or_betting_markets_used: false
-  smartxflow_used: false
-  polymarket_used: false
-  other_department_reports_used: false
-  data_after_as_of_used: false
-
-news_scan:
-  manager: <COVERED|NO_EVIDENCE|LIMITED>
-  fans_and_stadium: <COVERED|NO_EVIDENCE|LIMITED>
-  local_press: <COVERED|NO_EVIDENCE|LIMITED>
-  players: <COVERED|NO_EVIDENCE|LIMITED>
-  match_stakes: <COVERED|NO_EVIDENCE|LIMITED>
-  club_off_field: <COVERED|NO_EVIDENCE|LIMITED>
-  squad: <COVERED|NO_EVIDENCE|LIMITED>
-  preparation: <COVERED|NO_EVIDENCE|LIMITED>
-
-match_atmosphere: <short source-based Turkish explanation for both clubs>
-
-stories:
-  - id: H1
-    topic: <one or more of eight news families>
-    club: <HOME|AWAY|BOTH>
-    verified_news: <sourced fact; no invented detail>
-    plausible_match_mechanism: <brief, conditional explanation>
-    evidence_status: <VERIFIED|WELL_SUPPORTED|DISPUTED|NO_EVIDENCE>
-    source_refs:
-      - url: <traceable source URL>
-        tier: <N1|N2|N3|N4>
-        published_at: <timestamp or unknown>
-        observed_at: <timestamp>
-        available_by_as_of: <true|false|unknown>
-    # Exact integers -3..+3; disputed/no-evidence stories must not receive positive/negative points.
-    impact:
-      home_win_1: <integer -3..3>
-      draw_x: <integer -3..3>
-      away_win_2: <integer -3..3>
-      over_2_5: <integer -3..3>
-      under_2_5: <integer -3..3>
-      btts_yes: <integer -3..3>
-      btts_no: <integer -3..3>
-    brief_reason_per_market: <brief explanation, zero where no supported effect>
-
-totals:
-  home_win_1: <sum of stories[*].impact.home_win_1>
-  draw_x: <sum of stories[*].impact.draw_x>
-  away_win_2: <sum of stories[*].impact.away_win_2>
-  over_2_5: <sum of stories[*].impact.over_2_5>
-  under_2_5: <sum of stories[*].impact.under_2_5>
-  btts_yes: <sum of stories[*].impact.btts_yes>
-  btts_no: <sum of stories[*].impact.btts_no>
-
-source_search_log:
-  - team: <HOME|AWAY|BOTH>
-    news_family: <existing news family>
-    outlet_or_domain: <actual source>
-    query_or_target_url: <actual query or URL>
-    search_language: <actual language>
-    retrieved_at: <actual timestamp>
-    status: <FOUND|NO_MATERIAL_NEWS|NOT_FOUND|INACCESSIBLE|EXCLUDED>
-    reason: <actual result or limitation>
-evidence_gaps: [<relevant uncovered or limited topics>]
-user_preference_news_assessment: <short comparison to totals; no win probability>
-scoring_status: UNCALIBRATED_ORDINAL_NEWS_IMPACT
-no_betting_recommendation: true
-
-post_match_review: <absent in original pre-match report; separate record after kickoff>
-```
-
-## Owner-approved v1.6 output addition — for user-supplied preferences
-
-Add an item in `user_preference_news_support_scores_100` for EACH user-supplied selection only, with `preference`, `raw_news_total` (matching signed TOTAL), `score_100` (independently judged exact integer 0–100 using credible news quality, causal strength, materiality, mitigation and counterevidence), `brief_score_reason`, `evidence_label` (`SUPPORTED`, `OPPOSED`, `CANCELLED_EFFECTS` or `INSUFFICIENT_EVIDENCE`), and `is_win_probability: false`. NEVER compute score_100 using 50+10*T, fixed ten-point increments or automatic rounding to tens. Insufficient evidence: 50/100 as explicitly labeled placeholder, not a real assessment. Show the /100 solely in NEWS sonucu; the seven raw totals and H# story tables remain unchanged. No new **scored or research** output section. In the owner-approved sequential manual handoff, after the complete canonical five-part report append only the short NEWS → FINAL selection list and verified staging-status checklist from `prompts/manual_report_chain.md`; these are presentation-only.
-
-## Enforced rules
-
-0. The **match-impact relevance gate** runs BEFORE making any H# event row. Routine supporter bus logistics, normal fan gatherings, fan-zone promotion, generic social optimism and ordinary ticket/sellout notices are NON-MATERIAL and MUST NOT enter `stories` or produce 1X2/goal/BTTS points. A concrete exceptional stadium/preparation effect must be verified before a fan item can become H#. Search the fan category regardless, and mention `NO_MATERIAL_FAN_NEWS` in evidence gaps when applicable.
-
-
-1. Each H# row refers to exactly one independent news story/underlying cause. Repeat stories across publications are clustered, not double counted.
-2. Output all **seven** columns for every story and seven totals for every match, even when user supplies only one market selection or none.
-3. Individual integers strictly range from -3 to +3. Summary and table TOTAL fields must equal signed arithmetic sum with no normalizing multiplier or hidden weights.
-4. `over_2_5 + under_2_5 = 0` and `btts_yes + btts_no = 0` for each story as complementary impact directions; when no credible goal-market link, each pair is 0/0. The three 1X2 columns have no forced zero-sum restriction.
-5. `NO_EVIDENCE` is not a verified neutral fact. Keep gaps explicit. If no credible scored news exists, seven totals are 0 with declared `INSUFFICIENT NEWS EVIDENCE`, not balanced prediction or 50% probability.
-6. Retain AS_OF, source policy, both-team research, verification and independent NEWS isolation. Do not use market/odds/team statistical department inputs, or later results to modify the pre-match report.
-7. Present the exact five-part **research** output specified in `roles/news.md` and `prompts/news_start.md`; do not display raw YAML unless explicitly requested. After the full report only, append the manual-chain NEWS summary and verified FINAL staging checklist; these are not new scored/research sections.
-8. Legacy v1.2/v1.3 numeric-confidence and three-axis-only output models are SUPERSEDED for new v1.6 runs; the only approved /100 addition is the individually judged user-selection NEWS support number documented above.
-
-## Manual-chain report envelope (metadata only)
-
-The `run_id` and `fixture_uid` fields are neutral routing metadata, not SXF/ANALYST evidence. NEWS receives only neutral fixtures/selections from ANALYST, performs a separate NEWS-AS_OF pre-match research cut, then archives its full report when Commander is available. The closing NEWS → FINAL list and archive-state checklist are presentation-only and must not alter any H# score, evidence rubric or seven market totals.
-
-## Source directory evidence notes (2026-11-24)
-Apply `policies/news_source_directory.md`. Include actual search/coverage log and original article attribution in the full report's evidence and coverage notes, not an additional scored research section. For material sources record article URL, author/issuing body where identifiable, publication/update time, provenance and precise supported fact. Unavailable outlets or no relevant news after actual searches are disclosed gaps, not invented H# stories. No changes to scores or five-part report layout.
+## Required JSON audit
+- role: "NEWS"; methodology_version: "news-v2.0-canonical"; status: READY|PARTIAL|BLOCKED; evidence_status: MATERIAL_NEWS|NO_MATERIAL_NEWS|LIMITED.
+- fixture_uid, match, competition, home_team, away_team, home_country, away_country, kickoff_utc, as_of_utc; startup_verified, no_prohibited_inputs, no_predictions booleans; blocked_reasons:[].
+- sources:[{id,url,issuer,published_at,observed_at,retrieved_at,tier:N1|N2|N3|N4,origin,claim}]. published_at/observed_at <= AS_OF; unknown publication time is not eligible as verified material evidence (record as search limitation). origin identifies actual original reporting, not just repost domain. At least one real permitted source per club for READY, adequate coverage assessed semantically.
+- searches:[{id,team:HOME|AWAY|BOTH,family,provider,query_or_url,language,retrieved_at,status:FOUND|NO_MATERIAL_NEWS|NOT_FOUND|INACCESSIBLE|EXCLUDED,reason,evidence_ids:[]}]. FOUND needs source evidence. Searches after cutoff only for historical retrieval of demonstrably pre-cutoff evidence; do not claim contemporaneous search. Families as in coverage below.
+- coverage:[{team:HOME|AWAY,family:MANAGER|FANS_STADIUM|LOCAL_PRESS|PLAYERS|MATCH_STAKES|CLUB_OFF_FIELD|SQUAD|PREPARATION,status:COVERED|NO_MATERIAL_NEWS|LIMITED|NOT_SEARCHED,search_ids:[],reason,alternative_reason,critical_gap:boolean}]. Exactly 16 team/family rows. Actual search links mandatory, both teams' permitted evidence represented. LIMITED requires alternate path or concrete reason none appropriate. NOT_SEARCHED/critical gap forbid READY.
+- exposure_log:[{source,category,mitigation}] only incidental prohibited content categories, not content.
+- inquiries:[{id,trigger,question,alternative,search_ids:[],evidence_ids:[],result,uncertainty}]. Actual follow-up including counterevidence. No forced quota.
+- stories:[{id,team:HOME|AWAY|BOTH,families:[],cause_key,fact,fact_status:VERIFIED|WELL_SUPPORTED|DISPUTED|UNRESOLVED,evidence_ids:[],relevance,mechanism,mechanism_status:SUPPORTED|PLAUSIBLE|UNKNOWN,mitigation,counterevidence,counter_search_ids:[],inquiry_ids:[],limitations}]. One underlying cause only; factual status VERIFIED/WELL_SUPPORTED needs N1/N2 evidence. Distinguish possible effect and condition from fact; disputed/unresolved material claims never verified display findings. Each included story requires actual inquiry and counter-search. 
+- rejected_leads:[{description,reason,search_ids:[]}]; no fabricated rejected leads.
+- leads:[{id,trigger,question,material:boolean,critical:boolean,status:RESOLVED|EXHAUSTED|OPEN,inquiry_ids:[],reason,next_action}]. Material leads linked to actual inquiry; OPEN material and critical unresolved block READY.
+- closure:{coverage_review,depth_review,remaining_work_review,why_stop,material_work_remaining:boolean,critical_gap_remaining:boolean,stop_type:EVIDENCE_SUFFICIENT|NONCRITICAL_LIMIT|SESSION_LIMIT|BATCH_LIMIT}; READY only first two and both booleans false. 
+- limitations:[]; no_material_news_reason (required when no verified/well-supported story); software_detail_bullets_en:1–3 truthful English findings/coverage statements.
+- Routing run_id/selection/market only in separate post-freeze delivery envelope. No support_score, score, predictions or preferences in research audit. N null on site.
+Actual structural validator tools/validate_news_v2.mjs must PASS plus factual/semantic review for READY. PARTIAL/BLOCKED retain work and next actions; no completed site save. If no verified material news, a truthful coverage bullet and real sources supporting the scope (not invented news) satisfy existing editor requirements. Save full original Markdown, verify ID/version and download file.
