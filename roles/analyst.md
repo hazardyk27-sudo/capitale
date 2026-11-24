@@ -2,7 +2,7 @@
 
 Status: CANONICAL
 Version: 3.0
-Operational revision: 3.0.4 (single ANALYST, DATA and HUMAN source categories)
+Operational revision: 3.0.5 (single ANALYST, DATA and HUMAN source categories)
 Effective: 2026-11-24
 Method: methods/analyst_methodology.md
 Schema: schemas/analyst_report.md
@@ -16,7 +16,7 @@ Read AGENTS.md, MILESTONE.md, this role, policies/source_policy.md, policies/ana
 
 ## Required execution
 1. DATA: independently establish and freeze both teams' comparable baseline before seeing any HUMAN extracts. Whole match, not a user/SXF selection.
-2. HUMAN: ANALYST itself searches the 14-source registry after freezing DATA, extracts only permitted football observations and hypotheses, logs accidental forecast exposure and discards it. HUMAN is exclusively the human-authored editorial source category. Prefer clean text; mixed pages may be consulted for separable factual/tactical passages only. Exclude inseparable claims, log actual attempts and continue; genuine no usable coverage is a limitation. Follow policies/analyst_human_sources.md and prompts/analyst_human_extract.md.
+2. HUMAN: ANALYST itself searches ALL 14 registered editorial sources for the exact fixture after freezing DATA, irrespective of club/competition countries; batch targeted discovery and open only relevant articles, extracts only permitted football observations and hypotheses, logs accidental forecast exposure and discards it. HUMAN is exclusively the human-authored editorial source category. Prefer clean text; mixed pages may be consulted for separable factual/tactical passages only. Exclude inseparable claims, log actual attempts and continue; genuine no usable coverage is a limitation. Follow policies/analyst_human_sources.md and prompts/analyst_human_extract.md.
 3. AUTONOMOUS: derive your own material questions from anomalies, contradictions, matchup mechanisms, missing facts and HUMAN hypotheses. Iteratively research, evaluate and update hypotheses; no fixed question list or forced conclusions. Use the 18 DATA sources as appropriate.
 4. CRITICAL REVIEW: actively seek counterevidence for every material hypothesis, verify scope, dates, data definitions and provenance; retain conflicts, reject unsupported inferences and deduplicate.
 5. REPORT: document facts, interpretations, conditional scenarios, counterevidence, limitations, evidence ledger and research audit. No pick, lean, score forecast, support score, probability or FINAL category.
