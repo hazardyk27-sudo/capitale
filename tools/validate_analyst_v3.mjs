@@ -10,10 +10,10 @@ function validate(a) {
   const states=["VERIFIED","PARTIAL","REFUTED","UNRESOLVED"];
   const intl=["Sports Mole","Sportsgambler","SportyTrader","Betfair Blog"];
   const local={"Germany":["Wettbasis"],"Italy":["InfoBetting"],"Spain":["BetBrothers"],"Austria":["Ligaportal"],"France":["RueDesJoueurs"],"Greece":["Foxbet","Betarades"],"Romania":["PariuriX"],"Sweden":["Rekatochklart"],"Denmark":["BetXpert"]};
-  const allowedFields=["role","methodology_version","status","fixture_uid","match","competition","kickoff_utc","as_of_utc","home_team","away_team","competition_country","cross_border","home_country","away_country","startup_verified","isolation_verified","no_prohibited_inputs","no_predictions","blocked_reasons","sources","baseline","human","inquiries","no_inquiry_reason","countertests","findings","baseline_changes","limitations","stop_reason","scenarios","outcome_coverage","software_detail_bullets_en"];
+  const allowedFields=["role","methodology_version","protocol_revision","status","fixture_uid","match","competition","kickoff_utc","as_of_utc","home_team","away_team","competition_country","cross_border","home_country","away_country","startup_verified","isolation_verified","no_prohibited_inputs","no_predictions","blocked_reasons","sources","baseline","human","inquiries","no_inquiry_reason","countertests","findings","baseline_changes","limitations","stop_reason","scenarios","outcome_coverage","software_detail_bullets_en"];
   if(!obj(a))return ["Audit must be an object"];
   for(const k of Object.keys(a))check(allowedFields.includes(k),"Unexpected top-level field: "+k);
-  check(a.role==="ANALYST"&&a.methodology_version==="analyst-v3.0-canonical"&&a.status==="READY","Not a READY v3.0 ANALYST audit");
+  check(a.role==="ANALYST"&&a.methodology_version==="analyst-v3.0-canonical"&&a.protocol_revision==="3.0.1"&&a.status==="READY","Not a READY v3.0 ANALYST audit");
   for(const k of ["fixture_uid","match","competition","home_team","away_team","competition_country","home_country","away_country","stop_reason"])check(str(a[k]),"Missing "+k);
   check(a.home_team!==a.away_team,"Teams must differ");
   check(typeof a.cross_border==="boolean","Missing cross_border flag");
@@ -37,7 +37,14 @@ function validate(a) {
   check(time(b.frozen_at)<=time(h.started_at)&&time(h.started_at)<=cutoff,"Baseline/HUMAN sequence invalid");
   refs(b.home_evidence_ids,"Home baseline",true);refs(b.away_evidence_ids,"Away baseline",true);
   list(b.limitations,"Baseline limitations");
-  check(h.isolation_verified===true&&str(h.extractor_id),"HUMAN extractor isolation missing");
+  check(["SELF_FILTERED","ISOLATED_WORKER"].includes(h.mode),"Missing or invalid HUMAN mode");
+  if(h.mode==="SELF_FILTERED"){
+    check(h.isolation_verified===false&&h.extractor_id===null,"SELF_FILTERED must not claim independent worker");
+    check(arr(a.limitations).some(x=>str(x)&&/anchor|bias|çapa|yanlı|önyargı/i.test(x)),"SELF_FILTERED must disclose residual anchoring risk");
+  }
+  if(h.mode==="ISOLATED_WORKER")check(h.isolation_verified===true&&str(h.extractor_id),"Independent worker identity/isolation missing");
+  check(Array.isArray(h.exposure_log),"Missing HUMAN exposure log");
+  for(const x of arr(h.exposure_log))check(obj(x)&&str(x.source)&&str(x.category)&&str(x.mitigation),"Exposure record missing source/category/mitigation");
   const countries=a.cross_border?[a.home_country,a.away_country]:[a.competition_country];
   const expected=[...new Set([...intl,...countries.flatMap(c=>local[c]||[])])];
   check(Array.isArray(h.applicable_sources)&&new Set(h.applicable_sources).size===expected.length&&h.applicable_sources.length===expected.length&&expected.every(x=>h.applicable_sources.includes(x)),"Incorrect HUMAN applicable sources");
