@@ -53,11 +53,13 @@ Read:
 
 Do not invent missing canonical thresholds for roles marked DRAFT.
 
-ANALYST v3.0.4 operational correction: one ANALYST performs all research stages; HUMAN is the 14-source human-authored editorial category, not an agent. DATA starts before delivery/validator availability checks; all actual source attempts, independent counter-tests and structural validation before READY remain mandatory.
-ANALYST v3.0.4 adds three research-quality gates and an evidence-linked audit. Existing source categories and per-fixture Markdown/Software delivery unchanged.
+ANALYST v3.0.5 operational correction: one ANALYST performs all research stages; HUMAN is the 14-source human-authored editorial category, not an agent. DATA starts before delivery/validator availability checks; all actual source attempts, independent counter-tests and structural validation before READY remain mandatory.
+ANALYST v3.0.5 adds three research-quality gates and an evidence-linked audit. Existing source categories and per-fixture Markdown/Software delivery unchanged.
 
 NEWS v2.0: autonomous two-team current-news evidence, no scores, quality gates and downloadable complete Markdown plus short factual findings. Source directory retained. See roles/news.md and methods/news_methodology.md.
 
-ANALYST v3.0.4 optimizes retrieval, evidence reuse, shared actual countertests and incremental audit/report generation; retains all three v3.0.3 quality gates and full original report. Indicative 7–10 minute target not yet measured, not a deadline.
+ANALYST v3.0.5 optimizes retrieval, evidence reuse, shared actual countertests and incremental audit/report generation; retains all three v3.0.3 quality gates and full original report. Indicative 7–10 minute target not yet measured, not a deadline.
 
 NEWS v2.0.1 operational acceptance: single-fixture lock, actual source/search receipts, five source routes and 16 coverage cells, separate follow-up/counterevidence, full Markdown gate and explicit semantic review. No moving past incomplete research without owner permission.
+
+ANALYST v3.0.5: all 14 HUMAN domains eligible for every fixture; batch targeted discovery, inspect only relevant articles. Country is not a filter.
