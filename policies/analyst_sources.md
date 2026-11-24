@@ -1,7 +1,7 @@
 # ANALYST Source Policy
 
 Status: CANONICAL
-Version: 1.0
+Version: 1.1
 
 ## Allowed source classes
 
@@ -24,6 +24,10 @@ Do not use current injury/news reporting, bookmaker odds, betting-market comment
 ## Comparability
 
 Default to same-season official matches. When a manager/system/competition context makes older matches structurally incomparable, split the sample rather than averaging across the break.
+
+## Registered DATA sources — active reference (2026-11-24)
+
+Read `policies/analyst_data_sources.md` at startup: the owner-approved ordered directory of 18 data sources and data-need routing. Use these references for permitted football statistics within A1/A2/A3, with official records prioritized for official facts. This is not a closed whitelist or a new analytical methodology. All source prohibitions, AS_OF, coverage and provider-provenance controls remain in force.
 
 ## Registered human editorial sources — reference only (2026-11-24)
 
