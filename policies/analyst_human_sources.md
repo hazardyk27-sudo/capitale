@@ -1,7 +1,7 @@
 # CAPITALE — ANALYST Human Editorial Source Registry
 
-Status: CANONICAL — v3.0.1 operational anti-anchoring protocol; single-agent default.
-Version: 1.1
+Status: CANONICAL — v3.0.2 operational anti-anchoring protocol; single ANALYST, source category only.
+Version: 1.2
 Scope: supplementary human-authored prematch research, not a predictive authority.
 
 ## Saved source shortlist — 14 sources (4 international + 10 local)
@@ -34,7 +34,7 @@ Scope: supplementary human-authored prematch research, not a predictive authorit
 
 - This is the single registry for the 14 owner-selected editorial sources. The four international sources apply to any fixture; choose local sources by the domestic competition country (for cross-border cups, both teams' domestic countries). Greece has two registered local sources. Other countries have no registered local source in this shortlist.
 - Search the registered site's domain with both team names (including local spellings), competition and fixture date in its native language. Locate the specific pre-match article, not just the home page. Record FOUND / NOT_FOUND / INACCESSIBLE / EXCLUDED with article URL, author, publication timestamp and reasons. Use public material only; no paywall bypass.
-- First freeze the independent statistical baseline, then the same ANALYST searches the four international and applicable local sources. Prefer filtered/clean football sections. Mixed pages may be consulted only for separable permitted football observations; ignore and log accidental exposure without reproducing forecasts or using them. Exclude inseparable claims. Missing coverage is not evidence against a team. No separate worker required.
+- First freeze the independent statistical baseline, then the same ANALYST searches the four international and applicable local sources. Prefer filtered/clean football sections. Mixed pages may be consulted only for separable permitted football observations; ignore and log accidental exposure without reproducing forecasts or using them. Exclude inseparable claims. Missing coverage is not evidence against a team. HUMAN is not a department or agent.
 - No source ranking is a reliability score; verify each claim. Exclude AI-generated predictions and unverified human authorship from the human-editorial category. Editorial material supplements rather than replaces A1/A2 primary statistical evidence.
 
 Access, authorship, original provenance, publication time, coverage, and usage terms must be checked per article. Inclusion here is not an assertion of universal free access, accuracy, independence or predictive skill.
@@ -42,7 +42,7 @@ Access, authorship, original provenance, publication time, coverage, and usage t
 ## Mandatory anti-anchoring protocol
 
 1. Independent baseline: ANALYST completes and freezes its own allowed statistical and tactical evidence and initial factual interpretation before receiving editorial extracts. Record as_of and baseline hash.
-2. Claim filtering: default SELF_FILTERED by the same ANALYST after baseline freeze. Remove explicit and implicit recommendations, predicted scores, betting odds/probabilities, confidence, market rankings and promotional content from the evidence and report. Prefer retrieval that omits such content; if encountered, log source/category and mitigation, not the prohibited text. A real isolated worker is optional (ISOLATED_WORKER), not a prerequisite. Self-filtering cannot guarantee blindness; report residual anchoring risk.
+2. Claim filtering: by ANALYST after baseline freeze. Remove explicit and implicit recommendations, predicted scores, betting odds/probabilities, confidence, market rankings and promotional content from the evidence and report. Prefer retrieval that omits such content; if encountered, log source/category and mitigation, not the prohibited text. Reading editorial material may introduce bias; report residual anchoring risk.
 3. Source separation: current news, injuries, squad availability and rumors must not be used by ANALYST; any such material is reserved for NEWS, subject to its own independent approved policy. No SXF or POLY material. Preserve source isolation.
 4. For each claim record source URL, author if available, publication/update time, claim type (observed fact or editorial interpretation), supporting data, underlying provenance and uncertainty. Reject future/post-kickoff information. Check usage terms; no paywall bypass.
 5. Independently verify factual claims from allowed football sources. Treat unverified tactical interpretation as a hypothesis, not a verified fact. Seek counterevidence and explain limitations. No automatic agreement with the author.
@@ -51,4 +51,4 @@ Access, authorship, original provenance, publication time, coverage, and usage t
 8. FINAL receives verified findings, clearly marked interpretations, limitations and contradictions, not third-party picks or scores. ANALYST v3.0 emits no score, pick or forecast; NEWS and FINAL methods otherwise unchanged.
 9. Test baseline-only versus blinded editorial augmentation on timestamped historical matches, with frozen outputs and separate settlement; measure incremental value, contamination, coverage and reproducibility as prospective evaluation; do not claim a performance gain before validation.
 
-This registry operates under AGENTS.md, policies/analyst_sources.md and v3.0.1 methodology. Claim-extraction protocol: prompts/analyst_human_extract.md. Missing separate worker is never a blocker. Record every actual applicable source attempt; exclude contaminated/unsupported claims and continue, with explicit limitations. No automatic worker deployment or blindness asserted.
+This registry operates under AGENTS.md, policies/analyst_sources.md and v3.0.2 methodology. Claim-extraction protocol: prompts/analyst_human_extract.md. HUMAN is a source registry only. Record every actual applicable source attempt; exclude contaminated/unsupported claims and continue, with explicit limitations. No claim of complete immunity to editorial bias.
