@@ -50,6 +50,7 @@ function validate(a) {
     if(!obj(t)){errors.push("Invalid HUMAN attempt");continue;}
     check(expected.includes(t.source)&&!attempted.has(t.source),"Unexpected/duplicate HUMAN attempt "+t.source);attempted.add(t.source);
     check(["FOUND","NOT_FOUND","INACCESSIBLE","EXCLUDED"].includes(t.status)&&str(t.reason),"Invalid HUMAN attempt status/reason");
+    check(str(t.query_or_url),"Missing actual HUMAN discovery query/URL: "+t.source);
     if(t.status==="FOUND"){found.add(t.source);check(str(t.author)&&/^https?:\/\/\S+$/i.test(t.article_url||"")&&time(t.published_at)<=cutoff,"FOUND missing author/URL/pre-cutoff date");}
   }
   check(expected.every(x=>attempted.has(x)),"HUMAN discovery incomplete");
