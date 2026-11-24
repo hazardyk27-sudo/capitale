@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Structural fail-closed checker. Not a verifier of factual truth, source access or isolation.
 import { readFileSync } from 'node:fs';
-function validate(a) {
+function validateExpanded(a) {
   const errors=[], check=(condition,msg)=>{if(!condition)errors.push(msg);};
   const obj=v=>v!==null&&typeof v==="object"&&!Array.isArray(v);
   const str=v=>typeof v==="string"&&v.trim().length>0;
@@ -13,7 +13,7 @@ function validate(a) {
   const allowedFields=["role","methodology_version","protocol_revision","status","fixture_uid","match","competition","kickoff_utc","as_of_utc","home_team","away_team","competition_country","cross_border","home_country","away_country","startup_verified","isolation_verified","no_prohibited_inputs","no_predictions","blocked_reasons","sources","baseline","human","inquiries","no_inquiry_reason","countertests","findings","quality","baseline_changes","limitations","stop_reason","scenarios","outcome_coverage","software_detail_bullets_en"];
   if(!obj(a))return ["Audit must be an object"];
   for(const k of Object.keys(a))check(allowedFields.includes(k),"Unexpected top-level field: "+k);
-  check(a.role==="ANALYST"&&a.methodology_version==="analyst-v3.0-canonical"&&a.protocol_revision==="3.0.5"&&a.status==="READY","Not a READY v3.0 ANALYST audit");
+  check(a.role==="ANALYST"&&a.methodology_version==="analyst-v3.0-canonical"&&a.protocol_revision==="3.0.6"&&a.status==="READY","Not a READY v3.0 ANALYST audit");
   for(const k of ["fixture_uid","match","competition","home_team","away_team","competition_country","home_country","away_country","stop_reason"])check(str(a[k]),"Missing "+k);
   check(a.home_team!==a.away_team,"Teams must differ");
   check(typeof a.cross_border==="boolean","Missing cross_border flag");
@@ -79,7 +79,7 @@ function validate(a) {
   const outcomes=["1","X","2","OVER_2_5","UNDER_2_5","BTTS_YES","BTTS_NO"];
   check(Array.isArray(a.outcome_coverage)&&a.outcome_coverage.length===7&&outcomes.every(x=>a.outcome_coverage.includes(x)),"Incomplete outcome coverage");
   list(a.software_detail_bullets_en,"Display findings",1);check(arr(a.software_detail_bullets_en).length<=3,"Too many display findings");
-  // v3.0.5 research-quality records. Structural only; semantic review remains mandatory.
+  // v3.0.6 expanded research-quality records. Structural only; semantic review remains mandatory.
   const quality=obj(a.quality)?a.quality:{};
   check(obj(a.quality),"Missing research quality audit");
   const areas=["SEASON_RESULTS","RECENT_FORM","VENUE","OPPONENT_CONTEXT","UNDERLYING"];
@@ -168,6 +168,129 @@ function validate(a) {
   walk(a,"audit");
   return errors;
 }
+// Compact ledger v1: expand references in memory; never ask ANALYST to write the expanded audit.
+// The existing quality validator runs unchanged in substance on the expanded view.
+function expandLedger(a) {
+  const errors=[],check=(ok,msg)=>{if(!ok)errors.push(msg);};
+  const obj=v=>v!==null&&typeof v==="object"&&!Array.isArray(v);
+  const arr=v=>Array.isArray(v)?v:[];
+  const str=v=>typeof v==="string"&&v.trim().length>0;
+  const has=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
+  const keys=(o,allowed,label)=>{if(!obj(o)){errors.push("Invalid "+label);return false;}for(const k of Object.keys(o))check(allowed.includes(k),label+" unexpected field "+k);return true;};
+  const index=(v,label)=>{const m=new Map();check(Array.isArray(v),label+" must be an array");for(const x of arr(v)){if(!obj(x)||!str(x.id)||m.has(x.id)){errors.push(label+" invalid/duplicate ID");continue;}m.set(x.id,x);}return m;};
+  const ref=(m,id,label)=>{const x=m.get(id);check(!!x,label+" unknown ID "+id);return x||{};};
+  const ids=(v,label,min=0)=>{check(Array.isArray(v)&&v.length>=min&&v.every(str)&&new Set(v).size===v.length,label+" invalid IDs");return arr(v);};
+  if(!obj(a)||a.report_format!=="ledger-v1")return {errors:["New ANALYST reports require report_format ledger-v1"],expanded:null};
+  const forbidden=/^(?:score|support_score|a_score|probability|win_probability|prediction|predicted_score|recommendation|lean|odds|selection|market|run_id|confidence_score|betting_pick|final_category)$/i;
+  const walk=(v,p)=>{if(Array.isArray(v))v.forEach((x,i)=>walk(x,p+"["+i+"]"));else if(obj(v))for(const [k,x] of Object.entries(v)){check(!forbidden.test(k),"Forbidden compact field "+p+"."+k);walk(x,p+"."+k);}};
+  walk(a,"audit");
+  const {report_format,data_units,data_attempts,...rest}=a;
+  const out=JSON.parse(JSON.stringify(rest));
+  const um=index(data_units,"DATA unit catalog"),am=index(data_attempts,"DATA retrieval ledger"),sm=index(a.sources,"Sources"),qm=index(a.inquiries,"Inquiries");
+  const labels=new Set(),usedU=new Set(),usedA=new Set();
+  for(const u of um.values()){
+    keys(u,["id","team","label"],"DATA catalog unit");
+    check(["HOME","AWAY"].includes(u.team)&&str(u.label),"Invalid DATA catalog unit "+u.id);
+    const key=u.team+"|"+u.label;check(!labels.has(key),"Duplicate DATA catalog label "+key);labels.add(key);
+  }
+  for(const t of am.values()){
+    keys(t,["id","provider","query_or_url","source_id","status","reason"],"DATA retrieval");
+    check(str(t.provider)&&str(t.reason)&&["FOUND","NOT_FOUND","INACCESSIBLE","UNAVAILABLE"].includes(t.status),"Invalid DATA retrieval "+t.id);
+    check(has(t,"query_or_url")!==has(t,"source_id"),"DATA retrieval needs one query/URL or source reference "+t.id);
+    if(has(t,"source_id"))check(str(ref(sm,t.source_id,"DATA retrieval source").url),"DATA retrieval source URL missing "+t.id);
+    else check(str(t.query_or_url),"DATA retrieval query missing "+t.id);
+  }
+  const q=out.quality;
+  if(!obj(q)){errors.push("Missing compact quality audit");return {errors,expanded:null};}
+  keys(q,["data_checks","matchup_checks","leads","closure"],"Compact quality");
+  check(Array.isArray(q.data_checks),"Missing compact data checks");
+  q.data_checks=arr(q.data_checks).map(d=>{
+    if(!keys(d,["id","team","area","metric","scope","scope_reason","material","critical","unit_type","groups","gap_reason","alternative_reason"],"Compact DATA check"))return {};
+    const {groups,...checkFields}=d,units=[],attemptMap=new Map(),seen=new Set();
+    check(Array.isArray(groups)&&groups.length>0,"Missing DATA groups "+d.id);
+    for(const g of arr(groups)){
+      if(!keys(g,["unit_ids","status","evidence_ids","attempt_ids"],"DATA group"))continue;
+      const uids=ids(g.unit_ids,"DATA group units "+d.id,1),aids=ids(g.attempt_ids,"DATA group attempts "+d.id);
+      ids(g.evidence_ids,"DATA group evidence "+d.id);
+      for(const id of uids){
+        const u=ref(um,id,"DATA unit");usedU.add(id);
+        check(u.team===d.team,"DATA unit team mismatch "+id);
+        check(!seen.has(id),"Duplicate unit in DATA check "+d.id+"/"+id);seen.add(id);
+        units.push({id:u.label,status:g.status,evidence_ids:g.evidence_ids});
+        for(const aid of aids){
+          const t=ref(am,aid,"DATA attempt");usedA.add(aid);
+          if(!attemptMap.has(aid))attemptMap.set(aid,{provider:t.provider,query_or_url:has(t,"source_id")?ref(sm,t.source_id,"DATA source").url:t.query_or_url,status:t.status,reason:t.reason,unit_ids:[]});
+          attemptMap.get(aid).unit_ids.push(u.label);
+        }
+      }
+    }
+    return {...checkFields,units,attempts:[...attemptMap.values()]};
+  });
+  for(const id of um.keys())check(usedU.has(id),"Unreferenced DATA catalog unit "+id);
+  for(const id of am.keys())check(usedA.has(id),"Unreferenced DATA retrieval "+id);
+  // Source discovery and contribution are authored together, not in two separate ledgers.
+  const h=out.human;
+  if(keys(h,["exposure_log","started_at","attempts","claims","no_coverage_reason"],"Compact HUMAN")){
+    check(Array.isArray(h.attempts),"Missing HUMAN attempts");
+    q.human_contributions=[];h.applicable_sources=[];
+    h.attempts=arr(h.attempts).map(t=>{
+      if(!keys(t,["source","query_or_url","status","reason","article_url","author","published_at","contribution"],"Compact HUMAN attempt"))return {};
+      const {contribution,...attempt}=t;
+      h.applicable_sources.push(t.source);
+      if(keys(contribution,["kind","assessment","inquiry_ids"],"HUMAN contribution"))q.human_contributions.push({source:t.source,...contribution});
+      return attempt;
+    });
+  }
+  // The inquiry is the single authored research record. Views refer to it explicitly.
+  check(Array.isArray(out.findings),"Missing compact findings");
+  out.findings=arr(out.findings).map(f=>{
+    if(!keys(f,["id","inquiry_id","fact","interpretation","evidence_ids","countertest_id","status"],"Compact finding"))return {};
+    const {inquiry_id,...x}=f;
+    if(has(f,"inquiry_id")){
+      const i=ref(qm,inquiry_id,"Finding inquiry");
+      return {fact:i.result,interpretation:i.hypothesis,evidence_ids:i.evidence_ids,countertest_id:i.countertest_id,...x};
+    }
+    return x;
+  });
+  check(Array.isArray(q.matchup_checks),"Missing compact matchup checks");
+  q.matchup_checks=arr(q.matchup_checks).map(m=>{
+    if(!keys(m,["direction","from_inquiry","mechanism","comparability","actions","evidence_ids","inquiry_ids","countertest_id","status","limitations"],"Compact matchup"))return {};
+    const {from_inquiry,...x}=m;
+    if(has(m,"from_inquiry")){
+      const i=ref(qm,from_inquiry,"Matchup inquiry");
+      check(arr(m.inquiry_ids).includes(from_inquiry),"Matchup origin not in inquiry IDs");
+      return {mechanism:i.result,actions:i.actions,evidence_ids:i.evidence_ids,countertest_id:i.countertest_id,limitations:i.uncertainty,...x};
+    }
+    return x;
+  });
+  check(Array.isArray(q.leads),"Missing compact leads");
+  q.leads=arr(q.leads).map(l=>{
+    if(!keys(l,["id","from_inquiry","trigger","question","material","critical","status","inquiry_ids","reason","reason_from_result","next_action"],"Compact lead"))return {};
+    const {from_inquiry,reason_from_result,...x}=l;
+    if(has(l,"from_inquiry")){
+      const i=ref(qm,from_inquiry,"Lead inquiry");
+      check(arr(l.inquiry_ids).includes(from_inquiry),"Lead origin not in inquiry IDs");
+      if(has(l,"reason_from_result"))check(reason_from_result===true&&l.status==="RESOLVED"&&!has(l,"reason"),"Lead result reuse only for resolved lead with no separate reason");
+      return {trigger:i.trigger,question:i.question,...(reason_from_result===true?{reason:i.result}:{}),...x};
+    }
+    check(!has(l,"reason_from_result"),"Lead result reuse requires inquiry");
+    return x;
+  });
+  if(keys(out.baseline,["frozen_at","snapshot_id","home_evidence_ids","away_evidence_ids","summary","limitation_indices"],"Compact baseline")){
+    const b=out.baseline,li=b.limitation_indices;
+    check(Array.isArray(li)&&new Set(li).size===li.length&&li.every(i=>Number.isInteger(i)&&i>=0&&i<arr(out.limitations).length),"Invalid baseline limitation references");
+    b.limitations=arr(li).map(i=>arr(out.limitations)[i]);delete b.limitation_indices;
+  }
+  return {errors,expanded:out};
+}
+
+function validate(a) {
+  try {
+    const {errors,expanded}=expandLedger(a);
+    return [...errors,...(expanded?validateExpanded(expanded):[])];
+  } catch(e){return ["Invalid compact audit: "+e.message];}
+}
+
 try {
   if(process.argv.length!==3) throw new Error('Usage: node tools/validate_analyst_v3.mjs audit.json');
   const errors=validate(JSON.parse(readFileSync(process.argv[2],'utf8')));
