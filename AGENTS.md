@@ -4,7 +4,7 @@ Status: CANONICAL
 Version: 1.26
 Last updated: 2026-11-24
 
-> **CURRENT DEFAULT — REAL BROWSER UI 2026-11-20:** SXF → ANALYST → NEWS → FINAL; each specialist **opens its own authenticated /admin/software?agent=<role> page, enters its COMPLETE report in its OWN on-page editor and clicks Save**. FINAL reads the three full original reports visually on the site and saves its final decision in a separate FINAL box. The old CLI report uploader, JSON API and private inbox are NOT the default agent workflow. Live SXF FINAL_SIGNAL source sync still runs automatically. At least 1–3 verified SXF findings per match/selection; source isolation intact. Login and real browser-control capability are mandatory; never claim clicks/verified site save if browser interaction was unavailable. See `prompts/manual_report_chain.md` v4.9.
+> **CURRENT DEFAULT — REAL BROWSER UI 2026-11-20:** SXF → ANALYST → NEWS → FINAL; each specialist **opens its own authenticated /admin/software?agent=<role> page, enters its COMPLETE report in its OWN on-page editor and clicks Save**. FINAL reads the three full original reports visually on the site and saves its final decision in a separate FINAL box. The old CLI report uploader, JSON API and private inbox are NOT the default agent workflow. Live SXF FINAL_SIGNAL source sync still runs automatically. At least 1–3 verified SXF findings per match/selection; source isolation intact. Login and real browser-control capability are mandatory; never claim clicks/verified site save if browser interaction was unavailable. See `prompts/manual_report_chain.md` v4.10.
 
 ## 1. Purpose
 
@@ -158,7 +158,7 @@ SXF source sync is `tools/capitale_sxf_software_sync.py` and watcher `tools/capi
 
 ## 2026-11-20 — Latest owner instruction: DIRECT browser site editing supersedes CLI-based handoff
 
-Each agent uses a **browser**, not a report-uploader terminal command, and fills its own `Edit <ROLE> report` form on `/admin/software?agent=sxf|analyst|news|final`. Server endpoints and old Commander scripts exist as implementation plumbing/backups only; do not instruct normal agent users to run them. Admin login must already exist or be completed through normal browser UI. Every site write needs `SAVED & VERIFIED` report_id/version (FINAL: decision_id/version). If no browser GUI tool is available, report blocked instead of pretending direct navigation/editing. `prompts/manual_report_chain.md` v4.0 takes precedence over all older 2026-11-20 staging/CLI-only sections below and in historical milestone notes.
+Each agent uses a **browser**, not a report-uploader terminal command, and fills its own `Edit <ROLE> report` form on `/admin/software?agent=sxf|analyst|news|final`. Server endpoints and old Commander scripts exist as implementation plumbing/backups only; do not instruct normal agent users to run them. Admin login must already exist or be completed through normal browser UI. Every site write needs `SAVED & VERIFIED` report_id/version (FINAL: decision_id/version). If no browser GUI tool is available, report blocked instead of pretending direct navigation/editing. `prompts/manual_report_chain.md` v4.10 takes precedence over all older 2026-11-20 staging/CLI-only sections below and in historical milestone notes.
 
 ## 2026-11-24 — ANALYST v3.0 mandatory acceptance
 
