@@ -2,7 +2,7 @@
 
 Status: CANONICAL REFERENCE — owner-approved source list and research routing, 2026-11-24.
 Version: 1.1
-Scope: 18 named DATA sources, within existing A1/A2/A3 boundaries. Active ANALYST v3.0 DATA baseline and iterative research reference. HUMAN sources are separately registered in `policies/analyst_human_sources.md` under the mandatory isolated protocol.
+Scope: 18 named DATA sources, within existing A1/A2/A3 boundaries. Active ANALYST v3.0 DATA baseline and iterative research reference. HUMAN sources are separately registered in `policies/analyst_human_sources.md` under the single-ANALYST editorial source protocol.
 
 ## Ordered directory — 18 sources
 
@@ -73,3 +73,6 @@ These routing rows describe where to find data, not new mandatory analytical fac
 - Do not average conflicting xG models or treat distinct definitions as interchangeable; use a consistent provider and model for comparisons, disclose conflicts, missing coverage and sample size. Verify historical rating dates rather than applying today's ratings retrospectively.
 - Record unavailable data as missing, never invent numbers, force a neutral value, or infer unsupported tactical characteristics. Do not consult all 18 sites mechanically; use relevant sources, then alternatives to fill actual gaps.
 - This file is a source directory, not a new prediction model, empirical validation, or license approval. AGENTS.md, policies/source_policy.md, policies/analyst_sources.md and methods/analyst_methodology.md remain controlling.
+
+## v3.0.3 — DATA completeness
+For each justified material data scope record actual covered and missing units, especially the complete comparable match series where some xG/underlying data are available. Try permitted alternative retrieval (including individual match pages if aggregates omit data), record actual search outcomes and provenance, distinguish NOT_SEARCHED from NOT_FOUND/INACCESSIBLE/UNAVAILABLE, and justify any remaining gaps. Do not force all providers or advanced metrics; critical unresolved data or material unsearched units prevent READY. See methods/analyst_methodology.md and schemas/analyst_report.md.
