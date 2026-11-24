@@ -9,11 +9,11 @@ function validateExpanded(a) {
   const time=v=>typeof v==="string"&&/T.*(?:Z|[+-]\d\d:\d\d)$/.test(v)?Date.parse(v):NaN;
   const states=["VERIFIED","PARTIAL","REFUTED","UNRESOLVED"];
   const intl=["Sports Mole","Sportsgambler","SportyTrader","Betfair Blog","Sporting Life","Racing Post","Squawka","Bet Football"];
-  const local={"Italy":["InfoBetting"],"Spain":["BetBrothers"],"Austria":["Ligaportal"],"Greece":["Foxbet","Betarades"],"Romania":["PariuriX"],"Sweden":["Rekatochklart"],"Denmark":["BetXpert"]};
+  const local={"Italy":["InfoBetting"],"Spain":["BetBrothers","Legalbet"],"Austria":["Ligaportal"],"Greece":["Foxbet","Betarades"],"Romania":["PariuriX"],"Sweden":["Rekatochklart","Bettingstugan"],"Denmark":["BetXpert","Tipsbladet"],"Portugal":["ApostaGanha"],"Poland":["Betliga"]};
   const allowedFields=["role","methodology_version","protocol_revision","status","fixture_uid","match","competition","kickoff_utc","as_of_utc","home_team","away_team","competition_country","cross_border","home_country","away_country","startup_verified","isolation_verified","no_prohibited_inputs","no_predictions","blocked_reasons","sources","baseline","human","inquiries","no_inquiry_reason","countertests","findings","quality","baseline_changes","limitations","stop_reason","scenarios","outcome_coverage","software_detail_bullets_en"];
   if(!obj(a))return ["Audit must be an object"];
   for(const k of Object.keys(a))check(allowedFields.includes(k),"Unexpected top-level field: "+k);
-  check(a.role==="ANALYST"&&a.methodology_version==="analyst-v3.0-canonical"&&a.protocol_revision==="3.0.8"&&a.status==="READY","Not a READY v3.0 ANALYST audit");
+  check(a.role==="ANALYST"&&a.methodology_version==="analyst-v3.0-canonical"&&a.protocol_revision==="3.0.9"&&a.status==="READY","Not a READY v3.0 ANALYST audit");
   for(const k of ["fixture_uid","match","competition","home_team","away_team","competition_country","home_country","away_country","stop_reason"])check(str(a[k]),"Missing "+k);
   check(a.home_team!==a.away_team,"Teams must differ");
   check(typeof a.cross_border==="boolean","Missing cross_border flag");
@@ -79,7 +79,7 @@ function validateExpanded(a) {
   const outcomes=["1","X","2","OVER_2_5","UNDER_2_5","BTTS_YES","BTTS_NO"];
   check(Array.isArray(a.outcome_coverage)&&a.outcome_coverage.length===7&&outcomes.every(x=>a.outcome_coverage.includes(x)),"Incomplete outcome coverage");
   list(a.software_detail_bullets_en,"Display findings",1);check(arr(a.software_detail_bullets_en).length<=3,"Too many display findings");
-  // v3.0.8 expanded research-quality records. Structural only; semantic review remains mandatory.
+  // v3.0.9 expanded research-quality records. Structural only; semantic review remains mandatory.
   const quality=obj(a.quality)?a.quality:{};
   check(obj(a.quality),"Missing research quality audit");
   const areas=["SEASON_RESULTS","RECENT_FORM","VENUE","OPPONENT_CONTEXT","UNDERLYING"];
