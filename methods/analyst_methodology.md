@@ -1,84 +1,35 @@
-# CAPITALE ANALYST — Active Match Analysis Method
+# CAPITALE ANALYST — Autonomous Evidence Research
 
 Status: CANONICAL
-Version: 2.1
-Effective: 2026-11-06
-Core three-factor research unchanged
-Owner decision: The Torino–Monza report is the exact active presentation template, with one mandatory addition: both clubs' home/away form and opponent-by-opponent venue comparisons.
+Version: 3.0
+Effective: 2026-11-24
+Owner-approved: standard baseline + human insight + autonomous deep research + critical review + evidence-only report.
+SUPERSEDES v2.1 and all earlier ANALYST methods for NEW runs. No historical revision.
 
-## Single active contract
+## Non-negotiable principles
+Research the whole fixture symmetrically; never start from a desired outcome. Only allowed football-performance evidence, not current news, squad availability, odds, market predictions, SXF/POLY or another department. No recommendation, ordinal score, win probability, predicted score or directional lean in any ANALYST output. FINAL alone decides. Actual data and reproducible source traces are mandatory; plausible language is not evidence.
 
-For EVERY new list of fixture predictions, analyze each fixture independently, using ONLY these three numbered factors, then one short three-factor conclusion:
-1. TOPA SAHIP OLMA OYUNU
-2. FORM IVMESI — last 3 and last 1
-3. RAKIP MANTIGI — including HOME/AWAY FORM as a mandatory subsection
+## 0. Preflight
+Read all startup files and verify fixture, competition, season, kickoff, actual AS_OF (UTC, before kickoff), source access and isolation. For a historic replay, use only demonstrably pre-cutoff snapshots; today's data are not historical snapshots. Route run_id/market/selection separately from the research context. If a pick, another department, or unfiltered forecast already influenced the research, restart in a clean context; otherwise BLOCKED. Do not proceed without the required isolated HUMAN extractor and validation capability. If a required condition fails at any stage, stop as BLOCKED or PARTIAL; never claim READY or save a complete report.
 
-The report must be demonstrably like the actual Torino–Monza analysis: fixture header; two clubs' season league matches tables and possession buckets; each team's whole-season baseline; two actual last-three performance graphs (results/points and xGD), exact latest-match changes and if possible half comparisons; separate, football-reasoned assessment of both teams' likely opponent difficulty and playstyle; explicit venue match lists comparing the host's HOME record to the visitor's AWAY record; factor comparison table and one qualified final match interpretation / lean. There is NO fourth independent factor or generic extra methodology section. The same conclusion includes the owner-approved v2.1 ordinal 0-100 pick support score.
+## 1. DATA — independent baseline
+Use the 18-source DATA registry, prioritizing official records and appropriate metrics, not all sites mechanically. Establish both teams' comparable season baseline, recent form, opponent quality, home/away, goals and underlying attack/defense metrics; inspect possession/style and relevant game-state information when sourced. Season, recent five/three/one windows and strength/venue context are useful starting points, not fixed analytical weights or mandatory report pillars. Include actual sample sizes, match identifiers, provider, time windows, source and missing-data statuses. Do not omit inconvenient fixtures; explain exclusions and comparability (competition, red cards, coaching-era boundaries when historical and allowed). Distinguish results from performance; never infer tactics from formation or possession alone. Save immutable baseline evidence and initial interpretation with timestamp and snapshot/hash before any HUMAN material is available. No picks or rankings.
 
-Old v1.1, v1.2, v1.3, v1.4.x decision engines, experimental ratings, v1.3 0–100 gates, side-market selection routing, standalone scoring or simulations are SUPERSEDED for NEW ANALYST runs. Their past snapshots and the Git history remain unchanged; don't erase any historical selections or as-of reports. The old modes must NEVER run alongside v2 or replace the three-factor report. Source isolation, as-of integrity, genuine missing-data reporting and historical immutability still apply.
+## 2. HUMAN — isolated discovery, not an authority
+Use policies/analyst_human_sources.md. A separate extractor/context, not the ANALYST, researches the four international sources and applicable local sources (both countries for cross-border fixtures). Record status of each applicable source, author, article, timestamp, and actual reasons for missing or excluded coverage. Extract permitted statistical/tactical claims only; strip forecast, score prediction, odds, preference, confidence, consensus, current news and squad information before exposing content to ANALYST. No raw articles or prediction-bearing snippets. The extractor must not receive baseline conclusions, selection or other roles' reports. Record extractor identity/context, input/output provenance and isolation confirmation. If isolation/filtering cannot be demonstrated, BLOCKED; if actual compliant discovery finds no usable articles, record it as no HUMAN coverage and continue with honest limitations. Human authorship/quality and independence must be checked, not assumed.
 
-## Scope and freshness
+## 3. AUTONOMOUS — discover, ask, test, adapt
+The baseline and sanitized HUMAN claims are leads, not conclusions. Identify meaningful discrepancies, unexpected patterns, uncertainties, matchup mechanisms and possible causal alternatives. Independently generate your own fixture-specific research questions; no prescribed list of questions, mechanical factor scores or arbitrary quota of searches. Prioritize questions that could materially change understanding of the match. For each question record the trigger evidence, hypothesis and competing explanation, concrete search/query or data comparison actually executed, new evidence, result and remaining uncertainty. Investigate new questions arising from results, iterating DATA → questions → evidence → updated understanding; HUMAN may be re-consulted only through the same isolation boundary. If no meaningful new question exists, document the actual screening and evidence-based stopping reason; do not fabricate questions or research. If material questions cannot be resolved, preserve them as unresolved rather than guessing.
 
-- Verify each target match's fixture identity, competition, kickoff and ANALYST AS_OF before gathering data; do not use observations unavailable by AS_OF, especially post-kickoff information.
-- Only A1/A2/A3/A4 football match, historical statistical, opponent-strength and tactical sources are allowed. NO odds, betting markets, market-flow, SmartXFlow, Polymarket, NEWS, injury availability/current-match rumors or other departmental conclusions.
-- Base sample: BOTH teams' EVERY completed league fixture in the current season, pre-AS_OF. No selective favorable/opposing omission. If the fixture is a cup tie or sides play in different divisions, visibly label league/competition differences and explain limited comparability; do not pretend equal-level leagues.
-- Always distinguish retrieved observation, calculated descriptive metric, and football interpretation. Sources/cutoff for material facts, small-sample and absent data warnings are mandatory. Do not fill unavailable event stats with made-up numbers or ignore games with missing statistics.
-- Team opponent-strength ratings, if used, must have verified relevant observation date. If historic Opta strength is unavailable, avoid calling today's rating the old rating. Use honest qualitative competition/opponent-level reasoning when an audited numeric match-day baseline is unavailable.
+## 4. CRITICAL REVIEW — mandatory counter-test
+Before closure, challenge every material claim/hypothesis including initial impressions and accepted HUMAN claims. Search for counterexamples and plausible alternatives using comparable samples; record actual actions and supporting/opposing evidence even when none is found. Distinguish VERIFIED, PARTIAL, REFUTED, UNRESOLVED. Observations and interpretations are separate. Reject unsupported factual claims, avoid causation from correlation, no hindsight, no duplicate underlying evidence, no source-count voting. Reconcile scope, provider/metric definition, date, sample size and venue/strength differences; if conflicts persist, show both. Record exactly what changed from baseline and why. No change based only on a human author's authority. Independent verification of a published tactical observation may be impossible; label uncertainty and do not turn it into a verified fact.
 
-## 1. Topa sahip olma oyunu — WHO usually controls the ball
+## 5. STOP AND REPORT
+Stop when further permitted research is unlikely to materially improve understanding or a documented access/time/evidence limit prevents progress. Never claim exhaustion unless justified. A usable READY report requires actual source-backed baseline for BOTH teams, completed isolated HUMAN discovery, recorded autonomous inquiry (or justified no material follow-up), counter-tests on each material claim and explicit limitations. If a required stage is incomplete, mark PARTIAL/BLOCKED with reasons; do not publish as completed. Missing advanced metrics or genuine no HUMAN coverage may be a limitation of a READY report if all research stages were actually executed and enough reliable evidence remains. Weak or absent basic data are not READY.
 
-Use EACH prior opponent's own habitual possession in league matches completed PRIOR to that historical fixture (and as-of for the NEXT opponent), NOT its possession observed solely in the matchup under analysis.
-- HIGH: >=55%.
-- BALANCED: >45% and <55%.
-- LOW: <=45%.
-- UNKNOWN: unavailable/verifiably missing historical profile. Never assign missing to BALANCED.
+Report full fixture (not pick): verified facts and underlying statistics, material research findings, contradictions, opposing evidence, plausible conditional match scenarios (not forecast), uncertainties and research/evidence audit. Consider mechanisms relevant to all seven outcomes 1/X/2, O/U2.5, BTTS Yes/No without selecting, ordering, assigning scores or probabilities. Present no analyst lean, recommendations, predicted score, A/100, confidence number or market grades. No fixed length or forced charts; use tables when they clarify actual evidence. Include at least one genuine English finding (up to three) for site display, not a forecast.
 
-Present for EACH club a full-season match table with: opponent (and home/away marker), prior-opponent habitual possession % or unknown, group, score W/D/L, xG–xGA or missing. Add shots/sot where sourced and useful. If there are many completed fixtures, still cover every fixture, not cherry-picked ones; compact table permissible.
-Then grouped summaries (N; W-D-L; xG and xGA/xGD per game if complete or disclosed coverage), describe which opponent style corresponds to the upcoming opponent and compare opponent difficulty. A difference between buckets is not automatically caused by possession because top-possession sides tend to differ in strength and venue.
-- Where actual half-level data exist: compare 1H vs 2H possession and chance creation / score. Optional separate opponent habitual 1H/2H possessions only when separately verified. Do not manufacture half xG, half possession or half-shots from full-time totals.
-- If pregame possession history cannot be reconstructed, label source and distinguish current-season descriptive aggregates from verified pre-fixture values; do not falsely claim prospective backtest validity.
+## Fail-closed quality gate
+Before marking READY, confirm all of the following with actual records: startup and isolation verified; pre-match temporal integrity; baseline frozen before HUMAN; both teams covered; all applicable HUMAN sources attempted through isolated extractor and logged; autonomous research log or substantiated no-question justification; all material hypotheses and material findings linked to actual counter-tests; claim/source trace and missing/conflict disclosures; whole-match coverage; no prohibited fields/content; no fake actions. Use schemas/analyst_report.md and run tools/validate_analyst_v3.mjs on the structured audit. A failed/unavailable validator, absent evidence, or unverified required action forbids READY and completed site save. Structural validation cannot prove semantic accuracy, truthfulness, or actual browsing: those remain required independent review. Record the validator's actual result; never self-assert that a tool ran. Site/FINAL integration must refuse non-READY or old-version new reports; live automatic gate deployment is a separate engineering task, not implied by these repository rules.
 
-## 2. Form ivmesi — WHO is genuinely improving
-
-For BOTH clubs, first show whole-season league W-D-L/points, scoring, xG/xGA/xGD and shots where available. Then show chronological LAST THREE completed LEAGUE games, and LATEST ONE specifically versus two preceding games.
-Must display exactly TWO separate, real-data charts:
-A. SCORE/RESULT FORM: points per game 0/1/3 for both teams (or score/goal difference where best supported). Always explain last-three scores and points.
-B. UNDERLYING STAT FORM: per-match xGD (xG minus xGA) for both teams, with xG/xGA/shots/sot in a table; if full comparable xG absent, display chart using genuinely available shot/quality observations and label clearly, or state no defensible statistical chart is available. Never invent graph values.
-State for each club whether last-game score is up/down versus prior two, whether true stat performance is up/down, and whether the results-versus-statistics signals diverge. When >=6 matches, last-three versus prior-three level can also be checked; do not call one good/bad match a statistically established trend.
-- Interpret last-three performance in context of each game's rival difficulty, venue, game state, red-card distortions, tactical era. A win against weak opposition does not automatically signal stronger form than an honorable result versus elite opposition.
-- Include 1H/2H score statistics and underlying stats only when independently sourced; denote missing.
-- Do not automatically extrapolate trend slopes into a goal forecast or calibrated win probability. The v2.1 support score is only an ordinal conclusion about a user pick.
-
-## 3. Rakip mantığı — what the actual upcoming encounter means
-
-A distinct, mandatory, plain-Turkish FOOTBALL REASONING section, with TWO team perspectives, grounded in factors 1 and 2:
-- Compare the opponent each side NOW faces with the actual opponents it has recently faced; stronger/weaker/comparable at the relevant pregame period; discuss whether recent success/failure transfers to this game's difficulty. Real Madrid versus Levante example demonstrates why scoreboard alone is not comparable.
-- Base strength, recent performance, habitual possession, quality of chances conceded/created, defensive vulnerability, style clashes: how would Team A's attack face Team B's defense and vice versa? Specific pressing/transition/low-block claims need event or tactical evidence; otherwise mark unsupported.
-- Explain credible victory, draw, defeat pathways and how a given user-supplied selection could fail. No automatic favorite based only on last-three WDL.
-
-### Mandatory third-pillar subsection: Ev sahibi / deplasman formu
-
-For BOTH teams, list actual current-season LEAGUE fixtures:
-- BOTH TEAMS: list ALL their own HOME league fixtures match by match (opponent name, opponent strength/style/possession when sourced, date, W-D-L and score, xG–xGA and shots/sot where sourced), AND list ALL their own AWAY league fixtures with the SAME individual match fields. Thus four full opponent-by-opponent venue lists, not just aggregate for the non-matching venue.
-- Emphasize HOME TEAM's HOME record versus AWAY TEAM's AWAY record as the direct next-match comparison. Also show each club's opposite-venue league results to check whether performance is venue-specific. No omission of opponents or scores.
-- Compare the HOST's HOME results and underlying stats DIRECTLY to the VISITOR's AWAY results and underlying stats. Identify whom they played: beating a weak side at home isn't equivalent to performing versus elite opposition away. Identify opponent types (HIGH/BALANCED/LOW) in the venue analysis when genuinely documented and examine same-strength comparables when sample allows.
-- Explain whether away team maintains attacking chance production away and whether home team really protects against chances at home, not only who won. Home advantage is a contextual factor, not an invented fixed numeric bonus.
-- If sample small or missing, label limitation; no invented away/home results, rating or percentages.
-
-**Positioning rule:** Home/away IS NOT a fourth numbered factor. It is a visible subsection integrated INTO factor 3 and informs factors 1 and 2.
-
-## Conclusion — exactly like Torino–Monza
-
-Use a short three-factor synthesis/comparison table: possession matchup; scoreboard-versus-underlying momentum; opponent quality, tactical matchup AND venue form integrated in the third row. Conclude with a brief intuitive football-match scenario and if evidence allows a clear lean (1/X/2, 1X/X2, totals etc. when relevant) with LOW/MEDIUM/HIGH descriptive uncertainty, not a fake calibrated probability; include only the approved v2.1 0-100 ordinal user-pick support score with an evidence explanation. If no confident direction: NO_CLEAR_LEAN. If user supplied picks, explicitly state whether each pick is supported/contradicted and most plausible failure route within this final evaluation; do not reorganize into older scored-support templates.
-
-Do not append extra **research or scored analytical** sections (separate simulation, stochastic models, odds, NEWS, synthetic examples, arbitrary weights) not requested. **Presentation-only exception for the owner's manual SXF → ANALYST → NEWS → FINAL workflow:** AFTER completing the unchanged three-factor report, append `ANALYST — KISA SONUÇ` and the neutral `KOPYALA → NEWS GİRDİSİ` tables from `prompts/manual_report_chain.md`. These tables are handoff metadata only, not a fourth analysis factor or a new score. If sources missing show available real evidence, a narrow limitation, and constrained interpretation, not a false completed analysis.
-
-## Operational requirements
-
-For a multi-match list, repeat the same format for each fixture with source-backed numbers and timestamp; do not let analysis of one game influence another or cite another department. For a massive batch where full evidence isn't obtainable, report per-match coverage truthfully; never silently shorten the method while calling it complete.
-
-## v2.1 OWNER-APPROVED SELECTION SUPPORT SCORE (2026-11-06)
-
-For EVERY user-supplied selection, preserve the complete v2.0 three-pillar research and include "Tercih destek puanı: <puan>/100 (site A sütunu)" inside the existing three-factor conclusion, with one brief source-grounded rationale and counterargument. Score evaluates ONLY support for THAT pick, NOT the probability it wins, NOT an odds-derived forecast, and NOT a FINAL recommendation. This is not a fourth factor or the superseded v1.3 numeric engine.
-
-Ordinal anchors (not calibrated probabilities): 0-39 strong contradiction; 40-49 leaning against; 50 mixed; 51-69 conditional/limited support; 70-84 strong support; 85-100 unusually convergent evidence, rare. Use judgment based exclusively on the three approved pillars; no invented mathematical weights. Disclose missing possession, xG, venue data and contrary evidence. When insufficient credible evidence, output "Puan: veri yetersiz" (null), not a fabricated score. Do not revise archived pre-match reports or use results to change prior scores.
+Only after the report is frozen and gate passed may a separate routing context attach existing run IDs/market/selection metadata. No revision to research based on routing. Keep all historical versions. Evaluate the new method prospectively and through time-safe backtests, comparing baseline-only vs HUMAN-enhanced findings, coverage, counter-test quality, contamination and downstream results. No performance gain is claimed before validation.
