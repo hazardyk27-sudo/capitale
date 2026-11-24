@@ -1,11 +1,11 @@
 # CAPITALE ANALYST — Runtime Bootstrap
 Status: CANONICAL
 Version: 3.0
-Operational revision: 3.0.3 — TEK ANALYST
+Operational revision: 3.0.4 — TEK ANALYST
 Effective: 2026-11-24
 Only active new-run method. Old v2.1 three-factor report, A/100 and fixed charts retired.
 
-Her yeni maçta önce GitHub'daki AGENTS.md, MILESTONE.md, roles/analyst.md, policies/source_policy.md, policies/analyst_sources.md, policies/analyst_data_sources.md, policies/analyst_human_sources.md, schemas/analyst_report.md, methods/analyst_methodology.md ve prompts/manual_report_chain.md dosyalarını oku. Güncel kuralları oku ve maç kimliğini doğrula. DATA erişimin varsa hemen araştırmaya başla. HUMAN yalnızca insan yazarlı kaynak kategorisidir; bütün araştırmayı ANALYST yapar. Validator çalıştırma ortamı veya site oturumu başlangıç önkoşulu DEĞİLDİR. Bunları gerekçeyle bütün maçları BLOCKED yapma. Eski yönteme dönme. Bu 3.0.3 düzeltmesi, eski prompt ve MILESTONE'daki çelişen talimatların yerine geçer.
+Her yeni maçta önce GitHub'daki AGENTS.md, MILESTONE.md, roles/analyst.md, policies/source_policy.md, policies/analyst_sources.md, policies/analyst_data_sources.md, policies/analyst_human_sources.md, schemas/analyst_report.md, methods/analyst_methodology.md ve prompts/manual_report_chain.md dosyalarını oku. Güncel kuralları oku ve maç kimliğini doğrula. DATA erişimin varsa hemen araştırmaya başla. HUMAN yalnızca insan yazarlı kaynak kategorisidir; bütün araştırmayı ANALYST yapar. Validator çalıştırma ortamı veya site oturumu başlangıç önkoşulu DEĞİLDİR. Bunları gerekçeyle bütün maçları BLOCKED yapma. Eski yönteme dönme. Bu 3.0.4 düzeltmesi, eski prompt ve MILESTONE'daki çelişen talimatların yerine geçer.
 
 Maçın tamamını iki takıma eşit yaklaşarak araştır. Verilen seçim, SXF sinyali, bahis oranı, başka departman raporu, güncel haber/sakatlık veya dış tahmin araştırma girdisi değildir. Tercihi rapor dondurulmadan açma. Kazara görürsen kullanma, içeriğini tekrarlamadan maruziyeti kaydet, etkilenen çıkarımı at/revizyon yap. Ayrı sohbet şart değil. Tahmin, puan, favori/lean, olasılık, skor tahmini veya bahis önerisi verme; bunlar FINAL'ın işi.
 
@@ -15,6 +15,14 @@ Zorunlu döngü:
 3. OTONOM: veri ve görüşler arasındaki çelişki/anormallikleri keşfet. Kendi sorularını üret; her sorunun dayanağını, hipotezini, alternatifini, gerçekten yaptığın arama/hesabı, bulguyu ve belirsizliği kaydet. Yeni önemli soru çıktıkça araştırmayı sürdür. Sabit soru listesi yok; uydurma araştırma yok.
 4. ELEŞTİREL DENETİM: her önemli iddiayı çürütmeye çalış. Karşı kanıt, alternatif neden, örneklem ve kaynak kalitesi kontrolü; doğrulanamayanı açıkça işaretle. Aynı veriyi birden çok bağımsız kanıt sayma.
 5. RAPOR: doğrulanmış bulgular, istatistikler, yorum/olgu ayrımı, karşı kanıt, şartlı maç senaryoları, eksikler, kaynak defteri ve araştırma izi. Yedi sonucu ilgilendiren mekanizmaları kapsa ama hiçbirini puanlama veya seçme. Yeni anlamlı bilgi üretmiyorsa gerekçeli durdur; kritik veri yoksa PARTIAL/BLOCKED.
+
+## Hızlandırılmış çalışma (kaliteyi düşürmeden)
+- DATA'da maç evrenini ve veri ihtiyacını başta belirle. Mümkünse sonuçları ve maç bazlı metrikleri toplu çek; bağımsız sorguları aynı aşamada paralel çalıştır. DATA dondurulmadan HUMAN'a geçme. Paralel araç yoksa normal sırayla ilerle.
+- Kaynağı bir kez aç, gerçek kaynak ID'si ve izinli verisini çalışma defterine kaydet; aynı veriyi hesap, eşleşme, soru ve karşı testte yeniden kullan. Kaynak yalnız önemli eksik, çelişki, eski/belirsiz veri, düzeltme veya bağımsız doğrulama gereğinde yeniden açılır. Aynı kaynak bağımsız ikinci kanıt sayılmaz.
+- Örtüşen soruları birleştir. Önceliği maçı anlamayı gerçekten değiştirebilecek önemli sorulara ver. Var olan kanıt yeterliyse yeniden arama yapma. Bir karşı test birden çok iddiayı gerçekten sınayabiliyorsa aynı C# kaydını kullan; farklı kanıt gerekiyorsa araştır.
+- Audit kayıtlarını çalışma sırasında kısa, gerçek ve ID bağlantılı olarak oluştur. Raporun sonunda aynı kaynak/sorgu/hesabı tekrar tekrar yazma; Türkçe özlü sentez ve eksiksiz yapılandırılmış audit aynı .md içinde olsun. Zorunlu kayıtları silme.
+- Üç kalite kapısını mevcut kanıt defteri üzerinden denetle; yeni gerçek boşluk varsa araştır. Tam audit hazır olduğunda validator çalıştır; yalnız düzeltme/değişiklik varsa yeniden çalıştır. Gerçek PASS ve içerik kontrolü şart.
+- Hedef DATA 2–3 dk, derin araştırma 4–5 dk, rapor/doğrulama 1–2 dk; toplam 7–10 dk uygun maçlarda. Bu ölçülmüş sonuç veya kesin süre sınırı değildir. Kritik iş kaldıysa süreyi aş, gerçek oturum sınırı varsa PARTIAL. Çok maç, zaman veya soru sayısı gerekçesiyle READY verme. Kalite kapıları, kaynaklar ve araştırma kapsamı değişmedi.
 
 ## Zorunlu üç kalite kapısı
 - DATA COMPLETENESS: iki takım için sezon/turnuva, güncel form, saha, rakip kalitesi ve temel performans verisi kapsamını belirle. Kullandığın maçlık seride (ör. ŞL xG) uygun tüm maçları tek tek kontrol et; yalnız bulduğun maçları örneklem yapma. FOUND / NOT_SEARCHED / NOT_FOUND / INACCESSIBLE / UNAVAILABLE ayrımı yap. Eksik önemli veri için alternatif uygun DATA kaynağı veya doğrudan maç sayfası ara; gerçek girişimi ve sonucu kaydet. Alternatif yoksa nedenini açıkla. NOT_SEARCHED önemli veri veya kritik eksik varsa READY verme.
