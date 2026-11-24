@@ -1,7 +1,7 @@
 # CAPITALE ANALYST — Evidence Report and Audit Contract
 Status: CANONICAL
 Version: 3.0
-Operational revision: 3.0.1
+Operational revision: 3.0.2
 Effective: 2026-11-24
 Method: methods/analyst_methodology.md
 Previous schemas including v2.1 are SUPERSEDED for new reports only.
@@ -10,18 +10,18 @@ Previous schemas including v2.1 are SUPERSEDED for new reports only.
 1. Fixture, competition, kickoff, AS_OF, method and status.
 2. Independent DATA baseline: both teams, comparable samples, relevant statistics, source IDs and limitations.
 3. Material findings: observations vs interpretations, source evidence, opposing evidence, hypothesis status; include autonomous research findings, not only data tables.
-4. HUMAN: source discovery, actual filtering mode and exposure limitations, additional tested claims, discarded/unresolved claims, baseline changes. No raw predictions or news.
+4. HUMAN: source discovery, permitted observations and exposure limitations, additional tested claims, discarded/unresolved claims, baseline changes. No raw predictions or news.
 5. Conditional football scenarios and uncertainties, considering all seven outcomes without preference/score/probability.
 6. Research audit and source ledger (structured JSON below), actual quality gate result; short 1–3 verified English display findings. No score field.
 
 ## Structured audit (JSON; actual values, not placeholders)
 Required top-level fields:
-- role: "ANALYST"; methodology_version: "analyst-v3.0-canonical"; protocol_revision: "3.0.1"; status: "READY" | "PARTIAL" | "BLOCKED".
+- role: "ANALYST"; methodology_version: "analyst-v3.0-canonical"; protocol_revision: "3.0.2"; status: "READY" | "PARTIAL" | "BLOCKED".
 - fixture_uid, match, competition, kickoff_utc, as_of_utc; home_team, away_team; competition_country, home_country, away_country (English country names used in the HUMAN registry), cross_border (boolean). For cross-border tournaments use both club countries for source routing.
-- startup_verified, isolation_verified (departmental evidence separation, not proof of a second worker), no_prohibited_inputs (no prohibited information USED as evidence or decision input, not a claim of no accidental exposure), no_predictions: booleans; blocked_reasons: array of strings.
+- startup_verified, isolation_verified (departmental evidence separation), no_prohibited_inputs (no prohibited information USED as evidence or decision input, not a claim of no accidental exposure), no_predictions: booleans; blocked_reasons: array of strings.
 - sources: array of {id, url, observed_at, retrieved_at, provider, scope, claim}, with actual provenance; unique IDs. observed_at is the time information was available (<= AS_OF), not the retrieval time for a valid historical snapshot.
 - baseline: {frozen_at, snapshot_id, home_evidence_ids:[], away_evidence_ids:[], summary, limitations:[]}; frozen_at <= HUMAN extraction start.
-- human: {mode, isolation_verified, extractor_id, exposure_log:[], started_at, applicable_sources:[], attempts:[{source,status,reason,article_url?,author?,published_at?}], claims:[{id,source,claim,status,evidence_ids:[],countertest_id}], no_coverage_reason}. mode is SELF_FILTERED (default, isolation_verified=false, extractor_id=null) or ISOLATED_WORKER (only if actually separate, isolation_verified=true, real extractor_id). exposure_log records source/category and discard/mitigation only, never the prohibited content; empty if none observed. For SELF_FILTERED include residual anchoring risk in limitations; statuses FOUND / NOT_FOUND / INACCESSIBLE / EXCLUDED. Applicable names match registry exactly: four international always, local by competition or both clubs' countries for cross-border competitions. FOUND means usable permitted football claim material, not just a page; otherwise EXCLUDED with reason.
+- human: {exposure_log:[], started_at, applicable_sources:[], attempts:[{source,status,reason,article_url?,author?,published_at?}], claims:[{id,source,claim,status,evidence_ids:[],countertest_id}], no_coverage_reason}. HUMAN records only source research by ANALYST. exposure_log records source/category and discard/mitigation only, never the prohibited content; empty if none observed. Include residual editorial anchoring risk in limitations; statuses FOUND / NOT_FOUND / INACCESSIBLE / EXCLUDED. Applicable names match registry exactly: four international always, local by competition or both clubs' countries for cross-border competitions. FOUND means usable permitted football claim material, not just a page; otherwise EXCLUDED with reason.
 - inquiries: array of {id,trigger,question,hypothesis,alternative,actions:[],evidence_ids:[],result,uncertainty,countertest_id}; if empty, no_inquiry_reason with actual screening justification.
 - countertests: array of {id,actions:[],support_ids:[],oppose_ids:[],result,limitations}; result and limitations are non-empty strings (use an explicit no-known-limitations statement if appropriate); actual search/comparison, not planned actions.
 - findings: array of {id,fact,interpretation,evidence_ids:[],countertest_id,status}; status VERIFIED / PARTIAL / REFUTED / UNRESOLVED.
