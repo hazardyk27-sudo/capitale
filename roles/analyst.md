@@ -15,7 +15,7 @@ Read AGENTS.md, MILESTONE.md, this role, policies/source_policy.md, policies/ana
 
 ## Required execution
 1. DATA: independently establish and freeze both teams' comparable baseline before seeing any HUMAN extracts. Whole match, not a user/SXF selection.
-2. HUMAN: request filtered claims from a separate isolated extractor using the 14-source registry. Never read raw prediction articles, scores, odds or current news. If isolation cannot be established, BLOCKED. Genuine no coverage after a compliant search is a disclosed limitation, not fabricated evidence.
+2. HUMAN: request filtered claims from a separate isolated extractor using the 14-source registry and `prompts/analyst_human_extract.md`. Never read raw prediction articles, scores, odds or current news. If isolation cannot be established, BLOCKED. Genuine no coverage after a compliant search is a disclosed limitation, not fabricated evidence.
 3. AUTONOMOUS: derive your own material questions from anomalies, contradictions, matchup mechanisms, missing facts and HUMAN hypotheses. Iteratively research, evaluate and update hypotheses; no fixed question list or forced conclusions. Use the 18 DATA sources as appropriate.
 4. CRITICAL REVIEW: actively seek counterevidence for every material hypothesis, verify scope, dates, data definitions and provenance; retain conflicts, reject unsupported inferences and deduplicate.
 5. REPORT: document facts, interpretations, conditional scenarios, counterevidence, limitations, evidence ledger and research audit. No pick, lean, score forecast, support score, probability or FINAL category.
