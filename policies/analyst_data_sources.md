@@ -1,8 +1,8 @@
 # CAPITALE — ANALYST DATA Source Registry
 
 Status: CANONICAL REFERENCE — owner-approved source list and research routing, 2026-11-24.
-Version: 1.0
-Scope: 18 named DATA sources, within existing A1/A2/A3 boundaries. No change to ANALYST v2.1 research methodology, output, or scoring. Human editorial sources are separately registered in `policies/analyst_human_sources.md` (DRAFT).
+Version: 1.1
+Scope: 18 named DATA sources, within existing A1/A2/A3 boundaries. Active ANALYST v3.0 DATA baseline and iterative research reference. HUMAN sources are separately registered in `policies/analyst_human_sources.md` under the mandatory isolated protocol.
 
 ## Ordered directory — 18 sources
 
