@@ -1,15 +1,11 @@
-# CAPITALE — NEWS source directory and search routing
-
-Status: CANONICAL source directory for NEWS v2.0
-Version: 1.0
+# CAPITALE — NEWS closed source directory
+Status: CANONICAL closed allowlist for NEWS v2.1
+Version: 2.0
 Effective: 2026-11-24
-Owner-approved scope: international + country-specific media, primary club/organizer channels, beat reporters and supporter sources. All research is done by NEWS itself. No new agents, external services, mandatory subscriptions, or scoring method.
 
-## Coverage and access caveat
+The existing named entries below are unchanged. They are the only allowed NEWS research sources. For each match scan all applicable entries for both clubs' domestic countries plus all international entries, deduplicating shared URLs. Use relevant local-language queries and source-restricted search. UEFA is an existing listed source. Do not discover or use unlisted sources, including previously suggested dynamic official/local/social channels. If a country is absent use the international list only. The owner alone can expand the list.
 
-The 17 domestic football jurisdictions from the repository's 34-league crest catalog (`deployments/betcapitale/sxf-34-leagues-local-logo-catalog-20261122.json`, 2026-11-22) are mapped below. Romania and Slovakia are additional coverage for other fixtures. Cross-border competitions use BOTH clubs' domestic countries, not the host country alone. The catalog is a coverage seed, not a league whitelist or claim of current fixture availability.
-
-52 distinct named entry URLs, 19 domestic jurisdictions, plus international references. On 2026-11-24 the web retrieval tool returned readable entry-page content for 36 and restricted/unavailable responses for 16; READABLE does not establish universal free article access, live freshness, full league coverage or independent reporting. LIMITED does not establish that a site is universally unavailable. Recheck actual article availability, author, date and terms at research time; do not bypass robots restrictions, logins or paywalls. No paid-only content required. A domain is a discovery candidate, not a guaranteed N1/N2 source or proof of a claim.
+Entry access checks below are historical 2026-11-24 observations, not live article access guarantees. Try each applicable entry; if blocked or empty, record and move on. Do not bypass access restrictions or require new sources to compensate.
 
 ## Named source entries
 
@@ -69,29 +65,5 @@ The 17 domestic football jurisdictions from the repository's 34-league crest cat
 | Slovakia | Slovak | Šport.sk | https://sport.aktuality.sk/ | READABLE | Slovak football; first and second division sections |
 | Slovakia | Slovak | Sportnet | https://sportnet.sme.sk/futbal/ | READABLE | Slovak football; some premium |
 
-## Dynamic primary and local sources (not fixed counts)
-
-| Research need | Search targets | Attribution rule |
-| --- | --- | --- |
-| Club facts, current squad status, training, manager/player statements | Both clubs' official websites (news, press, medical update), verified official social accounts and official YouTube channels | N1 only for what club/person directly said, published or did; distinguish official statement from inferred impact |
-| Match rules, sanctions, venue, scheduling | Official league/federation, UEFA where relevant, official organizer and venue | N1 for its remit; distinguish confirmed from provisional |
-| Local reporting, including smaller clubs and second tiers | Named club-beat reporters, city/regional newspapers, established local broadcaster; local-language searches | N2 when original attributable reporting is credible; reposts are not independent; verify provenance |
-| Press conferences and interviews | Club recordings/transcripts first, direct quotes from named reporters next | Preserve speaker, date, context and source; predicted lineups remain uncertain |
-| Fan atmosphere and exceptional disruptions | Official supporter association statements, local reporting, public club forums, Reddit and X | N1 for group's own documented action only; N3 for limited sentiment; N4 for unsupported rumor; no extrapolation from isolated comments |
-| Weather/pitch, rest/travel, material logistics | National meteorological agency, venue, league/club communications, direct local reporting | Use actual match location/time; only material conditions, not routine logistics |
-
-## Mandatory research routing
-
-1. Verify both clubs, competition, kickoff and genuine pre-match NEWS AS_OF. Locate each club's actual official news channels through verified identity; official league/organizer where relevant. Research both teams symmetrically across all eight existing NEWS families. Do not let user preference narrow the search.
-2. For each team actively search official and domestic/local coverage in the applicable language(s). Use its country row as a starting shortlist; prioritize direct reporting, then try suitable alternatives if blocked, stale or irrelevant. For lower-tier and smaller clubs actively seek city/club-specific media. For UEFA or other cross-border matches search both domestic countries and the organizer. For an unlisted country discover equivalent local-language sources rather than block.
-3. Use international sources as supplemental discovery or corroboration when relevant. Do not mechanically visit all 52 links for every match. Research priorities: direct club/organizer evidence → original club-beat reports → local/national reporting → international reporting → contextual supporter leads. This is search routing, not reliability points; classify each actual claim under N1–N4.
-4. Search with both team names and aliases (including accents/local spellings), competition/date and relevant terms for the news topic in native language. Search individual clubs too; a paired-match query alone misses local developments. Open original article, not just headline/snippet, when possible. Trace wire/translated/reposted material to original; do not count shared underlying reporting twice. Inspect later updates before AS_OF for corrections, official denials or mitigation. Never use post-cutoff information.
-5. Log actual source attempts in full report evidence/coverage notes: team or both, news family, outlet/domain, query or target URL, search language, accessed/retrieved time, outcome FOUND / NO_MATERIAL_NEWS / NOT_FOUND / INACCESSIBLE / EXCLUDED, reason. For used articles record actual article URL, author or issuing body when identifiable, publication/update time, source tier, underlying original, and precisely what fact it supports. Do not pretend to read blocked pages; snippets are leads only if material fact cannot be checked. Never invent source attempts or news.
-6. Follow relevant discovered developments with more targeted source searches and seek contradictory evidence, compensation or alternative explanations. Verified event does not establish match impact. Exclude routine fan logistics/PR, betting sections, generic motivation and unrelated stories under existing relevance policy. Do not use ANALYST statistics/reports, SXF, POLY, market odds or prediction content.
-7. If a named outlet fails, try an accessible equivalent and record actual gap. If no reliable material news emerges after real attempts, disclose insufficient coverage; no fictitious H# or forced score. A missing website is not a startup blocker and no source list guarantees coverage. Follow existing v2.0 research/report/scoring contract; this directory does not authorize changes to points, N/100, FINAL or Software.
-
-## Verification record
-
-Entry URLs checked through public web retrieval 2026-11-24 (including redirects); page content not copied. No automated monitoring or scraping, paid access, login bypass, complete per-article audit, or performance validation was implemented. Club-specific reporter and official channels are discovered per fixture rather than invented or fixed globally.
-
-NEWS v2.0 uses the unchanged 52 named entries and dynamic sources above. Log actual team/topic coverage, alternative searches, material follow-ups and counterevidence in the full audit. The directory is not a mandatory all-outlet scan.
+## Scan rule
+Actually search each applicable outlet, open accessible relevant articles, cite direct article URLs and record a compact outcome per outlet. Follow relevant article updates only within this list. No external discovery, all-world scan, forced news count, JSON audit or validator. Missing access or no news is a valid completed attempt. Preserve the date/cutoff distinction and uncertainty. See methods/news_methodology.md.

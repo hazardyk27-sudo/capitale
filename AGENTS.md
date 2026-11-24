@@ -1,10 +1,10 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.25
+Version: 1.26
 Last updated: 2026-11-24
 
-> **CURRENT DEFAULT — REAL BROWSER UI 2026-11-20:** SXF → ANALYST → NEWS → FINAL; each specialist **opens its own authenticated /admin/software?agent=<role> page, enters its COMPLETE report in its OWN on-page editor and clicks Save**. FINAL reads the three full original reports visually on the site and saves its final decision in a separate FINAL box. The old CLI report uploader, JSON API and private inbox are NOT the default agent workflow. Live SXF FINAL_SIGNAL source sync still runs automatically. At least 1–3 verified SXF findings per match/selection; source isolation intact. Login and real browser-control capability are mandatory; never claim clicks/verified site save if browser interaction was unavailable. See `prompts/manual_report_chain.md` v4.8.
+> **CURRENT DEFAULT — REAL BROWSER UI 2026-11-20:** SXF → ANALYST → NEWS → FINAL; each specialist **opens its own authenticated /admin/software?agent=<role> page, enters its COMPLETE report in its OWN on-page editor and clicks Save**. FINAL reads the three full original reports visually on the site and saves its final decision in a separate FINAL box. The old CLI report uploader, JSON API and private inbox are NOT the default agent workflow. Live SXF FINAL_SIGNAL source sync still runs automatically. At least 1–3 verified SXF findings per match/selection; source isolation intact. Login and real browser-control capability are mandatory; never claim clicks/verified site save if browser interaction was unavailable. See `prompts/manual_report_chain.md` v4.9.
 
 ## 1. Purpose
 
@@ -17,7 +17,7 @@ The system must prefer reproducibility, source discipline, uncertainty disclosur
 CAPITALE has six roles:
 
 1. ANALYST — autonomous whole-fixture DATA + filtered HUMAN evidence research; no predictions, scores or recommendations. Mandatory critical review and fail-closed v3.0 quality gate.
-2. NEWS — v2.0 autonomous whole-fixture current-news evidence research for both clubs. Eight news families, local-language and primary sources, evolving inquiries, verification, counterevidence and conditional mechanisms. No points, N/100, pick or prediction.
+2. NEWS — v2.1 fixed approved-source scan for both clubs; report relevant news, sources and uncertainty. No score, pick or prediction.
 3. SXF — independent SmartXFlow market-flow analysis. Its current v0.4.3 DRAFT **DAILY default is per-fixture/market T-6 primary with valid T-8 fallback**; optional dynamic AS_OF runs only by explicit owner request.
 4. POLY — independent prediction-market / bettor-intelligence analysis using the active split source policy defined below.
 5. ENGINEER — architecture, data access, schemas, prompts, versions, testing, backtesting, calibration, and maintenance. ENGINEER does not make match predictions.
@@ -42,7 +42,7 @@ Only FINAL may see all four completed department reports at the same time.
 
 ANALYST may use historical/current-season football performance, match, statistical, and tactical evidence permitted by its source policy. HUMAN material is researched by the same ANALYST after the DATA baseline is frozen; use only separable football observations, ignore/log accidental prohibited exposure, and independently verify. HUMAN is a source category, not an agent. It may not use current news, betting/odds/market-flow data, SmartXFlow, or Polymarket.
 
-NEWS may use current news and contextual sources permitted by its source policy. It may not use betting/odds/market-flow data, SmartXFlow, Polymarket, or other department reports. NEWS researches a neutral fixture; selection and run routing are withheld until the report is frozen.
+NEWS may use only the named entries in policies/news_source_directory.md, not new or dynamically discovered outlets. Scan both countries' applicable listed sources and the international list; neutral fixture until report freeze. No odds, market flow, SmartXFlow, Polymarket or other departments.
 
 SXF may use SmartXFlow data only. It may not use team form, current news, Polymarket, or other department reports. Its current DRAFT v0.4 core engines and exact per-match as-of rule are defined in its role/method/schema files.
 
@@ -74,7 +74,7 @@ Conflicting evidence must be preserved, not averaged away. FINAL must reduce con
 
 Evidence arising from the same underlying cause must not be double-counted as independent confirmation.
 
-NEWS v2.0 is the only active new-run method. v1.6 and older scoring methods are superseded; historical reports immutable. Keep relevance, AS_OF, source reliability, role separation and deduplication. Separate verified events from possible effects; no -3/+3, totals, N/100, score placeholder or betting recommendation.
+NEWS v2.1 is the only active new-run method; v2.0/v2.0.1 research gates, audits and mandatory validators are superseded. Historical reports immutable. Retain relevance, AS_OF, source reliability, role isolation and no scoring.
 
 Thresholds, reliability/freshness multipliers, penalties, and category boundaries should ultimately be learned or calibrated from backtests. Bootstrap rules may be used only when explicitly versioned and marked as unvalidated.
 
@@ -136,7 +136,7 @@ Bootstrap scoring rules may be CANONICAL for operational consistency while remai
 ## 10. Current State
 
 ANALYST: **v3.0 CANONICAL — only active new-run method/schema**, effective 2026-11-24. Independent DATA baseline → single-agent claim-filtered HUMAN discovery → autonomous fixture-specific questions and iterative evidence research → mandatory counter-tests → evidence-only report. No score, lean, predicted result, probability or recommendation. Both teams, all seven outcome mechanisms; routing selection withheld until research freeze; same ANALYST may deliver afterward. Operational revision 3.0.5 defines one ANALYST and two source categories only. READY requires all stages and actual structural validator PASS; otherwise PARTIAL/BLOCKED, no completed site save. v2.1 and older methods SUPERSEDED for new runs; historical reports immutable. See roles/analyst.md, methods/analyst_methodology.md, schemas/analyst_report.md, prompts/analyst_start.md and source registries.
-NEWS: v2.0 CANONICAL — independent current news, actual two-team eight-family coverage, material story investigation, counterevidence, NEWS COMPLETENESS / RESEARCH DEPTH / RESEARCH CLOSURE, evidence-only READY report and actual structural PASS.
+NEWS: v2.1 CANONICAL — closed-source scan, actual per-outlet attempts, relevant news Markdown and truthful limitations; no mandatory validator or JSON audit.
 POLY: v1.4 CANONICAL — independent public Polymarket v2 + Gamma/CLOB + Polygon bettor discovery/verification; all CAPITALE Supabase and SXF POLY sources prohibited; candidate skill thresholds uncalibrated
 SXF: v0.4.3 DRAFT — owner-approved EARLY CORE T-72/T-60/T-40/T-24 checkpoint decision odds <=2.35 (2026-10-27); **EARLY_T12 RETIRED** (2026-10-28); **daily scan T-6 primary / T-8 fallback now DEFAULT by owner decision (2026-10-28)**; DYNAMIC_AS_OF_V04 still available only by explicit request. V1/V2/HEAVY/SURPRISE/Over/BTTS thresholds unchanged; EARLY CORE v2, OVER_STRONG and EKOL 3 shadow experiments NOT canonical; live runtime implementation verification pending.
 FINAL: v0.2 DRAFT — synthesis architecture approved; numerical calibration pending
@@ -148,7 +148,7 @@ See MILESTONE.md for current implementation state, superseded rules, and technic
 
 ## 2026-11-20 — Current direct per-agent site workflow
 
-**ACTIVE DEFAULT:** SXF source FINAL_SIGNAL → automated pre-match source-confirmed Software row + full SXF report → blind fixture-only ANALYST list → ANALYST v3.0 complete independent READY evidence report **directly into its own A/site report** → neutral NEWS list → NEWS v2.0 complete independent READY evidence report **directly into its own N/site report** → FINAL retrieves all three original reports through the authenticated browser UI and synthesizes A/B/C/NO_RECOMMENDATION. Each write must return a report ID/version and exact role/run/hash readback; new revisions never rewrite another role's historical report.
+**ACTIVE DEFAULT:** SXF source FINAL_SIGNAL → automated pre-match source-confirmed Software row + full SXF report → blind fixture-only ANALYST list → ANALYST v3.0 complete independent READY evidence report **directly into its own A/site report** → neutral NEWS list → NEWS v2.1 completed independent source-scan report **directly into its own N/site report** → FINAL retrieves all three original reports through the authenticated browser UI and synthesizes A/B/C/NO_RECOMMENDATION. Each write must return a report ID/version and exact role/run/hash readback; new revisions never rewrite another role's historical report.
 
 SXF source sync is `tools/capitale_sxf_software_sync.py` and watcher `tools/capitale_sxf_software_watch.py` (live private server `/opt/`). Direct specialist uploader: `tools/capitale_report_uploader.py`; local site report reader: `tools/capitale_site_report_reader.py`. User does not install GPT Actions or paste tokens. Site is the PRIMARY report store. The previous `tools/manual_report_inbox.py` is only an optional offline fallback, NOT the active default. ANALYST research sees only neutral fixture identity, not market/selection/run routing; the same ANALYST may attach routing in delivery mode after the READY report is frozen. NEWS also receives neutral fixture only; same NEWS attaches verified routing after freeze. Neither sees other specialists' evidence as research input.
 
@@ -168,14 +168,10 @@ Owner requires one complete downloadable Markdown report with all research/verif
 ## 2026-11-24 — ANALYST v3.0.5 operational correction (ACTIVE)
 One ANALYST performs DATA → HUMAN → autonomous questions → counter-tests → report. Start DATA immediately on verified neutral fixture and permitted data access. No additional agent, separate chat, validator runtime, or authenticated browser is a startup prerequisite. HUMAN means human-authored editorial sources researched directly by ANALYST. Never use prohibited content; record incidental exposure category and mitigation, not its contents. No usable HUMAN coverage after actual attempts is a limitation. Keep research/validation/site delivery statuses distinct. Use the same ANALYST for post-freeze routing and browser save. Preserve v3.0 research standard, evidence gate and output rules; new audits require protocol_revision 3.0.5. Older conflicting milestone/prompt text is historical and superseded. No change to other roles' methodologies.
 
-## 2026-11-24 — NEWS source routing (ACTIVE)
-NEWS must read `policies/news_source_directory.md` and `policies/news_sources.md`. Named source entry points cover 19 domestic football jurisdictions and international outlets; both clubs' direct official/local-language coverage, original local reporting and material follow-up are required. Cross-border fixtures route to both countries and organizer. Discover club-specific or unlisted local sources; unavailable outlets are logged and replaced by suitable accessible sources, not a startup dependency. Record actual searches, source provenance and limits in the full report. N1–N4 reliability, eight news families and role independence unchanged; scoring superseded by NEWS v2.0. No new agent, subscription, service or automatic scraper.
 
 ## 2026-11-24 — ANALYST v3.0.5 quality gates (ACTIVE)
 Every new ANALYST audit requires protocol_revision 3.0.5 and structured DATA COMPLETENESS, RESEARCH DEPTH, RESEARCH CLOSURE records. Search full justified match series, document genuine gaps/alternatives, editorial novelty, both attack-defense matchup directions, evolving material leads and concrete closure. Material unsearched evidence, viable unresolved material work or critical gaps forbid READY. Batch/session limits require PARTIAL if important work remains. Actual structural PASS and semantic/factual review required; no new agent, score, fixed question quota or technical service. Preserve the existing report and Software delivery contract. Other roles unchanged except FINAL intake revision.
 
-## 2026-11-24 — NEWS v2.0 (ACTIVE)
-NEWS performs all research itself. Use neutral fixture, both teams, existing 52-source directory, actual eight-family coverage, material discovery, autonomous inquiries, source verification, opposing evidence, conditional mechanisms, and evidence-based closure. Actual structural PASS with tools/validate_news_v2.mjs plus factual/semantic review required. No material news after adequate real searches is a legitimate coverage result, not a neutral score. Incomplete material work stays PARTIAL. N/100 and -3/+3 retired; new N null. Save complete READY Markdown and 1–3 factual English findings or truthful coverage statement, verify ID/version and .md download. FINAL receives original evidence only, with no invented N. Earlier conflicting instructions superseded. No other agent or service.
 
 ## Transitional NEWS v2.0 delivery compatibility (2026-11-24)
 The NEWS download/import UI and removal of the legacy N field are required target behavior, not a verified live deployment. Existing admin V29 has a full-report field and optional N; leave N blank/null, paste the complete original Markdown and verify actual save ID/version if available. If NEWS download is absent, preserve the original Markdown and mark download PENDING/UNAVAILABLE separately. Do not block permitted research over absent export; do not claim unperformed download or successful save. No live server quality gate is asserted.
@@ -183,8 +179,9 @@ The NEWS download/import UI and removal of the legacy N field are required targe
 ## 2026-11-24 — ANALYST v3.0.5 efficient execution (ACTIVE)
 Keep the v3.0.3 research quality standard intact. Batch compatible within-stage retrievals; preserve DATA freeze before HUMAN. Maintain one fixture-scoped evidence ledger, reuse source IDs and actual shared countertests, merge overlapping inquiries, prioritize material information gain, record incrementally and assemble one concise Markdown with complete audit. Validate completed audit; rerun after changes only. Indicative 7–10 min planning target when feasible is not a deadline or quality gate. No time-based READY, new agent, score, external dependency or forced research quota. New audits use protocol_revision 3.0.5. No NEWS/SXF method, FINAL decision weighting, or Software change.
 
-## 2026-11-24 — NEWS v2.0.1 single-fixture completion lock (ACTIVE)
-Owner requires hard research acceptance. NEWS must complete one fixture's actual source receipts, five routes, 16 coverage rows, autonomous follow-ups, distinct opposing/mitigation searches, three quality gates, semantic review and full Turkish Markdown with embedded protocol_revision 2.0.1 audit before actual validator PASS and READY. No first-scan ZIP, JSON-only audit, generic closure or premature completion. No research on later fixtures while active fixture has viable material work. Genuine PARTIAL/BLOCKED pauses batch; later fixtures QUEUED; explicit owner permission required to skip unfinished fixture. Delivery-only limits are separate; retain/provide the actual validated full file if site unavailable; no false save. See NEWS role/method/schema and browser chain 4.8. FINAL requires current NEWS acceptance for new reports. No scoring, source-domain, other-role methodology or service change.
 
 ## 2026-11-24 — ANALYST v3.0.5 HUMAN coverage (ACTIVE)
 All 14 registered HUMAN sources apply to every fixture regardless of country or league. After DATA freeze, batch fixture-targeted domain searches across all 14, log real discovery per domain, and open only relevant candidate articles. Country/language is a query hint, never an exclusion criterion. No forced article count or unrelated page visits. No changes to other quality gates, DATA registry, anti-anchoring rules or roles.
+
+## 2026-11-24 — NEWS v2.1 (ACTIVE, owner correction)
+NEWS scans only the existing named sources in its closed directory: applicable sources for both countries and international entries, deduplicated. Real source-specific attempts and actual relevant article content; report links, dates where available, and uncertainties. No external source discovery. Each completed finite scan produces a full Markdown; inaccessible outlets/no news/unresolved details do not block READY. No NEWS validator, JSON audit, formal quality gates, mandatory counter-tests, or cross-fixture lock. Truly unfinished work remains PARTIAL/BLOCKED. Preserve separate delivery status. FINAL uses this report; no change to other roles, ANALYST validator, scoring or decision methodology. All earlier conflicting NEWS instructions are SUPERSEDED.

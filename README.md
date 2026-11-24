@@ -15,7 +15,7 @@ CAPITALE is a multi-agent football research and betting-decision system built ar
 
 Every agent must **open the authenticated `/admin/software?agent=<role>` page and click its own Edit/Save buttons in an actual browser**, not send CLI/API report payloads in the normal workflow. SXF auto-import creates source-backed match rows; SXF, ANALYST and NEWS each append their own complete specialist analysis through their dedicated website edit forms. FINAL reads all three original complete reports on its page and appends its own A/B/C/NO_RECOMMENDATION decision. Each write is verified by an actual report/decision ID and version on readback; no invented scores, AS_OF or source claims.
 
-Canonical steps: `prompts/manual_report_chain.md` v4.8. Admin login and genuine browser-control capability are required; Commander terminal availability alone does not prove UI interaction. Past CLI-inbox handoff paths are fallback/internal engineering only.
+Canonical steps: `prompts/manual_report_chain.md` v4.9. Admin login and genuine browser-control capability are required; Commander terminal availability alone does not prove UI interaction. Past CLI-inbox handoff paths are fallback/internal engineering only.
 
 ## Core rule
 
@@ -56,10 +56,9 @@ Do not invent missing canonical thresholds for roles marked DRAFT.
 ANALYST v3.0.5 operational correction: one ANALYST performs all research stages; HUMAN is the 14-source human-authored editorial category, not an agent. DATA starts before delivery/validator availability checks; all actual source attempts, independent counter-tests and structural validation before READY remain mandatory.
 ANALYST v3.0.5 adds three research-quality gates and an evidence-linked audit. Existing source categories and per-fixture Markdown/Software delivery unchanged.
 
-NEWS v2.0: autonomous two-team current-news evidence, no scores, quality gates and downloadable complete Markdown plus short factual findings. Source directory retained. See roles/news.md and methods/news_methodology.md.
+NEWS v2.1: closed named-source scan and concise relevant-news Markdown. No scores, mandatory validator, JSON audit or quality gates.
 
 ANALYST v3.0.5 optimizes retrieval, evidence reuse, shared actual countertests and incremental audit/report generation; retains all three v3.0.3 quality gates and full original report. Indicative 7–10 minute target not yet measured, not a deadline.
 
-NEWS v2.0.1 operational acceptance: single-fixture lock, actual source/search receipts, five source routes and 16 coverage cells, separate follow-up/counterevidence, full Markdown gate and explicit semantic review. No moving past incomplete research without owner permission.
 
 ANALYST v3.0.5: all 14 HUMAN domains eligible for every fixture; batch targeted discovery, inspect only relevant articles. Country is not a filter.

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// SUPERSEDED: historical NEWS v2.0.1 checker only. Do not run for active NEWS v2.1; not a completion or FINAL intake requirement.
 // Structural checker only. Actual search, truth, relevance and semantic depth require review.
 import { readFileSync } from 'node:fs';
 function validate(a){

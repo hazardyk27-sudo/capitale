@@ -1,7 +1,7 @@
 # CAPITALE — BROWSER-DIRECT AGENT WORKFLOW
 
 **Status:** OWNER-APPROVED ACTIVE DEFAULT
-**Version:** 4.8 — 2026-11-24
+**Version:** 4.9 — 2026-11-24
 
 **THE RULE:** Every ChatGPT research agent must **open the actual `https://betcapitale.com/admin/software` webpage in a browser**, find the correct match + market + selection, **fill ONLY its own on-page edit form**, click **Save**, and verify the actual report ID/version shown. **Do not use the Commander CLI report uploader, JSON API submission, or manual private inbox as the default user workflow.** Commander may be used to open/operate a browser if browser GUI automation is genuinely available; ordinary terminal/file access alone is not proof of a click. ChatGPT Work browser or another authorized browser-control capability can operate the UI. If no browser control or admin login exists, report that limitation; don't fabricate a save.
 
@@ -29,11 +29,11 @@ Each page requires an existing logged-in **CAPITALE administrator browser sessio
 3. Only after freeze, attach verified run_id/market/selection metadata and open the authenticated `?agent=analyst` browser editor; enter actual AS_OF, brief factual summary, full original report including audit and gate result, 1–3 verified English findings and genuine source evidence. Leave legacy A score blank/null. If site demands a score or cannot accept the report, BLOCKED; do not invent one.
 4. Click Save and require SAVED & VERIFIED plus actual report ID/version. The same immutable full report (with all audit/verification records) must be downloadable as .md from the corresponding match; use the admin download button and verify identity/version and contents. The 1–3 saved findings are shown in the existing match analysis. Only neutral NEWS routing may follow; no report, hypothesis or score. No other role edits. Complete each fixture sequentially before advancing; record any genuine blocked/partial fixture and proceed to the next. At batch end provide only short per-match status and verified IDs. Server-side enforcement is not yet verified.
 
-## NEWS browser steps — v2.0
-1. Research input is neutral fixture identity, competition, kickoff and club countries only; hold run_id/market/selection separately until research freeze. No prior role evidence.
-2. Execute both-team eight-family scan, material discovery, autonomous follow-up, verification, opposing evidence, conditional mechanisms and three quality gates. Run tools/validate_news_v2.mjs on the complete actual Markdown with embedded protocol_revision 2.0.1 audit. Only READY with actual PASS plus factual/semantic review; no scores, no N/100. No material news after sufficient actual coverage is valid with explicit evidence status. PARTIAL/BLOCKED must retain actual work and next actions.
-3. Freeze research then same NEWS attaches verified run_id and opens authenticated ?agent=news editor. Enter true NEWS AS_OF, full original Markdown including all evidence/audit, summary, 1–3 factual English findings or truthful coverage statement, genuine sources. N null.
-4. Save NEWS to Software, verify SAVED & VERIFIED ID/version, download full NEWS .md and verify identity and complete contents. Short status table and real run IDs to FINAL; no other role edits. Single-fixture completion lock: no next fixture while viable material research remains; actual unavoidable PARTIAL/BLOCKED pauses the batch unless owner explicitly permits skipping; later fixtures QUEUED. Research and delivery status separate.
+## NEWS browser steps — v2.1
+1. Receive neutral fixture; scan only the listed domestic and international sources under NEWS v2.1. Attempt every applicable entry and record results; no external discovery, validator, JSON audit or mandatory countertests. Complete Markdown after the finite scan even if individual outlets are inaccessible or details remain uncertain.
+2. Freeze completed report, attach verified run routing and open the authenticated NEWS editor. Enter real AS_OF, full Markdown, genuine source evidence and 1–3 factual English findings/coverage statement. N null.
+3. Verify actual save ID/version and download if available. If site/export is blocked, provide original Markdown and disclose delivery limitation. Do not stop research or other matches over site access. Incomplete research remains PARTIAL/BLOCKED; never claim completed work that was not performed.
+
 
 ## FINAL browser steps
 
@@ -63,15 +63,14 @@ Live frontend: `/admin/software` includes role-specific browser forms, input val
 
 The previously built server CLI scripts (`tools/capitale_sxf_software_sync.py`, `tools/capitale_report_uploader.py`, `tools/capitale_site_report_reader.py`) remain technical backup/automatic verified source plumbing; **never instruct ordinary specialist agents to use those to replace webpage navigation, clicking and saving**, unless the owner expressly switches to API mode.
 
-Canonical engine methodology, source isolation, 1–3 SXF findings requirement, ANALYST v3.0 evidence-only research, NEWS v2.0 evidence-only research and FINAL v0.2 decision rules apply.
+Canonical engine methodology, source isolation, 1–3 SXF findings requirement, ANALYST v3.0 evidence-only research, NEWS v2.1 fixed-source news scan and FINAL v0.2 decision rules apply.
 
-For new NEWS inputs FINAL requires news-v2.0-canonical with protocol_revision 2.0.1, READY, actual full-Markdown validator PASS and full evidence audit. No N score or placeholder; absence of retired N is not missing evidence. Distinguish NO_MATERIAL_NEWS from incomplete coverage. No FINAL decision-method change.
+For new NEWS inputs FINAL requires the completed NEWS v2.1 source-scan Markdown with links and honest limitations; no NEWS validator PASS, JSON audit or N score. No FINAL decision-method change.
 
 ## Transitional NEWS v2.0 delivery compatibility (2026-11-24)
 The NEWS download/import UI and removal of the legacy N field are required target behavior, not a verified live deployment. Existing admin V29 has a full-report field and optional N; leave N blank/null, paste the complete original Markdown and verify actual save ID/version if available. If NEWS download is absent, preserve the original Markdown and mark download PENDING/UNAVAILABLE separately. Do not block permitted research over absent export; do not claim unperformed download or successful save. No live server quality gate is asserted.
 
 ANALYST v3.0.5 execution: batch compatible DATA/HUMAN stage searches (freeze boundary preserved), reuse verified evidence/source IDs and shared actual countertests, incrementally populate the complete audit, assemble once and validate the completed audit. Keep all three research quality gates, factual review and existing delivery contract. Time targets do not authorize READY or alter the sequential per-fixture delivery rule.
 
-NEWS v2.0.1 mandatory lock: follow methods/news_methodology.md and schemas/news_report.md. The complete Turkish Markdown (not just audit/summary) and actual validator PASS plus factual review must exist before READY. Preserve actual work on unavoidable stop, do not auto-advance past incomplete research. A validated full file may be provided when browser/export is blocked; report delivery status accurately. No change to other roles' research/decision rules.
 
 ANALYST v3.0.5: require actual fixture-specific discovery across all 14 HUMAN domains after DATA freeze, regardless of countries. Inspect only relevant articles, preserve all quality gates and compact execution rules.
