@@ -1,7 +1,7 @@
 # CAPITALE ANALYST — Evidence Report and Audit Contract
 Status: CANONICAL
 Version: 3.0
-Operational revision: 3.0.3
+Operational revision: 3.0.4
 Effective: 2026-11-24
 Method: methods/analyst_methodology.md
 Previous schemas including v2.1 are SUPERSEDED for new reports only.
@@ -16,7 +16,7 @@ Previous schemas including v2.1 are SUPERSEDED for new reports only.
 
 ## Structured audit (JSON; actual values, not placeholders)
 Required top-level fields:
-- role: "ANALYST"; methodology_version: "analyst-v3.0-canonical"; protocol_revision: "3.0.3"; status: "READY" | "PARTIAL" | "BLOCKED".
+- role: "ANALYST"; methodology_version: "analyst-v3.0-canonical"; protocol_revision: "3.0.4"; status: "READY" | "PARTIAL" | "BLOCKED".
 - fixture_uid, match, competition, kickoff_utc, as_of_utc; home_team, away_team; competition_country, home_country, away_country (English country names used in the HUMAN registry), cross_border (boolean). For cross-border tournaments use both club countries for source routing.
 - startup_verified, isolation_verified (departmental evidence separation), no_prohibited_inputs (no prohibited information USED as evidence or decision input, not a claim of no accidental exposure), no_predictions: booleans; blocked_reasons: array of strings.
 - sources: array of {id, url, observed_at, retrieved_at, provider, scope, claim}, with actual provenance; unique IDs. observed_at is the time information was available (<= AS_OF), not the retrieval time for a valid historical snapshot.
@@ -46,3 +46,6 @@ Same verified run_id in separate routing envelope. Legacy A input MUST remain bl
 
 ## 2026-11-24 — Owner-approved per-fixture file and findings
 For each fixture, finish and validate the entire v3.0 research before moving to the next. Save the full original Markdown report (including all source, research, verification/counter-test and audit records, actual gate result) in the correct existing Software ANALYST report. Use optional .md import or paste into the full report field; never truncate or split off the audit. Add 1–3 concise, material, independently supported English findings in the existing findings fields; each must match the same full report, with important caveats preserved. Leave A/100 blank/null. Confirm SAVED & VERIFIED ID/version, then download the matching .md and check identity/version and complete contents. If download or verification fails, distinguish saved report from incomplete delivery; never claim file verified. If report is not READY, do not save a completed report. A batch of fixtures is sequential, per-match checkpoints; finish/save/verify each before moving on (or record a genuine BLOCKED/PARTIAL status and continue with the next). Final chat output is a short per-match status list (research, saved report ID/version, download verification), not ten duplicated full reports. User can download each file and send it to FINAL. No direct handoff of research to NEWS. Admin only; no public file links. See deployments/betcapitale/analyst-report-download-v29-live-20261124.md.
+
+## Compact audit and evidence reuse (v3.0.4)
+All v3.0.3 required fields, cross-references, data-unit coverage, HUMAN attempts, matchup checks, leads and closure requirements are retained. Record each source once per relevant distinct evidence item and refer to its ID across checks; one actual batch attempt may list multiple covered units. A shared countertest ID is allowed when the recorded actual actions and result substantively test every linked claim; preserve limitations and opposing evidence. Short action strings and ID references are acceptable when they identify the concrete executed operation and result in the same audit. Do not repeat identical full logs in the readable summary. Keep the complete structured audit and source ledger in the original Markdown; no omitted records or external-only audit. Populate the audit during research, validate the completed audit and rerun only when a correction changes it. No mandatory timing fields or runtime threshold added; optional measured timing notes belong outside JSON. Quality gates and factual review are unchanged.
