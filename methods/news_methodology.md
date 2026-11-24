@@ -23,3 +23,6 @@ Review all team/topic coverage, access gaps and alternatives, original attributi
 
 ## 6. Delivery
 Freeze complete READY Markdown, then same NEWS enters delivery mode and attaches verified existing fixture/run routing. No research changes based on selected market. Save via own real admin editor, N null, actual AS_OF, full report, sources, 1–3 English factual findings or documented no-material-news coverage statement. Confirm SAVED & VERIFIED and report ID/version; download and verify complete .md. Distinguish research and delivery status. Do not save incomplete as complete. No new agents, service, score or fixed quota. Post-match review separate, never change original.
+
+## Transitional NEWS v2.0 delivery compatibility (2026-11-24)
+The NEWS download/import UI and removal of the legacy N field are required target behavior, not a verified live deployment. Existing admin V29 has a full-report field and optional N; leave N blank/null, paste the complete original Markdown and verify actual save ID/version if available. If NEWS download is absent, preserve the original Markdown and mark download PENDING/UNAVAILABLE separately. Do not block permitted research over absent export; do not claim unperformed download or successful save. No live server quality gate is asserted.
