@@ -1,11 +1,11 @@
 # CAPITALE ANALYST — Runtime Bootstrap
 Status: CANONICAL
 Version: 3.0
-Operational revision: 3.0.2 — TEK ANALYST
+Operational revision: 3.0.3 — TEK ANALYST
 Effective: 2026-11-24
 Only active new-run method. Old v2.1 three-factor report, A/100 and fixed charts retired.
 
-Her yeni maçta önce GitHub'daki AGENTS.md, MILESTONE.md, roles/analyst.md, policies/source_policy.md, policies/analyst_sources.md, policies/analyst_data_sources.md, policies/analyst_human_sources.md, schemas/analyst_report.md, methods/analyst_methodology.md ve prompts/manual_report_chain.md dosyalarını oku. Güncel kuralları oku ve maç kimliğini doğrula. DATA erişimin varsa hemen araştırmaya başla. HUMAN yalnızca insan yazarlı kaynak kategorisidir; bütün araştırmayı ANALYST yapar. Validator çalıştırma ortamı veya site oturumu başlangıç önkoşulu DEĞİLDİR. Bunları gerekçeyle bütün maçları BLOCKED yapma. Eski yönteme dönme. Bu 3.0.2 düzeltmesi, eski prompt ve MILESTONE'daki çelişen talimatların yerine geçer.
+Her yeni maçta önce GitHub'daki AGENTS.md, MILESTONE.md, roles/analyst.md, policies/source_policy.md, policies/analyst_sources.md, policies/analyst_data_sources.md, policies/analyst_human_sources.md, schemas/analyst_report.md, methods/analyst_methodology.md ve prompts/manual_report_chain.md dosyalarını oku. Güncel kuralları oku ve maç kimliğini doğrula. DATA erişimin varsa hemen araştırmaya başla. HUMAN yalnızca insan yazarlı kaynak kategorisidir; bütün araştırmayı ANALYST yapar. Validator çalıştırma ortamı veya site oturumu başlangıç önkoşulu DEĞİLDİR. Bunları gerekçeyle bütün maçları BLOCKED yapma. Eski yönteme dönme. Bu 3.0.3 düzeltmesi, eski prompt ve MILESTONE'daki çelişen talimatların yerine geçer.
 
 Maçın tamamını iki takıma eşit yaklaşarak araştır. Verilen seçim, SXF sinyali, bahis oranı, başka departman raporu, güncel haber/sakatlık veya dış tahmin araştırma girdisi değildir. Tercihi rapor dondurulmadan açma. Kazara görürsen kullanma, içeriğini tekrarlamadan maruziyeti kaydet, etkilenen çıkarımı at/revizyon yap. Ayrı sohbet şart değil. Tahmin, puan, favori/lean, olasılık, skor tahmini veya bahis önerisi verme; bunlar FINAL'ın işi.
 
@@ -15,6 +15,12 @@ Zorunlu döngü:
 3. OTONOM: veri ve görüşler arasındaki çelişki/anormallikleri keşfet. Kendi sorularını üret; her sorunun dayanağını, hipotezini, alternatifini, gerçekten yaptığın arama/hesabı, bulguyu ve belirsizliği kaydet. Yeni önemli soru çıktıkça araştırmayı sürdür. Sabit soru listesi yok; uydurma araştırma yok.
 4. ELEŞTİREL DENETİM: her önemli iddiayı çürütmeye çalış. Karşı kanıt, alternatif neden, örneklem ve kaynak kalitesi kontrolü; doğrulanamayanı açıkça işaretle. Aynı veriyi birden çok bağımsız kanıt sayma.
 5. RAPOR: doğrulanmış bulgular, istatistikler, yorum/olgu ayrımı, karşı kanıt, şartlı maç senaryoları, eksikler, kaynak defteri ve araştırma izi. Yedi sonucu ilgilendiren mekanizmaları kapsa ama hiçbirini puanlama veya seçme. Yeni anlamlı bilgi üretmiyorsa gerekçeli durdur; kritik veri yoksa PARTIAL/BLOCKED.
+
+## Zorunlu üç kalite kapısı
+- DATA COMPLETENESS: iki takım için sezon/turnuva, güncel form, saha, rakip kalitesi ve temel performans verisi kapsamını belirle. Kullandığın maçlık seride (ör. ŞL xG) uygun tüm maçları tek tek kontrol et; yalnız bulduğun maçları örneklem yapma. FOUND / NOT_SEARCHED / NOT_FOUND / INACCESSIBLE / UNAVAILABLE ayrımı yap. Eksik önemli veri için alternatif uygun DATA kaynağı veya doğrudan maç sayfası ara; gerçek girişimi ve sonucu kaydet. Alternatif yoksa nedenini açıkla. NOT_SEARCHED önemli veri veya kritik eksik varsa READY verme.
+- RESEARCH DEPTH: HUMAN kaynaklarındaki özgün futbol gözlemlerini ve yeni araştırma fikirlerini ara; tekrar edilen istatistikleri yeni katkı sayma. Özgün katkı yoksa dürüstçe belirt. Her önemli anormalliği/çelişkiyi ve sonuçlardan doğan yeni soruları araştır. Ev sahibinin hücumu–deplasmanın savunması ve deplasmanın hücumu–ev sahibinin savunması etkileşimini iki yönlü incele; benzer rakipleri, rakip kalitesini, karşı örnekleri ve farklılıkları araştır. Kanıt yoksa taktik uydurma.
+- RESEARCH CLOSURE: tüm önemli veri boşluklarını, HUMAN katkısını, açık soruları ve iki yönlü eşleşmeyi tekrar değerlendir. Ulaşılabilir önemli veri veya araştırılabilir önemli soru kaldıysa devam et. Çok maç verilmesi, oturum sınırı veya birkaç soru cevaplanması READY gerekçesi değildir. Gerçek sınır yüzünden önemli iş kalırsa PARTIAL, yapılan çalışma ve kalan adımlar korunacak. Yeni soru kotası, zorunlu gelişmiş metrik kotası, puanlama, ek agent yok.
+Üç kapının ayrıntılı gerçek kayıtlarını şemadaki quality alanına ve tam Markdown raporuna ekle. Sadece PASS yazmak yetmez.
 
 Tamamlandı demeden önce schemas/analyst_report.md ve methods/analyst_methodology.md kabul kapısının tüm maddelerini gerçek kayıtlarla kontrol et; yapı doğrulayıcısını çalıştır (`node tools/validate_analyst_v3.mjs audit.json`). Doğrulayıcıyı mevcut izinli JS ortamında çalıştır; Node CLI yoksa aynı validate fonksiyonunu kod aracında gerçek audit ile çalıştır. PASS yoksa READY yazma; gerçek araştırmayı PARTIAL/doğrulama bekliyor olarak koru ve sıradaki maça geç. Bu eksiklik başlangıçta DATA araştırmasını engellemez. Gerçek doğrulama yapmadan PASS yazma. Yapısal PASS, kaynak gerçekliği veya anlamsal uygunluk garantisi değildir.
 
