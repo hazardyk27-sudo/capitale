@@ -1,6 +1,6 @@
 # CAPITALE — Güncel dört agent başlangıçları
 
-**AKTİF (2026-11-20):** SXF → ANALYST → NEWS → FINAL. **HER AGENT WEB SİTESİNDE KENDİ FORMUNU TARAYICIDA AÇAR, TAM RAPORUNU GİRER VE KAYDET’E TIKLAR.** API JSON/Commander CLI rapor aktarımı veya özel inbox **NORMAL AGENT AKIŞI DEĞİLDİR**. Kanonik: `prompts/manual_report_chain.md` **v4.0**.
+**AKTİF (2026-11-20):** SXF → ANALYST → NEWS → FINAL. **HER AGENT WEB SİTESİNDE KENDİ FORMUNU TARAYICIDA AÇAR, TAM RAPORUNU GİRER VE KAYDET’E TIKLAR.** API JSON/Commander CLI rapor aktarımı veya özel inbox **NORMAL AGENT AKIŞI DEĞİLDİR**. Kanonik: `prompts/manual_report_chain.md` **v4.8**.
 
 | Rol | Direkt agent sayfası | Form |
 |---|---|---|
@@ -11,7 +11,7 @@
 
 Başlangıçta `AGENTS.md`, `MILESTONE.md`, `roles/<rol>.md`, `policies/source_policy.md`, ilgili rol kaynak politikası, `methods/<rol>_methodology.md`, `schemas/<rol>_report.md`, `prompts/<rol>_start.md` ve `prompts/manual_report_chain.md` **okunur**.
 
-SXF gerçek `FINAL_SIGNAL` taraması ayrıca otomatik olarak kaynak senkronizasyonunu yapar; **sitenin otomatik kaynak kaydı tam uzman raporu değildir**. SXF tam raporunu siteye kendi formuyla ekler ve her seçim için zorunlu 1–3 kanıt maddesi verir. ANALYST sadece nötr girdiyle bağımsız üç faktör araştırır ve A destek/100 puanını kendi formuna kaydeder. NEWS sadece nötr girdiyle sekiz haber alanını ve H# kanıtlarını araştırır, N destek/100 ve tam raporu kendi formuna kaydeder. FINAL kendi sayfasında üç özgün tam raporu okur, kendi A/B/C/NO_RECOMMENDATION kararını ayrı FINAL formuna kaydeder; POLY isteğe bağlıdır.
+SXF gerçek `FINAL_SIGNAL` taraması ayrıca otomatik olarak kaynak senkronizasyonunu yapar; **sitenin otomatik kaynak kaydı tam uzman raporu değildir**. SXF tam raporunu siteye kendi formuyla ekler ve her seçim için zorunlu 1–3 kanıt maddesi verir. ANALYST nötr girdiyle v3.0.4 DATA/HUMAN kanıt araştırması ve tam rapor üretir; A boş. NEWS nötr girdiyle v2.0.1 tek-maç tamamlanma kilidi altında sekiz haber alanı, derin araştırma ve tam doğrulanmış Markdown üretir; N boş. PARTIAL ile sonraki maça geçmek yasak, gerçek engelde kalan maçlar QUEUED; yalnızca kullanıcı açıkça izin verirse atlanır. FINAL kendi sayfasında üç özgün tam raporu okur, kendi A/B/C/NO_RECOMMENDATION kararını ayrı FINAL formuna kaydeder; POLY isteğe bağlıdır.
 
 **Mutlaka gerçek admin tarayıcı oturumu gereklidir.** Kullanıcıdan ChatGPT sohbetinde şifre/token istenmez. Commander terminali tek başına web sayfasına tıklama yapmış sayılmaz; Work Cloud Browser veya yetkili gerçek tarayıcı kontrolü gerekir. Böyle bir yetki/araç yoksa ilgili agent UI işlemi yapılmadığını açıkça söyler.
 

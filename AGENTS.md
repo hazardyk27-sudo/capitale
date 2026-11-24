@@ -1,10 +1,10 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.24
+Version: 1.25
 Last updated: 2026-11-24
 
-> **CURRENT DEFAULT — REAL BROWSER UI 2026-11-20:** SXF → ANALYST → NEWS → FINAL; each specialist **opens its own authenticated /admin/software?agent=<role> page, enters its COMPLETE report in its OWN on-page editor and clicks Save**. FINAL reads the three full original reports visually on the site and saves its final decision in a separate FINAL box. The old CLI report uploader, JSON API and private inbox are NOT the default agent workflow. Live SXF FINAL_SIGNAL source sync still runs automatically. At least 1–3 verified SXF findings per match/selection; source isolation intact. Login and real browser-control capability are mandatory; never claim clicks/verified site save if browser interaction was unavailable. See `prompts/manual_report_chain.md` v4.7.
+> **CURRENT DEFAULT — REAL BROWSER UI 2026-11-20:** SXF → ANALYST → NEWS → FINAL; each specialist **opens its own authenticated /admin/software?agent=<role> page, enters its COMPLETE report in its OWN on-page editor and clicks Save**. FINAL reads the three full original reports visually on the site and saves its final decision in a separate FINAL box. The old CLI report uploader, JSON API and private inbox are NOT the default agent workflow. Live SXF FINAL_SIGNAL source sync still runs automatically. At least 1–3 verified SXF findings per match/selection; source isolation intact. Login and real browser-control capability are mandatory; never claim clicks/verified site save if browser interaction was unavailable. See `prompts/manual_report_chain.md` v4.8.
 
 ## 1. Purpose
 
@@ -182,3 +182,6 @@ The NEWS download/import UI and removal of the legacy N field are required targe
 
 ## 2026-11-24 — ANALYST v3.0.4 efficient execution (ACTIVE)
 Keep the v3.0.3 research quality standard intact. Batch compatible within-stage retrievals; preserve DATA freeze before HUMAN. Maintain one fixture-scoped evidence ledger, reuse source IDs and actual shared countertests, merge overlapping inquiries, prioritize material information gain, record incrementally and assemble one concise Markdown with complete audit. Validate completed audit; rerun after changes only. Indicative 7–10 min planning target when feasible is not a deadline or quality gate. No time-based READY, new agent, score, external dependency or forced research quota. New audits use protocol_revision 3.0.4. No NEWS/SXF method, FINAL decision weighting, or Software change.
+
+## 2026-11-24 — NEWS v2.0.1 single-fixture completion lock (ACTIVE)
+Owner requires hard research acceptance. NEWS must complete one fixture's actual source receipts, five routes, 16 coverage rows, autonomous follow-ups, distinct opposing/mitigation searches, three quality gates, semantic review and full Turkish Markdown with embedded protocol_revision 2.0.1 audit before actual validator PASS and READY. No first-scan ZIP, JSON-only audit, generic closure or premature completion. No research on later fixtures while active fixture has viable material work. Genuine PARTIAL/BLOCKED pauses batch; later fixtures QUEUED; explicit owner permission required to skip unfinished fixture. Delivery-only limits are separate; retain/provide the actual validated full file if site unavailable; no false save. See NEWS role/method/schema and browser chain 4.8. FINAL requires current NEWS acceptance for new reports. No scoring, source-domain, other-role methodology or service change.

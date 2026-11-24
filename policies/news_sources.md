@@ -39,3 +39,6 @@ Source grades classify provenance, not match support. Verify events separately f
 ## Prohibited sources
 
 No bookmaker odds, betting-market flow, SmartXFlow, Polymarket, ANALYST or other CAPITALE department reports. User-supplied odds, money percentages and engine labels must not be used as NEWS evidence.
+
+## v2.0.1 acceptance receipts
+Use the five source routes and actual per-family coverage in schemas/news_report.md. For every material fact open permitted actual content and retain locator and relevant excerpt/paraphrase, not search snippets or headlines. Preserve original attribution and accurate time precision. Record specific observed results when searching, and actual alternatives for limited routes. A list of domains or duplicated query does not prove coverage. This is not a mandatory all-domain scan or an added news quota.

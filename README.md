@@ -15,7 +15,7 @@ CAPITALE is a multi-agent football research and betting-decision system built ar
 
 Every agent must **open the authenticated `/admin/software?agent=<role>` page and click its own Edit/Save buttons in an actual browser**, not send CLI/API report payloads in the normal workflow. SXF auto-import creates source-backed match rows; SXF, ANALYST and NEWS each append their own complete specialist analysis through their dedicated website edit forms. FINAL reads all three original complete reports on its page and appends its own A/B/C/NO_RECOMMENDATION decision. Each write is verified by an actual report/decision ID and version on readback; no invented scores, AS_OF or source claims.
 
-Canonical steps: `prompts/manual_report_chain.md` v4.4. Admin login and genuine browser-control capability are required; Commander terminal availability alone does not prove UI interaction. Past CLI-inbox handoff paths are fallback/internal engineering only.
+Canonical steps: `prompts/manual_report_chain.md` v4.8. Admin login and genuine browser-control capability are required; Commander terminal availability alone does not prove UI interaction. Past CLI-inbox handoff paths are fallback/internal engineering only.
 
 ## Core rule
 
@@ -59,3 +59,5 @@ ANALYST v3.0.4 adds three research-quality gates and an evidence-linked audit. E
 NEWS v2.0: autonomous two-team current-news evidence, no scores, quality gates and downloadable complete Markdown plus short factual findings. Source directory retained. See roles/news.md and methods/news_methodology.md.
 
 ANALYST v3.0.4 optimizes retrieval, evidence reuse, shared actual countertests and incremental audit/report generation; retains all three v3.0.3 quality gates and full original report. Indicative 7–10 minute target not yet measured, not a deadline.
+
+NEWS v2.0.1 operational acceptance: single-fixture lock, actual source/search receipts, five source routes and 16 coverage cells, separate follow-up/counterevidence, full Markdown gate and explicit semantic review. No moving past incomplete research without owner permission.
