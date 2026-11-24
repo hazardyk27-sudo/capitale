@@ -1,10 +1,10 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.19
-Last updated: 2026-11-06
+Version: 1.20
+Last updated: 2026-11-24
 
-> **CURRENT DEFAULT — REAL BROWSER UI 2026-11-20:** SXF → ANALYST → NEWS → FINAL; each specialist **opens its own authenticated /admin/software?agent=<role> page, enters its COMPLETE report in its OWN on-page editor and clicks Save**. FINAL reads the three full original reports visually on the site and saves its final decision in a separate FINAL box. The old CLI report uploader, JSON API and private inbox are NOT the default agent workflow. Live SXF FINAL_SIGNAL source sync still runs automatically. At least 1–3 verified SXF findings per match/selection; source isolation intact. Login and real browser-control capability are mandatory; never claim clicks/verified site save if browser interaction was unavailable. See `prompts/manual_report_chain.md` v4.0.
+> **CURRENT DEFAULT — REAL BROWSER UI 2026-11-20:** SXF → ANALYST → NEWS → FINAL; each specialist **opens its own authenticated /admin/software?agent=<role> page, enters its COMPLETE report in its OWN on-page editor and clicks Save**. FINAL reads the three full original reports visually on the site and saves its final decision in a separate FINAL box. The old CLI report uploader, JSON API and private inbox are NOT the default agent workflow. Live SXF FINAL_SIGNAL source sync still runs automatically. At least 1–3 verified SXF findings per match/selection; source isolation intact. Login and real browser-control capability are mandatory; never claim clicks/verified site save if browser interaction was unavailable. See `prompts/manual_report_chain.md` v4.1.
 
 ## 1. Purpose
 
@@ -16,7 +16,7 @@ The system must prefer reproducibility, source discipline, uncertainty disclosur
 
 CAPITALE has six roles:
 
-1. ANALYST — independent football performance, tactical baseline, and matchup analysis.
+1. ANALYST — autonomous whole-fixture DATA + isolated HUMAN evidence research; no predictions, scores or recommendations. Mandatory critical review and fail-closed v3.0 quality gate.
 2. NEWS — NEWS MATCH IMPACT v1.6 researches the entire verified pre-match atmosphere for both clubs, including manager/player/fan/local-press/club/squad/preparation context; scores each distinct H# story -3..+3 for 1/X/2, Over/Under 2.5 and KG Yes/No, and reports signed totals. These ordinal points are uncalibrated and not result probabilities. Routine fan transport/ticket promotions, normal supporter gatherings or generic atmosphere lacking a demonstrated match-specific effect are excluded from H# news and points; material exceptional protests/stadium disruptions remain eligible when verified. For each user-supplied selection only, show one individually reasoned whole-number 0–100 NEWS support score based on material sourced news, direct football mechanisms, mitigation and opposing evidence, NOT a fixed 10-point formula or win probability.
 3. SXF — independent SmartXFlow market-flow analysis. Its current v0.4.3 DRAFT **DAILY default is per-fixture/market T-6 primary with valid T-8 fallback**; optional dynamic AS_OF runs only by explicit owner request.
 4. POLY — independent prediction-market / bettor-intelligence analysis using the active split source policy defined below.
@@ -40,7 +40,7 @@ Only FINAL may see all four completed department reports at the same time.
 
 ## 4. Source Separation
 
-ANALYST may use historical/current-season football performance, match, statistical, and tactical evidence permitted by its source policy. It may not use current news, betting/odds/market-flow data, SmartXFlow, or Polymarket.
+ANALYST may use historical/current-season football performance, match, statistical, and tactical evidence permitted by its source policy. HUMAN material is allowed only via the isolated claim-only extractor after the baseline is frozen; never raw prediction articles. It may not use current news, betting/odds/market-flow data, SmartXFlow, or Polymarket.
 
 NEWS may use current news and contextual sources permitted by its source policy. It may not use betting/odds/market-flow data, SmartXFlow, Polymarket, or other department reports. A user-supplied selection may determine which NEWS mechanisms are relevant, but NEWS must research both teams symmetrically and must not search selectively for confirmation.
 
@@ -54,7 +54,7 @@ POLY v1.4 uses **independent direct-source discovery and verification**:
 - POLY is a **bettor-identification, verification and follow-the-bettor** specialist, not an independent football prediction/market-flow voting department. If no independently verified profitable directional football bettor has a relevant clean prematch position, return `NO_QUALIFIED_BETTOR_EVIDENCE`, not market-volume-based support.
 - Other departments' conclusions, team form, NEWS, or SXF EARLY / V1 / V2 / HEAVY / SURPRISE engine outputs remain prohibited as POLY evidence.
 
-FINAL uses completed department reports only. It must not browse for new match evidence or silently repair a department report with raw research.
+FINAL uses completed department reports only. For new v3.0 ANALYST runs, require READY and actual gate record; reject legacy A score substitution or incomplete reports. A retired ANALYST score is not missing evidence. FINAL draws its own conclusions from evidence; existing NEWS/SXF/FINAL methods otherwise remain unchanged. It must not browse for new match evidence or silently repair a department report with raw research.
 
 ## 5. Decision Discipline
 
@@ -135,7 +135,7 @@ Bootstrap scoring rules may be CANONICAL for operational consistency while remai
 
 ## 10. Current State
 
-ANALYST: **v2.1 CANONICAL — only active new-run method/schema**, effective 2026-11-06 by owner decision. Keep unchanged v2.0 Torino–Monza research: (1) both teams' all current-season opponents classified by historical pre-match habitual possession HIGH >=55%, BALANCED >45% to <55%, LOW <=45%, half data when verified; (2) both teams' full-season baseline followed by last THREE and last ONE games with separate real result/points and xG/xGA/shots performance graphs and opponent difficulty; (3) explicit football-logic opponent-quality/style matchup including each club's ALL HOME and ALL AWAY league results and meaningful home-at-home versus away-away comparison. At three-factor conclusion include exactly ONE new **ordinal 0–100 support score for EACH user-selected pick**, justified by supporting/opposing evidence and source coverage; it is NOT a calibrated match win probability or odds/market-derived number, and if evidence insufficient score is null. No fourth factor, old scoring engines, simulation, betting odds, NEWS, SXF or POLY. Role separation, AS_OF, and original historical reports remain unchanged. Updated files: roles/analyst.md, methods/analyst_methodology.md, schemas/analyst_report.md, prompts/analyst_start.md. The original v2.0 restriction banning any 0–100 score is superseded only for this single support indicator; all core analytical restrictions survive.
+ANALYST: **v3.0 CANONICAL — only active new-run method/schema**, effective 2026-11-24. Independent DATA baseline → isolated sanitized HUMAN discovery → autonomous fixture-specific questions and iterative evidence research → mandatory counter-tests → evidence-only report. No score, lean, predicted result, probability or recommendation. Both teams, all seven outcome mechanisms; routing selection hidden from research. READY requires all stages and actual structural validator PASS; otherwise PARTIAL/BLOCKED, no completed site save. v2.1 and older methods SUPERSEDED for new runs; historical reports immutable. See roles/analyst.md, methods/analyst_methodology.md, schemas/analyst_report.md, prompts/analyst_start.md and source registries.
 NEWS: v1.6 CANONICAL — whole-match news and atmosphere, numbered source-verified H# stories, seven -3..+3 market-impact columns and arithmetic totals. v1.3 research instructions SUPERSEDED. Explicit match-impact relevance filter excludes routine, non-material fan logistics/PR from H# news and scoring. Each user-supplied selection additionally shows one individually chosen integer 0–100 NEWS-support score, no tens-only or fixed linear conversion, with seven market totals/research retained.
 POLY: v1.4 CANONICAL — independent public Polymarket v2 + Gamma/CLOB + Polygon bettor discovery/verification; all CAPITALE Supabase and SXF POLY sources prohibited; candidate skill thresholds uncalibrated
 SXF: v0.4.3 DRAFT — owner-approved EARLY CORE T-72/T-60/T-40/T-24 checkpoint decision odds <=2.35 (2026-10-27); **EARLY_T12 RETIRED** (2026-10-28); **daily scan T-6 primary / T-8 fallback now DEFAULT by owner decision (2026-10-28)**; DYNAMIC_AS_OF_V04 still available only by explicit request. V1/V2/HEAVY/SURPRISE/Over/BTTS thresholds unchanged; EARLY CORE v2, OVER_STRONG and EKOL 3 shadow experiments NOT canonical; live runtime implementation verification pending.
@@ -148,7 +148,7 @@ See MILESTONE.md for current implementation state, superseded rules, and technic
 
 ## 2026-11-20 — Current direct per-agent site workflow
 
-**ACTIVE DEFAULT:** SXF source FINAL_SIGNAL → automated pre-match source-confirmed Software row + full SXF report → neutral ANALYST list → ANALYST v2.1 complete independent report **directly into its own A/site report** → neutral NEWS list → NEWS v1.6 complete independent report **directly into its own N/site report** → FINAL retrieves all three original reports through private Commander site-reader and synthesizes A/B/C/NO_RECOMMENDATION. Each write must return a report ID/version and exact role/run/hash readback; new revisions never rewrite another role's historical report.
+**ACTIVE DEFAULT:** SXF source FINAL_SIGNAL → automated pre-match source-confirmed Software row + full SXF report → neutral ANALYST list → ANALYST v3.0 complete independent READY evidence report **directly into its own A/site report** → neutral NEWS list → NEWS v1.6 complete independent report **directly into its own N/site report** → FINAL retrieves all three original reports through private Commander site-reader and synthesizes A/B/C/NO_RECOMMENDATION. Each write must return a report ID/version and exact role/run/hash readback; new revisions never rewrite another role's historical report.
 
 SXF source sync is `tools/capitale_sxf_software_sync.py` and watcher `tools/capitale_sxf_software_watch.py` (live private server `/opt/`). Direct specialist uploader: `tools/capitale_report_uploader.py`; local site report reader: `tools/capitale_site_report_reader.py`. User does not install GPT Actions or paste tokens. Site is the PRIMARY report store. The previous `tools/manual_report_inbox.py` is only an optional offline fallback, NOT the active default. Analysts continue to see only NEUTRAL match/selection/run routing, never other specialists' evidence as research input.
 
@@ -157,3 +157,7 @@ SXF source sync is `tools/capitale_sxf_software_sync.py` and watcher `tools/capi
 ## 2026-11-20 — Latest owner instruction: DIRECT browser site editing supersedes CLI-based handoff
 
 Each agent uses a **browser**, not a report-uploader terminal command, and fills its own `Edit <ROLE> report` form on `/admin/software?agent=sxf|analyst|news|final`. Server endpoints and old Commander scripts exist as implementation plumbing/backups only; do not instruct normal agent users to run them. Admin login must already exist or be completed through normal browser UI. Every site write needs `SAVED & VERIFIED` report_id/version (FINAL: decision_id/version). If no browser GUI tool is available, report blocked instead of pretending direct navigation/editing. `prompts/manual_report_chain.md` v4.0 takes precedence over all older 2026-11-20 staging/CLI-only sections below and in historical milestone notes.
+
+## 2026-11-24 — ANALYST v3.0 mandatory acceptance
+
+The active source lists are `policies/analyst_data_sources.md` (18 DATA) and `policies/analyst_human_sources.md` (14 HUMAN). Read both at startup for ANALYST. No bypass, fabricated evidence or v2.1 fallback. Enforce the fail-closed methodology and structural validator before delivering a completed report; unavailable isolated extractor, validation or critical evidence blocks completion. The GitHub contract does not assert a deployed isolated extractor or production server gate; engineering must verify them before claiming automatic enforcement. The website A field stays blank for new reports; NEWS and FINAL methodologies are not redesigned by this change.
