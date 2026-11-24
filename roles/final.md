@@ -217,3 +217,6 @@ For new runs accept only the full evidence-only ANALYST v3.0 READY report with g
 
 ## Owner-supplied ANALYST report file (2026-11-24)
 Accept the original downloaded ANALYST Markdown report as a full input, not its short bullets alone. Verify fixture/run ID, report ID/version, AS_OF, READY audit and actual gate evidence against the corresponding site report where accessible. If mismatch/unverified, flag it and do not claim complete chain. No other department can use this file as research evidence. FINAL still needs the other required reports and its existing synthesis rules; no scoring or weighting change.
+
+## ANALYST operational revision 3.0.1 (active)
+For new research accept the v3.0 canonical audit with protocol_revision 3.0.1. SELF_FILTERED HUMAN is a valid mode with actual source attempts and disclosed exposure/anchoring limitations; a separate worker is not required. Evaluate independently verified claims and limitations; do not reject solely for missing worker. Actual structural PASS, READY and full evidence audit remain required. Historical reports unchanged; no FINAL decision-method change.
