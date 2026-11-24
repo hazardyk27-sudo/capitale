@@ -1,7 +1,7 @@
 # ANALYST Source Policy
 
 Status: CANONICAL
-Version: 2.1
+Version: 2.2
 
 ## Allowed source classes
 
@@ -31,4 +31,4 @@ Read `policies/analyst_data_sources.md` at startup: the owner-approved ordered d
 
 ## Registered HUMAN sources — active single-agent claim protocol (2026-11-24)
 
-The owner-selected 14-source registry (4 international + 10 country-specific) is `policies/analyst_human_sources.md`. Mandatory v3.0 revision 3.0.1: freeze DATA baseline first; the same ANALYST searches HUMAN sources and extracts only separable permitted football observations. Prefer clean passages; mixed editorial pages may be used solely for allowed football claims. Ignore/log accidental prohibited exposure without reproducing it; never use odds, predictions, current news or other department evidence. Exclude inseparable claims; verify independently, counter-test and deduplicate. A separate isolated worker is optional; absence does not block research. Genuine no usable coverage after actual discovery is a limitation. A1–A4 and AS_OF controls remain. SELF_FILTERED is not true blindness.
+The owner-selected 14-source registry (4 international + 10 country-specific) is `policies/analyst_human_sources.md`. Mandatory v3.0 revision 3.0.2: freeze DATA baseline first; the same ANALYST searches HUMAN sources and extracts only separable permitted football observations. Prefer clean passages; mixed editorial pages may be used solely for allowed football claims. Ignore/log accidental prohibited exposure without reproducing it; never use odds, predictions, current news or other department evidence. Exclude inseparable claims; verify independently, counter-test and deduplicate. HUMAN is exclusively a source category used directly by ANALYST. Genuine no usable coverage after actual discovery is a limitation. A1–A4 and AS_OF controls remain. Editorial exposure can bias interpretation; retain independent verification and counterevidence.
