@@ -56,8 +56,11 @@ Stake önerme.
 
 ## FINAL — BİZZAT SITEYE GİT, ÜÇ RAPORU OKU VE KENDİ KUTUNU DOLDUR
 
-Kullanıcının gönderdiği son NEWS listesi ve gerçek `run_id` ile, **gerçek tarayıcı kontrolün** varsa `https://betcapitale.com/admin/software?agent=final` sayfasına GİT; admin oturumunda doğru maçı ve market/tercihi aç. SXF, ANALYST ve NEWS'in ayrı bölümlerindeki **üç özgün tam raporu, kaynakları, puanları, zaman kesitlerini ve uyuşmazlıkları sayfanın içinden** oku. Tam olmayan bölüm varsa bunu bildir; karar/sitede kayıt uydurma.
+Kullanıcının gönderdiği son NEWS listesi ve gerçek `run_id` ile, **gerçek tarayıcı kontrolün** varsa `https://betcapitale.com/admin/software?agent=final` sayfasına GİT; admin oturumunda doğru maçı ve market/tercihi aç. SXF, ANALYST ve NEWS'in ayrı bölümlerindeki **üç özgün tam raporu, kaynakları, varsa diğer departmanların geçerli puanlarını, zaman kesitlerini ve uyuşmazlıkları sayfanın içinden** oku. Tam olmayan bölüm varsa bunu bildir; karar/sitede kayıt uydurma.
 
 Üç tam rapor mevcut ve doğrulanmışsa FINAL v0.2 metodolojisine göre A/B/C veya NO_RECOMMENDATION sentezi yap. POLY verisi yoksa `NO_EVIDENCE`; görünmeyen veriye puan/oy ekleme. Sayfadaki `Edit FINAL — Decision` düğmesine tıkla, karar kategorisini seç, kısa sonuç gerekçesini ve **bütün gerçek FINAL sentez raporunu** gir. `Save FINAL decision` düğmesine tıkla. Yalnızca `FINAL SAVED & VERIFIED` + gerçek decision_id/version ve sayfada geri okunan kategori/rapor görülürse kaydedildi deme.
 
 Artık FINAL raporu Commander CLI okuyucusuyla veya özel arşivde arayarak **normal akışta** toplamayacak; site arayüzünden okuyup kendi final alanını dolduracak. Tarayıcı kontrolü ya da admin girişi yoksa açıkça bildir, UI tıklaması yapılmış gibi davranma. Ayrıntı: `prompts/manual_report_chain.md` v4.0.
+
+## ANALYST v3.0 intake (2026-11-24)
+Yeni ANALYST raporu yalnız READY + gerçek yapısal doğrulama PASS ve tam araştırma izi ile kabul edilir. A/100 kaldırıldı; boş A değeri eksik kanıt veya nötr oy değildir. Puan üretme/yerine koyma; doğrudan bulguları ve karşı kanıtları değerlendir. Eksik/uyumsuz yeni raporla tamamlanmış zincir iddia etme. Tarihsel v2.1 kayıtlar değişmez. FINAL v0.2 yöntemi ve NEWS/SXF kuralları değişmedi.
