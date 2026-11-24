@@ -16,3 +16,6 @@ Maç kimliği ve maç öncesi gerçek AS_OF doğrulanınca haber araştırmasın
 8. READY raporu dondur; sonra doğrulanmış run_id ile https://betcapitale.com/admin/software?agent=news gerçek admin editöründe kaydet. N boş/null. Gerçek AS_OF, özet, dosya veya tam metin, kaynaklar ve bulgular. SAVED & VERIFIED ID/version doğrula; Download full NEWS report (.md) ile doğru dosyayı indir ve içerik/kimlik/sürümü denetle. Site erişimi yoksa teslimat BLOCKED; araştırmayı koru. Başka rolü değiştirme. Her maçı sırayla tamamla veya PARTIAL gerekçesiyle devam et. Sohbette yalnız kısa maç durum tablosu; tam dosya Software'dan FINAL'a verilebilir.
 
 Haberler kanıttır; karar FINAL'ındır. Yeni agent, servis, puanlama veya tahmin yok.
+
+## Geçici canlı Software uyumluluğu (2026-11-24)
+NEWS indirme/içe aktarma butonu ve N alanının arayüzden kaldırılması henüz canlıda doğrulanmadı. Mevcut formda N görünürse BOŞ bırak; tam Markdown metnini mevcut rapor alanına eksiksiz yapıştır, gerçek kayıt ID/sürümünü doğrula. İndirme butonu yoksa orijinal .md dosyanı koru ve indirme durumunu PENDING/UNAVAILABLE olarak belirt. Araştırma READY durumu ile teslimat durumunu karıştırma. Olmayan butona tıklamış veya dosya indirmiş gibi davranma.
