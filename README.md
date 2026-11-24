@@ -53,12 +53,14 @@ Read:
 
 Do not invent missing canonical thresholds for roles marked DRAFT.
 
-ANALYST v3.0.5 operational correction: one ANALYST performs all research stages; HUMAN is the 14-source human-authored editorial category, not an agent. DATA starts before delivery/validator availability checks; all actual source attempts, independent counter-tests and structural validation before READY remain mandatory.
-ANALYST v3.0.5 adds three research-quality gates and an evidence-linked audit. Existing source categories and per-fixture Markdown/Software delivery unchanged.
+ANALYST v3.0.6 operational correction: one ANALYST performs all research stages; HUMAN is the 14-source human-authored editorial category, not an agent. DATA starts before delivery/validator availability checks; all actual source attempts, independent counter-tests and structural validation before READY remain mandatory.
+ANALYST v3.0.6 adds three research-quality gates and an evidence-linked audit. Existing source categories and per-fixture Markdown/Software delivery unchanged.
 
 NEWS v2.1: closed named-source scan and concise relevant-news Markdown. No scores, mandatory validator, JSON audit or quality gates.
 
-ANALYST v3.0.5 optimizes retrieval, evidence reuse, shared actual countertests and incremental audit/report generation; retains all three v3.0.3 quality gates and full original report. Indicative 7–10 minute target not yet measured, not a deadline.
+ANALYST v3.0.6 optimizes retrieval, evidence reuse, shared actual countertests and incremental audit/report generation; retains all three v3.0.3 quality gates and full original report. Indicative 7–10 minute target not yet measured, not a deadline.
 
 
-ANALYST v3.0.5: all 14 HUMAN domains eligible for every fixture; batch targeted discovery, inspect only relevant articles. Country is not a filter.
+ANALYST v3.0.6: all 14 HUMAN domains eligible for every fixture; batch targeted discovery, inspect only relevant articles. Country is not a filter.
+
+ANALYST v3.0.6 reporting: ledger-v1 shared units/retrievals, inquiry-linked findings and combined HUMAN records; validator expands in memory. All v3.0.5 research rules unchanged. Compact report is the original full evidence document.
