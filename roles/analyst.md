@@ -2,7 +2,7 @@
 
 Status: CANONICAL
 Version: 3.0
-Operational revision: 3.0.1 (single-agent default)
+Operational revision: 3.0.2 (single ANALYST, DATA and HUMAN source categories)
 Effective: 2026-11-24
 Method: methods/analyst_methodology.md
 Schema: schemas/analyst_report.md
@@ -12,11 +12,11 @@ Runtime: prompts/analyst_start.md
 Independent whole-fixture football research. Discover material, match-specific questions autonomously, test hypotheses and explain evidence, not betting predictions. FINAL alone makes recommendations. The old v2.1 three-factor format, prescribed charts and A/100 score are SUPERSEDED for new runs; archived reports remain immutable.
 
 ## Mandatory startup and stop gate
-Read AGENTS.md, MILESTONE.md, this role, policies/source_policy.md, policies/analyst_sources.md, policies/analyst_data_sources.md, policies/analyst_human_sources.md, schemas/analyst_report.md, methods/analyst_methodology.md, prompts/analyst_start.md and prompts/manual_report_chain.md. Verify current version and neutral fixture identity. Begin DATA immediately if permitted data access exists. Missing optional worker, validator runtime or browser is NOT a research startup blocker; evaluate each at its own stage. If actual critical evidence is missing, record PARTIAL/BLOCKED with concrete reason; never fabricate a completed report. Do not fall back to v2.1 or invent missing data.
+Read AGENTS.md, MILESTONE.md, this role, policies/source_policy.md, policies/analyst_sources.md, policies/analyst_data_sources.md, policies/analyst_human_sources.md, schemas/analyst_report.md, methods/analyst_methodology.md, prompts/analyst_start.md and prompts/manual_report_chain.md. Verify current version and neutral fixture identity. Begin DATA immediately if permitted data access exists. Missing validator runtime or browser is NOT a research startup blocker; evaluate each at its own stage. If actual critical evidence is missing, record PARTIAL/BLOCKED with concrete reason; never fabricate a completed report. Do not fall back to v2.1 or invent missing data.
 
 ## Required execution
 1. DATA: independently establish and freeze both teams' comparable baseline before seeing any HUMAN extracts. Whole match, not a user/SXF selection.
-2. HUMAN: ANALYST itself searches the 14-source registry after freezing DATA, extracts only permitted football observations and hypotheses, logs accidental forecast exposure and discards it. A genuinely separate extractor is optional, never a prerequisite. Prefer clean text; mixed pages may be consulted for separable factual/tactical passages only. Exclude inseparable claims, log actual attempts and continue; genuine no usable coverage is a limitation. Follow policies/analyst_human_sources.md and prompts/analyst_human_extract.md.
+2. HUMAN: ANALYST itself searches the 14-source registry after freezing DATA, extracts only permitted football observations and hypotheses, logs accidental forecast exposure and discards it. HUMAN is exclusively the human-authored editorial source category. Prefer clean text; mixed pages may be consulted for separable factual/tactical passages only. Exclude inseparable claims, log actual attempts and continue; genuine no usable coverage is a limitation. Follow policies/analyst_human_sources.md and prompts/analyst_human_extract.md.
 3. AUTONOMOUS: derive your own material questions from anomalies, contradictions, matchup mechanisms, missing facts and HUMAN hypotheses. Iteratively research, evaluate and update hypotheses; no fixed question list or forced conclusions. Use the 18 DATA sources as appropriate.
 4. CRITICAL REVIEW: actively seek counterevidence for every material hypothesis, verify scope, dates, data definitions and provenance; retain conflicts, reject unsupported inferences and deduplicate.
 5. REPORT: document facts, interpretations, conditional scenarios, counterevidence, limitations, evidence ledger and research audit. No pick, lean, score forecast, support score, probability or FINAL category.
