@@ -12,6 +12,10 @@ NEWS independently researches **the entire pre-match news environment** for BOTH
 
 NEWS is NOT an injuries-only, team-form, betting-market, or match-probability department. The user may supply any selection(s); the other six/seven outcomes are still scored independently. Keep the user's chosen selection prominent in the final comparison.
 
+## Source routing (mandatory)
+
+Read and apply `policies/news_source_directory.md` and `policies/news_sources.md`. For both clubs, search official sources and original domestic/club-specific reporting in the appropriate local languages; discover relevant local journalists and direct interviews. Use international sources as supplemental coverage. For cross-border competitions cover both clubs' countries and organizer; for lower tiers or unlisted countries find equivalent local sources. Do not require every listed site or treat missing access as a startup blocker. Follow up material discoveries, check original attribution/corrections/counterevidence and log actual attempts and gaps in the full report. All work belongs to NEWS; no additional agent or technical dependency. Existing v1.6 methodology/scoring/output stays unchanged.
+
 ## Required news coverage — both teams
 
 Every run must actively look for these eight families, with the most important distinct, verified stories receiving numbered H1, H2, ... labels:
