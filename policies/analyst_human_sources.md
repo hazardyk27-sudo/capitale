@@ -1,6 +1,6 @@
 # CAPITALE — ANALYST Human Editorial Source Registry
 
-Status: CANONICAL — v3.0.5 operational anti-anchoring protocol; single ANALYST, source category only.
+Status: CANONICAL — v3.0.6 operational anti-anchoring protocol; single ANALYST, source category only.
 Version: 1.3
 Scope: supplementary human-authored prematch research, not a predictive authority.
 
@@ -51,9 +51,11 @@ Access, authorship, original provenance, publication time, coverage, and usage t
 8. FINAL receives verified findings, clearly marked interpretations, limitations and contradictions, not third-party picks or scores. ANALYST v3.0 emits no score, pick or forecast; NEWS and FINAL methods otherwise unchanged.
 9. Test baseline-only versus blinded editorial augmentation on timestamped historical matches, with frozen outputs and separate settlement; measure incremental value, contamination, coverage and reproducibility as prospective evaluation; do not claim a performance gain before validation.
 
-This registry operates under AGENTS.md, policies/analyst_sources.md and v3.0.5 methodology. Claim-extraction protocol: prompts/analyst_human_extract.md. HUMAN is a source registry only. Record every actual registered source attempt; exclude contaminated/unsupported claims and continue, with explicit limitations. No claim of complete immunity to editorial bias.
+This registry operates under AGENTS.md, policies/analyst_sources.md and v3.0.6 methodology. Claim-extraction protocol: prompts/analyst_human_extract.md. HUMAN is a source registry only. Record every actual registered source attempt; exclude contaminated/unsupported claims and continue, with explicit limitations. No claim of complete immunity to editorial bias.
 
-## v3.0.5 — editorial contribution review
+## v3.0.6 — editorial contribution review
 For every registered source record NOVEL_LEAD, DUPLICATE_ONLY, NO_USABLE_CONTENT or EXCLUDED relative to the frozen DATA baseline; explain what was examined and link genuinely novel useful leads to actual inquiries. Seek original football mechanisms and questions, not merely repeated results. No novelty quota; when none exists, report limited contribution honestly. Preserve independent verification and counterevidence. See the quality audit schema.
 
-v3.0.5: after DATA freeze, batch independent editorial discovery queries across all 14 sources if supported; reuse clean permitted extracted claims and original attribution rather than repeatedly opening mixed pages. All 14-source discovery attempts, novelty review, independent verification, exposure rules and counterevidence remain required. No new worker.
+v3.0.6: after DATA freeze, batch independent editorial discovery queries across all 14 sources if supported; reuse clean permitted extracted claims and original attribution rather than repeatedly opening mixed pages. All 14-source discovery attempts, novelty review, independent verification, exposure rules and counterevidence remain required. No new worker.
+
+Reporting only (ledger-v1): record each of the 14 HUMAN discoveries with its contribution in the same attempt record, including the actual query and result. The v3.0.5 research scope and all source rules remain unchanged; use schemas/analyst_report.md for the v3.0.6 representation. Do not generate duplicate applicability/contribution lists.
