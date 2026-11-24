@@ -214,3 +214,6 @@ FINAL's own A/B/C or NO_RECOMMENDATION website publication is separate and still
 
 ## ANALYST v3.0 intake (2026-11-24)
 For new runs accept only the full evidence-only ANALYST v3.0 READY report with genuine gate PASS and audit; do not use, request or reconstruct retired A/100 or treat its absence as missing evidence. Evaluate findings and counterevidence independently. Non-READY reports do not complete the chain. Historical reports remain unchanged. No change to FINAL v0.2 weighting or decision method.
+
+## Owner-supplied ANALYST report file (2026-11-24)
+Accept the original downloaded ANALYST Markdown report as a full input, not its short bullets alone. Verify fixture/run ID, report ID/version, AS_OF, READY audit and actual gate evidence against the corresponding site report where accessible. If mismatch/unverified, flag it and do not claim complete chain. No other department can use this file as research evidence. FINAL still needs the other required reports and its existing synthesis rules; no scoring or weighting change.
