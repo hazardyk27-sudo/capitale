@@ -1,8 +1,12 @@
 # NEWS Source Policy
 
 Status: CANONICAL
-Version: 1.3
+Version: 1.4
 Applicable methodology: NEWS MATCH IMPACT v1.6
+
+## Mandatory source directory (2026-11-24)
+
+Read `policies/news_source_directory.md` at startup. It defines the named international and 19 domestic country routes, verified entry-access caveats, dynamic official club/organizer sources, local beat reporting and supporter research. NEWS performs all research itself. Start with both clubs' direct sources and local-language reporting; use international coverage as relevant corroboration. For cross-border fixtures, research both club countries. For smaller clubs and unlisted jurisdictions, discover suitable local sources independently. Use the directory as a discovery guide, not a closed whitelist or mandatory list of every outlet. Log actual searches, access limits, original provenance and source gaps in the full report. Missing individual publishers never blocks starting research; seek permitted alternatives. Never bypass restrictions or treat headline/snippet alone as a verified material fact. N1–N4 grades apply to each claim, not automatically to every article from a listed outlet. Existing eight-area scope, relevance gate and v1.6 scoring remain unchanged.
 
 ## Source grades — preserve CAPITALE baseline
 
