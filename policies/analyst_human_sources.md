@@ -1,10 +1,12 @@
 # CAPITALE — ANALYST Human Editorial Source Registry
 
 Status: DRAFT — source shortlist approved for retention by owner on 2026-11-24; live use and methodology change not yet approved.
-Version: 0.1
+Version: 0.2
 Scope: candidate supplementary human-authored prematch research, not a predictive authority.
 
-## Saved source shortlist
+## Saved source shortlist — 14 sources (4 international + 10 local)
+
+### International — 4 sources
 
 | Source | Public entry | Candidate research value |
 | --- | --- | --- |
@@ -12,6 +14,28 @@ Scope: candidate supplementary human-authored prematch research, not a predictiv
 | Sportsgambler | https://www.sportsgambler.com/betting-tips/ | Statistical matchup evidence and editorial reasoning |
 | SportyTrader | https://www.sportytrader.com/en/betting-tips/football/ | Match previews and explanatory historical statistics |
 | Betfair Blog | https://betting.betfair.com/football/ | Named editorial contributors and contextual reasoning |
+
+### Local — 10 sources, mapped by domestic competition country
+
+| Country | Language | Source | Public entry | Candidate coverage and research value |
+| --- | --- | --- | --- | --- |
+| Germany | German | Wettbasis | https://www.wettbasis.com/sportwetten-tipps | Bundesliga, 2. Bundesliga, 3. Liga; form and detailed statistics; exclude AI forecasts |
+| Italy | Italian | InfoBetting | https://www.infobetting.com/blog/ | Serie A, B, C; local opponent and form context |
+| Spain | Spanish | BetBrothers | https://betbrothers.es/ | La Liga, Segunda; comparative football reasoning |
+| Austria | German | Ligaportal | https://www.ligaportal.at/ | Austrian Bundesliga, Regionalliga and regional leagues; local previews |
+| France | French | RueDesJoueurs | https://www.ruedesjoueurs.com/pronostics/foot.html | Ligue 1, Ligue 2, National; previews and match statistics |
+| Greece | Greek | Foxbet | https://www.foxbet.gr/ | Super League and Super League 2; xG/form when available |
+| Greece | Greek | Betarades | https://www.betarades.gr/ | Super League, Super League 2 and cups; match observations |
+| Romania | Romanian | PariuriX | https://pariurix.com/ponturi/fotbal | SuperLiga; xG, shots and score/performance divergence when available |
+| Sweden | Swedish | Rekatochklart | https://www.rekatochklart.com/speltips/fotboll/ | Allsvenskan, Superettan; xG and match performance when available |
+| Denmark | Danish | BetXpert | https://www.betxpert.com/ | Superliga, 1. Division; editorial reasoning and statistics |
+
+## Discovery and routing — proposed, not yet live
+
+- This is the single registry for the 14 owner-selected editorial sources. The four international sources apply to any fixture; choose local sources by the domestic competition country (for cross-border cups, both teams' domestic countries). Greece has two registered local sources. Other countries have no registered local source in this shortlist.
+- Search the registered site's domain with both team names (including local spellings), competition and fixture date in its native language. Locate the specific pre-match article, not just the home page. Record FOUND / NOT_FOUND / INACCESSIBLE / EXCLUDED with article URL, author, publication timestamp and reasons. Use public material only; no paywall bypass.
+- When the draft protocol is approved and implemented, first freeze the independent statistical baseline, then use the four international sources and applicable local sources through the separate claim-only extraction boundary. Never browse raw betting articles in the ANALYST context or treat this list as permission to use betting content. Missing coverage is not evidence against a team. Do not require every publisher to cover every fixture.
+- No source ranking is a reliability score; verify each claim. Exclude AI-generated predictions and unverified human authorship from the human-editorial category. Editorial material supplements rather than replaces A1/A2 primary statistical evidence.
 
 Access, authorship, original provenance, publication time, coverage, and usage terms must be checked per article. Inclusion here is not an assertion of universal free access, accuracy, independence or predictive skill.
 
