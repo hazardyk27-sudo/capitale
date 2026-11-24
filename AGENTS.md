@@ -1,7 +1,7 @@
 # CAPITALE — System Constitution
 
 Status: CANONICAL
-Version: 1.20
+Version: 1.21
 Last updated: 2026-11-24
 
 > **CURRENT DEFAULT — REAL BROWSER UI 2026-11-20:** SXF → ANALYST → NEWS → FINAL; each specialist **opens its own authenticated /admin/software?agent=<role> page, enters its COMPLETE report in its OWN on-page editor and clicks Save**. FINAL reads the three full original reports visually on the site and saves its final decision in a separate FINAL box. The old CLI report uploader, JSON API and private inbox are NOT the default agent workflow. Live SXF FINAL_SIGNAL source sync still runs automatically. At least 1–3 verified SXF findings per match/selection; source isolation intact. Login and real browser-control capability are mandatory; never claim clicks/verified site save if browser interaction was unavailable. See `prompts/manual_report_chain.md` v4.4.
@@ -167,3 +167,6 @@ Owner requires one complete downloadable Markdown report with all research/verif
 
 ## 2026-11-24 — ANALYST v3.0.2 operational correction (ACTIVE)
 One ANALYST performs DATA → HUMAN → autonomous questions → counter-tests → report. Start DATA immediately on verified neutral fixture and permitted data access. No additional agent, separate chat, validator runtime, or authenticated browser is a startup prerequisite. HUMAN means human-authored editorial sources researched directly by ANALYST. Never use prohibited content; record incidental exposure category and mitigation, not its contents. No usable HUMAN coverage after actual attempts is a limitation. Keep research/validation/site delivery statuses distinct. Use the same ANALYST for post-freeze routing and browser save. Preserve v3.0 research standard, evidence gate and output rules; new audits require protocol_revision 3.0.2. Older conflicting milestone/prompt text is historical and superseded. No change to other roles' methodologies.
+
+## 2026-11-24 — NEWS source routing (ACTIVE)
+NEWS must read `policies/news_source_directory.md` and `policies/news_sources.md`. Named source entry points cover 19 domestic football jurisdictions and international outlets; both clubs' direct official/local-language coverage, original local reporting and material follow-up are required. Cross-border fixtures route to both countries and organizer. Discover club-specific or unlisted local sources; unavailable outlets are logged and replaced by suitable accessible sources, not a startup dependency. Record actual searches, source provenance and limits in the full report. N1–N4 reliability, eight news families, v1.6 scoring and role independence unchanged. No new agent, subscription, service or automatic scraper.
