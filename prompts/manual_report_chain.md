@@ -66,3 +66,6 @@ The previously built server CLI scripts (`tools/capitale_sxf_software_sync.py`, 
 Canonical engine methodology, source isolation, 1–3 SXF findings requirement, ANALYST v3.0 evidence-only research, NEWS v2.0 evidence-only research and FINAL v0.2 decision rules apply.
 
 For new NEWS inputs FINAL requires news-v2.0-canonical READY, actual PASS and full evidence audit. No N score or placeholder; absence of retired N is not missing evidence. Distinguish NO_MATERIAL_NEWS from incomplete coverage. No FINAL decision-method change.
+
+## Transitional NEWS v2.0 delivery compatibility (2026-11-24)
+The NEWS download/import UI and removal of the legacy N field are required target behavior, not a verified live deployment. Existing admin V29 has a full-report field and optional N; leave N blank/null, paste the complete original Markdown and verify actual save ID/version if available. If NEWS download is absent, preserve the original Markdown and mark download PENDING/UNAVAILABLE separately. Do not block permitted research over absent export; do not claim unperformed download or successful save. No live server quality gate is asserted.
