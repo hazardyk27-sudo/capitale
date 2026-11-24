@@ -1,5 +1,5 @@
 # CAPITALE — ANALYST HUMAN source research procedure
-Status: CANONICAL ANALYST v3.0.6
+Status: CANONICAL ANALYST v3.0.7
 Version: 1.3
 Effective: 2026-11-24
 
@@ -13,9 +13,9 @@ HUMAN means the registered human-authored editorial sources, not a separate depa
 
 HUMAN is a research input, not a predictive authority. ANALYST generates its own questions and evidence-only report. No recommendations or score forecasts.
 
-## v3.0.6 — editorial contribution review
+## v3.0.7 — editorial contribution review
 For every registered source record NOVEL_LEAD, DUPLICATE_ONLY, NO_USABLE_CONTENT or EXCLUDED relative to the frozen DATA baseline; explain what was examined and link genuinely novel useful leads to actual inquiries. Seek original football mechanisms and questions, not merely repeated results. No novelty quota; when none exists, report limited contribution honestly. Preserve independent verification and counterevidence. See the quality audit schema.
 
-v3.0.6: after DATA freeze, batch independent searches across all 14 sources if possible, record actual source attempts once, and reuse clean permitted claims/IDs. Reopen only for material missing detail, correction or verification. All required attempts and countertests remain mandatory.
+v3.0.7: after DATA freeze, batch independent searches across all 14 sources if possible, record actual source attempts once, and reuse clean permitted claims/IDs. Reopen only for material missing detail, correction or verification. All required attempts and countertests remain mandatory.
 
-Reporting only (ledger-v1): record each of the 14 HUMAN discoveries with its contribution in the same attempt record, including the actual query and result. The v3.0.5 research scope and all source rules remain unchanged; use schemas/analyst_report.md for the v3.0.6 representation. Do not generate duplicate applicability/contribution lists.
+Reporting only (ledger-v1): record each of the 14 HUMAN discoveries with its contribution in the same attempt record, including the actual query and result. The v3.0.5 research scope and all source rules remain unchanged; use schemas/analyst_report.md for the v3.0.7 representation. Do not generate duplicate applicability/contribution lists.
