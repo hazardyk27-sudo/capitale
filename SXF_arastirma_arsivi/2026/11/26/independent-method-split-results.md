@@ -1,0 +1,19 @@
+# Chronological independent-method research — results
+Cutoff 2026-11-26 13:26:05 UTC / 16:26 TSİ. No active rules or software changed.
+Frozen protocols: b0c453f7d07c0a484bd4d946d3b2f8a3f02aa001 and 056e9397e690b807691a279e9701317a257eae41. Development 9 Oct–16 Nov, holdout 17–26 Nov. Historical outcomes previously observed, not genuinely prospective. Archive verified previously, Oct12–17 invalid; fresh exact FT joins Nov23–26: 501 fixture IDs, 434 exact FT, 626 market series with checkpoint records; merged 6284 distinct normalized teams/kickoff identities, not all usable. Today 16:26 partial day; only completed verified outcomes. 1124 holdout market samples (548/352/224) overlap fixture identities. Development 2723/1844/1220=5787 market samples. Complete T12/10/8/6 and quality filters per protocol. Source quote execution not established; no commission.
+## Model development pooled rolling validation Brier (lower better)
+1X2 market .1867489 calibration .1867106 volume .1864091 price .1865671 combined .1862065 (chosen).
+OU25 market .2396237 calibration .2394306 (chosen) volume .2403543 price .2409233 combined .2419706 cross .2414842.
+BTTS market .2503476 calibration .2487207 volume .2494024 price .2480051 (chosen) combined .2487176 cross .2485178.
+## Fixed holdout
+1X2 combined 548 markets: Brier .1970207 -> .1971901, logloss .9897159 -> .9909557. Price-range highest model probability: 140/260=53.85% avg1.731 gross ROI -8.30%. Positive quote-proxy edge among those picks 89/156=57.05%, avg1.719, ROI -2.89%; p>=.70 14/21=66.67%, avg1.45, ROI -3.71%.
+OU25 calibration 352 markets: Brier .2417142 -> .24105, logloss .6767439 -> .6750872, daily gain CI includes zero. 177/316=56.01% avg1.721 ROI -4.14%. Positive edge 2/6=33.33% avg1.932 ROI -38.83%; p>=.70 none.
+BTTS price 224 markets: Brier .2461012 -> .2447555, logloss .6850844 -> .682339, day gain CI includes zero. 114/218=52.29% avg1.746 ROI -9.89%. Positive edge 29/63=46.03% avg1.9 ROI -13%; p>=.70 none.
+## Fixed interpretable rules
+17 market/rule combinations. Development 9 Oct–16 Nov, win/n and gross ROI:
+1X2 acceleration 101/189 -4.99%; alignment 51/104 -14.40%; continuity 65/125 -11.19%; recovery 51/85 +6.20%; resistance 113/201 -3.92%.
+OU25 acceleration 96/174 -4.97%; alignment 35/62 -6%; continuity 55/97 -4.10%; cross confirm 88/157 -6.88%; recovery 33/55 +4.24%; resistance 115/190 +4.33%.
+BTTS acceleration 70/110 +8.48%; alignment 19/25 +34.08% (too few; Oct13, Nov12); continuity 42/69 +4.23%; cross confirm 54/102 -8.4%; recovery 23/33 +18.3% (too few; Oct20, Nov13); resistance 76/129 -1.67%.
+Only BTTS ACCELERATION met the prespecified development criteria: Oct 40/62=64.52% ROI +11.08%; Nov1–16 30/48=62.50% ROI +5.12%; mean odds1.715; total70/110=63.64%, mean normalized market p58.75%.
+Fixed holdout: 16/31=51.61% mean odds1.737, gross ROI -11.58%, market mean p57.82%; 95% Wilson 34.8–68.0%. 17–19 Nov no rule hits, Nov20 4/6, Nov21 4/7, Nov22 2/5, Nov23 0/2, Nov24 2/5, Nov25 3/5, Nov26 1/1. Not promoted. No rule retuned based on holdout.
+Conclusions: tested approaches did not demonstrate reproducible profitable prediction advantage. Goal-market quote anomalies motivated quality guard and bounded selected odds; cannot establish all data correct or executable. No guarantees. Next distinct research: recover and audit raw market/settlement identity and timestamp coverage, develop independently with genuine future untouched validation; no additional mining of Nov17–26 outcomes. Scripts/logs retained in authorized research directory /tmp/sxf-pratik-research-U9pwcr/split_method_20261126.{py,txt}, split_rules_20261126.{py,txt}.
