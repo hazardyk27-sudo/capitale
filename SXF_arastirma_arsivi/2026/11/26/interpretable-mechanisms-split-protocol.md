@@ -1,0 +1,10 @@
+# Interpretable mechanisms comparison
+Same dates, quality guard and T12/10/8/6 observations as independent-method-split-protocol. No active signal gates or labels. Frozen before reading the primary model's holdout results in this conversation; historical holdout not truly unseen.
+For each 1X2, OU25, BTTS market, both/all sides, select highest current normalized p among passing sides with T6 odds 1.40–2.10. Actual time differences for rates; require nonnegative volume increments. Compare six fixed rules:
+CONTINUITY: normalized p increases strictly each 2h interval T12->10->8->6, side volume increases in final interval.
+ALIGNMENT: normalized p increases T10->8 and T8->6; incremental side volume share exceeds starting p in both intervals, final selected volume rate >= previous.
+ACCELERATION: positive last price velocity, exceeds previous price velocity, final selected volume rate > previous, final incremental share > previous incremental share.
+RESISTANCE: selected share falls from T10 to T6 while normalized p does not fall, selected volume increases in both last intervals and normalized p does not fall T8->6.
+RECOVERY: p falls T10->8 then rises T8->6 to at least T10, selected rate rises and incremental share > starting p.
+CROSS_CONFIRM: only OU25/BTTS, exact synchronized T8/T6 both markets, normalized probability rises in selection and corresponding other goals market, selected volume rises and last incremental share > starting p.
+Fixed rule for best candidate: use only development dates, compare Oct9–Oct31 and Nov1–16 separately; both periods >=30 settled qualifying selections, both positive gross hypothetical ROI and both positive actual-minus-mean-market-probability. Among passing rules rank pooled mean of actual-minus-p divided by its standard error (exploratory, multiple comparisons); freeze one candidate overall before evaluating Nov17–26. Report every development-qualified method count; if none qualify state none. On holdout report win rate, odds, proxy return, price benchmark and sample uncertainty, no retuning. Market odds are quote proxies, no fee/actual execution proof. Research only.
